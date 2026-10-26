@@ -171,9 +171,20 @@ button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent
 
 /* ---------- Album ---------- */
 #album { z-index: 20; background: var(--bg); }
-.pager { flex: 1; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+.pager { flex: 1; overflow-x: hidden; overflow-y: auto; scrollbar-width: none; }
 .pager::-webkit-scrollbar { display: none; }
-.slide { flex: 0 0 100%; scroll-snap-align: center; display: flex; flex-direction: column; overflow-y: auto; }
+/* A pile of album prints: the top one follows your finger and is thrown aside to reveal the next. */
+.stack { touch-action: pan-y; user-select: none; -webkit-user-select: none; cursor: grab; }
+.print { position: absolute; top: 82px; left: 20px; right: 20px; bottom: 38px; transition: transform 520ms cubic-bezier(.2,.8,.2,1), opacity 300ms; will-change: transform; }
+.print.dragging { transition: none; }
+.print .frame { height: 100%; }
+.print.under .frame { box-shadow: 0 6px 16px rgba(0,0,0,.45); }
+.print.under .frame::after { content: ""; position: absolute; inset: 0; background: rgba(2,6,23,.18); pointer-events: none; }
+#bodies .slide:not(.on) { display: none; }
+.typing::after { content: "▍"; color: var(--accent); margin-left: 2px; animation: caret 700ms steps(1) infinite; }
+@keyframes caret { 50% { opacity: 0; } }
+.reveal { opacity: 0; transform: translateY(6px); transition: opacity 400ms, transform 400ms cubic-bezier(.16,1,.3,1); }
+.reveal.in { opacity: 1; transform: none; }
 .hero { box-sizing: border-box; position: relative; flex: 0 0 auto; height: 58vh; max-height: 520px; min-height: 300px; padding: 82px 20px 38px; background: radial-gradient(120% 80% at 50% 30%, #1a1d24, #0b0d12); }
 /* Album print: an off-white mount, soft shadow and photo corners. */
 .frame { position: relative; height: 100%; border: 9px solid #efe9dd; border-bottom-width: 9px; border-radius: 2px; background: #efe9dd; box-shadow: 0 1px 0 rgba(255,255,255,.08) inset, 0 14px 30px rgba(0,0,0,.55), 0 2px 6px rgba(0,0,0,.4); }
@@ -191,7 +202,7 @@ button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent
   --plx: 0px; transform: translate(calc(var(--plx) + var(--tx)), var(--ty)) scale(1.04); }
 /* Depth: a slow drift-and-zoom inside each print (alternating direction per slide), plus a gentle shift with phone tilt. */
 .depth .frame > .ph img, .depth .frame > .tn .ph img { animation: drift-a 22s ease-in-out infinite alternate; will-change: transform; }
-.depth .slide:nth-child(even) .frame .ph img { animation-name: drift-b; }
+.depth .print:nth-child(even) .frame .ph img { animation-name: drift-b; }
 @keyframes drift-a { from { transform: translate(calc(var(--plx) + var(--tx) - 1.5%), calc(var(--ty) + 1%)) scale(1.06); } to { transform: translate(calc(var(--plx) + var(--tx) + 1.5%), calc(var(--ty) - 1.5%)) scale(1.16); } }
 @keyframes drift-b { from { transform: translate(calc(var(--plx) + var(--tx) + 1.5%), calc(var(--ty) - 1%)) scale(1.15); } to { transform: translate(calc(var(--plx) + var(--tx) - 1.5%), calc(var(--ty) + 1%)) scale(1.06); } }
 .has-photo::after { display: none; }
@@ -226,7 +237,7 @@ button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent
 .body { padding-block: 16px 210px; display: grid; gap: 10px; }
 .ornament { height: 14px; background-repeat: repeat-x; background-position: center; opacity: .8; margin-bottom: 2px; }
 .era-line { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); }
-.slide h2 { margin: 0; font-family: var(--display); font-size: 28px; font-weight: 600; line-height: 1.1; text-wrap: balance; }
+.slide h2, .body h2 { margin: 0; font-family: var(--display); font-size: 28px; font-weight: 600; line-height: 1.1; text-wrap: balance; }
 .pos { color: var(--muted); font-size: 13px; }
 .focus { border-left: 2px solid var(--accent); padding-left: 12px; color: #cbd5e1; font-size: 14px; line-height: 1.5; }
 .focus b { display: block; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 2px; font-weight: 600; }
@@ -881,9 +892,10 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
     const s = STOPS[i], era = ERA[s.era];
     app.style.setProperty('--accent', era.accent);
     app.style.setProperty('--tint', era.tint);
-    pager.innerHTML = '';
+    pager.innerHTML = '<div class="hero stack" id="stack"></div><div id="bodies"></div>';
+    const stack = $('#stack'), bodies = $('#bodies');
     s.slides.forEach((sl, k) => {
-      const art = document.createElement('article'); art.className = 'slide';
+      const art = document.createElement('article'); art.className = 'slide body gutter'; art.dataset.k = k;
       const tn = s.thenNow !== undefined ? s.thenNow === k : (k === 0 && !!photo(s.id, 'then'));
       const bgs = []; const ph = (lbl, bg, pic) => pic
         ? `<div class="ph has-photo"><img src="${pic.src}" alt="${esc(sl.alt)}" draggable="false"></div>`
@@ -893,9 +905,11 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
         ? `<div class="tn" data-tn>${ph('Now · photo to be sourced', phBg(s.era, k), now)}<div class="then">${ph('Then · historic print to be sourced', `linear-gradient(160deg, #6b5838, #2a2214)`, then)}</div><div class="knob"></div><div class="tn-tags"><span>Then${then && then.year ? ' · ' + then.year : ''}</span><span>Now</span></div></div>`
         : ph('Photo · to be sourced', phBg(s.era, k), now);
       const credits = [now, then].filter(Boolean).map((c) => `<a href="${esc(c.url)}" target="_blank" rel="noopener">${creditLine(c)}</a>`).join('<br>');
+      const pr = document.createElement('div'); pr.className = 'print'; pr.dataset.k = k;
+      pr.innerHTML = `<div class="frame">${hero}<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></div>`;
+      pr.querySelectorAll('.ph').forEach((n) => { if (n.dataset.bg) n.style.setProperty('--ph-bg', bgs[+n.dataset.bg]); });
+      stack.appendChild(pr);
       art.innerHTML = `
-        <div class="hero"><div class="frame">${hero}<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></div></div>
-        <div class="body gutter">
           <div class="era-line">${era.label} · ${s.year} · Stop ${i + 1} of ${STOPS.length}</div>
           <h2>${sl.title}</h2>
           <div class="pos">◎ ${sl.pos}</div>
@@ -903,28 +917,99 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
           ${sl.cue ? `<div class="cue"><b>Look</b>${sl.cue}</div>` : ''}
           ${sl.next ? `<div class="next">Next: ${sl.next}</div>` : ''}
           <details class="transcript"><summary>Transcript</summary><p>${sl.text}</p>${s.sources ? citesHtml(s, sl) : '<p class="flag">Draft narration. Facts not yet checked against sources (UNVERIFIED).</p>'}</details>
-          ${credits ? `<div class="credit">${credits}</div>` : ''}
-        </div>`;
-      art.querySelectorAll('.ph').forEach((n) => n.style.setProperty('--ph-bg', bgs[+n.dataset.bg]));
-      pager.appendChild(art);
+          ${credits ? `<div class="credit">${credits}</div>` : ''}`;
+      bodies.appendChild(art);
     });
-    pager.querySelectorAll('[data-tn]').forEach(bindThenNow);
+    stack.querySelectorAll('[data-tn]').forEach(bindThenNow);
+    bindStack(stack);
     $('#dots').innerHTML = s.slides.map(() => '<i></i>').join('');
     drawPlan(s.plan);
-    pager.scrollLeft = 0; $('.dots-bar').classList.remove('away');
+    pager.scrollTop = 0; $('.dots-bar').classList.remove('away');
     setSlide(0, true);
   }
 
   function bindThenNow(box) {
     const set = (cx) => { const r = box.getBoundingClientRect(); box.style.setProperty('--x', Math.max(4, Math.min(96, (cx - r.left) / r.width * 100)) + '%'); };
     let on = false;
-    box.addEventListener('pointerdown', (e) => { on = true; box.setPointerCapture(e.pointerId); set(e.clientX); e.stopPropagation(); });
+    box.addEventListener('pointerdown', (e) => {
+      const r = box.getBoundingClientRect(), kx = r.left + r.width * (parseFloat(box.style.getPropertyValue('--x')) || 50) / 100;
+      if (Math.abs(e.clientX - kx) > 34) return; // away from the handle: let the swipe through
+      on = true; box.setPointerCapture(e.pointerId); set(e.clientX); e.stopPropagation();
+    });
     box.addEventListener('pointermove', (e) => { if (on) { set(e.clientX); e.preventDefault(); } });
     box.addEventListener('pointerup', () => { on = false; });
     box.addEventListener('pointercancel', () => { on = false; });
   }
-  // Keep horizontal drags on the Then & Now slider from scrolling the pager.
-  pager.addEventListener('touchmove', (e) => { if (e.target.closest('[data-tn]')) e.preventDefault(); }, { passive: false });
+  // ---- Print stack ----
+  const PILE = [[-2.2, 5, 7, .985], [1.8, -6, 12, .97], [-.8, 2, 16, .96]]; // rotation°, x, y, scale for prints under the top one
+  function layoutStack(dx = 0) {
+    const prints = [...document.querySelectorAll('#stack .print')], k = cur.slide;
+    prints.forEach((p, j) => {
+      p.classList.toggle('under', j > k);
+      if (j < k) { p.style.zIndex = 100 + j; p.style.transform = `translate(-135%, 30px) rotate(-14deg)`; p.style.opacity = '0'; return; }
+      p.style.opacity = '1';
+      if (j === k) { p.style.zIndex = 60; p.style.transform = `translate(${dx}px, ${Math.abs(dx) * 0.04}px) rotate(${dx * 0.035}deg)`; return; }
+      const [r, x, y, sc] = PILE[Math.min(j - k - 1, PILE.length - 1)];
+      const lift = Math.min(1, Math.abs(dx) / 160); // the next print rises a little as the top one leaves
+      p.style.zIndex = 50 - (j - k);
+      p.style.transform = j === k + 1
+        ? `translate(${x * (1 - lift)}px, ${y * (1 - lift)}px) rotate(${r * (1 - lift)}deg) scale(${sc + (1 - sc) * lift})`
+        : `translate(${x}px, ${y}px) rotate(${r}deg) scale(${sc})`;
+    });
+  }
+  function bindStack(stack) {
+    let st = null;
+    stack.addEventListener('pointerdown', (e) => {
+      const top = stack.querySelector(`.print[data-k="${cur.slide}"]`);
+      if (!top || e.button > 0) return;
+      st = { x: e.clientX, y: e.clientY, t: performance.now(), top, horiz: null };
+    });
+    stack.addEventListener('pointermove', (e) => {
+      if (!st) return;
+      const dx = e.clientX - st.x, dy = e.clientY - st.y;
+      if (st.horiz === null && Math.hypot(dx, dy) > 8) { st.horiz = Math.abs(dx) > Math.abs(dy); if (st.horiz) { stack.setPointerCapture(e.pointerId); st.top.classList.add('dragging'); } }
+      if (!st.horiz) return;
+      const atEnd = (dx < 0 && cur.slide === STOPS[cur.stop].slides.length - 1) || (dx > 0 && cur.slide === 0);
+      layoutStack(atEnd ? dx * 0.25 : dx);
+    });
+    const end = (e) => {
+      if (!st) return;
+      const dx = e.clientX - st.x, v = dx / Math.max(1, performance.now() - st.t), moved = st.horiz;
+      st.top.classList.remove('dragging'); const tapped = st.horiz === null && Math.hypot(e.clientX - st.x, e.clientY - st.y) < 8; st = null;
+      const last = STOPS[cur.stop].slides.length - 1;
+      if (moved && (dx < -70 || v < -0.6) && cur.slide < last) goSlide(cur.slide + 1);
+      else if (moved && (dx > 70 || v > 0.6) && cur.slide > 0) goSlide(cur.slide - 1);
+      else if (tapped && !e.target.closest('[data-tn]') && cur.slide < last) goSlide(cur.slide + 1);
+      else layoutStack(0);
+    };
+    stack.addEventListener('pointerup', end); stack.addEventListener('pointercancel', end);
+  }
+
+  // Caption types itself out after each swipe (title, then the focus line); the rest fades in.
+  let typeTok = 0;
+  async function typeBody(art, instant) {
+    const tok = ++typeTok;
+    const h2 = art.querySelector('h2'), focus = art.querySelector('.focus');
+    const focusTxt = focus ? focus.lastChild : null;
+    h2.dataset.full = h2.dataset.full || h2.textContent;
+    if (focusTxt && focusTxt.nodeType === 3) focus.dataset.full = focus.dataset.full || focusTxt.textContent;
+    const rest = [...art.children].filter((n) => n !== h2 && n !== focus && !n.classList.contains('era-line'));
+    if (instant || !cinematic()) {
+      h2.textContent = h2.dataset.full; if (focusTxt) focusTxt.textContent = focus.dataset.full;
+      rest.concat(focus ? [focus] : []).forEach((n) => n.classList.add('reveal', 'in')); return;
+    }
+    rest.forEach((n) => { n.classList.add('reveal'); n.classList.remove('in'); });
+    if (focus) { focus.classList.add('reveal'); focus.classList.remove('in'); focusTxt.textContent = ''; }
+    const type = async (node, txt, holder, ms) => {
+      holder.classList.add('typing'); node.textContent = '';
+      for (let n = 1; n <= txt.length; n++) { if (tok !== typeTok) return false; node.textContent = txt.slice(0, n); await wait(ms); }
+      holder.classList.remove('typing'); return true;
+    };
+    h2.setAttribute('aria-label', h2.dataset.full);
+    if (!(await type(h2, h2.dataset.full, h2, 34))) return;
+    if (focus) { focus.classList.add('in'); if (!(await type(focusTxt, focus.dataset.full, focus, 16))) return; }
+    rest.forEach((n, i) => setTimeout(() => { if (tok === typeTok) n.classList.add('in'); }, i * 90));
+  }
 
   // Key plan + view cone
   const seen = new Set();
@@ -951,29 +1036,18 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
   function setSlide(k, instant) {
     const s = STOPS[cur.stop];
     cur.slide = k;
-    const el_ = pager.children[k]; $('.dots-bar').classList.toggle('away', !!el_ && el_.scrollTop > 30);
+    layoutStack(0);
+    document.querySelectorAll('#bodies .slide').forEach((a) => a.classList.toggle('on', +a.dataset.k === k));
+    const art = document.querySelector(`#bodies .slide[data-k="${k}"]`); if (art) typeBody(art, instant);
     document.querySelectorAll('#dots i').forEach((d, n) => d.classList.toggle('on', n === k));
     $('#count').textContent = `${k + 1} / ${s.slides.length}`;
     setCone(s.slides[k].vp, instant);
     $('#pTitle').textContent = s.slides[k].title;
     narr.onSlide(k);
   }
-  let plxRaf = 0;
-  pager.addEventListener('scroll', () => {
-    if (!cinematic() || plxRaf) return;
-    plxRaf = requestAnimationFrame(() => {
-      plxRaf = 0; const w = pager.clientWidth, x = pager.scrollLeft;
-      [...pager.children].forEach((sl, k) => { const img = sl.querySelector('.frame > .ph img'); if (img) img.style.setProperty('--plx', `${(x - k * w) * 0.35}px`); });
-    });
-  }, { passive: true });
-  let scrollT;
-  pager.addEventListener('scroll', () => {
-    clearTimeout(scrollT);
-    scrollT = setTimeout(() => { const k = Math.round(pager.scrollLeft / pager.clientWidth); if (k !== cur.slide) setSlide(k); }, 60);
-  });
   // Hide the slide counter once the text scrolls up under it.
-  pager.addEventListener('scroll', (e) => { if (e.target.classList && e.target.classList.contains('slide')) $('.dots-bar').classList.toggle('away', e.target.scrollTop > 30); }, true);
-  function goSlide(k) { pager.scrollTo({ left: k * pager.clientWidth, behavior: cinematic() ? 'smooth' : 'auto' }); }
+  pager.addEventListener('scroll', () => { $('.dots-bar').classList.toggle('away', pager.scrollTop > 30); }, { passive: true });
+  function goSlide(k) { if (k === cur.slide) return; buzz(); setSlide(k); }
 
   // ---- Narration: device TTS stands in for pre-rendered audio (PRD F5 fallback, labelled preview) ----
   const narr = (() => {
