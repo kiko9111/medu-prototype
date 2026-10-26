@@ -316,6 +316,93 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
 .cert-list li i { width: 8px; height: 8px; border-radius: 50%; }
 .cert-list li span:last-child { color: var(--muted); font-variant-numeric: tabular-nums; }
 
+#app { overflow: clip; } /* a focused button inside an overlay must never scroll the phone frame */
+/* ---- Theatre: story stops (Sultan Hassan). Motion only at transitions; reduced motion and "Cinematic effects off" get plain fades. ---- */
+.card-print { display: grid; place-content: center; gap: 14px; padding: 28px 26px; text-align: center; background:
+  radial-gradient(90% 70% at 50% 30%, rgba(224,164,58,.16), transparent 70%), linear-gradient(170deg, #1c160c, #0b0906 80%) !important; }
+.card-print blockquote { margin: 0; font-family: var(--display); font-style: italic; font-size: 25px; line-height: 1.22; color: #f3e6c8; text-wrap: balance; }
+.card-print blockquote::before { content: '“'; display: block; font-size: 64px; line-height: .5; color: var(--accent); opacity: .7; margin-bottom: 8px; font-style: normal; }
+.card-print cite { font-style: normal; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #b9a582; }
+.scene-tag { display: inline-block; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; padding: 2px 8px; border-radius: 99px; border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent); color: var(--accent); margin-left: 6px; vertical-align: 2px; }
+.lines { display: grid; gap: 10px; margin: 12px 0; }
+.lines p { margin: 0; line-height: 1.55; }
+.lines b { display: block; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+.lines b em { font-style: normal; color: var(--muted); letter-spacing: .04em; text-transform: none; font-weight: 400; margin-left: 6px; }
+.lines .v-narrator b { color: var(--muted); }
+.st-hud { display: flex; gap: 8px; margin-right: auto; margin-left: 8px; }
+.st-hud[hidden] { display: none; }
+.st-hud button { height: 38px; min-width: 38px; padding: 0 10px; border-radius: 99px; background: rgba(2,6,23,.7); border: 1px solid var(--line); display: inline-flex; align-items: center; gap: 6px; font-size: 13px; }
+.st-hud .n { font-variant-numeric: tabular-nums; color: var(--accent); font-weight: 600; }
+.st-hud .pop { animation: stPop 700ms cubic-bezier(.16,1,.3,1); }
+@keyframes stPop { 40% { transform: scale(1.25); border-color: var(--accent); } }
+
+.stage { position: absolute; inset: 0; z-index: 35; display: flex; flex-direction: column; justify-content: flex-end; transition: opacity 700ms cubic-bezier(.16,1,.3,1), visibility 0s; }
+.stage.off { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 500ms ease, visibility 0s 500ms; }
+.stage .veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2,6,23,.15), rgba(2,6,23,.55) 45%, rgba(2,6,23,.94)); transition: background 900ms ease; }
+.stage.full .veil { background: radial-gradient(120% 80% at 50% 45%, rgba(10,9,6,.9), #020306 75%); }
+.stage.dark .veil { background: #000; }
+.stage.center { justify-content: center; }
+.st-body { position: relative; padding: 0 22px calc(28px + env(safe-area-inset-bottom, 0px)); display: grid; gap: 14px; }
+.stage.center .st-body { padding-bottom: 0; text-align: center; justify-items: center; }
+.st-kicker { font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--accent); }
+.st-title { margin: 0; font-family: var(--display); font-weight: 600; font-size: 40px; line-height: 1.04; text-wrap: balance; color: #f6efe2; }
+.st-title.sm { font-size: 30px; }
+.st-sub { margin: 0; color: #cbd5e1; line-height: 1.55; max-width: 34ch; text-wrap: pretty; }
+.st-sub.small { font-size: 13px; color: var(--muted); }
+.st-rule { width: 64px; height: 1px; background: var(--accent); opacity: .7; }
+.st-actions { display: grid; gap: 10px; width: 100%; }
+.st-actions .btn { width: 100%; }
+.st-actions .btn small { display: block; font-weight: 400; font-size: 12px; opacity: .75; }
+.st-actions .btn.two { flex-direction: column; gap: 0; padding: 8px 14px; }
+.st-skip { position: absolute; top: calc(34px + env(safe-area-inset-top, 0px)); right: 16px; z-index: 2; height: 34px; padding: 0 12px; border-radius: 99px; border: 1px solid rgba(148,163,184,.3); color: var(--muted); font-size: 12.5px; background: rgba(2,6,23,.5); }
+.st-dist { display: flex; align-items: baseline; gap: 10px; font-variant-numeric: tabular-nums; }
+.st-dist b { font-family: var(--display); font-size: 44px; font-weight: 600; color: #f6efe2; line-height: 1; }
+.st-dist span { color: var(--muted); font-size: 13px; }
+.st-pulse { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent); animation: stPulse 1.8s infinite; }
+@keyframes stPulse { 70% { box-shadow: 0 0 0 16px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+.st-note { font-size: 12.5px; line-height: 1.5; color: #fde68a; background: rgba(251,191,36,.08); border: 1px solid rgba(251,191,36,.28); border-radius: 12px; padding: 10px 12px; }
+.st-ring { width: 120px; height: 120px; }
+.st-ring circle { fill: none; stroke-width: 3; }
+.st-ring .bg { stroke: rgba(148,163,184,.18); }
+.st-ring .fg { stroke: var(--accent); stroke-linecap: round; transform: rotate(-90deg); transform-origin: 50% 50%; }
+.st-ring text { fill: #f6efe2; font-family: var(--display); font-size: 34px; font-weight: 600; text-anchor: middle; dominant-baseline: central; }
+.st-say { font-family: var(--display); font-size: 32px; line-height: 1.12; font-weight: 500; color: #f6efe2; max-width: 16ch; text-wrap: balance; margin: 0; }
+.st-count { display: flex; align-items: center; gap: 18px; }
+.st-count button { width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--line); font-size: 24px; }
+.st-count output { font-family: var(--display); font-size: 56px; font-weight: 600; min-width: 2ch; text-align: center; font-variant-numeric: tabular-nums; }
+.st-keep { width: 120px; height: 120px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--accent) 35%, transparent), transparent 70%); border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent); }
+.st-keep svg { width: 56px; height: 56px; stroke: #f3e6c8; fill: none; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.cine .stage .st-keep { animation: stKeep 1100ms cubic-bezier(.16,1,.3,1) both; }
+@keyframes stKeep { from { transform: scale(.4) rotate(-12deg); opacity: 0; filter: blur(6px); } to { transform: none; opacity: 1; filter: none; } }
+.cine .stage .st-in > * { animation: stRise 900ms cubic-bezier(.16,1,.3,1) both; }
+.cine .stage .st-in > *:nth-child(2) { animation-delay: 160ms; } .cine .stage .st-in > *:nth-child(3) { animation-delay: 320ms; }
+.cine .stage .st-in > *:nth-child(4) { animation-delay: 480ms; } .cine .stage .st-in > *:nth-child(n+5) { animation-delay: 640ms; }
+@keyframes stRise { from { opacity: 0; transform: translateY(14px); letter-spacing: .02em; } to { opacity: 1; transform: none; } }
+.cine .stage .st-chapter .st-title { animation: stChapter 2400ms cubic-bezier(.16,1,.3,1) both; }
+@keyframes stChapter { from { opacity: 0; transform: scale(1.06); filter: blur(8px); } 30% { opacity: 1; filter: none; } to { transform: scale(1); } }
+
+.keeps-list { list-style: none; margin: 4px 0 8px; padding: 0; display: grid; gap: 10px; }
+.keeps-list li { display: grid; grid-template-columns: 44px 1fr; gap: 12px; align-items: center; }
+.keeps-list li.no { opacity: .35; }
+.keeps-list svg { width: 40px; height: 40px; padding: 8px; border-radius: 50%; border: 1px solid var(--line); stroke: var(--accent); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.keeps-list b { display: block; font-size: 14px; } .keeps-list small { color: var(--muted); font-size: 12.5px; line-height: 1.4; display: block; }
+.guide-card { max-height: 86%; overflow: auto; }
+.g-tabs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 4px; scrollbar-width: none; }
+.g-tabs button { flex: none; padding: 6px 12px; border-radius: 99px; border: 1px solid var(--line); font-size: 12.5px; color: var(--muted); }
+.g-tabs button[aria-pressed="true"] { background: var(--accent); color: #1a1405; border-color: var(--accent); }
+.g-pane { font-size: 14px; line-height: 1.55; color: #cbd5e1; }
+.g-pane dl { margin: 0; display: grid; gap: 10px; } .g-pane dt { font-weight: 600; color: var(--text); } .g-pane dd { margin: 0; color: var(--muted); font-size: 13.5px; }
+.g-pane .tl { display: grid; grid-template-columns: 64px 1fr; gap: 6px 12px; } .g-pane .tl b { color: var(--accent); font-variant-numeric: tabular-nums; }
+.g-pane .pt { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; font-variant-numeric: tabular-nums; }
+.g-pane a { color: var(--accent); }
+.souv-card { max-height: 92%; overflow: auto; }
+.souv-card img { width: 100%; border-radius: 12px; display: block; border: 1px solid var(--raised); }
+.souv-card input[type=text] { width: 100%; height: 46px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg); color: var(--text); padding: 0 12px; font: inherit; }
+.souv-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.teaser { margin-top: 6px; padding: 12px 14px; border-radius: 14px; border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); background: color-mix(in srgb, var(--accent) 8%, transparent); }
+.teaser b { font-family: var(--display); font-size: 20px; display: block; } .teaser p { margin: 4px 0 10px; font-size: 13px; color: var(--muted); line-height: 1.5; }
+@media (prefers-reduced-motion: reduce) { .st-pulse { animation: none; } }
+
 @media (prefers-reduced-motion: reduce) {
   .pin .halo { animation: none; }
   * { scroll-behavior: auto !important; }
@@ -331,6 +418,7 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
     <li>Watch the year roll back to when it was built.</li>
     <li>Swipe the photos; tap the key plan to enlarge it.</li>
     <li>Drag the Then &amp; Now slider at Bab Zuweila.</li>
+    <li>On the Citadel walk, open Sultan Hassan for the full story: ten scenes, voices, keepsakes and a souvenir card.</li>
     <li>Return to 2026, and finish every stop on a walk.</li>
   </ol>
   <p>Arrow keys swipe, Esc returns to the map. On a phone, open the same link in Chrome for the full-screen feel.</p>
@@ -393,6 +481,10 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
   <section id="album" class="screen off" aria-label="Stop">
     <div class="album-top gutter">
       <button class="close" id="closeAlbum"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg>Map</button>
+      <div class="st-hud" id="stHud" hidden>
+        <button id="stKeeps" aria-label="Keepsakes"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.2 12H6.2z M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="n" id="stKeepN">0</span></button>
+        <button id="stGuide" aria-label="Guidebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-2-1.5-5-2-8-1.5v14c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5v-14c-3-.5-6 0-8 1.5z M12 6v14"/></svg></button>
+      </div>
       <button class="plan-hud" id="planHud" aria-label="Key plan. Tap to enlarge">
         <svg viewBox="0 0 100 100" id="planSvg"><g id="planLines"></g><g id="cone"><path class="cone-fill" d="M0 0 L-14 -26 A30 30 0 0 1 14 -26 Z"/><circle class="cone-dot" r="3.2"/></g><g transform="translate(91 12)"><path d="M0 -7 L3 3 L0 1 L-3 3 Z" fill="#cbd5e1"/><text y="-9" text-anchor="middle" font-size="6" fill="#cbd5e1" font-family="Inter">N</text></g></svg>
         <div class="cap"><span>Key plan</span><span>Draft</span></div>
@@ -454,6 +546,49 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
     </div>
   </div>
 
+  <!-- Theatre overlay: story stops (arrivals, chapter cards, acts, keepsakes, choices) -->
+  <div class="stage off" id="stage" aria-live="polite">
+    <div class="veil"></div>
+    <button class="st-skip" id="stSkip" hidden>Skip</button>
+    <div class="st-body" id="stBody"></div>
+  </div>
+  <input type="file" accept="image/*" capture="user" id="stPhoto" hidden>
+
+  <div class="modal" id="keeps" hidden>
+    <div class="modal-card gutter" role="dialog" aria-label="Keepsakes">
+      <h3>Your keepsakes</h3>
+      <p style="margin:0 0 8px;color:var(--muted);font-size:13px">Things the story gives you along the way. They go on your souvenir card at the end.</p>
+      <ul class="keeps-list" id="keepsList"></ul>
+      <button class="btn btn-primary" data-close>Back to the story</button>
+    </div>
+  </div>
+
+  <div class="modal" id="guide" hidden>
+    <div class="modal-card gutter guide-card" role="dialog" aria-label="Guidebook">
+      <h3>Guidebook</h3>
+      <div class="g-tabs" id="gTabs" role="tablist"></div>
+      <div class="g-pane" id="gPane"></div>
+      <button class="btn btn-primary" data-close style="margin-top:12px">Back to the story</button>
+    </div>
+  </div>
+
+  <div class="modal" id="souvenir" hidden>
+    <div class="modal-card gutter souv-card" role="dialog" aria-label="Your souvenir">
+      <h3>You walked with Sultan Hasan</h3>
+      <img id="souvImg" alt="Your souvenir card">
+      <label style="font-size:12.5px;color:var(--muted);margin-top:8px" for="souvName">Name on the card</label>
+      <input type="text" id="souvName" maxlength="32" placeholder="Your name" autocomplete="given-name">
+      <div class="souv-row" style="margin-top:8px">
+        <button class="btn btn-ghost" id="souvPhoto">Add a photo</button>
+        <button class="btn btn-ghost" id="souvSave">Save image</button>
+      </div>
+      <button class="btn btn-primary" id="souvShare" style="margin-top:8px">Share</button>
+      <div class="teaser"><b>Next: Al-Rifa'i</b><p>It looks as old as Sultan Hassan. It was begun in 1869. Why build a medieval-looking mosque five centuries later, right opposite?</p>
+        <button class="btn btn-ghost" id="souvNext" style="width:100%">Cross the lane to Al-Rifa'i</button></div>
+      <button class="btn btn-ghost" data-close style="margin-top:8px">Back to the map</button>
+    </div>
+  </div>
+
   <!-- Settings -->
   <div class="modal" id="settings" hidden>
     <div class="modal-card gutter" role="dialog" aria-label="Settings">
@@ -464,7 +599,7 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
       <button class="toggle" role="switch" id="tAuto" aria-checked="false"><span>Auto-advance slides<small>Move to the next slide when narration ends.</small></span><span class="sw"></span></button>
       <button class="btn btn-ghost" id="resetWalk" style="margin-top:12px">Reset visited stops</button>
       <button class="btn btn-primary" id="closeSettings" style="margin-top:6px">Done</button>
-      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 26 Oct 14:36 UTC</p>
+      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 26 Oct 15:00 UTC</p>
     </div>
   </div>
 </div>
@@ -484,7 +619,7 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
   };
   const PRESENT = 2026;
   // Licensed photos + basemap, embedded by build-prototype.py. null = placeholders only.
-  const ASSETS = {"photos": {"qalawun": {"0": {"src": "img/qalawun-0.jpg", "author": "Djehouty", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Qalawun-Komplex_2015-11-12a.jpg", "year": null}, "1": {"src": "img/qalawun-1.jpg", "author": "Sailko", "license": "CC BY 3.0", "url": "https://commons.wikimedia.org/wiki/File:Cairo,_madrasa_del_sultano_qalaun,_corridoio.JPG", "year": null}, "2": {"src": "img/qalawun-2.jpg", "author": "Ahmedsalahemam", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Kalawoun_Mosque_01.jpg", "year": null}}, "azhar": {"0": {"src": "img/azhar-0.jpg", "author": "Djehouty", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Al-Azhar_2019-11-02l.jpg", "year": null}, "1": {"src": "img/azhar-1.jpg", "author": "Djehouty", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Al-Azhar_2019-11-02m.jpg", "year": null}, "2": {"src": "img/azhar-2.jpg", "author": "Djehouty", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Al-Azhar_2019-11-02t.jpg", "year": null}}, "zuweila": {"0": {"src": "img/zuweila-0.jpg", "author": "Sailko", "license": "CC BY 3.0", "url": "https://commons.wikimedia.org/wiki/File:Cairo,_bab_zuweila_02.JPG", "year": null}, "1": {"src": "img/zuweila-1.jpg", "author": "Djehouty", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Bab_Zuweila_2019-11-02a.jpg", "year": null}, "2": {"src": "img/zuweila-2.jpg", "author": "Magoopic", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:%D9%85%D8%AE%D8%B1%D8%AC_%D8%A8%D8%A7%D8%A8_%D8%B2%D9%88%D9%8A%D9%84%D9%87.jpg", "year": null}, "then": {"src": "img/zuweila-then.jpg", "author": "Louis Haghe", "license": "CC0", "url": "https://commons.wikimedia.org/wiki/File:Louis_Haghe_-_Egypt_and_Nubia,_Volume_III-_Minarets,_and_Grand_Entrance_of_the_Metwaleys,_-_2012.194_-_Cleveland_Museum_of_Art.jpg", "year": null}}, "hassan": {"1": {"src": "img/hassan-0.jpg", "author": "Djehouty", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Sultan-Hassan-Moschee_2015-11-14g.jpg", "year": null}, "4": {"src": "img/hassan-1.jpg", "author": "Samir I. Sharbaty", "license": "CC BY-SA 3.0", "url": "https://commons.wikimedia.org/wiki/File:Cairo2710.JPG", "year": null}, "3": {"src": "img/hassan-2.jpg", "author": "Sailko", "license": "CC BY 3.0", "url": "https://commons.wikimedia.org/wiki/File:Moschea_del_sultano_hasan,_1362,_interno,_androne_02.JPG", "year": null}, "then": {"src": "img/hassan-then.jpg", "author": "Peter Bergheim (Library of Congress, LCCN 92500750)", "license": "Public domain", "url": "https://commons.wikimedia.org/wiki/File:Cairo._Mosque_of_Sultan_Hassan_-_P._Bergheim._LCCN92500750.jpg", "year": 1860}, "0": {"src": "img/hassan-midan.jpg", "author": "Sailko", "license": "CC BY 3.0", "url": "https://commons.wikimedia.org/wiki/File:Moschea_del_sultano_hasan,_1362,_esterno_01.JPG", "year": null}, "2": {"src": "img/hassan-portal.jpg", "author": "Ovedc", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:By_ovedc_-_Mosque_of_Sultan_Hasan_-_07.jpg", "year": null}, "5": {"src": "img/hassan-tomb.jpg", "author": "R Prazeres", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Sultan_Hasan_mausoleum_DSCF7665.jpg", "year": null}}, "ibntulun": {"0": {"src": "img/ibntulun-0.jpg", "author": "Donia Malak", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:%D9%85%D8%A3%D8%B0%D9%86%D8%A9_%D8%AC%D8%A7%D9%85%D8%B9_%D8%A7%D8%A8%D9%86_%D8%B7%D9%88%D9%84%D9%88%D9%86.jpg", "year": null}, "1": {"src": "img/ibntulun-1.jpg", "author": "Richard Mortel", "license": "CC BY 2.0", "url": "https://commons.wikimedia.org/wiki/File:Mosque_of_Ibn_Tulun,_Cairo,_876-79_(34).jpg", "year": null}, "2": {"src": "img/ibntulun-2.jpg", "author": "AhmedMosaad", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Panoramic_arcades_of_ibn_tolon.jpg", "year": null}}, "gayer": {"0": {"src": "img/gayer-0.jpg", "author": "Richard Mortel", "license": "CC BY 2.0", "url": "https://commons.wikimedia.org/wiki/File:Bayt_al-Kritiliyya_(Gayer-Anderson_Museum),_16th-17th_cents.,_Cairo_(2).jpg", "year": null}, "1": {"src": "img/gayer-1.jpg", "author": "Ahmed Yousry Mahfouz", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Anderson_House_Museum.jpg", "year": null}, "2": {"src": "img/gayer-2.jpg", "author": "Richard Mortel", "license": "CC BY 2.0", "url": "https://commons.wikimedia.org/wiki/File:Bayt_al-Kritiliyya_(Gayer-Anderson_Museum),_16th-17th_cents.,_Cairo_(9).jpg", "year": null}}, "rifai": {"0": {"src": "img/rifai-0.jpg", "author": "Nan deko", "license": "CC BY-SA 3.0", "url": "https://commons.wikimedia.org/wiki/File:%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%B1%D9%81%D8%A7%D8%B9%D9%8A_%D9%85%D9%86_%D8%A3%D9%85%D8%A7%D9%85_%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A7%D9%86_%D8%AD%D8%B3%D9%86.jpg", "year": null}, "1": {"src": "img/rifai-1.jpg", "author": "Aymanrefaat09", "license": "CC BY-SA 3.0", "url": "https://commons.wikimedia.org/wiki/File:A_far_view_of_Muhammad_Ali_mosque_from_the_corridor_between_Sultan_Hassan_mosque_and_Al-Rifa%27i_Mosque.JPG", "year": null}, "2": {"src": "img/rifai-2.jpg", "author": "Ahmad Badr", "license": "CC BY-SA 3.0", "url": "https://commons.wikimedia.org/wiki/File:Al-Rifa%27i_Mosque_prayer_hall.JPG", "year": null}}, "akhur": {"0": {"src": "img/akhur-0.jpg", "author": "Sailko", "license": "CC BY 3.0", "url": "https://commons.wikimedia.org/wiki/File:Cairo,_madrasa_di_qanibay_amir_akhun,_1503,_01.JPG", "year": null}, "1": {"src": "img/akhur-1.jpg", "author": "Sohilaali869", "license": "CC BY 4.0", "url": "https://commons.wikimedia.org/wiki/File:Mosque_of_Qanibay_al-Rammah-_%D9%85%D8%B3%D8%AC%D8%AF_%D9%82%D8%A7%D9%86%D9%8A_%D8%A8%D8%A7%D9%8A_%D8%A7%D9%84%D8%B1%D9%85%D8%A7%D8%AD_-EWUG_04.jpg", "year": null}, "2": {"src": "img/akhur-2.jpg", "author": "Sailko", "license": "CC BY 3.0", "url": "https://commons.wikimedia.org/wiki/File:Cairo,_madrasa_di_qanibay_amir_akhun,_1503,_02.JPG", "year": null}}, "citadel": {"0": {"src": "img/citadel-0.jpg", "author": "Vyacheslav Argenberg", "license": "CC BY 4.0", "url": "https://commons.wikimedia.org/wiki/File:Cairo,_Cairo_Citadel,_Muhammad_Ali_Mosque,_Egypt.jpg", "year": null}, "1": {"src": "img/citadel-1.jpg", "author": "Angel Aroca Esc\u00e1mez", "license": "CC BY-SA 3.0", "url": "https://commons.wikimedia.org/wiki/File:Mezquita_de_Alabastro_El_Cairo_02.jpg", "year": null}, "2": {"src": "img/citadel-2.jpg", "author": "Jorge L\u00e1scar from Melbourne, Australia", "license": "CC BY 2.0", "url": "https://commons.wikimedia.org/wiki/File:Ottoman_hierarchy_of_domes_and_interior_of_the_Mosque_of_Muhammad_Ali_(14613586998).jpg", "year": null}}}, "map": {"src": "img/map.jpg", "bounds": [30.023921574501376, 31.2451171875, 30.05483122485245, 31.26983642578125], "attribution": "\u00a9 OpenStreetMap contributors"}};
+  const ASSETS = {"photos": {"qalawun": {"0": {"src": "img/qalawun-0.jpg", "author": "Djehouty", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Qalawun-Komplex_2015-11-12a.jpg", "year": null}, "1": {"src": "img/qalawun-1.jpg", "author": "Sailko", "license": "CC BY 3.0", "url": "https://commons.wikimedia.org/wiki/File:Cairo,_madrasa_del_sultano_qalaun,_corridoio.JPG", "year": null}, "2": {"src": "img/qalawun-2.jpg", "author": "Ahmedsalahemam", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Kalawoun_Mosque_01.jpg", "year": null}}, "azhar": {"0": {"src": "img/azhar-0.jpg", "author": "Djehouty", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Al-Azhar_2019-11-02l.jpg", "year": null}, "1": {"src": "img/azhar-1.jpg", "author": "Djehouty", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Al-Azhar_2019-11-02m.jpg", "year": null}, "2": {"src": "img/azhar-2.jpg", "author": "Djehouty", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Al-Azhar_2019-11-02t.jpg", "year": null}}, "zuweila": {"0": {"src": "img/zuweila-0.jpg", "author": "Sailko", "license": "CC BY 3.0", "url": "https://commons.wikimedia.org/wiki/File:Cairo,_bab_zuweila_02.JPG", "year": null}, "1": {"src": "img/zuweila-1.jpg", "author": "Djehouty", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Bab_Zuweila_2019-11-02a.jpg", "year": null}, "2": {"src": "img/zuweila-2.jpg", "author": "Magoopic", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:%D9%85%D8%AE%D8%B1%D8%AC_%D8%A8%D8%A7%D8%A8_%D8%B2%D9%88%D9%8A%D9%84%D9%87.jpg", "year": null}, "then": {"src": "img/zuweila-then.jpg", "author": "Louis Haghe", "license": "CC0", "url": "https://commons.wikimedia.org/wiki/File:Louis_Haghe_-_Egypt_and_Nubia,_Volume_III-_Minarets,_and_Grand_Entrance_of_the_Metwaleys,_-_2012.194_-_Cleveland_Museum_of_Art.jpg", "year": null}}, "hassan": {"2": {"src": "img/hassan-0.jpg", "author": "Djehouty", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Sultan-Hassan-Moschee_2015-11-14g.jpg", "year": null}, "7": {"src": "img/hassan-1.jpg", "author": "Samir I. Sharbaty", "license": "CC BY-SA 3.0", "url": "https://commons.wikimedia.org/wiki/File:Cairo2710.JPG", "year": null}, "6": {"src": "img/hassan-2.jpg", "author": "Sailko", "license": "CC BY 3.0", "url": "https://commons.wikimedia.org/wiki/File:Moschea_del_sultano_hasan,_1362,_interno,_androne_02.JPG", "year": null}, "then-2": {"src": "img/hassan-then.jpg", "author": "Peter Bergheim (Library of Congress, LCCN 92500750)", "license": "Public domain", "url": "https://commons.wikimedia.org/wiki/File:Cairo._Mosque_of_Sultan_Hassan_-_P._Bergheim._LCCN92500750.jpg", "year": 1860}, "1": {"src": "img/hassan-midan.jpg", "author": "Sailko", "license": "CC BY 3.0", "url": "https://commons.wikimedia.org/wiki/File:Moschea_del_sultano_hasan,_1362,_esterno_01.JPG", "year": null}, "3": {"src": "img/hassan-portal.jpg", "author": "Ovedc", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:By_ovedc_-_Mosque_of_Sultan_Hasan_-_07.jpg", "year": null}, "10": {"src": "img/hassan-tomb.jpg", "author": "R Prazeres", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Sultan_Hasan_mausoleum_DSCF7665.jpg", "year": null}, "0": {"src": "img/hassan-print-kitlv.jpg", "author": "Unknown photographer (KITLV, Leiden University Libraries)", "license": "CC BY 4.0", "url": "https://commons.wikimedia.org/wiki/File:Sultan_Hasan_Madrasa_op_de_moskee_te_Ca%C3%AFro,_gezien_vanaf_de_Citadel,_KITLV_3782.tiff", "year": 1880}, "then-1": {"src": "img/hassan-print-herz1899.jpg", "author": "Max Herz (1899), plate VI", "license": "Public domain", "url": "https://commons.wikimedia.org/wiki/File:Sultan_Hasan_before_restoration.jpg", "year": 1899}, "then-3": {"src": "img/hassan-print-facchinelli.jpg", "author": "Beniamino Facchinelli (Biblioth\u00e8que nationale de France)", "license": "Public domain", "url": "https://commons.wikimedia.org/wiki/File:Porta_del_Sultan_Hassan_-_btv1b105086148_(1_of_2).jpg", "year": 1880}, "then-7": {"src": "img/hassan-print-sebah.jpg", "author": "Pascal S\u00e9bah", "license": "Public domain", "url": "https://commons.wikimedia.org/wiki/File:Sebah,_Pascal_(1823-1886)_-_n._016_-_Mosqu%C3%A9e_Soultan_-_Fontaines_des_ablutions_(Hassan)_-_Cairo_-_1880s.jpg", "year": 1880}, "8": {"src": "img/hassan-print-protain.jpg", "author": "Protain, for the Description de l'\u00c9gypte (Biblioth\u00e8que nationale de France)", "license": "Public domain", "url": "https://commons.wikimedia.org/wiki/File:Le_Caire_-_vue_int%C3%A9rieure_de_la_mosqu%C3%A9e_du_sultan_Hassan_-_dessin_-_Protain_del._-_btv1b105141611.jpg", "year": 1800}, "11": {"src": "img/hassan-print-conte.jpg", "author": "Nicolas-Jacques Cont\u00e9, for the Description de l'\u00c9gypte (Biblioth\u00e8que nationale de France)", "license": "Public domain", "url": "https://commons.wikimedia.org/wiki/File:Le_Caire_-_vue_de_la_mosqu%C3%A9e_du_sultan_Hassan_-_dessin_-_Cont%C3%A9_del._-_btv1b53096724b.jpg", "year": 1800}}, "ibntulun": {"0": {"src": "img/ibntulun-0.jpg", "author": "Donia Malak", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:%D9%85%D8%A3%D8%B0%D9%86%D8%A9_%D8%AC%D8%A7%D9%85%D8%B9_%D8%A7%D8%A8%D9%86_%D8%B7%D9%88%D9%84%D9%88%D9%86.jpg", "year": null}, "1": {"src": "img/ibntulun-1.jpg", "author": "Richard Mortel", "license": "CC BY 2.0", "url": "https://commons.wikimedia.org/wiki/File:Mosque_of_Ibn_Tulun,_Cairo,_876-79_(34).jpg", "year": null}, "2": {"src": "img/ibntulun-2.jpg", "author": "AhmedMosaad", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Panoramic_arcades_of_ibn_tolon.jpg", "year": null}}, "gayer": {"0": {"src": "img/gayer-0.jpg", "author": "Richard Mortel", "license": "CC BY 2.0", "url": "https://commons.wikimedia.org/wiki/File:Bayt_al-Kritiliyya_(Gayer-Anderson_Museum),_16th-17th_cents.,_Cairo_(2).jpg", "year": null}, "1": {"src": "img/gayer-1.jpg", "author": "Ahmed Yousry Mahfouz", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Anderson_House_Museum.jpg", "year": null}, "2": {"src": "img/gayer-2.jpg", "author": "Richard Mortel", "license": "CC BY 2.0", "url": "https://commons.wikimedia.org/wiki/File:Bayt_al-Kritiliyya_(Gayer-Anderson_Museum),_16th-17th_cents.,_Cairo_(9).jpg", "year": null}}, "rifai": {"0": {"src": "img/rifai-0.jpg", "author": "Nan deko", "license": "CC BY-SA 3.0", "url": "https://commons.wikimedia.org/wiki/File:%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%B1%D9%81%D8%A7%D8%B9%D9%8A_%D9%85%D9%86_%D8%A3%D9%85%D8%A7%D9%85_%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A7%D9%86_%D8%AD%D8%B3%D9%86.jpg", "year": null}, "1": {"src": "img/rifai-1.jpg", "author": "Aymanrefaat09", "license": "CC BY-SA 3.0", "url": "https://commons.wikimedia.org/wiki/File:A_far_view_of_Muhammad_Ali_mosque_from_the_corridor_between_Sultan_Hassan_mosque_and_Al-Rifa%27i_Mosque.JPG", "year": null}, "2": {"src": "img/rifai-2.jpg", "author": "Ahmad Badr", "license": "CC BY-SA 3.0", "url": "https://commons.wikimedia.org/wiki/File:Al-Rifa%27i_Mosque_prayer_hall.JPG", "year": null}}, "akhur": {"0": {"src": "img/akhur-0.jpg", "author": "Sailko", "license": "CC BY 3.0", "url": "https://commons.wikimedia.org/wiki/File:Cairo,_madrasa_di_qanibay_amir_akhun,_1503,_01.JPG", "year": null}, "1": {"src": "img/akhur-1.jpg", "author": "Sohilaali869", "license": "CC BY 4.0", "url": "https://commons.wikimedia.org/wiki/File:Mosque_of_Qanibay_al-Rammah-_%D9%85%D8%B3%D8%AC%D8%AF_%D9%82%D8%A7%D9%86%D9%8A_%D8%A8%D8%A7%D9%8A_%D8%A7%D9%84%D8%B1%D9%85%D8%A7%D8%AD_-EWUG_04.jpg", "year": null}, "2": {"src": "img/akhur-2.jpg", "author": "Sailko", "license": "CC BY 3.0", "url": "https://commons.wikimedia.org/wiki/File:Cairo,_madrasa_di_qanibay_amir_akhun,_1503,_02.JPG", "year": null}}, "citadel": {"0": {"src": "img/citadel-0.jpg", "author": "Vyacheslav Argenberg", "license": "CC BY 4.0", "url": "https://commons.wikimedia.org/wiki/File:Cairo,_Cairo_Citadel,_Muhammad_Ali_Mosque,_Egypt.jpg", "year": null}, "1": {"src": "img/citadel-1.jpg", "author": "Angel Aroca Esc\u00e1mez", "license": "CC BY-SA 3.0", "url": "https://commons.wikimedia.org/wiki/File:Mezquita_de_Alabastro_El_Cairo_02.jpg", "year": null}, "2": {"src": "img/citadel-2.jpg", "author": "Jorge L\u00e1scar from Melbourne, Australia", "license": "CC BY 2.0", "url": "https://commons.wikimedia.org/wiki/File:Ottoman_hierarchy_of_domes_and_interior_of_the_Mosque_of_Muhammad_Ali_(14613586998).jpg", "year": null}}}, "map": {"src": "img/map.jpg", "bounds": [30.023921574501376, 31.2451171875, 30.05483122485245, 31.26983642578125], "attribution": "\u00a9 OpenStreetMap contributors"}};
   const photo = (id, k) => (ASSETS && ASSETS.photos && ASSETS.photos[id] && ASSETS.photos[id][k]) || null;
   const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const creditLine = (ph) => ph ? `Photo: ${esc(ph.author)} · ${esc(ph.license)} · via Wikimedia Commons` : '';
@@ -556,8 +691,8 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
           alt: 'Tall reception hall with a marble floor, a central fountain and a painted wooden ceiling', focus: 'A tall hall with a fountain at its heart.',
           text: 'The family received guests in this tall hall. A fountain in the floor cooled the air and made a gentle sound, and the high ceiling let warm air rise away from the people below. The house was designed around comfort in a hot city long before air conditioning.' },
       ] },
-    // Sultan Hassan: sourced rebuild (script, citations and standing points: /mnt/project-files/sultan-hassan/).
-    {"id": "hassan", "title": "Sultan Hassan", "street": "Mosque-Madrasa, below the Citadel", "era": "mamluk", "year": 1356, "coords": [30.0322, 31.2566], "plan": "hassan", "sources": {"M": {"t": "al-Maqrizi, al-Mawaʿiz wa-l-iʿtibar (Khitat), entry \"Jamiʿ al-Malik al-Nasir Hasan\". Written c. 1420s–1440s. Read in the Bulaq-edition text scanned on archive.org (OCR, vol. and page to be confirmed against the print).", "u": "https://archive.org/details/20200607_20200607_1502", "kind": "primary"}, "S": {"t": "al-Suyuti, Husn al-muhadara, vol. 2 p. 269, \"Madrasat al-Sultan Hasan\", quoting al-Maqrizi word for word (used to check the OCR of M).", "u": "https://shamela.ws/book/3283/882", "kind": "primary (later, quoting M)"}, "H": {"t": "Max Herz, La mosquée du sultan Hassan au Caire. Comité de conservation des monuments de l'art arabe, Cairo 1899. Survey, measurements, epigraphy, and a French translation of al-Maqrizi.", "u": "https://archive.org/details/mosqueedusultanHassanauCaire00leca", "kind": "Comité publication"}, "O": {"t": "OpenStreetMap contributors: building outlines and streets around the mosque (ways 24908268, 24908256, 52038984).", "u": "https://www.openstreetmap.org/way/24908268", "kind": "map data"}}, "slides": [{"title": "The face it turns to the Citadel", "pos": "Salah al-Din Square, on the pavement facing the domed end of the mosque", "vp": {"x": 81.2, "y": 77.0, "a": 312}, "alt": "Domed end of the mosque with a minaret on each side, seen from the square", "focus": "The tomb dome and two unequal minarets face the Citadel.", "cue": "Look up at the two minarets. The taller one, on the left, is the original.", "next": "Walk into the pedestrian lane on your right, between Sultan Hassan and Al-Rifa'i (about 80 m).", "text": "Stop here on the square, with the Citadel hill behind you. In front of you is the back of Sultan Hassan's mosque and school, begun in 1356. The big dome covers the tomb chamber. The whole building faces the Citadel, where the sultan lived. Now look up at the two minarets. They don't match. The taller one, on the left, is the original, about eighty metres high. The other was rebuilt after it fell in 1659. This mosque was so tall it became a threat. In 1391, rebels climbed onto its roof and shot at the Citadel, so Sultan Barquq had the stairs torn out and the great door walled up.", "cites": [{"c": "Begun in 757 AH (1356).", "s": "M"}, {"c": "Built facing the Citadel (\"tijah Qalʿat al-Jabal\").", "s": "M"}, {"c": "The dome over the projecting block is the tomb chamber.", "s": "H"}, {"c": "The south minaret is the oldest and the tallest, about 81.6 m above the courtyard floor (OCR of the figure needs checking on the scan).", "s": "H"}, {"c": "A minaret fell on 15 Muharram 1070 (1659); the dome fell a year later and was rebuilt. Herz quotes this from Prisse d'Avennes; the Ottoman-era source was not checked.", "s": "H"}, {"c": "During revolts men climbed to the roof and shot at the Citadel; al-Zahir Barquq had the minaret stairs and the platform and steps at the door demolished and the door blocked, from 8 Safar 793 (January 1391).", "s": "M"}, {"c": "\"The taller one on the left\" assumes the listener stands at P1 facing north-west. Check on site.", "s": null}]}, {"title": "A cliff of cut stone", "pos": "The lane between Sultan Hassan and Al-Rifa'i, walking north-west", "vp": {"x": 68.2, "y": 40.0, "a": 315}, "alt": "Long, very tall stone wall with vertical strips of small windows and a deep carved cornice", "focus": "A plain, sheer wall nearly 40 m high, crowned by a deep cornice.", "cue": "Look up at the cornice: tiers of carved stone jutting out over the lane.", "next": "Keep walking to the great doorway at the far end of the lane (about 75 m).", "text": "As you walk, look up at the wall on your left. It climbs almost forty metres, all in cut stone. The tall strips of small windows belong to rooms stacked floor above floor. Four colleges lived inside this block, one for each of the four schools of Sunni law, and each had its own small courtyard. Right at the top, the cornice juts out over the lane in tiers of carved stone. Keep walking to the great doorway at the far end.", "cites": [{"c": "Height in front of the entrance 37.70 m from the 1899 street level.", "s": "H"}, {"c": "Rooms for the colleges and student lodgings fill the corners of the building on several floors. That the window strips on this façade light those rooms is our reading of Herz; check with the historian.", "s": "H"}, {"c": "Four madrasas, one per school of law; each has its own courtyard with a fountain and an iwan.", "s": "H"}, {"c": "Four madrasas for the four schools.", "s": "S"}, {"c": "The cornice has six tiers of muqarnas and projects more than a metre (OCR of the exact figure is unclear).", "s": "H"}]}, {"title": "The unfinished doorway", "pos": "In the lane, a few steps back from the main portal", "vp": {"x": 46.4, "y": 12.7, "a": 215}, "alt": "Towering portal with a honeycomb-carved hood and panels of carved stone", "focus": "A huge portal whose decoration was never finished.", "cue": "Look up at the high side panels of the portal: some carving is only roughed out.", "next": "Go in through the portal (ticket and shoe rules: check on arrival).", "text": "Stop a few steps back from the doorway, and look up. Look closely at the panels high on either side. Some of the carving is only roughed out, and was never finished. A minaret once rose above this gate. In February 1361 it collapsed, and about three hundred people died under it, most of them orphans from the school here. Cairo took it as an omen. Thirty-three days later, the sultan was murdered. Even the bronze door is gone. In 1416 Sultan al-Muʾayyad bought it, with the great bronze lamp, for five hundred dinars, and hung it on his own mosque beside Bab Zuweila.", "cites": [{"c": "The portal's carving is only partly executed (\"ébauchés\"; \"sculptures inachevées du portail\"). Which panels to point at must be checked on site.", "s": "H"}, {"c": "The planned minaret over the gate fell on Saturday 6 Rabiʿ II 762 (February 1361, date conversion to be checked), killing about 300, orphans of the sabil school and others; six children survived.", "s": "M"}, {"c": "People said it foretold the end of the dynasty.", "s": "M"}, {"c": "The sultan was killed 33 days after the collapse.", "s": "M"}, {"c": "al-Muʾayyad Shaykh bought the bronze door and bronze lamp for 500 dinars and moved them on 17 Shawwal 819 (December 1416) to his mosque by Bab Zuwayla.", "s": "M"}, {"c": "That the door still hangs on al-Muʾayyad's mosque today: check on site.", "s": null}]}, {"title": "Into the dark", "pos": "Entrance hall, then the passage that turns left", "vp": {"x": 39.9, "y": 22.4, "a": 160}, "alt": "Dim entrance hall under a honeycomb-carved vault, with a passage leading toward light", "focus": "A dim, bent passage that hides the courtyard until the last step.", "cue": "Look up into the carved vault of the entrance hall.", "next": "Follow the passage to the courtyard (about 50 m).", "text": "Go in, and pause in the entrance hall. It is as big as a small mosque. Look up into the carved vault above you. Then climb the steps and follow the passage. Notice how it turns sharply to the left, and stays dim. You can't see the courtyard yet. Walk on toward the light.", "cites": [{"c": "The vestibule is the size of a small mosque; seven steps lead to a corridor that turns sharply left to the courtyard (as in 1899; the visitor route today may differ).", "s": "H"}, {"c": "The vestibule vault is carved with muqarnas: from the photograph only, check on site.", "s": null}]}, {"title": "Four halls, one sky", "pos": "Centre of the courtyard, by the fountain, facing the largest hall", "vp": {"x": 39.9, "y": 45.8, "a": 125}, "alt": "Open courtyard with a domed fountain and four huge vaulted halls", "focus": "Four vaulted halls open on one court; the qibla hall is the largest.", "cue": "Face the hall with the marble pulpit and look up into its vault.", "next": "Cross the great hall to the door beside the prayer niche (about 50 m).", "text": "Stop in the middle of the courtyard, by the fountain, and turn slowly. Four vast vaulted halls open onto one square of sky. Now face the biggest, the hall with the marble pulpit, and look up into its vault. The historian al-Maqrizi wrote that it was said to be larger than the great arch of the Persian kings at Ctesiphon. He also heard that the wooden frame used to build this vault cost a hundred thousand dirhams, and was thrown on the rubbish heaps once the arch stood. Work went on for three years without a single day off. The sultan is reported to have said that if people would not mock the king of Egypt for failing to finish, he would have given it up.", "cites": [{"c": "The courtyard is about 32 by 34.6 m, with four iwans on two crossing axes and a central domed basin.", "s": "H"}, {"c": "The marble minbar and dikka stand in the great (qibla) iwan.", "s": "H"}, {"c": "The great iwan is 65 by 65 cubits and \"it is said\" five cubits larger than the iwan of Kisra at al-Madaʾin.", "s": "M"}, {"c": "Same figures.", "s": "S"}, {"c": "The eunuch Muqbil al-Shami heard the sultan say the centring for the great iwan's arch cost 100,000 dirhams and was thrown on the rubbish heaps. Herz's French translation prints 10,000: check the Arabic print.", "s": "M"}, {"c": "Building ran three years without a day off, at 20,000 dirhams a day.", "s": "M"}, {"c": "Same.", "s": "S"}, {"c": "\"Were it not that people would say the king of Egypt could not finish what he built, I would have abandoned it.\"", "s": "M"}]}, {"title": "A tomb without its sultan", "pos": "Tomb chamber, behind the prayer-niche wall, under the dome", "vp": {"x": 60.9, "y": 60.6, "a": 125}, "alt": "Tomb chamber with tiers of carved honeycomb niches carrying a high dome", "focus": "Tiers of honeycomb niches carry the dome over a square room.", "cue": "Look up into the corners, where the dome begins.", "next": "Return through the courtyard. Next stop: Al-Rifa'i, across the lane.", "text": "Go through the door beside the prayer niche, into the tomb chamber, and look up. In each corner, tiers of carved niches, like honeycomb, carry the dome. The band of writing around the walls says the dome was finished in the Islamic year 764, after the sultan was already dead. That first dome fell in 1660 and was rebuilt. The tomb in the middle was dedicated, in 1384, to Sultan Hassan and his descendants. But Hassan never lay here: after his murder, his body was never found. Step back out into the light. Across the lane, Al-Rifa'i is waiting.", "cites": [{"c": "The tomb chamber lies beyond the mihrab wall; 21 m square; muqarnas pendentives among the most imposing known.", "s": "H"}, {"c": "The wooden inscription frieze says \"this blessed dome\" was completed in 764 AH (Oct 1362 to Oct 1363).", "s": "H"}, {"c": "The dome fell in 1660 and was rebuilt under Ibrahim Pasha (via Prisse d'Avennes). Whether today's dome is that rebuild or a later one is not established: check.", "s": "H"}, {"c": "The cenotaph epitaph, dated Dhu l-Qaʿda 786 (December 1384), says the mausoleum was ordered as the burial place of al-Nasir Hasan and his descendants.", "s": "H"}, {"c": "Hasan vanished and no trace of him was found (one later chronicler says he was buried in his house). Needs a primary citation, e.g. al-Maqrizi's Suluk or Ibn Taghribirdi.", "s": "H"}, {"c": "Which door leads to the tomb chamber today: check on site.", "s": null}]}]},
+    // Sultan Hassan: a story in scenes ("theatre"), each claim cited (script, sources and standing points: /mnt/project-files/sultan-hassan/).
+    {"id": "hassan", "title": "Sultan Hassan", "street": "Mosque-Madrasa, below the Citadel", "era": "mamluk", "year": 1356, "coords": [30.0322, 31.2566], "plan": "hassan", "sources": {"M": {"t": "al-Maqrizi, al-Mawaʿiz wa-l-iʿtibar (Khitat), entry \"Jamiʿ al-Malik al-Nasir Hasan\". Written c. 1420s–1440s. Read in the Bulaq-edition text scanned on archive.org (OCR, vol. and page to be confirmed against the print).", "u": "https://archive.org/details/20200607_20200607_1502", "kind": "primary"}, "S": {"t": "al-Suyuti, Husn al-muhadara, vol. 2 p. 269, \"Madrasat al-Sultan Hasan\", quoting al-Maqrizi word for word (used to check the OCR of M).", "u": "https://shamela.ws/book/3283/882", "kind": "primary (later, quoting M)"}, "H": {"t": "Max Herz, La mosquée du sultan Hassan au Caire. Comité de conservation des monuments de l'art arabe, Cairo 1899. Survey, measurements, epigraphy, and a French translation of al-Maqrizi.", "u": "https://archive.org/details/mosqueedusultanHassanauCaire00leca", "kind": "Comité publication"}, "O": {"t": "OpenStreetMap contributors: building outlines and streets around the mosque (ways 24908268, 24908256, 52038984).", "u": "https://www.openstreetmap.org/way/24908268", "kind": "map data"}, "B": {"t": "al-Maqrizi's biography of al-Nasir Hasan, as translated into French in Herz 1899 (pp. on the founder). Arabic original not yet checked.", "u": "https://archive.org/details/mosqueedusultanHassanauCaire00leca", "kind": "primary, in translation"}, "C": {"t": "Wikimedia Commons file pages for the historic prints shown (captions, dates and licences as given there).", "u": "https://commons.wikimedia.org/wiki/Category:Mosque-Madrassa_of_Sultan_Hassan", "kind": "image metadata"}}, "theatre": {"title": "The Sultan Who Built a Mountain", "sub": "A story in ten scenes, from the Citadel square to an empty tomb, with two more if you want to go deeper", "mins": 35, "next": "rifai"}, "slides": [{"title": "The boy king", "pos": "Salah al-Din Square, near the Citadel gate, facing the mosque across the road", "alt": "Mosque of Sultan Hassan seen from the Citadel above, a hand-coloured photograph of about 1880", "focus": "Below the Citadel, the sultan built a mountain of stone facing his own palace.", "vp": {"x": 95.0, "y": 95.0, "a": 305}, "text": "Stand with the Citadel walls behind you. Up there, the sultans of Egypt lived. And in December 1347, a boy of thirteen was put on the throne. His name was Hasan. Within two years, the Black Death reached Cairo. At about seventeen he declared himself of age, and tried to rule for himself. Months later, the great amirs deposed him, and shut him up inside the palace. He was a prisoner for three years. And he did not waste them. He studied, and copied out a whole book on the life of the Prophet, al-Bayhaqi's Proofs of Prophethood, in his own hand. In 1354 the amirs brought him back to the throne. Two years later, he began to build. Right there, across the square, facing his own palace. Turn now, until the great dome is straight in front of you.", "lines": [{"who": "narrator", "t": "Stand with the Citadel walls behind you. Up there, the sultans of Egypt lived. And in December 1347, a boy of thirteen was put on the throne. His name was Hasan."}, {"who": "narrator", "t": "Within two years, the Black Death reached Cairo. At about seventeen he declared himself of age, and tried to rule for himself. Months later, the great amirs deposed him, and shut him up inside the palace."}, {"who": "narrator", "t": "He was a prisoner for three years. And he did not waste them. He studied, and copied out a whole book on the life of the Prophet, al-Bayhaqi's Proofs of Prophethood, in his own hand."}, {"who": "narrator", "t": "In 1354 the amirs brought him back to the throne. Two years later, he began to build. Right there, across the square, facing his own palace. Turn now, until the great dome is straight in front of you."}], "scene": "Prologue", "cites": [{"c": "Hasan became sultan aged 13 on 14 Ramadan 748 (December 1347).", "s": "B"}, {"c": "The great plague of 749 (1348).", "s": "B"}, {"c": "He declared himself of age in 751 and was deposed by the amirs on 17 Jumada II 752 (August 1351), after 3 years 9 months, and confined in the palace.", "s": "B"}, {"c": "In captivity he devoted himself to study and copied al-Bayhaqi's Dala'il al-nubuwwa in his own hand.", "s": "B"}, {"c": "Restored in Shawwal 755 (October 1354) after 3 years, 3 months and 14 days.", "s": "B"}, {"c": "Building began in 757 (1356), facing the Citadel.", "s": "M"}, {"c": "\"About seventeen\" is our arithmetic from the dates above.", "s": null}, {"c": "Print: anonymous photograph \"seen from the Citadel\", KITLV 3782, about 1880, CC BY 4.0.", "s": "C"}], "act": {"kind": "turn", "say": "Turn until the great dome is straight in front of you.", "secs": 10}, "keep": {"id": "copybook", "name": "The prisoner's copybook", "icon": "book", "note": "In captivity Hasan copied al-Bayhaqi's Dala'il al-nubuwwa in his own hand."}, "gate": {"kind": "gps", "where": "Salah al-Din Square, on the Citadel side, with the mosque across the road", "r": 35, "at": [30.03106, 31.25808]}}, {"title": "Two minarets that do not match", "pos": "Salah al-Din Square, on the pavement facing the domed end of the mosque", "alt": "Domed end of the mosque with a minaret on each side, seen from the square", "focus": "The tomb dome and two unequal minarets face the Citadel.", "vp": {"x": 81.2, "y": 77.0, "a": 312}, "text": "Stop here. In front of you is the back of Hasan's mosque and school. The great dome covers his tomb chamber. Though, as you'll hear, he never lay in it. Now look up at the two minarets. They don't match. The taller one, on the left, is the original, about eighty metres high. The other was rebuilt after a minaret fell in 1659. Slide the old photograph across the new one. It was printed in 1899, in the first full study of this building, and labelled: before restoration. Then walk into the lane on your right.", "lines": [{"who": "narrator", "t": "Stop here. In front of you is the back of Hasan's mosque and school. The great dome covers his tomb chamber. Though, as you'll hear, he never lay in it."}, {"who": "narrator", "t": "Now look up at the two minarets. They don't match. The taller one, on the left, is the original, about eighty metres high. The other was rebuilt after a minaret fell in 1659."}, {"who": "narrator", "t": "Slide the old photograph across the new one. It was printed in 1899, in the first full study of this building, and labelled: before restoration. Then walk into the lane on your right."}], "scene": "Scene 1", "cites": [{"c": "The dome over the projecting block is the tomb chamber.", "s": "H"}, {"c": "The south minaret is the oldest and the tallest, about 81.6 m (OCR of the figure needs checking on the scan).", "s": "H"}, {"c": "A minaret fell on 15 Muharram 1070 (1659). Herz quotes this from Prisse d'Avennes.", "s": "H"}, {"c": "Print: Herz 1899, plate VI, captioned on Commons \"before restoration\". Public domain.", "s": "C"}, {"c": "\"The taller one on the left\" assumes the listener stands at P1 facing north-west. Check on site.", "s": null}], "cue": "Look up at the two minarets. The taller one, on the left, is the original.", "next": "Walk into the pedestrian lane on your right, between Sultan Hassan and Al-Rifa'i (about 80 m).", "act": {"kind": "look", "say": "Look up. Find the taller minaret.", "secs": 12}, "gate": {"kind": "gps", "where": "The pavement facing the domed end of the mosque", "r": 25, "at": [30.0316, 31.2572]}}, {"title": "A cliff of cut stone", "pos": "The lane between Sultan Hassan and Al-Rifa'i, walking north-west", "alt": "Long, very tall stone wall with vertical strips of small windows and a deep carved cornice", "focus": "A plain, sheer wall nearly 40 m high, crowned by a deep cornice.", "vp": {"x": 68.2, "y": 40.0, "a": 315}, "text": "As you walk, look up at the wall on your left. It climbs almost forty metres, all in cut stone. Behind those strips of small windows, rooms are stacked floor above floor. Four colleges lived inside this block, one for each of the four schools of Sunni law. Each could take up to a hundred students, under its own shaykh. The endowment even paid a man just to look after the roof. Look at the old photograph. There is no lane in it. Al-Rifa'i, on your right, had not been built, and the square ran open to the wall. Keep walking, slowly, to the great doorway.", "lines": [{"who": "narrator", "t": "As you walk, look up at the wall on your left. It climbs almost forty metres, all in cut stone. Behind those strips of small windows, rooms are stacked floor above floor."}, {"who": "narrator", "t": "Four colleges lived inside this block, one for each of the four schools of Sunni law. Each could take up to a hundred students, under its own shaykh. The endowment even paid a man just to look after the roof."}, {"who": "narrator", "t": "Look at the old photograph. There is no lane in it. Al-Rifa'i, on your right, had not been built, and the square ran open to the wall. Keep walking, slowly, to the great doorway."}], "scene": "Scene 2", "cites": [{"c": "Height in front of the entrance 37.70 m from the 1899 street level.", "s": "H"}, {"c": "Four madrasas, one per school of law, each with its own courtyard.", "s": "H"}, {"c": "Four madrasas for the four schools.", "s": "S"}, {"c": "The endowment deed, as reproduced by Ali Mubarak: up to 100 students per college under a shaykh, and a keeper of the roof (sathi).", "s": "H"}, {"c": "That the window strips on this façade light those rooms is our reading of Herz; check with the historian.", "s": null}, {"c": "Print: P. Bergheim, albumen print, before Al-Rifa'i was built. Date on Commons 1860 [VERIFY]. Public domain.", "s": "C"}], "cue": "Look up at the cornice: tiers of carved stone jutting out over the lane.", "next": "Keep walking to the great doorway at the far end of the lane (about 75 m).", "act": {"kind": "walk", "say": "Walk slowly to the great doorway. Keep your eyes on the cornice.", "secs": 0}, "gate": {"kind": "gps", "where": "The lane between Sultan Hassan and Al-Rifa'i", "r": 25, "at": [30.03233, 31.25691]}}, {"title": "The unfinished doorway", "pos": "In the lane, a few steps back from the main portal", "alt": "Towering portal with a honeycomb-carved hood and panels of carved stone", "focus": "A huge portal whose decoration was never finished.", "vp": {"x": 46.4, "y": 12.7, "a": 215}, "text": "Stop a few steps back from the doorway, and look up. A man who lived in Cairo two generations later, the historian al-Maqrizi, wrote this about it. In all the lands of Islam, no house of worship is known that can match this mosque. Look closely at the panels high on either side. Some of the carving is only roughed out. It was never finished. And the doorway itself is empty of its door. In 1416, another sultan, al-Mu'ayyad, bought the bronze door, with the great bronze lamp, for five hundred dinars, and hung it on his own mosque beside Bab Zuweila.", "lines": [{"who": "narrator", "t": "Stop a few steps back from the doorway, and look up. A man who lived in Cairo two generations later, the historian al-Maqrizi, wrote this about it."}, {"who": "maqrizi", "t": "In all the lands of Islam, no house of worship is known that can match this mosque.", "kind": "quote"}, {"who": "narrator", "t": "Look closely at the panels high on either side. Some of the carving is only roughed out. It was never finished. And the doorway itself is empty of its door. In 1416, another sultan, al-Mu'ayyad, bought the bronze door, with the great bronze lamp, for five hundred dinars, and hung it on his own mosque beside Bab Zuweila."}], "scene": "Scene 3", "cites": [{"c": "\"No place of worship of the Muslims is known in the lands of Islam that matches this mosque\" (translated for this guide).", "s": "M"}, {"c": "The portal's carving is only partly executed (\"ébauchés\"; \"sculptures inachevées du portail\"). Which panels to point at must be checked on site.", "s": "H"}, {"c": "al-Mu'ayyad Shaykh bought the bronze door and bronze lamp for 500 dinars and moved them on 17 Shawwal 819 (December 1416) to his mosque by Bab Zuwayla.", "s": "M"}, {"c": "\"Two generations later\": al-Maqrizi was born about 1364 and wrote the Khitat in the early 1400s [VERIFY].", "s": null}, {"c": "Print: B. Facchinelli, photograph between 1873 and 1895, Bibliothèque nationale de France. Public domain.", "s": "C"}], "cue": "Look up at the high side panels of the portal: some carving is only roughed out.", "act": {"kind": "look", "say": "Find a panel where the carving simply stops.", "secs": 12, "photo": true}, "keep": {"id": "door", "name": "The bronze door", "icon": "door", "note": "Sold in 1416 for 500 dinars to al-Mu'ayyad, for his mosque by Bab Zuweila."}, "gate": {"kind": "gps", "where": "A few steps back from the great doorway", "r": 20, "at": [30.03286, 31.25642]}}, {"title": "The day the minaret fell", "pos": "Still at the doorway, looking up above the gate", "alt": "Quotation card: verses of al-Subki on the fallen minaret", "focus": "A minaret planned above this gate collapsed during building, a month before the sultan was killed.", "vp": {"x": 46.4, "y": 12.7, "a": 215}, "text": "Now imagine this lane on a Saturday in February 1361. A minaret was rising above this very gate. And then it fell. About three hundred people died beneath it. Most of them were orphans, from the school above the public fountain, where children learned to read. Only six of the children came out alive. The people said it was an omen, that the reign would soon be gone. A scholar, al-Subki, answered with a poem. The stones, he said, had not fallen out of weakness. That minaret did not fall from any flaw. Beneath it the Qur'an was read, and it listened. Had God sent the Qur'an down upon a mountain, the mountain would have split, in awe. Those stones did not collapse. They bowed down, in awe of God. Thirty-three days later, the sultan was dead.", "lines": [{"who": "narrator", "t": "Now imagine this lane on a Saturday in February 1361. A minaret was rising above this very gate. And then it fell."}, {"who": "narrator", "t": "About three hundred people died beneath it. Most of them were orphans, from the school above the public fountain, where children learned to read. Only six of the children came out alive."}, {"who": "maqrizi", "t": "The people said it was an omen, that the reign would soon be gone.", "kind": "paraphrase"}, {"who": "narrator", "t": "A scholar, al-Subki, answered with a poem. The stones, he said, had not fallen out of weakness."}, {"who": "subki", "t": "That minaret did not fall from any flaw. Beneath it the Qur'an was read, and it listened. Had God sent the Qur'an down upon a mountain, the mountain would have split, in awe. Those stones did not collapse. They bowed down, in awe of God.", "kind": "quote"}, {"who": "narrator", "t": "Thirty-three days later, the sultan was dead."}], "scene": "Scene 4", "cites": [{"c": "The minaret planned over the gate fell on Saturday 6 Rabiʿ II 762 (February 1361, conversion to be checked), killing about 300, orphans of the sabil school and others; six children survived.", "s": "M"}, {"c": "People said it foretold the end of the reign.", "s": "M"}, {"c": "al-Subki's verses on the fall, quoted in full; translation for this guide, to be checked by the historian. Which al-Subki wrote them: confirm.", "s": "S"}, {"c": "The sultan was killed 33 days after the collapse.", "s": "M"}], "act": {"kind": "still", "say": "Look up to where the minaret stood above the gate. Take a moment.", "secs": 10}, "keep": {"id": "verses", "name": "al-Subki's verses", "icon": "scroll", "note": "A poem that turned an omen into an act of worship."}, "choice": {"q": "How did the sultan die?", "deeper": "Hear the last thirty-three days (2 min)", "on": "Go inside"}, "card": {"q": "Those stones did not collapse. They bowed down, in awe of God.", "by": "al-Subki, on the fallen minaret (translated for this guide)"}}, {"title": "Thirty-three days", "pos": "At the doorway", "alt": "Quotation card: \"his trace was lost forever\"", "focus": "Betrayed by the man he had raised, the sultan disappeared.", "vp": {"x": 46.4, "y": 12.7, "a": 215}, "text": "In his second reign, Hasan raised one of his own mamluks, Yalbugha al-'Umari, to the highest rank in the army: commander of a thousand. In the spring of 1361, with plague in the city again, the sultan camped across the river at Giza. The two men no longer trusted each other. On a Wednesday, Hasan rode out to seize Yalbugha. Yalbugha escaped, gathered his men, and routed the sultan. Hasan fled to the Citadel, then rode out again toward Syria, with his secretary Aydamur. They stopped at the house of an officer, Ibn al-Azkashi. The officer sent word to Yalbugha. He was seized. And his trace was lost forever. His servants and his followers searched for the place where he was buried, and never found it. He was about twenty-seven. Remember that, when you reach his tomb.", "lines": [{"who": "narrator", "t": "In his second reign, Hasan raised one of his own mamluks, Yalbugha al-'Umari, to the highest rank in the army: commander of a thousand."}, {"who": "narrator", "t": "In the spring of 1361, with plague in the city again, the sultan camped across the river at Giza. The two men no longer trusted each other. On a Wednesday, Hasan rode out to seize Yalbugha. Yalbugha escaped, gathered his men, and routed the sultan."}, {"who": "narrator", "t": "Hasan fled to the Citadel, then rode out again toward Syria, with his secretary Aydamur. They stopped at the house of an officer, Ibn al-Azkashi. The officer sent word to Yalbugha."}, {"who": "maqrizi", "t": "He was seized. And his trace was lost forever. His servants and his followers searched for the place where he was buried, and never found it.", "kind": "paraphrase"}, {"who": "narrator", "t": "He was about twenty-seven. Remember that, when you reach his tomb."}], "scene": "Scene 4b", "cites": [{"c": "Hasan promoted his mamluk Yalbugha al-ʿUmari al-Khassaki to commander of a thousand.", "s": "B"}, {"c": "In 762 he camped at Giza because of the plague; on Wednesday 9 Jumada I he rode out to seize Yalbugha, who escaped and routed him.", "s": "B"}, {"c": "He fled to the Citadel, rode out with Aydamur the dawadar toward Syria, stopped at the house of the hajib Ibn al-Azkashi, who informed Yalbugha; he was arrested and \"his trace was lost forever\", his servants never finding his burial place.", "s": "B"}, {"c": "One later chronicler (Ibn al-ʿImad) says he was tortured and buried in his house.", "s": "B"}, {"c": "\"About twenty-seven\" is our arithmetic from his age at accession.", "s": null}], "act": {"kind": "still", "say": "Take a breath. Then go in through the doorway.", "secs": 6}, "card": {"q": "And his trace was lost forever.", "by": "al-Maqrizi, on Sultan Hasan's end (from Herz's translation)"}, "deeper": true}, {"title": "Into the dark", "pos": "Entrance hall, then the passage that turns left", "alt": "Dim entrance hall under a honeycomb-carved vault, with a passage leading toward light", "focus": "A dim, bent passage that hides the courtyard until the last step.", "vp": {"x": 39.9, "y": 22.4, "a": 160}, "text": "Go in, and pause in the entrance hall. It is as big as a small mosque. Look up into the carved vault above you. Then climb the steps, and count them as you go. Follow the passage. Notice how it turns sharply to the left, and stays dim. You can't see the courtyard yet. Walk on, toward the light.", "lines": [{"who": "narrator", "t": "Go in, and pause in the entrance hall. It is as big as a small mosque. Look up into the carved vault above you."}, {"who": "narrator", "t": "Then climb the steps, and count them as you go. Follow the passage. Notice how it turns sharply to the left, and stays dim. You can't see the courtyard yet. Walk on, toward the light."}], "scene": "Scene 5", "cites": [{"c": "The vestibule is the size of a small mosque; seven steps lead to a corridor that turns sharply left to the courtyard (as in 1899; today's visitor route may differ).", "s": "H"}, {"c": "The vestibule vault is carved with muqarnas: from the photograph only, check on site.", "s": null}], "cue": "Look up into the carved vault of the entrance hall.", "next": "Follow the passage to the courtyard (about 50 m).", "act": {"kind": "count", "say": "How many steps did you climb?", "answer": 7, "reveal": "Max Herz counted seven in 1899. The route today may differ."}, "gate": {"kind": "tap", "where": "Inside the entrance hall", "at": [30.03267, 31.25628]}}, {"title": "Four halls, one sky", "pos": "Centre of the courtyard, by the fountain", "alt": "Open courtyard with a domed fountain and four huge vaulted halls", "focus": "Four vaulted halls open on one court.", "vp": {"x": 39.9, "y": 45.8, "a": 125}, "text": "Stop in the middle of the courtyard, by the fountain, and turn slowly. Four vast vaulted halls open onto one square of sky. The biggest hall is the one with the marble pulpit. Al-Maqrizi recorded what people said about it. It is said that its great hall is larger than the hall of Kisra at Ctesiphon, by five cubits. The hall of Kisra was the arch of the old Persian kings, the most famous vault in the world. For three years, work went on here without a single idle day, and it cost twenty thousand dirhams a day. Look at the old photograph of the fountain. It looks as if it were built for washing before prayer, but the man who surveyed this building thought it began as an ornament. Now close your eyes, and listen.", "lines": [{"who": "narrator", "t": "Stop in the middle of the courtyard, by the fountain, and turn slowly. Four vast vaulted halls open onto one square of sky."}, {"who": "narrator", "t": "The biggest hall is the one with the marble pulpit. Al-Maqrizi recorded what people said about it."}, {"who": "maqrizi", "t": "It is said that its great hall is larger than the hall of Kisra at Ctesiphon, by five cubits.", "kind": "quote"}, {"who": "narrator", "t": "The hall of Kisra was the arch of the old Persian kings, the most famous vault in the world. For three years, work went on here without a single idle day, and it cost twenty thousand dirhams a day."}, {"who": "narrator", "t": "Look at the old photograph of the fountain. It looks as if it were built for washing before prayer, but the man who surveyed this building thought it began as an ornament. Now close your eyes, and listen."}], "scene": "Scene 6", "cites": [{"c": "The courtyard is about 32 by 34.6 m, with four iwans and a central domed basin.", "s": "H"}, {"c": "The great iwan is 65 by 65 cubits and \"it is said\" five cubits larger than the iwan of Kisra at al-Madaʾin (Ctesiphon).", "s": "M"}, {"c": "Same figures.", "s": "S"}, {"c": "Building ran three years without a day off, at 20,000 dirhams a day.", "s": "M"}, {"c": "The fountain was originally decorative, in Herz's view.", "s": "H"}, {"c": "Print: Pascal Sebah, \"Fontaines des ablutions\", 1880s. Public domain.", "s": "C"}], "act": {"kind": "listen", "say": "Close your eyes. Listen to how the courtyard holds the sound.", "secs": 15}, "keep": {"id": "dirham", "name": "A builder's day", "icon": "coin", "note": "Twenty thousand dirhams a day, for three years without a day off."}, "choice": {"q": "Who studied here?", "deeper": "Spend a morning with a student (dramatised, 2 min)", "on": "Face the great hall"}, "gate": {"kind": "tap", "where": "The middle of the courtyard, by the fountain", "at": [30.03221, 31.25628]}}, {"title": "A student's morning", "pos": "The courtyard", "alt": "Drawing of the courtyard and its domed fountain, made for the Description de l'Égypte about 1800", "focus": "An imagined student, built on what the sources say about the colleges.", "vp": {"x": 39.9, "y": 45.8, "a": 125}, "text": "What follows is imagined. The facts behind it come from the endowment and the chronicles. The voice does not. Up to a hundred of us in each college, and one shaykh to answer to. I sleep in a room above the courtyard. There is a man whose whole job is the roof. I have never once seen him come down. They tell a story here. The sultan wanted a lesson in the law of inheritance. The scholar al-Subki said no: inheritance is only one chapter of the law, why give it a chair of its own? Then a hard inheritance case came to him, and he could not solve it. Shams al-Din al-Kala'i laughed at him in front of everyone. They say al-Subki regretted what he had said. The sultan copied books in his prison, you know. A sultan who loves books. I hope he lives long. He did not. Go back to the fountain, and face the great hall.", "lines": [{"who": "narrator", "t": "What follows is imagined. The facts behind it come from the endowment and the chronicles. The voice does not."}, {"who": "student", "t": "Up to a hundred of us in each college, and one shaykh to answer to. I sleep in a room above the courtyard. There is a man whose whole job is the roof. I have never once seen him come down.", "kind": "dramatised"}, {"who": "student", "t": "They tell a story here. The sultan wanted a lesson in the law of inheritance. The scholar al-Subki said no: inheritance is only one chapter of the law, why give it a chair of its own? Then a hard inheritance case came to him, and he could not solve it. Shams al-Din al-Kala'i laughed at him in front of everyone. They say al-Subki regretted what he had said.", "kind": "dramatised"}, {"who": "student", "t": "The sultan copied books in his prison, you know. A sultan who loves books. I hope he lives long.", "kind": "dramatised"}, {"who": "narrator", "t": "He did not. Go back to the fountain, and face the great hall."}], "scene": "Scene 6b", "cites": [{"c": "Dramatised. The facts used: up to 100 students per college under a shaykh, and a roof-keeper, from the endowment as reproduced by Ali Mubarak.", "s": "H"}, {"c": "The inheritance-law (faraʾid) anecdote, from Ibn Hajar as quoted by al-Suyuti: the objection, the hard case, al-Kalaʾi's mockery, and the regret.", "s": "S"}, {"c": "The sultan copied books in captivity.", "s": "B"}, {"c": "Where students slept (rooms around the college courtyards) follows Herz; the rest of the student's life is imagined.", "s": "H"}, {"c": "Print: Protain, interior view drawn for the Description de l'Égypte, 1798–1809. Public domain.", "s": "C"}], "act": {"kind": "turn", "say": "Face the hall with the marble pulpit.", "secs": 8}, "keep": {"id": "inkwell", "name": "A student's inkwell", "icon": "ink", "note": "From a morning that is imagined, among a hundred students that were real."}, "deeper": true, "dramatised": true}, {"title": "The great arch", "pos": "Courtyard, facing the hall with the marble pulpit", "alt": "Quotation card: the sultan on finishing his building", "focus": "The qibla hall: a single vault said to outdo the Persian kings.", "vp": {"x": 39.9, "y": 45.8, "a": 125}, "text": "Face the hall with the marble pulpit, and look up into its vault. I am Muqbil, a servant of the palace. I heard the sultan say it himself. The wooden frame they built to raise this arch cost a hundred thousand dirhams. And when the arch stood, they threw the frame away, on the rubbish heaps. A hundred thousand, in one copy of al-Maqrizi. Ten thousand, in another. That is still to be checked. Either way, the sultan was tempted to stop. Were it not that people would say the king of Egypt could not finish what he built, I would have abandoned it. Long iron chains hang from these vaults. Each one once held a glass lamp, enamelled with the sultan's name. When this building was surveyed in 1899, thirty-four of those lamps were already in the city's museum of Arab art. Count the chains you can see.", "lines": [{"who": "narrator", "t": "Face the hall with the marble pulpit, and look up into its vault."}, {"who": "muqbil", "t": "I am Muqbil, a servant of the palace. I heard the sultan say it himself. The wooden frame they built to raise this arch cost a hundred thousand dirhams. And when the arch stood, they threw the frame away, on the rubbish heaps.", "kind": "dramatised"}, {"who": "narrator", "t": "A hundred thousand, in one copy of al-Maqrizi. Ten thousand, in another. That is still to be checked. Either way, the sultan was tempted to stop."}, {"who": "maqrizi", "t": "Were it not that people would say the king of Egypt could not finish what he built, I would have abandoned it.", "kind": "quote"}, {"who": "narrator", "t": "Long iron chains hang from these vaults. Each one once held a glass lamp, enamelled with the sultan's name. When this building was surveyed in 1899, thirty-four of those lamps were already in the city's museum of Arab art. Count the chains you can see."}], "scene": "Scene 7", "cites": [{"c": "The marble minbar and dikka stand in the great (qibla) iwan.", "s": "H"}, {"c": "The eunuch Muqbil al-Shami heard the sultan say the centring for the great iwan's arch cost 100,000 dirhams and was thrown on the rubbish heaps. Herz's French translation prints 10,000: check the Arabic print. Muqbil's voice is dramatised from this report.", "s": "M"}, {"c": "\"Were it not that people would say the king of Egypt could not finish what he built, I would have abandoned it.\"", "s": "M"}, {"c": "34 enamelled glass lamps from the mosque were in the Arab Museum in 1899; each of the long chains in the iwans held one.", "s": "H"}, {"c": "Where those lamps are today (Museum of Islamic Art, Cairo, or elsewhere): check.", "s": null}], "cue": "Look up into the vault of the hall with the marble pulpit.", "next": "Cross the great hall to the door beside the prayer niche (about 50 m).", "act": {"kind": "count", "say": "How many hanging chains can you see?", "reveal": "Each one once carried a glass lamp."}, "keep": {"id": "lamp", "name": "A glass lamp", "icon": "lamp", "note": "One of the enamelled lamps that once hung on these chains."}, "card": {"q": "Were it not that people would say the king of Egypt could not finish what he built, I would have abandoned it.", "by": "Sultan Hasan, as reported by al-Maqrizi (translated for this guide)"}}, {"title": "A tomb without its sultan", "pos": "Tomb chamber, behind the prayer-niche wall, under the dome", "alt": "Tomb chamber with tiers of carved honeycomb niches carrying a high dome", "focus": "Tiers of honeycomb niches carry the dome over a square room.", "vp": {"x": 60.9, "y": 60.6, "a": 125}, "text": "Go through the door beside the prayer niche, into the tomb chamber, and look up. In each corner, tiers of carved niches, like honeycomb, carry the dome. The band of writing around the walls says the dome was finished in the Islamic year 764. By then, the sultan was already dead. A wooden reading-chair for the Qur'an once stood here, carved with his name. The tomb in the middle was dedicated, in 1384, to Sultan Hasan and his descendants. But Hasan never lay here. His body was never found. Stay a moment. Don't look at the screen. Just the room.", "lines": [{"who": "narrator", "t": "Go through the door beside the prayer niche, into the tomb chamber, and look up. In each corner, tiers of carved niches, like honeycomb, carry the dome."}, {"who": "narrator", "t": "The band of writing around the walls says the dome was finished in the Islamic year 764. By then, the sultan was already dead. A wooden reading-chair for the Qur'an once stood here, carved with his name."}, {"who": "narrator", "t": "The tomb in the middle was dedicated, in 1384, to Sultan Hasan and his descendants. But Hasan never lay here. His body was never found."}, {"who": "narrator", "t": "Stay a moment. Don't look at the screen. Just the room."}], "scene": "Scene 8", "cites": [{"c": "The tomb chamber lies beyond the mihrab wall; 21 m square; muqarnas pendentives among the most imposing known.", "s": "H"}, {"c": "The wooden inscription frieze says \"this blessed dome\" was completed in 764 AH (1362–63).", "s": "H"}, {"c": "A kursi (Qur'an reader's chair) bearing the sultan's name; where it is today: check.", "s": "H"}, {"c": "The cenotaph epitaph, dated Dhu l-Qaʿda 786 (December 1384), names al-Nasir Hasan and his descendants.", "s": "H"}, {"c": "His trace was lost and his burial place never found.", "s": "B"}, {"c": "Which door leads to the tomb chamber today: check on site.", "s": null}], "cue": "Look up into the corners, where the dome begins.", "act": {"kind": "still", "say": "Fifteen seconds of stillness. Just the room.", "secs": 15}, "gate": {"kind": "tap", "where": "Inside the tomb chamber, through the door beside the prayer niche", "at": [30.03193, 31.25675]}}, {"title": "Six hundred years of a fortress", "pos": "Back outside, in the lane, facing the doorway", "alt": "Drawing of the mosque on its square, made for the Description de l'Égypte about 1800", "focus": "The building outlived its builder, and became a fortress, a ruin and a monument.", "vp": {"x": 46.4, "y": 12.7, "a": 215}, "text": "Hasan was gone. His mountain of stone stayed, and it had a life of its own. Standing so close to the Citadel made it dangerous. In 1391, rebels climbed onto its roof and fired down at the Citadel. Sultan Barquq had the stairs torn out and the great door walled up. A window of one of the colleges became the way in. Only in 1422 was the call to prayer heard here again. Much later, a French traveller was told that the last Mamluk sultan, Tumanbay, took refuge here in 1517, and that the Ottoman sultan fired cannon at it. That is a story, written down a hundred and fifty years after the event. After a brawl, the great door was walled up again, and stayed shut for fifty-one years, until an officer opened it, with the permission of the beys. In 1659 a minaret fell. The next year, the dome. Both were rebuilt. And in the eighteen nineties, Cairo's conservation committee measured every stone, so that today we can tell you all this. That is the end of Hasan's story. Now turn around. Across the lane, Al-Rifa'i looks just as old. It isn't. It was begun in 1869, five centuries later. That is the next story.", "lines": [{"who": "narrator", "t": "Hasan was gone. His mountain of stone stayed, and it had a life of its own."}, {"who": "narrator", "t": "Standing so close to the Citadel made it dangerous. In 1391, rebels climbed onto its roof and fired down at the Citadel. Sultan Barquq had the stairs torn out and the great door walled up. A window of one of the colleges became the way in. Only in 1422 was the call to prayer heard here again."}, {"who": "narrator", "t": "Much later, a French traveller was told that the last Mamluk sultan, Tumanbay, took refuge here in 1517, and that the Ottoman sultan fired cannon at it. That is a story, written down a hundred and fifty years after the event."}, {"who": "jabarti", "t": "After a brawl, the great door was walled up again, and stayed shut for fifty-one years, until an officer opened it, with the permission of the beys.", "kind": "paraphrase"}, {"who": "narrator", "t": "In 1659 a minaret fell. The next year, the dome. Both were rebuilt. And in the eighteen nineties, Cairo's conservation committee measured every stone, so that today we can tell you all this."}, {"who": "narrator", "t": "That is the end of Hasan's story. Now turn around. Across the lane, Al-Rifa'i looks just as old. It isn't. It was begun in 1869, five centuries later. That is the next story."}], "scene": "Epilogue", "cites": [{"c": "Rebels shot at the Citadel from the roof; Barquq demolished the stairs and blocked the door from 8 Safar 793 (January 1391); a window of one madrasa became the entrance.", "s": "M"}, {"c": "The adhan resumed and the stairs were rebuilt on 9 Ramadan 825 (August 1422).", "s": "M"}, {"c": "Thévenot (17th century) reports Tumanbay fled into the mosque and Selim fired cannon at it. A late report.", "s": "H"}, {"c": "al-Jabarti: the great door was walled up for 51 years after a brawl in 1149 AH (1736–37) and reopened by an aga with the permission of Ibrahim and Murad Beys. Paraphrased via Herz; the Arabic text not checked.", "s": "H"}, {"c": "A minaret fell in 1659 and the dome in 1660; both rebuilt (via Prisse d'Avennes).", "s": "H"}, {"c": "The Comité de conservation des monuments de l'art arabe surveyed the building for its 1899 monograph.", "s": "H"}, {"c": "Al-Rifa'i was begun in 1869.", "s": "H"}, {"c": "Print: Conté, view of the mosque, drawn for the Description de l'Égypte, 1798–1809. Public domain.", "s": "C"}], "act": {"kind": "turn", "say": "Turn around and face Al-Rifa'i.", "secs": 10}, "gate": {"kind": "tap", "where": "Back out in the lane, in front of the doorway", "at": [30.03286, 31.25642]}}]},
     { id: 'rifai', title: 'Al-Rifa\'i Mosque', street: 'Facing Sultan Hassan across the street', era: 'khedival', year: 1869, coords: [30.0327, 31.2573],
       plan: 'rifai',
       slides: [
@@ -899,12 +1034,13 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
     const stack = $('#stack'), bodies = $('#bodies');
     s.slides.forEach((sl, k) => {
       const art = document.createElement('article'); art.className = 'slide body gutter'; art.dataset.k = k;
-      const tn = s.thenNow !== undefined ? s.thenNow === k : (k === 0 && !!photo(s.id, 'then'));
+      const thenK = photo(s.id, 'then-' + k); // a historic print for this slide
+      const tn = thenK ? true : s.thenNow !== undefined ? s.thenNow === k : (k === 0 && !!photo(s.id, 'then'));
       const bgs = []; const ph = (lbl, bg, pic) => pic
         ? `<div class="ph has-photo"><img src="${pic.src}" alt="${esc(sl.alt)}" draggable="false"></div>`
         : `<div class="ph" data-bg="${bgs.push(bg) - 1}"><span class="ph-label">${lbl}</span><span class="ph-alt">${sl.alt}</span></div>`;
-      const now = photo(s.id, k), then = tn ? photo(s.id, 'then') : null;
-      const hero = tn
+      const now = photo(s.id, k), then = tn ? thenK || photo(s.id, 'then') : null;
+      const hero = !now && sl.card ? `<div class="ph card-print"><blockquote>${esc(sl.card.q)}</blockquote><cite>${esc(sl.card.by)}</cite></div>` : tn
         ? `<div class="tn" data-tn>${ph('Now · photo to be sourced', phBg(s.era, k), now)}<div class="then">${ph('Then · historic print to be sourced', `linear-gradient(160deg, #6b5838, #2a2214)`, then)}</div><div class="knob"></div><div class="tn-tags"><span>Then${then && then.year ? ' · ' + then.year : ''}</span><span>Now</span></div></div>`
         : ph('Photo · to be sourced', phBg(s.era, k), now);
       const credits = [now, then].filter(Boolean).map((c) => `<a href="${esc(c.url)}" target="_blank" rel="noopener">${creditLine(c)}</a>`).join('<br>');
@@ -913,13 +1049,13 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
       pr.querySelectorAll('.ph').forEach((n) => { if (n.dataset.bg) n.style.setProperty('--ph-bg', bgs[+n.dataset.bg]); });
       stack.appendChild(pr);
       art.innerHTML = `
-          <div class="era-line">${era.label} · ${s.year} · Stop ${i + 1} of ${STOPS.length}</div>
-          <h2>${sl.title}</h2>
+          <div class="era-line">${era.label} · ${s.year} · ${sl.scene ? esc(sl.scene) : `Stop ${i + 1} of ${STOPS.length}`}</div>
+          <h2>${sl.title}</h2>${sl.deeper ? '<span class="scene-tag">Go deeper</span>' : ''}${sl.dramatised ? '<span class="scene-tag">Dramatised</span>' : ''}
           <div class="pos">◎ ${sl.pos}</div>
           <div class="focus"><b>Architectural focus</b>${sl.focus}</div>
           ${sl.cue ? `<div class="cue"><b>Look</b>${sl.cue}</div>` : ''}
           ${sl.next ? `<div class="next">Next: ${sl.next}</div>` : ''}
-          <details class="transcript"><summary>Transcript</summary><p>${sl.text}</p>${s.sources ? citesHtml(s, sl) : '<p class="flag">Draft narration. Facts not yet checked against sources (UNVERIFIED).</p>'}</details>
+          <details class="transcript"><summary>Transcript</summary>${sl.lines ? stage.linesHtml(sl) : `<p>${sl.text}</p>`}${s.sources ? citesHtml(s, sl) : '<p class="flag">Draft narration. Facts not yet checked against sources (UNVERIFIED).</p>'}</details>
           ${credits ? `<div class="credit">${credits}</div>` : ''}`;
       bodies.appendChild(art);
     });
@@ -1103,7 +1239,7 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
       : '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
       playBtn.setAttribute('aria-label', p ? 'Pause narration' : 'Play narration'); };
     icon(false);
-    const sub = (st, k) => { $('#pSub').textContent = clipFor(st, k) ? 'Narration'
+    const sub = (st, k) => { $('#pSub').textContent = clipFor(st, k) ? (st.slides[k].lines && st.slides[k].lines.some((l) => l.who !== 'narrator') ? 'Narration and voices' : 'Narration')
       : tts ? 'Preview voice (your device\'s text-to-speech)' : 'Voice preview not supported in this browser. Read the transcript.'; };
     let eqRaf;
     const progress = () => mode === 'audio' ? (voice.duration ? voice.currentTime / voice.duration : 0) : (performance.now() - startAt) / estMs;
@@ -1116,6 +1252,7 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
     }
     function stop() { token++; clearTimeout(debounce); clearTimeout(fake); if (tts) tts.cancel(); voice.pause(); speaking = false; cancelAnimationFrame(eqRaf); eqLoop(); bed.duck(false); }
     function done(my) { if (my !== token) return; speaking = false; loaded = null; bar.style.width = '100%'; eqLoop(); bed.duck(false);
+      if (stage.on()) { wantPlay = false; icon(false); stage.after(cur.slide); return; } // story stops: the scene's act, keepsake and choice come next
       if (S.auto && cur.slide < STOPS[cur.stop].slides.length - 1) goSlide(cur.slide + 1); else { wantPlay = false; icon(false); } }
     function speak(resume) {
       const st = STOPS[cur.stop], k = cur.slide, s = st.slides[k], c = clipFor(st, k), key = `${st.id}-${k}`;
@@ -1138,7 +1275,17 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
       mode = 'tts'; loaded = null;
       const words = s.text.split(/\s+/).length;
       estMs = words / (2.5 * S.rate) * 1000; startAt = performance.now();
-      if (tts) {
+      if (tts && s.lines) {
+        // Several voices: one utterance per line, pitched per speaker, with the speaker named under the player.
+        const base = bestVoice(), alt = tts.getVoices().filter((x) => /^en/i.test(x.lang) && x !== base && /male|daniel|george|arthur|oliver|james|david|fred|rishi|guy/i.test(x.name) && !/female/i.test(x.name))[0];
+        s.lines.forEach((l, n) => {
+          const v = stage.voice(l.who), u = new SpeechSynthesisUtterance(l.t); u.lang = 'en-GB'; u.rate = S.rate * 0.95 * v.rate; u.pitch = v.pitch;
+          const vv = l.who !== 'narrator' && alt ? alt : base; if (vv) u.voice = vv;
+          u.onstart = () => { if (my === token) $('#pSub').textContent = v.name + (l.kind ? ` · ${stage.kind(l.kind)}` : '') + ' · preview voice'; };
+          if (n === s.lines.length - 1) { u.onend = () => done(my); u.onerror = () => { if (my === token) fake = setTimeout(() => done(my), 400); }; }
+          tts.speak(u);
+        });
+      } else if (tts) {
         const u = new SpeechSynthesisUtterance(s.text); u.lang = 'en-GB'; u.rate = S.rate * 0.95;
         const v = bestVoice();
         if (v) u.voice = v;
@@ -1163,7 +1310,342 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
       // Swipe sync: stop at once, start the new slide after 350 ms (PRD F5).
       onSlide(k) { bar.style.width = '0%'; loaded = null; sub(STOPS[cur.stop], k); prefetch(); if (!wantPlay) { stop(); return; } stop(); debounce = setTimeout(() => speak(false), 350); },
       start() { wantPlay = true; icon(true); sub(STOPS[cur.stop], cur.slide); prefetch(); bed.start(); speak(false); },
+      play() { wantPlay = true; icon(true); sub(STOPS[cur.stop], cur.slide); prefetch(); speak(false); },
       halt() { wantPlay = false; stop(); icon(false); loaded = null; bed.stop(); },
+    };
+  })();
+
+  // ---- Theatre: a stop told as a story in scenes (stops with a `theatre` field). The visitor arrives (GPS or "I'm here"),
+  // hears the scene, then acts (look, turn, count, listen, stand still), collects keepsakes and chooses whether to go deeper.
+  // Motion only between scenes; reduced motion and "Cinematic effects off" get plain fades and short holds. ----
+  const VOICES = {
+    narrator: { name: 'Narrator', pitch: 1, rate: 1 },
+    maqrizi: { name: 'al-Maqrizi', role: 'historian', pitch: 0.78, rate: 0.9 },
+    subki: { name: 'al-Subki', role: 'scholar and poet', pitch: 0.9, rate: 0.86 },
+    muqbil: { name: 'Muqbil', role: 'palace servant', pitch: 0.86, rate: 0.95 },
+    student: { name: 'A student', role: 'imagined', pitch: 1.3, rate: 1.05 },
+    jabarti: { name: 'al-Jabarti', role: 'chronicler', pitch: 0.8, rate: 0.9 },
+  };
+  const KIND = { quote: 'his words, translated', paraphrase: 'his account, retold', dramatised: 'dramatised' };
+  const ICONS = {
+    book: 'M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z M4 19V5 M8 7h7 M8 10.5h7 M8 14h4',
+    door: 'M6 21V9a6 6 0 0 1 12 0v12 M3 21h18 M12 3v18 M9.6 13h.01 M14.4 13h.01',
+    scroll: 'M8 4h10a2 2 0 0 1 0 4H8 M8 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 0-4H10 M8 4v16 M10.5 11h5 M10.5 13.5h3',
+    coin: 'M21 12a9 9 0 1 1-18 0a9 9 0 1 1 18 0 M12 6.5v11 M14.8 9h-4a1.6 1.6 0 0 0 0 3.2h2.6a1.6 1.6 0 0 1 0 3.3h-4.2',
+    lamp: 'M12 2v4 M8 6h8l-1 3H9z M5.5 9h13l-2.5 7H8z M10 16v3h4v-3 M8.5 21h7',
+    ink: 'M8 11h8v8a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2z M10 11V8h4v3 M13.5 8l6-6',
+  };
+  const icon = (k) => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${ICONS[k] || ICONS.book}"/></svg>`;
+  const linesHtml = (sl) => `<div class="lines">${sl.lines.map((l) => { const v = VOICES[l.who] || VOICES.narrator;
+    return `<p class="v-${l.who}"><b>${esc(v.name)}${l.kind ? `<em>${KIND[l.kind]}</em>` : ''}</b>${esc(l.t)}</p>`; }).join('')}</div>`;
+
+  // Sound cues, made in Web Audio (no files): a bell for "look up", a low swell for scene changes, a shimmer for keepsakes.
+  const cue = (() => {
+    const ctx = () => { try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); if (actx.state !== 'running') actx.resume(); return actx; } catch { return null; } };
+    const tone = (c, f, t0, dur, vol, type = 'sine') => { const o = c.createOscillator(), g = c.createGain(); o.type = type; o.frequency.value = f;
+      g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(vol, t0 + 0.012); g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+      o.connect(g).connect(c.destination); o.start(t0); o.stop(t0 + dur + 0.05); };
+    return {
+      bell(n = 1) { const c = S.amb && ctx(); if (!c) return; for (let i = 0; i < n; i++) { const t = c.currentTime + i * 0.55; [[660, .16], [660 * 2.76, .05], [660 * 5.4, .02]].forEach(([f, v]) => tone(c, f, t, 2.6, v)); } },
+      swell() { const c = S.amb && ctx(); if (!c) return; const t = c.currentTime, o = c.createOscillator(), g = c.createGain(), f = c.createBiquadFilter();
+        o.type = 'sawtooth'; o.frequency.setValueAtTime(55, t); o.frequency.exponentialRampToValueAtTime(41, t + 2.4); f.type = 'lowpass'; f.frequency.value = 240;
+        g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.12, t + 0.9); g.gain.exponentialRampToValueAtTime(0.0001, t + 2.6);
+        o.connect(f).connect(g).connect(c.destination); o.start(t); o.stop(t + 2.7); },
+      shimmer() { const c = S.amb && ctx(); if (!c) return; [784, 988, 1175, 1568].forEach((f, i) => tone(c, f, c.currentTime + i * 0.11, 1.6, 0.07, 'triangle')); },
+    };
+  })();
+
+  // Prayer times, calculated (Egyptian General Authority of Survey method: Fajr 19.5°, Isha 17.5°, Shafiʿi Asr). Not an official timetable.
+  function prayerTimes(date, lat, lon) {
+    const rad = Math.PI / 180, day = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / 864e5 + 2440587.5 - 2451545.0;
+    const g = (357.529 + 0.98560028 * day) * rad, q = 280.459 + 0.98564736 * day, Ls = (q + 1.915 * Math.sin(g) + 0.020 * Math.sin(2 * g)) * rad;
+    const e = (23.439 - 0.00000036 * day) * rad, ra = Math.atan2(Math.cos(e) * Math.sin(Ls), Math.cos(Ls)) / rad / 15, dec = Math.asin(Math.sin(e) * Math.sin(Ls));
+    const fix = (h) => ((h % 24) + 24) % 24, eqt = q / 15 - fix(ra), noon = 12 - lon / 15 - ((eqt + 12) % 24 - 12), la = lat * rad;
+    const ha = (alt) => Math.acos((Math.sin(alt * rad) - Math.sin(la) * Math.sin(dec)) / (Math.cos(la) * Math.cos(dec))) / rad / 15;
+    const asrAlt = Math.atan(1 / (1 + Math.tan(Math.abs(la - dec)))) / rad;
+    const at = (h) => new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) + h * 36e5);
+    return { Fajr: at(noon - ha(-19.5)), Sunrise: at(noon - ha(-0.833)), Dhuhr: at(noon + 2 / 60), Asr: at(noon + ha(asrAlt)), Maghrib: at(noon + ha(-0.833)), Isha: at(noon + ha(-17.5)) };
+  }
+  const hhmm = (d) => { try { return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZone: 'Africa/Cairo' }); } catch { return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); } }; // Cairo time, whatever the phone's zone
+  function prayerNow(lat, lon) {
+    const now = new Date(), t = prayerTimes(now, lat, lon);
+    for (const k of ['Dhuhr', 'Asr', 'Maghrib', 'Isha']) {
+      const long = k === 'Dhuhr' && now.getDay() === 5 ? 60 : 25; // Friday noon prayer runs longer
+      if (now >= t[k] - 10 * 6e4 && now <= +t[k] + long * 6e4) return { name: k === 'Dhuhr' && now.getDay() === 5 ? 'Friday prayer' : k, at: t[k] };
+    }
+    return null;
+  }
+
+  const GUIDE = {
+    Story: () => `<div class="tl">${[
+      ['1347', 'Hasan becomes sultan, aged thirteen.'], ['1348', 'The Black Death reaches Cairo.'], ['1351', 'Deposed by the amirs; three years confined in the palace.'],
+      ['1354', 'Restored to the throne.'], ['1356', 'Building begins below the Citadel.'], ['1361', 'A minaret over the gate falls; 33 days later the sultan is killed.'],
+      ['1362–63', 'The tomb dome is finished (inscription, 764 AH).'], ['1384', 'The tomb is dedicated to Hasan and his descendants.'], ['1391', 'Barquq walls up the door after rebels fire from the roof.'],
+      ['1416', "The bronze door goes to al-Mu'ayyad's mosque."], ['1422', 'The call to prayer returns.'], ['1659–60', 'A minaret and the dome fall and are rebuilt.'],
+      ['1869', "Al-Rifa'i is begun across the lane."], ['1899', "Max Herz publishes the Comité's survey."]].map(([y, t]) => `<b>${y}</b><span>${esc(t)}</span>`).join('')}</div>
+      <p class="flag" style="margin-top:10px">Dates come from the sources listed under Sources. Conversions from the Islamic calendar are still to be checked.</p>`,
+    People: () => `<dl>${[
+      ['al-Nasir Hasan', 'Sultan of Egypt 1347–51 and 1354–61. Built this mosque and school. His body was never found.'],
+      ["Yalbugha al-'Umari", 'His own mamluk, raised to the highest rank, who overthrew him in 1361.'],
+      ['al-Maqrizi', 'Cairo historian of the early 1400s. His topography of Cairo (the Khitat) is our main source.'],
+      ['al-Subki', 'Scholar who wrote verses on the fallen minaret. Which member of the Subki family: to be confirmed.'],
+      ['Muqbil al-Shami', 'A eunuch of the palace who reported what the sultan said about the cost of the great arch.'],
+      ['Barquq', 'Sultan who walled up the door in 1391.'], ["al-Mu'ayyad Shaykh", 'Sultan who bought the bronze door in 1416.'],
+      ['al-Jabarti', 'Chronicler of Ottoman Cairo; reports the door walled up again for 51 years.'],
+      ['Max Herz', "Architect of the Comité de conservation; his 1899 study measured the building."]].map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('')}</dl>`,
+    Words: () => `<dl>${[
+      ['Madrasa', 'A college, here one for each of the four Sunni schools of law.'], ['Iwan', 'A vaulted hall, open on one side to a courtyard.'],
+      ['Qibla', 'The direction of Mecca; the qibla iwan is the hall facing it.'], ['Mihrab', 'The prayer niche in the qibla wall.'], ['Minbar', 'The pulpit.'],
+      ['Muqarnas', 'Honeycomb-like tiers of small niches, used to turn a square into a dome or to hood a doorway.'], ['Mamluk', 'A soldier bought as a slave, trained, freed, and part of the ruling elite.'],
+      ['Amir', 'A commander, a high officer of state.'], ['Sabil', 'A public drinking fountain, often with a school for orphans above it.'],
+      ['Waqf', 'An endowment that paid for the building, its staff and its students for ever.'], ['Kursi', "A reading chair for the Qur'an."],
+      ['Dirham, dinar', 'Silver and gold coins.'], ['AH', 'Year of the Islamic calendar.']].map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('')}</dl>`,
+    Sources: (s) => `<p>Every claim in the story is cited in each scene's transcript. These are the sources:</p><dl>${Object.entries(s.sources).map(([k, v]) =>
+      `<dt>[${k}] <a href="${esc(v.u)}" target="_blank" rel="noopener">${esc(v.kind)}</a></dt><dd>${esc(v.t)}</dd>`).join('')}</dl>
+      <p class="flag" style="margin-top:10px">Sourced draft. Not yet reviewed by a historian. Voices marked "dramatised" are imagined; "translated" lines are translated for this guide.</p>`,
+    Visit: (s) => { const t = prayerTimes(new Date(), s.coords[0], s.coords[1]);
+      return `<dl>
+        <dt>Opening hours and tickets</dt><dd>To check on arrival [VERIFY]. A combined ticket with Al-Rifa'i is common [VERIFY].</dd>
+        <dt>Dress</dt><dd>Shoulders and knees covered; a scarf for women in prayer areas [VERIFY]. Shoes off where the floor is carpeted [VERIFY].</dd>
+        <dt>Step-free access</dt><dd>The way in has steps (Herz counted seven in 1899). Step-free route: not yet checked [VERIFY].</dd>
+        <dt>During prayer</dt><dd>Visitors are usually asked to wait while prayer is on [VERIFY]. The story offers to tell the inside scenes from the doorway instead.</dd>
+        <dt>Prayer times today</dt><dd><div class="pt">${['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'].map((k) => `<span>${k}</span><span>${hhmm(t[k])}</span>`).join('')}</div>
+          <small class="flag">Cairo time, calculated for this spot (Egyptian method), not the mosque's own timetable.</small></dd>
+        <dt>Time</dt><dd>About ${s.theatre.mins} minutes with the walking, more if you go deeper.</dd></dl>`; },
+  };
+
+  const stage = (() => {
+    const box = $('#stage'), body = $('#stBody'), skip = $('#stSkip'), hud = $('#stHud');
+    let on = false, tok = 0, t0 = 0, site = true, photoUrl = null, gps = null, lastFix = null;
+    const keeps = new Set(store.get('keeps', []));
+    const seen = new Set();
+    const st = () => STOPS[cur.stop];
+    const dark = () => app.classList.toggle('cine', cinematic());
+    const scene = (k) => st().slides[k];
+    // Show one panel; resolve with the value the visitor picks (or on skip / timeout).
+    function panel(html, { mode = '', skippable = false, ms = 0 } = {}) {
+      const my = ++tok; dark();
+      box.className = 'stage ' + mode; body.className = 'st-body st-in' + (mode.includes('chapter') ? ' st-chapter' : '');
+      body.innerHTML = html; skip.hidden = !skippable;
+      return new Promise((res) => {
+        const done = (v) => { if (my !== tok) return; tok++; clearTimeout(timer); res(v); };
+        const timer = ms ? setTimeout(() => done('time'), ms) : 0;
+        body.querySelectorAll('[data-v]').forEach((b) => b.addEventListener('click', () => done(b.dataset.v)));
+        skip.onclick = () => done('skip');
+        body._done = done;
+        const f = body.querySelector('button'); if (f) setTimeout(() => f.focus({ preventScroll: true }), 50);
+      });
+    }
+    const close = () => { tok++; box.className = 'stage off'; stopGps(); };
+    app.addEventListener('scroll', () => { if (app.scrollTop) app.scrollTop = 0; });
+    const live = () => on;
+
+    function updHud() { hud.hidden = !on; $('#stKeepN').textContent = keeps.size; }
+
+    async function begin() {
+      on = true; t0 = Date.now(); seen.clear(); updHud(); bed.start();
+      const s = st(), th = s.theatre;
+      cue.swell();
+      const v = await panel(`<div class="st-kicker">Medu presents</div><h2 class="st-title">${esc(th.title)}</h2><div class="st-rule"></div>
+        <p class="st-sub">${esc(th.sub)}. About ${th.mins} minutes.</p>
+        <p class="st-sub small">Voices from the chronicles are labelled. Anything imagined is marked "dramatised". Earphones recommended, one ear free near traffic.</p>
+        <div class="st-actions"><button class="btn btn-primary two" data-v="site">I'm at the mosque<small>Scenes start as you reach each spot</small></button>
+        <button class="btn btn-ghost two" data-v="home">I'm somewhere else<small>Hear it as one continuous story</small></button>
+        <button class="btn btn-ghost" data-v="map" style="min-height:40px;border:0;color:var(--muted)">Back to the map</button></div>`, { mode: 'full center' });
+      if (!on) return;
+      if (v === 'map') { closeStop(); return; }
+      site = v !== 'home';
+      go(0);
+    }
+
+    async function go(k) {
+      if (!on) return;
+      const s = st(), sl = scene(k);
+      if (k !== cur.slide) goSlide(k);
+      seen.add(k);
+      cue.swell();
+      await panel(`<div class="st-kicker">${esc(sl.scene || '')}</div><h2 class="st-title">${esc(sl.title)}</h2>${sl.dramatised ? '<p class="st-sub small">Dramatised scene</p>' : ''}`,
+        { mode: 'full center chapter', ms: cinematic() ? 2600 : 1200 });
+      if (!on) return;
+      if (sl.gate && site) { const r = await arrive(sl, k); if (!on) return; if (r === 'outside') site = false; }
+      close();
+      narr.play();
+    }
+
+    function stopGps() { if (gps !== null) { navigator.geolocation.clearWatch(gps); gps = null; } }
+    async function arrive(sl, k) {
+      const g = sl.gate, inside = g.kind === 'tap';
+      const pr = inside ? prayerNow(st().coords[0], st().coords[1]) : null;
+      const note = pr ? `<div class="st-note"><b>${esc(pr.name)}</b> around ${hhmm(pr.at)} (calculated, not the mosque's timetable). Visitors are usually asked to wait during prayer [VERIFY]. You can wait, or hear the inside scenes from the doorway.</div>` : '';
+      const html = `<div class="st-kicker">Go to</div><h2 class="st-title sm">${esc(g.where)}</h2>
+        ${!inside ? `<div class="st-dist"><span class="st-pulse"></span><b id="stD">…</b><span id="stA">Finding you</span></div>` : ''}${note}
+        <div class="st-actions"><button class="btn btn-primary" data-v="here">I'm here</button>${pr ? '<button class="btn btn-ghost" data-v="outside">Hear the inside scenes from outside</button>' : ''}</div>`;
+      const p = panel(html, { mode: '', skippable: true });
+      if (!inside && 'geolocation' in navigator) {
+        const my = tok;
+        gps = navigator.geolocation.watchPosition((pos) => {
+          if (my !== tok) return stopGps();
+          const d = haversine([pos.coords.latitude, pos.coords.longitude], g.at), acc = pos.coords.accuracy;
+          lastFix = pos;
+          const D = $('#stD'), A = $('#stA'); if (!D) return;
+          D.textContent = d < 1000 ? `${Math.round(d / 5) * 5} m` : `${(d / 1000).toFixed(1)} km`;
+          A.textContent = d <= g.r ? 'You are here' : `away · GPS ±${Math.round(acc)} m`;
+          if (d <= g.r && acc <= 40) { cue.bell(); setTimeout(() => body._done && body._done('gps'), 900); }
+        }, () => { const A = $('#stA'); if (A) A.textContent = 'Location is off. Tap "I\'m here" when you arrive.'; const D = $('#stD'); if (D) D.textContent = '—'; },
+        { enableHighAccuracy: true, maximumAge: 5000, timeout: 20000 });
+      }
+      const r = await p; stopGps(); return r;
+    }
+
+    // Called by the narration when a scene's voice ends.
+    async function after(k) {
+      if (!on) return;
+      const s = st(), sl = scene(k);
+      if (sl.act) { await act(sl.act); if (!on) return; }
+      if (sl.keep && !keeps.has(sl.keep.id)) { await keep(sl.keep); if (!on) return; }
+      let next = -1;
+      if (sl.choice) {
+        const v = await panel(`<div class="st-kicker">Your choice</div><h2 class="st-title sm">${esc(sl.choice.q)}</h2>
+          <div class="st-actions"><button class="btn btn-ghost" data-v="deeper">${esc(sl.choice.deeper)}</button><button class="btn btn-primary" data-v="on">${esc(sl.choice.on)}</button></div>`, { mode: 'full' });
+        if (!on) return;
+        if (v === 'deeper') next = k + 1;
+      }
+      if (next < 0) next = s.slides.findIndex((x, j) => j > k && !x.deeper);
+      if (next < 0) return finale();
+      go(next);
+    }
+
+    async function act(a) {
+      if (a.kind === 'walk') {
+        await panel(`<div class="st-kicker">Walk</div><p class="st-say">${esc(a.say)}</p><div class="st-actions"><button class="btn btn-primary" data-v="ok">Continue</button></div>`, { mode: 'full center' });
+        return;
+      }
+      if (a.kind === 'count') {
+        let n = 0;
+        const p = panel(`<div class="st-kicker">Count</div><p class="st-say">${esc(a.say)}</p>
+          <div class="st-count"><button id="stMinus" aria-label="One fewer">−</button><output id="stN">0</output><button id="stPlus" aria-label="One more">+</button></div>
+          <div class="st-actions"><button class="btn btn-primary" data-v="ok">Done</button></div>`, { mode: 'full center', skippable: true });
+        const out = $('#stN');
+        $('#stMinus').onclick = () => { n = Math.max(0, n - 1); out.textContent = n; buzz(); };
+        $('#stPlus').onclick = () => { n++; out.textContent = n; buzz(); };
+        const v = await p; if (!on || v === 'skip') return;
+        const right = a.answer == null || n === a.answer;
+        await panel(`<div class="st-kicker">${a.answer == null ? `You counted ${n}` : right ? 'Exactly' : `You counted ${n}`}</div><p class="st-say">${esc(a.reveal || '')}</p>`, { mode: 'full center', ms: 3600 });
+        return;
+      }
+      // look / turn / listen / still: a quiet moment. The screen goes dark so eyes go up; a bell marks the start and end.
+      const secs = a.secs || 10, C = 2 * Math.PI * 52;
+      cue.bell(1);
+      const p = panel(`<div class="st-kicker">${{ look: 'Look up', turn: 'Turn', listen: 'Listen', still: 'Be still' }[a.kind] || 'Look'}</div>
+        <p class="st-say">${esc(a.say)}</p>
+        <svg class="st-ring" viewBox="0 0 120 120" aria-hidden="true"><circle class="bg" cx="60" cy="60" r="52"/><circle class="fg" id="stRing" cx="60" cy="60" r="52" stroke-dasharray="${C}" stroke-dashoffset="0"/><text x="60" y="62" id="stSecs">${secs}</text></svg>
+        ${a.photo ? '<div class="st-actions"><button class="btn btn-ghost" id="stSnap">Take a photo here for your souvenir</button></div>' : ''}`,
+        { mode: 'full center ' + (a.kind === 'listen' || a.kind === 'still' ? 'dark' : ''), skippable: true, ms: secs * 1000 + 400 });
+      const ring = $('#stRing'), lbl = $('#stSecs'), start = performance.now(), my = tok;
+      const snap = $('#stSnap'); if (snap) snap.onclick = () => pickPhoto();
+      const tick = () => { if (my !== tok) return; const el = (performance.now() - start) / 1000;
+        ring.style.strokeDashoffset = String(C * Math.min(1, el / secs)); lbl.textContent = Math.max(0, Math.ceil(secs - el)); if (el < secs) requestAnimationFrame(tick); };
+      requestAnimationFrame(tick);
+      const v = await p; if (v === 'time') cue.bell(2);
+    }
+
+    async function keep(kp) {
+      keeps.add(kp.id); store.set('keeps', [...keeps]); updHud();
+      const b = $('#stKeeps'); b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop');
+      cue.shimmer(); buzz();
+      await panel(`<div class="st-keep">${icon(kp.icon)}</div><div class="st-kicker">Keepsake</div><h2 class="st-title sm">${esc(kp.name)}</h2><p class="st-sub">${esc(kp.note)}</p>
+        <div class="st-actions"><button class="btn btn-primary" data-v="ok">Keep it</button></div>`, { mode: 'full center', ms: 9000 });
+    }
+
+    function allKeeps() { return st().slides.filter((x) => x.keep).map((x) => x.keep); }
+    function showKeeps() {
+      $('#keepsList').innerHTML = allKeeps().map((kp) => `<li class="${keeps.has(kp.id) ? '' : 'no'}">${icon(kp.icon)}<span><b>${keeps.has(kp.id) ? esc(kp.name) : 'Not found yet'}</b><small>${keeps.has(kp.id) ? esc(kp.note) : 'Somewhere later in the story.'}</small></span></li>`).join('');
+      $('#keeps').hidden = false;
+    }
+    function showGuide(tab = 'Story') {
+      const s = st();
+      $('#gTabs').innerHTML = Object.keys(GUIDE).map((k) => `<button role="tab" aria-pressed="${k === tab}" data-t="${k}">${k}</button>`).join('');
+      $('#gPane').innerHTML = GUIDE[tab](s);
+      $('#gTabs').querySelectorAll('button').forEach((b) => { b.onclick = () => showGuide(b.dataset.t); });
+      $('#guide').hidden = false;
+    }
+
+    function pickPhoto() { const inp = $('#stPhoto'); inp.value = ''; inp.click(); }
+    $('#stPhoto').addEventListener('change', (e) => {
+      const f = e.target.files && e.target.files[0]; if (!f) return;
+      if (photoUrl) URL.revokeObjectURL(photoUrl); photoUrl = URL.createObjectURL(f);
+      if (!$('#souvenir').hidden) drawCard();
+    });
+
+    // Souvenir card: drawn on a canvas, shared as an image with the Web Share API where the phone supports it.
+    const loadImg = (src) => new Promise((ok) => { const im = new Image(); im.onload = () => ok(im); im.onerror = () => ok(null); im.src = src; });
+    async function drawCard() {
+      const s = st(), W = 1080, H = 1350, c = document.createElement('canvas'); c.width = W; c.height = H;
+      const x = c.getContext('2d'), gold = ERA[s.era].accent;
+      const bg = x.createLinearGradient(0, 0, 0, H); bg.addColorStop(0, '#16110a'); bg.addColorStop(1, '#05070d'); x.fillStyle = bg; x.fillRect(0, 0, W, H);
+      x.strokeStyle = gold; x.globalAlpha = .55; x.lineWidth = 2; x.strokeRect(36, 36, W - 72, H - 72); x.globalAlpha = 1;
+      const pic = await loadImg(photoUrl || (photo(s.id, 0) || photo(s.id, 1) || {}).src || '');
+      const py = 150, ph = 600, px = 90, pw = W - 180;
+      if (pic) { const r = Math.max(pw / pic.width, ph / pic.height), sw = pw / r, sh = ph / r;
+        x.save(); x.beginPath(); x.roundRect ? x.roundRect(px, py, pw, ph, 18) : x.rect(px, py, pw, ph); x.clip();
+        x.drawImage(pic, (pic.width - sw) / 2, (pic.height - sh) / 2, sw, sh, px, py, pw, ph);
+        if (!photoUrl) { x.fillStyle = 'rgba(40,28,10,.25)'; x.fillRect(px, py, pw, ph); } x.restore(); }
+      else { x.fillStyle = '#1e293b'; x.fillRect(px, py, pw, ph); }
+      x.fillStyle = gold; x.font = '600 26px Inter, sans-serif'; x.textAlign = 'center';
+      x.fillText('MEDU  ·  CAIRO EDITION', W / 2, 105);
+      x.fillStyle = '#f6efe2'; x.font = '600 68px "Cormorant Garamond", Georgia, serif';
+      const name = ($('#souvName').value || '').trim();
+      x.fillText(name ? `${name} walked with` : 'I walked with', W / 2, 840);
+      x.fillText('Sultan Hasan', W / 2, 912);
+      const mins = Math.max(1, Math.round((Date.now() - t0) / 6e4)), main = s.slides.filter((z) => !z.deeper).length, saw = [...seen].filter((k) => !s.slides[k].deeper).length;
+      x.fillStyle = '#cbd5e1'; x.font = '400 30px Inter, sans-serif';
+      x.fillText(`${new Date().toLocaleDateString([], { day: 'numeric', month: 'long', year: 'numeric' })}  ·  ${mins} min  ·  ${saw} of ${main} scenes`, W / 2, 975);
+      x.fillStyle = '#94a3b8'; x.font = '400 26px Inter, sans-serif';
+      x.fillText('From the Citadel square to an empty tomb, 1347–1361', W / 2, 1020);
+      const ks = allKeeps().filter((kp) => keeps.has(kp.id)), gap = 150, sx = W / 2 - (ks.length - 1) * gap / 2;
+      ks.forEach((kp, i) => { const cx = sx + i * gap, cy = 1120;
+        x.beginPath(); x.arc(cx, cy, 46, 0, Math.PI * 2); x.strokeStyle = gold; x.globalAlpha = .6; x.lineWidth = 2; x.stroke(); x.globalAlpha = 1;
+        x.save(); x.translate(cx - 30, cy - 30); x.scale(2.5, 2.5); x.strokeStyle = '#f3e6c8'; x.lineWidth = 1.3; x.lineCap = 'round'; x.lineJoin = 'round'; x.stroke(new Path2D(ICONS[kp.icon])); x.restore();
+        x.fillStyle = '#b9a582'; x.font = '400 17px Inter, sans-serif'; x.fillText(kp.name.replace(/^(The|A) /, ''), cx, cy + 74); });
+      x.fillStyle = '#64748b'; x.font = '400 22px Inter, sans-serif';
+      x.fillText(location.host + location.pathname.replace(/index\.html$/, ''), W / 2, H - 70);
+      if (photoUrl) { x.textAlign = 'right'; x.fillText('Your photo', W - 100, py + ph + 30); }
+      else { const p0 = photo(s.id, 0); if (p0) { x.textAlign = 'left'; x.font = '400 17px Inter, sans-serif'; x.fillText(`Print: ${p0.author} · ${p0.license}`.slice(0, 90), px, py + ph + 30); } }
+      return new Promise((ok) => c.toBlob((b) => { const u = URL.createObjectURL(b); $('#souvImg').src = u; card = { blob: b, url: u }; ok(); }, 'image/jpeg', 0.9));
+    }
+    let card = null;
+    async function finale() {
+      const s = st();
+      cue.swell();
+      await panel(`<div class="st-kicker">The end</div><h2 class="st-title">Sultan Hasan</h2><p class="st-sub">Sultan at thirteen, dead at about twenty-seven. He began a building that al-Maqrizi said had no equal in the lands of Islam, and he never lay in it.</p>`, { mode: 'full center chapter', ms: cinematic() ? 4200 : 2200 });
+      close();
+      $('#souvName').value = store.get('name', '');
+      await drawCard();
+      $('#souvenir').hidden = false;
+    }
+    $('#souvName').addEventListener('input', () => { store.set('name', $('#souvName').value.trim()); clearTimeout(drawCard.t); drawCard.t = setTimeout(drawCard, 250); });
+    $('#souvPhoto').addEventListener('click', pickPhoto);
+    $('#souvSave').addEventListener('click', () => { if (!card) return; const a = document.createElement('a'); a.href = card.url; a.download = 'medu-sultan-hasan.jpg'; document.body.appendChild(a); a.click(); a.remove(); });
+    $('#souvShare').addEventListener('click', async () => {
+      const url = location.origin + location.pathname, text = 'I walked with Sultan Hasan, below the Citadel in Cairo.';
+      try {
+        const file = card && new File([card.blob], 'medu-sultan-hasan.jpg', { type: 'image/jpeg' });
+        if (file && navigator.canShare && navigator.canShare({ files: [file] })) await navigator.share({ files: [file], text: `${text} ${url}` });
+        else if (navigator.share) await navigator.share({ title: 'Medu', text, url });
+        else { await navigator.clipboard.writeText(`${text} ${url}`); $('#souvShare').textContent = 'Link copied'; }
+      } catch {}
+    });
+    $('#souvNext').addEventListener('click', () => { $('#souvenir').hidden = true; const s = st(), j = STOPS.findIndex((x) => x.id === s.theatre.next); closeStop().then(() => { if (j >= 0) setTimeout(() => openStop(j), 300); }); });
+    document.querySelectorAll('#keeps [data-close], #guide [data-close]').forEach((b) => b.addEventListener('click', () => { b.closest('.modal').hidden = true; }));
+    $('#souvenir [data-close]').addEventListener('click', () => { $('#souvenir').hidden = true; closeStop(); });
+    $('#stKeeps').addEventListener('click', showKeeps);
+    $('#stGuide').addEventListener('click', () => showGuide());
+
+    return {
+      on: live, begin, after, linesHtml,
+      // Multi-voice preview: each line in the device voice, pitched per speaker, until the recorded clip exists.
+      voice: (who) => VOICES[who] || VOICES.narrator, kind: (k) => KIND[k],
+      halt() { on = false; close(); updHud(); ['keeps', 'guide'].forEach((id) => { $('#' + id).hidden = true; }); },
     };
   })();
 
@@ -1187,12 +1669,12 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
     hide('dial');
     requestAnimationFrame(() => app.classList.remove('sepia'));
     visited.add(s.id); store.set('visited', [...visited]);
-    narr.start();
+    if (s.theatre) stage.begin(); else narr.start();
     busy = false;
   }
   async function closeStop() {
     if (busy) return; busy = true;
-    narr.halt();
+    stage.halt(); narr.halt();
     const s = STOPS[cur.stop];
     hide('album'); renderSheet();
     await wait(cinematic() ? 400 : 0);
@@ -1226,7 +1708,7 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
   });
 
   function applyIntroPhoto() {
-    const ph = photo('hassan', 0) || photo('zuweila', 0) || photo('azhar', 0);
+    const ph = photo('hassan', 1) || photo('zuweila', 0) || photo('azhar', 0);
     if (!ph) return;
     $('#intro').style.background = `linear-gradient(rgba(2,6,23,.55), rgba(2,6,23,.35) 35%, rgba(2,6,23,.92) 70%, #020617), url('${ph.src}') center 30% / cover no-repeat`;
   }
