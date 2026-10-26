@@ -464,7 +464,7 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
       <button class="toggle" role="switch" id="tAuto" aria-checked="false"><span>Auto-advance slides<small>Move to the next slide when narration ends.</small></span><span class="sw"></span></button>
       <button class="btn btn-ghost" id="resetWalk" style="margin-top:12px">Reset visited stops</button>
       <button class="btn btn-primary" id="closeSettings" style="margin-top:6px">Done</button>
-      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 26 Oct 14:25 UTC</p>
+      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 26 Oct 14:36 UTC</p>
     </div>
   </div>
 </div>
@@ -1059,8 +1059,12 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
   const clipFor = (st, k) => { const a = AUDIO && AUDIO.narr && AUDIO.narr[`${st.id}-${k}`]; return a && a.h === textHash(st.slides[k].text) ? a : null; };
 
   // Background bed: played through Web Audio so the dip under the voice also works on iPhone (iOS ignores <audio>.volume).
+  // Every tap (re)starts the audio engine inside a user gesture, which mobile browsers require; on iPhone, 'playback'
+  // keeps it audible with the ring/silent switch on silent, like the narration.
+  try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch {}
+  document.addEventListener('pointerdown', () => { try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); if (actx.state !== 'running') actx.resume(); } catch {} }, { capture: true, passive: true });
   const bed = (() => {
-    const LOW = 0.045, HIGH = 0.13; // while the guide speaks / between slides
+    const LOW = 0.25, HIGH = 0.5; // while the guide speaks / between slides (the file itself is mastered at -20 LUFS)
     let buf, src, gain, on = false, loading;
     const load = () => loading || (loading = fetch(AUDIO.ambient.src).then((r) => r.arrayBuffer())
       .then((ab) => new Promise((ok, no) => actx.decodeAudioData(ab, ok, no))).catch(() => { loading = null; return null; }));
