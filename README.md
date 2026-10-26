@@ -31,10 +31,13 @@ Photos come from Wikimedia Commons under the licences below. Map: © OpenStreetM
 | zuweila | 1 | [photos/zuweila-1.jpg](https://commons.wikimedia.org/wiki/File:Bab_Zuweila_2019-11-02a.jpg) | Djehouty | CC BY-SA 4.0 |
 | zuweila | 2 | [photos/zuweila-2.jpg](https://commons.wikimedia.org/wiki/File:%D9%85%D8%AE%D8%B1%D8%AC_%D8%A8%D8%A7%D8%A8_%D8%B2%D9%88%D9%8A%D9%84%D9%87.jpg) | Magoopic | CC BY-SA 4.0 |
 | zuweila | then | [photos/zuweila-then.jpg](https://commons.wikimedia.org/wiki/File:Louis_Haghe_-_Egypt_and_Nubia,_Volume_III-_Minarets,_and_Grand_Entrance_of_the_Metwaleys,_-_2012.194_-_Cleveland_Museum_of_Art.jpg) | Louis Haghe | CC0 |
-| hassan | 0 | [photos/hassan-0.jpg](https://commons.wikimedia.org/wiki/File:Sultan-Hassan-Moschee_2015-11-14g.jpg) | Djehouty | CC BY-SA 4.0 |
-| hassan | 1 | [photos/hassan-1.jpg](https://commons.wikimedia.org/wiki/File:Cairo2710.JPG) | Samir I. Sharbaty | CC BY-SA 3.0 |
-| hassan | 2 | [photos/hassan-2.jpg](https://commons.wikimedia.org/wiki/File:Moschea_del_sultano_hasan,_1362,_interno,_androne_02.JPG) | Sailko | CC BY 3.0 |
+| hassan | 1 | [photos/hassan-0.jpg](https://commons.wikimedia.org/wiki/File:Sultan-Hassan-Moschee_2015-11-14g.jpg) | Djehouty | CC BY-SA 4.0 |
+| hassan | 4 | [photos/hassan-1.jpg](https://commons.wikimedia.org/wiki/File:Cairo2710.JPG) | Samir I. Sharbaty | CC BY-SA 3.0 |
+| hassan | 3 | [photos/hassan-2.jpg](https://commons.wikimedia.org/wiki/File:Moschea_del_sultano_hasan,_1362,_interno,_androne_02.JPG) | Sailko | CC BY 3.0 |
 | hassan | then | [photos/hassan-then.jpg](https://commons.wikimedia.org/wiki/File:Cairo._Mosque_of_Sultan_Hassan_-_P._Bergheim._LCCN92500750.jpg) | Peter Bergheim (Library of Congress, LCCN 92500750) | Public domain |
+| hassan | 0 | [photos/hassan-midan.jpg](https://commons.wikimedia.org/wiki/File:Moschea_del_sultano_hasan,_1362,_esterno_01.JPG) | Sailko | CC BY 3.0 |
+| hassan | 2 | [photos/hassan-portal.jpg](https://commons.wikimedia.org/wiki/File:By_ovedc_-_Mosque_of_Sultan_Hasan_-_07.jpg) | Ovedc | CC BY-SA 4.0 |
+| hassan | 5 | [photos/hassan-tomb.jpg](https://commons.wikimedia.org/wiki/File:Sultan_Hasan_mausoleum_DSCF7665.jpg) | R Prazeres | CC BY-SA 4.0 |
 | ibntulun | 0 | [photos/ibntulun-0.jpg](https://commons.wikimedia.org/wiki/File:%D9%85%D8%A3%D8%B0%D9%86%D8%A9_%D8%AC%D8%A7%D9%85%D8%B9_%D8%A7%D8%A8%D9%86_%D8%B7%D9%88%D9%84%D9%88%D9%86.jpg) | Donia Malak | CC BY-SA 4.0 |
 | ibntulun | 1 | [photos/ibntulun-1.jpg](https://commons.wikimedia.org/wiki/File:Mosque_of_Ibn_Tulun,_Cairo,_876-79_(34).jpg) | Richard Mortel | CC BY 2.0 |
 | ibntulun | 2 | [photos/ibntulun-2.jpg](https://commons.wikimedia.org/wiki/File:Panoramic_arcades_of_ibn_tolon.jpg) | AhmedMosaad | CC BY-SA 4.0 |
