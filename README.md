@@ -13,7 +13,7 @@ After the first visit it works offline.
 
 This is a design prototype, not the product. Narration texts are drafts that have not been checked against
 sources (UNVERIFIED). Dates and coordinates are approximate and must be verified. Floor plans are schematic sketches,
-not surveyed plans. The narration voice is the phone's built-in text-to-speech.
+not surveyed plans. The narration is pre-recorded with an open-source neural voice; a slide whose text changed after recording falls back to the phone's text-to-speech.
 
 ## Credits and licences
 
@@ -55,3 +55,9 @@ Photos come from Wikimedia Commons under the licences below. Map: © OpenStreetM
 | citadel | 2 | [photos/citadel-2.jpg](https://commons.wikimedia.org/wiki/File:Ottoman_hierarchy_of_domes_and_interior_of_the_Mosque_of_Muhammad_Ali_(14613586998).jpg) | Jorge Láscar from Melbourne, Australia | CC BY 2.0 |
 
 Fonts: Cormorant Garamond and Inter (SIL Open Font License), served by Google Fonts.
+
+Audio:
+
+- Narration voice: Kokoro-82M (bf_emma), open-source neural text-to-speech (Apache 2.0), rendered offline with kokoro-onnx.
+- Background "Ney and drone": original music synthesised for Medu (audio-tools/ambient.py). No third-party recordings.
+

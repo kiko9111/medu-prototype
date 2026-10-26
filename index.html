@@ -404,7 +404,7 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
       <div class="player-card">
         <div class="p-row">
           <button class="play" id="playBtn" aria-label="Play narration"></button>
-          <div class="p-meta"><b id="pTitle">Narration</b><small id="pSub">Preview voice (your device's text-to-speech)</small></div>
+          <div class="p-meta"><b id="pTitle">Narration</b><small id="pSub">Narration</small></div>
           <div class="eq" id="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
         </div>
         <div class="bar"><i id="pBar"></i></div>
@@ -460,10 +460,11 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
       <h3>Settings</h3>
       <button class="toggle" role="switch" id="tCine" aria-checked="true"><span>Cinematic effects<small>Year Dial, inked plans, film grain. Off uses gentle fades.</small></span><span class="sw"></span></button>
       <button class="toggle" role="switch" id="tSfx" aria-checked="true"><span>UI sounds<small>The soft "whoosh" when you travel in time.</small></span><span class="sw"></span></button>
+      <button class="toggle" role="switch" id="tAmb" aria-checked="true"><span>Background sound<small>Soft ney and drone under the narration, quieter while the guide speaks.</small></span><span class="sw"></span></button>
       <button class="toggle" role="switch" id="tAuto" aria-checked="false"><span>Auto-advance slides<small>Move to the next slide when narration ends.</small></span><span class="sw"></span></button>
       <button class="btn btn-ghost" id="resetWalk" style="margin-top:12px">Reset visited stops</button>
       <button class="btn btn-primary" id="closeSettings" style="margin-top:6px">Done</button>
-      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 26 Oct 13:53 UTC</p>
+      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 26 Oct 14:25 UTC</p>
     </div>
   </div>
 </div>
@@ -626,7 +627,7 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
     set(k, v) { try { localStorage.setItem('medu.' + k, JSON.stringify(v)); } catch {} },
   };
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const S = { cine: store.get('cine', !reduced), sfx: store.get('sfx2', false), auto: store.get('auto', false), rate: store.get('rate', 1) };
+  const S = { cine: store.get('cine', !reduced), sfx: store.get('sfx2', false), auto: store.get('auto', false), rate: store.get('rate', 1), amb: store.get('amb', true) };
   let visited = new Set(store.get('visited', []));
   const cinematic = () => S.cine && !reduced;
 
@@ -1051,58 +1052,114 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
   pager.addEventListener('scroll', () => { $('.dots-bar').classList.toggle('away', pager.scrollTop > 30); }, { passive: true });
   function goSlide(k) { if (k === cur.slide) return; buzz(); setSlide(k); }
 
-  // ---- Narration: device TTS stands in for pre-rendered audio (PRD F5 fallback, labelled preview) ----
+  // ---- Narration: pre-recorded voice (audio/narr/*.m4a, made with make-audio.py). A slide whose text changed since
+  // its recording, or a build without audio, falls back to the device's text-to-speech, labelled as a preview. ----
+  const AUDIO = {"narr": {"qalawun-0": {"src": "audio/narr/qalawun-0.m4a", "h": "74c5e927"}, "qalawun-1": {"src": "audio/narr/qalawun-1.m4a", "h": "3238bca0"}, "qalawun-2": {"src": "audio/narr/qalawun-2.m4a", "h": "b5ec180a"}, "azhar-0": {"src": "audio/narr/azhar-0.m4a", "h": "c22f42c0"}, "azhar-1": {"src": "audio/narr/azhar-1.m4a", "h": "3c471d6a"}, "azhar-2": {"src": "audio/narr/azhar-2.m4a", "h": "2cc1e087"}, "zuweila-0": {"src": "audio/narr/zuweila-0.m4a", "h": "4d13da8e"}, "zuweila-1": {"src": "audio/narr/zuweila-1.m4a", "h": "b27b125d"}, "zuweila-2": {"src": "audio/narr/zuweila-2.m4a", "h": "44f8ecb7"}, "ibntulun-0": {"src": "audio/narr/ibntulun-0.m4a", "h": "283fd931"}, "ibntulun-1": {"src": "audio/narr/ibntulun-1.m4a", "h": "2a448251"}, "ibntulun-2": {"src": "audio/narr/ibntulun-2.m4a", "h": "5bd04a68"}, "gayer-0": {"src": "audio/narr/gayer-0.m4a", "h": "5578f12d"}, "gayer-1": {"src": "audio/narr/gayer-1.m4a", "h": "fbffb687"}, "gayer-2": {"src": "audio/narr/gayer-2.m4a", "h": "28fce5b1"}, "hassan-0": {"src": "audio/narr/hassan-0.m4a", "h": "fb7a1753"}, "hassan-1": {"src": "audio/narr/hassan-1.m4a", "h": "33dd5fd6"}, "hassan-2": {"src": "audio/narr/hassan-2.m4a", "h": "da530d84"}, "hassan-3": {"src": "audio/narr/hassan-3.m4a", "h": "bcae0f71"}, "hassan-4": {"src": "audio/narr/hassan-4.m4a", "h": "524b3a9a"}, "hassan-5": {"src": "audio/narr/hassan-5.m4a", "h": "1aca26ac"}, "rifai-0": {"src": "audio/narr/rifai-0.m4a", "h": "3157984b"}, "rifai-1": {"src": "audio/narr/rifai-1.m4a", "h": "fed59451"}, "rifai-2": {"src": "audio/narr/rifai-2.m4a", "h": "b4262961"}, "akhur-0": {"src": "audio/narr/akhur-0.m4a", "h": "d7d5a103"}, "akhur-1": {"src": "audio/narr/akhur-1.m4a", "h": "562eaea3"}, "akhur-2": {"src": "audio/narr/akhur-2.m4a", "h": "ef2462e5"}, "citadel-0": {"src": "audio/narr/citadel-0.m4a", "h": "ebf44e37"}, "citadel-1": {"src": "audio/narr/citadel-1.m4a", "h": "c9941a32"}, "citadel-2": {"src": "audio/narr/citadel-2.m4a", "h": "f2c58712"}}, "ambient": {"src": "audio/ambient-ney.m4a"}}; // { narr: { 'hassan-2': { src, h } }, ambient: { src } }
+  const textHash = (t) => { let h = 0x811c9dc5; for (let i = 0; i < t.length; i++) { h ^= t.charCodeAt(i); h = Math.imul(h, 0x01000193); } return (h >>> 0).toString(16).padStart(8, '0'); };
+  const clipFor = (st, k) => { const a = AUDIO && AUDIO.narr && AUDIO.narr[`${st.id}-${k}`]; return a && a.h === textHash(st.slides[k].text) ? a : null; };
+
+  // Background bed: played through Web Audio so the dip under the voice also works on iPhone (iOS ignores <audio>.volume).
+  const bed = (() => {
+    const LOW = 0.045, HIGH = 0.13; // while the guide speaks / between slides
+    let buf, src, gain, on = false, loading;
+    const load = () => loading || (loading = fetch(AUDIO.ambient.src).then((r) => r.arrayBuffer())
+      .then((ab) => new Promise((ok, no) => actx.decodeAudioData(ab, ok, no))).catch(() => { loading = null; return null; }));
+    const level = (v, sec) => { if (!gain) return; const t = actx.currentTime; gain.gain.cancelScheduledValues(t); gain.gain.setTargetAtTime(v, t, sec / 3); };
+    let low = false;
+    return {
+      async start() {
+        on = true;
+        if (!S.amb || !AUDIO || !AUDIO.ambient || src) return;
+        try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); if (actx.state === 'suspended') actx.resume(); } catch { return; }
+        buf = buf || await load();
+        if (!buf || src || !on || !S.amb) return;
+        gain = actx.createGain(); gain.gain.value = 0.0001;
+        src = actx.createBufferSource(); src.buffer = buf; src.loop = true;
+        src.connect(gain).connect(actx.destination); src.start();
+        level(low ? LOW : HIGH, 2.5);
+      },
+      stop() { on = false; if (!src) return; const s = src; level(0.0001, 0.9); setTimeout(() => { try { s.stop(); } catch {} }, 1300); src = null; },
+      duck(d) { low = d; level(d ? LOW : HIGH, 0.8); },
+      setEnabled() { if (!S.amb) { const o = on; this.stop(); on = o; } else if (on) this.start(); },
+    };
+  })();
+
   const narr = (() => {
     const tts = 'speechSynthesis' in window ? window.speechSynthesis : null;
-    let wantPlay = false, speaking = false, debounce, fake, startAt = 0, estMs = 1, token = 0;
+    const voice = new Audio(); voice.preload = 'auto';
+    try { voice.preservesPitch = true; voice.webkitPreservesPitch = true; } catch {}
+    // Fetch each recording whole and play it from a blob: avoids range-request trouble with the offline cache on Safari.
+    const urls = new Map();
+    const urlFor = (src) => { if (!urls.has(src)) urls.set(src, fetch(src).then((r) => { if (!r.ok) throw new Error(r.status); return r.blob(); })
+      .then((b) => URL.createObjectURL(b)).catch(() => { urls.delete(src); return src; })); return urls.get(src); };
+    let wantPlay = false, speaking = false, debounce, fake, startAt = 0, estMs = 1, token = 0, loaded = null, mode = 'tts';
     const playBtn = $('#playBtn'), bar = $('#pBar'), eqBars = [...document.querySelectorAll('#eq i')];
     const icon = (p) => { playBtn.innerHTML = p
       ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>'
       : '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
       playBtn.setAttribute('aria-label', p ? 'Pause narration' : 'Play narration'); };
     icon(false);
-    if (!tts) $('#pSub').textContent = 'Voice preview not supported in this browser. Read the transcript.';
+    const sub = (st, k) => { $('#pSub').textContent = clipFor(st, k) ? 'Narration'
+      : tts ? 'Preview voice (your device\'s text-to-speech)' : 'Voice preview not supported in this browser. Read the transcript.'; };
     let eqRaf;
+    const progress = () => mode === 'audio' ? (voice.duration ? voice.currentTime / voice.duration : 0) : (performance.now() - startAt) / estMs;
     const eqLoop = () => { eqBars.forEach((b, i) => { b.style.height = speaking ? (5 + Math.abs(Math.sin(performance.now() / (140 + i * 37) + i)) * 17) + 'px' : '4px'; });
-      if (speaking) { bar.style.width = Math.min(100, (performance.now() - startAt) / estMs * 100) + '%'; eqRaf = requestAnimationFrame(eqLoop); } };
+      if (speaking) { bar.style.width = Math.min(100, progress() * 100) + '%'; eqRaf = requestAnimationFrame(eqLoop); } };
     function bestVoice() {
       const vs = tts.getVoices().filter((x) => /^en/i.test(x.lang));
       const score = (x) => (/natural|neural|premium|enhanced/i.test(x.name) ? 8 : 0) + (/google/i.test(x.name) ? 4 : 0) + (/en[-_]GB/i.test(x.lang) ? 2 : 0) + (x.localService ? 0 : 1);
       return vs.sort((a, b) => score(b) - score(a))[0];
     }
-    function stop() { token++; clearTimeout(debounce); clearTimeout(fake); if (tts) tts.cancel(); speaking = false; cancelAnimationFrame(eqRaf); eqLoop(); }
-    function speak() {
+    function stop() { token++; clearTimeout(debounce); clearTimeout(fake); if (tts) tts.cancel(); voice.pause(); speaking = false; cancelAnimationFrame(eqRaf); eqLoop(); bed.duck(false); }
+    function done(my) { if (my !== token) return; speaking = false; loaded = null; bar.style.width = '100%'; eqLoop(); bed.duck(false);
+      if (S.auto && cur.slide < STOPS[cur.stop].slides.length - 1) goSlide(cur.slide + 1); else { wantPlay = false; icon(false); } }
+    function speak(resume) {
+      const st = STOPS[cur.stop], k = cur.slide, s = st.slides[k], c = clipFor(st, k), key = `${st.id}-${k}`;
+      if (resume && c && loaded === key && voice.currentTime > 0 && !voice.ended) {
+        const my = ++token; speaking = true; eqLoop(); bed.duck(true);
+        voice.playbackRate = S.rate; voice.play().catch(() => done(my)); voice.onended = () => done(my); return;
+      }
       stop(); const my = token;
-      const s = STOPS[cur.stop].slides[cur.slide];
+      bar.style.width = '0%'; speaking = true; eqLoop(); bed.duck(true);
+      if (c) {
+        mode = 'audio';
+        urlFor(c.src).then((url) => {
+          if (my !== token) return;
+          voice.src = url; loaded = key; voice.defaultPlaybackRate = S.rate; voice.playbackRate = S.rate;
+          voice.onended = () => done(my);
+          voice.play().catch(() => { if (my === token) { speaking = false; eqLoop(); wantPlay = false; icon(false); bed.duck(false); } });
+        });
+        return;
+      }
+      mode = 'tts'; loaded = null;
       const words = s.text.split(/\s+/).length;
-      estMs = words / (2.5 * S.rate) * 1000; startAt = performance.now(); bar.style.width = '0%';
-      speaking = true; eqLoop();
-      const done = () => { if (my !== token) return; speaking = false; bar.style.width = '100%'; eqLoop();
-        if (S.auto && cur.slide < STOPS[cur.stop].slides.length - 1) goSlide(cur.slide + 1); else { wantPlay = false; icon(false); } };
+      estMs = words / (2.5 * S.rate) * 1000; startAt = performance.now();
       if (tts) {
         const u = new SpeechSynthesisUtterance(s.text); u.lang = 'en-GB'; u.rate = S.rate * 0.95;
         const v = bestVoice();
         if (v) u.voice = v;
-        u.onend = done; u.onerror = () => { if (my === token) { fake = setTimeout(done, Math.max(0, estMs - (performance.now() - startAt))); } };
+        u.onend = () => done(my); u.onerror = () => { if (my === token) { fake = setTimeout(() => done(my), Math.max(0, estMs - (performance.now() - startAt))); } };
         tts.speak(u);
-      } else fake = setTimeout(done, estMs);
+      } else fake = setTimeout(() => done(my), estMs);
     }
     playBtn.addEventListener('click', () => {
       if (wantPlay) { wantPlay = false; stop(); icon(false); }
-      else { wantPlay = true; icon(true); speak(); }
+      else { wantPlay = true; icon(true); speak(true); }
     });
-    $('#replay').addEventListener('click', () => { wantPlay = true; icon(true); speak(); });
+    $('#replay').addEventListener('click', () => { wantPlay = true; icon(true); speak(false); });
     document.querySelectorAll('.speed button').forEach((b) => {
       b.setAttribute('aria-pressed', String(+b.dataset.r === S.rate));
       b.addEventListener('click', () => { S.rate = +b.dataset.r; store.set('rate', S.rate);
         document.querySelectorAll('.speed button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
-        if (wantPlay) speak(); });
+        if (mode === 'audio') { voice.defaultPlaybackRate = S.rate; voice.playbackRate = S.rate; } else if (wantPlay) speak(false); });
     });
+    // Warm the next recordings so a swipe starts at once, even on a slow connection.
+    const prefetch = () => { const st = STOPS[cur.stop]; [cur.slide, cur.slide + 1].forEach((k) => { const c = k < st.slides.length && clipFor(st, k); if (c) urlFor(c.src); }); };
     return {
       // Swipe sync: stop at once, start the new slide after 350 ms (PRD F5).
-      onSlide() { bar.style.width = '0%'; if (!wantPlay) { stop(); return; } stop(); debounce = setTimeout(speak, 350); },
-      start() { wantPlay = true; icon(true); speak(); },
-      halt() { wantPlay = false; stop(); icon(false); },
+      onSlide(k) { bar.style.width = '0%'; loaded = null; sub(STOPS[cur.stop], k); prefetch(); if (!wantPlay) { stop(); return; } stop(); debounce = setTimeout(() => speak(false), 350); },
+      start() { wantPlay = true; icon(true); sub(STOPS[cur.stop], cur.slide); prefetch(); bed.start(); speak(false); },
+      halt() { wantPlay = false; stop(); icon(false); loaded = null; bed.stop(); },
     };
   })();
 
@@ -1215,11 +1272,11 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
   $('#begin').addEventListener('click', () => { hide('intro'); show('map'); try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); } catch {} });
 
   // Settings
-  const toggles = { tCine: 'cine', tSfx: 'sfx', tAuto: 'auto' };
+  const toggles = { tCine: 'cine', tSfx: 'sfx', tAuto: 'auto', tAmb: 'amb' };
   Object.entries(toggles).forEach(([id, key]) => {
     if (key === 'sfx') { const b = document.getElementById(id); b.setAttribute('aria-checked', String(S.sfx)); b.addEventListener('click', () => { S.sfx = !S.sfx; store.set('sfx2', S.sfx); b.setAttribute('aria-checked', String(S.sfx)); }); return; }
     const b = document.getElementById(id); b.setAttribute('aria-checked', String(!!S[key]));
-    b.addEventListener('click', () => { S[key] = !S[key]; store.set(key, S[key]); b.setAttribute('aria-checked', String(S[key])); if (key === 'cine') setDepth(); });
+    b.addEventListener('click', () => { S[key] = !S[key]; store.set(key, S[key]); b.setAttribute('aria-checked', String(S[key])); if (key === 'cine') setDepth(); if (key === 'amb') bed.setEnabled(); });
   });
   if (reduced) { const c = $('#tCine'); c.disabled = true; c.querySelector('small').textContent = 'Off because your device asks for reduced motion.'; c.setAttribute('aria-checked', 'false'); }
   $('#openSettings').addEventListener('click', () => { $('#settings').hidden = false; });
