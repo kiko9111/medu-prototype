@@ -1,0 +1,25 @@
+// Offline support: the app shell, photos and map are cached on first visit.
+const CACHE = 'medu-2a00e5dcf9';
+const PRECACHE = ["./", "index.html", "manifest.webmanifest", "img/qalawun-0.jpg", "img/qalawun-1.jpg", "img/qalawun-2.jpg", "img/azhar-0.jpg", "img/azhar-1.jpg", "img/azhar-2.jpg", "img/zuweila-0.jpg", "img/zuweila-1.jpg", "img/zuweila-2.jpg", "img/zuweila-then.jpg", "img/hassan-0.jpg", "img/hassan-1.jpg", "img/map.jpg", "icons/apple-touch-icon.png", "icons/favicon.png", "icons/icon-192.png", "icons/icon-512.png", "icons/maskable-512.png"];
+self.addEventListener('install', (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(PRECACHE)).then(() => self.skipWaiting())); });
+self.addEventListener('activate', (e) => {
+  e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim()));
+});
+self.addEventListener('fetch', (e) => {
+  if (e.request.method !== 'GET') return;
+  const url = new URL(e.request.url);
+  // Google Fonts: serve from cache, refresh in the background.
+  if (url.hostname.endsWith('googleapis.com') || url.hostname.endsWith('gstatic.com')) {
+    e.respondWith(caches.open(CACHE).then(async (c) => {
+      const hit = await c.match(e.request);
+      const net = fetch(e.request).then((r) => { c.put(e.request, r.clone()); return r; }).catch(() => hit);
+      return hit || net;
+    }));
+    return;
+  }
+  if (url.origin !== location.origin) return;
+  e.respondWith(caches.match(e.request, { ignoreSearch: true }).then((hit) => hit || fetch(e.request).then((r) => {
+    if (r.ok) { const copy = r.clone(); caches.open(CACHE).then((c) => c.put(e.request, copy)); }
+    return r;
+  }).catch(() => caches.match('index.html'))));
+});

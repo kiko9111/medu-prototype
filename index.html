@@ -1,0 +1,1122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#020617">
+<meta name="description" content="Medu, Cairo Edition: a time-travel walking guide to historic Cairo. Prototype.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Medu">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icons/favicon.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Medu · Cairo Edition</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap">
+<style>*,*::before,*::after{box-sizing:border-box}html{color-scheme:dark;height:100%}body{margin:0;height:100%;font-size:14px}img{max-width:100%}[hidden]{display:none!important}
+#app{padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+</head>
+<body>
+<style>
+/* Layout: one phone-sized column; screens stack inside it and swap with fades. Dark-only by design (PRD §B4: every era sits on slate-950). */
+:root {
+  color-scheme: dark;
+  --bg: #020617;
+  --surface: #0f172a;
+  --raised: #1e293b;
+  --line: #334155;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --gold: #d4b062;
+  --accent: #d4b062;
+  --tint: #0e5e4e;
+  --warn: #fbbf24;
+  --display: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --ui: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+html, body { height: 100%; }
+[hidden] { display: none !important; }
+body { background: #000; color: var(--text); font-family: var(--ui); font-variant-numeric: lining-nums; font-size: 15px; overflow: hidden; -webkit-tap-highlight-color: transparent; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+
+#app { position: relative; height: 100%; max-width: 440px; margin: 0 auto; background: var(--bg); overflow: hidden; }
+@media (min-width: 520px) { #app { border-left: 1px solid var(--raised); border-right: 1px solid var(--raised); } }
+.showcase { display: none; }
+@media (min-width: 760px) and (min-height: 720px) {
+  body { display: grid; place-items: center; background: radial-gradient(60% 50% at 70% 20%, rgba(212,176,98,.10), transparent 70%), radial-gradient(50% 50% at 20% 90%, rgba(14,94,78,.18), transparent 70%), #04060c; }
+  #app { width: 390px; max-width: none; height: min(844px, calc(100% - 48px)); margin: 0; border-radius: 46px; border: 10px solid #0c0e13; box-shadow: 0 0 0 1px #262b36, 0 40px 120px rgba(0,0,0,.65); }
+}
+@media (min-width: 1120px) and (min-height: 720px) {
+  .showcase { display: block; position: fixed; left: max(48px, calc(50% - 560px)); top: 50%; transform: translateY(-50%); width: 300px; color: var(--muted); font-size: 14px; line-height: 1.6; }
+  .showcase .mark { font-size: 44px; }
+  .showcase h4 { margin: 26px 0 8px; color: var(--text); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; font-weight: 600; }
+  .showcase ol { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+  .showcase p { margin: 18px 0 0; font-size: 12.5px; }
+}
+.intro-in > * { animation: rise 900ms cubic-bezier(.16,1,.3,1) both; }
+.intro-in > :nth-child(2) { animation-delay: 180ms; }
+.intro-in > :nth-child(3) { animation-delay: 360ms; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.screen { position: absolute; inset: 0; display: flex; flex-direction: column; transition: opacity 400ms cubic-bezier(.16,1,.3,1); }
+.screen.off { opacity: 0; pointer-events: none; }
+.gutter { padding-left: max(18px, env(safe-area-inset-left, 0px)); padding-right: max(18px, env(safe-area-inset-right, 0px)); }
+
+.proto-tag { position: absolute; z-index: 60; top: 8px; left: 50%; transform: translateX(-50%); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--warn); background: rgba(2,6,23,.8); border: 1px solid rgba(251,191,36,.35); padding: 3px 9px; border-radius: 99px; white-space: nowrap; pointer-events: none; }
+
+/* ---------- Intro ---------- */
+#intro { justify-content: space-between; padding-block: 64px 36px; background:
+  radial-gradient(120% 70% at 80% 0%, rgba(212,176,98,.16), transparent 60%),
+  radial-gradient(90% 60% at 0% 100%, rgba(14,94,78,.28), transparent 70%), var(--bg); }
+.mark { font-family: var(--display); font-size: 64px; font-weight: 600; letter-spacing: .02em; line-height: 1; color: var(--gold); }
+.edition { margin-top: 6px; font-size: 12px; letter-spacing: .32em; text-transform: uppercase; color: var(--muted); }
+.promise { font-family: var(--display); font-size: 30px; line-height: 1.15; font-weight: 500; text-wrap: balance; max-width: 15ch; margin: 0; }
+.promise em { color: var(--gold); font-style: italic; }
+.intro-sub { color: var(--muted); line-height: 1.55; max-width: 34ch; margin: 14px 0 0; }
+.span-years { display: flex; align-items: center; gap: 10px; margin-top: 26px; font-variant-numeric: tabular-nums; color: var(--muted); font-size: 13px; }
+.span-years i { flex: 1; height: 1px; background: linear-gradient(90deg, var(--tint), var(--gold), #26619c, #e0a43a); }
+.intro-actions { display: grid; gap: 10px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; border-radius: 14px; font-weight: 600; letter-spacing: .01em; }
+.btn-primary { background: var(--gold); color: #1a1405; }
+.btn-ghost { border: 1px solid var(--line); color: var(--text); }
+.btn[disabled] { opacity: .45; cursor: not-allowed; }
+.lang { display: flex; justify-content: center; gap: 6px; font-size: 13px; color: var(--muted); }
+.lang button { padding: 6px 12px; border-radius: 99px; border: 1px solid var(--line); }
+.lang button[aria-pressed="true"] { border-color: var(--gold); color: var(--gold); }
+.lang small { align-self: center; }
+
+/* ---------- Map ---------- */
+#map { background: #050b1c; }
+.map-top { position: absolute; z-index: 5; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding-block: 36px 12px; background: linear-gradient(#050b1c 30%, transparent); }
+.map-top h2 { margin: 0; font-family: var(--display); font-size: 24px; font-weight: 600; }
+.map-top p { margin: 2px 0 0; color: var(--muted); font-size: 12.5px; }
+.map-top { align-items: flex-start; }
+.walks { display: flex; gap: 6px; margin-top: 10px; }
+.walks button { padding: 6px 12px; border-radius: 99px; border: 1px solid var(--line); background: rgba(15,23,42,.85); font-size: 12.5px; color: var(--muted); }
+.walks button[aria-pressed="true"] { border-color: var(--gold); color: #1a1405; background: var(--gold); font-weight: 600; }
+.route.other { stroke: #64748b; stroke-dasharray: 2 5; opacity: .6; }
+.pin.other .core { fill: #1e293b; stroke: #94a3b8; stroke-width: 1.5; }
+.icon-btn { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line); background: rgba(15,23,42,.85); display: grid; place-items: center; }
+#mapSvg { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: grab; }
+#mapSvg.drag { cursor: grabbing; }
+#mapWorld { transition: transform 700ms cubic-bezier(.65,0,.35,1); }
+#mapWorld.nodrift { transition: none; }
+.street { stroke: #1b2740; stroke-width: 7; fill: none; stroke-linecap: round; }
+.street.minor { stroke: #131d33; stroke-width: 4; }
+.street-label { fill: #4b5b78; font-size: 9px; letter-spacing: .18em; font-family: var(--ui); }
+.district { fill: #0a1428; stroke: #121d36; }
+.route { stroke: var(--gold); stroke-width: 2.4; fill: none; stroke-dasharray: 2 6; stroke-linecap: round; opacity: .85; }
+.pin { cursor: pointer; }
+.pin .halo { fill: var(--gold); opacity: .25; transform-box: fill-box; transform-origin: center; animation: pulse 2.4s ease-out infinite; }
+.pin .core { fill: #1a1405; stroke: var(--gold); stroke-width: 2; }
+.pin .num { fill: var(--gold); font: 600 12px var(--ui); text-anchor: middle; dominant-baseline: central; }
+.pin.visited .halo { display: none; }
+.pin.visited .core { fill: #0f172a; stroke: #64748b; }
+.pin.visited .num { fill: #94a3b8; }
+.pin-label { fill: #cbd5e1; font: 500 11px var(--ui); paint-order: stroke; stroke: #050b1c; stroke-width: 3px; }
+.you { fill: #60a5fa; stroke: #e0f2fe; stroke-width: 2; }
+@keyframes pulse { 0% { transform: scale(.6); opacity: .45; } 100% { transform: scale(2.1); opacity: 0; } }
+.map-note { position: absolute; z-index: 4; left: 0; right: 0; bottom: 214px; text-align: center; font-size: 10.5px; color: #4b5b78; }
+
+.sheet { position: absolute; z-index: 6; left: 0; right: 0; bottom: 0; background: var(--surface); border-top: 1px solid var(--raised); border-radius: 20px 20px 0 0; padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px)); max-height: 78%; display: flex; flex-direction: column; transform: translateY(calc(100% - 200px)); transition: transform 400ms cubic-bezier(.16,1,.3,1); }
+.sheet.open { transform: none; }
+.sheet.pv { transform: translateY(calc(100% - 268px)); }
+.pin:focus { outline: none; }
+.pin:focus-visible .core { stroke-width: 3.5; }
+.dots-bar { transition: opacity 200ms; }
+.dots-bar.away { opacity: 0; pointer-events: none; }
+.handle { display: block; width: 100%; padding: 10px 0 6px; }
+.handle i { display: block; margin: 0 auto; width: 38px; height: 4px; border-radius: 4px; background: var(--line); }
+.sheet-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.sheet-head h3 { margin: 0; font-family: var(--display); font-size: 21px; font-weight: 600; }
+.sheet-head span { color: var(--muted); font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.stops { list-style: none; margin: 10px 0 0; padding: 0; overflow-y: auto; }
+.stop { display: grid; grid-template-columns: 34px 1fr auto; gap: 12px; align-items: center; width: 100%; text-align: left; padding: 11px 0; border-bottom: 1px solid var(--raised); }
+.thumb { position: relative; width: 52px; height: 52px; border-radius: 12px; overflow: hidden; background: var(--raised) center / cover no-repeat; }
+.thumb .n { position: absolute; left: 3px; top: 3px; width: 20px !important; height: 20px !important; font-size: 11px !important; background: rgba(2,6,23,.85); border-width: 1px !important; }
+.stop.has-thumb { grid-template-columns: 52px 1fr auto; }
+.preview { display: grid; grid-template-columns: 96px 1fr; gap: 14px; align-items: center; margin-top: 4px; }
+.preview .pv-img { width: 96px; height: 96px; border-radius: 14px; background: var(--raised) center / cover no-repeat; }
+.preview b { font-family: var(--display); font-size: 23px; font-weight: 600; display: block; line-height: 1.1; }
+.preview small { color: var(--muted); font-size: 12.5px; display: block; margin-top: 4px; }
+.pv-actions { display: grid; grid-template-columns: auto 1fr; gap: 10px; margin-top: 14px; }
+.pv-actions .btn-ghost { padding: 0 16px; }
+.stop .n { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; border: 1.5px solid var(--gold); color: var(--gold); font-weight: 600; font-size: 13px; }
+.stop.visited .n { border-color: #64748b; color: #94a3b8; }
+.stop b { display: block; font-weight: 600; font-size: 15px; }
+.stop small { display: block; color: var(--muted); font-size: 12.5px; margin-top: 2px; font-variant-numeric: tabular-nums; }
+.stop .yr { font-family: var(--display); font-size: 20px; color: var(--muted); font-variant-numeric: lining-nums tabular-nums; }
+.leg { color: #64748b; font-size: 12px; padding: 4px 0 4px 46px; font-variant-numeric: tabular-nums; }
+.next-cta { margin-top: 12px; }
+.chip { display: inline-block; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; padding: 2px 7px; border-radius: 99px; border: 1px solid currentColor; margin-right: 6px; vertical-align: 1px; }
+
+/* ---------- Year Dial ---------- */
+#dial { z-index: 30; align-items: center; justify-content: center; background: radial-gradient(70% 45% at 50% 50%, rgba(2,6,23,.55), rgba(2,6,23,.88)); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); text-align: center; }
+.odo { text-shadow: 0 2px 30px rgba(0,0,0,.6); }
+.dial-rule { width: 120px; height: 14px; margin: 4px auto 14px; background-repeat: repeat-x; background-position: center; }
+.dial-era { font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: var(--accent); min-height: 1em; }
+.odo { display: flex; gap: 2px; font-variant-numeric: lining-nums tabular-nums; margin: 18px 0 14px; font-family: var(--display); font-weight: 600; font-size: 88px; line-height: 1; height: 1em; }
+.col { width: .58em; height: 1em; overflow: hidden; position: relative; transition: opacity 300ms; }
+.col.lead0 { opacity: 0; width: 0; }
+.strip { position: absolute; left: 0; right: 0; top: 0; will-change: transform; }
+.strip span { display: block; height: 1em; }
+.dial-title { font-family: var(--display); font-size: 26px; max-width: 18ch; text-wrap: balance; }
+.dial-skip { position: absolute; bottom: calc(28px + env(safe-area-inset-bottom, 0px)); left: 0; right: 0; color: var(--muted); font-size: 12px; }
+
+/* ---------- Album ---------- */
+#album { z-index: 20; background: var(--bg); }
+.pager { flex: 1; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+.pager::-webkit-scrollbar { display: none; }
+.slide { flex: 0 0 100%; scroll-snap-align: center; display: flex; flex-direction: column; overflow-y: auto; }
+.hero { position: relative; flex: 0 0 auto; height: 58vh; max-height: 520px; min-height: 280px; overflow: hidden; }
+.ph { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 18px 18px 46px; background: var(--ph-bg); transition: filter 1800ms cubic-bezier(.16,1,.3,1); }
+.ph::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 40%, rgba(2,6,23,.92)); }
+.ph-label { position: relative; z-index: 1; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--warn); }
+.ph-alt { position: relative; z-index: 1; margin-top: 4px; font-size: 13px; color: #cbd5e1; max-width: 32ch; line-height: 1.45; }
+.ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; user-select: none; -webkit-user-drag: none; }
+.has-photo::after { background: linear-gradient(rgba(2,6,23,.45), transparent 22%, transparent 55%, rgba(2,6,23,.95)); }
+.credit { font-size: 11px; line-height: 1.5; color: #64748b; }
+.credit a { color: inherit; text-decoration: none; }
+.credit a:hover { text-decoration: underline; }
+.sepia .ph { filter: sepia(1) contrast(.85) brightness(.8) blur(1px); }
+.grain { position: absolute; inset: 0; pointer-events: none; opacity: .14; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.nograin .grain { display: none; }
+
+.album-top { position: absolute; z-index: 25; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: flex-start; padding-block: 34px 0; pointer-events: none; }
+.album-top > * { pointer-events: auto; }
+.close { display: inline-flex; align-items: center; gap: 6px; height: 38px; padding: 0 14px 0 10px; border-radius: 99px; background: rgba(2,6,23,.7); border: 1px solid var(--line); font-size: 13px; }
+.plan-hud { width: 108px; border-radius: 14px; padding: 8px; background: rgba(15,23,42,.72); border: 1px solid rgba(148,163,184,.25); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: width 300ms cubic-bezier(.16,1,.3,1); }
+.plan-hud.big { width: 220px; }
+.plan-hud svg { display: block; width: 100%; height: auto; }
+.plan-hud .cap { font-size: 9.5px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; display: flex; justify-content: space-between; margin-top: 4px; }
+.plan-line { fill: none; stroke: #e2e8f0; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.plan-line.thin { stroke-width: .8; stroke: #94a3b8; }
+.inking .plan-line { animation: ink 1500ms cubic-bezier(.65,0,.35,1) both; }
+@keyframes ink { from { stroke-dashoffset: var(--len); } to { stroke-dashoffset: 0; } }
+#cone { transition: transform 400ms cubic-bezier(.16,1,.3,1), opacity 400ms; }
+.cone-fill { fill: var(--accent); opacity: .32; }
+.cone-dot { fill: var(--accent); stroke: #020617; stroke-width: 1; }
+
+.dots-bar { display: flex; justify-content: center; align-items: center; gap: 10px; position: absolute; z-index: 2; left: 0; right: 0; top: calc(min(58vh, 520px) - 30px); }
+.dots { display: flex; gap: 6px; }
+.dots i { width: 6px; height: 6px; border-radius: 50%; background: rgba(248,250,252,.35); transition: background 200ms, width 200ms; }
+.dots i.on { background: var(--accent); width: 18px; border-radius: 4px; }
+.count { font-size: 12px; color: #cbd5e1; font-variant-numeric: tabular-nums; }
+
+.body { padding-block: 16px 210px; display: grid; gap: 10px; }
+.ornament { height: 14px; background-repeat: repeat-x; background-position: center; opacity: .8; margin-bottom: 2px; }
+.era-line { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); }
+.slide h2 { margin: 0; font-family: var(--display); font-size: 28px; font-weight: 600; line-height: 1.1; text-wrap: balance; }
+.pos { color: var(--muted); font-size: 13px; }
+.focus { border-left: 2px solid var(--accent); padding-left: 12px; color: #cbd5e1; font-size: 14px; line-height: 1.5; }
+.focus b { display: block; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 2px; font-weight: 600; }
+details.transcript { border: 1px solid var(--raised); border-radius: 12px; padding: 0 14px; }
+details.transcript summary { cursor: pointer; padding: 12px 0; font-size: 13px; font-weight: 600; color: #cbd5e1; list-style: none; display: flex; justify-content: space-between; }
+details.transcript summary::after { content: "Show"; color: var(--muted); font-weight: 400; }
+details.transcript[open] summary::after { content: "Hide"; }
+details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-width: 62ch; }
+.flag { font-size: 11px; color: var(--warn); }
+
+/* Then & Now */
+.tn { position: absolute; inset: 0; touch-action: pan-y; }
+.tn .then { position: absolute; inset: 0; clip-path: inset(0 calc(100% - var(--x, 50%)) 0 0); }
+.tn .then .ph { filter: sepia(.9) contrast(.9); }
+.tn .knob { position: absolute; top: 0; bottom: 0; left: var(--x, 50%); width: 2px; background: var(--text); transform: translateX(-1px); z-index: 3; }
+.tn .knob::after { content: "⇆"; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 34px; height: 34px; border-radius: 50%; background: var(--text); color: var(--bg); display: grid; place-items: center; font-size: 15px; }
+.tn-tags { position: absolute; z-index: 3; top: 84px; left: 14px; right: 14px; display: flex; justify-content: space-between; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; }
+.tn-tags span { background: rgba(2,6,23,.7); padding: 3px 8px; border-radius: 99px; }
+
+/* Player */
+.player { position: absolute; z-index: 24; left: 0; right: 0; bottom: 0; padding-block: 12px calc(14px + env(safe-area-inset-bottom, 0px)); background: linear-gradient(transparent, var(--bg) 22%); display: grid; gap: 10px; }
+.player-card { background: var(--surface); border: 1px solid var(--raised); border-radius: 18px; padding: 12px 14px; display: grid; gap: 10px; }
+.p-row { display: flex; align-items: center; gap: 12px; }
+.play { width: 48px; height: 48px; flex: 0 0 48px; border-radius: 50%; background: var(--accent); color: #0b0b0b; display: grid; place-items: center; }
+.p-meta { flex: 1; min-width: 0; }
+.p-meta b { display: block; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.p-meta small { color: var(--muted); font-size: 11.5px; }
+.eq { display: flex; align-items: flex-end; gap: 3px; height: 22px; }
+.eq i { width: 3px; height: 4px; background: var(--accent); border-radius: 2px; transition: height 120ms; }
+.bar { height: 3px; border-radius: 3px; background: var(--raised); overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; background: var(--accent); }
+.p-tools { display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; color: var(--muted); }
+.p-tools button { padding: 4px 8px; border-radius: 8px; }
+.speed button[aria-pressed="true"] { color: var(--text); background: var(--raised); }
+
+/* Settings + complete */
+.modal { position: absolute; inset: 0; z-index: 40; background: rgba(2,6,23,.6); display: flex; align-items: flex-end; }
+.modal-card { width: 100%; background: var(--surface); border-radius: 20px 20px 0 0; border-top: 1px solid var(--raised); padding-block: 18px calc(22px + env(safe-area-inset-bottom, 0px)); display: grid; gap: 4px; }
+.modal-card h3 { margin: 0 0 6px; font-family: var(--display); font-size: 22px; }
+.steps { margin: 0 0 6px; padding-left: 20px; display: grid; gap: 10px; line-height: 1.5; color: #cbd5e1; }
+.toggle { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--raised); text-align: left; width: 100%; }
+.toggle small { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
+.sw { flex: 0 0 44px; height: 26px; border-radius: 99px; background: var(--line); position: relative; transition: background 200ms; }
+.sw::after { content: ""; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--text); transition: transform 200ms; }
+[aria-checked="true"] .sw { background: var(--gold); }
+[aria-checked="true"] .sw::after { transform: translateX(18px); }
+
+#complete { z-index: 35; justify-content: center; background: radial-gradient(100% 60% at 50% 0%, rgba(212,176,98,.18), transparent 70%), var(--bg); }
+.cert { border: 1px solid rgba(212,176,98,.5); border-radius: 18px; padding: 26px 20px; text-align: center; position: relative; background: linear-gradient(180deg, rgba(212,176,98,.06), transparent); }
+.cert::before { content: ""; position: absolute; inset: 6px; border: 1px solid rgba(212,176,98,.2); border-radius: 13px; pointer-events: none; }
+.cert .k { font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); }
+.cert h2 { font-family: var(--display); font-size: 32px; margin: 8px 0 4px; font-weight: 600; }
+.cert p { color: var(--muted); margin: 0; font-size: 13.5px; }
+.timeline { position: relative; margin: 30px 6px 8px; height: 76px; }
+.timeline .axis { position: absolute; left: 0; right: 0; top: 30px; height: 2px; background: var(--line); }
+.timeline .fill { position: absolute; left: 0; top: 30px; height: 2px; width: 0; background: linear-gradient(90deg, #0e5e4e, #d4b062, #26619c, #e0a43a); transition: width 2400ms cubic-bezier(.65,0,.35,1); }
+.timeline .pt { position: absolute; top: 22px; transform: translateX(-50%); text-align: center; opacity: 0; transition: opacity 500ms; }
+.timeline .pt i { display: block; margin: 0 auto; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--bg); }
+.timeline .pt span { display: block; margin-top: 6px; font-size: 11px; color: #cbd5e1; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.timeline .pt.up span { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); margin: 0; }
+.timeline.go .pt { opacity: 1; }
+.timeline .pt.quiet span { display: none; }
+.cert-list { list-style: none; margin: 4px 0 14px; padding: 0; display: grid; gap: 6px; text-align: left; font-size: 13px; }
+.cert-list li { display: grid; grid-template-columns: 10px 1fr auto; gap: 10px; align-items: center; color: #cbd5e1; }
+.cert-list li i { width: 8px; height: 8px; border-radius: 50%; }
+.cert-list li span:last-child { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pin .halo { animation: none; }
+  * { scroll-behavior: auto !important; }
+}
+</style>
+
+<aside class="showcase" aria-label="About this prototype">
+  <div class="mark">Medu</div>
+  <div class="edition">Cairo Edition · prototype</div>
+  <h4>Try this</h4>
+  <ol>
+    <li>Begin, pick a walk at the top of the map, and tap a numbered stop.</li>
+    <li>Watch the year roll back to when it was built.</li>
+    <li>Swipe the photos; tap the key plan to enlarge it.</li>
+    <li>Drag the Then &amp; Now slider at Bab Zuweila.</li>
+    <li>Return to 2026, and finish every stop on a walk.</li>
+  </ol>
+  <p>Arrow keys swipe, Esc returns to the map. On a phone, open the same link in Chrome for the full-screen feel.</p>
+</aside>
+<div id="app">
+  <div class="proto-tag">Prototype · placeholder content</div>
+
+  <!-- Intro -->
+  <section id="intro" class="screen gutter" aria-label="Welcome">
+    <div>
+      <div class="mark">Medu</div>
+      <div class="edition">Cairo Edition</div>
+    </div>
+    <div>
+      <p class="promise">Walk historic Cairo and step <em>back in time</em> at every stop.</p>
+      <p class="intro-sub">Two walks, nine monuments, a thousand years of building. Each stop opens in the year it was built and tells you why it looks the way it does.</p>
+      <div class="span-years"><span>876</span><i></i><span>1869</span></div>
+    </div>
+    <div class="intro-actions">
+      <button class="btn btn-primary" id="begin">Begin the walk</button>
+      <button class="btn btn-ghost" id="installBtn" disabled>Install the app from the public link</button>
+      <div class="lang" role="group" aria-label="Language">
+        <button aria-pressed="true">English</button>
+        <button aria-pressed="false" disabled>العربية</button>
+        <small>Arabic comes in Phase 5</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map -->
+  <section id="map" class="screen off" aria-label="Map">
+    <svg id="mapSvg" viewBox="0 0 420 760" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Schematic map of the walking route">
+      <g id="mapWorld"></g>
+    </svg>
+    <div class="map-top gutter">
+      <div><h2 id="walkTitle">Historic Cairo</h2><p id="mapSub"></p>
+        <div class="walks" id="walks" role="group" aria-label="Choose a walk"></div></div>
+      <button class="icon-btn" id="openSettings" aria-label="Settings">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg>
+      </button>
+    </div>
+    <div class="map-note">Schematic map for the prototype. The app uses MapLibre with real tiles.</div>
+    <div class="sheet" id="sheet">
+      <button class="handle" id="handle" aria-label="Expand stop list"><i></i></button>
+      <div class="gutter">
+        <div class="sheet-head"><h3 id="sheetTitle">Your route</h3><span id="progress">0 of 4 visited</span></div>
+        <div id="routeView">
+          <button class="btn btn-primary next-cta" id="nextCta" style="width:100%">Start at stop 1</button>
+          <ul class="stops" id="stopList"></ul>
+        </div>
+        <div id="pvView" hidden>
+          <div class="preview"><div class="pv-img" id="pvImg"></div><div><span class="chip" id="pvEra"></span><b id="pvTitle"></b><small id="pvMeta"></small></div></div>
+          <div class="pv-actions"><button class="btn btn-ghost" id="pvBack">All stops</button><button class="btn btn-primary" id="pvGo">Step back in time</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Album -->
+  <section id="album" class="screen off" aria-label="Stop">
+    <div class="album-top gutter">
+      <button class="close" id="closeAlbum"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg>Return to 2026</button>
+      <button class="plan-hud" id="planHud" aria-label="Key plan. Tap to enlarge">
+        <svg viewBox="0 0 100 100" id="planSvg"><g id="planLines"></g><g id="cone"><path class="cone-fill" d="M0 0 L-14 -26 A30 30 0 0 1 14 -26 Z"/><circle class="cone-dot" r="3.2"/></g><g transform="translate(91 12)"><path d="M0 -7 L3 3 L0 1 L-3 3 Z" fill="#cbd5e1"/><text y="-9" text-anchor="middle" font-size="6" fill="#cbd5e1" font-family="Inter">N</text></g></svg>
+        <div class="cap"><span>Key plan</span><span>Draft</span></div>
+      </button>
+    </div>
+    <div class="dots-bar"><div class="dots" id="dots"></div><span class="count" id="count">1 / 3</span></div>
+    <div class="pager" id="pager"></div>
+    <div class="player gutter">
+      <div class="player-card">
+        <div class="p-row">
+          <button class="play" id="playBtn" aria-label="Play narration"></button>
+          <div class="p-meta"><b id="pTitle">Narration</b><small id="pSub">Preview voice (your device's text-to-speech)</small></div>
+          <div class="eq" id="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="bar"><i id="pBar"></i></div>
+        <div class="p-tools">
+          <button id="replay">↺ Replay</button>
+          <div class="speed" role="group" aria-label="Speed"><button data-r="0.9">0.9×</button><button data-r="1" aria-pressed="true">1×</button><button data-r="1.25">1.25×</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Year dial -->
+  <section id="dial" class="screen off" aria-live="polite">
+    <div class="dial-era" id="dialEra"></div>
+    <div class="odo" id="odo"></div>
+    <div class="dial-rule" id="dialRule"></div>
+    <div class="dial-title" id="dialTitle"></div>
+    <div class="dial-skip">Tap to skip</div>
+  </section>
+
+  <!-- Walk complete -->
+  <section id="complete" class="screen off gutter" aria-label="Walk complete">
+    <div class="cert">
+      <div class="k">Walk complete</div>
+      <h2 id="certTitle">Walk complete</h2>
+      <p id="certText"></p>
+      <div class="timeline" id="timeline"><div class="axis"></div><div class="fill" id="tlFill"></div></div>
+      <ul class="cert-list" id="certList"></ul>
+      <p style="font-size:11.5px">Dates are draft values, marked [VERIFY] in the PRD.</p>
+    </div>
+    <div style="display:grid;gap:10px;margin-top:18px">
+      <button class="btn btn-ghost" disabled>Share as image · in app only</button>
+      <button class="btn btn-primary" id="otherWalk">Try the other walk</button>
+      <button class="btn btn-ghost" id="again">Walk this one again</button>
+    </div>
+  </section>
+
+  <!-- iPhone install help -->
+  <div class="modal" id="iosHelp" hidden>
+    <div class="modal-card gutter" role="dialog" aria-label="Install on iPhone">
+      <h3>Add Medu to your Home Screen</h3>
+      <ol class="steps">
+        <li>Tap the <b>Share</b> button in Safari's toolbar (the square with an arrow).</li>
+        <li>Scroll down and tap <b>Add to Home Screen</b>.</li>
+        <li>Tap <b>Add</b>. Medu opens full screen from its new icon and works offline.</li>
+      </ol>
+      <button class="btn btn-primary" id="iosHelpClose" style="margin-top:10px">Got it</button>
+    </div>
+  </div>
+
+  <!-- Settings -->
+  <div class="modal" id="settings" hidden>
+    <div class="modal-card gutter" role="dialog" aria-label="Settings">
+      <h3>Settings</h3>
+      <button class="toggle" role="switch" id="tCine" aria-checked="true"><span>Cinematic effects<small>Year Dial, inked plans, film grain. Off uses gentle fades.</small></span><span class="sw"></span></button>
+      <button class="toggle" role="switch" id="tSfx" aria-checked="true"><span>UI sounds<small>The soft "whoosh" when you travel in time.</small></span><span class="sw"></span></button>
+      <button class="toggle" role="switch" id="tAuto" aria-checked="false"><span>Auto-advance slides<small>Move to the next slide when narration ends.</small></span><span class="sw"></span></button>
+      <button class="btn btn-ghost" id="resetWalk" style="margin-top:12px">Reset visited stops</button>
+      <button class="btn btn-primary" id="closeSettings" style="margin-top:6px">Done</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  'use strict';
+  // ---- Tokens (packages/ui) ----
+  const ERA = {
+    fatimid: { label: 'Fatimid', accent: '#d4b062', tint: '#0e5e4e', motif: 'kufic' },
+    mamluk:  { label: 'Mamluk',  accent: '#e0a43a', tint: '#26619c', motif: 'star' },
+    ottoman: { label: 'Ottoman', accent: '#3cb8b0', tint: '#8e1f33', motif: 'arch' },
+    'muhammad-ali': { label: 'Muhammad Ali', accent: '#ede6da', tint: '#a8873a', motif: 'arch' },
+    // Prototype additions, not yet in packages/ui era tokens or the schema's Era enum:
+    tulunid: { label: 'Tulunid', accent: '#d9956a', tint: '#6b3a22', motif: 'kufic' },
+    khedival: { label: 'Khedival', accent: '#b8c4dc', tint: '#33415f', motif: 'arch' },
+  };
+  const PRESENT = 2026;
+  // Licensed photos + basemap, embedded by build-prototype.py. null = placeholders only.
+  const ASSETS = {"photos": {"qalawun": {"0": {"src": "img/qalawun-0.jpg", "author": "Jorge L\u00e1scar from Melbourne, Australia", "license": "CC BY 2.0", "url": "https://commons.wikimedia.org/wiki/File:Minaret_of_the_Qalawun_complex.jpg", "year": null}, "1": {"src": "img/qalawun-1.jpg", "author": "Sailko", "license": "CC BY 3.0", "url": "https://commons.wikimedia.org/wiki/File:Cairo,_madrasa_del_sultano_qalaun,_corridoio.JPG", "year": null}, "2": {"src": "img/qalawun-2.jpg", "author": "Ahmedsalahemam", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Kalawoun_Mosque_01.jpg", "year": null}}, "azhar": {"0": {"src": "img/azhar-0.jpg", "author": "Djehouty", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Al-Azhar_2019-11-02l.jpg", "year": null}, "1": {"src": "img/azhar-1.jpg", "author": "Djehouty", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Al-Azhar_2019-11-02m.jpg", "year": null}, "2": {"src": "img/azhar-2.jpg", "author": "Djehouty", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Al-Azhar_2019-11-02t.jpg", "year": null}}, "zuweila": {"0": {"src": "img/zuweila-0.jpg", "author": "Sailko", "license": "CC BY 3.0", "url": "https://commons.wikimedia.org/wiki/File:Cairo,_bab_zuweila_02.JPG", "year": null}, "1": {"src": "img/zuweila-1.jpg", "author": "Djehouty", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Bab_Zuweila_2019-11-02a.jpg", "year": null}, "2": {"src": "img/zuweila-2.jpg", "author": "Magoopic", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:%D9%85%D8%AE%D8%B1%D8%AC_%D8%A8%D8%A7%D8%A8_%D8%B2%D9%88%D9%8A%D9%84%D9%87.jpg", "year": null}, "then": {"src": "img/zuweila-then.jpg", "author": "Louis Haghe", "license": "CC0", "url": "https://commons.wikimedia.org/wiki/File:Louis_Haghe_-_Egypt_and_Nubia,_Volume_III-_Minarets,_and_Grand_Entrance_of_the_Metwaleys,_-_2012.194_-_Cleveland_Museum_of_Art.jpg", "year": 1848}}, "hassan": {"0": {"src": "img/hassan-0.jpg", "author": "Djehouty", "license": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Sultan-Hassan-Moschee_2015-11-14g.jpg", "year": null}, "1": {"src": "img/hassan-1.jpg", "author": "Samir I. Sharbaty", "license": "CC BY-SA 3.0", "url": "https://commons.wikimedia.org/wiki/File:Cairo2710.JPG", "year": null}}}, "map": {"src": "img/map.jpg", "bounds": [30.023921574501376, 31.2451171875, 30.05483122485245, 31.26983642578125], "attribution": "\u00a9 OpenStreetMap contributors"}};
+  const photo = (id, k) => (ASSETS && ASSETS.photos && ASSETS.photos[id] && ASSETS.photos[id][k]) || null;
+  const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const creditLine = (ph) => ph ? `Photo: ${esc(ph.author)} · ${esc(ph.license)} · via Wikimedia Commons` : '';
+
+  // ---- Content: DRAFT, UNVERIFIED. Coordinates and years from PRD §5 (all [VERIFY]). No real photos, plans or audio yet. ----
+  const ALL = [
+    { id: 'qalawun', title: 'Qalawun Complex', street: 'Al-Muizz Street', era: 'mamluk', year: 1284, coords: [30.0497, 31.2611],
+      plan: 'qalawun',
+      slides: [
+        { title: 'A façade that does three jobs', pos: 'Al-Muizz Street, looking at the street front', vp: { x: 50, y: 92, a: 0 },
+          alt: 'Street façade of the complex with its tall minaret', focus: 'One long street wall hides three buildings behind it.',
+          text: 'You are standing in front of one wall that serves three buildings. Behind it sit a mausoleum, a madrasa and a hospital, all paid for by Sultan Qalawun. The builders gave the street one continuous face, so a passer-by reads a single, powerful patron rather than three separate projects.' },
+        { title: 'The corridor between two worlds', pos: 'Inside the entrance passage, facing north', vp: { x: 50, y: 70, a: 0 },
+          alt: 'Long vaulted corridor with the madrasa on one side and the tomb on the other', focus: 'A passage that splits teaching from burial.',
+          text: 'This passage runs straight back from the street. On one side is the school, on the other the tomb. Walking it, you pass between learning and remembrance, and that split was the plan: the sultan wanted to be buried beside the people who would study and pray here.' },
+        { title: 'Light in the mausoleum', pos: 'Mausoleum, under the dome', vp: { x: 26, y: 58, a: 15 },
+          alt: 'Interior of the domed mausoleum with columns and coloured windows', focus: 'Columns in a ring hold the dome and slow your eye down.',
+          text: 'Look up. A ring of columns and piers carries the dome, and coloured glass filters the light. The space is meant to be crossed slowly. Every surface is worked in marble, stucco or wood, so the eye never finds a plain wall to rest on.' },
+      ] },
+    { id: 'azhar', title: 'Al-Azhar Mosque', street: 'Al-Azhar Street', era: 'fatimid', year: 970, coords: [30.0457, 31.2627],
+      plan: 'azhar',
+      slides: [
+        { title: 'The courtyard as a city square', pos: 'Main courtyard, facing the prayer hall', vp: { x: 50, y: 80, a: 0 },
+          alt: 'Open marble courtyard ringed by arcades and several minarets', focus: 'An open court that is also a meeting place.',
+          text: 'This courtyard was built to hold many people at once. Arcades wrap it on every side, giving shade at the edges and open sky in the middle. Students, teachers and worshippers have shared this space for centuries, which is why it feels more like a town square than a hall.' },
+        { title: 'Minarets from different centuries', pos: 'Courtyard, looking back toward the entrance', vp: { x: 50, y: 50, a: 180 },
+          alt: 'Several minarets of different styles rising over the arcade', focus: 'Each ruler added a minaret, so the skyline is a timeline.',
+          text: 'Count the minarets. They were not built together. Later rulers kept adding to the mosque, each in the style of their own time. Read the skyline from left to right and you are reading a history of Cairo in stone.' },
+        { title: 'Inside the prayer hall', pos: 'Prayer hall, facing the qibla wall', vp: { x: 50, y: 38, a: 0 },
+          alt: 'Forest of columns and arches inside the prayer hall', focus: 'Rows of columns make a huge room feel human-sized.',
+          text: 'Rows of columns carry the roof and break the hall into many small bays. However large the crowd, each person stands in a space that feels close and calm. The columns also point you, row after row, toward the wall that faces Mecca.' },
+      ] },
+    { id: 'zuweila', title: 'Bab Zuweila', street: 'Southern gate of the walled city', era: 'fatimid', year: 1092, coords: [30.0430, 31.2575],
+      plan: 'zuweila', thenNow: 1,
+      slides: [
+        { title: 'The gate that closed the city', pos: 'Outside the gate, looking north', vp: { x: 50, y: 92, a: 0 },
+          alt: 'Two massive rounded towers flanking an arched gateway', focus: 'Rounded towers deflect blows and let defenders cover the door.',
+          text: 'This was a door in the city wall. The two rounded towers are solid at the base, so battering them did little, and from the top defenders could watch the entrance from both sides.' },
+        { title: 'Two minarets on a gate', pos: 'Below the towers, looking up', vp: { x: 50, y: 80, a: 0 },
+          alt: 'Slender minarets rising from the tops of the gate towers', focus: 'A later mosque reused the towers as bases for its minarets.',
+          text: 'The slender minarets on top came much later, from a mosque built against the gate. Its builders saved effort and gained height by standing their minarets on the old towers. Today you can climb up and look across the rooftops of the old city. Drag the slider to see the same view drawn in the 1840s.' },
+        { title: 'Through the passage', pos: 'Inside the gate passage', vp: { x: 50, y: 54, a: 0 },
+          alt: 'Vaulted passage between the towers leading into the street beyond', focus: 'A short, dark passage you cross quickly.',
+          text: 'Step through the passage. It is narrow and short on purpose: a crowd, or an army, has to squeeze in a few at a time. On the far side the street opens again into the market city that the wall protected.' },
+      ] },
+    { id: 'ibntulun', title: 'Mosque of Ibn Tulun', street: 'Al-Saliba, Sayyida Zeinab', era: 'tulunid', year: 876, coords: [30.0287, 31.2495],
+      plan: 'ibntulun',
+      slides: [
+        { title: 'A courtyard the size of a square', pos: 'Main courtyard, facing the prayer hall', vp: { x: 50, y: 74, a: 0 },
+          alt: 'Vast open courtyard with arcades of pointed arches and a domed fountain in the centre', focus: 'Huge, calm and almost empty, so the arcades do all the talking.',
+          text: 'Step into one of the largest open courtyards in Cairo. The arcades repeat the same pointed arch again and again, built in brick and finished in stucco. Nothing competes for attention, so the rhythm of the arches becomes the decoration. The domed fountain in the middle is a later addition.' },
+        { title: 'The spiral minaret', pos: 'Outer enclosure, looking up at the minaret', vp: { x: 50, y: 92, a: 0 },
+          alt: 'Stone minaret with an external spiral staircase winding up its upper half', focus: 'A staircase on the outside, wrapped around the tower.',
+          text: 'Most minarets hide their stairs inside. This one wraps them around the outside, so you can watch people climbing toward the top. The spiral shape recalls much older towers in Iraq, where the mosque\'s founder came from. Climb it and the whole of the old city opens below you.' },
+        { title: 'Stucco that frames every arch', pos: 'Under the arcades, along the courtyard edge', vp: { x: 20, y: 60, a: 90 },
+          alt: 'Pointed arches edged with carved stucco bands and small windows above', focus: 'Carved stucco bands outline each opening.',
+          text: 'Look closely at the edges of the arches. Bands of carved stucco trace every curve, and small openings above them let light and air move through the arcade. The builders used cheap, quick materials, then lifted them with ornament that has lasted more than a thousand years.' },
+      ] },
+    { id: 'gayer', title: 'Gayer-Anderson House', street: 'Beside the Ibn Tulun mosque', era: 'ottoman', year: 1540, coords: [30.0283, 31.2505],
+      plan: 'gayer',
+      slides: [
+        { title: 'Two houses, one home', pos: 'The lane outside, between the two houses', vp: { x: 50, y: 92, a: 0 },
+          alt: 'Two old stone houses joined by a covered bridge above a narrow lane', focus: 'Two separate houses joined by a bridge at upper level.',
+          text: 'You are looking at two old houses that were joined into one. A bridge at the upper level links them, so you can move between them without going down to the street. In the twentieth century a British officer, Gayer-Anderson, lived here and filled the rooms with his collections.' },
+        { title: 'Seeing without being seen', pos: 'Upper floor, behind the mashrabiya screens', vp: { x: 70, y: 40, a: 270 },
+          alt: 'Carved wooden lattice screen with light falling through in small patterns', focus: 'Wooden lattice screens cool the air and give privacy.',
+          text: 'These carved wooden screens are called mashrabiya. From inside you can watch the hall or the street, while from outside you see only a pattern of wood. They also slow the hot sun and let the breeze pass through, so the room stays cool and shaded.' },
+        { title: 'The reception hall', pos: 'The main hall, standing by the fountain', vp: { x: 30, y: 54, a: 0 },
+          alt: 'Tall reception hall with a marble floor, a central fountain and a painted wooden ceiling', focus: 'A tall hall with a fountain at its heart.',
+          text: 'The family received guests in this tall hall. A fountain in the floor cooled the air and made a gentle sound, and the high ceiling let warm air rise away from the people below. The house was designed around comfort in a hot city long before air conditioning.' },
+      ] },
+    { id: 'hassan', title: 'Sultan Hassan', street: 'Mosque-Madrasa, below the Citadel', era: 'mamluk', year: 1356, coords: [30.0322, 31.2566],
+      plan: 'hassan',
+      slides: [
+        { title: 'A cliff of stone', pos: 'The street, looking up at the façade', vp: { x: 8, y: 95, a: 40 },
+          alt: 'Very tall plain stone façade with a deep carved portal', focus: 'Height and plain walls make the portal feel enormous.',
+          text: 'The walls rise sheer from the street, with very little decoration until you reach the doorway. That restraint is deliberate. Against so much plain stone, the carved portal looks even deeper, and you feel small before you have even stepped inside.' },
+        { title: 'Four halls around one court', pos: 'Central courtyard, facing the qibla iwan', vp: { x: 50, y: 62, a: 0 },
+          alt: 'Square courtyard with a fountain and four huge vaulted halls opening onto it', focus: 'Four iwans, one for each school of law.',
+          text: 'Here the plan becomes clear. Four great vaulted halls, called iwans, open onto one courtyard. Each was home to a different school of Islamic law. The largest faces Mecca, and the sultan\'s tomb sits behind it, so prayer here is directed past his resting place.' },
+        { title: 'The dark entrance turn', pos: 'Entrance vestibule, turning toward the court', vp: { x: 22, y: 82, a: 45 },
+          alt: 'Dim vestibule with a bent passage leading toward light', focus: 'A bent, dim passage makes the bright court a surprise.',
+          text: 'Notice that the entrance does not run straight. It bends, and it stays dim. Because you cannot see the courtyard from the street, the moment it opens up, full of light and sky, arrives as a surprise. The architect is staging your arrival.' },
+      ] },
+    { id: 'rifai', title: 'Al-Rifa\'i Mosque', street: 'Facing Sultan Hassan across the street', era: 'khedival', year: 1869, coords: [30.0327, 31.2573],
+      plan: 'rifai',
+      slides: [
+        { title: 'An answer across the street', pos: 'The street between the two mosques', vp: { x: 6, y: 50, a: 90 },
+          alt: 'Narrow street with the tall walls of two great mosques facing each other', focus: 'Built five centuries later to stand as a partner to Sultan Hassan.',
+          text: 'Stand in the narrow street between two giants. On one side is Sultan Hassan, on the other Al-Rifa\'i, begun about five hundred years later. Its builders copied the scale and the Mamluk style of its old neighbour on purpose, so the two read almost as a pair.' },
+        { title: 'A royal mausoleum', pos: 'Inside, near the royal tombs', vp: { x: 60, y: 36, a: 0 },
+          alt: 'Richly decorated interior with marble tombs under a high dome', focus: 'A mosque that is also the burial place of a royal family.',
+          text: 'This building was commissioned by the mother of the Khedive Ismail and became the burial place of Egypt\'s royal family. Several members of that family rest here under rich marble and gilded ceilings. The decoration is more polished and even than in the older mosques, a sign of a much later workshop.' },
+        { title: 'Old style, new century', pos: 'Main hall, looking up at the dome', vp: { x: 50, y: 56, a: 0 },
+          alt: 'High dome above a hall of columns with gilded details', focus: 'Mamluk forms built with nineteenth-century methods.',
+          text: 'Everything here looks Mamluk, but it was built in the age of railways and photographs. The architects studied the old monuments and recreated their domes, columns and inscriptions. Compare it with Sultan Hassan next door and you can see how the nineteenth century imagined the past.' },
+      ] },
+    { id: 'akhur', title: 'Mosque of Amir Akhur', street: 'Salah al-Din Square', era: 'mamluk', year: 1503, coords: [30.0313, 31.2580],
+      plan: 'akhur',
+      slides: [
+        { title: 'A small mosque on a slope', pos: 'The square, looking up at the mosque', vp: { x: 50, y: 92, a: 0 },
+          alt: 'Compact stone mosque raised above the street with a minaret on its corner', focus: 'A compact plan squeezed onto a sloping site.',
+          text: 'This mosque is small next to its giant neighbours, and that is its charm. The builders fitted it onto an awkward, sloping plot and raised it above the street, so it still holds its own on the busy square below the Citadel.' },
+        { title: 'The two-headed minaret', pos: 'The square, looking up at the minaret', vp: { x: 70, y: 80, a: 330 },
+          alt: 'Minaret that ends in two small heads side by side instead of one', focus: 'Two heads instead of one, a late Mamluk fashion.',
+          text: 'Look at the top of the minaret. Instead of a single head, it ends in two small ones side by side. This was a fashion of the last Mamluk years, and only a few examples survive in Cairo, which makes this one easy to spot from far away.' },
+        { title: 'Stone carved like lace', pos: 'At the entrance, looking at the carved stone', vp: { x: 50, y: 70, a: 0 },
+          alt: 'Carved stone surface with fine geometric and floral patterns around a doorway', focus: 'Late Mamluk carving covers the stone in fine pattern.',
+          text: 'By this time Cairo\'s carvers could cover stone with very fine patterns, almost like fabric. Up close you can follow the geometry and the small floral shapes. It shows that even a modest building could carry the best craft of its day.' },
+      ] },
+    { id: 'citadel', title: 'Citadel & Muhammad Ali Mosque', street: 'On the Citadel hill', era: 'muhammad-ali', year: 1830, coords: [30.0287, 31.2599],
+      plan: 'citadel',
+      slides: [
+        { title: 'A skyline from Istanbul', pos: 'Below the Citadel, looking up at the mosque', vp: { x: 50, y: 98, a: 0 },
+          alt: 'Large domed mosque with two very slender pencil-shaped minarets on top of the hill', focus: 'Ottoman domes and needle minarets, unlike any older Cairo mosque.',
+          text: 'Muhammad Ali, who ruled Egypt in the early nineteenth century, chose the highest point of the city for his mosque and the style of Istanbul for its shape. The cascade of domes and the needle-thin minarets made a clear statement: a new power was ruling from this hill.' },
+        { title: 'The courtyard and the clock', pos: 'Courtyard, facing the clock tower', vp: { x: 50, y: 74, a: 270 },
+          alt: 'Marble courtyard with a domed fountain and a small clock tower on one side', focus: 'A gift from France sits in the middle of an Ottoman courtyard.',
+          text: 'This courtyard is wrapped in arcades with a domed fountain at the centre. On one side stands a clock tower, a gift from the King of France. Egypt sent an obelisk from Luxor to Paris in the same period, and the two gifts are often told together.' },
+        { title: 'Under the great dome', pos: 'Prayer hall, under the central dome', vp: { x: 50, y: 40, a: 0 },
+          alt: 'Vast domed interior lit by hundreds of small lamps hanging in rings', focus: 'One dome over one open space, held up by half-domes.',
+          text: 'Inside there are no rows of columns. A single great dome, helped by half-domes around it, covers one open space. Rings of hanging lamps bring the height down to human scale. Muhammad Ali himself is buried here, in a tomb near the entrance.' },
+      ] },
+  ];
+  const BY_ID = Object.fromEntries(ALL.map((x) => [x.id, x]));
+  const WALKS = [
+    { id: 'muizz', short: 'Al-Muizz', title: 'Fatimid gates & Al-Muizz', stops: ['qalawun', 'azhar', 'zuweila'],
+      done: 'From the Fatimid city to the Mamluk street', doneText: 'You walked through the heart of the walled Fatimid city and along its grand Mamluk street.' },
+    { id: 'citadel', short: 'Citadel', title: 'Below the Citadel', stops: ['ibntulun', 'gayer', 'hassan', 'rifai', 'akhur', 'citadel'],
+      done: 'A thousand years below the Citadel', doneText: 'From the oldest intact mosque in Cairo to the domes of Muhammad Ali, in one walk.' },
+  ];
+  let walk = WALKS[0];
+  let STOPS = walk.stops.map((id) => BY_ID[id]);
+
+  // Schematic plans, viewBox 0 0 100 100, north up. Placeholders, not real surveyed plans.
+  const PLANS = {
+    ibntulun: ["M4 4 H96 V96 H4 Z", "M14 12 H86 V88 H14 Z", "M28 38 H72 V80 H28 Z", "M31 41 H69 V77 H31 Z", "M50 59 m-6 0 a6 6 0 1 0 12 0 a6 6 0 1 0 -12 0", "M18 16 V34 M24 16 V34 M30 16 V34 M36 16 V34 M42 16 V34 M48 16 V34 M54 16 V34 M60 16 V34 M66 16 V34 M72 16 V34 M78 16 V34 M84 16 V34", "M47 12 V8 H53 V12", "M50 93 m-3 0 a3 3 0 1 0 6 0 a3 3 0 1 0 -6 0 M50 93 m-1.5 0 a1.5 1.5 0 1 0 3 0", "M18 42 V84 M82 42 V84"],
+    gayer: ["M8 18 H46 V84 H8 Z", "M54 26 H92 V90 H54 Z", "M46 40 H54 M46 48 H54", "M16 30 H38 V56 H16 Z", "M62 40 H84 V66 H62 Z", "M27 43 m-3 0 a3 3 0 1 0 6 0 a3 3 0 1 0 -6 0", "M8 64 H46 M54 74 H92", "M84 30 V38 M88 30 V38 M84 34 H92", "M26 84 V90 M30 84 V90"],
+    rifai: ["M8 10 H92 V92 H8 Z", "M24 26 H76 V76 H24 Z", "M50 51 m-14 0 a14 14 0 1 0 28 0 a14 14 0 1 0 -28 0", "M20 16 m-5 0 a5 5 0 1 0 10 0 a5 5 0 1 0 -10 0 M80 16 m-5 0 a5 5 0 1 0 10 0 a5 5 0 1 0 -10 0", "M14 84 m-4 0 a4 4 0 1 0 8 0 a4 4 0 1 0 -8 0 M86 84 m-4 0 a4 4 0 1 0 8 0 a4 4 0 1 0 -8 0", "M30 32 H44 V44 H30 Z M56 32 H70 V44 H56 Z", "M4 40 H8 M4 62 H8", "M44 92 V97 H56 V92"],
+    akhur: ["M18 18 H82 L88 70 H12 Z", "M30 30 H70 V60 H30 Z", "M50 45 m-6 0 a6 6 0 1 0 12 0 a6 6 0 1 0 -12 0", "M74 74 m-6 0 a6 6 0 1 0 12 0 a6 6 0 1 0 -12 0", "M72 74 m-1.5 0 a1.5 1.5 0 1 0 3 0 M76 74 m-1.5 0 a1.5 1.5 0 1 0 3 0", "M44 70 V80 H56 V70", "M20 88 L80 96"],
+    citadel: ["M28 14 H72 V56 H28 Z", "M50 35 m-12 0 a12 12 0 1 0 24 0 a12 12 0 1 0 -24 0", "M50 23 m-6 0 a6 6 0 1 0 12 0 M50 47 m-6 0 a6 6 0 1 0 12 0", "M28 58 H72 V94 H28 Z", "M31 61 H69 V91 H31 Z", "M50 76 m-4 0 a4 4 0 1 0 8 0 a4 4 0 1 0 -8 0", "M24 58 h4 v4 h-4 Z M72 58 h4 v4 h-4 Z", "M28 72 H22 V80 H28", "M38 14 V8 H62 V14"],
+    qalawun: ["M6 90 H94", "M6 90 V20 H46 V90", "M54 90 V14 H94 V90", "M10 28 H42 V64 H10 Z", "M26 36 L33 39 L36 46 L33 53 L26 56 L19 53 L16 46 L19 39 Z", "M26 46 m-12 0 a12 12 0 1 0 24 0 a12 12 0 1 0 -24 0", "M10 68 H42 M10 76 H42", "M64 40 H86 V70 H64 Z", "M64 22 H86 V38", "M64 72 H86 V86", "M6 82 H14 V90", "M48 90 V94 M52 90 V94", "M46 30 H54 M46 50 H54 M46 70 H54"],
+    azhar: ["M10 10 H90 V92 H10 Z", "M24 44 H76 V86 H24 Z", "M27 47 H73 V83 H27 Z", "M47 10 V6 H53 V10", "M15.1 16 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M23.1 16 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M31.1 16 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M39.1 16 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M59.1 16 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M67.1 16 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M75.1 16 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M83.1 16 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M15.1 24 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M23.1 24 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M31.1 24 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M39.1 24 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M59.1 24 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M67.1 24 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M75.1 24 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M83.1 24 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M15.1 32 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M23.1 32 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M31.1 32 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M39.1 32 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M59.1 32 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M67.1 32 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M75.1 32 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M83.1 32 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M15.1 40 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M23.1 40 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M31.1 40 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M39.1 40 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M59.1 40 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M67.1 40 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M75.1 40 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M83.1 40 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0", "M47 12 V42 M53 12 V42", "M10 42 H90", "M30 88 h6 v6 h-6 Z M64 88 h6 v6 h-6 Z", "M46 92 V96 H54 V92", "M15.1 52 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M83.1 52 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M15.1 64 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M83.1 64 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M15.1 76 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0 M83.1 76 a.9 .9 0 1 0 1.8 0 a.9 .9 0 1 0 -1.8 0"],
+    zuweila: ["M6 36 H94", "M14 36 V70 A13 13 0 0 0 40 70 V36", "M60 36 V70 A13 13 0 0 0 86 70 V36", "M40 36 V82 M60 36 V82", "M20 14 H80 V36", "M20 14 V36", "M27 64 m-5 0 a5 5 0 1 0 10 0 a5 5 0 1 0 -10 0", "M73 64 m-5 0 a5 5 0 1 0 10 0 a5 5 0 1 0 -10 0", "M40 48 L60 60 M60 48 L40 60", "M40 70 H60", "M44 96 V84 M56 96 V84", "M50 14 V4"],
+    hassan: ["M14 4 H86 V60 L94 72 V94 H22 L8 82 V20 Z", "M34 36 H66 V66 H34 Z", "M36 36 V18 H64 V36", "M34 40 H16 V62 H34", "M66 40 H84 V62 H66", "M40 66 V82 H60 V66", "M40 18 V6 H60 V18", "M50 12 m-6 0 a6 6 0 1 0 12 0 a6 6 0 1 0 -12 0", "M50 51 m-4 0 a4 4 0 1 0 8 0 a4 4 0 1 0 -8 0", "M8 82 L22 94 M14 86 L24 76 H34 V66", "M18 68 H32 M18 76 H32 M68 68 H84 M68 76 H84 M68 84 H84", "M18 26 H32 M18 32 H32 M68 26 H82 M68 32 H82"],
+  };
+
+  // ---- Settings (per-viewer, localStorage best effort) ----
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem('medu.' + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+    set(k, v) { try { localStorage.setItem('medu.' + k, JSON.stringify(v)); } catch {} },
+  };
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const S = { cine: store.get('cine', !reduced), sfx: store.get('sfx', true), auto: store.get('auto', false), rate: store.get('rate', 1) };
+  let visited = new Set(store.get('visited', []));
+  const cinematic = () => S.cine && !reduced;
+
+  const $ = (s) => document.querySelector(s);
+  const app = $('#app');
+  const show = (id) => document.getElementById(id).classList.remove('off');
+  const hide = (id) => document.getElementById(id).classList.add('off');
+  const buzz = () => { try { navigator.vibrate && navigator.vibrate(12); } catch {} };
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  // ---- Sound FX: synthesized placeholders for sfx.temporal.back / forward ----
+  let actx;
+  function whoosh(forward) {
+    if (!S.sfx) return;
+    try {
+      actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+      const dur = forward ? 1.0 : 1.9, sr = actx.sampleRate;
+      const buf = actx.createBuffer(1, sr * dur, sr), d = buf.getChannelData(0);
+      for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+      const src = actx.createBufferSource(); src.buffer = buf;
+      const f = actx.createBiquadFilter(); f.type = 'lowpass'; f.Q.value = 6;
+      const g = actx.createGain(); const t = actx.currentTime;
+      f.frequency.setValueAtTime(forward ? 200 : 1400, t);
+      f.frequency.exponentialRampToValueAtTime(forward ? 1600 : 120, t + dur);
+      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.16, t + dur * 0.4); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      src.connect(f).connect(g).connect(actx.destination); src.start();
+    } catch {}
+  }
+
+  // ---- Map ----
+  // Real basemap (stitched tiles, embedded at build time) when present; schematic drawing otherwise.
+  const MAPI = ASSETS && ASSETS.map; // { src, bounds: [south, west, north, east], attribution }
+  const S_LAT = 26000, S_LNG = S_LAT * Math.cos(30.04 * Math.PI / 180);
+  let proj = ([lat, lng]) => [(lng - 31.2485) * S_LNG + 10, (30.0545 - lat) * S_LAT + 60];
+  let mapW = 420, mapH = 760;
+  if (MAPI) {
+    const merc = ([lat, lng]) => { const r = lat * Math.PI / 180; return [(lng + 180) / 360, (1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2]; };
+    const [so, we, no, ea] = MAPI.bounds, a = merc([no, we]), b = merc([so, ea]);
+    mapW = 420; const k = mapW / (b[0] - a[0]); mapH = (b[1] - a[1]) * k;
+    proj = (c) => { const m = merc(c); return [(m[0] - a[0]) * k, (m[1] - a[1]) * k]; };
+  }
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, attrs = {}, parent) => { const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); parent && parent.appendChild(n); return n; };
+  const world = $('#mapWorld');
+
+  function haversine(a, b) {
+    const R = 6371000, r = Math.PI / 180, dLat = (b[0] - a[0]) * r, dLng = (b[1] - a[1]) * r;
+    const h = Math.sin(dLat / 2) ** 2 + Math.cos(a[0] * r) * Math.cos(b[0] * r) * Math.sin(dLng / 2) ** 2;
+    return 2 * R * Math.asin(Math.sqrt(h));
+  }
+  const walkM = (a, b) => haversine(a, b) * 1.35; // street detour factor, rough
+  const fmtLeg = (m) => `${m < 1000 ? Math.round(m / 10) * 10 + ' m' : (m / 1000).toFixed(1) + ' km'} · about ${Math.max(1, Math.round(m / 75))} min walk`;
+
+  let zoom = 1;
+  function drawMap() {
+    world.innerHTML = '';
+    if (MAPI) {
+      el('rect', { x: -900, y: -900, width: mapW + 1800, height: mapH + 1800, fill: '#050b1c' }, world);
+      el('image', { href: MAPI.src, x: 0, y: 0, width: mapW, height: mapH, preserveAspectRatio: 'none' }, world);
+      $('.map-note').textContent = 'Map: ' + MAPI.attribution;
+    } else drawSchematic();
+    // The other walk stays visible as faint dots; tapping one switches to that walk.
+    WALKS.filter((w) => w !== walk).forEach((w) => {
+      const pts = w.stops.map((id) => proj(BY_ID[id].coords));
+      el('path', { d: 'M' + pts.map((p) => p.join(' ')).join(' L'), class: 'route other', 'vector-effect': 'non-scaling-stroke' }, world);
+      pts.forEach((p) => {
+        const g = el('g', { class: 'pin other', transform: `translate(${p[0]} ${p[1]}) scale(${1 / zoom})`, role: 'button', 'aria-label': `Switch to the ${w.short} walk` }, world);
+        el('circle', { r: 12, fill: 'transparent' }, g); el('circle', { r: 5, class: 'core' }, g);
+        g.addEventListener('click', () => selectWalk(w.id));
+      });
+    });
+    const pts = STOPS.map((s) => proj(s.coords));
+    el('path', { d: 'M' + pts.map((p) => p.join(' ')).join(' L'), class: 'route', 'vector-effect': 'non-scaling-stroke' }, world);
+    drawPins(pts);
+    const total = STOPS.slice(1).reduce((m, s, i) => m + walkM(STOPS[i].coords, s.coords), 0);
+    $('#walkTitle').textContent = walk.title;
+    $('#mapSub').textContent = `${STOPS.length} stops · approx. ${(total / 1000).toFixed(1)} km on foot`;
+    document.querySelectorAll('#walks button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.w === walk.id)));
+  }
+
+  function drawSchematic() {
+    // Fallback when no basemap is embedded: soft blocks around the monuments. Not geographic data.
+    el('rect', { x: -900, y: -900, width: 2200, height: 2600, fill: '#050b1c' }, world);
+    ALL.forEach((st, n) => { const [x, y] = proj(st.coords); el('rect', { x: x - 40 - (n % 3) * 8, y: y - 30, width: 80 + (n % 2) * 30, height: 60, rx: 14, class: 'district' }, world); });
+  }
+
+  const LABEL_SIDE = { qalawun: 'l', azhar: 'r', zuweila: 'l', ibntulun: 't', gayer: 'b', hassan: 'l', rifai: 't', akhur: 'b', citadel: 'b' };
+  function drawPins(pts) {
+    const sc = ` scale(${1 / zoom})`;
+    STOPS.forEach((s, i) => {
+      const [x, y] = pts[i];
+      const g = el('g', { class: 'pin', transform: `translate(${x} ${y})${sc}`, tabindex: 0, role: 'button', 'aria-label': `Stop ${i + 1}, ${s.title}`, 'data-i': i }, world);
+      el('circle', { r: 14, class: 'halo' }, g);
+      el('circle', { r: 13, class: 'core' }, g);
+      const t = el('text', { class: 'num' }, g); t.textContent = i + 1;
+      // Put the label on the side away from the route's neighbours.
+      const nb = pts[i + 1] || pts[i - 1], side = LABEL_SIDE[s.id] || (nb && nb[0] < x ? 'r' : 'l');
+      const pos = { r: [20, 4, 'start'], l: [-20, 4, 'end'], t: [0, -22, 'middle'], b: [0, 30, 'middle'] }[side];
+      const lab = el('text', { class: 'pin-label', x: pos[0], y: pos[1], 'text-anchor': pos[2] }, g);
+      lab.textContent = s.title.replace(' & Muhammad Ali Mosque', '');
+      g.addEventListener('click', () => preview(i));
+      g.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); preview(i); } });
+    });
+    // "You are here": sample position near stop 1 (location is never requested in the prototype).
+    const g = el('g', { transform: `translate(${pts[0][0] - 14 / zoom} ${pts[0][1] - 40 / zoom})${sc}` }, world);
+    el('circle', { r: 6, class: 'you' }, g);
+  }
+
+  // Pan, zoom and fly. World units: the 420 x 760 viewBox; zoom scales the world group.
+  const VIEW = { cx: 210, cy: 352, w: 190, h: 290 };
+  function fit() {
+    const pts = STOPS.map((s) => proj(s.coords));
+    const xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]);
+    const bw = Math.max(...xs) - Math.min(...xs) || 1, bh = Math.max(...ys) - Math.min(...ys) || 1;
+    zoom = Math.max(0.8, Math.min(MAPI ? 3 : 1.6, Math.min(VIEW.w / bw, VIEW.h / bh)));
+    const cx = (Math.max(...xs) + Math.min(...xs)) / 2, cy = (Math.max(...ys) + Math.min(...ys)) / 2;
+    return { x: VIEW.cx - cx * zoom, y: VIEW.cy - cy * zoom };
+  }
+  const clampPan = () => {
+    if (!MAPI) { pan.x = Math.max(-900, Math.min(600, pan.x)); pan.y = Math.max(-1400, Math.min(600, pan.y)); return; }
+    pan.x = Math.max(420 - mapW * zoom - 60, Math.min(60, pan.x)); pan.y = Math.max(560 - mapH * zoom, Math.min(120, pan.y));
+  };
+  let pan = { x: 0, y: 0 };
+  const setPan = (smooth) => {
+    clampPan(); world.classList.toggle('nodrift', !smooth || !cinematic());
+    world.setAttribute('transform', `translate(${pan.x} ${pan.y}) scale(${zoom})`);
+    world.style.transform = `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`;
+  };
+  (() => {
+    const svg = $('#mapSvg'); let start = null;
+    svg.addEventListener('pointerdown', (e) => { if (e.target.closest('.pin')) return; start = { x: e.clientX, y: e.clientY, px: pan.x, py: pan.y }; svg.setPointerCapture(e.pointerId); svg.classList.add('drag'); });
+    svg.addEventListener('pointermove', (e) => {
+      if (!start) return; const k = 420 / svg.clientWidth * Math.max(1, (svg.clientHeight / svg.clientWidth) / (760 / 420));
+      pan.x = start.px + (e.clientX - start.x) * k;
+      pan.y = start.py + (e.clientY - start.y) * k; setPan(false);
+    });
+    const end = () => { start = null; svg.classList.remove('drag'); };
+    svg.addEventListener('pointerup', end); svg.addEventListener('pointercancel', end);
+  })();
+  function flyTo(i) { const [x, y] = proj(STOPS[i].coords); pan = { x: 210 - x * zoom, y: 300 - y * zoom }; setPan(true); }
+  function selectWalk(id) {
+    walk = WALKS.find((w) => w.id === id) || WALKS[0]; store.set('walk', walk.id);
+    STOPS = walk.stops.map((x) => BY_ID[x]);
+    const p = fit(); drawMap(); pan = p; setPan(true); renderSheet();
+  }
+
+  // Sheet
+  function renderSheet() {
+    const list = $('#stopList'); list.innerHTML = '';
+    STOPS.forEach((s, i) => {
+      const li = document.createElement('li');
+      const b = document.createElement('button');
+      b.className = 'stop' + (visited.has(s.id) ? ' visited' : '');
+      const era = ERA[s.era];
+      const th = photo(s.id, 0);
+      const num = `<span class="n">${visited.has(s.id) ? '✓' : i + 1}</span>`;
+      if (th) b.classList.add('has-thumb');
+      b.innerHTML = `${th ? `<span class="thumb" style="background-image:url('${th.src}')">${num}</span>` : num}<span><b>${s.title}</b><small><span class="chip" style="color:${era.accent}">${era.label}</span>${s.street}</small></span><span class="yr">${s.year}</span>`;
+      b.addEventListener('click', () => openStop(i));
+      li.appendChild(b); list.appendChild(li);
+      if (i < STOPS.length - 1) { const leg = document.createElement('li'); leg.className = 'leg'; leg.textContent = '↓ ' + fmtLeg(walkM(s.coords, STOPS[i + 1].coords)); list.appendChild(leg); }
+    });
+    const seenHere = STOPS.filter((x) => visited.has(x.id)).length;
+    $('#progress').textContent = `${seenHere} of ${STOPS.length} visited`;
+    $('#routeView').hidden = false; $('#pvView').hidden = true; $('#sheet').classList.remove('pv'); $('#sheetTitle').textContent = 'Your route';
+    document.querySelectorAll('.pin[data-i]').forEach((p) => p.classList.toggle('visited', visited.has(STOPS[+p.dataset.i].id)));
+    const next = STOPS.findIndex((s) => !visited.has(s.id));
+    const cta = $('#nextCta');
+    if (next === -1) { cta.textContent = 'Finish the walk'; cta.onclick = showComplete; }
+    else { cta.textContent = seenHere ? `Next: ${STOPS[next].title}` : `Start at stop 1 · ${STOPS[0].title}`; cta.onclick = () => openStop(next); }
+  }
+  $('#handle').addEventListener('click', () => $('#sheet').classList.toggle('open'));
+
+  // Tapping a pin flies to it and shows a preview card; the card's button opens the stop.
+  function preview(i) {
+    const s = STOPS[i], era = ERA[s.era], th = photo(s.id, 0);
+    flyTo(i);
+    $('#sheet').classList.remove('open');
+    $('#routeView').hidden = true; $('#pvView').hidden = false; $('#sheet').classList.add('pv');
+    $('#sheetTitle').textContent = `Stop ${i + 1} of ${STOPS.length}`;
+    const pv = $('#pvImg');
+    pv.style.backgroundImage = th ? `url('${th.src}')` : phBg(s.era, 0);
+    $('#pvEra').textContent = era.label; $('#pvEra').style.color = era.accent;
+    $('#pvTitle').textContent = s.title;
+    const prev = i > 0 ? fmtLeg(walkM(STOPS[i - 1].coords, s.coords)) + ` from stop ${i}` : 'Start of the walk';
+    $('#pvMeta').textContent = `${s.street} · built ${s.year}. ${prev}.`;
+    $('#pvGo').textContent = `Step back to ${s.year}`;
+    $('#pvGo').onclick = () => openStop(i);
+  }
+  $('#pvBack').addEventListener('click', () => { renderSheet(); pan = fit(); setPan(true); });
+  $('#walks').innerHTML = WALKS.map((w) => `<button data-w="${w.id}" aria-pressed="false">${w.short} · ${w.stops.length}</button>`).join('');
+  $('#walks').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) selectWalk(b.dataset.w); });
+
+  // ---- Year dial (odometer, ported from packages/ui motion-math) ----
+  function odometerPositions(value, places) {
+    const out = [];
+    for (let k = places - 1; k >= 0; k--) {
+      const unit = 10 ** k;
+      if (k === 0) { out.push(value); continue; }
+      const base = Math.floor(value / unit), below = value - base * unit;
+      out.push(base + Math.min(1, Math.max(0, below - (unit - 1))));
+    }
+    return out;
+  }
+  const odo = $('#odo'); const strips = [];
+  for (let c = 0; c < 4; c++) {
+    const col = document.createElement('div'); col.className = 'col';
+    const strip = document.createElement('div'); strip.className = 'strip';
+    strip.innerHTML = Array.from({ length: 11 }, (_, i) => `<span>${i % 10}</span>`).join('');
+    col.appendChild(strip); odo.appendChild(col); strips.push({ col, strip });
+  }
+  function setOdo(v) {
+    odometerPositions(v, 4).forEach((p, i) => { strips[i].strip.style.transform = `translateY(${-(p % 10)}em)`; });
+    strips[0].col.classList.toggle('lead0', v < 999.5);
+  }
+  const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
+  let skip = false;
+  $('#dial').addEventListener('click', () => { skip = true; });
+  async function runDial(from, to, ms, era, title) {
+    $('#dialEra').textContent = era; $('#dialTitle').textContent = title;
+    $('#dialRule').style.backgroundImage = motifUrl(STOPS[cur.stop].era, .9);
+    skip = false; setOdo(from); show('dial');
+    if (!cinematic()) { setOdo(to); await wait(500); return; }
+    await new Promise((res) => {
+      const t0 = performance.now();
+      const tick = (now) => {
+        const t = Math.min(1, (now - t0) / ms);
+        setOdo(from + (to - from) * easeInOut(t));
+        if (t < 1 && !skip) requestAnimationFrame(tick); else { setOdo(to); res(); }
+      };
+      requestAnimationFrame(tick);
+    });
+    await wait(skip ? 0 : 280);
+  }
+
+  // ---- Album ----
+  let cur = { stop: 0, slide: 0 };
+  const pager = $('#pager');
+
+  function motifUrl(era, op) {
+    const e = ERA[era];
+    if (e.motif === 'arch') return `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='16' height='14'><path d='M2 13 V7 Q2 3 8 1 Q14 3 14 7 V13' fill='none' stroke='${e.accent}' stroke-opacity='${op}'/></svg>`)}")`;
+    return e.motif === 'star'
+      ? `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='28' height='14'><path d='M14 1 L17 5 L22 7 L17 9 L14 13 L11 9 L6 7 L11 5 Z M0 7 H6 M22 7 H28' fill='none' stroke='${e.accent}' stroke-opacity='${op}'/></svg>`)}")`
+      : `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='24' height='14'><path d='M0 12 H4 V3 H8 V12 H12 V6 H16 V12 H20 V3 H24' fill='none' stroke='${e.accent}' stroke-opacity='${op}'/></svg>`)}")`;
+  }
+  function phBg(era, seed) {
+    const e = ERA[era];
+    const motif = e.motif !== 'kufic' ? motifUrl(era, .18) : e.motif === 'star'
+      ? `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56'><path d='M28 6 L34 22 L50 28 L34 34 L28 50 L22 34 L6 28 L22 22 Z' fill='none' stroke='${e.accent}' stroke-opacity='.18'/></svg>`)}")`
+      : `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='48' height='24'><path d='M0 20 H8 V6 H16 V20 H24 V10 H32 V20 H48' fill='none' stroke='${e.accent}' stroke-opacity='.2'/></svg>`)}")`;
+    const ang = 150 + seed * 25;
+    return `${motif}, radial-gradient(80% 60% at ${30 + seed * 20}% 25%, ${e.accent}33, transparent 70%), linear-gradient(${ang}deg, ${e.tint}, #0b1222 75%)`;
+  }
+
+  function buildAlbum(i) {
+    const s = STOPS[i], era = ERA[s.era];
+    app.style.setProperty('--accent', era.accent);
+    app.style.setProperty('--tint', era.tint);
+    pager.innerHTML = '';
+    s.slides.forEach((sl, k) => {
+      const art = document.createElement('article'); art.className = 'slide';
+      const tn = s.thenNow !== undefined ? s.thenNow === k : (k === 0 && !!photo(s.id, 'then'));
+      const bgs = []; const ph = (lbl, bg, pic) => pic
+        ? `<div class="ph has-photo"><img src="${pic.src}" alt="${esc(sl.alt)}" draggable="false"></div>`
+        : `<div class="ph" data-bg="${bgs.push(bg) - 1}"><span class="ph-label">${lbl}</span><span class="ph-alt">${sl.alt}</span></div>`;
+      const now = photo(s.id, k), then = tn ? photo(s.id, 'then') : null;
+      const hero = tn
+        ? `<div class="tn" data-tn>${ph('Now · photo to be sourced', phBg(s.era, k), now)}<div class="then">${ph('Then · historic print to be sourced', `linear-gradient(160deg, #6b5838, #2a2214)`, then)}</div><div class="knob"></div><div class="tn-tags"><span>Then${then && then.year ? ' · ' + then.year : ''}</span><span>Now</span></div></div>`
+        : ph('Photo · to be sourced', phBg(s.era, k), now);
+      const credits = [now, then].filter(Boolean).map((c) => `<a href="${esc(c.url)}" target="_blank" rel="noopener">${creditLine(c)}</a>`).join('<br>');
+      art.innerHTML = `
+        <div class="hero">${hero}<div class="grain"></div></div>
+        <div class="body gutter">
+          <div class="ornament" style="background-image:${motifUrl(s.era, .7).replace(/"/g, '&quot;')}"></div>
+          <div class="era-line">${era.label} · ${s.year} · Stop ${i + 1} of ${STOPS.length}</div>
+          <h2>${sl.title}</h2>
+          <div class="pos">◎ ${sl.pos}</div>
+          <div class="focus"><b>Architectural focus</b>${sl.focus}</div>
+          <details class="transcript"><summary>Transcript</summary><p>${sl.text}</p><p class="flag">Draft narration. Facts not yet checked against sources (UNVERIFIED).</p></details>
+          ${credits ? `<div class="credit">${credits}</div>` : ''}
+        </div>`;
+      art.querySelectorAll('.ph').forEach((n) => n.style.setProperty('--ph-bg', bgs[+n.dataset.bg]));
+      pager.appendChild(art);
+    });
+    pager.querySelectorAll('[data-tn]').forEach(bindThenNow);
+    $('#dots').innerHTML = s.slides.map(() => '<i></i>').join('');
+    drawPlan(s.plan);
+    pager.scrollLeft = 0; $('.dots-bar').classList.remove('away');
+    setSlide(0, true);
+  }
+
+  function bindThenNow(box) {
+    const set = (cx) => { const r = box.getBoundingClientRect(); box.style.setProperty('--x', Math.max(4, Math.min(96, (cx - r.left) / r.width * 100)) + '%'); };
+    let on = false;
+    box.addEventListener('pointerdown', (e) => { on = true; box.setPointerCapture(e.pointerId); set(e.clientX); e.stopPropagation(); });
+    box.addEventListener('pointermove', (e) => { if (on) { set(e.clientX); e.preventDefault(); } });
+    box.addEventListener('pointerup', () => { on = false; });
+    box.addEventListener('pointercancel', () => { on = false; });
+  }
+  // Keep horizontal drags on the Then & Now slider from scrolling the pager.
+  pager.addEventListener('touchmove', (e) => { if (e.target.closest('[data-tn]')) e.preventDefault(); }, { passive: false });
+
+  // Key plan + view cone
+  const seen = new Set();
+  let coneAngle = 0;
+  function drawPlan(key) {
+    const g = $('#planLines'); g.innerHTML = '';
+    PLANS[key].forEach((d, n) => { const p = el('path', { d, class: 'plan-line' + (n > 3 ? ' thin' : '') }, g); const len = Math.ceil(p.getTotalLength ? p.getTotalLength() : 300); p.style.setProperty('--len', len); p.style.strokeDasharray = len; p.style.animationDelay = (n * 90) + 'ms'; });
+    const hud = $('#planHud');
+    hud.classList.remove('inking');
+    $('#cone').style.opacity = 0;
+    if (cinematic() && !seen.has(key)) { void hud.offsetWidth; hud.classList.add('inking'); setTimeout(() => { $('#cone').style.opacity = 1; }, 1500); }
+    else { g.querySelectorAll('path').forEach((p) => { p.style.strokeDasharray = 'none'; }); $('#cone').style.opacity = 1; }
+    seen.add(key);
+  }
+  function shortestArc(curr, target) { let d = (((target - curr) % 360) + 360) % 360; if (d > 180) d -= 360; return curr + d; }
+  function setCone(vp, instant) {
+    coneAngle = instant ? vp.a : shortestArc(coneAngle, vp.a);
+    const c = $('#cone');
+    c.style.transition = instant || !cinematic() ? 'opacity 400ms' : '';
+    c.style.transform = `translate(${vp.x}px, ${vp.y}px) rotate(${coneAngle}deg)`;
+  }
+  $('#planHud').addEventListener('click', () => $('#planHud').classList.toggle('big'));
+
+  function setSlide(k, instant) {
+    const s = STOPS[cur.stop];
+    cur.slide = k;
+    const el_ = pager.children[k]; $('.dots-bar').classList.toggle('away', !!el_ && el_.scrollTop > 30);
+    document.querySelectorAll('#dots i').forEach((d, n) => d.classList.toggle('on', n === k));
+    $('#count').textContent = `${k + 1} / ${s.slides.length}`;
+    setCone(s.slides[k].vp, instant);
+    $('#pTitle').textContent = s.slides[k].title;
+    narr.onSlide(k);
+  }
+  let plxRaf = 0;
+  pager.addEventListener('scroll', () => {
+    if (!cinematic() || plxRaf) return;
+    plxRaf = requestAnimationFrame(() => {
+      plxRaf = 0; const w = pager.clientWidth, x = pager.scrollLeft;
+      [...pager.children].forEach((sl, k) => { const img = sl.querySelector('.hero > .ph img'); if (img) img.style.transform = `translateX(${(x - k * w) * 0.35}px)`; });
+    });
+  }, { passive: true });
+  let scrollT;
+  pager.addEventListener('scroll', () => {
+    clearTimeout(scrollT);
+    scrollT = setTimeout(() => { const k = Math.round(pager.scrollLeft / pager.clientWidth); if (k !== cur.slide) setSlide(k); }, 60);
+  });
+  // Hide the slide counter once the text scrolls up under it.
+  pager.addEventListener('scroll', (e) => { if (e.target.classList && e.target.classList.contains('slide')) $('.dots-bar').classList.toggle('away', e.target.scrollTop > 30); }, true);
+  function goSlide(k) { pager.scrollTo({ left: k * pager.clientWidth, behavior: cinematic() ? 'smooth' : 'auto' }); }
+
+  // ---- Narration: device TTS stands in for pre-rendered audio (PRD F5 fallback, labelled preview) ----
+  const narr = (() => {
+    const tts = 'speechSynthesis' in window ? window.speechSynthesis : null;
+    let wantPlay = false, speaking = false, debounce, fake, startAt = 0, estMs = 1, token = 0;
+    const playBtn = $('#playBtn'), bar = $('#pBar'), eqBars = [...document.querySelectorAll('#eq i')];
+    const icon = (p) => { playBtn.innerHTML = p
+      ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>'
+      : '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+      playBtn.setAttribute('aria-label', p ? 'Pause narration' : 'Play narration'); };
+    icon(false);
+    if (!tts) $('#pSub').textContent = 'Voice preview not supported in this browser. Read the transcript.';
+    let eqRaf;
+    const eqLoop = () => { eqBars.forEach((b, i) => { b.style.height = speaking ? (5 + Math.abs(Math.sin(performance.now() / (140 + i * 37) + i)) * 17) + 'px' : '4px'; });
+      if (speaking) { bar.style.width = Math.min(100, (performance.now() - startAt) / estMs * 100) + '%'; eqRaf = requestAnimationFrame(eqLoop); } };
+    function bestVoice() {
+      const vs = tts.getVoices().filter((x) => /^en/i.test(x.lang));
+      const score = (x) => (/natural|neural|premium|enhanced/i.test(x.name) ? 8 : 0) + (/google/i.test(x.name) ? 4 : 0) + (/en[-_]GB/i.test(x.lang) ? 2 : 0) + (x.localService ? 0 : 1);
+      return vs.sort((a, b) => score(b) - score(a))[0];
+    }
+    function stop() { token++; clearTimeout(debounce); clearTimeout(fake); if (tts) tts.cancel(); speaking = false; cancelAnimationFrame(eqRaf); eqLoop(); }
+    function speak() {
+      stop(); const my = token;
+      const s = STOPS[cur.stop].slides[cur.slide];
+      const words = s.text.split(/\s+/).length;
+      estMs = words / (2.5 * S.rate) * 1000; startAt = performance.now(); bar.style.width = '0%';
+      speaking = true; eqLoop();
+      const done = () => { if (my !== token) return; speaking = false; bar.style.width = '100%'; eqLoop();
+        if (S.auto && cur.slide < STOPS[cur.stop].slides.length - 1) goSlide(cur.slide + 1); else { wantPlay = false; icon(false); } };
+      if (tts) {
+        const u = new SpeechSynthesisUtterance(s.text); u.lang = 'en-GB'; u.rate = S.rate * 0.95;
+        const v = bestVoice();
+        if (v) u.voice = v;
+        u.onend = done; u.onerror = () => { if (my === token) { fake = setTimeout(done, Math.max(0, estMs - (performance.now() - startAt))); } };
+        tts.speak(u);
+      } else fake = setTimeout(done, estMs);
+    }
+    playBtn.addEventListener('click', () => {
+      if (wantPlay) { wantPlay = false; stop(); icon(false); }
+      else { wantPlay = true; icon(true); speak(); }
+    });
+    $('#replay').addEventListener('click', () => { wantPlay = true; icon(true); speak(); });
+    document.querySelectorAll('.speed button').forEach((b) => {
+      b.setAttribute('aria-pressed', String(+b.dataset.r === S.rate));
+      b.addEventListener('click', () => { S.rate = +b.dataset.r; store.set('rate', S.rate);
+        document.querySelectorAll('.speed button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+        if (wantPlay) speak(); });
+    });
+    return {
+      // Swipe sync: stop at once, start the new slide after 350 ms (PRD F5).
+      onSlide() { bar.style.width = '0%'; if (!wantPlay) { stop(); return; } stop(); debounce = setTimeout(speak, 350); },
+      start() { wantPlay = true; icon(true); speak(); },
+      halt() { wantPlay = false; stop(); icon(false); },
+    };
+  })();
+
+  // ---- Flow ----
+  let busy = false;
+  async function openStop(i) {
+    if (busy) return; busy = true;
+    $('#sheet').classList.remove('open');
+    flyTo(i);
+    if (cinematic()) await wait(650);
+    cur.stop = i;
+    const s = STOPS[i];
+    app.style.setProperty('--accent', ERA[s.era].accent);
+    buildAlbum(i);
+    app.classList.toggle('nograin', !cinematic());
+    if (cinematic()) { whoosh(false); app.classList.add('sepia'); }
+    show('album');
+    await runDial(PRESENT, s.year, 2200, `${ERA[s.era].label} Cairo`, s.title);
+    buzz();
+    hide('dial');
+    requestAnimationFrame(() => app.classList.remove('sepia'));
+    visited.add(s.id); store.set('visited', [...visited]);
+    narr.start();
+    busy = false;
+  }
+  async function closeStop() {
+    if (busy) return; busy = true;
+    narr.halt();
+    const s = STOPS[cur.stop];
+    if (cinematic()) { whoosh(true); app.classList.add('sepia'); }
+    await runDial(s.year, PRESENT, 1200, 'Returning to', 'Cairo today');
+    buzz();
+    hide('album'); renderSheet(); app.classList.remove('sepia');
+    await wait(cinematic() ? 120 : 0);
+    hide('dial');
+    app.style.setProperty('--accent', '#d4b062');
+    busy = false;
+    if (STOPS.every((x) => visited.has(x.id))) setTimeout(showComplete, cinematic() ? 500 : 0);
+  }
+  $('#closeAlbum').addEventListener('click', closeStop);
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !$('#album').classList.contains('off')) closeStop();
+    if (!$('#album').classList.contains('off')) {
+      if (e.key === 'ArrowRight' && cur.slide < STOPS[cur.stop].slides.length - 1) goSlide(cur.slide + 1);
+      if (e.key === 'ArrowLeft' && cur.slide > 0) goSlide(cur.slide - 1);
+    }
+  });
+
+  function applyIntroPhoto() {
+    const ph = photo('hassan', 0);
+    if (!ph) return;
+    $('#intro').style.background = `linear-gradient(rgba(2,6,23,.55), rgba(2,6,23,.35) 35%, rgba(2,6,23,.92) 70%, #020617), url('${ph.src}') center 30% / cover no-repeat`;
+  }
+
+  function showComplete() {
+    const tl = $('#timeline'); tl.querySelectorAll('.pt').forEach((n) => n.remove());
+    $('#certTitle').textContent = walk.done; $('#certText').textContent = walk.doneText;
+    $('#certList').innerHTML = [...STOPS].sort((a, b) => a.year - b.year).map((x) => `<li><i style="background:${ERA[x.era].accent}"></i><span>${esc(x.title)}</span><span>${x.year}</span></li>`).join('');
+    const sorted = [...STOPS].sort((a, b) => a.year - b.year);
+    const pad = (sorted.at(-1).year - sorted[0].year) * 0.08 + 10, min = sorted[0].year - pad, max = sorted.at(-1).year + pad;
+    sorted.forEach((s, n) => {
+      const pt = document.createElement('div'); pt.className = 'pt' + (n % 2 ? ' up' : '');
+      pt.style.left = ((s.year - min) / (max - min) * 100) + '%';
+      pt.style.transitionDelay = (cinematic() ? 400 + n * 500 : 0) + 'ms';
+      const th = photo(s.id, 0);
+      if (n !== 0 && n !== sorted.length - 1) pt.classList.add('quiet');
+      pt.innerHTML = `<i style="background:${ERA[s.era].accent}${th ? `;background-image:url('${th.src}');background-size:cover;width:34px;height:34px;margin-top:-10px;border:2px solid ${ERA[s.era].accent}` : ''}"></i><span>${s.year}</span>`;
+      tl.appendChild(pt);
+    });
+    tl.classList.remove('go'); $('#tlFill').style.width = '0';
+    $('#tlFill').style.transitionDuration = cinematic() ? '2400ms' : '0ms';
+    show('complete');
+    requestAnimationFrame(() => requestAnimationFrame(() => { tl.classList.add('go'); $('#tlFill').style.width = '100%'; }));
+  }
+  $('#again').addEventListener('click', () => { STOPS.forEach((x) => visited.delete(x.id)); store.set('visited', [...visited]); renderSheet(); hide('complete'); });
+  $('#otherWalk').addEventListener('click', () => { hide('complete'); selectWalk(WALKS.find((w) => w !== walk).id); });
+
+  // Install: Android/desktop Chrome fire beforeinstallprompt; iPhone needs Share > Add to Home Screen.
+  (() => {
+    const btn = $('#installBtn');
+    const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+    const hosted = !!document.querySelector('link[rel="manifest"]');
+    if (standalone) { btn.hidden = true; return; }
+    if (!hosted) return;
+    const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    if (ios) { btn.disabled = false; btn.textContent = 'Add to Home Screen'; btn.onclick = () => { $('#iosHelp').hidden = false; }; }
+    else btn.textContent = 'Open in Chrome to install';
+    let deferred;
+    window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferred = e; btn.disabled = false; btn.textContent = 'Install the app'; });
+    btn.addEventListener('click', async () => { if (!deferred) return; deferred.prompt(); try { await deferred.userChoice; } catch {} deferred = null; btn.hidden = true; });
+    window.addEventListener('appinstalled', () => { btn.hidden = true; });
+    $('#iosHelpClose').addEventListener('click', () => { $('#iosHelp').hidden = true; });
+  })();
+
+  $('#begin').addEventListener('click', () => { hide('intro'); show('map'); try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); } catch {} });
+
+  // Settings
+  const toggles = { tCine: 'cine', tSfx: 'sfx', tAuto: 'auto' };
+  Object.entries(toggles).forEach(([id, key]) => {
+    const b = document.getElementById(id); b.setAttribute('aria-checked', String(!!S[key]));
+    b.addEventListener('click', () => { S[key] = !S[key]; store.set(key, S[key]); b.setAttribute('aria-checked', String(S[key])); });
+  });
+  if (reduced) { const c = $('#tCine'); c.disabled = true; c.querySelector('small').textContent = 'Off because your device asks for reduced motion.'; c.setAttribute('aria-checked', 'false'); }
+  $('#openSettings').addEventListener('click', () => { $('#settings').hidden = false; });
+  $('#closeSettings').addEventListener('click', () => { $('#settings').hidden = true; });
+  $('#settings').addEventListener('click', (e) => { if (e.target.id === 'settings') $('#settings').hidden = true; });
+  $('#resetWalk').addEventListener('click', () => { visited.clear(); store.set('visited', []); renderSheet(); $('#settings').hidden = true; });
+
+  if (cinematic()) $('#intro').classList.add('intro-in');
+  if (ASSETS) $('.proto-tag').textContent = 'Prototype · draft content'; walk = WALKS.find((w) => w.id === store.get('walk', 'muizz')) || WALKS[0]; STOPS = walk.stops.map((x) => BY_ID[x]);
+  { const p = fit(); drawMap(); pan = p; setPan(false); } renderSheet(); applyIntroPhoto();
+})();
+</script>
+
+<script>if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));</script>
+</body>
+</html>
