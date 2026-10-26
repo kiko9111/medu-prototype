@@ -1,6 +1,6 @@
 // Offline support: the app shell, photos and map are cached on first visit.
-const CACHE = 'medu-2a00e5dcf9';
-const PRECACHE = ["./", "index.html", "manifest.webmanifest", "img/qalawun-0.jpg", "img/qalawun-1.jpg", "img/qalawun-2.jpg", "img/azhar-0.jpg", "img/azhar-1.jpg", "img/azhar-2.jpg", "img/zuweila-0.jpg", "img/zuweila-1.jpg", "img/zuweila-2.jpg", "img/zuweila-then.jpg", "img/hassan-0.jpg", "img/hassan-1.jpg", "img/map.jpg", "icons/apple-touch-icon.png", "icons/favicon.png", "icons/icon-192.png", "icons/icon-512.png", "icons/maskable-512.png"];
+const CACHE = 'medu-c81f7b510c';
+const PRECACHE = ["./", "index.html", "manifest.webmanifest", "img/qalawun-0.jpg", "img/qalawun-1.jpg", "img/qalawun-2.jpg", "img/azhar-0.jpg", "img/azhar-1.jpg", "img/azhar-2.jpg", "img/zuweila-0.jpg", "img/zuweila-1.jpg", "img/zuweila-2.jpg", "img/zuweila-then.jpg", "img/hassan-0.jpg", "img/hassan-1.jpg", "img/hassan-2.jpg", "img/ibntulun-0.jpg", "img/ibntulun-1.jpg", "img/ibntulun-2.jpg", "img/gayer-0.jpg", "img/gayer-1.jpg", "img/map.jpg", "icons/apple-touch-icon.png", "icons/favicon.png", "icons/icon-192.png", "icons/icon-512.png", "icons/maskable-512.png"];
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(PRECACHE)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', (e) => {
   e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim()));

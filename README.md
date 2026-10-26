@@ -33,5 +33,11 @@ Photos come from Wikimedia Commons under the licences below. Map: © OpenStreetM
 | zuweila | then | [photos/zuweila-then.jpg](https://commons.wikimedia.org/wiki/File:Louis_Haghe_-_Egypt_and_Nubia,_Volume_III-_Minarets,_and_Grand_Entrance_of_the_Metwaleys,_-_2012.194_-_Cleveland_Museum_of_Art.jpg) | Louis Haghe | CC0 |
 | hassan | 0 | [photos/hassan-0.jpg](https://commons.wikimedia.org/wiki/File:Sultan-Hassan-Moschee_2015-11-14g.jpg) | Djehouty | CC BY-SA 4.0 |
 | hassan | 1 | [photos/hassan-1.jpg](https://commons.wikimedia.org/wiki/File:Cairo2710.JPG) | Samir I. Sharbaty | CC BY-SA 3.0 |
+| hassan | 2 | [photos/hassan-2.jpg](https://commons.wikimedia.org/wiki/File:Moschea_del_sultano_hasan,_1362,_interno,_androne_02.JPG) | Sailko | CC BY 3.0 |
+| ibntulun | 0 | [photos/ibntulun-0.jpg](https://commons.wikimedia.org/wiki/File:%D9%85%D8%A3%D8%B0%D9%86%D8%A9_%D8%AC%D8%A7%D9%85%D8%B9_%D8%A7%D8%A8%D9%86_%D8%B7%D9%88%D9%84%D9%88%D9%86.jpg) | Donia Malak | CC BY-SA 4.0 |
+| ibntulun | 1 | [photos/ibntulun-1.jpg](https://commons.wikimedia.org/wiki/File:Mosque_of_Ibn_Tulun,_Cairo,_876-79_(34).jpg) | Richard Mortel | CC BY 2.0 |
+| ibntulun | 2 | [photos/ibntulun-2.jpg](https://commons.wikimedia.org/wiki/File:Panoramic_arcades_of_ibn_tolon.jpg) | AhmedMosaad | CC BY-SA 4.0 |
+| gayer | 0 | [photos/gayer-0.jpg](https://commons.wikimedia.org/wiki/File:Bayt_al-Kritiliyya_(Gayer-Anderson_Museum),_16th-17th_cents.,_Cairo_(2).jpg) | Richard Mortel | CC BY 2.0 |
+| gayer | 1 | [photos/gayer-1.jpg](https://commons.wikimedia.org/wiki/File:Anderson_House_Museum.jpg) | Ahmed Yousry Mahfouz | CC BY-SA 4.0 |
 
 Fonts: Cormorant Garamond and Inter (SIL Open Font License), served by Google Fonts.
