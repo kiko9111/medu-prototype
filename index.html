@@ -171,7 +171,8 @@ button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent
 
 /* ---------- Album ---------- */
 #album { z-index: 20; background: var(--bg); }
-.pager { flex: 1; overflow-x: hidden; overflow-y: auto; scrollbar-width: none; }
+/* Own stacking context, so the print pile never rises above the Map button, key plan or slide counter. */
+.pager { position: relative; z-index: 0; flex: 1; overflow-x: hidden; overflow-y: auto; scrollbar-width: none; }
 .pager::-webkit-scrollbar { display: none; }
 /* A pile of album prints: the top one follows your finger and is thrown aside to reveal the next. */
 .stack { touch-action: pan-y; user-select: none; -webkit-user-select: none; cursor: grab; }
@@ -462,7 +463,7 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
       <button class="toggle" role="switch" id="tAuto" aria-checked="false"><span>Auto-advance slides<small>Move to the next slide when narration ends.</small></span><span class="sw"></span></button>
       <button class="btn btn-ghost" id="resetWalk" style="margin-top:12px">Reset visited stops</button>
       <button class="btn btn-primary" id="closeSettings" style="margin-top:6px">Done</button>
-      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 26 Oct 13:45 UTC</p>
+      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 26 Oct 13:53 UTC</p>
     </div>
   </div>
 </div>
