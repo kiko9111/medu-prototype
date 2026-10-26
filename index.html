@@ -873,7 +873,7 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
   function citesHtml(s, sl) {
     const used = [...new Set(sl.cites.map((c) => c.s).filter(Boolean))];
     return `<p class="flag">Sourced draft: each claim below is cited. Not yet reviewed by a historian.</p>
-      <ol class="cites">${sl.cites.map((c) => `<li>${esc(c.c)} ${c.s ? `<a href="${esc(s.sources[c.s].u)}" target="_blank" rel="noopener">[${c.s}]</a>` : '<span class="flag">[check on site]</span>'}</li>`).join('')}</ol>
+      <ol class="cites">${sl.cites.map((c) => `<li>${esc(c.c)} ${c.s ? `<a href="${esc(s.sources[c.s].u)}" target="_blank" rel="noopener">[${c.s}]</a>` : '<span class="flag">[no source yet]</span>'}</li>`).join('')}</ol>
       <p class="srcs">${used.map((k) => `<b>[${k}]</b> ${esc(s.sources[k].t)}`).join('<br>')}</p>`;
   }
 
