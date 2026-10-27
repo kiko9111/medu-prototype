@@ -582,6 +582,166 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
   .pin .halo { animation: none; }
   * { scroll-behavior: auto !important; }
 }
+/* ---- Super app layer (super/super.css, inlined by build-prototype.py): tab bar, Today, Lens, Souk, Passport, demo sheets.
+   Everything is scoped to #app.sx, so ?edition=preview (no .sx) is the plain street-test edition. ---- */
+.sx-tabs, .sx-screen { display: none; }
+#app.sx { --sx-tab: calc(58px + env(safe-area-inset-bottom, 0px)); }
+#app.sx .sx-screen { display: flex; z-index: 9; background: var(--bg); }
+#app.sx .sx-tabs { display: grid; grid-template-columns: repeat(5, 1fr); position: absolute; z-index: 30; left: 0; right: 0; bottom: 0; height: var(--sx-tab); padding: 4px 4px env(safe-area-inset-bottom, 0px);
+  background: rgba(10,10,12,.86); backdrop-filter: blur(22px) saturate(1.3); -webkit-backdrop-filter: blur(22px) saturate(1.3); border-top: 1px solid var(--line); transition: transform 500ms cubic-bezier(.22,1,.36,1); }
+#app.sx:has(#intro:not(.off)) .sx-tabs, #app.sx:has(#album:not(.off)) .sx-tabs, #app.sx:has(#dial:not(.off)) .sx-tabs, #app.sx:has(#complete:not(.off)) .sx-tabs { transform: translateY(110%); pointer-events: none; }
+.sx-tabs button { display: grid; justify-items: center; align-content: center; gap: 3px; font-size: 10.5px; letter-spacing: .02em; color: var(--muted); transition: color 200ms; }
+.sx-tabs button[aria-current="page"] { color: var(--text); }
+.sx-tabs svg, .sx-quick svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.sx-lensbtn i { display: grid; place-items: center; width: 40px; height: 30px; border-radius: 99px; background: rgba(239,231,216,.1); margin-top: -2px; }
+.sx-lensbtn[aria-current="page"] i { background: var(--text); color: var(--ink); }
+#app.sx .sheet { bottom: var(--sx-tab); padding-bottom: 12px; max-height: calc(78% - var(--sx-tab)); }
+#app.sx .map-note { bottom: calc(214px + var(--sx-tab)); }
+#app.sx #intro .edition::after { content: " · super app prototype"; }
+
+.sx-scroll { flex: 1; overflow-y: auto; overscroll-behavior: contain; padding-top: calc(env(safe-area-inset-top, 0px) + 40px); padding-bottom: calc(var(--sx-tab) + 28px); -webkit-overflow-scrolling: touch; }
+.sx-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; margin-bottom: 18px; }
+.sx-head h1 { margin: 2px 0 0; font-family: var(--display); font-size: 32px; font-weight: 500; line-height: 1.05; }
+.sx-kicker { margin: 0; font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+.sx-h { margin: 0; font-family: var(--display); font-size: 21px; font-weight: 500; }
+.sx-sec { margin: 26px 0 10px; }
+.sx-row-h { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.sx-row-h.sx-sec .sx-h { margin: 0; }
+.sx-link { color: var(--gold); font-size: 13px; }
+.sx-pill { min-width: 44px; height: 34px; padding: 0 12px; border-radius: 99px; background: rgba(239,231,216,.08); font-size: 12px; letter-spacing: .08em; }
+.sx-fine { margin: 14px 0 0; font-size: 11.5px; line-height: 1.5; color: var(--muted); }
+.sx-card { border-radius: 18px; background: var(--surface); border: 1px solid rgba(239,231,216,.08); padding: 14px 16px; }
+.sx-demo { display: inline-block; font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--warn); border: 1px solid rgba(251,191,36,.4); border-radius: 99px; padding: 2px 7px; vertical-align: 2px; }
+
+/* Today */
+.sx-hero { position: relative; display: block; width: 100%; height: 300px; border-radius: 22px; overflow: hidden; text-align: left; background: var(--raised); }
+.sx-hero-img { position: absolute; inset: 0; background: center 35% / cover no-repeat; transform: scale(1.03); }
+#app.depth .sx-hero-img { animation: introDrift 30s ease-in-out infinite alternate; }
+.sx-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 30%, rgba(0,0,0,.85)); }
+.sx-hero-txt { position: absolute; z-index: 1; left: 18px; right: 18px; bottom: 18px; display: grid; gap: 4px; }
+.sx-hero-txt b { font-family: var(--display); font-size: 28px; font-weight: 500; line-height: 1.08; text-wrap: balance; }
+.sx-hero-txt small { color: rgba(239,231,216,.75); font-size: 12.5px; }
+.sx-cta { justify-self: start; display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; height: 40px; padding: 0 18px; border-radius: 99px; background: var(--text); color: var(--ink); font-weight: 500; font-size: 14px; }
+.sx-live { margin-top: 14px; }
+.sx-dot { font-size: 10.5px; color: var(--muted); letter-spacing: .08em; }
+.sx-dot::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #4ade80; margin-right: 6px; vertical-align: 1px; }
+.sx-dot.off::before { background: #64748b; }
+.sx-live-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 12px; margin-top: 12px; }
+.sx-live-grid small { display: block; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.sx-live-grid b { display: block; font-family: var(--display); font-size: 24px; font-weight: 500; margin-top: 2px; font-variant-numeric: lining-nums; }
+.sx-live-grid span { display: block; font-size: 11.5px; color: var(--muted); line-height: 1.35; }
+.sx-alert:empty { display: none; }
+.sx-alert { margin-top: 14px; padding: 10px 12px; border-radius: 12px; font-size: 12.5px; line-height: 1.45; background: rgba(251,191,36,.08); border: 1px solid rgba(251,191,36,.25); color: #f3dca5; }
+.sx-quick { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 14px; }
+.sx-quick button { display: grid; justify-items: center; gap: 6px; padding: 12px 0 10px; border-radius: 16px; background: var(--surface); border: 1px solid rgba(239,231,216,.08); font-size: 11.5px; }
+.sx-quick i { color: var(--gold); }
+.sx-rail { display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -18px; padding: 0 18px 4px; scrollbar-width: none; }
+.sx-rail::-webkit-scrollbar { display: none; }
+.sx-ep { flex: 0 0 62%; scroll-snap-align: start; text-align: left; border-radius: 16px; overflow: hidden; background: var(--surface); border: 1px solid rgba(239,231,216,.08); }
+.sx-ep i { display: block; height: 120px; background: center / cover no-repeat; }
+.sx-ep span { display: block; padding: 10px 12px 12px; }
+.sx-ep b { display: block; font-weight: 500; font-size: 14px; }
+.sx-ep small { display: block; color: var(--muted); font-size: 11.5px; margin-top: 3px; }
+.sx-ep.soon i { filter: grayscale(.7) brightness(.7); }
+
+/* Lists (souk, pins, wallet) */
+.sx-item { display: grid; grid-template-columns: 64px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(239,231,216,.08); }
+.sx-item > i { width: 64px; height: 64px; border-radius: 14px; background: center / cover no-repeat var(--raised); }
+.sx-item b { display: block; font-weight: 500; font-size: 15px; }
+.sx-item small { display: block; color: var(--muted); font-size: 12px; line-height: 1.45; margin-top: 2px; }
+.sx-acts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.sx-acts button { height: 32px; padding: 0 12px; border-radius: 99px; border: 1px solid var(--line); font-size: 12.5px; }
+.sx-acts button.p { background: var(--text); color: var(--ink); border-color: transparent; }
+.sx-seg { display: inline-flex; padding: 3px; border-radius: 99px; background: rgba(20,20,22,.8); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid var(--line); }
+.sx-seg button { height: 32px; padding: 0 14px; border-radius: 99px; font-size: 12.5px; color: var(--muted); }
+.sx-seg button[aria-selected="true"] { background: var(--text); color: var(--ink); }
+.sx-seg-wide { display: flex; margin-bottom: 6px; } .sx-seg-wide button { flex: 1; }
+
+/* Lens */
+#sxLens { background: #000; }
+.sx-cam { position: absolute; inset: 0; overflow: hidden; touch-action: none; }
+.sx-cam video, .sx-cam-still { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: center / cover no-repeat; }
+.sx-cam video:not(.on) { display: none; }
+.sx-ghost { position: absolute; left: 50%; top: 42%; width: 112%; max-width: none; transform: translate(calc(-50% + var(--gx, 0px)), calc(-50% + var(--gy, 0px))) scale(var(--gs, 1)); opacity: .6; mix-blend-mode: normal; filter: sepia(.35) contrast(1.05); pointer-events: auto; cursor: grab; user-select: none; -webkit-user-select: none; }
+.sx-ghost[hidden] { display: none; }
+.sx-lens-top { position: absolute; z-index: 2; top: 0; left: 0; right: 0; padding-top: calc(env(safe-area-inset-top, 0px) + 34px); padding-bottom: 30px; background: linear-gradient(rgba(0,0,0,.7), transparent); text-align: center; }
+.sx-cam-note { margin: 8px 0 0; font-size: 11px; color: rgba(239,231,216,.7); letter-spacing: .04em; }
+.sx-lens-bot { position: absolute; z-index: 2; left: 0; right: 0; bottom: var(--sx-tab); padding-top: 40px; padding-bottom: 14px; background: linear-gradient(transparent, rgba(0,0,0,.88) 34%); }
+.sx-prints { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin-bottom: 10px; }
+.sx-prints button { flex: none; height: 30px; padding: 0 12px; border-radius: 99px; border: 1px solid var(--line); font-size: 12px; background: rgba(0,0,0,.4); }
+.sx-prints button[aria-pressed="true"] { background: var(--text); color: var(--ink); }
+.sx-fade { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.sx-fade input { width: 100%; accent-color: var(--gold); }
+.sx-lens-act { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+.sx-lens-act .btn { min-height: 44px; font-size: 13.5px; }
+.sx-reticle { position: absolute; left: 12%; right: 12%; top: 30%; height: 22%; }
+.sx-reticle i { position: absolute; width: 22px; height: 22px; border: 2px solid var(--text); }
+.sx-reticle i:nth-child(1) { left: 0; top: 0; border-right: 0; border-bottom: 0; } .sx-reticle i:nth-child(2) { right: 0; top: 0; border-left: 0; border-bottom: 0; }
+.sx-reticle i:nth-child(3) { left: 0; bottom: 0; border-right: 0; border-top: 0; } .sx-reticle i:nth-child(4) { right: 0; bottom: 0; border-left: 0; border-top: 0; }
+.sx-scanline { position: absolute; left: 4%; right: 4%; height: 2px; top: 50%; background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0; }
+.sx-reticle.scan .sx-scanline { opacity: 1; animation: sxScan 900ms ease-in-out infinite alternate; }
+@keyframes sxScan { from { top: 6%; } to { top: 94%; } }
+@media (prefers-reduced-motion: reduce) { .sx-reticle.scan .sx-scanline { animation: none; } }
+
+/* Passport */
+.sx-book { border-radius: 20px; padding: 18px; background: linear-gradient(135deg, #2a1d10, #14100b 60%), #14100b; border: 1px solid rgba(205,176,122,.3); box-shadow: inset 0 0 0 6px rgba(205,176,122,.06); }
+.sx-book .k { font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); }
+.sx-book h3 { margin: 6px 0 2px; font-family: var(--display); font-size: 26px; font-weight: 500; }
+.sx-book p { margin: 0; color: var(--muted); font-size: 12px; }
+.sx-sectors { display: grid; gap: 10px; margin-top: 14px; }
+.sx-sectors div { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; font-size: 13px; }
+.sx-sectors em { grid-column: 1 / -1; height: 4px; border-radius: 4px; background: rgba(239,231,216,.1); overflow: hidden; }
+.sx-sectors em::before { content: ""; display: block; height: 100%; width: var(--p, 0%); background: var(--gold); border-radius: 4px; transition: width 900ms cubic-bezier(.22,1,.36,1); }
+.sx-sectors span { color: var(--muted); font-variant-numeric: tabular-nums; }
+.sx-stamps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.sx-stamp { aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; text-align: center; padding: 10px; font-size: 10.5px; line-height: 1.25; color: var(--muted); border: 1.5px dashed rgba(239,231,216,.18); }
+.sx-stamp.on { color: var(--gold); border: 2px solid var(--gold); transform: rotate(-6deg); background: radial-gradient(circle, rgba(205,176,122,.12), transparent 70%); font-family: var(--display); font-size: 13px; font-weight: 600; }
+.sx-stamp.on small { display: block; font-family: var(--ui); font-size: 9px; letter-spacing: .14em; font-weight: 400; margin-top: 3px; }
+.sx-stamp:not(.on) small { display: none; }
+.sx-badges { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.sx-badge { display: grid; grid-template-columns: 34px 1fr; gap: 10px; align-items: center; padding: 10px; border-radius: 14px; background: var(--surface); border: 1px solid rgba(239,231,216,.08); opacity: .45; }
+.sx-badge.on { opacity: 1; }
+.sx-badge i { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 16px; background: rgba(205,176,122,.14); color: var(--gold); }
+.sx-badge b { display: block; font-size: 12.5px; font-weight: 500; } .sx-badge small { display: block; font-size: 10.5px; color: var(--muted); }
+.sx-labs { display: grid; gap: 8px; }
+.sx-labs button { text-align: left; padding: 12px 14px; border-radius: 14px; background: var(--surface); border: 1px solid rgba(239,231,216,.08); }
+.sx-labs b { display: block; font-weight: 500; } .sx-labs small { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; line-height: 1.4; }
+.sx-ticket { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; width: 100%; text-align: left; padding: 14px 16px; border-radius: 16px; background: linear-gradient(120deg, #1c1813, #121214); border: 1px solid rgba(205,176,122,.25); margin-bottom: 8px; }
+.sx-ticket b { display: block; font-weight: 500; } .sx-ticket small { display: block; color: var(--muted); font-size: 12px; }
+.sx-empty { color: var(--muted); font-size: 13px; padding: 10px 0; }
+
+/* Sheets */
+.sx-sheet { max-height: 90%; overflow-y: auto; }
+.sx-sheet .sx-fine { margin-top: 8px; }
+.sx-opts { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px; }
+.sx-opts button { height: 36px; padding: 0 14px; border-radius: 99px; border: 1px solid var(--line); font-size: 13px; }
+.sx-opts button[aria-pressed="true"] { background: var(--text); color: var(--ink); border-color: transparent; }
+.sx-lbl { font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: 10px; }
+.sx-field { width: 100%; min-height: 46px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg); color: var(--text); padding: 10px 12px; font: inherit; }
+.sx-sum { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 10px 0; }
+.sx-sum div { padding: 10px; border-radius: 12px; background: var(--bg); text-align: center; }
+.sx-sum b { display: block; font-family: var(--display); font-size: 22px; font-weight: 500; } .sx-sum small { font-size: 10.5px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+.sx-shade { display: flex; height: 10px; border-radius: 6px; overflow: hidden; margin: 6px 0 2px; }
+.sx-shade i { display: block; height: 100%; } .sx-shade .s { background: #3d6b5c; } .sx-shade .u { background: #d9a441; }
+.sx-steps { margin: 6px 0 0; padding-left: 18px; font-size: 13px; line-height: 1.6; color: #d6d0c4; }
+.sx-qr { display: block; width: 220px; height: 220px; margin: 8px auto; border-radius: 14px; background: #fff; padding: 12px; }
+.sx-big { text-align: center; } .sx-big .sx-h { font-size: 26px; }
+.sx-meter { display: grid; gap: 6px; margin: 8px 0; }
+.sx-meter div { display: grid; grid-template-columns: 1fr 120px 44px; gap: 10px; align-items: center; font-size: 13px; }
+.sx-meter em { height: 6px; border-radius: 4px; background: rgba(239,231,216,.1); overflow: hidden; }
+.sx-meter em::before { content: ""; display: block; height: 100%; width: var(--p); background: var(--muted); transition: width 600ms; }
+.sx-meter .near em::before { background: var(--gold); } .sx-meter .near { color: var(--gold); }
+.sx-meter span { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); font-size: 11.5px; }
+.sx-compass { width: 150px; height: 150px; margin: 6px auto; border-radius: 50%; border: 1px solid var(--line); position: relative; }
+.sx-compass i { position: absolute; left: 50%; top: 50%; width: 16px; height: 16px; margin: -8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 18px var(--gold); transform: rotate(var(--r, 0deg)) translateY(-58px); }
+.sx-compass b { position: absolute; inset: 0; display: grid; place-items: center; font-weight: 400; font-size: 12px; color: var(--muted); }
+.sx-toast { position: absolute; z-index: 80; left: 50%; bottom: calc(var(--sx-tab, 0px) + 16px); transform: translate(-50%, 20px); opacity: 0; pointer-events: none; padding: 10px 16px; border-radius: 99px; background: rgba(239,231,216,.95); color: var(--ink); font-size: 13px; white-space: nowrap; max-width: 92%; overflow: hidden; text-overflow: ellipsis; transition: opacity 250ms, transform 350ms cubic-bezier(.22,1,.36,1); }
+.sx-toast.on { opacity: 1; transform: translate(-50%, 0); }
+[dir="rtl"] .sx-hero-txt, [dir="rtl"] .sx-labs button, [dir="rtl"] .sx-ep, [dir="rtl"] .sx-ticket { text-align: right; }
+[dir="rtl"] .sx-cta { justify-self: end; }
+.sx-route { fill: none; stroke: var(--gold); stroke-width: 3; stroke-dasharray: 1 7; stroke-linecap: round; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 4px rgba(205,176,122,.6)); }
+.sx-hero-txt { text-shadow: 0 1px 12px rgba(0,0,0,.6); } .sx-hero-txt .sx-kicker { color: rgba(239,231,216,.85); } .sx-cta { text-shadow: none; }
+
 </style>
 
 <aside class="showcase" aria-label="About this prototype">
@@ -778,9 +938,131 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
         <div class="souv-row"><button class="btn btn-ghost" id="tlogShare">Share log</button><button class="btn btn-ghost" id="tlogClear">Clear log</button></div></div>
       <button class="btn btn-ghost" id="resetWalk" style="margin-top:12px">Reset visited stops</button>
       <button class="btn btn-primary" id="closeSettings" style="margin-top:6px">Done</button>
-      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 27 Oct 13:27 UTC</p>
+      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 27 Oct 13:56 UTC</p>
     </div>
   </div>
+  <!-- ===== Super app layer (super/super.html, inlined by build-prototype.py). Hidden with ?edition=preview. ===== -->
+  <section id="sxToday" class="screen sx-screen off" aria-label="Today">
+    <div class="sx-scroll gutter">
+      <header class="sx-head">
+        <div><p class="sx-kicker" id="sxDate"></p><h1 id="sxHello" data-t="afternoon">Good afternoon</h1></div>
+        <button class="sx-pill" id="sxLangBtn" aria-label="Language">EN</button>
+      </header>
+
+      <button class="sx-hero" id="sxHero">
+        <span class="sx-hero-img" id="sxHeroImg"></span>
+        <span class="sx-hero-txt">
+          <span class="sx-kicker" data-t="nowPlaying">Episode 1 · Now playing</span>
+          <b>The Sultan Who Built a Mountain</b>
+          <small>Sultan Hassan · spatial audio play · about 25 min</small>
+          <span class="sx-cta"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span data-t="start">Start the play</span></span>
+        </span>
+      </button>
+
+      <div class="sx-card sx-live">
+        <div class="sx-row-h"><h2 class="sx-h" data-t="live">Live in Cairo</h2><span class="sx-dot" id="sxLiveDot">updating</span></div>
+        <div class="sx-live-grid">
+          <div><small>Heat index</small><b id="sxHeat">—</b><span id="sxHeatNote">Weather loading</span></div>
+          <div><small>Next prayer</small><b id="sxPrayer">—</b><span id="sxPrayerNote">Calculated for Sultan Hassan</span></div>
+          <div><small>Golden light</small><b id="sxGolden">—</b><span>Best for the façade photo</span></div>
+          <div><small>Sultan Hassan</small><b>Hours: check</b><span>Opening hours and fees [VERIFY]</span></div>
+        </div>
+        <div class="sx-alert" id="sxAlert"></div>
+      </div>
+
+      <div class="sx-quick">
+        <button data-act="route"><i><svg viewBox="0 0 24 24"><path d="M6 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM18 9a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM6 15V9a3 3 0 0 1 3-3h3M18 9v6a3 3 0 0 1-3 3h-3"/></svg></i><span data-t="route">Route</span></button>
+        <button data-act="tickets"><i><svg viewBox="0 0 24 24"><path d="M4 7h16v3a2 2 0 0 0 0 4v3H4v-3a2 2 0 0 0 0-4z M14 7v10"/></svg></i><span data-t="tickets">Tickets</span></button>
+        <button data-act="lens"><i><svg viewBox="0 0 24 24"><path d="M4 8h3l2-2h6l2 2h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></i><span data-t="lens">Lens</span></button>
+        <button data-act="souk"><i><svg viewBox="0 0 24 24"><path d="M4 10h16l-1-4H5z M5 10v9h14v-9 M10 19v-5h4v5"/></svg></i><span data-t="artisans">Artisans</span></button>
+      </div>
+
+      <h2 class="sx-h sx-sec" data-t="episodes">Episodes</h2>
+      <div class="sx-rail" id="sxEpisodes"></div>
+
+      <h2 class="sx-h sx-sec" data-t="inter">Intermission</h2>
+      <div id="sxBreakTeaser"></div>
+
+      <div class="sx-row-h sx-sec"><h2 class="sx-h" data-t="memories">Memories left here</h2><button class="sx-link" data-act="pins">All</button></div>
+      <div id="sxPinTeaser"></div>
+      <p class="sx-fine" data-t="audioNote">Episode 1 is recorded in English. Other dubs are in production.</p>
+      <p class="sx-fine">Super app prototype. Live weather from Open-Meteo; prayer times calculated on the phone. Ticketing, payments, beacons, artisans and guides are demos, marked as such. Nothing here is verified [VERIFY].</p>
+    </div>
+  </section>
+
+  <section id="sxLens" class="screen sx-screen off" aria-label="Lens">
+    <div class="sx-cam" id="sxCam">
+      <video id="sxVideo" playsinline muted></video>
+      <div class="sx-cam-still" id="sxStill"></div>
+      <img class="sx-ghost" id="sxGhost" alt="" draggable="false">
+      <div class="sx-reticle" id="sxReticle" hidden><i></i><i></i><i></i><i></i><span class="sx-scanline"></span></div>
+    </div>
+    <div class="sx-lens-top gutter">
+      <div class="sx-seg" role="tablist" id="sxLensMode">
+        <button role="tab" aria-selected="true" data-m="then" data-t="thenNow">Then &amp; Now</button>
+        <button role="tab" aria-selected="false" data-m="script" data-t="script">Inscriptions</button>
+      </div>
+      <p class="sx-cam-note" id="sxCamNote">Camera off · showing a photo of the site</p>
+    </div>
+    <div class="sx-lens-bot gutter" id="sxLensThen">
+      <div class="sx-prints" id="sxPrints"></div>
+      <label class="sx-fade"><span id="sxYearA">1860</span><input type="range" id="sxMix" min="0" max="100" value="60" aria-label="Blend the archive print over today"><span>Today</span></label>
+      <div class="sx-lens-act"><button class="btn btn-ghost" id="sxCamBtn" data-t="camera">Start camera</button><button class="btn btn-ghost" id="sxAlign">Reset alignment</button></div>
+      <p class="sx-fine">Drag the print to line it up with the building. Live 3D reconstructions (missing minarets, original colour) come in Phase 2; today Medu overlays dated archive prints.</p>
+    </div>
+    <div class="sx-lens-bot gutter" id="sxLensScript" hidden>
+      <p class="sx-fine" style="margin-top:0">Point at an inscription and tap Read. Medu only reads inscriptions in its curated, scholar-checked layer: no guessing by machine.</p>
+      <div class="sx-lens-act"><button class="btn btn-primary" id="sxRead">Read inscription</button><button class="btn btn-ghost" id="sxCamBtn2" data-t="camera">Start camera</button></div>
+    </div>
+  </section>
+
+  <section id="sxSouk" class="screen sx-screen off" aria-label="Souk">
+    <div class="sx-scroll gutter">
+      <header class="sx-head"><div><p class="sx-kicker">Craft, guides, coffee</p><h1 data-t="souk">The Souk</h1></div></header>
+      <div class="sx-seg sx-seg-wide" role="tablist" id="sxSoukSeg">
+        <button role="tab" aria-selected="true" data-s="artisans" data-t="artisans">Artisans</button>
+        <button role="tab" aria-selected="false" data-s="guides" data-t="guides">Guides</button>
+        <button role="tab" aria-selected="false" data-s="breaks" data-t="breaks">Breaks</button>
+      </div>
+      <div id="sxSoukList"></div>
+      <p class="sx-fine">Demo listings: no real artisans, guides or businesses are named, and no money moves. In the product, tips go straight to the maker and every listing is verified on site.</p>
+    </div>
+  </section>
+
+  <section id="sxPass" class="screen sx-screen off" aria-label="Passport">
+    <div class="sx-scroll gutter">
+      <header class="sx-head"><div><p class="sx-kicker">Your record of Cairo</p><h1 data-t="passport">Heritage Passport</h1></div>
+        <button class="icon-btn" id="sxSettings" aria-label="Settings"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg></button></header>
+      <div class="sx-book" id="sxBook"></div>
+      <div class="sx-row-h sx-sec"><h2 class="sx-h" data-t="stamps">Stamps</h2><button class="sx-link" id="sxCheckin" data-t="checkin">Check in here</button></div>
+      <div class="sx-stamps" id="sxStamps"></div>
+      <h2 class="sx-h sx-sec" data-t="badges">Badges</h2>
+      <div class="sx-badges" id="sxBadges"></div>
+      <div class="sx-row-h sx-sec"><h2 class="sx-h" data-t="wallet">Ticket wallet</h2><button class="sx-link" data-act="tickets">+ <span data-t="tickets">Tickets</span></button></div>
+      <div id="sxWallet"></div>
+      <div class="sx-row-h sx-sec"><h2 class="sx-h" data-t="memories">Memories left here</h2><button class="sx-link" data-act="record" data-t="record">Leave a memory</button></div>
+      <div id="sxPins"></div>
+      <h2 class="sx-h sx-sec" data-t="labs">Labs</h2>
+      <div class="sx-labs">
+        <button data-act="head"><b>Head-tracked sound</b><small>Voices stay put in the room when you turn. Uses the phone's compass; AirPods head tracking in the native app.</small></button>
+        <button data-act="beacons"><b>Indoor beacons</b><small>How scenes trigger inside the mosque where GPS fails (simulated).</small></button>
+        <button data-act="pace"><b>Adaptive pacing</b><small>The play slows, waits or fills with ambience to match your walk and the crowd.</small></button>
+        <button data-act="lang"><b data-t="language">Language</b><small>English, العربية, Français, Deutsch, Español, 日本語</small></button>
+      </div>
+    </div>
+  </section>
+
+  <nav class="sx-tabs" id="sxTabs" aria-label="Sections">
+    <button data-tab="today" aria-current="page"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2"/></svg><span data-t="tToday">Today</span></button>
+    <button data-tab="map"><svg viewBox="0 0 24 24"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2zM9 4v14M15 6v14"/></svg><span data-t="tMap">Map</span></button>
+    <button data-tab="lens" class="sx-lensbtn"><i><svg viewBox="0 0 24 24"><path d="M4 8h3l2-2h6l2 2h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></i><span data-t="tLens">Lens</span></button>
+    <button data-tab="souk"><svg viewBox="0 0 24 24"><path d="M4 10h16l-1-4H5z M5 10v9h14v-9 M10 19v-5h4v5"/></svg><span data-t="tSouk">Souk</span></button>
+    <button data-tab="pass"><svg viewBox="0 0 24 24"><path d="M6 3h11a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6zM6 3v18M10 8h5M10 11h5"/></svg><span data-t="tPass">Passport</span></button>
+  </nav>
+
+  <div class="modal" id="sxSheet" hidden><div class="modal-card gutter sx-sheet" role="dialog" id="sxSheetCard"></div></div>
+  <div class="sx-toast" id="sxToast" role="status" aria-live="polite"></div>
+
 </div>
 
 <script>
@@ -2160,6 +2442,569 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
   if (ASSETS) $('.proto-tag').textContent = 'Preview edition · draft content'; walk = WALKS[0]; STOPS = walk.stops.map((x) => BY_ID[x]);
   track('open');
   { const p = fit(); drawMap(); pan = p; setPan(false); } renderSheet(); applyIntroPhoto();
+  // ---- Super app layer (super/super.js, inlined by build-prototype.py inside the app's closure). PRD v7's five modules around
+  // the map and the Sultan Hassan play: Today (C The Journey: live status, routing, tickets), Map, Lens (B: Then & Now over the
+  // camera, curated inscriptions), Souk (D: artisans, guides, breaks) and Passport (E The Record: stamps, badges, wallet, memory
+  // pins) plus Labs for Module A (head tracking, beacons, adaptive pacing). What a browser cannot really do (beacons, payments,
+  // ticketing) is a demo and says so on screen; no prices, fees or unlock logic live here. ?edition=preview skips this layer. ----
+  (() => {
+    if (/[?&]edition=preview\b/.test(location.search)) return;
+    app.classList.add('sx');
+    const sx = (k, d) => store.get('sx.' + k, d), sxSet = (k, v) => store.set('sx.' + k, v);
+    const HS = BY_ID.hassan, CAIRO_TZ = 'Africa/Cairo';
+    const phSrc = (id, k) => { const p = photo(id, k); return p ? `url('${p.src}')` : phBg(BY_ID[id] ? BY_ID[id].era : 'mamluk', 0); };
+    const badge = (id) => { const b = new Set(sx('badges', [])); if (b.has(id)) return; b.add(id); sxSet('badges', [...b]); toast('Badge earned · ' + (BADGES.find((x) => x.id === id) || {}).t); };
+    const logHas = (ev) => store.get('log', []).some((e) => e[2] === ev);
+
+    // ---- Languages (F11): the shell is translated; Episode 1 audio is English for now. Drafts, to be checked by native speakers. ----
+    const LANGS = { en: 'English', ar: 'العربية', fr: 'Français', de: 'Deutsch', es: 'Español', ja: '日本語' };
+    const K = ['tToday', 'tMap', 'tLens', 'tSouk', 'tPass', 'morning', 'afternoon', 'evening', 'nowPlaying', 'start', 'live', 'route', 'tickets', 'artisans', 'lens', 'episodes', 'inter', 'memories',
+      'thenNow', 'script', 'camera', 'souk', 'guides', 'breaks', 'passport', 'stamps', 'badges', 'wallet', 'labs', 'language', 'record', 'audioNote', 'checkin'];
+    const T = {
+      en: ['Today', 'Map', 'Lens', 'Souk', 'Passport', 'Good morning', 'Good afternoon', 'Good evening', 'Episode 1 · Now playing', 'Start the play', 'Live in Cairo', 'Route', 'Tickets', 'Artisans', 'Lens', 'Episodes', 'Intermission', 'Memories left here',
+        'Then & Now', 'Inscriptions', 'Start camera', 'The Souk', 'Guides', 'Breaks', 'Heritage Passport', 'Stamps', 'Badges', 'Ticket wallet', 'Labs', 'Language', 'Leave a memory', 'Episode 1 is recorded in English. Other dubs are in production.', 'Check in here'],
+      ar: ['اليوم', 'الخريطة', 'العدسة', 'السوق', 'الجواز', 'صباح الخير', 'طاب يومك', 'مساء الخير', 'الحلقة ١ · تُعرض الآن', 'ابدأ العرض', 'القاهرة الآن', 'المسار', 'التذاكر', 'الحِرفيون', 'العدسة', 'الحلقات', 'استراحة', 'ذكريات تُركت هنا',
+        'زمان والآن', 'النقوش', 'شغّل الكاميرا', 'السوق', 'المرشدون', 'استراحات', 'جواز التراث', 'الأختام', 'الأوسمة', 'محفظة التذاكر', 'تجارب', 'اللغة', 'اترك ذكرى', 'الحلقة الأولى مسجّلة بالإنجليزية، والدبلجة إلى لغات أخرى قيد الإنتاج.', 'سجّل حضورك هنا'],
+      fr: ["Aujourd'hui", 'Carte', 'Objectif', 'Souk', 'Passeport', 'Bonjour', 'Bon après-midi', 'Bonsoir', "Épisode 1 · À l'affiche", 'Lancer la pièce', 'En direct du Caire', 'Itinéraire', 'Billets', 'Artisans', 'Objectif', 'Épisodes', 'Entracte', 'Souvenirs laissés ici',
+        "Hier et aujourd'hui", 'Inscriptions', 'Activer la caméra', 'Le souk', 'Guides', 'Pauses', 'Passeport du patrimoine', 'Tampons', 'Insignes', 'Portefeuille de billets', 'Labo', 'Langue', 'Laisser un souvenir', "L'épisode 1 est enregistré en anglais. Les autres versions sont en production.", 'Valider ma présence'],
+      de: ['Heute', 'Karte', 'Linse', 'Souk', 'Pass', 'Guten Morgen', 'Guten Tag', 'Guten Abend', 'Folge 1 · Jetzt läuft', 'Hörspiel starten', 'Live aus Kairo', 'Route', 'Tickets', 'Kunsthandwerk', 'Linse', 'Folgen', 'Pause', 'Erinnerungen an diesem Ort',
+        'Damals & heute', 'Inschriften', 'Kamera starten', 'Der Souk', 'Guides', 'Pausen', 'Kulturerbe-Pass', 'Stempel', 'Abzeichen', 'Ticket-Wallet', 'Labor', 'Sprache', 'Erinnerung hinterlassen', 'Folge 1 ist auf Englisch aufgenommen. Weitere Sprachfassungen sind in Arbeit.', 'Hier einchecken'],
+      es: ['Hoy', 'Mapa', 'Lente', 'Zoco', 'Pasaporte', 'Buenos días', 'Buenas tardes', 'Buenas noches', 'Episodio 1 · En cartel', 'Empezar la obra', 'El Cairo en directo', 'Ruta', 'Entradas', 'Artesanos', 'Lente', 'Episodios', 'Intermedio', 'Recuerdos dejados aquí',
+        'Antes y ahora', 'Inscripciones', 'Activar la cámara', 'El zoco', 'Guías', 'Pausas', 'Pasaporte del patrimonio', 'Sellos', 'Insignias', 'Cartera de entradas', 'Laboratorio', 'Idioma', 'Deja un recuerdo', 'El episodio 1 está grabado en inglés. Los doblajes están en producción.', 'Registrar visita'],
+      ja: ['今日', '地図', 'レンズ', 'スーク', 'パスポート', 'おはようございます', 'こんにちは', 'こんばんは', '第1話 · 上演中', '物語を始める', 'カイロの今', 'ルート', 'チケット', '職人', 'レンズ', 'エピソード', '幕間', 'ここに残された思い出',
+        '昔と今', '碑文', 'カメラを起動', 'スーク', 'ガイド', '休憩', '遺産パスポート', 'スタンプ', 'バッジ', 'チケットウォレット', 'ラボ', '言語', '思い出を残す', '第1話は英語で収録されています。他言語版は制作中です。', 'ここでチェックイン'],
+    };
+    let lang = sx('lang', 'en');
+    const t = (k) => (T[lang] || T.en)[K.indexOf(k)] || T.en[K.indexOf(k)] || k;
+    const cairoHour = () => { try { return +new Intl.DateTimeFormat('en-GB', { hour: 'numeric', hourCycle: 'h23', timeZone: CAIRO_TZ }).format(new Date()); } catch { return new Date().getHours(); } };
+    function applyLang() {
+      document.querySelectorAll('#app [data-t]').forEach((n) => { n.textContent = t(n.dataset.t); });
+      const h = cairoHour(); $('#sxHello').textContent = t(h < 12 ? 'morning' : h < 18 ? 'afternoon' : 'evening');
+      const rtl = lang === 'ar';
+      document.querySelectorAll('.sx-screen, #sxTabs, #sxSheetCard').forEach((n) => n.setAttribute('dir', rtl ? 'rtl' : 'ltr'));
+      $('#sxLangBtn').textContent = lang.toUpperCase();
+      try { $('#sxDate').textContent = new Intl.DateTimeFormat(lang === 'ar' ? 'ar-EG' : lang, { weekday: 'long', day: 'numeric', month: 'long', timeZone: CAIRO_TZ }).format(new Date()); } catch {}
+    }
+
+    // ---- Tabs ----
+    const SCREENS = { today: 'sxToday', lens: 'sxLens', souk: 'sxSouk', pass: 'sxPass' };
+    let tab = 'today';
+    function goTab(n) {
+      tab = n;
+      Object.entries(SCREENS).forEach(([k, id]) => document.getElementById(id).classList.toggle('off', k !== n));
+      document.querySelectorAll('#sxTabs button').forEach((b) => (b.dataset.tab === n ? b.setAttribute('aria-current', 'page') : b.removeAttribute('aria-current')));
+      if (n !== 'lens') camStop();
+      if (n === 'today') renderToday();
+      if (n === 'lens') lensEnter();
+      if (n === 'souk') renderSouk();
+      if (n === 'pass') renderPass();
+    }
+    $('#sxTabs').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) { buzz(); goTab(b.dataset.tab); } });
+    $('#begin').addEventListener('click', () => goTab('today'));
+    function startPlay() {
+      if (walk.id !== 'cairo') selectWalk('cairo');
+      goTab('map');
+      const i = STOPS.findIndex((s) => s.id === 'hassan');
+      setTimeout(() => openStop(i), 300);
+    }
+
+    // ---- Sheets and toasts ----
+    const sheet = $('#sxSheet'), card = $('#sxSheetCard');
+    let onClose = null;
+    function openSheet(html, bind) {
+      if (onClose) { const f = onClose; onClose = null; f(); }
+      card.innerHTML = html; card.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr'); card.scrollTop = 0; sheet.hidden = false;
+      card.querySelectorAll('.sx-opts').forEach((g) => g.addEventListener('click', (e) => {
+        const b = e.target.closest('button'); if (!b) return;
+        if (g.dataset.one != null) g.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+        else b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true'));
+        g.dispatchEvent(new Event('change'));
+      }));
+      bind && bind(card);
+    }
+    function closeSheet() { sheet.hidden = true; if (onClose) { const f = onClose; onClose = null; f(); } }
+    sheet.addEventListener('click', (e) => { if (e.target === sheet || e.target.closest('[data-close]')) closeSheet(); });
+    const picked = (g) => [...g.querySelectorAll('[aria-pressed="true"]')].map((b) => b.dataset.v);
+    const opts = (items, one, on = []) => `<div class="sx-opts"${one ? ' data-one' : ''}>${items.map(([v, l]) => `<button data-v="${v}" aria-pressed="${on.includes(v)}">${l}</button>`).join('')}</div>`;
+    let toastT;
+    function toast(msg) { const n = $('#sxToast'); n.textContent = msg; n.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => n.classList.remove('on'), 2600); }
+    const DEMO = '<span class="sx-demo">Demo</span>';
+
+    // ---- Today: live status (C2), episodes, quick actions ----
+    let wx = null, wxAt = 0;
+    async function weather() {
+      if (wx && Date.now() - wxAt < 15 * 6e4) return wx;
+      const ctl = new AbortController(); const to = setTimeout(() => ctl.abort(), 6000);
+      try {
+        const r = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${HS.coords[0]}&longitude=${HS.coords[1]}&current=temperature_2m,relative_humidity_2m,apparent_temperature&timezone=Africa%2FCairo`, { signal: ctl.signal });
+        const j = await r.json(); wx = j.current; wxAt = Date.now(); return wx;
+      } catch { return null; } finally { clearTimeout(to); }
+    }
+    function nextPrayer() {
+      const now = new Date(), a = prayerTimes(now, HS.coords[0], HS.coords[1]);
+      for (const k of ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha']) if (a[k] > now) return { k: k === 'Dhuhr' && now.getDay() === 5 ? 'Friday prayer' : k, at: a[k] };
+      const tm = prayerTimes(new Date(+now + 864e5), HS.coords[0], HS.coords[1]); return { k: 'Fajr', at: tm.Fajr };
+    }
+    async function renderToday() {
+      applyLang();
+      $('#sxHeroImg').style.backgroundImage = phSrc('hassan', 2);
+      const np = nextPrayer(), pr = prayerNow(HS.coords[0], HS.coords[1]);
+      $('#sxPrayer').textContent = hhmm(np.at); $('#sxPrayerNote').textContent = pr ? `${pr.name} now: visitors usually wait [VERIFY]` : `${np.k} · calculated, not the mosque's timetable`;
+      const g = prayerTimes(new Date(), HS.coords[0], HS.coords[1]); $('#sxGolden').textContent = hhmm(new Date(+g.Maghrib - 50 * 6e4));
+      const alert = $('#sxAlert');
+      alert.textContent = pr ? `Prayer is on at Sultan Hassan. The play can tell the inside scenes from the doorway.` : '';
+      const w = await weather();
+      $('#sxLiveDot').classList.toggle('off', !w); $('#sxLiveDot').textContent = w ? 'live' : 'offline';
+      if (w) {
+        const hi = Math.round(w.apparent_temperature);
+        $('#sxHeat').textContent = hi + '°C'; $('#sxHeatNote').textContent = `Air ${Math.round(w.temperature_2m)}°, humidity ${Math.round(w.relative_humidity_2m)}% · Open-Meteo`;
+        if (hi >= 35 && !pr) alert.textContent = `Heat warning: feels like ${hi}°C. Take the shaded route and carry water; the courtyard has little shade.`;
+      } else { $('#sxHeat').textContent = '—'; $('#sxHeatNote').textContent = 'No connection. Shown again when online.'; }
+      if (!alert.textContent) alert.textContent = 'Closure alerts appear here with their source and the date they were checked. None in this demo today.';
+      $('#sxEpisodes').innerHTML = [
+        ['hassan', 2, 'Episode 1 · Now playing', 'The Sultan Who Built a Mountain', true],
+        ['rifai', 0, 'Episode 1, part 2 · In production', "Al-Rifa'i, across the lane", false],
+        ['zuweila', 0, 'Phase 3', 'Fatimid Cairo', false],
+        ['citadel', 0, 'Phase 3', 'The Citadel', false],
+      ].map(([id, k, kick, title, open]) => `<button class="sx-ep${open ? '' : ' soon'}" data-ep="${id}"><i style="background-image:${phSrc(id, k)}"></i><span><small>${kick}</small><b>${esc(title)}</b></span></button>`).join('');
+      const b = BREAKS[1];
+      $('#sxBreakTeaser').innerHTML = item(b.img, `${esc(b.t)} ${DEMO}`, `${esc(b.where)} · ${esc(b.when)}`, '<div class="sx-acts"><button data-act="souk-breaks">See breaks</button></div>');
+      const p = pins()[0];
+      $('#sxPinTeaser').innerHTML = item(phSrc('hassan', 3), `${esc(p.where)}`, `${esc(p.t)}`, `<div class="sx-acts"><button data-pin="${p.id}">▶ Listen · ${p.len}</button></div>`);
+    }
+    $('#sxHero').addEventListener('click', startPlay);
+    $('#sxEpisodes').addEventListener('click', (e) => { const b = e.target.closest('[data-ep]'); if (!b) return; if (b.dataset.ep === 'hassan') startPlay(); else toast(b.dataset.ep === 'rifai' ? "Al-Rifa'i: Episode 1, part 2, in production" : 'Coming in Phase 3 of the roadmap'); });
+    $('#sxLangBtn').addEventListener('click', () => langSheet());
+    const item = (img, title, sub, extra = '') => `<div class="sx-item"><i style="background-image:${img}"></i><div><b>${title}</b><small>${sub}</small>${extra}</div></div>`;
+
+    function langSheet() {
+      openSheet(`<h3>${t('language')}</h3>${opts(Object.entries(LANGS), true, [lang])}
+        <p class="sx-fine">The app's menus switch language. ${esc(T.en[K.indexOf('audioNote')])} Translations are drafts for review by native speakers.</p>
+        <button class="btn btn-primary" data-close style="margin-top:8px">Done</button>`, (c) => {
+        c.querySelector('.sx-opts').addEventListener('change', (e) => { lang = picked(e.currentTarget)[0]; sxSet('lang', lang); applyLang(); if (lang !== 'en') badge('tongues'); });
+      });
+    }
+
+    // ---- C1 heritage routing (demo): shade, crowds, step-free, carts ----
+    let routeLine = null;
+    function routeSheet() {
+      const places = ['hassan', 'rifai', 'akhur', 'citadel', 'ibntulun', 'gayer', 'qalawun', 'azhar', 'zuweila'].map((id) => [id, BY_ID[id].title]);
+      const sel = (id, v) => `<select class="sx-field" id="${id}">${places.map(([k, l]) => `<option value="${k}"${k === v ? ' selected' : ''}>${esc(l)}</option>`).join('')}</select>`;
+      openSheet(`<h3>Plan a route ${DEMO}</h3>
+        <div class="sx-lbl">From</div>${sel('sxFrom', 'hassan')}<div class="sx-lbl">To</div>${sel('sxTo', 'citadel')}
+        <div class="sx-lbl">Prefer</div>${opts([['shade', 'Shade'], ['quiet', 'Fewer crowds'], ['step', 'Step-free'], ['cart', 'Golf cart or carriage']], false, ['shade'])}
+        <div id="sxRouteOut"></div>
+        <div class="souv-row" style="margin-top:8px"><button class="btn btn-ghost" data-close>Close</button><button class="btn btn-primary" id="sxRouteMap">Show on map</button></div>`, (c) => {
+        const calc = () => {
+          const a = BY_ID[c.querySelector('#sxFrom').value], b = BY_ID[c.querySelector('#sxTo').value], pf = picked(c.querySelector('.sx-opts'));
+          if (a === b) { c.querySelector('#sxRouteOut').innerHTML = '<p class="sx-fine">Pick two different places.</p>'; return; }
+          const m = walkM(a.coords, b.coords) * (pf.includes('step') ? 1.12 : 1) * (pf.includes('shade') ? 1.06 : 1);
+          const cart = pf.includes('cart') && m > 700, h = cairoHour(), noon = h >= 11 && h <= 15;
+          const shade = Math.min(92, Math.round((noon ? 30 : 55) + (pf.includes('shade') ? 28 : 0)));
+          const mins = Math.round(cart ? m * 0.4 / 75 + m * 0.6 / 200 + 4 : m / (pf.includes('step') ? 60 : 75));
+          const steps = [`Leave ${esc(a.title)} by the main entrance${pf.includes('step') ? ' (step-free exit not yet checked [VERIFY])' : ''}.`,
+            pf.includes('shade') ? 'Keep to the shaded side of the lane; the route trades a little distance for shade.' : 'Take the most direct streets.',
+            pf.includes('quiet') ? 'Avoid the busiest market stretch at this hour (typical pattern, not live tracking).' : null,
+            cart ? 'Ride the middle stretch by golf cart or carriage where a stand exists [VERIFY].' : null,
+            `Arrive at ${esc(b.title)}.`].filter(Boolean);
+          c.querySelector('#sxRouteOut').innerHTML = `<div class="sx-sum"><div><b>${m < 1000 ? Math.round(m / 10) * 10 + ' m' : (m / 1000).toFixed(1) + ' km'}</b><small>Distance</small></div><div><b>${mins} min</b><small>${cart ? 'Walk + ride' : 'On foot'}</small></div><div><b>${shade}%</b><small>In shade</small></div></div>
+            <div class="sx-shade"><i class="s" style="width:${shade}%"></i><i class="u" style="width:${100 - shade}%"></i></div>
+            <ol class="sx-steps">${steps.map((s) => `<li>${s}</li>`).join('')}</ol>
+            <p class="sx-fine">Shade by time of day (${noon ? 'midday sun' : 'low sun'} now) and crowd patterns are demo estimates; in Phase 2 every edge is surveyed on site and dated.</p>`;
+          if (pf.includes('shade')) badge('shade');
+          return [a, b];
+        };
+        c.addEventListener('change', calc); c.querySelector('.sx-opts').addEventListener('change', calc); calc();
+        c.querySelector('#sxRouteMap').addEventListener('click', () => {
+          const ab = calc(); if (!ab) return; closeSheet(); goTab('map');
+          if (routeLine) routeLine.remove();
+          const [x1, y1] = proj(ab[0].coords), [x2, y2] = proj(ab[1].coords), mx = (x1 + x2) / 2 + (y2 - y1) * 0.12, my = (y1 + y2) / 2 - (x2 - x1) * 0.12;
+          routeLine = el('path', { d: `M${x1} ${y1} Q${mx} ${my} ${x2} ${y2}`, class: 'sx-route' }, world);
+          toast('Schematic line. The real route follows the streets.');
+        });
+      });
+    }
+
+    // ---- C3 ticketing (demo): no prices in the client; the official issuer prices and issues the pass ----
+    const SITES = [['hassan', "Sultan Hassan & Al-Rifa'i", 'Combined ticket is common [VERIFY]'], ['citadel', 'Citadel of Salah al-Din', 'Includes the Muhammad Ali Mosque [VERIFY]'], ['gayer', 'Gayer-Anderson Museum', 'Hours to check [VERIFY]']];
+    function ticketSheet() {
+      openSheet(`<h3>Official tickets ${DEMO}</h3>
+        <div class="sx-lbl">Place</div>${opts(SITES.map(([v, l]) => [v, esc(l)]), true, ['hassan'])}
+        <div class="sx-lbl">Visitor</div>${opts([['foreign', 'Visitor from abroad'], ['egypt', 'Egyptian'], ['student', 'Student']], true, ['foreign'])}
+        <div class="sx-lbl">People</div>${opts([['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5+']], true, ['2'])}
+        <div class="sx-lbl">Day</div>${opts([['0', 'Today'], ['1', 'Tomorrow']], true, ['0'])}
+        <div class="sx-lbl">Extras</div>${opts([['photo', 'Photography permit']], false, [])}
+        <p class="sx-fine">Fees are set and charged by the official issuer at checkout, never by Medu. Whether a Ministry ticketing integration exists is still to be checked [VERIFY]; without one, Medu links to the official site.</p>
+        <button class="btn btn-primary" id="sxBuy" style="margin-top:6px">Continue to official checkout</button>
+        <button class="btn btn-ghost" data-close style="margin-top:6px">Cancel</button>`, (c) => {
+        c.querySelector('#sxBuy').addEventListener('click', () => {
+          const g = [...c.querySelectorAll('.sx-opts')].map(picked);
+          const tk = { id: Date.now().toString(36), site: g[0][0], who: g[1][0], n: g[2][0], day: +g[3][0], photo: g[4].includes('photo'), t: Date.now() };
+          payStep(`Official checkout · ${esc(SITES.find((s) => s[0] === tk.site)[1])}`, 'The issuer shows the fee here.', () => {
+            const list = sx('tickets', []); list.unshift(tk); sxSet('tickets', list); showTicket(tk);
+          });
+        });
+      });
+    }
+    function payStep(title, line, ok) {
+      openSheet(`<h3>${title}</h3><p class="sx-fine" style="margin-top:0">${line}</p>
+        <div class="sx-card" style="margin:8px 0"><b style="font-weight:500">Demo payment</b><p class="sx-fine" style="margin-top:4px">No money moves and no card is asked for. In the product, payment runs through a licensed provider or the app store; Medu never sees card details.</p></div>
+        <button class="btn btn-primary" id="sxPay">Confirm (demo)</button><button class="btn btn-ghost" data-close style="margin-top:6px">Cancel</button>`, (c) => {
+        c.querySelector('#sxPay').addEventListener('click', () => { buzz(); ok(); });
+      });
+    }
+    function qr(canvas, seed) {
+      const n = 25, s = canvas.width / n, x = canvas.getContext('2d'); let r = parseInt(textHash(seed), 16) || 7;
+      const rnd = () => { r = (Math.imul(r, 1103515245) + 12345) >>> 0; return r / 4294967296; };
+      x.fillStyle = '#fff'; x.fillRect(0, 0, canvas.width, canvas.width); x.fillStyle = '#0b0a08';
+      const finder = (cx, cy) => { x.fillRect(cx * s, cy * s, 7 * s, 7 * s); x.fillStyle = '#fff'; x.fillRect((cx + 1) * s, (cy + 1) * s, 5 * s, 5 * s); x.fillStyle = '#0b0a08'; x.fillRect((cx + 2) * s, (cy + 2) * s, 3 * s, 3 * s); };
+      for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) { const inF = (i < 8 && j < 8) || (i > n - 9 && j < 8) || (i < 8 && j > n - 9); if (!inF && rnd() > 0.52) x.fillRect(i * s, j * s, s, s); }
+      finder(0, 0); finder(n - 7, 0); finder(0, n - 7);
+      x.save(); x.translate(canvas.width / 2, canvas.width / 2); x.rotate(-0.5); x.fillStyle = 'rgba(200,30,30,.82)'; x.font = `600 ${canvas.width / 7}px Inter, sans-serif`; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText('DEMO', 0, 0); x.restore();
+    }
+    function showTicket(tk) {
+      const site = SITES.find((s) => s[0] === tk.site), day = new Date(tk.t + tk.day * 864e5);
+      openSheet(`<div class="sx-big"><p class="sx-kicker">Entry pass ${DEMO}</p><h3 class="sx-h">${esc(site[1])}</h3>
+        <canvas class="sx-qr" width="400" height="400" id="sxQr"></canvas>
+        <p class="sx-fine" style="margin-top:0">${tk.n} ${tk.n === '1' ? 'person' : 'people'} · ${{ foreign: 'visitor from abroad', egypt: 'Egyptian', student: 'student' }[tk.who]} · ${day.toLocaleDateString([], { weekday: 'short', day: 'numeric', month: 'short' })}${tk.photo ? ' · photography permit' : ''}</p>
+        <p class="sx-fine">Not valid for entry. A real pass and its QR come from the official issuer; Medu only stores and shows it, offline. Add to Apple or Google Wallet where the issuer allows.</p></div>
+        <button class="btn btn-primary" data-close style="margin-top:8px">Done</button>`, (c) => qr(c.querySelector('#sxQr'), tk.id + tk.site));
+      if (tab === 'pass') renderPass();
+    }
+
+    // ---- D The Souk (demo listings; no real people or businesses named) ----
+    const ARTISANS = [
+      { id: 'khay', t: 'Khayamiya appliqué', where: 'Street of the Tentmakers, south of Bab Zuweila', story: 'The craft behind the Fatimid Cairo episode (Phase 3)', near: 'zuweila', img: phSrc('zuweila', 2) },
+      { id: 'brass', t: 'Brass and copper hammering', where: "Al-Muizz Street, the coppersmiths' stretch", story: 'Heard in the street scenes near Qalawun (planned)', near: 'qalawun', img: phSrc('qalawun', 0) },
+      { id: 'wood', t: 'Inlaid wood and mashrabiya', where: 'Workshops around Khan el-Khalili', story: 'Mashrabiya screens appear in the Gayer-Anderson house', near: 'azhar', img: phSrc('gayer', 1) },
+    ];
+    const GUIDES = [
+      { id: 'g1', t: 'Storytelling guide · Mamluk Cairo', langs: 'English · العربية · Français', sub: 'Three hours below the Citadel, after Episode 1', img: phSrc('akhur', 0) },
+      { id: 'g2', t: 'Family and step-free walks', langs: 'Deutsch · English · Español', sub: 'Shorter routes, shade and rests built in', img: phSrc('ibntulun', 0) },
+    ];
+    const BREAKS = [
+      { t: 'Historic coffeehouse', where: 'Khan el-Khalili', when: 'Pairs with the Fatimid Cairo interval', img: phSrc('azhar', 1) },
+      { t: 'A rooftop over the square', where: 'Facing Sultan Hassan and the Citadel', when: 'A good place to pause after Episode 1', img: phSrc('hassan', 1) },
+      { t: "Ful and ta'miya stand", where: 'Near Al-Azhar', when: 'Before the morning walk', img: phSrc('azhar', 2) },
+    ];
+    let soukSeg = 'artisans';
+    function renderSouk() {
+      applyLang();
+      document.querySelectorAll('#sxSoukSeg button').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.s === soukSeg)));
+      const L = $('#sxSoukList');
+      if (soukSeg === 'artisans') L.innerHTML = ARTISANS.map((a) => item(a.img, `${esc(a.t)} ${DEMO}`, `${esc(a.where)}<br>${esc(a.story)} · verified in person: not yet`,
+        `<div class="sx-acts"><button data-go="${a.near}">Route there</button><button class="p" data-tip="${a.id}">Tip</button><button data-com="${a.id}">Commission</button></div>`)).join('');
+      if (soukSeg === 'guides') L.innerHTML = GUIDES.map((g) => item(g.img, `${esc(g.t)} ${DEMO}`, `${esc(g.langs)}<br>${esc(g.sub)}`, `<div class="sx-acts"><button class="p" data-book="${g.id}">Book a time</button></div>`)).join('');
+      if (soukSeg === 'breaks') L.innerHTML = BREAKS.map((b) => item(b.img, `${esc(b.t)} ${DEMO}`, `${esc(b.where)}<br>${esc(b.when)}`, '<div class="sx-acts"><button data-go="hassan">Route there</button></div>')).join('')
+        + '<p class="sx-fine">Breaks are offered at an episode\'s intermission points, never during a scene. Partner offers will be labelled.</p>';
+    }
+    $('#sxSoukSeg').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) { soukSeg = b.dataset.s; renderSouk(); } });
+    $('#sxSoukList').addEventListener('click', (e) => {
+      const b = e.target.closest('button'); if (!b) return;
+      if (b.dataset.go) routeSheet();
+      if (b.dataset.tip) { const a = ARTISANS.find((x) => x.id === b.dataset.tip);
+        openSheet(`<h3>Tip · ${esc(a.t)} ${DEMO}</h3><div class="sx-lbl">Amount (EGP)</div>${opts([['25', '25'], ['50', '50'], ['100', '100'], ['200', '200']], true, ['50'])}
+          <div class="sx-lbl">Note to the maker</div><input class="sx-field" maxlength="80" placeholder="Thank you for showing us your work">
+          <p class="sx-fine">In the product the tip goes to the maker through a licensed provider; Medu's fee and payouts live on the server.</p>
+          <button class="btn btn-primary" id="sxTipGo" style="margin-top:6px">Send tip</button><button class="btn btn-ghost" data-close style="margin-top:6px">Cancel</button>`, (c) => {
+          c.querySelector('#sxTipGo').addEventListener('click', () => { const amt = picked(c.querySelector('.sx-opts'))[0]; payStep(`Tip of EGP ${amt}`, `To the ${esc(a.t.toLowerCase())} workshop.`, () => { closeSheet(); badge('patron'); toast('Demo: tip sent. No money moved.'); }); });
+        });
+      }
+      if (b.dataset.com) { const a = ARTISANS.find((x) => x.id === b.dataset.com);
+        openSheet(`<h3>Commission a piece ${DEMO}</h3><p class="sx-fine" style="margin-top:0">${esc(a.t)} · ${esc(a.where)}</p>
+          <div class="sx-lbl">What would you like?</div><textarea class="sx-field" rows="3" placeholder="A cushion cover with a lotus pattern, about 40 cm"></textarea>
+          <div class="sx-lbl">Delivery</div>${opts([['pick', 'Collect in Cairo'], ['ship', 'Ship abroad']], true, ['pick'])}
+          <button class="btn btn-primary" id="sxComGo" style="margin-top:8px">Send request</button><button class="btn btn-ghost" data-close style="margin-top:6px">Cancel</button>`, (c) => {
+          c.querySelector('#sxComGo').addEventListener('click', () => { closeSheet(); toast('Demo: request sent. The maker replies with a quote.'); });
+        });
+      }
+      if (b.dataset.book) { const g = GUIDES.find((x) => x.id === b.dataset.book);
+        const days = [0, 1, 2].map((d) => { const x = new Date(Date.now() + d * 864e5); return [String(d), d ? x.toLocaleDateString([], { weekday: 'short', day: 'numeric' }) : 'Today']; });
+        openSheet(`<h3>Book · ${esc(g.t)} ${DEMO}</h3><div class="sx-lbl">Day</div>${opts(days, true, ['1'])}
+          <div class="sx-lbl">Start</div>${opts([['0830', '08:30 · cool'], ['1600', '16:00 · golden light'], ['1100', '11:00']], true, ['0830'])}
+          <div class="sx-lbl">Group</div>${opts([['1', '1'], ['2', '2'], ['4', '3–4'], ['6', '5–8']], true, ['2'])}
+          <p class="sx-fine">Guides are verified in person; their fee is shown by the payment provider at confirmation.</p>
+          <button class="btn btn-primary" id="sxBookGo" style="margin-top:6px">Request booking</button><button class="btn btn-ghost" data-close style="margin-top:6px">Cancel</button>`, (c) => {
+          c.querySelector('#sxBookGo').addEventListener('click', () => payStep('Confirm your booking', esc(g.t), () => { closeSheet(); toast('Demo: booking requested.'); }));
+        });
+      }
+    });
+
+    // ---- B The Lens: Then & Now over the live camera (archive prints you line up by hand), and curated inscriptions ----
+    let stream = null, lensMode = 'then', printK = null;
+    const PRINTS = ['then-2', 'then-1', 'then-3', 'then-7', 0].map((k) => [k, photo('hassan', k)]).filter(([, p]) => p);
+    const video = $('#sxVideo'), ghost = $('#sxGhost');
+    const credit = document.createElement('p'); credit.className = 'sx-fine'; credit.style.margin = '0 0 8px'; $('#sxLensThen').insertBefore(credit, $('#sxLensThen').querySelector('.sx-fade'));
+    function setPrint(k) {
+      printK = k; const p = photo('hassan', k);
+      document.querySelectorAll('#sxPrints button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.k === String(k))));
+      if (!p) { ghost.hidden = true; credit.textContent = 'No archive print in this build.'; return; }
+      ghost.src = p.src; ghost.hidden = lensMode !== 'then'; $('#sxYearA').textContent = p.year ? (String(k).startsWith('then') ? '' : 'c. ') + p.year : 'Then';
+      credit.textContent = `${p.author} · ${p.license} · via Wikimedia Commons · date per Commons [VERIFY]`;
+    }
+    $('#sxPrints').innerHTML = PRINTS.map(([k, p]) => `<button data-k="${k}" aria-pressed="false">${p.year || 'Print'}</button>`).join('');
+    $('#sxPrints').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) setPrint(isNaN(+b.dataset.k) ? b.dataset.k : +b.dataset.k); });
+    $('#sxMix').addEventListener('input', (e) => { ghost.style.opacity = (e.target.value / 100).toFixed(2); });
+    { let drag = null, gx = 0, gy = 0, gs = 1; const pts = new Map(); let pinch = 0;
+      const apply = () => { ghost.style.setProperty('--gx', gx + 'px'); ghost.style.setProperty('--gy', gy + 'px'); ghost.style.setProperty('--gs', gs.toFixed(3)); };
+      ghost.addEventListener('pointerdown', (e) => { ghost.setPointerCapture(e.pointerId); pts.set(e.pointerId, [e.clientX, e.clientY]); drag = [e.clientX - gx, e.clientY - gy]; if (pts.size === 2) { const [a, b] = [...pts.values()]; pinch = Math.hypot(a[0] - b[0], a[1] - b[1]) / gs; } });
+      ghost.addEventListener('pointermove', (e) => { if (!pts.has(e.pointerId)) return; pts.set(e.pointerId, [e.clientX, e.clientY]);
+        if (pts.size === 2) { const [a, b] = [...pts.values()]; gs = Math.max(0.5, Math.min(2.5, Math.hypot(a[0] - b[0], a[1] - b[1]) / pinch)); } else if (drag) { gx = e.clientX - drag[0]; gy = e.clientY - drag[1]; } apply(); });
+      const up = (e) => { pts.delete(e.pointerId); if (pts.size === 1) { const [p] = [...pts.values()]; drag = [p[0] - gx, p[1] - gy]; } };
+      ghost.addEventListener('pointerup', up); ghost.addEventListener('pointercancel', up);
+      ghost.addEventListener('wheel', (e) => { e.preventDefault(); gs = Math.max(0.5, Math.min(2.5, gs * (e.deltaY < 0 ? 1.05 : 0.95))); apply(); }, { passive: false });
+      $('#sxAlign').addEventListener('click', () => { gx = 0; gy = 0; gs = 1; apply(); });
+    }
+    function lensEnter() {
+      applyLang();
+      $('#sxStill').style.backgroundImage = lensMode === 'then' ? phSrc('hassan', 1) : phSrc('hassan', 10);
+      if (printK == null && PRINTS.length) setPrint(PRINTS[0][0]);
+      ghost.hidden = lensMode !== 'then' || !PRINTS.length; ghost.style.opacity = ($('#sxMix').value / 100).toFixed(2);
+    }
+    async function camStart() {
+      if (stream) { camStop(); return; }
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } }, audio: false });
+        video.srcObject = stream; await video.play().catch(() => {}); video.classList.add('on');
+        $('#sxCamNote').textContent = 'Live camera · frames stay on this phone';
+        document.querySelectorAll('#sxCamBtn, #sxCamBtn2').forEach((b) => { b.textContent = 'Stop camera'; });
+      } catch { stream = null; toast('Camera not available. Showing a photo of the site instead.'); }
+    }
+    function camStop() {
+      if (stream) stream.getTracks().forEach((x) => x.stop()); stream = null; video.classList.remove('on'); video.srcObject = null;
+      $('#sxCamNote').textContent = 'Camera off · showing a photo of the site';
+      document.querySelectorAll('#sxCamBtn, #sxCamBtn2').forEach((b) => { b.textContent = t('camera'); });
+    }
+    $('#sxCamBtn').addEventListener('click', camStart); $('#sxCamBtn2').addEventListener('click', camStart);
+    $('#sxLensMode').addEventListener('click', (e) => {
+      const b = e.target.closest('button'); if (!b) return; lensMode = b.dataset.m;
+      document.querySelectorAll('#sxLensMode button').forEach((x) => x.setAttribute('aria-selected', String(x === b)));
+      $('#sxLensThen').hidden = lensMode !== 'then'; $('#sxLensScript').hidden = lensMode !== 'script'; $('#sxReticle').hidden = lensMode !== 'script';
+      lensEnter();
+    });
+    $('#sxRead').addEventListener('click', async () => {
+      const r = $('#sxReticle'); r.classList.add('scan'); buzz(); await wait(reduced ? 300 : 1600); r.classList.remove('scan');
+      openSheet(`<p class="sx-kicker">Matched in the curated catalogue · draft</p><h3>Foundation inscription, tomb dome</h3>
+        <dl class="g-pane" style="display:grid;gap:10px;margin:6px 0">
+          <div><dt>What it records</dt><dd>The year the dome was finished: 764 AH, that is 1362–63, after the sultan had already been killed. His body was never found.</dd></div>
+          <div><dt>Script</dt><dd>To be confirmed by the epigrapher [VERIFY].</dd></div>
+          <div><dt>Reading and translation</dt><dd>TODO: the full Arabic reading and an English translation are waiting for the epigrapher. Medu never shows a machine guess as fact.</dd></div>
+          <div><dt>Source</dt><dd>Episode 1 guidebook, Story timeline (cited in the play's sources).</dd></div>
+        </dl>
+        <button class="btn btn-primary" id="sxReadPlay">Hear the story of the empty tomb</button>
+        <button class="btn btn-ghost" data-close style="margin-top:6px">Keep looking</button>
+        <p class="sx-fine">Demo: in this prototype every scan returns this one catalogued inscription. In Phase 2 the camera matches each inscription on the device against the building's catalogue.</p>`, (c) => {
+        c.querySelector('#sxReadPlay').addEventListener('click', () => { closeSheet(); camStop(); startPlay(); });
+      });
+    });
+
+    // ---- E The Record: passport, stamps (physical check-in only), badges, wallet, memory pins ----
+    const SECTORS = [['Below the Citadel', WALKS.find((w) => w.id === 'citadel').stops], ['Fatimid axis', WALKS.find((w) => w.id === 'muizz').stops],
+      ['Mamluk Cairo', Object.values(BY_ID).filter((s) => s.era === 'mamluk').map((s) => s.id)]];
+    const BADGES = [
+      { id: 'first', i: '✦', t: 'The first step', d: 'Start Episode 1', auto: () => logHas('start') },
+      { id: 'lamp', i: '☾', t: 'The lamp', d: 'Finish Episode 1', auto: () => logHas('complete') },
+      { id: 'copybook', i: '◈', t: 'The copybook', d: 'Collect 3 keepsakes', auto: () => store.get('keeps', []).length >= 3 },
+      { id: 'seal', i: '✹', t: 'The seal', d: 'Earn a stamp on site', auto: () => stamps().some((s) => s.how === 'gps') },
+      { id: 'shade', i: '❋', t: 'The parasol', d: 'Plan a shaded route' },
+      { id: 'patron', i: '✧', t: 'The patron', d: 'Tip an artisan' },
+      { id: 'voice', i: '◎', t: 'The storyteller', d: 'Hear or leave a memory' },
+      { id: 'tongues', i: '✺', t: 'Many tongues', d: 'Use another language' },
+    ];
+    const stamps = () => sx('stamps', []);
+    function addStamp(id, how) { const s = stamps(); if (s.some((x) => x.id === id)) { toast(`${BY_ID[id].title} is already stamped`); return; } s.push({ id, how, t: Date.now() }); sxSet('stamps', s); buzz(); toast(`Stamp: ${BY_ID[id].title}${how === 'demo' ? ' (demo)' : ''}`); renderPass(); }
+    function renderPass() {
+      applyLang();
+      const st = stamps(), have = new Set(st.map((s) => s.id)), first = sx('since', null) || (sxSet('since', Date.now()), Date.now());
+      $('#sxBook').innerHTML = `<div class="k">Medu · Cairo Edition</div><h3>Heritage Passport</h3><p>Issued ${new Date(first).toLocaleDateString([], { day: 'numeric', month: 'long', year: 'numeric' })} · ${st.length} of ${Object.keys(BY_ID).length} places stamped</p>
+        <div class="sx-sectors">${SECTORS.map(([n, ids]) => { const k = ids.filter((x) => have.has(x)).length; return `<div><b style="font-weight:500">${n}</b><span>${k} / ${ids.length}</span><em style="--p:${Math.round(k / ids.length * 100)}%"></em></div>`; }).join('')}</div>`;
+      $('#sxStamps').innerHTML = ['hassan', 'rifai', 'akhur', 'citadel', 'ibntulun', 'gayer', 'qalawun', 'azhar', 'zuweila'].map((id) => {
+        const s = st.find((x) => x.id === id), p = BY_ID[id];
+        return `<div class="sx-stamp${s ? ' on' : ''}">${esc(p.title)}<small>${s ? (s.how === 'demo' ? 'DEMO' : new Date(s.t).toLocaleDateString([], { day: 'numeric', month: 'short' }).toUpperCase()) : ''}</small></div>`; }).join('');
+      BADGES.forEach((b) => { if (b.auto && b.auto()) { const set = new Set(sx('badges', [])); set.add(b.id); sxSet('badges', [...set]); } });
+      const got = new Set(sx('badges', []));
+      $('#sxBadges').innerHTML = BADGES.map((b) => `<div class="sx-badge${got.has(b.id) ? ' on' : ''}"><i>${b.i}</i><div><b>${esc(b.t)}</b><small>${esc(b.d)}</small></div></div>`).join('');
+      const tks = sx('tickets', []);
+      $('#sxWallet').innerHTML = tks.length ? tks.slice(0, 4).map((k) => `<button class="sx-ticket" data-tk="${k.id}"><span><b>${esc(SITES.find((s) => s[0] === k.site)[1])}</b><small>${k.n} · ${new Date(k.t + k.day * 864e5).toLocaleDateString([], { weekday: 'short', day: 'numeric', month: 'short' })} · demo pass</small></span><span class="sx-link">Show QR</span></button>`).join('')
+        : '<p class="sx-empty">No passes yet. Official entry passes you buy appear here and work offline.</p>';
+      $('#sxPins').innerHTML = pins().map((p) => item(phSrc(p.at, p.at === 'hassan' ? 3 : 0), `${esc(p.where)}${p.mine ? ' <span class="sx-demo">In moderation</span>' : ''}`, esc(p.t),
+        `<div class="sx-acts"><button data-pin="${p.id}">▶ Listen · ${p.len}</button></div>`)).join('');
+    }
+    $('#sxWallet').addEventListener('click', (e) => { const b = e.target.closest('[data-tk]'); if (b) showTicket(sx('tickets', []).find((k) => k.id === b.dataset.tk)); });
+    $('#sxSettings').addEventListener('click', () => $('#openSettings').click());
+    $('#sxCheckin').addEventListener('click', () => {
+      const demo = () => openSheet(`<h3>Stamps are earned on site</h3><p class="sx-fine" style="margin-top:0">A stamp needs your phone to be at the monument (GPS, or a beacon inside). Not in Cairo? Add a demo stamp to see how the passport fills.</p>
+        ${opts(['hassan', 'rifai', 'citadel', 'zuweila'].map((id) => [id, esc(BY_ID[id].title)]), true, ['hassan'])}
+        <button class="btn btn-primary" id="sxDemoStamp" style="margin-top:6px">Add demo stamp</button><button class="btn btn-ghost" data-close style="margin-top:6px">Cancel</button>`, (c) => {
+        c.querySelector('#sxDemoStamp').addEventListener('click', () => { closeSheet(); addStamp(picked(c.querySelector('.sx-opts'))[0], 'demo'); });
+      });
+      if (!navigator.geolocation) { demo(); return; }
+      toast('Checking where you are…');
+      navigator.geolocation.getCurrentPosition((pos) => {
+        const me = [pos.coords.latitude, pos.coords.longitude];
+        const near = Object.values(BY_ID).map((s) => [s, haversine(me, s.coords)]).sort((a, b) => a[1] - b[1])[0];
+        if (near && near[1] < 150) addStamp(near[0].id, 'gps'); else { demo(); toast(`Nearest monument is ${near ? fmtLeg(near[1]).split(' · ')[0] : 'far'} away`); }
+      }, demo, { enableHighAccuracy: true, timeout: 8000, maximumAge: 30000 });
+    });
+
+    // Memory pins (E3): pre-moderated; your own recording stays on this phone and only you can hear it until approved.
+    const SEED = [
+      { id: 'p1', at: 'hassan', where: 'Sultan Hassan, the steps of the portal', t: 'Example pin: a family memory of the square and what it sounded like. Real pins are recorded by visitors and checked before anyone hears them.', len: '0:35' },
+      { id: 'p2', at: 'rifai', where: "Al-Rifa'i, the lane between the two mosques", t: 'Example pin: a wedding photograph taken here in the 1960s, described by the person in it.', len: '0:50' },
+    ];
+    const mine = new Map(); // id -> blob URL, this session only
+    const pins = () => [...sx('pins', []).map((p) => ({ ...p, mine: true })), ...SEED];
+    document.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-pin]'); if (!b || !app.contains(b)) return;
+      const p = pins().find((x) => x.id === b.dataset.pin); if (!p) return; badge('voice');
+      if (p.mine) { const u = mine.get(p.id); if (u) { new Audio(u).play().catch(() => {}); toast('Playing your memory (only you can hear it)'); } else toast('The recording stays on this phone for this visit only'); return; }
+      try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(p.t.replace(/^Example pin: /, '')); u.lang = 'en-GB'; u.rate = 0.95; speechSynthesis.speak(u); toast('Example pin, read by your phone\'s voice'); } catch { toast(p.t); }
+    });
+    function recordSheet() {
+      let rec = null, chunks = [], micS = null, t0 = 0, tick = 0, blob = null;
+      const stopMic = () => { clearInterval(tick); try { rec && rec.state !== 'inactive' && rec.stop(); } catch {} if (micS) micS.getTracks().forEach((x) => x.stop()); micS = null; };
+      openSheet(`<h3>${t('record')}</h3><p class="sx-fine" style="margin-top:0">A short audio memory pinned to a monument, up to a minute. It is checked by a moderator before anyone else hears it.</p>
+        <div class="sx-lbl">Where</div>${opts(['hassan', 'rifai', 'citadel', 'zuweila'].map((id) => [id, esc(BY_ID[id].title)]), true, ['hassan'])}
+        <label class="sx-fine" style="display:flex;gap:8px;align-items:flex-start"><input type="checkbox" id="sxConsent" style="margin-top:2px">This is my own memory, or I have the speaker's consent to share it.</label>
+        <button class="btn btn-ghost" id="sxRec" style="margin-top:8px">● Record</button>
+        <button class="btn btn-primary" id="sxPinSave" style="margin-top:6px" disabled>Send for moderation</button><button class="btn btn-ghost" data-close style="margin-top:6px">Cancel</button>`, (c) => {
+        const btn = c.querySelector('#sxRec'), save = c.querySelector('#sxPinSave'), ok = () => { save.disabled = !(blob && c.querySelector('#sxConsent').checked); };
+        c.querySelector('#sxConsent').addEventListener('change', ok);
+        btn.addEventListener('click', async () => {
+          if (rec && rec.state === 'recording') { stopMic(); return; }
+          try { micS = await navigator.mediaDevices.getUserMedia({ audio: true }); } catch { toast('Microphone not available'); return; }
+          chunks = []; rec = new MediaRecorder(micS); rec.ondataavailable = (e) => chunks.push(e.data);
+          rec.onstop = () => { blob = new Blob(chunks, { type: rec.mimeType || 'audio/webm' }); btn.textContent = `● Record again (${Math.round((Date.now() - t0) / 1000)} s kept)`; ok(); };
+          rec.start(); t0 = Date.now(); tick = setInterval(() => { const s = Math.round((Date.now() - t0) / 1000); btn.textContent = `■ Stop · 0:${String(s).padStart(2, '0')}`; if (s >= 60) stopMic(); }, 250);
+        });
+        save.addEventListener('click', () => {
+          const at = picked(c.querySelector('.sx-opts'))[0], id = 'm' + Date.now().toString(36), s = Math.max(1, Math.round((Date.now() - t0) / 1000));
+          mine.set(id, URL.createObjectURL(blob));
+          const list = sx('pins', []); list.unshift({ id, at, where: BY_ID[at].title, t: 'Your memory. Waiting for a moderator; only you can hear it.', len: `0:${String(Math.min(60, s)).padStart(2, '0')}` }); sxSet('pins', list.slice(0, 5));
+          badge('voice'); closeSheet(); toast('Sent for moderation (demo)'); renderPass();
+        });
+      });
+      onClose = stopMic;
+    }
+
+    // ---- Module A labs: head tracking (real, phone compass), beacons (simulated), adaptive pacing (live speed + on-device noise level) ----
+    const head = { on: sx('head', false), yaw0: null, yaw: 0 };
+    function heading(e) { if (e.webkitCompassHeading != null) return e.webkitCompassHeading; if (e.alpha == null) return null; return (360 - e.alpha) % 360; }
+    function onOri(e) {
+      const h = heading(e); if (h == null) return;
+      if (head.yaw0 == null) head.yaw0 = h;
+      head.yaw = ((h - head.yaw0 + 540) % 360) - 180;
+      const c = document.querySelector('.sx-compass i'); if (c) c.style.setProperty('--r', (head.on ? -head.yaw : 0) + 'deg');
+      if (!head.on || !actx) return;
+      const r = head.yaw * Math.PI / 180, ls = actx.listener, fx = Math.sin(r), fz = -Math.cos(r);
+      try { if (ls.forwardX) { ls.forwardX.value = fx; ls.forwardY.value = 0; ls.forwardZ.value = fz; ls.upX.value = 0; ls.upY.value = 1; ls.upZ.value = 0; } else ls.setOrientation(fx, 0, fz, 0, 1, 0); } catch {}
+    }
+    const oriEvt = 'ondeviceorientationabsolute' in window ? 'deviceorientationabsolute' : 'deviceorientation';
+    window.addEventListener(oriEvt, onOri, { passive: true });
+    async function headOn(v) {
+      if (v && typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+        try { if (await DeviceOrientationEvent.requestPermission() !== 'granted') { toast('Motion access was declined'); return false; } } catch { return false; }
+      }
+      head.on = v; head.yaw0 = null; sxSet('head', v);
+      if (!v && actx) { try { const ls = actx.listener; if (ls.forwardX) { ls.forwardX.value = 0; ls.forwardZ.value = -1; } else ls.setOrientation(0, 0, -1, 0, 1, 0); } catch {} }
+      return true;
+    }
+    function ping() {
+      try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); if (actx.state !== 'running') actx.resume(); } catch { return; }
+      const p = actx.createPanner(); p.panningModel = 'HRTF'; p.distanceModel = 'inverse'; p.refDistance = 1;
+      if (p.positionX) { p.positionX.value = 0; p.positionY.value = 0; p.positionZ.value = -2; } else p.setPosition(0, 0, -2);
+      const tnow = actx.currentTime, g = actx.createGain(); g.gain.setValueAtTime(0.0001, tnow); g.gain.exponentialRampToValueAtTime(0.5, tnow + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, tnow + 1.4);
+      [523.25, 1046.5, 1568].forEach((f, i) => { const o = actx.createOscillator(); o.frequency.value = f; const og = actx.createGain(); og.gain.value = [1, 0.4, 0.15][i]; o.connect(og).connect(g); o.start(tnow); o.stop(tnow + 1.5); });
+      g.connect(p).connect(actx.destination);
+    }
+    function headSheet() {
+      let loop = 0;
+      openSheet(`<h3>Head-tracked sound <span class="sx-demo">Lab</span></h3>
+        <p class="sx-fine" style="margin-top:0">A bell rings straight ahead. With tracking on, turn around: the bell stays where it was, as the voices in Sultan Hassan will stay at the doorway. Hold the phone flat in front of you, with headphones in.</p>
+        <div class="sx-compass"><b>you</b><i></i></div>
+        <button class="toggle" role="switch" id="sxHeadT" aria-checked="${head.on}"><span>Head tracking<small>Also applies inside the play. Phone compass here; AirPods motion in the native app. Target under 20 ms [SPIKE].</small></span><span class="sw"></span></button>
+        <div class="souv-row" style="margin-top:10px"><button class="btn btn-ghost" id="sxPing">Ring the bell</button><button class="btn btn-ghost" id="sxRecenter">Recenter</button></div>
+        <button class="btn btn-primary" data-close style="margin-top:6px">Done</button>`, (c) => {
+        const tg = c.querySelector('#sxHeadT');
+        tg.addEventListener('click', async () => { const v = tg.getAttribute('aria-checked') !== 'true'; if (await headOn(v)) tg.setAttribute('aria-checked', String(v)); });
+        c.querySelector('#sxPing').addEventListener('click', () => { clearInterval(loop); let n = 0; ping(); loop = setInterval(() => { ping(); if (++n >= 9) clearInterval(loop); }, 1600); });
+        c.querySelector('#sxRecenter').addEventListener('click', () => { head.yaw0 = null; toast('Recentred: the bell is ahead of you'); });
+      });
+      onClose = () => clearInterval(loop);
+    }
+    function beaconSheet() {
+      const B = [['Portal', 0], ['Entrance passage', 22], ['Courtyard fountain', 48], ['Qibla iwan', 72], ['Tomb', 95]];
+      openSheet(`<h3>Indoor beacons <span class="sx-demo">Simulated</span></h3>
+        <p class="sx-fine" style="margin-top:0">GPS fades inside stone halls. Small beacons, installed only where the site authorities allow [VERIFY], tell the play which space you have entered. Drag to walk through the building.</p>
+        <input type="range" id="sxWalk" min="0" max="100" value="10" style="width:100%;accent-color:var(--gold)" aria-label="Your position inside the building">
+        <div class="sx-meter" id="sxMeter"></div>
+        <p class="sx-card" id="sxGate" style="margin:6px 0;font-size:13.5px"></p>
+        <p class="sx-fine">Browsers cannot scan Bluetooth beacons, so this is simulated; the native app listens only while a play runs on site, and "I'm here" always remains.</p>
+        <button class="btn btn-primary" data-close style="margin-top:6px">Done</button>`, (c) => {
+        const run = () => {
+          const x = +c.querySelector('#sxWalk').value;
+          const rs = B.map(([n, p]) => [n, Math.round(-50 - Math.abs(x - p) * 0.7 - Math.random() * 3)]);
+          const best = rs.reduce((a, b) => (b[1] > a[1] ? b : a));
+          c.querySelector('#sxMeter').innerHTML = rs.map(([n, r]) => `<div class="${n === best[0] && r > -62 ? 'near' : ''}"><span style="text-align:left;color:inherit;font-size:13px">${n}</span><em style="--p:${Math.max(4, 100 + (r + 50) * 2)}%"></em><span>${r} dBm</span></div>`).join('');
+          c.querySelector('#sxGate').textContent = best[1] > -62 ? `Gate fired: ${best[0]}. The scene for this space starts.` : 'Between beacons: the bed holds softly until you arrive.';
+        };
+        c.querySelector('#sxWalk').addEventListener('input', run); run();
+        const jit = setInterval(run, 1200); onClose = () => clearInterval(jit);
+      });
+    }
+    function paceSheet() {
+      let watch = null, micS = null, raf = 0;
+      openSheet(`<h3>Adaptive pacing <span class="sx-demo">Lab</span></h3>
+        <p class="sx-fine" style="margin-top:0">The play never speeds up a voice. It stretches the walking music so the next scene starts as you arrive, plays a short ambience if you stop, and lifts the voices when it is noisy.</p>
+        <div class="sx-lbl">Walking speed <span id="sxSpdSrc">(simulated)</span></div>
+        <input type="range" id="sxSpd" min="0" max="18" value="9" style="width:100%;accent-color:var(--gold)" aria-label="Walking speed">
+        <div class="sx-sum"><div><b id="sxSpdV">0.9</b><small>m/s</small></div><div><b id="sxArr">2:13</b><small>To next scene</small></div><div><b id="sxLift">+0</b><small>Voice lift dB</small></div></div>
+        <p class="sx-card" id="sxPaceOut" style="margin:6px 0;font-size:13.5px"></p>
+        <div class="souv-row"><button class="btn btn-ghost" id="sxGps">Use my real speed</button><button class="btn btn-ghost" id="sxNoise">Measure noise</button></div>
+        <p class="sx-fine">Noise is a level computed on the phone; nothing is recorded or uploaded. Without the microphone, a "noisy here" switch does the same.</p>
+        <button class="btn btn-primary" data-close style="margin-top:6px">Done</button>`, (c) => {
+        let lift = 0;
+        const show = (v) => {
+          c.querySelector('#sxSpdV').textContent = v.toFixed(1);
+          const d = 120, s = v < 0.15 ? null : Math.round(d / v);
+          c.querySelector('#sxArr').textContent = s ? `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}` : '—';
+          c.querySelector('#sxLift').textContent = '+' + lift;
+          c.querySelector('#sxPaceOut').textContent = v < 0.15 ? 'You have stopped. After 20 s a short aside about the square plays; the next scene waits for you.'
+            : v < 0.6 ? `Slow stroll: the walking music stretches to ${Math.round(d / v)} s, within the authored maximum.`
+              : v > 1.4 ? 'Brisk walk: the music trims to its authored minimum, then the bed holds at the gate.' : 'Normal pace: the approach plays as written.';
+        };
+        const spd = c.querySelector('#sxSpd'); spd.addEventListener('input', () => show(spd.value / 10)); show(0.9);
+        c.querySelector('#sxGps').addEventListener('click', () => {
+          if (!navigator.geolocation) { toast('Location not available'); return; }
+          c.querySelector('#sxSpdSrc').textContent = '(GPS, live)';
+          watch = navigator.geolocation.watchPosition((p) => { const v = p.coords.speed; if (v != null && !isNaN(v)) { spd.value = Math.min(18, v * 10); show(v); } }, () => toast('Location is off'), { enableHighAccuracy: true });
+        });
+        c.querySelector('#sxNoise').addEventListener('click', async () => {
+          if (micS) return;
+          try { micS = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, noiseSuppression: false } }); } catch { lift = 4; show(spd.value / 10); toast('No microphone: "noisy here" switched on (+4 dB)'); return; }
+          actx = actx || new (window.AudioContext || window.webkitAudioContext)(); const an = actx.createAnalyser(); an.fftSize = 1024; actx.createMediaStreamSource(micS).connect(an);
+          const buf = new Float32Array(an.fftSize);
+          const loopF = () => { an.getFloatTimeDomainData(buf); const rms = Math.sqrt(buf.reduce((a, x) => a + x * x, 0) / buf.length), db = 20 * Math.log10(rms + 1e-6);
+            lift = Math.max(0, Math.min(6, Math.round((db + 50) / 4))); c.querySelector('#sxLift').textContent = '+' + lift; raf = requestAnimationFrame(loopF); };
+          loopF(); c.querySelector('#sxNoise').textContent = 'Listening (level only)';
+        });
+      });
+      onClose = () => { if (watch != null) navigator.geolocation.clearWatch(watch); cancelAnimationFrame(raf); if (micS) micS.getTracks().forEach((x) => x.stop()); };
+    }
+
+    // Shared actions
+    document.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-act]'); if (!b || !app.contains(b)) return;
+      const a = b.dataset.act;
+      if (a === 'route') routeSheet(); else if (a === 'tickets') ticketSheet(); else if (a === 'lens') goTab('lens');
+      else if (a === 'souk') { soukSeg = 'artisans'; goTab('souk'); } else if (a === 'souk-breaks') { soukSeg = 'breaks'; goTab('souk'); }
+      else if (a === 'pins') goTab('pass'); else if (a === 'record') recordSheet(); else if (a === 'head') headSheet();
+      else if (a === 'beacons') beaconSheet(); else if (a === 'pace') paceSheet(); else if (a === 'lang') langSheet();
+    });
+    if (head.on) headOn(true);
+    applyLang(); renderToday();
+  })();
+
 })();
 </script>
 

@@ -4,6 +4,8 @@ A clickable, installable preview of Medu: audio plays you walk inside historic p
 
 **Open it:** https://kiko9111.github.io/medu-prototype/
 
+This build is the **super app prototype** (Today, Map, Lens, Souk, Passport). The plain street-test edition is at https://kiko9111.github.io/medu-prototype/?edition=preview
+
 - **Android (Chrome):** open the link, then tap **Install the app** on the first screen (or Chrome menu, then *Install app*).
 - **iPhone (Safari):** open the link, tap **Share**, then **Add to Home Screen**.
 
