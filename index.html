@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#020617">
-<meta name="description" content="Medu, Cairo Edition: a time-travel walking guide to historic Cairo. Prototype.">
+<meta name="description" content="Medu: audio plays for historic places. Episode 1, Sultan Hassan, Cairo. Preview edition.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -441,7 +441,7 @@ body { background: #000; letter-spacing: .005em; }
 #intro > * { position: relative; z-index: 1; }
 .mark { font-size: 76px; font-weight: 500; letter-spacing: .06em; color: var(--text); text-shadow: 0 2px 30px rgba(0,0,0,.4); }
 .edition { margin-top: 10px; font-size: 10.5px; letter-spacing: .5em; color: rgba(239,231,216,.75); }
-.promise { font-size: 34px; line-height: 1.08; max-width: 13ch; color: var(--text); text-shadow: 0 2px 24px rgba(0,0,0,.6); }
+.promise { font-size: 34px; line-height: 1.08; max-width: none; color: var(--text); text-shadow: 0 2px 24px rgba(0,0,0,.6); }
 .promise em { color: var(--gold); }
 .intro-sub { color: rgba(239,231,216,.66); font-size: 14px; line-height: 1.6; }
 .span-years { color: rgba(239,231,216,.55); font-size: 11px; letter-spacing: .2em; margin-top: 22px; }
@@ -545,6 +545,33 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
 .cert h2 { font-size: 38px; font-weight: 500; }
 .cert-list { text-align: left; }
 
+/* ---- Preview edition: one open play, the rest coming soon; full-bleed modern photos ---- */
+.pin.soon .core { fill: rgba(239,231,216,.35); stroke: #060606; stroke-width: 1.5; filter: none; }
+.pin.soon:focus-visible .core { stroke: var(--text); }
+.pin.play .core { r: 15; }
+.pin.play .num { font-size: 10px; }
+.pin-label.ep { font-size: 8.5px; letter-spacing: .24em; fill: var(--gold); }
+.stop.soon { opacity: .62; }
+.stop.soon .n { border-color: rgba(239,231,216,.3); }
+.stop .yr.tag { font-family: var(--ui); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+.pv-actions.one { grid-template-columns: 1fr; }
+#settings .modal-card { max-height: 94%; overflow-y: auto; }
+.screen.off .album-top > * { pointer-events: none; } /* a closed stop's buttons must never catch taps meant for the map */
+.st-mock { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); border: 1px dashed rgba(239,231,216,.25); border-radius: 99px; padding: 6px 12px; }
+.tlog { margin-top: 12px; padding: 12px 0 4px; border-top: 1px solid rgba(239,231,216,.08); display: grid; gap: 6px; }
+.tlog b { font-weight: 500; } .tlog small { color: var(--muted); font-size: 12px; line-height: 1.5; }
+.tlog .btn { min-height: 40px; font-size: 13px; }
+/* Modern photos fill the screen edge to edge; only historic prints keep the album frame. */
+.print.bleed { top: 0; left: 0; right: 0; bottom: 0; }
+.print.bleed .frame { border: 0; border-radius: 0; background: #000; box-shadow: none; }
+.print.bleed .corner { display: none; }
+.print.bleed .frame::before { content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none; background: linear-gradient(rgba(0,0,0,.5), transparent 26%, transparent 72%, #050505); }
+.print.bleed.under .frame::after { display: none; }
+.print.bleed .tn .then .ph { box-shadow: inset 0 0 0 7px #efe9dd; }
+#app.depth::after { opacity: .05; }
+#intro::before { transform: none; }
+@keyframes introDrift { from { transform: scale(1.0); } to { transform: scale(1.05) translate(-1%, .6%); } }
+
 @media (prefers-reduced-motion: reduce) {
   .lb, .dip, .sheet, .album-top > *, .dots-bar { transition-duration: 1ms !important; }
 }
@@ -557,15 +584,14 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
 
 <aside class="showcase" aria-label="About this prototype">
   <div class="mark">Medu</div>
-  <div class="edition">Cairo Edition · prototype</div>
+  <div class="edition">Audio plays for historic places · preview</div>
   <h4>Try this</h4>
   <ol>
-    <li>Begin, pick a walk at the top of the map, and tap a numbered stop.</li>
-    <li>Watch the year roll back to when it was built.</li>
-    <li>Swipe the photos; tap the key plan to enlarge it.</li>
-    <li>Drag the Then &amp; Now slider at Bab Zuweila.</li>
-    <li>On the Citadel walk, open Sultan Hassan for the full story: ten scenes, voices, keepsakes and a souvenir card.</li>
-    <li>Return to 2026, and finish every stop on a walk.</li>
+    <li>Begin, then start Episode 1 at Sultan Hassan.</li>
+    <li>Choose "I'm somewhere else" to hear it as one continuous story.</li>
+    <li>The prologue and the first two scenes are free; then a mock "preview edition" screen asks to continue.</li>
+    <li>Swipe the photos, drag the Then &amp; Now handle, tap the key plan.</li>
+    <li>The other monuments on the map are coming soon.</li>
   </ol>
   <p>Arrow keys swipe, Esc returns to the map. On a phone, open the same link in Chrome for the full-screen feel.</p>
 </aside>
@@ -577,20 +603,20 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
   <section id="intro" class="screen gutter" aria-label="Welcome">
     <div>
       <div class="mark">Medu</div>
-      <div class="edition">Cairo Edition</div>
+      <div class="edition">Audio plays · Cairo</div>
     </div>
     <div>
-      <p class="promise">Walk historic Cairo and step <em>back in time</em> at every stop.</p>
-      <p class="intro-sub">Two walks, nine monuments, a thousand years of building. Each stop opens in the year it was built and tells you why it looks the way it does.</p>
-      <div class="span-years"><span>876</span><i></i><span>1869</span></div>
+      <p class="promise">Hear history<br><em>where it happened.</em></p>
+      <p class="intro-sub">Audio plays you walk inside Cairo's monuments, told in the voices of the people who were there.</p>
+      <div class="span-years"><span>Episode 1 · The Sultan Who Built a Mountain</span></div>
     </div>
     <div class="intro-actions">
-      <button class="btn btn-primary" id="begin">Begin the walk</button>
+      <button class="btn btn-primary" id="begin">Begin</button>
       <button class="btn btn-ghost" id="installBtn" disabled>Install the app from the public link</button>
       <div class="lang" role="group" aria-label="Language">
         <button aria-pressed="true">English</button>
         <button aria-pressed="false" disabled>العربية</button>
-        <small>Arabic comes in Phase 5</small>
+        <small>Arabic soon</small>
       </div>
     </div>
   </section>
@@ -602,7 +628,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
     </svg>
     <div class="map-top gutter">
       <div><h2 id="walkTitle">Historic Cairo</h2><p id="mapSub"></p>
-        <div class="walks" id="walks" role="group" aria-label="Choose a walk"></div></div>
+        <div class="walks" id="walks" role="group" aria-label="Choose a walk" hidden></div></div>
       <button class="icon-btn" id="openSettings" aria-label="Settings">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg>
       </button>
@@ -745,9 +771,11 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       <button class="toggle" role="switch" id="tSfx" aria-checked="true"><span>UI sounds<small>The soft "whoosh" when you travel in time.</small></span><span class="sw"></span></button>
       <button class="toggle" role="switch" id="tAmb" aria-checked="true"><span>Background sound<small>Soft ney and drone under the narration, quieter while the guide speaks.</small></span><span class="sw"></span></button>
       <button class="toggle" role="switch" id="tAuto" aria-checked="false"><span>Auto-advance slides<small>Move to the next slide when narration ends.</small></span><span class="sw"></span></button>
+      <div class="tlog"><b>Street-test log</b><small id="tlogSum">No sessions yet on this phone.</small>
+        <div class="souv-row"><button class="btn btn-ghost" id="tlogShare">Share log</button><button class="btn btn-ghost" id="tlogClear">Clear log</button></div></div>
       <button class="btn btn-ghost" id="resetWalk" style="margin-top:12px">Reset visited stops</button>
       <button class="btn btn-primary" id="closeSettings" style="margin-top:6px">Done</button>
-      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 26 Oct 15:32 UTC</p>
+      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 27 Oct 13:09 UTC</p>
     </div>
   </div>
 </div>
@@ -888,6 +916,12 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
     { id: 'citadel', short: 'Citadel', title: 'Below the Citadel', stops: ['ibntulun', 'gayer', 'hassan', 'rifai', 'akhur', 'citadel'],
       done: 'A thousand years below the Citadel', doneText: 'From the oldest intact mosque in Cairo to the domes of Muhammad Ali, in one walk.' },
   ];
+  // Preview edition: one audio play is open; every other monument is shown as coming soon.
+  WALKS.unshift({ id: 'cairo', short: 'Cairo', title: 'Historic Cairo', stops: ['hassan', 'rifai', 'akhur', 'citadel', 'ibntulun', 'gayer', 'qalawun', 'azhar', 'zuweila'],
+    frame: ['hassan', 'rifai', 'akhur', 'citadel', 'ibntulun', 'gayer'], done: '', doneText: '' });
+  const OPEN = new Set(['hassan']);
+  const SOON = { rifai: 'Episode 2 · in production' };
+  const isOpen = (s) => OPEN.has(s.id);
   let walk = WALKS[0];
   let STOPS = walk.stops.map((id) => BY_ID[id]);
 
@@ -913,6 +947,26 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
   const S = { cine: store.get('cine', !reduced), sfx: store.get('sfx2', false), auto: store.get('auto', false), rate: store.get('rate', 1), amb: store.get('amb', true) };
   let visited = new Set(store.get('visited', []));
   const cinematic = () => S.cine && !reduced;
+
+  // ---- Street-test log: which scene people reach, where they stop, whether they finish. Stays on this phone;
+  // Settings shows a summary and shares it as text. Events: open, start, scene, gate, pay (mock), decline, leave, complete.
+  const SID = Date.now().toString(36);
+  function track(ev, v = null) {
+    const log = store.get('log', []); log.push([Date.now(), SID, ev, v]);
+    if (log.length > 3000) log.splice(0, log.length - 3000);
+    store.set('log', log);
+  }
+  function logSummary() {
+    const log = store.get('log', []), by = {};
+    log.forEach(([t, sid, ev, v]) => { const x = by[sid] = by[sid] || { t, ev: [] }; x.ev.push([ev, v]); });
+    const ss = Object.values(by), has = (x, e) => x.ev.some(([a]) => a === e);
+    const plays = ss.filter((x) => has(x, 'start'));
+    const reach = {}; plays.forEach((x) => { const m = Math.max(-1, ...x.ev.filter(([a]) => a === 'scene').map(([, v]) => v)); reach[m] = (reach[m] || 0) + 1; });
+    const leave = {}; ss.forEach((x) => x.ev.filter(([a]) => a === 'leave').forEach(([, v]) => { leave[v] = (leave[v] || 0) + 1; }));
+    const n = (e) => ss.filter((x) => has(x, e)).length, fmt = (o) => Object.keys(o).sort((a, b) => a - b).map((k) => `${k < 0 ? 'none' : k === '0' ? 'prologue' : 'scene ' + k}: ${o[k]}`).join(', ') || 'none';
+    return { text: `Medu street-test log (${location.host || 'local'})\nSessions: ${ss.length}\nPlays started: ${plays.length} (at the mosque ${plays.filter((x) => x.ev.some(([a, v]) => a === 'start' && v === 'site')).length})\nFurthest scene reached: ${fmt(reach)}\nLeft the play at: ${fmt(leave)}\nReached the pay screen: ${n('gate')} · tapped continue: ${n('pay')} · not now: ${n('decline')}\nFinished: ${n('complete')}`,
+      csv: 'time,session,event,value\n' + log.map(([t, sid, ev, v]) => `${new Date(t).toISOString()},${sid},${ev},${v ?? ''}`).join('\n'), sessions: ss.length };
+  }
 
   const $ = (s) => document.querySelector(s);
   const app = $('#app');
@@ -973,7 +1027,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       $('.map-note').textContent = 'Map: ' + MAPI.attribution;
     } else drawSchematic();
     // The other walk stays visible as faint dots; tapping one switches to that walk.
-    WALKS.filter((w) => w !== walk).forEach((w) => {
+    WALKS.filter((w) => w !== walk && walk.id !== 'cairo').forEach((w) => {
       const pts = w.stops.map((id) => proj(BY_ID[id].coords));
       el('path', { d: 'M' + pts.map((p) => p.join(' ')).join(' L'), class: 'route other', 'vector-effect': 'non-scaling-stroke' }, world);
       pts.forEach((p) => {
@@ -983,11 +1037,11 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       });
     });
     const pts = STOPS.map((s) => proj(s.coords));
-    el('path', { d: 'M' + pts.map((p) => p.join(' ')).join(' L'), class: 'route', 'vector-effect': 'non-scaling-stroke' }, world);
+    if (walk.id !== 'cairo') el('path', { d: 'M' + pts.map((p) => p.join(' ')).join(' L'), class: 'route', 'vector-effect': 'non-scaling-stroke' }, world);
     drawPins(pts);
     const total = STOPS.slice(1).reduce((m, s, i) => m + walkM(STOPS[i].coords, s.coords), 0);
     $('#walkTitle').textContent = walk.title;
-    $('#mapSub').textContent = `${STOPS.length} stops · approx. ${(total / 1000).toFixed(1)} km on foot`;
+    $('#mapSub').textContent = walk.id === 'cairo' ? `1 audio play · ${STOPS.length - 1} coming soon` : `${STOPS.length} stops · approx. ${(total / 1000).toFixed(1)} km on foot`;
     document.querySelectorAll('#walks button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.w === walk.id)));
   }
 
@@ -1000,17 +1054,27 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
   const LABEL_SIDE = { qalawun: 'l', azhar: 'r', zuweila: 'l', ibntulun: 't', gayer: 'b', hassan: 'l', rifai: 't', akhur: 'b', citadel: 'b' };
   function drawPins(pts) {
     const sc = ` scale(${1 / zoom})`;
-    STOPS.forEach((s, i) => {
+    // Coming-soon monuments: small unlabelled dots (named in the list below), drawn first so the open play sits on top.
+    const order = STOPS.map((s, i) => i).sort((a, b) => isOpen(STOPS[a]) - isOpen(STOPS[b]));
+    order.forEach((i) => { const s = STOPS[i];
       const [x, y] = pts[i];
-      const g = el('g', { class: 'pin', transform: `translate(${x} ${y})${sc}`, tabindex: 0, role: 'button', 'aria-label': `Stop ${i + 1}, ${s.title}`, 'data-i': i }, world);
+      if (walk.id === 'cairo' && !isOpen(s)) {
+        const g = el('g', { class: 'pin soon', transform: `translate(${x} ${y})${sc}`, tabindex: 0, role: 'button', 'aria-label': `${s.title}, coming soon`, 'data-i': i }, world);
+        el('circle', { r: 14, fill: 'transparent' }, g); el('circle', { r: 5, class: 'core' }, g);
+        g.addEventListener('click', () => preview(i));
+        g.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); preview(i); } });
+        return;
+      }
+      const g = el('g', { class: 'pin' + (walk.id === 'cairo' ? ' play' : ''), transform: `translate(${x} ${y})${sc}`, tabindex: 0, role: 'button', 'aria-label': walk.id === 'cairo' ? `${s.title}, Episode 1` : `Stop ${i + 1}, ${s.title}`, 'data-i': i }, world);
       el('circle', { r: 14, class: 'halo' }, g);
       el('circle', { r: 13, class: 'core' }, g);
-      const t = el('text', { class: 'num' }, g); t.textContent = i + 1;
+      const t = el('text', { class: 'num' }, g); t.textContent = walk.id === 'cairo' ? '▶' : i + 1;
       // Put the label on the side away from the route's neighbours.
       const nb = pts[i + 1] || pts[i - 1], side = LABEL_SIDE[s.id] || (nb && nb[0] < x ? 'r' : 'l');
       const pos = { r: [20, 4, 'start'], l: [-20, 4, 'end'], t: [0, -22, 'middle'], b: [0, 30, 'middle'] }[side];
       const lab = el('text', { class: 'pin-label', x: pos[0], y: pos[1], 'text-anchor': pos[2] }, g);
       lab.textContent = s.title.replace(' & Muhammad Ali Mosque', '');
+      if (walk.id === 'cairo') { lab.setAttribute('x', -20); lab.setAttribute('y', -2); lab.setAttribute('text-anchor', 'end'); const ep = el('text', { class: 'pin-label ep', x: -20, y: 12, 'text-anchor': 'end' }, g); ep.textContent = 'EPISODE 1'; }
       g.addEventListener('click', () => preview(i));
       g.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); preview(i); } });
     });
@@ -1022,7 +1086,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
   // Pan, zoom and fly. World units: the 420 x 760 viewBox; zoom scales the world group.
   const VIEW = { cx: 210, cy: 352, w: 190, h: 290 };
   function fit() {
-    const pts = STOPS.map((s) => proj(s.coords));
+    const pts = (walk.frame ? walk.frame.map((id) => BY_ID[id]) : STOPS).map((s) => proj(s.coords));
     const xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]);
     const bw = Math.max(...xs) - Math.min(...xs) || 1, bh = Math.max(...ys) - Math.min(...ys) || 1;
     zoom = Math.max(0.8, Math.min(MAPI ? 3 : 1.6, Math.min(VIEW.w / bw, VIEW.h / bh)));
@@ -1069,16 +1133,26 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       const num = `<span class="n">${visited.has(s.id) ? '✓' : i + 1}</span>`;
       if (th) b.classList.add('has-thumb');
       b.innerHTML = `${th ? `<span class="thumb" style="background-image:url('${th.src}')">${num}</span>` : num}<span><b>${s.title}</b><small><span class="chip" style="color:${era.accent}">${era.label}</span>${s.street}</small></span><span class="yr">${s.year}</span>`;
-      b.addEventListener('click', () => openStop(i));
+      if (walk.id === 'cairo') {
+        const open = isOpen(s);
+        b.classList.toggle('soon', !open);
+        b.querySelector('.n') && (b.querySelector('.n').textContent = open ? '▶' : '');
+        b.querySelector('.yr').outerHTML = `<span class="yr tag">${open ? `${s.theatre ? s.theatre.mins + ' min' : ''}` : 'Soon'}</span>`;
+        if (open) b.querySelector('small').innerHTML = `<span class="chip" style="color:${era.accent}">Episode 1</span>${s.theatre ? esc(s.theatre.title) : s.street}`;
+        else if (SOON[s.id]) b.querySelector('small').innerHTML = `<span class="chip" style="color:${era.accent}">${era.label}</span>${SOON[s.id]}`;
+        b.addEventListener('click', () => (open ? openStop(i) : preview(i)));
+      } else b.addEventListener('click', () => openStop(i));
       li.appendChild(b); list.appendChild(li);
       if (i < STOPS.length - 1) { const leg = document.createElement('li'); leg.className = 'leg'; leg.textContent = '↓ ' + fmtLeg(walkM(s.coords, STOPS[i + 1].coords)); list.appendChild(leg); }
     });
+    if (walk.id === 'cairo') list.querySelectorAll('.leg').forEach((n) => n.remove());
     const seenHere = STOPS.filter((x) => visited.has(x.id)).length;
-    $('#progress').textContent = `${seenHere} of ${STOPS.length} visited`;
+    $('#progress').textContent = walk.id === 'cairo' ? 'Preview edition' : `${seenHere} of ${STOPS.length} visited`;
     $('#routeView').hidden = false; $('#pvView').hidden = true; $('#sheet').classList.remove('pv'); $('#sheetTitle').textContent = 'Your route';
     document.querySelectorAll('.pin[data-i]').forEach((p) => p.classList.toggle('visited', visited.has(STOPS[+p.dataset.i].id)));
     const next = STOPS.findIndex((s) => !visited.has(s.id));
     const cta = $('#nextCta');
+    if (walk.id === 'cairo') { const h = STOPS.findIndex(isOpen); $('#sheetTitle').textContent = 'Now playing'; cta.textContent = `Start Episode 1 · ${STOPS[h].title}`; cta.onclick = () => openStop(h); return; }
     if (next === -1) { cta.textContent = 'Finish the walk'; cta.onclick = showComplete; }
     else { cta.textContent = seenHere ? `Next: ${STOPS[next].title}` : `Start at stop 1 · ${STOPS[0].title}`; cta.onclick = () => openStop(next); }
   }
@@ -1090,7 +1164,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
     flyTo(i);
     $('#sheet').classList.remove('open');
     $('#routeView').hidden = true; $('#pvView').hidden = false; $('#sheet').classList.add('pv');
-    $('#sheetTitle').textContent = `Stop ${i + 1} of ${STOPS.length}`;
+    $('#sheetTitle').textContent = walk.id === 'cairo' ? (isOpen(s) ? 'Episode 1' : 'Coming soon') : `Stop ${i + 1} of ${STOPS.length}`;
     const pv = $('#pvImg');
     pv.style.backgroundImage = th ? `url('${th.src}')` : phBg(s.era, 0);
     $('#pvEra').textContent = era.label; $('#pvEra').style.color = era.accent;
@@ -1099,6 +1173,12 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
     $('#pvMeta').textContent = `${s.street} · built ${s.year}. ${prev}.`;
     $('#pvGo').textContent = `Step back to ${s.year}`;
     $('#pvGo').onclick = () => openStop(i);
+    if (walk.id === 'cairo') {
+      $('#pvGo').hidden = !isOpen(s);
+      $('#pvMeta').textContent = isOpen(s) ? `${s.theatre ? s.theatre.title + ' · ' + s.theatre.mins + ' min audio play' : s.street}. Built ${s.year}.` : `${s.street} · built ${s.year}. ${SOON[s.id] || 'An audio play here is coming soon'}.`;
+      if (isOpen(s)) $('#pvGo').textContent = 'Start the play';
+      $('.pv-actions').classList.toggle('one', !isOpen(s));
+    }
   }
   $('#pvBack').addEventListener('click', () => { renderSheet(); pan = fit(); setPan(true); });
   $('#walks').innerHTML = WALKS.map((w) => `<button data-w="${w.id}" aria-pressed="false">${w.short} · ${w.stops.length}</button>`).join('');
@@ -1192,7 +1272,8 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
         ? `<div class="tn" data-tn>${ph('Now · photo to be sourced', phBg(s.era, k), now)}<div class="then">${ph('Then · historic print to be sourced', `linear-gradient(160deg, #6b5838, #2a2214)`, then)}</div><div class="knob"></div><div class="tn-tags"><span>Then${then && then.year ? ' · ' + then.year : ''}</span><span>Now</span></div></div>`
         : ph('Photo · to be sourced', phBg(s.era, k), now);
       const credits = [now, then].filter(Boolean).map((c) => `<a href="${esc(c.url)}" target="_blank" rel="noopener">${creditLine(c)}</a>`).join('<br>');
-      const pr = document.createElement('div'); pr.className = 'print'; pr.dataset.k = k;
+      const historic = (now && now.year && now.year < 1950) || (!now && !!sl.card); // the frame itself says "this is the past"
+      const pr = document.createElement('div'); pr.className = 'print' + (historic ? '' : ' bleed'); pr.dataset.k = k;
       pr.innerHTML = `<div class="frame">${hero}<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></div>`;
       pr.querySelectorAll('.ph').forEach((n) => { if (n.dataset.bg) n.style.setProperty('--ph-bg', bgs[+n.dataset.bg]); });
       stack.appendChild(pr);
@@ -1235,6 +1316,9 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       p.classList.toggle('under', j > k);
       if (j < k) { p.style.zIndex = 100 + j; p.style.transform = `translate(-135%, 30px) rotate(-14deg)`; p.style.opacity = '0'; return; }
       p.style.opacity = '1';
+      if (j > k && p.classList.contains('bleed')) { // full-bleed photos lie flat under the top one; only the next shows, as the top leaves
+        p.style.zIndex = 50 - (j - k); p.style.transform = 'none'; p.style.opacity = j === k + 1 && dx ? String(Math.min(1, Math.abs(dx) / 60)) : '0'; return;
+      }
       if (j === k) { p.style.zIndex = 60; p.style.transform = `translate(${dx}px, ${Math.abs(dx) * 0.04}px) rotate(${dx * 0.035}deg)`; return; }
       const [r, x, y, sc] = PILE[Math.min(j - k - 1, PILE.length - 1)];
       const lift = Math.min(1, Math.abs(dx) / 160); // the next print rises a little as the top one leaves
@@ -1334,7 +1418,11 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
   }
   // Hide the slide counter once the text scrolls up under it.
   pager.addEventListener('scroll', () => { $('.dots-bar').classList.toggle('away', pager.scrollTop > 30); }, { passive: true });
-  function goSlide(k) { if (k === cur.slide) return; buzz(); setSlide(k); }
+  function goSlide(k) {
+    if (k === cur.slide) return;
+    if (STOPS[cur.stop].theatre && !stage.free(k)) { layoutStack(0); stage.ask(k); return; }
+    buzz(); setSlide(k);
+  }
 
   // ---- Narration: pre-recorded voice (audio/narr/*.m4a, made with make-audio.py). A slide whose text changed since
   // its recording, or a build without audio, falls back to the device's text-to-speech, labelled as a preview. ----
@@ -1698,11 +1786,13 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       if (!on) return;
       if (v === 'map') { closeStop(); return; }
       site = v !== 'home';
+      track('start', site ? 'site' : 'home');
       go(0);
     }
 
     async function go(k) {
       if (!on) return;
+      if (!(await gate(k))) return;
       const s = st(), sl = scene(k);
       if (k !== cur.slide) goSlide(k);
       seen.add(k);
@@ -1712,7 +1802,27 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       if (!on) return;
       if (sl.gate && site) { const r = await arrive(sl, k); if (!on) return; if (r === 'outside') site = false; }
       close();
+      track('scene', k);
       narr.play();
+    }
+
+    // Preview edition: the prologue and scenes 1-2 are free; the next scene asks to continue.
+    // A MOCK for the street test: no price and no payment. Tapping continue only records the intent and plays on.
+    const FREE = 2; let mockPaid = false;
+    const free = (k) => k <= FREE || mockPaid;
+    async function gate(k) {
+      if (free(k)) return true;
+      const s = st(), left = s.slides.filter((x, j) => j >= k && !x.deeper).length;
+      track('gate', k);
+      const v = await panel(`<div class="st-kicker">End of the free preview</div><h2 class="st-title sm">The story goes on</h2><div class="st-rule"></div>
+        <p class="st-sub">${left} more scenes to the end of ${esc(s.theatre.title)}.</p>
+        <div class="st-mock">Preview edition · test screen. No payment is taken.</div>
+        <div class="st-actions"><button class="btn btn-primary" data-v="pay">Continue the full play</button><button class="btn btn-ghost" data-v="no">Not now</button></div>`, { mode: 'full center' });
+      if (!on) return false;
+      if (v !== 'pay') { track('decline', k); close(); return false; }
+      track('pay', k); mockPaid = true;
+      await panel(`<div class="st-kicker">Preview edition</div><h2 class="st-title sm">Thank you</h2><p class="st-sub">Payments are not switched on in this test, so the rest of the play is free today.</p>`, { mode: 'full center', ms: 2600 });
+      return on;
     }
 
     function stopGps() { if (gps !== null) { navigator.geolocation.clearWatch(gps); gps = null; } }
@@ -1860,6 +1970,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
     let card = null;
     async function finale() {
       const s = st();
+      track('complete');
       cue.swell();
       await panel(`<div class="st-kicker">The end</div><h2 class="st-title">Sultan Hasan</h2><p class="st-sub">Sultan at thirteen, dead at about twenty-seven. He began a building that al-Maqrizi said had no equal in the lands of Islam, and he never lay in it.</p>`, { mode: 'full center chapter', ms: cinematic() ? 4200 : 2200 });
       close();
@@ -1886,16 +1997,18 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
     $('#stGuide').addEventListener('click', () => showGuide());
 
     return {
-      on: live, begin, after, linesHtml, eyes,
+      on: live, begin, after, linesHtml, eyes, free,
+      ask: (k) => { if (on) go(k); },
       // Multi-voice preview: each line in the device voice, pitched per speaker, until the recorded clip exists.
       voice: (who) => VOICES[who] || VOICES.narrator, kind: (k) => KIND[k],
-      halt() { on = false; close(); eyes(false); updHud(); ['keeps', 'guide'].forEach((id) => { $('#' + id).hidden = true; }); },
+      halt() { if (on) track('leave', cur.slide); on = false; close(); eyes(false); updHud(); ['keeps', 'guide'].forEach((id) => { $('#' + id).hidden = true; }); },
     };
   })();
 
   // ---- Flow ----
   let busy = false;
   async function openStop(i) {
+    if (walk.id === 'cairo' && !isOpen(STOPS[i])) { preview(i); return; }
     if (busy) return; busy = true;
     $('#sheet').classList.remove('open');
     flyTo(i);
@@ -1965,7 +2078,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
   });
 
   function applyIntroPhoto() {
-    const ph = photo('hassan', 1) || photo('zuweila', 0) || photo('azhar', 0);
+    const ph = photo('hassan', 2) || photo('hassan', 1) || photo('zuweila', 0); // portrait: fills a tall phone without upscaling
     if (!ph) return;
     $('#intro').style.setProperty('--intro-img', `url('${ph.src}')`);
   }
@@ -2004,9 +2117,9 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
     if (!hosted) return;
     const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
     if (ios) { btn.disabled = false; btn.textContent = 'Add to Home Screen'; btn.onclick = () => { $('#iosHelp').hidden = false; }; }
-    else btn.textContent = 'Open in Chrome to install';
+    else btn.hidden = true; // shown again only if the browser offers an install prompt
     let deferred;
-    window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferred = e; btn.disabled = false; btn.textContent = 'Install the app'; });
+    window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferred = e; btn.hidden = false; btn.disabled = false; btn.textContent = 'Install the app'; });
     btn.addEventListener('click', async () => { if (!deferred) return; deferred.prompt(); try { await deferred.userChoice; } catch {} deferred = null; btn.hidden = true; });
     window.addEventListener('appinstalled', () => { btn.hidden = true; });
     $('#iosHelpClose').addEventListener('click', () => { $('#iosHelp').hidden = true; });
@@ -2022,13 +2135,19 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
     b.addEventListener('click', () => { S[key] = !S[key]; store.set(key, S[key]); b.setAttribute('aria-checked', String(S[key])); if (key === 'cine') setDepth(); if (key === 'amb') bed.setEnabled(); });
   });
   if (reduced) { const c = $('#tCine'); c.disabled = true; c.querySelector('small').textContent = 'Off because your device asks for reduced motion.'; c.setAttribute('aria-checked', 'false'); }
-  $('#openSettings').addEventListener('click', () => { $('#settings').hidden = false; });
+  $('#openSettings').addEventListener('click', () => { const L = logSummary(); $('#tlogSum').textContent = L.sessions ? L.text.split('\n').slice(1).join(' · ') : 'No sessions yet on this phone.'; $('#settings').hidden = false; });
+  $('#tlogShare').addEventListener('click', async () => {
+    const L = logSummary(), text = `${L.text}\n\n${L.csv}`;
+    try { if (navigator.share) await navigator.share({ title: 'Medu street-test log', text }); else { await navigator.clipboard.writeText(text); $('#tlogShare').textContent = 'Copied'; } } catch {}
+  });
+  $('#tlogClear').addEventListener('click', () => { if (confirm('Clear the street-test log on this phone?')) { store.set('log', []); $('#tlogSum').textContent = 'Log cleared.'; } });
   $('#closeSettings').addEventListener('click', () => { $('#settings').hidden = true; });
   $('#settings').addEventListener('click', (e) => { if (e.target.id === 'settings') $('#settings').hidden = true; });
   $('#resetWalk').addEventListener('click', () => { visited.clear(); store.set('visited', []); renderSheet(); $('#settings').hidden = true; });
 
   if (cinematic()) { $('#intro').classList.add('intro-in'); app.classList.add('curtain'); requestAnimationFrame(() => requestAnimationFrame(() => app.classList.remove('curtain'))); }
-  if (ASSETS) $('.proto-tag').textContent = 'Prototype · draft content'; walk = WALKS.find((w) => w.id === store.get('walk', 'muizz')) || WALKS[0]; STOPS = walk.stops.map((x) => BY_ID[x]);
+  if (ASSETS) $('.proto-tag').textContent = 'Preview edition · draft content'; walk = WALKS[0]; STOPS = walk.stops.map((x) => BY_ID[x]);
+  track('open');
   { const p = fit(); drawMap(); pan = p; setPan(false); } renderSheet(); applyIntroPhoto();
 })();
 </script>

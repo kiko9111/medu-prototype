@@ -1,6 +1,6 @@
 # Medu: Cairo Edition (prototype)
 
-A clickable, installable prototype of Medu, a time-travel walking guide to historic Cairo.
+A clickable, installable preview of Medu: audio plays you walk inside historic places. Episode 1 is Sultan Hassan in Cairo; the other monuments on the map are coming soon.
 
 **Open it:** https://kiko9111.github.io/medu-prototype/
 

@@ -1,7 +1,7 @@
 {
   "name": "Medu: Cairo Edition",
   "short_name": "Medu",
-  "description": "A time-travel walking guide to historic Cairo (prototype).",
+  "description": "Audio plays for historic places. Episode 1: Sultan Hassan, Cairo (preview edition).",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
