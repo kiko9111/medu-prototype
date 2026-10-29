@@ -758,6 +758,83 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
 .sx-route { fill: none; stroke: var(--gold); stroke-width: 3; stroke-dasharray: 1 7; stroke-linecap: round; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 4px rgba(205,176,122,.6)); }
 .sx-hero-txt { text-shadow: 0 1px 12px rgba(0,0,0,.6); } .sx-hero-txt .sx-kicker { color: rgba(239,231,216,.85); } .sx-cta { text-shadow: none; }
 
+/* ---- Riddles (quiz/quiz.css, inlined by build-prototype.py): a manuscript page over the scene's old print, lamps that light.
+   Motion only at transitions (page in, lamp lit); reduced motion and "Cinematic effects off" (no .cine) get still pages. ---- */
+.stage.quiz .veil { background: #07060a; overflow: hidden; }
+.stage.quiz .veil::before { content: ''; position: absolute; inset: -6%; background: var(--qz-img, none) center / cover no-repeat; filter: sepia(.7) brightness(.42) contrast(1.05) blur(1.5px); }
+.stage.quiz .veil::after { content: ''; position: absolute; inset: 0; background: radial-gradient(90% 60% at 50% 42%, rgba(224,164,58,.14), transparent 70%), linear-gradient(180deg, rgba(7,6,10,.35), rgba(7,6,10,.88)); }
+.cine .stage.quiz .veil::before { animation: qzDrift 24s ease-out both; }
+@keyframes qzDrift { from { transform: scale(1.08) translateY(1.5%); } to { transform: scale(1); } }
+
+.qz-page { --ink: #2a1c0c; --ink2: #6b5232; position: relative; width: min(100%, 380px); max-height: calc(100dvh - 120px); overflow-y: auto; text-align: center; color: var(--ink);
+  padding: 22px 20px 20px; border-radius: 6px; display: grid; gap: 10px; justify-items: center;
+  background: radial-gradient(120% 90% at 50% 0%, #f4ead2, #e6d5ae 70%, #d9c497); box-shadow: 0 30px 80px rgba(0,0,0,.6), inset 0 0 40px rgba(120,84,30,.28); }
+.qz-page::before { content: ''; position: absolute; inset: 8px; border: 1px solid rgba(110,78,30,.45); outline: 1px solid rgba(110,78,30,.25); outline-offset: 3px; border-radius: 3px; pointer-events: none; }
+.qz-kick { font-size: 10.5px; letter-spacing: .26em; text-transform: uppercase; color: #8a5a14; font-weight: 600; }
+.qz-q { margin: 0; font-family: var(--display); font-size: 27px; line-height: 1.12; font-weight: 600; text-wrap: balance; color: var(--ink); }
+.qz-quote { font-style: italic; font-weight: 500; }
+.qz-quote::before { content: '“'; display: block; font-size: 52px; line-height: .45; color: #a0731f; font-style: normal; margin-bottom: 4px; }
+.qz-small { margin: 0; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink2); }
+.qz-say { margin: 0; font-family: var(--display); font-style: italic; font-size: 19px; line-height: 1.3; color: #3d2a12; text-wrap: pretty; }
+.qz-fine { margin: 0; font-size: 12px; line-height: 1.45; color: var(--ink2); }
+.qz-opts { display: grid; gap: 8px; width: 100%; margin-top: 4px; }
+.qz-opt { display: grid; grid-template-columns: 30px 1fr; align-items: center; gap: 8px; min-height: 50px; padding: 8px 12px; text-align: left; border-radius: 10px; color: var(--ink); font-size: 15.5px; line-height: 1.3;
+  background: rgba(255,250,235,.55); border: 1px solid rgba(110,78,30,.35); transition: background 300ms, border-color 300ms, opacity 300ms; }
+.qz-opt b { font-family: var(--display); font-size: 22px; color: #a0731f; text-align: center; font-weight: 600; }
+.qz-opt small { grid-column: 2; font-size: 12px; color: var(--ink2); }
+.qz-opt.pri { background: #2a1c0c; color: #f4ead2; border-color: #2a1c0c; } .qz-opt.pri b { color: #e0b552; } .qz-opt.pri small { color: #d6c49c; }
+.qz-opt:active { transform: scale(.985); }
+.qz-opt:disabled { opacity: .45; }
+.qz-opt.ok { opacity: 1; background: rgba(160,115,31,.2); border-color: #a0731f; box-shadow: inset 0 -2px 0 #a0731f; }
+.qz-opt.no { opacity: .8; text-decoration: line-through; text-decoration-color: #8b2a17; text-decoration-thickness: 2px; }
+.qz-after { display: grid; gap: 10px; width: 100%; }
+.qz-after[hidden] { display: none; }
+.qz-verdict { font-family: var(--display); font-size: 22px; font-weight: 600; color: #7a4d0c; }
+.qz-line { margin: 0; padding: 10px 12px; text-align: left; border-left: 2px solid #a0731f; background: rgba(255,250,235,.45); border-radius: 0 8px 8px 0; }
+.qz-line blockquote { margin: 0; font-family: var(--display); font-size: 17px; line-height: 1.32; font-style: italic; color: #3d2a12; }
+.qz-line figcaption { margin-top: 6px; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink2); }
+.qz-go { width: 100%; background: #2a1c0c; color: #f4ead2; }
+
+.qz-lamps { display: flex; justify-content: center; gap: 18px; height: 54px; margin-top: -4px; }
+.qz-lamp { width: 40px; height: 40px; overflow: visible; fill: none; stroke: #6b5232; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.qz-lamps .qz-lamp:nth-child(even) { margin-top: 12px; }
+.qz-lamp .glow { stroke: none; fill: rgba(255,196,84,0); transition: fill 900ms ease; }
+.qz-lamp .flame { stroke: none; fill: rgba(107,82,50,.25); transition: fill 600ms ease; }
+.qz-lamp.lit { stroke: #8a5a14; }
+.qz-lamp.lit .glow { fill: rgba(255,190,70,.34); filter: blur(3px); }
+.qz-lamp.lit .flame { fill: #f2a516; }
+.qz-hall .qz-lamp { stroke: #8f7a58; }
+.qz-hall .qz-lamp.lit { stroke: #e0b552; }
+.qz-hall .qz-lamp .flame { fill: rgba(239,231,216,.12); }
+.qz-hall .qz-lamp.lit .flame { fill: #f2a516; }
+.qz-hall { display: grid; gap: 14px; justify-items: center; text-align: center; width: 100%; }
+.qz-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 320px; }
+.qz-grid .qz-lamp:nth-child(even) { margin-top: 6px; }
+.qz-grid .qz-lamp { width: 24px; height: 24px; }
+#qzChip svg { width: 18px; height: 18px; }
+#qzChip .glow { display: none; }
+#qzChip .qz-lamp { stroke: currentColor; } #qzChip .flame { fill: #f2a516; }
+#qzChip[hidden] { display: none; }
+
+/* Motion, cinematic only: lamps lower on their chains, the page turns, a lit lamp blooms and flickers, the hall lights one by one. */
+.cine .stage .qz-page .qz-lamp { animation: qzHang 1300ms cubic-bezier(.2,1.4,.4,1) both; animation-delay: calc(200ms + var(--i) * 140ms); transform-origin: 50% 0; }
+@keyframes qzHang { from { transform: translateY(-34px) rotate(-8deg); opacity: 0; } 60% { opacity: 1; } to { transform: none; } }
+.cine .stage .qz-page.qz-turn { animation: qzTurn 800ms cubic-bezier(.16,1,.3,1) both; transform-origin: 0 50%; }
+@keyframes qzTurn { from { transform: perspective(900px) rotateY(-28deg) translateX(30px); opacity: 0; } to { transform: none; opacity: 1; } }
+.cine .stage .qz-q { animation: qzInk 1400ms cubic-bezier(.4,0,.2,1) 250ms both; }
+@keyframes qzInk { from { clip-path: inset(0 100% 0 0); opacity: .2; } to { clip-path: inset(0 0 0 0); opacity: 1; } }
+.cine .stage .qz-lamp.now { animation: qzLit 1600ms cubic-bezier(.16,1,.3,1) both; }
+.cine .stage .qz-lamp.now .glow { animation: qzBloom 1800ms ease-out both; }
+.cine .stage .qz-lamp.lit .flame { animation: qzFlick 2.6s ease-in-out infinite; transform-origin: 50% 100%; transform-box: fill-box; }
+@keyframes qzLit { 0% { transform: rotate(0); } 25% { transform: rotate(7deg); } 55% { transform: rotate(-4deg); } 100% { transform: rotate(0); } }
+@keyframes qzBloom { from { fill: rgba(255,210,110,.9); transform: scale(.4); transform-box: fill-box; transform-origin: center; } to { fill: rgba(255,190,70,.34); transform: scale(1); } }
+@keyframes qzFlick { 0%, 100% { transform: scaleY(1) skewX(0); } 30% { transform: scaleY(1.12) skewX(-3deg); } 60% { transform: scaleY(.94) skewX(2deg); } }
+.cine .stage .qz-after:not([hidden]) > * { animation: stRise 700ms cubic-bezier(.16,1,.3,1) both; }
+.cine .stage .qz-after > *:nth-child(2) { animation-delay: 140ms; } .cine .stage .qz-after > *:nth-child(n+3) { animation-delay: 280ms; }
+.cine .stage .qz-grid .qz-lamp { animation: qzHang 900ms cubic-bezier(.2,1.4,.4,1) both; animation-delay: calc(var(--i) * 70ms); transform-origin: 50% 0; }
+.cine .stage .qz-grid .qz-lamp.lit .glow { animation: qzBloom 1400ms ease-out both; animation-delay: calc(600ms + var(--i) * 70ms); }
+@media (prefers-reduced-motion: reduce) { .stage.quiz *, .stage.quiz .veil::before { animation: none !important; } }
+
 </style>
 
 <aside class="showcase" aria-label="About this prototype">
@@ -955,7 +1032,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
         <div class="souv-row"><button class="btn btn-ghost" id="tlogShare">Share log</button><button class="btn btn-ghost" id="tlogClear">Clear log</button></div></div>
       <button class="btn btn-ghost" id="resetWalk" style="margin-top:12px">Reset visited stops</button>
       <button class="btn btn-primary" id="closeSettings" style="margin-top:6px">Done</button>
-      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 29 Oct 15:11 UTC</p>
+      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 29 Oct 15:19 UTC</p>
     </div>
   </div>
   <!-- ===== Super app layer (super/super.html, inlined by build-prototype.py). Hidden with ?edition=preview. ===== -->
@@ -2112,6 +2189,8 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
         <dt>Time</dt><dd>About ${s.theatre.mins} minutes with the walking, more if you go deeper.</dd></dl>`; },
   };
 
+  // Hooks for add-ons inlined later (quiz/quiz.js): scene(k, ctx) after a scene's act and keepsake, end(ctx) before the souvenir, card(id) for a souvenir line.
+  const stageHooks = {};
   const stage = (() => {
     const box = $('#stage'), body = $('#stBody'), skip = $('#stSkip'), hud = $('#stHud');
     let on = false, tok = 0, t0 = 0, site = true, photoUrl = null, gps = null, lastFix = null;
@@ -2226,6 +2305,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       const s = st(), sl = scene(k);
       if (sl.act) { await act(sl.act); if (!on) return; }
       if (sl.keep && !keeps.has(sl.keep.id)) { await keep(sl.keep); if (!on) return; }
+      if (stageHooks.scene) { await stageHooks.scene(k, { site, panel }); if (!on) return; }
       let next = -1;
       if (sl.choice) {
         const v = await panel(`<div class="st-kicker">Your choice</div><h2 class="st-title sm">${esc(sl.choice.q)}</h2>
@@ -2325,6 +2405,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       x.fillText(`${new Date().toLocaleDateString([], { day: 'numeric', month: 'long', year: 'numeric' })}  ·  ${mins} min  ·  ${saw} of ${main} scenes`, W / 2, 975);
       x.fillStyle = '#94a3b8'; x.font = '400 26px Inter, sans-serif';
       x.fillText('From the Citadel square to an empty tomb, 1347–1361', W / 2, 1020);
+      const qz = stageHooks.card && stageHooks.card(s.id); if (qz) { x.fillStyle = gold; x.font = '400 22px Inter, sans-serif'; x.fillText(qz, W / 2, 1056); }
       const ks = allKeeps().filter((kp) => keeps.has(kp.id)), gap = 150, sx = W / 2 - (ks.length - 1) * gap / 2;
       ks.forEach((kp, i) => { const cx = sx + i * gap, cy = 1120;
         x.beginPath(); x.arc(cx, cy, 46, 0, Math.PI * 2); x.strokeStyle = gold; x.globalAlpha = .6; x.lineWidth = 2; x.stroke(); x.globalAlpha = 1;
@@ -2342,6 +2423,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       track('complete');
       cue.swell();
       await panel(`<div class="st-kicker">The end</div><h2 class="st-title">Sultan Hasan</h2><p class="st-sub">Sultan at thirteen, dead at about twenty-seven. He began a building that al-Maqrizi said had no equal in the lands of Islam, and he never lay in it.</p>`, { mode: 'full center chapter', ms: cinematic() ? 4200 : 2200 });
+      if (stageHooks.end) { await stageHooks.end({ site, panel }); if (!on) return; }
       souvenir();
     }
     // The souvenir card, with the optional bonus track offered until it has been heard.
@@ -3088,6 +3170,174 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
     });
     if (head.on) headOn(true);
     applyLang(); renderToday();
+  })();
+
+  // ---- Riddles (quiz/quiz.js, inlined by build-prototype.py inside the app's closure, in both editions). After a scene of a story
+  // stop, two optional questions about what was just heard, asked by the imagined student of the madrasa on a manuscript page over
+  // the scene's old print. Each right answer lights a lamp of the great hall. Every answer comes from a narration line of that scene
+  // (`from` must still be in the line, or the question is dropped), and the feedback shows the line and its source key.
+  // On site the walker can save the riddles for the end, so nothing stands between the eyes-up scenes. No timer, no penalty. ----
+  (() => {
+    const VOICE = { narrator: 'The narrator', maqrizi: 'al-Maqrizi, historian', subki: 'al-Subki, scholar and poet', muqbil: 'Muqbil, a servant of the palace', student: 'The student (imagined)', jabarti: 'al-Jabarti, chronicler' };
+    // Per scene title: two questions. The right answer is listed first (options are shuffled on screen); s = the scene's source key.
+    const RIDDLES = { hassan: {
+      'The boy king': [
+        { q: 'How old was Hasan when they put him on the throne?', a: ['Thirteen', 'Eighteen', 'Twenty-seven'], from: 'a boy of thirteen was put on that throne', s: 'B' },
+        { q: 'The narrator asked you to remember one name. Whose?', a: ['Yalbugha, his own mamluk', 'Barquq', 'Muqbil'], from: 'A young man called Yalbugha. Remember that name.', s: 'B' } ],
+      'Two minarets that do not match': [
+        { q: 'Why don\'t the two minarets match?', a: ['One fell, and was rebuilt smaller', 'Two different sultans built them', 'One was never finished'], from: 'The other fell, centuries later, and was rebuilt smaller.', s: 'H' },
+        { q: 'About how tall is the original minaret?', a: ['About eighty metres', 'About forty metres', 'About a hundred and twenty metres'], from: 'about eighty metres high', s: 'H' } ],
+      'A cliff of cut stone': [
+        { q: 'How many colleges lived in this block?', a: ['Four, one for each school of law', 'Two', 'Seven'], from: 'Four colleges lived in this block, one for each school of law.', s: 'H' },
+        { q: 'The endowment paid one man for a single job. Which job did you hear about?', a: ['Looking after the roof', 'Counting the students', 'Winding the clock'], from: 'The endowment even paid a man just to look after the roof.', s: 'H' } ],
+      'The unfinished doorway': [
+        { who: true, q: 'In all the lands of Islam, no house of worship is known that can match this mosque.', a: ['al-Maqrizi, historian', 'Muqbil, a servant of the palace', 'al-Subki, scholar and poet'], from: 'In all the lands of Islam, no house of worship is known that can match this mosque.', s: 'M' },
+        { q: 'Where did the bronze door of this doorway end up?', a: ['On another sultan\'s mosque, by Bab Zuweila', 'In the Citadel palace', 'Across the lane, at Al-Rifa\'i'], from: 'another sultan bought the bronze door, and hung it on his own mosque by Bab Zuweila', s: 'M' } ],
+      'The day the minaret fell': [
+        { q: 'Of the orphans under the falling minaret, how many children came out alive?', a: ['Six', 'Sixty', 'None'], from: 'Only six of the children came out alive.', s: 'M' },
+        { who: true, q: 'Those stones did not collapse. They bowed down, in awe of God.', a: ['al-Subki, scholar and poet', 'al-Maqrizi, historian', 'Muqbil, a servant of the palace'], from: 'Those stones did not collapse. They bowed down, in awe of God.', s: 'S' } ],
+      'Thirty-three days': [
+        { q: 'How long after the minaret fell did his end come?', a: ['Thirty-three days', 'Three years', 'One night'], from: 'Thirty-three days after the minaret fell', s: 'M' },
+        { q: 'What did his servants search for, and never find?', a: ['Where he was buried', 'His crown', 'The bronze door'], from: 'His servants searched for where he was buried, and never found it.', s: 'B' } ],
+      'Into the dark': [
+        { q: 'How big is the entrance hall?', a: ['As big as a small mosque', 'As big as the courtyard', 'Barely room for two'], from: 'It is as big as a small mosque.', s: 'H' },
+        { q: 'Which way does the passage turn you?', a: ['Sharply, to the left', 'Gently, to the right', 'It runs straight'], from: 'Feel your body turn, sharply, to the left.', s: 'H' } ],
+      'Four halls, one sky': [
+        { q: 'The great hall was said to be larger than which famous arch?', a: ['The hall of Kisra, at Ctesiphon', 'Bab Zuweila', 'The gate of the Citadel'], from: 'larger than the hall of Kisra at Ctesiphon', s: 'M' },
+        { q: 'What did the work cost, every day, for three years?', a: ['Twenty thousand silver coins', 'One gold coin', 'A hundred thousand silver coins'], from: 'Twenty thousand silver coins, every day.', s: 'M' } ],
+      'A student\'s morning': [
+        { q: 'Where does the student sleep?', a: ['In a room over his college\'s little courtyard', 'On the roof', 'In the Citadel'], from: 'in a room over my college\'s own little courtyard', s: 'H' },
+        { q: 'In the student\'s story, what could the scholar al-Subki not solve?', a: ['A hard inheritance case', 'A riddle about the dome', 'The cost of the arch'], from: 'Then a hard inheritance case came to him, and he could not solve it.', s: 'S' } ],
+      'The great arch': [
+        { who: true, q: 'That wooden frame cost a hundred thousand silver coins.', a: ['Muqbil, a servant of the palace', 'al-Maqrizi, historian', 'The student (imagined)'], from: 'That wooden frame cost a hundred thousand silver coins.', s: 'M' },
+        { q: 'Finish the sultan\'s words: "Were it not that people would say the king of Egypt could not finish what he built…"', a: ['"…I would have abandoned it."', '"…I would have built it higher."', '"…I would have built two."'], from: 'Were it not that people would say the king of Egypt could not finish what he built, I would have abandoned it.', s: 'M' } ],
+      'A tomb without its sultan': [
+        { q: 'How does this square room carry a round dome?', a: ['Tiers of carved niches, like honeycomb, in each corner', 'Four great columns', 'A hidden wooden ring'], from: 'In each corner, tiers of carved niches, like honeycomb', s: 'H' },
+        { q: 'So why has the sultan never been in his tomb?', a: ['He was never found', 'He chose to be buried in Mecca', 'It was built for his son'], from: 'He was never found.', s: 'B' } ],
+      'A fortress facing the Citadel': [
+        { q: 'After rebels fired from the roof, what did the next sultan do?', a: ['Tore out the stairs and walled up the door', 'Pulled down a minaret', 'Gave the mosque to the rebels'], from: 'The next sultan had the stairs torn out, and the great door walled up.', s: 'M' },
+        { q: 'Al-Rifa\'i, across the lane, was begun in…', a: ['1869', '1361', '1517'], from: 'It was begun in 1869', s: 'H' } ],
+    } };
+    const NUM = ['١', '٢', '٣', '٤'];
+    const LAMP = 'M12 1.5v3.5 M9 5h6 M7.5 5l-2 5.5h13l-2-5.5 M5.5 10.5c0 4.5 2.9 7.5 6.5 7.5s6.5-3 6.5-7.5 M10 18v2.5h4V18 M8.5 22.5h7';
+    const lampSvg = (lit, i = 0) => `<svg class="qz-lamp${lit ? ' lit' : ''}" style="--i:${i}" viewBox="0 0 24 24" aria-hidden="true"><circle class="glow" cx="12" cy="13" r="11"/><path d="${LAMP}"/><path class="flame" d="M12 9.2c1.4 1.6 1.8 2.8 1.1 3.9-.4.6-.9.9-1.1.9s-.7-.3-1.1-.9c-.7-1.1-.3-2.3 1.1-3.9z"/></svg>`;
+    const shuffle = (a) => { const b = a.map((t, i) => [t, i]); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
+    const st = () => STOPS[cur.stop];
+
+    // The two riddles of scene k, keeping only those whose answer line is still in the narration.
+    function riddles(s, k) {
+      const sl = s.slides[k], set = (RIDDLES[s.id] || {})[sl.title] || [];
+      return set.map((r) => ({ ...r, line: (sl.lines || []).find((l) => l.t.includes(r.from)) })).filter((r) => r.line);
+    }
+    const mainScenes = (s) => s.slides.map((x, k) => k).filter((k) => !s.slides[k].deeper && riddles(s, k).length);
+    const total = (s) => mainScenes(s).reduce((n, k) => n + riddles(s, k).length, 0);
+
+    let when = null, lit = new Map(), saved = [], streak = 0, asked = 0, chip = null;
+    const litN = () => [...lit.values()].reduce((a, b) => a + b, 0);
+    const mainLit = (s) => [...lit].filter(([k]) => !s.slides[k].deeper).reduce((a, [, n]) => a + n, 0);
+    function updChip() {
+      if (!chip) { chip = document.createElement('button'); chip.id = 'qzChip'; chip.setAttribute('aria-label', 'Lamps lit'); chip.innerHTML = `${lampSvg(true)}<span class="n">0</span>`;
+        $('#stHud').appendChild(chip); chip.addEventListener('click', () => { chip.classList.remove('pop'); void chip.offsetWidth; chip.classList.add('pop'); }); }
+      chip.hidden = !when || when === 'off'; chip.querySelector('.n').textContent = litN();
+    }
+    function backdrop(s, k) {
+      const p = photo(s.id, 'then-' + k) || photo(s.id, k) || photo(s.id, 0);
+      $('#stage').style.setProperty('--qz-img', p ? `url('${p.src}')` : 'none');
+    }
+
+    async function offer(panel, site) {
+      const v = await panel(`<div class="qz-page qz-offer">
+          <div class="qz-lamps">${lampSvg(false, 0)}${lampSvg(false, 1)}</div>
+          <div class="qz-kick">The student's riddles</div>
+          <h2 class="qz-q">Two questions after each scene?</h2>
+          <p class="qz-say">"Remember me, from the lane? In the colleges we test each other on what we heard. Answer right, and a lamp of the great hall is lit for you."</p>
+          <p class="qz-fine">The student is an imagined voice. No timer, nothing lost if you miss.</p>
+          <div class="qz-opts">
+            <button class="qz-opt${site ? '' : ' pri'}" data-v="each"><b>${NUM[0]}</b>After each scene</button>
+            <button class="qz-opt${site ? ' pri' : ''}" data-v="end"><b>${NUM[1]}</b>Save them for the end<small>Best while you are walking</small></button>
+            <button class="qz-opt" data-v="off"><b>${NUM[2]}</b>No riddles today</button>
+          </div></div>`, { mode: 'full center quiz', skippable: true });
+      when = v === 'each' || v === 'end' ? v : 'off';
+      track('quiz', when); store.set('quiz.when', when); updChip();
+    }
+
+    // One page: the question, three answers, then (in place) the verdict, the narration line and its source.
+    async function ask(panel, s, k, r, n, of) {
+      backdrop(s, k);
+      const sl = s.slides[k], opts = shuffle(r.a), before = lit.get(k) || 0;
+      const lamps = Array.from({ length: of }, (_, i) => lampSvg(i < before, i)).join('');
+      const v = await panel(`<div class="qz-page${n ? ' qz-turn' : ''}">
+          <div class="qz-lamps">${lamps}</div>
+          <div class="qz-kick">${esc(sl.scene || '')} · riddle ${n + 1} of ${of}</div>
+          ${r.who ? `<p class="qz-small">Who said it?</p><blockquote class="qz-q qz-quote">${esc(r.q)}</blockquote>` : `<h2 class="qz-q">${esc(r.q)}</h2>`}
+          <div class="qz-opts">${opts.map(([t, i], j) => `<button class="qz-opt" data-v="${i}"><b>${NUM[j]}</b>${esc(t)}</button>`).join('')}</div>
+          <div class="qz-after" hidden></div></div>`, { mode: 'full center quiz', skippable: true });
+      if (v === 'skip' || v === 'time') return 'skip';
+      asked++;
+      const right = v === '0', page = $('#stBody .qz-page');
+      if (!page) return right;
+      $('#stSkip').hidden = true;
+      page.querySelectorAll('.qz-opt').forEach((b) => { b.disabled = true; if (b.dataset.v === '0') b.classList.add('ok'); else if (b.dataset.v === v) b.classList.add('no'); });
+      if (right) { lit.set(k, before + 1); streak++; store.set('quiz.streak', Math.max(streak, store.get('quiz.streak', 0)));
+        const l = page.querySelectorAll('.qz-lamps .qz-lamp')[before]; if (l) l.classList.add('lit', 'now'); cue.shimmer(); buzz(); updChip();
+        const c = $('#qzChip'); if (c) { c.classList.remove('pop'); void c.offsetWidth; c.classList.add('pop'); } }
+      else streak = 0;
+      track('riddle', `${k}:${right ? 1 : 0}`);
+      const last = n + 1 === of, src = (s.sources || {})[r.s];
+      const aft = page.querySelector('.qz-after');
+      aft.innerHTML = `<div class="qz-verdict">${right ? (streak >= 3 ? `${streak} in a row. The hall grows brighter.` : 'A lamp is lit.') : 'Not this time. The lamp waits.'}</div>
+        <figure class="qz-line"><blockquote>${esc(r.line.t)}</blockquote><figcaption>${esc(VOICE[r.line.who] || 'The narrator')}${r.line.kind === 'dramatised' || sl.dramatised ? ' · dramatised' : ''}${src ? ` · source [${esc(r.s)}] ${esc(src.kind)}` : ''}</figcaption></figure>
+        ${last ? `<p class="qz-fine">${litN()} ${litN() === 1 ? 'lamp' : 'lamps'} lit so far, of ${total(s)} in the great hall.</p>` : ''}
+        <button class="btn btn-primary qz-go">${last ? 'Back to the story' : 'Next riddle'}</button>`;
+      aft.hidden = false;
+      await new Promise((ok) => { const b = aft.querySelector('.qz-go'); b.addEventListener('click', ok, { once: true }); setTimeout(() => b.focus({ preventScroll: true }), 60); });
+      return right;
+    }
+    async function chapter(panel, s, k) {
+      const rs = riddles(s, k);
+      for (let n = 0; n < rs.length; n++) { const r = await ask(panel, s, k, rs[n], n, rs.length); if (r === 'skip') return; }
+    }
+
+    // The hall at the end: every lamp, lit in turn, and a title for the walker.
+    async function hall(panel, s) {
+      const ks = s.slides.map((x, k) => k).filter((k) => riddles(s, k).length && (lit.has(k) || !s.slides[k].deeper));
+      const all = ks.flatMap((k) => riddles(s, k).map((_, i) => i < (lit.get(k) || 0)));
+      const m = mainLit(s), of = total(s), best = Math.max(m, store.get('quiz.best.' + s.id, 0));
+      store.set('quiz.best.' + s.id, best);
+      const title = m >= of ? 'Shaykh of the four schools' : m >= of * 0.7 ? 'Scholar of the madrasa' : m >= of * 0.4 ? 'Student of the madrasa' : 'Visitor in the square';
+      track('riddles', `${m}/${of}`);
+      $('#stage').style.setProperty('--qz-img', 'none');
+      await panel(`<div class="qz-hall">
+          <div class="st-kicker">The great hall</div>
+          <div class="qz-grid">${all.map((on, i) => lampSvg(on, i)).join('')}</div>
+          <h2 class="st-title sm">${m} of ${of} lamps lit</h2>
+          <p class="st-sub">The student names you <b>${esc(title)}</b>.${litN() > m ? ` Plus ${litN() - m} from the extra tracks.` : ''}${best > m ? ` Your best: ${best}.` : ''}</p>
+          <p class="st-sub small">Riddles drawn from the story's sourced draft, not yet reviewed by a historian.</p>
+          <div class="st-actions"><button class="btn btn-primary" data-v="ok">See your souvenir</button></div></div>`, { mode: 'full center quiz' });
+    }
+
+    stageHooks.scene = async (k, { site, panel }) => {
+      const s = st();
+      if (!RIDDLES[s.id] || !riddles(s, k).length) return;
+      if (k === 0 || when === null) { lit = new Map(); saved = []; streak = 0; asked = 0; when = null; }
+      if (when === null) await offer(panel, site);
+      if (when === 'each' || (when === 'end' && saved.done)) await chapter(panel, s, k);
+      else if (when === 'end') saved.push(k);
+      updChip();
+    };
+    stageHooks.end = async ({ panel }) => {
+      const s = st();
+      if (!RIDDLES[s.id] || !when || when === 'off') return;
+      if (when === 'end' && saved.length) {
+        await panel(`<div class="qz-page qz-offer"><div class="qz-lamps">${lampSvg(false, 0)}${lampSvg(false, 1)}</div><div class="qz-kick">The student's riddles</div>
+          <h2 class="qz-q">Sit for a moment?</h2><p class="qz-say">"${saved.length * 2} riddles, two for each scene you heard. Let us see how many lamps you can light."</p>
+          <div class="qz-opts"><button class="qz-opt pri" data-v="go"><b>${NUM[0]}</b>Begin</button></div></div>`, { mode: 'full center quiz', skippable: true })
+          .then(async (v) => { if (v === 'go') for (const k of saved) await chapter(panel, s, k); });
+      }
+      saved.done = true;
+      if (asked) await hall(panel, s);
+    };
+    stageHooks.card = (id) => { const s = BY_ID[id]; if (!RIDDLES[id] || !when || when === 'off' || !litN()) return null; return `${mainLit(s)} of ${total(s)} lamps lit in the great hall`; };
   })();
 
 })();
