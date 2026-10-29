@@ -3776,52 +3776,63 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
           return nodes;
         },
       },
-      // Scene 2 opens on the lane façade: the four colleges fill with students (imagined from the endowment's terms).
+      // Scene 2, from "Four colleges lived in this block" to the end of that line: looking up from a college courtyard (the
+      // photograph the scene is showing at that moment), days and nights pass and the rooms fill, window by window.
       'A cliff of cut stone': {
-        id: 'fill', off: true, at: 'open', T: 34, view: { w: 56, gy: 6 }, title: 'The colleges fill', span: 'the four colleges', alt: 'a drawing of the lane façade, its windows lighting up as students move in',
+        id: 'fill', cue: { l: 3, w: 12 }, marks: { end: { l: 4, w: 0 } }, until: (t, m) => m.end > 0 || t > 16, T: 16, stillT: 9, hold: 0.6, under: 0.55,
+        title: 'The colleges fill', span: 'the four colleges', alt: 'Looking up from a college courtyard: days and nights pass, and lamps come on in more and more of the windows',
+        imgs: { photo: 'lapse/fill-photo.jpg', lamps: 'lapse/fill-lamps.png' },
         recs: ['recite'],
-        note: 'Imagined from the endowment\'s terms, drawn for Medu on today\'s outline. When the colleges first filled, and which windows belong to which college, are not shown. The teacher\'s voice is a 2010 recording of Qur\'an recitation in Istanbul (Charalambos Ganotis, CC BY-SA 3.0), standing in for Cairo; the other sounds are imagined.',
+        photoNote: 'Made for Medu from Awassimy\'s 2013 photograph looking up from a college courtyard of Sultan Hassan (CC BY-SA 3.0); the night and the lamplight are added. When the colleges first filled, how many students each held at a time, and which rooms they used are not shown. The voice is a 2010 recording of Qur\'an recitation in Istanbul (Charalambos Ganotis, CC BY-SA 3.0), standing in for Cairo; the other sounds are imagined.',
+        boxes: [[0,6,154,238],[158,58,104,148],[282,74,96,154],[358,111,58,103],[406,108,66,116],[446,126,46,86],[426,436,58,108],[456,421,44,83],[374,506,58,108],[326,536,76,168],[214,666,92,168],[86,756,143,178],[431,1,168,61],[491,36,108,50],[816,1,173,61],[806,38,108,46],[906,126,50,83],[931,108,73,116],[991,106,68,108],[1034,76,110,156],[1158,58,114,156],[1268,6,132,246],[896,426,46,78],[916,436,63,108],[971,501,58,113],[1001,536,93,168],[1104,666,95,163],[1186,741,138,193],[511,511,81,48],[801,511,81,48],[481,541,113,83],[804,541,125,83],[456,618,103,76],[841,618,108,76],[386,674,168,130],[848,674,174,125],[341,824,155,110],[638,826,131,108],[916,821,153,113]], sky: [467, 91, 924, 549],
         beats: [
-          { p: 0, c: 'Four colleges, one for each school of law, open in this block.', s: 'H', tag: '4 colleges' },
-          { p: 0.22, c: 'Each takes up to a hundred students, under its own shaykh.', s: 'H', tag: 'up to 100 each' },
-          { p: 0.45, c: 'They live in rooms stacked floor above floor, behind these windows.', s: 'H', tag: 'up to 100 each' },
-          { p: 0.7, c: 'The endowment pays for all of it. Even a man to look after the roof.', s: 'H', tag: 'up to 100 each' },
-          { p: 0.92, c: { site: 'Now look up at the real windows.', home: 'Four colleges, in one cliff of stone.' }, s: null },
+          { t: 0, c: 'Four colleges, one for each school of law.', s: 'H' },
+          { t: 3.6, c: 'Each takes up to a hundred students, under its own shaykh.', s: 'H' },
+          { t: 6.8, c: 'They live in rooms stacked floor above floor, around courtyards like this one.', s: 'H' },
         ],
         cites: [
-          { c: 'Time-lapse "The colleges fill" (dramatised, drawn on today\'s outline; dates and which windows belong to which college are not shown): four madrasas, one per school of law; up to 100 students per college under a shaykh; rooms on several floors; a keeper of the roof, from the endowment as reproduced by Ali Mubarak. Recitation: Radio Aporee field recording aporee_8034_9802, Sultanahmet Mosque, Istanbul, 2010, by Charalambos Ganotis, CC BY-SA 3.0, a stand-in.', s: 'H' },
+          { c: 'Time-lapse "The colleges fill" (dramatised; when the colleges first filled, and which rooms the students used, are not shown): four madrasas, one per school of law; up to 100 students per college under a shaykh; rooms on several floors. Recitation: Radio Aporee field recording aporee_8034_9802, Sultanahmet Mosque, Istanbul, 2010, by Charalambos Ganotis, CC BY-SA 3.0, a stand-in. The other sounds are imagined.', s: 'H' },
+          { c: 'Time-lapse picture: looking up from a college courtyard, Awassimy, 2013 (Wikimedia Commons, CC BY-SA 3.0); night and lamplight added for Medu.', s: null },
         ],
-        draw(x, v, p, t, still) {
-          const fl = still ? 0 : 1 - seg(p, 0.9, 0.98), ph = Math.sin(t * 1.5 - 2.2), L = fl * (0.55 + 0.42 * ph) + (1 - fl) * 0.9, lt = Math.max(0, Math.min(1, L));
-          daySky(x, v, lt);
-          const stone = (k) => `rgb(${(110 + 95 * lt) * k | 0},${(86 + 72 * lt) * k | 0},${(60 + 48 * lt) * k | 0})`;
-          block(x, v, -52, 52, 0, 36.5, stone(0.9), lt); cornice(x, v, -52, 52, 36.5, stone(0.9));
-          const r = rnd(5), on = still ? 0.85 : seg(p, 0.08, 0.86);
-          for (let b = 0; b < 8; b++) { // eight recessed bays, each a tall strip of small windows
-            const cx = -45.5 + b * 13; x.fillStyle = stone(0.72); x.fillRect(v.X(cx - 3.6), v.Y(33), 7.2 * v.s, 29 * v.s);
-            for (let f = 0; f < 8; f++) for (const dx of [-1.6, 1.6]) {
-              const at = r(), lit = at < on, wy = 5 + f * 3.4, glow = lit ? Math.max(0.15, 1 - lt * 1.1) : 0;
-              x.fillStyle = lit ? `rgba(255,${190 + 40 * glow | 0},${110 + 40 * glow | 0},${0.35 + 0.65 * glow})` : `rgba(20,14,8,${0.8 - 0.25 * lt})`;
-              x.fillRect(v.X(cx + dx - 0.6), v.Y(wy + 1.8), 1.2 * v.s, 1.8 * v.s);
-            }
+        drawPhoto(x, v, p, t, still, im) {
+          const n = still ? 0.85 : keys(t, [[0, 0], [0.9, 0], [2.2, 1], [3.3, 1], [4.4, 0.04], [5.2, 0.04], [6.5, 1], [99, 1]]); // night, 0 to 1
+          const fill = still ? 0.95 : keys(t, [[0, 0], [2, 0.3], [5.5, 0.4], [7, 0.92], [99, 0.97]]); // share of rooms taken
+          const iw = im.photo.width, ih = im.photo.height, k = 1.02 + (still ? 0 : 0.05 * seg(t, 0, 14)), sc = Math.max(v.W / iw, v.H / ih) * k;
+          x.fillStyle = '#000'; x.fillRect(0, 0, v.W, v.H);
+          x.save(); x.translate(v.W / 2, v.H / 2); x.rotate(still ? 0 : 0.03 * seg(t, 0, 14)); x.translate(-iw * sc / 2, -ih * sc / 2); x.scale(sc, sc); // lying back, looking up, turning slowly
+          x.drawImage(im.photo, 0, 0);
+          const [s0, s1, s2, s3] = this.sky;
+          if (n > 0.01) {
+            x.save(); x.globalCompositeOperation = 'multiply'; x.fillStyle = `rgb(${255 - 214 * n | 0},${255 - 199 * n | 0},${255 - 148 * n | 0})`; x.fillRect(0, 0, iw, ih); x.restore();
+            x.save(); x.beginPath(); x.rect(s0 + 3, s1 + 3, s2 - s0 - 6, s3 - s1 - 6); x.clip(); // the night sky in the open square, a few stars
+            const mixc = (a, b, q) => a.map((u, j) => u + (b[j] - u) * q | 0), tone = (d, u, w) => `rgb(${(n < 0.5 ? mixc(d, u, n * 2) : mixc(u, w, (n - 0.5) * 2)).join(',')})`; // day, dusk, night
+            const g = x.createLinearGradient(0, s1, 0, s3); g.addColorStop(0, tone([250, 246, 236], [96, 110, 160], [8, 14, 40])); g.addColorStop(1, tone([255, 240, 210], [214, 150, 104], [22, 30, 66]));
+            x.globalAlpha = Math.min(1, n * 3); x.fillStyle = g; x.fillRect(s0, s1, s2 - s0, s3 - s1); x.globalAlpha = 1;
+            const r = rnd(9); x.fillStyle = `rgba(235,235,255,${Math.max(0, n - 0.5) * 1.6})`; for (let i = 0; i < 26; i++) { const sz = r() < 0.2 ? 2.4 : 1.4; x.fillRect(s0 + r() * (s2 - s0), s1 + r() * (s3 - s1), sz, sz); }
+            x.restore();
           }
-          if (!still) { // students arriving along the lane, more as the term fills
-            const n = 2 + Math.round(16 * seg(p, 0.05, 0.6)), r2 = rnd(13); x.fillStyle = `rgba(28,18,10,${0.6 + 0.3 * lt})`;
-            for (let i = 0; i < n; i++) { const sp = 2.5 + r2() * 3, off = r2() * 120, a = ((t * sp + off) % 120) - 60; x.fillRect(v.X(a), v.Y(1.8), v.s * 0.55, v.s * 1.8); }
-          }
-          vignette(x, v, lt);
+          const L = still ? 1 : 0.2 + 0.8 * n, r = rnd(23); // lamps: each room has its turn to be taken, and flickers a little
+          x.save(); x.globalCompositeOperation = 'screen';
+          this.boxes.forEach(([bx, by, bw, bh], i) => { const at = r() * 0.95, ph = r() * 6.28; if (at > fill) return;
+            x.globalAlpha = Math.min(1, (fill - at) * 6) * L * (still ? 0.9 : 0.86 + 0.14 * Math.sin(t * 5.3 + ph) * Math.sin(t * 2.1 + ph * 2)); x.drawImage(im.lamps, bx, by, bw, bh, bx, by, bw, bh); });
+          x.restore(); x.restore();
+          grain(x, v, still ? 0 : t, 0.06 + 0.05 * n);
+          const vg = x.createRadialGradient(v.W / 2, v.H / 2, Math.max(v.W, v.H) * 0.4, v.W / 2, v.H / 2, Math.max(v.W, v.H) * 0.8); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,.45)');
+          x.fillStyle = vg; x.fillRect(0, 0, v.W, v.H);
         },
         sound(c, out, T, bufs) {
           const t0 = c.currentTime + 0.05, r = rnd(77), dest = master(c, out, 5);
-          const nodes = crowd(c, dest, t0, T, (p) => 0.25 + 0.45 * seg(p, 0.05, 0.4) - 0.35 * seg(p, 0.42, 0.5) + 0.2 * seg(p, 0.82, 0.92));
-          for (let tt = 0.6; tt < T * 0.9; tt += 0.28 + r() * 0.5) { // footsteps on stone, quiet while the lesson is on
-            const p = tt / T; if (p > 0.43 && p < 0.84 && r() < 0.8) continue;
-            knock(c, dest, t0 + tt, { f: 330 + r() * 80, vol: 0.06 + r() * 0.05, x: r() * 1.4 - 0.7 });
-            if (r() < 0.12) burst(c, dest, t0 + tt + 0.1, { f: 5200, q: 1.2, dur: 0.18, vol: 0.05, x: r() - 0.5 }); // a page turned
-          }
-          for (let tt = T * 0.46; tt < T * 0.84; tt += 0.9 + r() * 1.6) burst(c, dest, t0 + tt, { f: 6500, q: 3, dur: 0.12 + r() * 0.2, vol: 0.035, x: r() * 1.2 - 0.6 }); // reed pens
-          const s = rec(c, out, bufs.recite, t0 + T * 0.44, { vol: 0.75, x: 0.15, lp: 6000 }); if (s) nodes.push(s);
-          return nodes;
+          const night = (tt) => keys(tt, [[0, 0], [0.9, 0], [2.2, 1], [3.3, 1], [4.4, 0.04], [5.2, 0.04], [6.5, 1], [99, 1]]);
+          const nodes = crowd(c, dest, t0, T, (p) => 0.45 * (1 - night(p * T)) + 0.08);
+          for (let tt = 0.3; tt < T; tt += 0.3 + r() * 0.6) { if (night(tt) > 0.6 && r() < 0.85) continue; // footsteps on the courtyard stone, by day
+            knock(c, dest, t0 + tt, { f: 330 + r() * 80, vol: 0.05 + r() * 0.05, x: r() * 1.4 - 0.7 }); }
+          [1.6, 5.9].forEach((tt) => creak(c, dest, t0 + tt, { x: r() < 0.5 ? -0.5 : 0.5, vol: 0.05 })); // a door, at dusk
+          for (let tt = 2; tt < T; tt += 0.7 + r() * 0.5) if (night(tt) > 0.8) burst(c, dest, t0 + tt, { f: 4300, q: 30, dur: 0.12, vol: 0.025, x: r() - 0.5 }); // crickets in the dark
+          // The recitation is heard from a room above, through the walls. It goes to its own output so it can finish its verse
+          // after the picture has gone; it stops early only if the walker leaves the scene.
+          const g = c.createGain(); g.gain.value = 0.5; g.connect(c.destination);
+          const s = rec(c, g, bufs.recite, t0 + 0.4, { vol: 0.5, x: -0.3, lp: 2600 });
+          return { nodes, leave() { const n = c.currentTime; g.gain.cancelScheduledValues(n); g.gain.setValueAtTime(g.gain.value, n); g.gain.setTargetAtTime(0.0001, n, 0.4); setTimeout(() => { try { s && s.stop(); g.disconnect(); } catch {} }, 2500); } };
         },
       },
       // Scene 4, under "A minaret was rising here" and "One Saturday in 1361, it fell.": the real doorway (Facchinelli's print), a
@@ -3927,8 +3938,9 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       const v = view(cv, l.view), cap = ov.querySelector('.lpx-cap'), yr = ov.querySelector('.lpx-year'), dy = ov.querySelector('.lpx-days');
       let raf = 0, mix = null, alive = true, resolve;
       const done = new Promise((r) => { resolve = r; });
-      const stop = (fade = 1.2) => {
-        if (!alive) return; alive = false; cancelAnimationFrame(raf); if (mix) mix.stop(0.8); bed.hush(false); document.getElementById('app').classList.remove('lpx-on');
+      let snd = null;
+      const stop = (fade = 1.2, away = false) => {
+        if (!alive) return; alive = false; if (away && snd && snd.leave) try { snd.leave(); } catch {} cancelAnimationFrame(raf); if (mix) mix.stop(0.8); bed.hush(false); document.getElementById('app').classList.remove('lpx-on');
         ov.classList.add('out'); setTimeout(() => ov.remove(), fade * 1000 + 100); if (run && run.ov === ov) run = null; resolve();
       };
       const me = run = { k, ov, done, stop, l, early: [] };
@@ -3943,7 +3955,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
         let c = null; try { if (actx && actx.state === 'running') c = actx; } catch {}
         const bufs = {}; if (c && l.recs) await Promise.race([Promise.all(l.recs.map((n) => loadRec(c, n).then((b) => { bufs[n] = b; }))), wait(1500)]);
         if (!alive) return;
-        let snd = null; if (c) { bed.hush(true); mix = mixer(c, l.under || 0.5); try { snd = l.sound(c, mix.out, T, bufs); } catch {} } // under the voice, in place of the music bed
+        if (c) { bed.hush(true); mix = mixer(c, l.under || 0.5); try { snd = l.sound(c, mix.out, T, bufs); } catch {} } // under the voice, in place of the music bed
         me.mark = (n) => { if (mk[n] != null) return; mk[n] = performance.now(); if (snd && snd.mark) try { snd.mark(n); } catch {} }; // a word of the narration was reached
         (me.early || []).forEach(me.mark);
         if (l.home && !site) document.getElementById('app').classList.add('lpx-on'); // at home, keep the picture lit through a "look up" line
@@ -3954,7 +3966,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
         const t0 = performance.now(); let shown = -1;
         const frame = (now) => {
           if (!alive) return;
-          if (!ov.isConnected || cur.slide !== k || STOPS[cur.stop] !== s) return stop(0.3); // the walker moved on
+          if (!ov.isConnected || cur.slide !== k || STOPS[cur.stop] !== s) return stop(0.3, true); // the walker moved on
           const t = (now - t0) / 1000, p = Math.min(1, t / T);
           if (l.late) for (const n in l.late) if (t >= l.late[n]) me.mark(n); // the voice never reached it: go on anyway
           const ms = secs(now);
@@ -3979,7 +3991,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       if (run && run.k === k && run.l === l && l.marks) for (const n in l.marks) { const q = l.marks[n]; if (i > q.l || (i === q.l && w >= (q.w || 0))) (run.mark ? run.mark(n) : run.early.includes(n) || run.early.push(n)); }
       const id = s.id + ':' + k; if (i < l.cue.l || (i === l.cue.l && w < (l.cue.w || 0))) { fired.delete(id); return; } // replay from the start re-arms it
       if (fired.has(id) || (run && run.k === k)) return;
-      fired.add(id); if (run) run.stop(0.3); start(l, s, k);
+      fired.add(id); if (run) run.stop(0.3, true); start(l, s, k);
     };
     // When the scene's voice ends, let a running chapter finish before the scene's action screen covers it.
     stageHooks.lapse = async (k, at) => {
