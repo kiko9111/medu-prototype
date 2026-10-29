@@ -1060,7 +1060,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
         <div class="souv-row"><button class="btn btn-ghost" id="tlogShare">Share log</button><button class="btn btn-ghost" id="tlogClear">Clear log</button></div></div>
       <button class="btn btn-ghost" id="resetWalk" style="margin-top:12px">Reset visited stops</button>
       <button class="btn btn-primary" id="closeSettings" style="margin-top:6px">Done</button>
-      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 29 Oct 16:17 UTC</p>
+      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 29 Oct 16:24 UTC</p>
     </div>
   </div>
   <!-- ===== Super app layer (super/super.html, inlined by build-prototype.py). Hidden with ?edition=preview. ===== -->
@@ -3549,6 +3549,23 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       x.fillStyle = vg; x.fillRect(0, 0, v.W, v.H);
     }
 
+    // ---------- Photographic chapters: real photographs and prints, cut out, revealed and graded on the canvas ----------
+    const imgs = {};
+    function loadImg(src) {
+      return imgs[src] || (imgs[src] = new Promise((ok) => { const i = new Image(); i.onload = () => ok(i); i.onerror = () => { delete imgs[src]; ok(null); }; i.src = src; }));
+    }
+    function cover(x, v, im, k = 1, ox = 0, oy = 0) { // draw an image to fill the frame, scaled by k around the centre, nudged by ox/oy (fractions)
+      const s = Math.max(v.W / im.width, v.H / im.height) * k, w = im.width * s, h = im.height * s;
+      x.drawImage(im, (v.W - w) / 2 + ox * v.W, (v.H - h) / 2 + oy * v.H, w, h); return { s, l: (v.W - w) / 2 + ox * v.W, t: (v.H - h) / 2 + oy * v.H, w, h };
+    }
+    let grainTile = null;
+    function grain(x, v, t, a) {
+      if (!grainTile) { grainTile = document.createElement('canvas'); grainTile.width = grainTile.height = 160; const g = grainTile.getContext('2d'), d = g.createImageData(160, 160);
+        for (let i = 0; i < d.data.length; i += 4) { const n = Math.random() * 255; d.data[i] = d.data[i + 1] = d.data[i + 2] = n; d.data[i + 3] = 255; } g.putImageData(d, 0, 0); }
+      x.save(); x.globalAlpha = a; x.globalCompositeOperation = 'overlay'; const p = x.createPattern(grainTile, 'repeat'); x.translate(-(t * 977 % 160), -(t * 613 % 160)); x.fillStyle = p; x.fillRect(0, 0, v.W + 160, v.H + 160); x.restore();
+    }
+    const keys = (p, ks) => { for (let i = 1; i < ks.length; i++) if (p <= ks[i][0]) { const [a, va] = ks[i - 1], [b, vb] = ks[i]; return va + (vb - va) * Math.max(0, (p - a) / (b - a)); } return ks[ks.length - 1][1]; };
+
     // ---------- Drawing helpers (world in metres: x across, y up from the square) ----------
     function view(cv, { w = 100, gy = 15 } = {}) {
       const W = cv.width, H = cv.height, s = W / w;
@@ -3598,7 +3615,9 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
     const LAPSES = { hassan: {
       // Prologue, after "Turn now, until that dome is straight in front of you": the building rises from the square, seen from the Citadel side.
       'The boy king': {
-        id: 'rise', at: 'after', T: 32, title: 'The mountain rises', span: '1356 – 1363', alt: 'a drawing of the building rising from the square',
+        id: 'rise', at: 'after', T: 32, title: 'The mountain rises', span: '1356 – 1363', alt: 'Max Herz\'s 1899 photograph of the tomb façade, revealed course by course from the ground up, then today\'s colour photograph',
+        imgs: { plate: 'lapse/rise-plate.jpg', bld: 'lapse/rise-building.png', today: 'lapse/rise-today.jpg' },
+        photoNote: 'Made for Medu from Max Herz\'s photograph of 1899 (public domain), the building lifted out of its sky and raised from the ground; today\'s view: Sailko, 2015, CC BY 3.0. The order of the work is not recorded, and the dome and a minaret seen here were rebuilt in the 1650s and 60s. The sound is imagined.',
         note: 'Drawn for Medu on today\'s outline, not to scale. The order of the work is not recorded, and a minaret and the dome were rebuilt in the 1650s and 60s. The sound is imagined.',
         beats: [
           { p: 0, y: '1356', c: 'Building begins below the Citadel, facing it.', s: 'M' },
@@ -3607,12 +3626,42 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
           { p: 0.5, y: '', c: 'The walls climb to almost forty metres.', s: 'H' },
           { p: 0.58, y: '', c: 'Two minarets rise beside the tomb. The taller one, about eighty metres, still stands.', s: 'H' },
           { p: 0.84, y: '1362–63', c: 'The dome over the tomb is finished. The inscription inside gives the year, 764.', s: 'H' },
-          { p: 0.93, y: '', c: { site: 'Now look up. That is the dome.', home: 'Six and a half centuries later, it is still standing.' }, s: null },
+          { p: 0.9, y: 'Today', c: { site: 'Now look up. That is the dome.', home: 'Six and a half centuries later, it is still standing.' }, s: null },
         ],
         cites: [
           { c: 'Time-lapse "The mountain rises" (dramatised reconstruction, drawn on today\'s outline; the order of the work is not recorded; the sound is imagined). Building began in 757 (1356) facing the Citadel; three years without a day off, at 20,000 dirhams a day. The 1,095 days on screen are our arithmetic.', s: 'M' },
           { c: 'Time-lapse: walls 37.70 m at the entrance; south minaret about 81.6 m; the tomb dome completed in 764 AH (1362–63) per its inscription; a minaret fell in 1659 and the dome in 1660, both rebuilt.', s: 'H' },
         ],
+        drawPhoto(x, v, p, t, still, im) {
+          const day = Math.sin(t * 2.3 - 1.2), fl = still ? 0 : 1 - seg(p, 0.84, 0.92), night = fl * Math.max(0, -day) * 0.75; // days and nights pass (under 0.4 Hz), then settle
+          const k = 1.03 - 0.03 * p, oy = 0.012 - 0.012 * p; // a slow push back, like a camera on a tripod across the square
+          x.fillStyle = '#000'; x.fillRect(0, 0, v.W, v.H);
+          const f = cover(x, v, im.plate, k, 0, oy);
+          const h = still ? 1 : keys(p, [[0, 0], [0.09, 0.02], [0.5, 0.41], [0.62, 0.52], [0.72, 0.7], [0.84, 0.97], [0.86, 1]]); // share of the print's height built
+          const top = f.t + f.h * (1 - h);
+          if (h > 0.001) {
+            x.save(); x.beginPath(); x.moveTo(f.l, f.t + f.h);
+            for (let a = 0; a <= 12; a++) { const xs = f.l + (f.w * a) / 12, j = still || h >= 1 ? 0 : (Math.sin(a * 2.7 + Math.floor(t * 1.3) * 1.9) * 0.5 + 0.5) * f.h * 0.008; x.lineTo(xs, top + j); x.lineTo(xs + f.w / 12, top + j); }
+            x.lineTo(f.l + f.w, f.t + f.h); x.closePath(); x.clip(); x.drawImage(im.bld, f.l, f.t, f.w, f.h); // the real building, course by course
+            if (!still && h < 1) { const g = x.createLinearGradient(0, top, 0, top + f.h * 0.04); g.addColorStop(0, 'rgba(255,244,220,.32)'); g.addColorStop(1, 'rgba(255,244,220,0)'); x.fillStyle = g; x.globalCompositeOperation = 'screen'; x.fillRect(f.l, top, f.w, f.h * 0.04); } // fresh-cut stone is paler
+            x.restore();
+          }
+          if (!still) {
+            if (h > 0.01 && h < 1) { const r = rnd(11 + Math.floor(t * 8)); for (let i = 0; i < 26; i++) { const px = f.l + r() * f.w, py = top - r() * f.h * 0.07, a = (0.25 + 0.5 * r()) * (1 - night);
+              const g = x.createRadialGradient(px, py, 0, px, py, v.s * (0.6 + r() * 1.4)); g.addColorStop(0, `rgba(255,236,200,${a})`); g.addColorStop(1, 'rgba(255,236,200,0)'); x.fillStyle = g; x.fillRect(px - v.s * 2, py - v.s * 2, v.s * 4, v.s * 4); } } // dust over the work
+            x.save(); x.globalCompositeOperation = 'multiply'; // cloud shadows sweep across, and the nights come down blue
+            for (let i = 0; i < 3; i++) { const cx = ((t * (40 + i * 23) + i * 170) % (v.W * 1.8)) - v.W * 0.4, cy = v.H * (0.3 + 0.2 * i), rr = v.W * (0.35 + 0.1 * i);
+              const g = x.createRadialGradient(cx, cy, 0, cx, cy, rr); g.addColorStop(0, `rgba(120,110,100,${0.35 * fl * (1 - night)})`); g.addColorStop(1, 'rgba(255,255,255,0)'); x.fillStyle = g; x.fillRect(0, 0, v.W, v.H); }
+            if (night > 0.01) { x.fillStyle = `rgba(${255 - 190 * night | 0},${255 - 170 * night | 0},${255 - 110 * night | 0},1)`; x.fillRect(0, 0, v.W, v.H); }
+            x.restore();
+            if (day > 0.5 && fl > 0.5) { x.save(); x.globalCompositeOperation = 'screen'; x.fillStyle = `rgba(255,220,160,${0.08 * (day - 0.5) * 2})`; x.fillRect(0, 0, v.W, v.H); x.restore(); } // noon flare
+            const today = seg(p, 0.88, 0.97); // 1899 dissolves into today, in colour
+            if (today > 0) { x.save(); x.globalAlpha = today; cover(x, v, im.today, 1.02 - 0.02 * seg(p, 0.88, 1)); x.restore(); }
+            grain(x, v, t, 0.09 * (1 - today * 0.6));
+          } else grain(x, v, 0, 0.07);
+          const vg = x.createRadialGradient(v.W / 2, v.H * 0.45, v.W * 0.35, v.W / 2, v.H * 0.5, v.W * 0.9); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,.6)');
+          x.fillStyle = vg; x.fillRect(0, 0, v.W, v.H);
+        },
         draw(x, v, p, t, still) {
           const fl = still ? 0 : 1 - seg(p, 0.86, 0.96), L = fl * (0.62 + 0.38 * Math.sin(t * 2.3 - 1.2)) + (1 - fl) * 0.95; // days and nights pass slowly (under 0.4 Hz), then settle on daylight
           const lt = Math.max(0, Math.min(1, L));
@@ -3687,7 +3736,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       },
       // Scene 2 opens on the lane façade: the four colleges fill with students (imagined from the endowment's terms).
       'A cliff of cut stone': {
-        id: 'fill', at: 'open', T: 34, view: { w: 56, gy: 6 }, title: 'The colleges fill', span: 'the four colleges', alt: 'a drawing of the lane façade, its windows lighting up as students move in',
+        id: 'fill', off: true, at: 'open', T: 34, view: { w: 56, gy: 6 }, title: 'The colleges fill', span: 'the four colleges', alt: 'a drawing of the lane façade, its windows lighting up as students move in',
         recs: ['recite'],
         note: 'Imagined from the endowment\'s terms, drawn for Medu on today\'s outline. When the colleges first filled, and which windows belong to which college, are not shown. The teacher\'s voice is a 2010 recording of Qur\'an recitation in Istanbul (Charalambos Ganotis, CC BY-SA 3.0), standing in for Cairo; the other sounds are imagined.',
         beats: [
@@ -3735,7 +3784,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       },
       // Scene 4 opens on the great doorway: the minaret rising over it, the orphans' school below, then the fall of 1361.
       'The day the minaret fell': {
-        id: 'fall', at: 'open', T: 38, title: 'The minaret falls', span: '1361', alt: 'a drawing of a minaret rising over the great doorway, then falling',
+        id: 'fall', off: true, at: 'open', T: 38, title: 'The minaret falls', span: '1361', alt: 'a drawing of a minaret rising over the great doorway, then falling',
         recs: ['kuttab'],
         note: 'Drawn for Medu, not to scale. How far the minaret had risen, where the school stood and how it fell are not recorded. The children\'s voices are a 1995 recording from a Qur\'an school in Fes, Morocco (Justin Bennett, public domain), standing in for Cairo; the other sounds are imagined.',
         beats: [
@@ -3795,7 +3844,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
 
     // Add each chapter's citations to its scene's transcript once.
     Object.entries(LAPSES).forEach(([id, by]) => { const s = BY_ID[id]; if (!s) return;
-      s.slides.forEach((sl) => { const l = by[sl.title]; if (l && sl.cites && !sl.cites._lapse) { sl.cites.push(...l.cites); sl.cites._lapse = true; } }); });
+      s.slides.forEach((sl) => { const l = by[sl.title]; if (l && !l.off && sl.cites && !sl.cites._lapse) { sl.cites.push(...l.cites); sl.cites._lapse = true; } }); });
 
     async function play(l, { site, panel }) {
       const still = !cinematic(), T = l.T;
@@ -3816,17 +3865,21 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       let c = null, mix = null, raf = 0;
       try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); if (actx.state !== 'running') actx.resume(); c = actx; } catch {}
       bed.hush(true);
+      const pics = {}; let photo = false;
+      if (l.imgs && l.drawPhoto) { await Promise.race([Promise.all(Object.entries(l.imgs).map(([k, src]) => loadImg(src).then((i) => { pics[k] = i; }))), wait(3000)]); photo = Object.keys(l.imgs).every((k) => pics[k]); }
+      const paint = (pp, tt, stl) => (photo ? l.drawPhoto(x, v, pp, tt, stl, pics) : l.draw(x, v, pp, tt, stl));
+      const nt = document.querySelector('.lp-note'); if (photo && l.photoNote && nt) nt.textContent = l.photoNote;
       const bufs = {};
       if (c && l.recs) await Promise.race([Promise.all(l.recs.map((k) => loadRec(c, k).then((b) => { bufs[k] = b; }))), wait(2500)]);
       if (c) { mix = mixer(c); try { l.sound(c, mix.out, T, bufs); } catch {} }
-      if (still) { l.draw(x, v, 1, 0, true); }
+      if (still) { paint(1, 0, true); }
       else {
         const cap = document.getElementById('lpCap'), yr = document.getElementById('lpYear'), dy = document.getElementById('lpDays'), start = performance.now();
         let shown = -1;
         const frame = (now) => {
           if (!cv.isConnected) return;
           const t = (now - start) / 1000, p = Math.min(1, t / T);
-          l.draw(x, v, p, t, false);
+          paint(p, t, false);
           let i = 0; while (i + 1 < l.beats.length && p >= l.beats[i + 1].p) i++;
           if (i !== shown) { shown = i; const b = l.beats[i]; cap.innerHTML = `${esc(say(b))}${b.s ? ` <span class="lp-src">[${b.s}]</span>` : ''}`; cap.classList.remove('in'); void cap.offsetWidth; cap.classList.add('in'); if (b.y) yr.textContent = b.y; if (b.tag) dy.textContent = b.tag; }
           const d = l.beats.find((b) => Array.isArray(b.days));
@@ -3846,7 +3899,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
     stageHooks.lapse = async (k, at, ctx) => {
       const s = st(), l = LAPSES[s.id] && LAPSES[s.id][s.slides[k].title];
       if (k === 0 && at === 'open' && LAPSES[s.id] && actx) Object.values(LAPSES[s.id]).forEach((x) => (x.recs || []).forEach((key) => loadRec(actx, key))); // fetch the recordings early
-      if (!l || (l.at || 'after') !== at) return;
+      if (!l || l.off || (l.at || 'after') !== at) return; // off: parked (the drawn versions of 'fill' and 'fall', until they are rebuilt from photographs)
       await play(l, ctx);
     };
 
@@ -3858,12 +3911,12 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
         const t = ms ? setTimeout(() => res('time'), ms) : 0, done = (v) => { clearTimeout(t); res(v); };
         body.querySelectorAll('[data-v]').forEach((b) => b.addEventListener('click', () => done(b.dataset.v))); skip.onclick = () => done('skip');
       });
-      const all = Object.entries(LAPSES.hassan || {}), order = ['The boy king', 'A cliff of cut stone', 'The day the minaret fell'];
+      const all = Object.entries(LAPSES.hassan || {}).filter(([, l]) => !l.off), order = ['The boy king', 'A cliff of cut stone', 'The day the minaret fell'];
       all.sort((a, b) => order.indexOf(a[0]) - order.indexOf(b[0]));
       setTimeout(async () => {
         const v = await panel(`<div class="st-kicker">Medu · Sultan Hassan</div><h2 class="st-title sm">Time-lapse chapters</h2><div class="st-rule"></div>
-          <p class="st-sub">${all.length} chapters from the play, back to back: ${all.map(([, l]) => esc(l.title)).join(', ')}. Sound on.</p>
-          <p class="st-sub small">Version 29 Oct 16:17 UTC</p>
+          <p class="st-sub">${all.length > 1 ? `${all.length} chapters from the play, back to back` : 'A chapter from the play'}: ${all.map(([, l]) => esc(l.title)).join(', ')}. Sound on.</p>
+          <p class="st-sub small">Version 29 Oct 16:24 UTC</p>
           <div class="st-actions"><button class="btn btn-primary" data-v="go">Play</button><button class="btn btn-ghost" data-v="no">Go to the app</button></div>`, { mode: 'full center' });
         if (v === 'go') for (const [, l] of all) { if ((await play(l, { site: false, panel })) === 'stop') break; }
         box.className = 'stage off'; skip.hidden = true;
