@@ -4005,7 +4005,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
     // (or days) roll by over real dated pictures, full screen under the title. Labelled dramatised, every caption cited. Tap Skip
     // to go on. Reduced motion or "Cinematic effects off": the last picture, still, with its caption, for a few seconds. ----
     const contain = (x, v, im, k = 1, cy = 0.5, a = 1, fx = 0.5) => { // the picture across the screen (k > 1 crops in on fx), centred a little above the middle
-      const s = (v.W / im.width) * k, w = im.width * s, h = im.height * s; x.globalAlpha = a; x.drawImage(im, Math.min(0, Math.max(v.W - w, v.W / 2 - fx * w)), v.H * cy - h / 2, w, h); x.globalAlpha = 1; return { w, h, t: v.H * cy - h / 2 };
+      const s = (v.W / im.width) * k, w = im.width * s, h = im.height * s; x.globalAlpha = a; x.drawImage(im, w <= v.W ? (v.W - w) / 2 : Math.min(0, Math.max(v.W - w, v.W / 2 - fx * w)), Math.max(v.H * 0.25, v.H * cy - h / 2), w, h); // never under the raised title x.globalAlpha = 1; return { w, h, t: v.H * cy - h / 2 };
     };
     function flutter(c, dest, t0, T, rate, vol = 0.05) { // pages turning in an archive, faster as the years run faster
       const r = rnd(5); for (let tt = 0.1; tt < T; ) { const q = rate(tt); if (q > 0.05) burst(c, dest, t0 + tt, { f: 1800 + r() * 2600, q: 0.8, dur: 0.07 + r() * 0.05, vol: vol * Math.min(1, q), x: r() * 1.2 - 0.6 }); tt += 0.08 + 0.5 / Math.max(0.3, q * 6) + r() * 0.05; }
@@ -4014,32 +4014,31 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
     const PASSAGES = { hassan: {
       // Before scene 1 ("Two minarets that do not match"): from the finished dome to today, through the dated pictures of the domed end.
       'Two minarets that do not match': {
-        id: 'centuries', T: 10, stillT: 4, title: 'Six centuries', alt: 'The years run from 1363 to today: a drawing of about 1800, Herz\'s photograph of 1899, and a photograph of 2015',
+        id: 'centuries', T: 9.5, stillT: 4, title: 'Six centuries', alt: 'The years run from about 1800 to today: a drawing of about 1800, Herz\'s photograph of 1899, and a photograph of 2015',
         imgs: { conte: 'img/hassan-print-conte.jpg', herz: 'img/hassan-print-herz1899.jpg', today: 'img/hassan-midan.jpg' },
-        years: roll([[0, 1363], [0.5, 1363], [2.6, 1800], [3.8, 1800], [4.9, 1899], [6.2, 1899], [7.3, 2015]]),
-        label(t, y) { return t > 7.3 ? 'Today' : t > 2.6 && t < 3.8 ? 'c. 1800' : String(Math.round(y)); },
+        years: roll([[0, 1800], [2.8, 1800], [3.9, 1899], [6.4, 1899], [7.5, 2015]]),
+        label(t, y) { return t >= 7.5 ? 'Today' : t < 2.8 ? 'c. 1800' : String(Math.round(y)); }, // each caption shows only while the counter holds on its picture's date
         beats: [
-          { t: 0, c: 'The dome is finished. Its inscription gives the year 764, that is 1362–63.', s: 'H' },
-          { t: 1.55, c: '1659: a minaret falls, and is rebuilt.', s: 'H' },
-          { t: 2.6, c: 'About 1800: artists of the French expedition draw the mosque.', s: 'C' },
-          { t: 4.9, c: '1899: Max Herz photographs the domed end, before the restorers come.', s: 'C' },
-          { t: 7.3, c: 'Today.', s: null },
+          { t: 0, c: 'About 1800: artists of the French expedition draw the mosque, more than four centuries after its dome was finished.', s: 'C' },
+          { t: 2.8, c: '', s: null },
+          { t: 3.9, c: '1899: Max Herz photographs the domed end, before the restorers come.', s: 'C' },
+          { t: 6.4, c: '', s: null },
+          { t: 7.5, c: 'Today.', s: null },
         ],
         cites: [{ c: 'Passage "Six centuries" (the years on screen are a counter; the pictures are real): the tomb dome completed in 764 AH (1362–63) per its inscription; a minaret fell in 1659 and was rebuilt. Pictures: Conté for the Description de l\'Égypte, 1798–1809 (BnF, public domain); Max Herz 1899, plate VI (public domain); Sailko 2015 (CC BY 3.0).', s: 'H' }],
         draw(x, v, t, still, im) {
           x.fillStyle = '#050403'; x.fillRect(0, 0, v.W, v.H);
           if (still) { contain(x, v, im.today, 1.55); return; }
-          const a1 = seg(t, 2.3, 2.9) * (1 - seg(t, 4.6, 5.2)), a2 = seg(t, 4.6, 5.2) * (1 - seg(t, 7.0, 7.6)), a3 = seg(t, 7.0, 7.6);
-          if (t < 2.9) { const r = rnd(3); x.save(); x.globalCompositeOperation = 'screen'; for (let i = 0; i < 40; i++) { const px = r() * v.W, py = ((r() * v.H - t * (10 + r() * 30)) % v.H + v.H) % v.H, rr = 1 + r() * 2.5; x.fillStyle = `rgba(230,205,160,${0.15 + 0.25 * r()})`; x.beginPath(); x.arc(px, py, rr, 0, 6.3); x.fill(); } x.restore(); } // dust in the dark, before any picture exists
-          if (a1 > 0) contain(x, v, im.conte, 2.6 + 0.15 * seg(t, 2.3, 5.2), 0.52, a1, 0.3);
-          if (a2 > 0) contain(x, v, im.herz, 1.0 + 0.06 * seg(t, 4.6, 7.6), 0.52, a2);
-          if (a3 > 0) contain(x, v, im.today, 1.55 + 0.08 * seg(t, 7.0, 10), 0.52, a3);
+          const a1 = 1 - seg(t, 3.3, 3.9), a2 = seg(t, 3.3, 3.9) * (1 - seg(t, 6.9, 7.5)), a3 = seg(t, 6.9, 7.5); // each picture arrives as the counter reaches its date
+          if (a1 > 0) contain(x, v, im.conte, 2.6 + 0.15 * seg(t, 0, 3.9), 0.5, a1, 0.3);
+          if (a2 > 0) contain(x, v, im.herz, 0.78 + 0.04 * seg(t, 3.3, 7.5), 0.5, a2);
+          if (a3 > 0) contain(x, v, im.today, 1.5 + 0.06 * seg(t, 6.9, 10), 0.5, a3);
           grain(x, v, t, 0.07);
         },
         sound(c, out, T) {
           const t0 = c.currentTime + 0.05, dest = master(c, out, 5);
-          wind(c, dest, t0, T, 0.01); flutter(c, dest, t0, T, (tt) => (tt > 0.5 && tt < 2.6) || (tt > 3.8 && tt < 4.9) || (tt > 6.2 && tt < 7.3) ? 1 : 0);
-          chord(c, dest, t0 + 7.1, [146.8, 220, 293.7], { dur: 3.2, vol: 0.04 });
+          wind(c, dest, t0, T, 0.01); flutter(c, dest, t0, T, (tt) => (tt > 2.8 && tt < 3.9) || (tt > 6.4 && tt < 7.5) ? 1 : 0);
+          chord(c, dest, t0 + 7.3, [146.8, 220, 293.7], { dur: 3.2, vol: 0.04 });
         },
       },
       // Before scene 5 ("Thirty-three days"): the doorway, with nothing above it now, while the days are counted.
