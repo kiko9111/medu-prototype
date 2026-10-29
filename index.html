@@ -835,6 +835,24 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
 .cine .stage .qz-grid .qz-lamp.lit .glow { animation: qzBloom 1400ms ease-out both; animation-delay: calc(600ms + var(--i) * 70ms); }
 @media (prefers-reduced-motion: reduce) { .stage.quiz *, .stage.quiz .veil::before { animation: none !important; } }
 
+/* ---- Time-lapse chapters (lapse/lapse.css, inlined by build-prototype.py): a framed live drawing with the year, the day count and
+   a cited caption. Motion is the drawing itself; reduced motion and "Cinematic effects off" (no .cine) get the still drawing. ---- */
+.stage.lapse .veil { background: radial-gradient(120% 80% at 50% 40%, #120d07, #020306 75%); }
+.lp { display: grid; gap: 10px; justify-items: center; width: 100%; max-height: calc(100dvh - 90px); overflow-y: auto; }
+.lp-frame { position: relative; width: min(100%, 360px); aspect-ratio: 400 / 460; border-radius: 6px; overflow: hidden; box-shadow: 0 24px 70px rgba(0,0,0,.7), 0 0 0 1px rgba(212,176,98,.28); }
+.lp-cv { display: block; width: 100%; height: 100%; }
+.lp-tag { position: absolute; left: 10px; top: 10px; font-size: 9.5px; letter-spacing: .2em; text-transform: uppercase; color: #f3e6c8; background: rgba(2,3,6,.55); border: 1px solid rgba(243,230,200,.25); border-radius: 99px; padding: 4px 9px; }
+.lp-year { position: absolute; right: 12px; top: 6px; font-family: var(--display); font-weight: 600; font-size: 34px; color: #f6efe2; text-shadow: 0 2px 12px rgba(0,0,0,.7); font-variant-numeric: lining-nums tabular-nums; }
+.lp-days { position: absolute; right: 13px; top: 46px; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #f3e6c8; text-shadow: 0 1px 6px rgba(0,0,0,.8); font-variant-numeric: tabular-nums; }
+.lp-cap { margin: 0; min-height: 3.6em; max-width: 30ch; font-family: var(--display); font-size: 22px; line-height: 1.2; color: #f6efe2; text-wrap: balance; }
+.cine .lp-cap.in { animation: stRise 700ms cubic-bezier(.16,1,.3,1) both; }
+.lp-src { font-family: var(--ui); font-size: 11px; color: var(--accent); letter-spacing: .05em; white-space: nowrap; }
+.lp-note { margin: 0; max-width: 40ch; font-size: 11.5px; line-height: 1.45; color: var(--muted); }
+.lp-list { margin: 0; padding: 0 0 0 1.2em; text-align: left; max-width: 36ch; display: grid; gap: 6px; color: #e2e8f0; font-size: 14px; line-height: 1.4; }
+.lp-list b { color: var(--accent); font-weight: 600; }
+.lp-still .lp-frame { width: min(70%, 250px); }
+.lp-still .lp-year, .lp-still .lp-days { display: none; }
+
 </style>
 
 <aside class="showcase" aria-label="About this prototype">
@@ -1032,7 +1050,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
         <div class="souv-row"><button class="btn btn-ghost" id="tlogShare">Share log</button><button class="btn btn-ghost" id="tlogClear">Clear log</button></div></div>
       <button class="btn btn-ghost" id="resetWalk" style="margin-top:12px">Reset visited stops</button>
       <button class="btn btn-primary" id="closeSettings" style="margin-top:6px">Done</button>
-      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 29 Oct 15:19 UTC</p>
+      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 29 Oct 15:40 UTC</p>
     </div>
   </div>
   <!-- ===== Super app layer (super/super.html, inlined by build-prototype.py). Hidden with ?edition=preview. ===== -->
@@ -2190,6 +2208,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
   };
 
   // Hooks for add-ons inlined later (quiz/quiz.js): scene(k, ctx) after a scene's act and keepsake, end(ctx) before the souvenir, card(id) for a souvenir line.
+  // (lapse/lapse.js): lapse(k, 'open' | 'after', ctx) for a time-lapse chapter before the voice or after the act.
   const stageHooks = {};
   const stage = (() => {
     const box = $('#stage'), body = $('#stBody'), skip = $('#stSkip'), hud = $('#stHud');
@@ -2249,6 +2268,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
         { mode: 'full center chapter', ms: cinematic() ? 2600 : 1200 });
       if (!on) return;
       if (sl.gate && site) { const r = await arrive(sl, k); if (!on) return; if (r === 'outside') site = false; }
+      if (stageHooks.lapse) { await stageHooks.lapse(k, 'open', { site, panel }); if (!on) return; }
       close();
       track('scene', k);
       narr.play();
@@ -2304,6 +2324,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       if (!on) return;
       const s = st(), sl = scene(k);
       if (sl.act) { await act(sl.act); if (!on) return; }
+      if (stageHooks.lapse) { await stageHooks.lapse(k, 'after', { site, panel }); if (!on) return; }
       if (sl.keep && !keeps.has(sl.keep.id)) { await keep(sl.keep); if (!on) return; }
       if (stageHooks.scene) { await stageHooks.scene(k, { site, panel }); if (!on) return; }
       let next = -1;
@@ -3338,6 +3359,271 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       if (asked) await hall(panel, s);
     };
     stageHooks.card = (id) => { const s = BY_ID[id]; if (!RIDDLES[id] || !when || when === 'off' || !litN()) return null; return `${mainLit(s)} of ${total(s)} lamps lit in the great hall`; };
+  })();
+
+  // ---- Time-lapse chapters (lapse/lapse.js, inlined by build-prototype.py inside the app's closure, in both editions). A short
+  // animated interlude in a story scene: the building drawn live on a canvas from today's outline, years passing in seconds, with
+  // its own generated sound (no recordings, no licences). Every caption carries a source key; the drawing and the sound are
+  // labelled as a dramatised reconstruction, and the chapter's citations are added to the scene's transcript.
+  // `at: 'open'` plays after the chapter card, before the voice; `at: 'after'` plays after the scene's act, before its keepsake.
+  // Reduced motion or "Cinematic effects off": the finished drawing stands still with the captions as a list. Skippable. ----
+  (() => {
+    const st = () => STOPS[cur.stop];
+    const ease = (x) => (x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x));
+    const seg = (p, a, b) => ease((p - a) / (b - a));
+    const rnd = (seed) => () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646;
+
+    // ---------- Sound: generated in Web Audio, scheduled on the clock of the animation ----------
+    function noiseBuf(c) {
+      if (c._lpNoise) return c._lpNoise;
+      const b = c.createBuffer(1, c.sampleRate * 2, c.sampleRate), d = b.getChannelData(0);
+      let last = 0; for (let i = 0; i < d.length; i++) { const w = Math.random() * 2 - 1; last = (last + 0.02 * w) / 1.02; d[i] = i % 2 ? w : w * 0.6 + last * 3; }
+      return (c._lpNoise = b);
+    }
+    function mixer(c) {
+      const out = c.createGain(); out.gain.value = 0.0001;
+      out.connect(c.destination);
+      const t = c.currentTime; out.gain.setTargetAtTime(1, t, 0.4);
+      return { out, stop(sec = 0.4) { const n = c.currentTime; out.gain.cancelScheduledValues(n); out.gain.setValueAtTime(out.gain.value, n); out.gain.setTargetAtTime(0.0001, n, sec / 3); setTimeout(() => { try { out.disconnect(); } catch {} }, sec * 1000 + 600); } };
+    }
+    function master(c, out, boost) { // lift the quiet synthesis to sit near the narration's level, with a limiter on the peaks
+      const g = c.createGain(), comp = c.createDynamicsCompressor(); g.gain.value = boost;
+      comp.threshold.value = -14; comp.knee.value = 6; comp.ratio.value = 8; comp.attack.value = 0.003; comp.release.value = 0.2;
+      g.connect(comp).connect(out); return g;
+    }
+    const pan = (c, x, dest) => { const p = c.createStereoPanner ? c.createStereoPanner() : c.createGain(); if (p.pan) p.pan.value = x; p.connect(dest); return p; };
+    function burst(c, dest, t, { f = 3000, q = 10, dur = 0.06, vol = 0.2, x = 0 }) { // a chisel on stone: a click through a narrow ring
+      const s = c.createBufferSource(); s.buffer = noiseBuf(c); const bp = c.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = f; bp.Q.value = q;
+      const g = c.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + 0.003); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      s.connect(bp).connect(g).connect(pan(c, x, dest)); s.start(t, Math.random() * 1.5); s.stop(t + dur + 0.05);
+    }
+    function knock(c, dest, t, { f = 240, vol = 0.3, x = 0 }) { // a wooden mallet: a falling pitch, pitched above what phone speakers drop
+      const o = c.createOscillator(), g = c.createGain(); o.type = 'triangle'; o.frequency.setValueAtTime(f * 1.6, t); o.frequency.exponentialRampToValueAtTime(f, t + 0.05);
+      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + 0.004); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.16);
+      o.connect(g).connect(pan(c, x, dest)); o.start(t); o.stop(t + 0.2);
+      burst(c, dest, t, { f: 1200, q: 1.5, dur: 0.03, vol: vol * 0.5, x });
+    }
+    function saw(c, dest, t, { dur = 1.4, x = 0, vol = 0.07 }) { // a hand saw: filtered noise, pushed and pulled
+      const s = c.createBufferSource(); s.buffer = noiseBuf(c); s.loop = true; const bp = c.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 2400; bp.Q.value = 2.5;
+      const g = c.createGain(); g.gain.value = 0; const lfo = c.createOscillator(), lg = c.createGain(); lfo.frequency.value = 3.2; lg.gain.value = vol;
+      const env = c.createGain(); env.gain.setValueAtTime(0.0001, t); env.gain.exponentialRampToValueAtTime(1, t + 0.1); env.gain.setValueAtTime(1, t + dur - 0.2); env.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      lfo.connect(lg).connect(g.gain); s.connect(bp).connect(g).connect(env).connect(pan(c, x, dest));
+      s.start(t); lfo.start(t); s.stop(t + dur + 0.05); lfo.stop(t + dur + 0.05);
+    }
+    function creak(c, dest, t, { x = 0, vol = 0.05 }) { // rope over a pulley
+      const o = c.createOscillator(), bp = c.createBiquadFilter(), g = c.createGain(); o.type = 'sawtooth';
+      o.frequency.setValueAtTime(150, t); o.frequency.linearRampToValueAtTime(230, t + 0.35); o.frequency.linearRampToValueAtTime(170, t + 0.7);
+      bp.type = 'bandpass'; bp.frequency.value = 1100; bp.Q.value = 9;
+      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + 0.08); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.75);
+      o.connect(bp).connect(g).connect(pan(c, x, dest)); o.start(t); o.stop(t + 0.8);
+    }
+    function crowd(c, dest, t0, T, level) { // a crowd at work and the wind, following level(p) for activity
+      const nodes = [];
+      [[420, 0.7, -0.4], [900, 1.1, 0.35], [180, 0.6, 0]].forEach(([f, q, x], i) => {
+        const s = c.createBufferSource(); s.buffer = noiseBuf(c); s.loop = true; const bp = c.createBiquadFilter(); bp.type = i === 2 ? 'lowpass' : 'bandpass'; bp.frequency.value = f; bp.Q.value = q;
+        const g = c.createGain(); g.gain.setValueAtTime(0.0001, t0);
+        for (let k = 0; k <= 40; k++) { const p = k / 40, v = i === 2 ? 0.03 + 0.024 * Math.sin(p * 9) : level(p) * (i ? 0.027 : 0.042) * (0.75 + 0.25 * Math.sin(p * 37 + i)); g.gain.linearRampToValueAtTime(Math.max(0.0001, v), t0 + p * T); }
+        s.connect(bp).connect(g).connect(pan(c, x, dest)); s.start(t0, Math.random()); s.stop(t0 + T + 1); nodes.push(s);
+      });
+      return nodes;
+    }
+    function chord(c, dest, t, freqs, { dur = 5, vol = 0.05 } = {}) { // a slow swell to land on
+      freqs.forEach((f, i) => { const o = c.createOscillator(), g = c.createGain(); o.type = i % 2 ? 'triangle' : 'sine'; o.frequency.value = f; o.detune.value = (i - 1) * 4;
+        g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + dur * 0.35); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+        o.connect(g).connect(dest); o.start(t); o.stop(t + dur + 0.1); });
+    }
+
+    // ---------- Drawing helpers (world in metres: x across, y up from the square) ----------
+    function view(cv) {
+      const W = cv.width, H = cv.height, s = W / 100, gy = 15;
+      return { W, H, s, X: (x) => W / 2 + x * s, Y: (y) => H - (y + gy) * s };
+    }
+    function clipBelow(x, v, h, x0 = -60, x1 = 60, r = null) { // reveal up to height h with a ragged top of stones still being laid
+      x.beginPath(); x.moveTo(v.X(x0), v.Y(-20)); let k = 0;
+      for (let a = x0; a <= x1; a += 1.6) { const j = r ? (Math.sin(a * 3.1 + h * 2) * 0.5 + 0.5) * 1.1 : 0; x.lineTo(v.X(a), v.Y(h - j)); x.lineTo(v.X(a + 1.6), v.Y(h - j)); k++; }
+      x.lineTo(v.X(x1), v.Y(-20)); x.closePath(); x.clip();
+    }
+    function block(x, v, x0, x1, y0, y1, fill, light) {
+      x.fillStyle = fill; x.fillRect(v.X(x0), v.Y(y1), (x1 - x0) * v.s, (y1 - y0) * v.s);
+      x.strokeStyle = `rgba(60,40,20,${0.16 + 0.1 * light})`; x.lineWidth = 1;
+      for (let y = y0 + 1.2; y < y1; y += 1.2) { x.beginPath(); x.moveTo(v.X(x0), v.Y(y)); x.lineTo(v.X(x1), v.Y(y)); x.stroke(); }
+      x.strokeStyle = 'rgba(40,26,12,.65)'; x.strokeRect(v.X(x0), v.Y(y1), (x1 - x0) * v.s, (y1 - y0) * v.s);
+    }
+    function cornice(x, v, x0, x1, y, fill) { x.fillStyle = fill; for (let a = x0; a < x1 - 0.5; a += 1.5) x.fillRect(v.X(a + 0.2), v.Y(y + 1.4), 1.1 * v.s, 1.4 * v.s); }
+    function arch(x, v, cx, y0, y1, w, fill) { // a tall window with a pointed head
+      const l = v.X(cx - w / 2), r = v.X(cx + w / 2), b = v.Y(y0), sp = v.Y(y1 - w * 0.7), top = v.Y(y1);
+      x.fillStyle = fill; x.beginPath(); x.moveTo(l, b); x.lineTo(l, sp); x.quadraticCurveTo(l, top + (sp - top) * 0.2, (l + r) / 2, top); x.quadraticCurveTo(r, top + (sp - top) * 0.2, r, sp); x.lineTo(r, b); x.closePath(); x.fill();
+    }
+    function minaret(x, v, cx, base, tiers, fill, dark) {
+      tiers.forEach(([y0, y1, w, kind]) => {
+        if (kind === 'bulb') { x.fillStyle = fill; x.beginPath(); x.moveTo(v.X(cx - w / 2), v.Y(y0)); x.bezierCurveTo(v.X(cx - w * 0.9), v.Y(y0 + (y1 - y0) * 0.6), v.X(cx - 0.3), v.Y(y1 - 0.6), v.X(cx), v.Y(y1));
+          x.bezierCurveTo(v.X(cx + 0.3), v.Y(y1 - 0.6), v.X(cx + w * 0.9), v.Y(y0 + (y1 - y0) * 0.6), v.X(cx + w / 2), v.Y(y0)); x.fill(); x.strokeStyle = dark; x.stroke(); return; }
+        if (kind === 'cone') { x.fillStyle = fill; x.beginPath(); x.moveTo(v.X(cx - w / 2), v.Y(y0)); x.lineTo(v.X(cx), v.Y(y1)); x.lineTo(v.X(cx + w / 2), v.Y(y0)); x.fill(); x.strokeStyle = dark; x.stroke(); return; }
+        if (kind === 'open') { x.fillStyle = fill; [-0.5, 0, 0.5].forEach((d) => x.fillRect(v.X(cx + d * w - 0.25), v.Y(y1), 0.5 * v.s, (y1 - y0) * v.s)); return; }
+        block(x, v, cx - w / 2, cx + w / 2, y0, y1, fill, 1);
+        if (kind === 'bal') { x.fillStyle = dark; x.fillRect(v.X(cx - w / 2), v.Y(y0 + 0.35), w * v.s, 0.35 * v.s); }
+        else if (y1 - y0 > 6) arch(x, v, cx, y0 + (y1 - y0) * 0.45, y0 + (y1 - y0) * 0.75, w * 0.28, dark);
+      });
+    }
+    function scaffold(x, v, x0, x1, y0, top, alpha) { // poles and ledgers just above the stones being laid
+      if (alpha <= 0.01 || top <= y0) return;
+      x.strokeStyle = `rgba(92,62,30,${0.85 * alpha})`; x.lineWidth = Math.max(1, v.s * 0.18);
+      for (let a = x0; a <= x1 + 0.01; a += 3.2) { x.beginPath(); x.moveTo(v.X(a), v.Y(y0)); x.lineTo(v.X(a), v.Y(top)); x.stroke(); }
+      for (let y = y0 + 2.4; y <= top; y += 2.4) { x.beginPath(); x.moveTo(v.X(x0 - 0.6), v.Y(y)); x.lineTo(v.X(x1 + 0.6), v.Y(y)); x.stroke(); }
+      x.lineWidth = 1; for (let a = x0; a < x1; a += 6.4) { x.beginPath(); x.moveTo(v.X(a), v.Y(Math.max(y0, top - 7))); x.lineTo(v.X(a + 3.2), v.Y(top)); x.stroke(); }
+    }
+    function workers(x, v, x0, x1, y, t, n, alpha, seed) {
+      if (alpha <= 0.01) return; const r = rnd(seed); x.fillStyle = `rgba(30,18,8,${0.9 * alpha})`;
+      for (let i = 0; i < n; i++) { const ph = r() * 6.28, sp = 0.3 + r() * 0.6, a = x0 + (x1 - x0) * (0.5 + 0.5 * Math.sin(ph + t * sp));
+        x.fillRect(v.X(a) - v.s * 0.25, v.Y(y + 1.7), v.s * 0.5, v.s * 1.7); }
+    }
+
+    // ---------- The chapters ----------
+    const LAPSES = { hassan: {
+      // Prologue, after "Turn now, until that dome is straight in front of you": the building rises from the square, seen from the Citadel side.
+      'The boy king': {
+        id: 'rise', at: 'after', T: 32, title: 'The mountain rises', span: '1356 – 1363',
+        note: 'Drawn for Medu on today\'s outline, not to scale. The order of the work is not recorded, and a minaret and the dome were rebuilt in the 1650s and 60s. The sound is imagined.',
+        beats: [
+          { p: 0, y: '1356', c: 'Building begins below the Citadel, facing it.', s: 'M' },
+          { p: 0.09, y: '1356', c: 'For three years, work never stops. Not a single day off.', s: 'M', days: [0.09, 0.52, 1095] },
+          { p: 0.3, y: '', c: 'It costs twenty thousand silver dirhams, every day.', s: 'M', days: true },
+          { p: 0.5, y: '', c: 'The walls climb to almost forty metres.', s: 'H' },
+          { p: 0.58, y: '', c: 'Two minarets rise beside the tomb. The taller one, about eighty metres, still stands.', s: 'H' },
+          { p: 0.84, y: '1362–63', c: 'The dome over the tomb is finished. The inscription inside gives the year, 764.', s: 'H' },
+          { p: 0.93, y: '', c: { site: 'Now look up. That is the dome.', home: 'Six and a half centuries later, it is still standing.' }, s: null },
+        ],
+        cites: [
+          { c: 'Time-lapse "The mountain rises" (dramatised reconstruction, drawn on today\'s outline; the order of the work is not recorded; the sound is imagined). Building began in 757 (1356) facing the Citadel; three years without a day off, at 20,000 dirhams a day. The 1,095 days on screen are our arithmetic.', s: 'M' },
+          { c: 'Time-lapse: walls 37.70 m at the entrance; south minaret about 81.6 m; the tomb dome completed in 764 AH (1362–63) per its inscription; a minaret fell in 1659 and the dome in 1660, both rebuilt.', s: 'H' },
+        ],
+        draw(x, v, p, t, still) {
+          const fl = still ? 0 : 1 - seg(p, 0.86, 0.96), L = fl * (0.62 + 0.38 * Math.sin(t * 2.3 - 1.2)) + (1 - fl) * 0.95; // days and nights pass slowly (under 0.4 Hz), then settle on daylight
+          const lt = Math.max(0, Math.min(1, L));
+          const sky = x.createLinearGradient(0, 0, 0, v.H);
+          sky.addColorStop(0, `rgb(${18 + 150 * lt | 0},${22 + 120 * lt | 0},${44 + 70 * lt | 0})`); sky.addColorStop(0.75, `rgb(${40 + 190 * lt | 0},${32 + 140 * lt | 0},${30 + 80 * lt | 0})`);
+          x.fillStyle = sky; x.fillRect(0, 0, v.W, v.H);
+          if (!still) { // the sun and the stars wheel over, one turn per day of the picture
+            const a = t * 2.3 - 1.2, sx = v.W / 2 - Math.cos(a + Math.PI / 2) * v.W * 0.42, sy = v.Y(22) - Math.sin(a) * v.H * 0.5;
+            if (fl > 0.01 && sy < v.Y(5)) { const g = x.createRadialGradient(sx, sy, 0, sx, sy, v.s * 9); g.addColorStop(0, `rgba(255,236,190,${0.95 * fl})`); g.addColorStop(0.25, `rgba(255,214,140,${0.45 * fl})`); g.addColorStop(1, 'rgba(255,200,120,0)'); x.fillStyle = g; x.fillRect(sx - v.s * 9, sy - v.s * 9, v.s * 18, v.s * 18);
+              x.fillStyle = `rgba(255,244,220,${fl})`; x.beginPath(); x.arc(sx, sy, v.s * 2.2, 0, Math.PI * 2); x.fill(); }
+            const night = Math.max(0, 0.55 - lt) * 1.8 * fl; if (night > 0.02) { const r0 = rnd(21); x.fillStyle = `rgba(240,235,220,${night})`; for (let i = 0; i < 60; i++) { const px = r0() * v.W, py = r0() * v.Y(40); x.fillRect(px, py, r0() < 0.15 ? 2 : 1, r0() < 0.15 ? 2 : 1); } }
+          }
+          // the old city behind: low roofs (generic, not a survey)
+          x.fillStyle = `rgba(${40 + 60 * lt | 0},${30 + 45 * lt | 0},${22 + 30 * lt | 0},.9)`; const r = rnd(7);
+          for (let a = -52; a < 52; a += 4 + r() * 5) { const h = 6 + r() * 8; x.fillRect(v.X(a), v.Y(h), (3 + r() * 4) * v.s, h * v.s + 2); }
+          const stone = (k) => `rgb(${(110 + 95 * lt) * k | 0},${(86 + 72 * lt) * k | 0},${(60 + 48 * lt) * k | 0})`;
+          const ink = `rgba(${40 + 20 * lt | 0},${26 + 14 * lt | 0},12,.85)`, glass = `rgba(20,14,8,${0.75 - 0.2 * lt})`;
+          const walls = seg(p, 0.09, 0.52) * 35.6, mins = 34 + seg(p, 0.5, 0.74) * 48, dome = 32.6 + seg(p, 0.68, 0.88) * 30.4, scaf = 1 - seg(p, 0.86, 0.95);
+          // stakes and cord on the cleared ground
+          if (!still) { const a = 1 - seg(p, 0.06, 0.16); x.strokeStyle = `rgba(230,210,170,${0.7 * a})`; x.setLineDash([3, 4]); x.strokeRect(v.X(-44), v.Y(0.6), 88 * v.s, 0.6 * v.s); x.strokeRect(v.X(-17), v.Y(1.2), 34 * v.s, 0.6 * v.s); x.setLineDash([]); }
+          // the college block behind and the tomb block in front
+          x.save(); clipBelow(x, v, walls, -60, 60, !still && walls < 35.5);
+          block(x, v, -44, 44, 0, 34, stone(0.82), lt); cornice(x, v, -44, 44, 34, stone(0.82));
+          for (let i = 0; i < 4; i++) { const a = -40 + i * 7.2; if (a < -19) [8, 16, 24].forEach((y) => arch(x, v, a + 2, y, y + 4, 1.4, glass)); const b = 21 + i * 6; if (b < 43) [8, 16, 24].forEach((y) => arch(x, v, b + 2, y, y + 4, 1.4, glass)); }
+          block(x, v, -17, 17, 0, 31, stone(1), lt); cornice(x, v, -17, 17, 31, stone(1));
+          [-10, 0, 10].forEach((a) => { arch(x, v, a, 5, 13, 3.4, glass); arch(x, v, a, 17, 24, 2.4, glass); });
+          x.fillStyle = `rgba(70,46,20,.5)`; x.fillRect(v.X(-17), v.Y(28), 34 * v.s, 1.1 * v.s); // the inscription band
+          x.restore();
+          if (walls > 34.5) { // minarets on the roof, either side of the tomb
+            x.save(); clipBelow(x, v, mins, -60, 60, !still && mins < 81);
+            minaret(x, v, -22, 34, [[34, 56, 5.6], [56, 57.2, 7.6, 'bal'], [57.2, 70, 4.6], [70, 71, 6.4, 'bal'], [71, 77, 3.4, 'open'], [77, 81.6, 3.8, 'bulb']], stone(0.95), ink);
+            minaret(x, v, 22, 34, [[34, 50, 5.2], [50, 51, 7, 'bal'], [51, 59, 4], [59, 60, 5.8, 'bal'], [60, 65, 3.4, 'cone']], stone(0.9), ink);
+            x.restore();
+            x.save(); clipBelow(x, v, dome, -60, 60, false); // the drum, then the dome
+            block(x, v, -12.5, 12.5, 32.6, 37, stone(0.97), lt); [-8, -4, 0, 4, 8].forEach((a) => arch(x, v, a, 33.4, 36.4, 1.2, glass));
+            const dg = x.createLinearGradient(v.X(-13), 0, v.X(13), 0); dg.addColorStop(0, stone(1.05)); dg.addColorStop(0.65, stone(0.92)); dg.addColorStop(1, stone(0.7));
+            x.fillStyle = dg; x.beginPath(); x.moveTo(v.X(-12.5), v.Y(37)); x.bezierCurveTo(v.X(-14), v.Y(47), v.X(-6.5), v.Y(55.5), v.X(0), v.Y(59.5));
+            x.bezierCurveTo(v.X(6.5), v.Y(55.5), v.X(14), v.Y(47), v.X(12.5), v.Y(37)); x.closePath(); x.fill(); x.strokeStyle = ink; x.stroke();
+            x.beginPath(); x.moveTo(v.X(0), v.Y(59.5)); x.lineTo(v.X(0), v.Y(62.4)); x.stroke(); x.beginPath(); x.arc(v.X(0), v.Y(63), 0.7 * v.s, 0.5, Math.PI * 2 - 0.5); x.stroke();
+            x.restore();
+          }
+          if (!still) {
+            if (walls < 35.5) { scaffold(x, v, -44, 44, 0, walls + 3, scaf); workers(x, v, -42, 42, walls - 0.6, t, 9, 1, 3); }
+            if (walls >= 35.5 && mins < 81.6) { scaffold(x, v, -25.4, -18.6, 34, mins + 3, scaf); scaffold(x, v, 18.8, 25.2, 34, Math.min(mins, 65) + 3, scaf); workers(x, v, -24, -20, mins - 1, t, 2, scaf, 5); }
+            if (dome > 33 && dome < 63) { scaffold(x, v, -14, 14, 32.6, dome + 2, scaf); workers(x, v, -9, 9, Math.min(dome, 56) - 1, t, 3, scaf, 9); }
+            if (walls < 35.5 && walls > 0.5) { const r2 = rnd(11 + (t * 4 | 0)); x.fillStyle = 'rgba(235,215,180,.35)'; for (let i = 0; i < 14; i++) x.fillRect(v.X(-44 + r2() * 88), v.Y(walls + r2() * 4), 1.5, 1.5); } // stone dust
+          }
+          // the square in front, and a soft vignette
+          x.fillStyle = `rgb(${50 + 80 * lt | 0},${38 + 60 * lt | 0},${26 + 40 * lt | 0})`; x.fillRect(0, v.Y(0), v.W, v.H - v.Y(0));
+          const vg = x.createRadialGradient(v.W / 2, v.H * 0.45, v.W * 0.3, v.W / 2, v.H * 0.5, v.W * 0.85); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,.55)');
+          x.fillStyle = vg; x.fillRect(0, 0, v.W, v.H);
+        },
+        sound(c, out, T) {
+          const t0 = c.currentTime + 0.05, r = rnd(42), dest = master(c, out, 5);
+          const level = (p) => (p < 0.06 ? 0.3 : p < 0.86 ? 0.55 + 0.45 * seg(p, 0.08, 0.6) : 1 - seg(p, 0.86, 0.93)); // the site wakes, peaks, then falls quiet
+          const day = (p) => Math.sin(p * T * 2.3 - 1.2) > -0.35; // work only in daylight, in step with the picture
+          const nodes = crowd(c, dest, t0, T, level);
+          for (let tt = 0.4; tt < T * 0.88; ) { // chisels and mallets, thicker as the years run faster
+            const p = tt / T, rate = 2 + 11 * seg(p, 0.08, 0.6) - 5 * seg(p, 0.75, 0.88);
+            if (day(p)) {
+              const x = r() * 1.6 - 0.8, w = r();
+              if (w < 0.62) burst(c, dest, t0 + tt, { f: 2400 + r() * 2200, q: 14, dur: 0.05 + r() * 0.05, vol: 0.12 + r() * 0.12, x });
+              else if (w < 0.86) knock(c, dest, t0 + tt, { f: 200 + r() * 90, vol: 0.18 + r() * 0.12, x });
+              else if (w < 0.94) creak(c, dest, t0 + tt, { x, vol: 0.04 });
+              else saw(c, dest, t0 + tt, { dur: 0.9 + r() * 0.8, x, vol: 0.05 });
+            }
+            tt += (0.4 + r() * 1.2) / rate * 2;
+          }
+          chord(c, dest, t0 + T * 0.86, [146.8, 220, 293.7, 370], { dur: 6, vol: 0.045 }); // D: the dome closes
+          return nodes;
+        },
+      },
+    } };
+
+    // Add each chapter's citations to its scene's transcript once.
+    Object.entries(LAPSES).forEach(([id, by]) => { const s = BY_ID[id]; if (!s) return;
+      s.slides.forEach((sl) => { const l = by[sl.title]; if (l && sl.cites && !sl.cites._lapse) { sl.cites.push(...l.cites); sl.cites._lapse = true; } }); });
+
+    async function play(l, { site, panel }) {
+      const still = !cinematic(), T = l.T;
+      const say = (b) => (typeof b.c === 'string' ? b.c : site ? b.c.site : b.c.home);
+      const list = still ? `<ol class="lp-list">${l.beats.map((b) => `<li>${b.y ? `<b>${esc(b.y)}</b> ` : ''}${esc(say(b))}${b.s ? ` <span class="lp-src">[${b.s}]</span>` : ''}</li>`).join('')}</ol>` : '';
+      const html = `<div class="lp${still ? ' lp-still' : ''}">
+          <div class="st-kicker">Time-lapse · ${esc(l.span)}</div>
+          <div class="lp-frame"><canvas class="lp-cv" width="400" height="460" role="img" aria-label="${esc(l.title)}: a drawing of the building rising, ${esc(l.span)}"></canvas>
+            <div class="lp-tag">Dramatised reconstruction</div><div class="lp-year" id="lpYear">${still ? esc(l.beats.filter((b) => b.y).pop().y) : ''}</div><div class="lp-days" id="lpDays"></div></div>
+          ${still ? list : `<p class="lp-cap" id="lpCap" aria-live="polite"></p>`}
+          <p class="lp-note">${esc(l.note)}</p>
+          ${still ? '<div class="st-actions"><button class="btn btn-primary" data-v="ok">Continue</button></div>' : ''}</div>`;
+      track('lapse', l.id);
+      const pr = panel(html, { mode: 'full center lapse', skippable: !still, ms: still ? 0 : T * 1000 + 2500 });
+      const cv = document.querySelector('.lp-cv'), x = cv.getContext('2d');
+      const dpr = Math.min(2, window.devicePixelRatio || 1); cv.width = 400 * dpr; cv.height = 460 * dpr;
+      const v = view(cv);
+      let c = null, mix = null, raf = 0;
+      try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); if (actx.state !== 'running') actx.resume(); c = actx; } catch {}
+      bed.hush(true);
+      if (c) { mix = mixer(c); try { l.sound(c, mix.out, T); } catch {} }
+      if (still) { l.draw(x, v, 1, 0, true); }
+      else {
+        const cap = document.getElementById('lpCap'), yr = document.getElementById('lpYear'), dy = document.getElementById('lpDays'), start = performance.now();
+        let shown = -1;
+        const frame = (now) => {
+          if (!cv.isConnected) return;
+          const t = (now - start) / 1000, p = Math.min(1, t / T);
+          l.draw(x, v, p, t, false);
+          let i = 0; while (i + 1 < l.beats.length && p >= l.beats[i + 1].p) i++;
+          if (i !== shown) { shown = i; const b = l.beats[i]; cap.innerHTML = `${esc(say(b))}${b.s ? ` <span class="lp-src">[${b.s}]</span>` : ''}`; cap.classList.remove('in'); void cap.offsetWidth; cap.classList.add('in'); if (b.y) yr.textContent = b.y; }
+          const d = l.beats.find((b) => Array.isArray(b.days));
+          if (d) { const [a, z, n] = d.days, q = (p - a) / (z - a), day = Math.max(1, Math.round(Math.min(1, q) * n)); dy.textContent = q > 0 && q <= 1.06 ? `Day ${day.toLocaleString('en')}` : '';
+            if (q > 0 && q <= 1.06) yr.textContent = String(parseInt(l.span, 10) + Math.floor((day - 1) / 365)); } // our arithmetic, from three years of days
+          if (p < 1) raf = requestAnimationFrame(frame);
+        };
+        raf = requestAnimationFrame(frame);
+      }
+      await pr;
+      cancelAnimationFrame(raf);
+      if (mix) mix.stop(0.6);
+      bed.hush(false);
+    }
+
+    stageHooks._lapses = LAPSES; // for the preview page and tests
+    stageHooks.lapse = async (k, at, ctx) => {
+      const s = st(), l = LAPSES[s.id] && LAPSES[s.id][s.slides[k].title];
+      if (!l || (l.at || 'after') !== at) return;
+      await play(l, ctx);
+    };
   })();
 
 })();
