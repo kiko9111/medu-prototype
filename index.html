@@ -3625,6 +3625,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
         x.fillRect(v.X(a) - v.s * 0.25, v.Y(y + 1.7), v.s * 0.5, v.s * 1.7); }
     }
 
+    let fallBlur = null;
     // The fall: the shaft leans from its foot, breaks into courses, and each course drops with a little motion blur (plate pixels).
     const SLABS = [0, 110, 200, 300, 390, 470, 567];
     function fallMinaret(x, im, tf, MX, MY, MW, MH, BX, BY) {
@@ -3689,11 +3690,11 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
         ],
         drawPhoto(x, v, p, t, still, im) {
           const day = Math.sin(t * 2.3 - 1.2), fl = still ? 0 : 1 - seg(p, 0.84, 0.92), night = fl * Math.max(0, -day) * 0.75; // days and nights pass (under 0.4 Hz), then settle
-          const k = 1.03 - 0.03 * p, oy = 0.012 - 0.012 * p; // a slow push back, like a camera on a tripod across the square
+          const h = still ? 1 : keys(p, [[0, 0.1], [0.09, 0.15], [0.5, 0.45], [0.62, 0.55], [0.72, 0.7], [0.84, 0.97], [0.86, 1]]); // share of the print's height built (the street and the trees in front are there from the start)
+          const k = still ? 1 : Math.min(2.8, 1 / Math.min(1, h * 1.5 + 0.14)), oy = (v.H - im.plate.height * Math.max(v.W / im.plate.width, v.H / im.plate.height) * k) / (2 * v.H); // the camera keeps the rising work in view, pulling back as the walls climb (bottom held)
           x.fillStyle = '#000'; x.fillRect(0, 0, v.W, v.H);
           const f = cover(x, v, im.plate, k, 0, oy);
-          const h = still ? 1 : keys(p, [[0, 0], [0.09, 0.02], [0.5, 0.41], [0.62, 0.52], [0.72, 0.7], [0.84, 0.97], [0.86, 1]]); // share of the print's height built
-          const top = f.t + f.h * (1 - h);
+                    const top = f.t + f.h * (1 - h);
           if (h > 0.001) {
             x.save(); x.beginPath(); x.moveTo(f.l, f.t + f.h);
             for (let a = 0; a <= 12; a++) { const xs = f.l + (f.w * a) / 12, j = still || h >= 1 ? 0 : (Math.sin(a * 2.7 + Math.floor(t * 1.3) * 1.9) * 0.5 + 0.5) * f.h * 0.008; x.lineTo(xs, top + j); x.lineTo(xs + f.w / 12, top + j); }
@@ -3713,8 +3714,8 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
             const today = seg(p, 0.88, 0.97); // 1899 dissolves into today, in colour
             if (today > 0) { x.save(); x.globalAlpha = today; cover(x, v, im.today, 1.02 - 0.02 * seg(p, 0.88, 1)); x.restore(); }
             grain(x, v, t, 0.09 * (1 - today * 0.6));
-          } else grain(x, v, 0, 0.07);
-          const vg = x.createRadialGradient(v.W / 2, v.H * 0.45, v.W * 0.35, v.W / 2, v.H * 0.5, v.W * 0.9); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,.6)');
+          } else { cover(x, v, im.today, 1.0); grain(x, v, 0, 0.05); } // still: today's photograph, under its "Today" caption
+          const vg = x.createRadialGradient(v.W / 2, v.H / 2, Math.max(v.W, v.H) * 0.45, v.W / 2, v.H / 2, Math.max(v.W, v.H) * 0.85); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,.45)');
           x.fillStyle = vg; x.fillRect(0, 0, v.W, v.H);
         },
         draw(x, v, p, t, still) {
@@ -3817,11 +3818,12 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
           const [s0, s1, s2, s3] = this.sky;
           if (n > 0.01) {
             x.save(); x.globalCompositeOperation = 'multiply'; x.fillStyle = `rgb(${255 - 214 * n | 0},${255 - 199 * n | 0},${255 - 148 * n | 0})`; x.fillRect(0, 0, iw, ih); x.restore();
-            x.save(); x.beginPath(); x.rect(s0 + 3, s1 + 3, s2 - s0 - 6, s3 - s1 - 6); x.clip(); // the night sky in the open square, a few stars
+            x.save(); x.beginPath(); x.rect(s0 + 3, s1 + 3, s2 - s0 - 6, s3 - s1 - 6); x.clip(); // the open square of sky goes from day to dusk to night
             const mixc = (a, b, q) => a.map((u, j) => u + (b[j] - u) * q | 0), tone = (d, u, w) => `rgb(${(n < 0.5 ? mixc(d, u, n * 2) : mixc(u, w, (n - 0.5) * 2)).join(',')})`; // day, dusk, night
-            const g = x.createLinearGradient(0, s1, 0, s3); g.addColorStop(0, tone([250, 246, 236], [96, 110, 160], [8, 14, 40])); g.addColorStop(1, tone([255, 240, 210], [214, 150, 104], [22, 30, 66]));
+            const cx = s0 + (s2 - s0) * 0.8, cy = s1 + (s3 - s1) * 0.85, R = Math.hypot(s2 - s0, s3 - s1); // the last light low on one side, as the sky looks straight up at dusk
+            const g = x.createRadialGradient(cx, cy, 0, cx, cy, R); g.addColorStop(0, tone([255, 240, 214], [226, 160, 112], [26, 30, 50])); g.addColorStop(0.55, tone([252, 246, 234], [120, 124, 168], [13, 16, 32])); g.addColorStop(1, tone([248, 246, 240], [74, 86, 140], [6, 8, 18]));
             x.globalAlpha = Math.min(1, n * 3); x.fillStyle = g; x.fillRect(s0, s1, s2 - s0, s3 - s1); x.globalAlpha = 1;
-            const r = rnd(9); x.fillStyle = `rgba(235,235,255,${Math.max(0, n - 0.5) * 1.6})`; for (let i = 0; i < 26; i++) { const sz = r() < 0.2 ? 2.4 : 1.4; x.fillRect(s0 + r() * (s2 - s0), s1 + r() * (s3 - s1), sz, sz); }
+            const e = x.createLinearGradient(s0, 0, s0 + 40, 0); e.addColorStop(0, `rgba(0,0,0,${0.35 * n})`); e.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = e; x.fillRect(s0, s1, 40, s3 - s1); // the walls' shadow on the edge of the opening
             x.restore();
           }
           const L = still ? 1 : 0.2 + 0.8 * n, r = rnd(23); // lamps: each room has its turn to be taken, and flickers a little
@@ -3870,23 +3872,27 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
           { c: 'Time-lapse pictures: the doorway, Beniamino Facchinelli, between 1873 and 1895 (Bibliothèque nationale de France / Wikimedia Commons, public domain), sky extended for Medu; the minaret, cut from Max Herz\'s plate VI of 1899 (Wikimedia Commons, public domain), a stand-in for the one that fell.', s: null },
         ],
         drawPhoto(x, v, p, t, still, im, m) {
-          const PW = 657, PH = 1500, MX = 321, MY = 200, MW = 148, MH = 567, BX = MX + MW / 2, BY = MY + MH; // plate pixels; BX, BY: the minaret's foot on the cornice
+          const PW = 657, PH = 1500, MW = 118, MH = 454, BX = 395, BY = 767, MX = BX - MW / 2, MY = BY - MH; // plate pixels; BX, BY: the minaret's foot on the cornice (its height is not recorded)
           const tf = still ? 99 : m.fall != null ? m.fall : -1;
           // the camera: on the doorway, tilting up as the minaret climbs, then settling back down through the dust
           const rise = still ? 0 : seg(t, 0.6, 7.5), gone = tf >= 0;
-          const s0 = v.W / PW, half = v.H / s0 / 2;
-          let cy = PH - half - 10;
-          const up = Math.max(half, MY - 40 + half);
-          cy += (up - cy) * (gone ? 1 - seg(tf, 1.5, 5.5) * 0.7 : seg(t, 1.5, 8)) * (still ? 0 : 1);
-          if (still) cy = Math.max(half, BY - 120 + half * 0.2);
           const z = 1.02 + (still ? 0 : 0.03 * seg(t, 0, 20));
+          const s = (v.W / PW) * Math.min(1, v.H / (v.W / PW) / 860) * z, half = v.H / s / 2; // wide enough for the minaret with the doorway under it
+          let cy = PH - half - 10;
+          const up = Math.max(half, Math.min(MY - 30 + half, BY + 330 - half)); // the whole minaret, and the doorway's hood under it
+          cy += (up - cy) * (gone ? 1 - seg(tf, 1.5, 5.5) * 0.6 : seg(t, 1.5, 8)) * (still ? 0 : 1);
+          if (still) cy = Math.max(half, BY - 120 + half * 0.2);
           let sx = 0, sy = 0; // the ground shakes when the stones land
           if (tf > 2.0 && tf < 3.6) { const a = (1 - seg(tf, 2.0, 3.6)) * 6; sx = Math.sin(t * 71) * a; sy = Math.cos(t * 53) * a * 0.7; }
-          const s = s0 * z;
           x.fillStyle = '#000'; x.fillRect(0, 0, v.W, v.H);
-          const hw = v.W / s / 2, cx = Math.min(PW - hw, Math.max(hw, BX));
-          x.save(); x.translate(v.W / 2 - cx * s + sx, v.H / 2 - Math.min(PH - half / z, Math.max(half / z, cy)) * s + sy); x.scale(s, s);
-          x.drawImage(im.plate, 0, 0, PW, PH);
+          const hw = v.W / s / 2, cx = PW / 2 > hw ? Math.min(PW - hw, Math.max(hw, BX)) : PW / 2, oy = v.H / 2 - Math.min(PH - half, Math.max(half, cy)) * s + sy;
+          if (PW * s < v.W) { // wider frames: the print's own edges, blurred and dimmed, fill the sides
+            if (!fallBlur) { fallBlur = document.createElement('canvas'); fallBlur.width = 22; fallBlur.height = 50; fallBlur.getContext('2d').drawImage(im.plate, 0, 0, 22, 50); }
+            x.save(); x.globalAlpha = 0.32; x.drawImage(fallBlur, -v.W * 0.1 + sx, oy - PH * s * 0.05, v.W * 1.2, PH * s * 1.1); x.restore();
+          }
+          x.save(); x.translate(v.W / 2 - cx * s + sx, oy); x.scale(s, s);
+          if (PW * s < v.W) { x.shadowColor = 'rgba(0,0,0,.6)'; x.shadowBlur = 30; }
+          x.drawImage(im.plate, 0, 0, PW, PH); x.shadowBlur = 0; x.shadowColor = 'transparent';
           if (!gone && !still) { // course by course, from the cornice up, the fresh stone paler
             const h = rise * MH, top = BY - h;
             if (h > 1) {
