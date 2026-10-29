@@ -61,6 +61,61 @@ Photos come from Wikimedia Commons under the licences below. Map: © OpenStreetM
 | hassan | then-7 | [photos/hassan-print-sebah.jpg](https://commons.wikimedia.org/wiki/File:Sebah,_Pascal_(1823-1886)_-_n._016_-_Mosqu%C3%A9e_Soultan_-_Fontaines_des_ablutions_(Hassan)_-_Cairo_-_1880s.jpg) | Pascal Sébah | Public domain |
 | hassan | 8 | [photos/hassan-print-protain.jpg](https://commons.wikimedia.org/wiki/File:Le_Caire_-_vue_int%C3%A9rieure_de_la_mosqu%C3%A9e_du_sultan_Hassan_-_dessin_-_Protain_del._-_btv1b105141611.jpg) | Protain, for the Description de l'Égypte (Bibliothèque nationale de France) | Public domain |
 | hassan | 11 | [photos/hassan-print-conte.jpg](https://commons.wikimedia.org/wiki/File:Le_Caire_-_vue_de_la_mosqu%C3%A9e_du_sultan_Hassan_-_dessin_-_Cont%C3%A9_del._-_btv1b53096724b.jpg) | Nicolas-Jacques Conté, for the Description de l'Égypte (Bibliothèque nationale de France) | Public domain |
+| hassan | r0-1 | [photos/hassan-r0-1.jpg](https://commons.wikimedia.org/wiki/File:Flying_to_the_Sun_by_AbdallahMogy.jpg) | AbdallahMogy | CC BY-SA 4.0 |
+| hassan | r0-2 | [photos/hassan-r0-2.jpg](https://commons.wikimedia.org/wiki/File:02010_05934_2010_in_Cairo.jpg) | Silar | CC BY-SA 4.0 |
+| hassan | r0-3 | [photos/hassan-r0-3.jpg](https://commons.wikimedia.org/wiki/File:Madrasah_of_Sultan_Hassan_in_2017,_photo_by_Hatem_Moushir_8.jpg) | Hatem Moushir | CC BY-SA 4.0 |
+| hassan | r0-4 | [photos/hassan-r0-4.jpg](https://commons.wikimedia.org/wiki/File:Egypt,_Cairo,_Mamluk_period,_14th_century_-_Leaf_from_a_Qur%27an_(recto)_-_2013.102.a_-_Cleveland_Museum_of_Art.tif) | Unknown | CC0 |
+| hassan | r0-5 | [photos/hassan-r0-5.jpg](https://commons.wikimedia.org/wiki/File:Al-Rifa%27i_%26_Sultan_Hassan_Mosques.jpg) | Hesham Ebaid | CC0 |
+| hassan | r1-1 | [photos/hassan-r1-1.jpg](https://commons.wikimedia.org/wiki/File:Sultan_Hasan_Madrasa-Mosque_DSCF7241.jpg) | R Prazeres | CC BY-SA 4.0 |
+| hassan | r1-2 | [photos/hassan-r1-2.jpg](https://commons.wikimedia.org/wiki/File:Madrasa_of_Sultan_Hasan,_1356-63,_Cairo_06.jpg) | Richard Mortel | CC BY 2.0 |
+| hassan | r2-1 | [photos/hassan-r2-1.jpg](https://commons.wikimedia.org/wiki/File:%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A7%D9%86_%D8%AD%D8%B3%D9%86_%D9%88_%D8%A7%D9%84%D8%B1%D9%81%D8%A7%D8%B9%D9%8A_%D9%88_%D8%A7%D9%84%D9%85%D8%AD%D9%85%D9%88%D8%AF%D9%8A%D8%A9.jpg) | Sherif Alyamany | Public domain |
+| hassan | r2-2 | [photos/hassan-r2-2.jpg](https://commons.wikimedia.org/wiki/File:%D9%85%D8%B3%D8%AC%D8%AF_%D9%88%D9%85%D8%AF%D8%B1%D8%B3%D8%A9_%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A7%D9%86_%D8%AD%D8%B3%D9%86.jpg) | Ibrahim Magdy | CC BY-SA 4.0 |
+| hassan | r2-3 | [photos/hassan-r2-3.jpg](https://commons.wikimedia.org/wiki/File:Madrasah_of_Sultan_Hassan_in_2017,_photo_by_Hatem_Moushir_3.jpg) | Hatem Moushir | CC BY-SA 4.0 |
+| hassan | r2-4 | [photos/hassan-r2-4.jpg](https://commons.wikimedia.org/wiki/File:Sultan-Hassan-Moschee_2015-11-14c.jpg) | Djehouty | CC BY-SA 4.0 |
+| hassan | r2-5 | [photos/hassan-r2-5.jpg](https://commons.wikimedia.org/wiki/File:6-_Sultan_Hassan.JPG) | Awassimy | CC BY-SA 3.0 |
+| hassan | r3-1 | [photos/hassan-r3-1.jpg](https://commons.wikimedia.org/wiki/File:Mosque-Madrassa_of_Sultan_Hassan_7.jpg) | Mohammed Moussa | CC BY-SA 4.0 |
+| hassan | r3-2 | [photos/hassan-r3-2.jpg](https://commons.wikimedia.org/wiki/File:Madrasa_of_Sultan_Hasan,_1356-63,_Cairo_12.jpg) | Richard Mortel | CC BY 2.0 |
+| hassan | r3-3 | [photos/hassan-r3-3.jpg](https://commons.wikimedia.org/wiki/File:By_ovedc_-_Mosque_of_Sultan_Hasan_-_12.jpg) | Ovedc | CC BY-SA 4.0 |
+| hassan | r3-4 | [photos/hassan-r3-4.jpg](https://commons.wikimedia.org/wiki/File:Madrasah_of_Sultan_Hassan_in_2017,_photo_by_Hatem_Moushir_41.jpg) | Hatem Moushir | CC BY-SA 4.0 |
+| hassan | r3-5 | [photos/hassan-r3-5.jpg](https://commons.wikimedia.org/wiki/File:By_ovedc_-_Mosque_of_Sultan_Hasan_-_06.jpg) | Ovedc | CC BY-SA 4.0 |
+| hassan | r4-1 | [photos/hassan-r4-1.jpg](https://commons.wikimedia.org/wiki/File:Madrasa_of_Sultan_Hasan,_1356-63,_Cairo_05.jpg) | Richard Mortel | CC BY 2.0 |
+| hassan | r4-2 | [photos/hassan-r4-2.jpg](https://commons.wikimedia.org/wiki/File:%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D9%84%D9%86_%D8%AD%D8%B3%D9%86.jpg) | Ahmed afb | CC BY-SA 4.0 |
+| hassan | r4-3 | [photos/hassan-r4-3.jpg](https://commons.wikimedia.org/wiki/File:At_Night_Sultan_Hasan_mosque_and_Refaaeiy_mosque_%D9%84%D9%8A%D9%84%D8%A7_%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A7%D9%86_%D8%AD%D8%B3%D9%86_%D9%88%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%B1%D9%81%D8%A7%D8%B9%D9%8A.jpg) | Abdullah al-ghaly | CC BY-SA 4.0 |
+| hassan | r4-4 | [photos/hassan-r4-4.jpg](https://commons.wikimedia.org/wiki/File:Mamluk_era_Quran,_circa_1380,_open_to_sura_16.jpg) | Mustafa-trit20 | CC BY-SA 4.0 |
+| hassan | r4-5 | [photos/hassan-r4-5.jpg](https://commons.wikimedia.org/wiki/File:%D8%B5%D9%84%D8%A7%D8%A9_%D8%A7%D9%84%D8%AA%D8%B1%D8%A7%D9%88%D9%8A%D8%AD_%D9%85%D9%86_%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A7%D9%86_%D8%AD%D8%B3%D9%86.jpg) | Doaa Adel | CC BY-SA 4.0 |
+| hassan | r5-1 | [photos/hassan-r5-1.jpg](https://commons.wikimedia.org/wiki/File:Sultan_Hassan_Mosque,_Cairo,_Egypt_01.jpg) | Hassan Hamdy wahidy | Public domain |
+| hassan | r5-2 | [photos/hassan-r5-2.jpg](https://commons.wikimedia.org/wiki/File:Illustration_by_David_Roberts,_digitally_enhanced_by_rawpixel-com_121.jpg) | Rawpixel | CC BY-SA 4.0 |
+| hassan | r5-3 | [photos/hassan-r5-3.jpg](https://commons.wikimedia.org/wiki/File:Cairo2746.JPG) | Samir I. Sharbaty | CC BY-SA 3.0 |
+| hassan | r6-1 | [photos/hassan-r6-1.jpg](https://commons.wikimedia.org/wiki/File:The_Ceiling_Decoration_Art_(86688649).jpeg) | Morhaf Aljanee | CC BY-SA 3.0 |
+| hassan | r6-2 | [photos/hassan-r6-2.jpg](https://commons.wikimedia.org/wiki/File:Sultan_Hassan_Mosque_3.JPG) | Mariam Mohamed Kamal | CC BY-SA 3.0 |
+| hassan | r6-3 | [photos/hassan-r6-3.jpg](https://commons.wikimedia.org/wiki/File:Mosque_of_Sultan_Hasan_-_panoramio_(3).jpg) | AwOiSoAk KaOsIoWa | CC BY-SA 3.0 |
+| hassan | r6-4 | [photos/hassan-r6-4.jpg](https://commons.wikimedia.org/wiki/File:%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A7%D9%86_%D8%AD%D8%B3%D9%86_2026_17.jpg) | أحمد ناجي | CC BY-SA 4.0 |
+| hassan | r7-1 | [photos/hassan-r7-1.jpg](https://commons.wikimedia.org/wiki/File:%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A7%D9%86_%D8%AD%D8%B3%D9%86_-_%D9%85%D9%86_%D8%A7%D9%84%D8%AF%D8%A7%D8%AE%D9%84_07.jpg) | Sherif Alyamany | Public domain |
+| hassan | r7-2 | [photos/hassan-r7-2.jpg](https://commons.wikimedia.org/wiki/File:4-Sultan_Hassan.JPG) | Awassimy | CC BY-SA 3.0 |
+| hassan | r7-3 | [photos/hassan-r7-3.jpg](https://commons.wikimedia.org/wiki/File:%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A7%D9%86_%D8%AD%D8%B3%D9%86_%D8%A8%D8%A7%D9%84%D9%82%D8%A7%D9%87%D8%B1%D9%87.jpg) | Mustafa Shorbaji | CC BY-SA 4.0 |
+| hassan | r7-4 | [photos/hassan-r7-4.jpg](https://commons.wikimedia.org/wiki/File:Madrasah_of_Sultan_Hassan_in_2017,_photo_by_Hatem_Moushir_25.jpg) | Hatem Moushir | CC BY-SA 4.0 |
+| hassan | r7-5 | [photos/hassan-r7-5.jpg](https://commons.wikimedia.org/wiki/File:Sultan_Hassan_Mosque_10.jpg) | Mariam mohamed Kamal | CC BY-SA 3.0 |
+| hassan | r8-1 | [photos/hassan-r8-1.jpg](https://commons.wikimedia.org/wiki/File:Illustration_by_David_Roberts,_digitally_enhanced_by_rawpixel-com_92.jpg) | Rawpixel | CC BY-SA 4.0 |
+| hassan | r8-2 | [photos/hassan-r8-2.jpg](https://commons.wikimedia.org/wiki/File:View_from_inside_El_sultan_Hassan_mosque.jpg) | Ahmed Mohi El din | CC BY-SA 3.0 |
+| hassan | r8-3 | [photos/hassan-r8-3.jpg](https://commons.wikimedia.org/wiki/File:Madrasah_of_Sultan_Hassan_in_2017,_photo_by_Hatem_Moushir_23.jpg) | Hatem Moushir | CC BY-SA 4.0 |
+| hassan | r8-4 | [photos/hassan-r8-4.jpg](https://commons.wikimedia.org/wiki/File:Cairo2697.JPG) | Samir I. Sharbaty | CC BY-SA 3.0 |
+| hassan | r8-5 | [photos/hassan-r8-5.jpg](https://commons.wikimedia.org/wiki/File:Meshkah_El_sultan_Hassan_mousqe_2.jpg) | Ahmed Mohi El din | CC BY-SA 3.0 |
+| hassan | r8-6 | [photos/hassan-r8-6.jpg](https://commons.wikimedia.org/wiki/File:%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A7%D9%86_%D8%AD%D8%B3%D9%86_2026_19.jpg) | أحمد ناجي | CC BY-SA 4.0 |
+| hassan | r9-1 | [photos/hassan-r9-1.jpg](https://commons.wikimedia.org/wiki/File:%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A7%D9%86_%D8%AE%D8%B3%D9%86.jpg) | Omarsamyelewa | CC BY-SA 4.0 |
+| hassan | r9-2 | [photos/hassan-r9-2.jpg](https://commons.wikimedia.org/wiki/File:Le_Kaire_(Cairo)._1.Portion_de_la_coupe_transversale_de_la_Mosqu%C3%A9e_de_Soult%C3%A2n_Hasan;_2.3._D%C3%A9tails_des_portes_int%C3%A9rieures;_4.5._D%C3%A9tails_du_pavillon_destin%C3%A9_aux_ablutions_(NYPL_b14212718-1268746).jpg) | Impr. impériale | Public domain |
+| hassan | r9-3 | [photos/hassan-r9-3.jpg](https://commons.wikimedia.org/wiki/File:Madrasah_of_Sultan_Hassan_in_2017,_photo_by_Hatem_Moushir_33.jpg) | Hatem Moushir | CC BY-SA 4.0 |
+| hassan | r9-4 | [photos/hassan-r9-4.jpg](https://commons.wikimedia.org/wiki/File:%D9%85%D8%B3%D8%AC%D8%AF_%D8%B3%D9%84%D8%B7%D8%A7%D9%86_%D8%AD%D8%B3%D9%8A%D9%86.jpg) | احمد منعم | CC BY-SA 4.0 |
+| hassan | r9-5 | [photos/hassan-r9-5.jpg](https://commons.wikimedia.org/wiki/File:Flickr_-_HuTect_ShOts_-_Ceiling_-_Masjid_of_Sultan_Hassan_%D9%85%D8%B3%D8%AC%D8%AF_%D9%88%D9%85%D8%AF%D8%B1%D8%B3%D8%A9_%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A7%D9%86_%D8%AD%D8%B3%D9%86_-_Cairo_-_Egypt_-_28_05_2010.jpg) | Ahmed Al.Badawy from Cairo, Egypt | CC BY-SA 2.0 |
+| hassan | r9-6 | [photos/hassan-r9-6.jpg](https://commons.wikimedia.org/wiki/File:Lamp_of_Sultan_Hasan.jpg) | Traveller9999 | CC0 |
+| hassan | r10-1 | [photos/hassan-r10-1.jpg](https://commons.wikimedia.org/wiki/File:Sultan_Hassan_Mosque,_Cairo,_Egypt_13.jpg) | Hassan Hamdy wahidy | Public domain |
+| hassan | r10-2 | [photos/hassan-r10-2.jpg](https://commons.wikimedia.org/wiki/File:Sultan_Hasan_mausoleum_DSCF7808.jpg) | R Prazeres | CC BY-SA 4.0 |
+| hassan | r10-3 | [photos/hassan-r10-3.jpg](https://commons.wikimedia.org/wiki/File:Islamic_Cairo_13.JPG) | Waelfouda | CC BY-SA 4.0 |
+| hassan | r10-4 | [photos/hassan-r10-4.jpg](https://commons.wikimedia.org/wiki/File:The_ceiling_of_the_back_chamber_of_Sultan_Hassan_Mosque_during_daylight.jpg) | Aymanrefaat09 | CC BY-SA 3.0 |
+| hassan | r10-5 | [photos/hassan-r10-5.jpg](https://commons.wikimedia.org/wiki/File:Sultan_Hasan_mausoleum_cenotaph_DSCF7767.jpg) | R Prazeres | CC BY-SA 4.0 |
+| hassan | r10-6 | [photos/hassan-r10-6.jpg](https://commons.wikimedia.org/wiki/File:Islamic_Cairo_15.JPG) | Waelfouda | CC BY-SA 4.0 |
+| hassan | r11-1 | [photos/hassan-r11-1.jpg](https://commons.wikimedia.org/wiki/File:Aegypten1959-071_hg.jpg) | H. Grobe | CC BY-SA 3.0 |
+| hassan | r11-2 | [photos/hassan-r11-2.jpg](https://commons.wikimedia.org/wiki/File:1033-Grav._Mosqu%C3%A9e_de_Hha%C3%A7an_au_Caire.jpg) | Bruno befreetv | CC BY-SA 3.0 |
+| hassan | r11-3 | [photos/hassan-r11-3.jpg](https://commons.wikimedia.org/wiki/File:Cairo_-_al-Rifa%27i_Mosque_0033.jpg) | OmarJihad | CC BY-SA 4.0 |
 
 Time-lapse plates (lapse/): the building cut out of Max Herz's 1899 photograph, plate VI (public domain), with a fitted empty sky, sepia-toned; and Sailko's 2015 photograph of the tomb façade (CC BY 3.0), cropped to leave out Al-Rifa'i. For "The minaret falls": Beniamino Facchinelli's photograph of the great doorway, between 1873 and 1895 (Bibliothèque nationale de France, public domain), its sky extended, and a minaret cut out of the same Herz plate, standing in for the one that fell in 1361. For "The colleges fill": Awassimy's 2013 photograph looking up from a college courtyard (CC BY-SA 3.0, Wikimedia Commons), with night, sky and lamplight added; the windows were marked by hand. Made for Medu; the scripts are in the project's prototype/lapse/ folder.
 
