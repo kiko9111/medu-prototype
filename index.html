@@ -844,23 +844,21 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
 .cine .stage .qz-grid .qz-lamp.lit .glow { animation: qzBloom 1400ms ease-out both; animation-delay: calc(600ms + var(--i) * 70ms); }
 @media (prefers-reduced-motion: reduce) { .stage.quiz *, .stage.quiz .veil::before { animation: none !important; } }
 
-/* ---- Time-lapse chapters (lapse/lapse.css, inlined by build-prototype.py): a framed live drawing with the year, the day count and
-   a cited caption. Motion is the drawing itself; reduced motion and "Cinematic effects off" (no .cine) get the still drawing. ---- */
-.stage.lapse .veil { background: radial-gradient(120% 80% at 50% 40%, #120d07, #020306 75%); }
-.lp { display: grid; gap: 10px; justify-items: center; width: 100%; max-height: calc(100dvh - 90px); overflow-y: auto; }
-.lp-frame { position: relative; width: min(100%, 360px); aspect-ratio: 400 / 460; border-radius: 6px; overflow: hidden; box-shadow: 0 24px 70px rgba(0,0,0,.7), 0 0 0 1px rgba(212,176,98,.28); }
-.lp-cv { display: block; width: 100%; height: 100%; }
-.lp-tag { position: absolute; left: 10px; top: 10px; font-size: 9.5px; letter-spacing: .2em; text-transform: uppercase; color: #f3e6c8; background: rgba(2,3,6,.55); border: 1px solid rgba(243,230,200,.25); border-radius: 99px; padding: 4px 9px; }
-.lp-year { position: absolute; right: 12px; top: 6px; font-family: var(--display); font-weight: 600; font-size: 34px; color: #f6efe2; text-shadow: 0 2px 12px rgba(0,0,0,.7); font-variant-numeric: lining-nums tabular-nums; }
-.lp-days { position: absolute; right: 13px; top: 46px; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #f3e6c8; text-shadow: 0 1px 6px rgba(0,0,0,.8); font-variant-numeric: tabular-nums; }
-.lp-cap { margin: 0; min-height: 3.6em; max-width: 30ch; font-family: var(--display); font-size: 22px; line-height: 1.2; color: #f6efe2; text-wrap: balance; }
-.cine .lp-cap.in { animation: stRise 700ms cubic-bezier(.16,1,.3,1) both; }
-.lp-src { font-family: var(--ui); font-size: 11px; color: var(--accent); letter-spacing: .05em; white-space: nowrap; }
-.lp-note { margin: 0; max-width: 40ch; font-size: 11.5px; line-height: 1.45; color: var(--muted); }
-.lp-list { margin: 0; padding: 0 0 0 1.2em; text-align: left; max-width: 36ch; display: grid; gap: 6px; color: #e2e8f0; font-size: 14px; line-height: 1.4; }
-.lp-list b { color: var(--accent); font-weight: 600; }
-.lp-still .lp-frame { width: min(70%, 250px); }
-.lp-still .lp-year, .lp-still .lp-days { display: none; }
+/* ---- Time-lapse chapters (lapse/lapse.css, inlined by build-prototype.py): they play inside the scene's own picture frame, under
+   the narration, with a small tag, the year and a cited caption. The overlay fades in and out; reduced motion and "Cinematic
+   effects off" get the finished image, still. ---- */
+.lpx { position: absolute; inset: 0; z-index: 3; opacity: 0; transition: opacity 1200ms ease; pointer-events: none; overflow: hidden; background: #000; }
+.lpx.in { opacity: 1; }
+.lpx.out { opacity: 0; transition-duration: 1200ms; }
+.lpx canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.lpx-tag { position: absolute; left: 12px; top: 12px; font-size: 9.5px; letter-spacing: .18em; text-transform: uppercase; color: #f3e6c8; background: rgba(2,3,6,.5); border: 1px solid rgba(243,230,200,.22); border-radius: 99px; padding: 4px 9px; }
+.lpx-year { position: absolute; right: 14px; top: 8px; font-family: var(--display); font-weight: 600; font-size: 28px; color: #f6efe2; text-shadow: 0 2px 12px rgba(0,0,0,.7); font-variant-numeric: lining-nums tabular-nums; }
+.lpx-days { position: absolute; right: 15px; top: 42px; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #f3e6c8; text-shadow: 0 1px 6px rgba(0,0,0,.8); font-variant-numeric: tabular-nums; }
+.lpx-cap { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 40px 16px 14px; font-family: var(--display); font-size: 19px; line-height: 1.2; color: #f6efe2; text-wrap: balance;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,.72)); }
+.lpx-cap:empty { display: none; }
+.cine .lpx-cap.in { animation: stRise 700ms cubic-bezier(.16,1,.3,1) both; }
+.lpx-src { font-family: var(--ui); font-size: 11px; color: var(--accent); letter-spacing: .05em; white-space: nowrap; }
 
 </style>
 
@@ -1060,7 +1058,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
         <div class="souv-row"><button class="btn btn-ghost" id="tlogShare">Share log</button><button class="btn btn-ghost" id="tlogClear">Clear log</button></div></div>
       <button class="btn btn-ghost" id="resetWalk" style="margin-top:12px">Reset visited stops</button>
       <button class="btn btn-primary" id="closeSettings" style="margin-top:6px">Done</button>
-      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 29 Oct 16:24 UTC</p>
+      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 29 Oct 16:40 UTC</p>
     </div>
   </div>
   <!-- ===== Super app layer (super/super.html, inlined by build-prototype.py). Hidden with ?edition=preview. ===== -->
@@ -1912,6 +1910,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       tell(0);
     }
     function tell(n) { // the reel follows the voice: by line in story scenes, or by counting words through a whole-scene clip
+      if (stageHooks.line && st && st.slides[k]) { const L = st.slides[k].lines; if (asLines || !L) stageHooks.line(st, k, asLines ? u : 0, n); else { let w = Math.max(0, n), i = 0; while (i < L.length - 1 && w >= split(L[i].t).length) { w -= split(L[i].t).length; i++; } stageHooks.line(st, k, i, w); } } // time-lapse chapters (lapse/) start on a spoken line
       const s = st && st.slides[k]; if (!s || !s.reel) return;
       if (asLines || !s.lines) { reel.at(st, k, asLines ? u : 0, n); return; }
       let w = Math.max(0, n), i = 0; while (i < s.lines.length - 1 && w >= split(s.lines[i].t).length) { w -= split(s.lines[i].t).length; i++; }
@@ -2552,7 +2551,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
     $('#stGuide').addEventListener('click', () => showGuide());
 
     return {
-      on: live, begin, after, linesHtml, eyes, free,
+      on: live, begin, after, linesHtml, eyes, free, site: () => site,
       ask: (k) => { if (on) go(k); },
       // Multi-voice preview: each line in the device voice, pitched per speaker, until the recorded clip exists.
       voice: (who) => VOICES[who] || VOICES.narrator, kind: (k) => KIND[k],
@@ -3455,10 +3454,10 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       let last = 0; for (let i = 0; i < d.length; i++) { const w = Math.random() * 2 - 1; last = (last + 0.02 * w) / 1.02; d[i] = i % 2 ? w : w * 0.6 + last * 3; }
       return (c._lpNoise = b);
     }
-    function mixer(c) {
+    function mixer(c, level = 1) {
       const out = c.createGain(); out.gain.value = 0.0001;
       out.connect(c.destination);
-      const t = c.currentTime; out.gain.setTargetAtTime(1, t, 0.4);
+      const t = c.currentTime; out.gain.setTargetAtTime(level, t, 0.4);
       return { out, stop(sec = 0.4) { const n = c.currentTime; out.gain.cancelScheduledValues(n); out.gain.setValueAtTime(out.gain.value, n); out.gain.setTargetAtTime(0.0001, n, sec / 3); setTimeout(() => { try { out.disconnect(); } catch {} }, sec * 1000 + 600); } };
     }
     function master(c, out, boost) { // lift the quiet synthesis to sit near the narration's level, with a limiter on the peaks
@@ -3615,7 +3614,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
     const LAPSES = { hassan: {
       // Prologue, after "Turn now, until that dome is straight in front of you": the building rises from the square, seen from the Citadel side.
       'The boy king': {
-        id: 'rise', at: 'after', T: 32, title: 'The mountain rises', span: '1356 – 1363', alt: 'Max Herz\'s 1899 photograph of the tomb façade, revealed course by course from the ground up, then today\'s colour photograph',
+        id: 'rise', cue: { l: 6, w: 0 }, T: 19, under: 0.45, title: 'The mountain rises', span: '1356 – 1363', alt: 'Max Herz\'s 1899 photograph of the tomb façade, revealed course by course from the ground up, then today\'s colour photograph',
         imgs: { plate: 'lapse/rise-plate.jpg', bld: 'lapse/rise-building.png', today: 'lapse/rise-today.jpg' },
         photoNote: 'Made for Medu from Max Herz\'s photograph of 1899 (public domain), the building lifted out of its sky and raised from the ground; today\'s view: Sailko, 2015, CC BY 3.0. The order of the work is not recorded, and the dome and a minaret seen here were rebuilt in the 1650s and 60s. The sound is imagined.',
         note: 'Drawn for Medu on today\'s outline, not to scale. The order of the work is not recorded, and a minaret and the dome were rebuilt in the 1650s and 60s. The sound is imagined.',
@@ -3846,82 +3845,72 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
     Object.entries(LAPSES).forEach(([id, by]) => { const s = BY_ID[id]; if (!s) return;
       s.slides.forEach((sl) => { const l = by[sl.title]; if (l && !l.off && sl.cites && !sl.cites._lapse) { sl.cites.push(...l.cites); sl.cites._lapse = true; } }); });
 
-    async function play(l, { site, panel }) {
-      const still = !cinematic(), T = l.T;
+    // ---------- In the play: a chapter runs inside the scene's own picture frame, under the narration, cued by a spoken line ----------
+    let run = null; // { k, done: Promise, stop() }
+    const frameOf = (k) => document.querySelector(`#stack .print[data-k="${k}"] .frame`);
+    function start(l, s, k) {
+      const fr = frameOf(k); if (!fr) return;
+      const still = !cinematic(), T = l.T, site = !!(stage.site && stage.site());
       const say = (b) => (typeof b.c === 'string' ? b.c : site ? b.c.site : b.c.home);
-      const list = still ? `<ol class="lp-list">${l.beats.filter((b) => say(b)).map((b) => `<li>${b.y ? `<b>${esc(b.y)}</b> ` : ''}${esc(say(b))}${b.s ? ` <span class="lp-src">[${b.s}]</span>` : ''}</li>`).join('')}</ol>` : '';
-      const html = `<div class="lp${still ? ' lp-still' : ''}">
-          <div class="st-kicker">Time-lapse · ${esc(l.span)}</div>
-          <div class="lp-frame"><canvas class="lp-cv" width="400" height="460" role="img" aria-label="${esc(l.title)}: ${esc(l.alt || '')}"></canvas>
-            <div class="lp-tag">Dramatised reconstruction</div><div class="lp-year" id="lpYear">${still ? esc((l.beats.filter((b) => b.y).pop() || {}).y || '') : ''}</div><div class="lp-days" id="lpDays"></div></div>
-          ${still ? list : `<p class="lp-cap" id="lpCap" aria-live="polite"></p>`}
-          <p class="lp-note">${esc(l.note)}</p>
-          ${still ? '<div class="st-actions"><button class="btn btn-primary" data-v="ok">Continue</button></div>' : ''}</div>`;
+      const ov = document.createElement('div'); ov.className = 'lpx'; ov.setAttribute('role', 'img'); ov.setAttribute('aria-label', `${l.title}: ${l.alt || ''}`);
+      ov.innerHTML = `<canvas></canvas><span class="lpx-tag">Time-lapse · dramatised</span><span class="lpx-year"></span><span class="lpx-days"></span><p class="lpx-cap" aria-live="polite"></p>`;
+      fr.appendChild(ov);
+      const cv = ov.querySelector('canvas'), x = cv.getContext('2d'), dpr = Math.min(2, window.devicePixelRatio || 1);
+      cv.width = Math.round(fr.clientWidth * dpr) || 800; cv.height = Math.round(fr.clientHeight * dpr) || 920;
+      const v = view(cv, l.view), cap = ov.querySelector('.lpx-cap'), yr = ov.querySelector('.lpx-year'), dy = ov.querySelector('.lpx-days');
+      let raf = 0, mix = null, alive = true, resolve;
+      const done = new Promise((r) => { resolve = r; });
+      const stop = (fade = 1.2) => {
+        if (!alive) return; alive = false; cancelAnimationFrame(raf); if (mix) mix.stop(0.8); bed.hush(false);
+        ov.classList.add('out'); setTimeout(() => ov.remove(), fade * 1000 + 100); if (run && run.ov === ov) run = null; resolve();
+      };
+      run = { k, ov, done, stop };
       track('lapse', l.id);
-      const pr = panel(html, { mode: 'full center lapse', skippable: !still, ms: still ? 0 : T * 1000 + 2500 });
-      const cv = document.querySelector('.lp-cv'), x = cv.getContext('2d');
-      const dpr = Math.min(2, window.devicePixelRatio || 1); cv.width = 400 * dpr; cv.height = 460 * dpr;
-      const v = view(cv, l.view);
-      let c = null, mix = null, raf = 0;
-      try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); if (actx.state !== 'running') actx.resume(); c = actx; } catch {}
-      bed.hush(true);
-      const pics = {}; let photo = false;
-      if (l.imgs && l.drawPhoto) { await Promise.race([Promise.all(Object.entries(l.imgs).map(([k, src]) => loadImg(src).then((i) => { pics[k] = i; }))), wait(3000)]); photo = Object.keys(l.imgs).every((k) => pics[k]); }
-      const paint = (pp, tt, stl) => (photo ? l.drawPhoto(x, v, pp, tt, stl, pics) : l.draw(x, v, pp, tt, stl));
-      const nt = document.querySelector('.lp-note'); if (photo && l.photoNote && nt) nt.textContent = l.photoNote;
-      const bufs = {};
-      if (c && l.recs) await Promise.race([Promise.all(l.recs.map((k) => loadRec(c, k).then((b) => { bufs[k] = b; }))), wait(2500)]);
-      if (c) { mix = mixer(c); try { l.sound(c, mix.out, T, bufs); } catch {} }
-      if (still) { paint(1, 0, true); }
-      else {
-        const cap = document.getElementById('lpCap'), yr = document.getElementById('lpYear'), dy = document.getElementById('lpDays'), start = performance.now();
-        let shown = -1;
+      (async () => {
+        const pics = {}; let photo = false;
+        if (l.imgs && l.drawPhoto) { await Promise.race([Promise.all(Object.entries(l.imgs).map(([n, src]) => loadImg(src).then((i) => { pics[n] = i; }))), wait(2000)]); photo = Object.keys(l.imgs).every((n) => pics[n]); }
+        if (!alive) return;
+        const paint = (pp, tt, stl) => (photo ? l.drawPhoto(x, v, pp, tt, stl, pics) : l.draw(x, v, pp, tt, stl));
+        let c = null; try { if (actx && actx.state === 'running') c = actx; } catch {}
+        const bufs = {}; if (c && l.recs) await Promise.race([Promise.all(l.recs.map((n) => loadRec(c, n).then((b) => { bufs[n] = b; }))), wait(1500)]);
+        if (!alive) return;
+        if (c) { bed.hush(true); mix = mixer(c, l.under || 0.5); try { l.sound(c, mix.out, T, bufs); } catch {} } // under the voice, in place of the music bed
+        ov.classList.add('in');
+        const showBeat = (b) => { cap.innerHTML = say(b) ? `${esc(say(b))}${b.s ? ` <span class="lpx-src">[${b.s}]</span>` : ''}` : ''; if (b.y) yr.textContent = b.y; if (b.tag) dy.textContent = b.tag; };
+        if (still) { paint(1, 0, true); showBeat(l.beats[l.beats.length - 1]); await wait(T * 1000); stop(); return; }
+        const t0 = performance.now(); let shown = -1;
         const frame = (now) => {
-          if (!cv.isConnected) return;
-          const t = (now - start) / 1000, p = Math.min(1, t / T);
+          if (!alive) return;
+          if (!ov.isConnected || cur.slide !== k || STOPS[cur.stop] !== s) return stop(0.3); // the walker moved on
+          const t = (now - t0) / 1000, p = Math.min(1, t / T);
           paint(p, t, false);
           let i = 0; while (i + 1 < l.beats.length && p >= l.beats[i + 1].p) i++;
-          if (i !== shown) { shown = i; const b = l.beats[i]; cap.innerHTML = `${esc(say(b))}${b.s ? ` <span class="lp-src">[${b.s}]</span>` : ''}`; cap.classList.remove('in'); void cap.offsetWidth; cap.classList.add('in'); if (b.y) yr.textContent = b.y; if (b.tag) dy.textContent = b.tag; }
+          if (i !== shown) { shown = i; showBeat(l.beats[i]); cap.classList.remove('in'); void cap.offsetWidth; cap.classList.add('in'); }
           const d = l.beats.find((b) => Array.isArray(b.days));
           if (d) { const [a, z, n] = d.days, q = (p - a) / (z - a), day = Math.max(1, Math.round(Math.min(1, q) * n)); dy.textContent = q > 0 && q <= 1.06 ? `Day ${day.toLocaleString('en')}` : '';
             if (q > 0 && q <= 1.06) yr.textContent = String(parseInt(l.span, 10) + Math.floor((day - 1) / 365)); } // our arithmetic, from three years of days
-          if (p < 1) raf = requestAnimationFrame(frame);
+          if (p < 1) raf = requestAnimationFrame(frame); else setTimeout(() => stop(), (l.hold || 2) * 1000); // hold the last image, then give the frame back to the scene's own picture
         };
         raf = requestAnimationFrame(frame);
-      }
-      await pr;
-      cancelAnimationFrame(raf);
-      if (mix) mix.stop(0.6);
-      bed.hush(false);
+      })();
     }
 
-    stageHooks._lapses = LAPSES; // for the preview page and tests
-    stageHooks.lapse = async (k, at, ctx) => {
-      const s = st(), l = LAPSES[s.id] && LAPSES[s.id][s.slides[k].title];
-      if (k === 0 && at === 'open' && LAPSES[s.id] && actx) Object.values(LAPSES[s.id]).forEach((x) => (x.recs || []).forEach((key) => loadRec(actx, key))); // fetch the recordings early
-      if (!l || l.off || (l.at || 'after') !== at) return; // off: parked (the drawn versions of 'fill' and 'fall', until they are rebuilt from photographs)
-      await play(l, ctx);
+    stageHooks._lapses = LAPSES; // for tests
+    // From the caption: the line being spoken (i) and the word within it (w). A chapter starts once, on its cue.
+    const fired = new Set();
+    stageHooks.line = (s, k, i, w) => {
+      if (!s || !LAPSES[s.id] || !stage.on()) return;
+      const l = LAPSES[s.id][s.slides[k].title]; if (!l || l.off || !l.cue) return;
+      const id = s.id + ':' + k; if (i < l.cue.l || (i === l.cue.l && w < (l.cue.w || 0))) { fired.delete(id); return; } // replay from the start re-arms it
+      if (fired.has(id) || (run && run.k === k)) return;
+      fired.add(id); if (run) run.stop(0.3); start(l, s, k);
     };
-
-    // ?lapse in the address: watch the chapters back to back, without walking through the play (for review and demos).
-    if (/[?&]lapse\b/.test(location.search)) {
-      const box = $('#stage'), body = $('#stBody'), skip = $('#stSkip');
-      const panel = (html, { mode = '', skippable = false, ms = 0 } = {}) => new Promise((res) => {
-        app.classList.toggle('cine', cinematic()); box.className = 'stage ' + mode; body.className = 'st-body st-in'; body.innerHTML = html; skip.hidden = !skippable;
-        const t = ms ? setTimeout(() => res('time'), ms) : 0, done = (v) => { clearTimeout(t); res(v); };
-        body.querySelectorAll('[data-v]').forEach((b) => b.addEventListener('click', () => done(b.dataset.v))); skip.onclick = () => done('skip');
-      });
-      const all = Object.entries(LAPSES.hassan || {}).filter(([, l]) => !l.off), order = ['The boy king', 'A cliff of cut stone', 'The day the minaret fell'];
-      all.sort((a, b) => order.indexOf(a[0]) - order.indexOf(b[0]));
-      setTimeout(async () => {
-        const v = await panel(`<div class="st-kicker">Medu · Sultan Hassan</div><h2 class="st-title sm">Time-lapse chapters</h2><div class="st-rule"></div>
-          <p class="st-sub">${all.length > 1 ? `${all.length} chapters from the play, back to back` : 'A chapter from the play'}: ${all.map(([, l]) => esc(l.title)).join(', ')}. Sound on.</p>
-          <p class="st-sub small">Version 29 Oct 16:24 UTC</p>
-          <div class="st-actions"><button class="btn btn-primary" data-v="go">Play</button><button class="btn btn-ghost" data-v="no">Go to the app</button></div>`, { mode: 'full center' });
-        if (v === 'go') for (const [, l] of all) { if ((await play(l, { site: false, panel })) === 'stop') break; }
-        box.className = 'stage off'; skip.hidden = true;
-      }, 600);
-    }
+    // When the scene's voice ends, let a running chapter finish before the scene's action screen covers it.
+    stageHooks.lapse = async (k, at) => {
+      const s = st();
+      if (k === 0 && at === 'open') { fired.clear(); if (LAPSES[s.id] && actx) Object.values(LAPSES[s.id]).forEach((x) => (x.recs || []).forEach((key) => loadRec(actx, key))); Object.values(LAPSES[s.id] || {}).forEach((x) => Object.values(x.imgs || {}).forEach(loadImg)); }
+      if (at === 'after' && run && run.k === k) await Promise.race([run.done, wait(25000)]);
+    };
   })();
 
 })();
