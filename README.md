@@ -62,7 +62,7 @@ Photos come from Wikimedia Commons under the licences below. Map: © OpenStreetM
 | hassan | 8 | [photos/hassan-print-protain.jpg](https://commons.wikimedia.org/wiki/File:Le_Caire_-_vue_int%C3%A9rieure_de_la_mosqu%C3%A9e_du_sultan_Hassan_-_dessin_-_Protain_del._-_btv1b105141611.jpg) | Protain, for the Description de l'Égypte (Bibliothèque nationale de France) | Public domain |
 | hassan | 11 | [photos/hassan-print-conte.jpg](https://commons.wikimedia.org/wiki/File:Le_Caire_-_vue_de_la_mosqu%C3%A9e_du_sultan_Hassan_-_dessin_-_Cont%C3%A9_del._-_btv1b53096724b.jpg) | Nicolas-Jacques Conté, for the Description de l'Égypte (Bibliothèque nationale de France) | Public domain |
 
-Time-lapse plates (lapse/): the building cut out of Max Herz's 1899 photograph, plate VI (public domain), with a fitted empty sky, sepia-toned; and Sailko's 2015 photograph of the tomb façade (CC BY 3.0), cropped to leave out Al-Rifa'i. Made for Medu; the script is in the project's prototype/lapse/ folder.
+Time-lapse plates (lapse/): the building cut out of Max Herz's 1899 photograph, plate VI (public domain), with a fitted empty sky, sepia-toned; and Sailko's 2015 photograph of the tomb façade (CC BY 3.0), cropped to leave out Al-Rifa'i. For "The minaret falls": Beniamino Facchinelli's photograph of the great doorway, between 1873 and 1895 (Bibliothèque nationale de France, public domain), its sky extended, and a minaret cut out of the same Herz plate, standing in for the one that fell in 1361. Made for Medu; the scripts are in the project's prototype/lapse/ folder.
 
 Fonts: Cormorant Garamond and Inter (SIL Open Font License), served by Google Fonts.
 

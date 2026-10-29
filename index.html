@@ -859,6 +859,8 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
 .lpx-cap:empty { display: none; }
 .cine .lpx-cap.in { animation: stRise 700ms cubic-bezier(.16,1,.3,1) both; }
 .lpx-src { font-family: var(--ui); font-size: 11px; color: var(--accent); letter-spacing: .05em; white-space: nowrap; }
+/* at home, a chapter keeps its picture lit through a "look up" line (on site the screen still dims so eyes go up) */
+#app.eyes-up.lpx-on .st-eyes { opacity: 0; }
 
 </style>
 
@@ -3610,6 +3612,47 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
         x.fillRect(v.X(a) - v.s * 0.25, v.Y(y + 1.7), v.s * 0.5, v.s * 1.7); }
     }
 
+    // The fall: the shaft leans from its foot, breaks into courses, and each course drops with a little motion blur (plate pixels).
+    const SLABS = [0, 110, 200, 300, 390, 470, 567];
+    function fallMinaret(x, im, tf, MX, MY, MW, MH, BX, BY) {
+      const k = MH / 567, a = (tf2) => 0.14 * Math.max(0, tf2 - 0.3) ** 2; // lean, radians
+      const pose = (i, tt) => { // centre and angle of slab i at time tt
+        const y0 = SLABS[i] * k, y1 = SLABS[i + 1] * k, r0 = BY - (MY + (y0 + y1) / 2); // height of its centre above the foot
+        const tb = 1.15 + 0.08 * i, al = a(Math.min(tt, tb)); let cx = BX + Math.sin(al) * r0, cy = BY - Math.cos(al) * r0, rot = al;
+        if (tt > tb) { const d = tt - tb, w = 0.28 * (tb - 0.3), r = rnd(31 + i), g = 360; // after the break: carried on by the swing, then gravity
+          cx += (Math.cos(al) * w * r0 * (0.6 + 0.8 * r()) + 40 * (r() - 0.35)) * d; cy += (Math.sin(al) * w * r0 - 30 * r()) * d + 0.5 * g * d * d; rot += (0.6 + r() * 1.8) * (r() < 0.35 ? -1 : 1) * d; }
+        return [cx, cy, rot, y0, y1];
+      };
+      for (let i = SLABS.length - 2; i >= 0; i--) {
+        const n = tf > 1.15 + 0.08 * i ? 4 : 1;
+        for (let q = n - 1; q >= 0; q--) { // motion blur: earlier positions, fainter
+          const [cx, cy, rot, y0, y1] = pose(i, tf - q * 0.016); if (cy > BY + 900) continue;
+          x.save(); x.globalAlpha = q ? 0.22 : 1; x.translate(cx, cy); x.rotate(rot);
+          x.drawImage(im, 0, SLABS[i], im.width, SLABS[i + 1] - SLABS[i], -MW / 2, -(y1 - y0) / 2, MW, y1 - y0); x.restore();
+        }
+      }
+    }
+    // Dust: soft cloud sprites, made once, that billow up from the cornice and from the ground and drift away, thinning out.
+    let puffs = null;
+    function puff(seed) {
+      const cv = document.createElement('canvas'); cv.width = cv.height = 256; const g = cv.getContext('2d'), r = rnd(seed);
+      for (let i = 0; i < 160; i++) { const a = r() * 6.28, d = r() * 92 * Math.sqrt(r()), px = 128 + Math.cos(a) * d, py = 128 + Math.sin(a) * d, rr = 8 + r() * 34;
+        const tone = 150 + 80 * (1 - (py - 36) / 184) + r() * 30 | 0, al = 0.1 + 0.16 * r(); // lit from above, shadowed below
+        const gr = g.createRadialGradient(px, py, 0, px, py, rr); gr.addColorStop(0, `rgba(${tone},${tone - 12},${tone - 38},${al})`); gr.addColorStop(1, `rgba(${tone},${tone - 12},${tone - 38},0)`); g.fillStyle = gr; g.fillRect(px - rr, py - rr, rr * 2, rr * 2); }
+      return cv;
+    }
+    function dustClouds(x, tf, BX, BY, still) {
+      if (!puffs) puffs = [puff(3), puff(7), puff(13)];
+      const r = rnd(17), clear = still ? 0.2 : 1 - 0.8 * seg(tf, 5, 9.5);
+      for (let i = 0; i < 40; i++) {
+        const low = i >= 12, t0 = low ? 1.9 + r() * 1.0 : 0.3 + r() * 1.2, age = tf - t0; const ox = (low ? 60 + r() * 360 : (r() - 0.3) * 140), oy = low ? 120 + r() * 520 : -30 + r() * 60, sz = (low ? 150 : 70) + r() * 130, vx = 8 + r() * 26, sp = puffs[i % 3];
+        if (age <= 0) continue;
+        const R = sz * (0.35 + Math.min(1.6, Math.sqrt(age) * 0.75)), al = Math.min(1, age * 2.5) * clear * (low ? 0.95 : 0.8);
+        x.globalAlpha = al; x.drawImage(sp, BX + ox + vx * age - R, BY + oy - age * (low ? 22 : 10) - R, R * 2, R * 2);
+      }
+      x.globalAlpha = 1;
+    }
+
     // ---------- The chapters ----------
     const LAPSES = { hassan: {
       // Prologue, after "Turn now, until that dome is straight in front of you": the building rises from the square, seen from the Citadel side.
@@ -3781,62 +3824,86 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
           return nodes;
         },
       },
-      // Scene 4 opens on the great doorway: the minaret rising over it, the orphans' school below, then the fall of 1361.
+      // Scene 4, under "A minaret was rising here" and "One Saturday in 1361, it fell.": the real doorway (Facchinelli's print), a
+      // minaret raised on it course by course, the recitation of a school below; it falls on the word "fell", in the silence the
+      // narration leaves after that line, and the dust clears on the doorway as it is today, with nothing above it.
       'The day the minaret fell': {
-        id: 'fall', off: true, at: 'open', T: 38, title: 'The minaret falls', span: '1361', alt: 'a drawing of a minaret rising over the great doorway, then falling',
+        id: 'fall', cue: { l: 0, w: 0 }, marks: { hush: { l: 1, w: 0 }, fall: { l: 1, w: 5 } }, late: { fall: 28 }, until: (t, m) => m.fall > 9.5,
+        T: 40, stillT: 14, hold: 1.5, under: 0.6, home: true, title: 'The minaret falls', span: '1361',
+        alt: 'Facchinelli\'s photograph of the great doorway. A minaret rises above it, then falls in a cloud of dust, and the doorway is left with empty sky',
+        imgs: { plate: 'lapse/fall-plate.jpg', min: 'lapse/fall-minaret.png' },
         recs: ['kuttab'],
-        note: 'Drawn for Medu, not to scale. How far the minaret had risen, where the school stood and how it fell are not recorded. The children\'s voices are a 1995 recording from a Qur\'an school in Fes, Morocco (Justin Bennett, public domain), standing in for Cairo; the other sounds are imagined.',
+        photoNote: 'Made for Medu from Beniamino Facchinelli\'s photograph of the doorway (1873–95, BnF, public domain), its sky extended, with a minaret cut from Max Herz\'s photograph of 1899 (public domain) standing in for the one that fell, whose shape is not recorded. How far it had risen and how it fell are not recorded. The children\'s voices are a 1995 recording from a Qur\'an school in Fes, Morocco (Justin Bennett, public domain), standing in for Cairo; the other sounds are imagined.',
         beats: [
-          { p: 0, c: 'A minaret is rising over the great doorway.', s: 'M' },
-          { p: 0.3, c: 'Below it, in the school over the public fountain, orphans learn the Qur\'an.', s: 'M' },
-          { p: 0.66, y: '1361', c: 'One Saturday.', s: 'M' },
-          { p: 0.8, c: '', s: null },
-          { p: 0.93, c: { site: 'Look up, above the gate.', home: 'Listen.' }, s: null },
+          { t: 0, c: 'A minaret is rising over the great doorway.', s: 'M' },
+          { t: 4.2, c: 'Below it, in the school over the public fountain, orphans learn the Qur\'an.', s: 'M' },
+          { m: 'hush', y: '1361', c: 'One Saturday.', s: 'M' },
+          { m: 'fall', c: '', s: null },
+          { m: 'fall', d: 5.5, c: { site: 'Look up, above the gate.', home: 'Today there is no minaret above the gate.' }, s: null },
         ],
         cites: [
-          { c: 'Time-lapse "The minaret falls" (dramatised; the height reached, the school\'s position and the manner of the fall are not recorded): the minaret over the gate fell on Saturday 6 Rabiʿ II 762 (February 1361) onto the orphans of the sabil school. Children\'s recitation: Radio Aporee field recording aporee_17466_20325, a Qur\'an school in Fes, 1995, by Justin Bennett, Public Domain Mark, a stand-in.', s: 'M' },
+          { c: 'Time-lapse "The minaret falls" (dramatised; the height reached, the minaret\'s shape and the manner of the fall are not recorded): the minaret over the gate fell on Saturday 6 Rabiʿ II 762 (February 1361) onto the orphans of the school over the public fountain. Children\'s recitation: Radio Aporee field recording aporee_17466_20325, a Qur\'an school in Fes, 1995, by Justin Bennett, Public Domain Mark, a stand-in. The other sounds are imagined.', s: 'M' },
+          { c: 'Time-lapse pictures: the doorway, Beniamino Facchinelli, between 1873 and 1895 (Bibliothèque nationale de France / Wikimedia Commons, public domain), sky extended for Medu; the minaret, cut from Max Herz\'s plate VI of 1899 (Wikimedia Commons, public domain), a stand-in for the one that fell.', s: null },
         ],
-        draw(x, v, p, t, still) {
-          const dust = still ? 0 : seg(p, 0.74, 0.8) * (1 - seg(p, 0.82, 1) * 0.75), lt = 0.92 - 0.35 * dust;
-          let sh = 0; if (!still && p > 0.735 && p < 0.8) sh = Math.sin(t * 60) * v.s * 0.35 * (1 - seg(p, 0.74, 0.8));
-          x.save(); x.translate(sh, 0);
-          daySky(x, v, lt);
-          const stone = (k) => `rgb(${(110 + 95 * lt) * k | 0},${(86 + 72 * lt) * k | 0},${(60 + 48 * lt) * k | 0})`, ink = 'rgba(48,30,14,.85)', glass = 'rgba(20,14,8,.7)';
-          block(x, v, -52, -9, 0, 34, stone(0.82), lt); block(x, v, 9, 52, 0, 34, stone(0.82), lt); cornice(x, v, -52, -9, 34, stone(0.82)); cornice(x, v, 9, 52, 34, stone(0.82));
-          [-44, -36, -28, -20, 20, 28, 36, 44].forEach((a) => [9, 17, 25].forEach((y) => arch(x, v, a, y, y + 4, 1.4, glass)));
-          block(x, v, -9, 9, 0, 37.7, stone(1), lt); cornice(x, v, -9, 9, 37.7, stone(1)); // the portal, the tallest point of the façade
-          x.fillStyle = stone(0.7); x.fillRect(v.X(-5.5), v.Y(29), 11 * v.s, 29 * v.s);
-          for (let row = 0; row < 5; row++) { const y = 23 + row * 1.2, n = 7 - row; x.fillStyle = stone(0.82 + row * 0.03); for (let i = 0; i < n; i++) { const w = 11 / n, a = -5.5 + i * w; x.beginPath(); x.arc(v.X(a + w / 2), v.Y(y), w * v.s / 2, Math.PI, 0); x.fill(); } } // the honeycomb hood
-          x.fillStyle = 'rgba(16,10,6,.9)'; x.fillRect(v.X(-2.2), v.Y(9), 4.4 * v.s, 9 * v.s);
-          // the school over the fountain (position drawn, not surveyed)
-          const lit = still ? 0 : 1 - seg(p, 0.6, 0.66);
-          block(x, v, 17, 35, 0, 15, stone(0.95), lt); [21, 26, 31].forEach((a) => arch(x, v, a, 9, 13.5, 2.6, lit > 0.02 ? `rgba(255,205,130,${0.3 + 0.6 * lit})` : glass));
-          x.fillStyle = 'rgba(30,20,10,.9)'; x.fillRect(v.X(24.5), v.Y(5.5), 3 * v.s, 5.5 * v.s);
-          // the minaret: blocks of 2.5 m over the portal, rising, then toppling toward the school
-          const H = still ? 0 : 6 + 24 * seg(p, 0, 0.5), n = Math.max(1, Math.round(H / 2.5)), f = still ? 0 : (p - 0.69) * 38; // seconds since the first crack
-          if (!still) for (let i = 0; i < n; i++) {
-            const by = 37.7 + i * 2.5, w = i > n - 3 ? 4.6 : 5.6; let cx = 0, cy = by + 1.25, rot = 0;
-            if (f > 0) { const lean = Math.min(1, f / 1.4) ** 2 * 0.35; rot = lean; cx = Math.sin(lean) * (by + 1.25 - 37.7); cy = 37.7 + Math.cos(lean) * (by + 1.25 - 37.7);
-              const tf = f - 1.4; if (tf > 0) { const r3 = rnd(31 + i), vx = 3 + r3() * 7, land = 15 + (i % 4) * 1.2 - (cx + vx * tf > 36 ? 15 : 0);
-                cx += vx * tf; cy = Math.max(land, cy - 4.9 * tf * tf * 1.7); rot += (r3() - 0.3) * tf * 3; } }
-            x.save(); x.translate(v.X(cx), v.Y(cy)); x.rotate(rot); x.fillStyle = stone(0.97); x.fillRect(-w / 2 * v.s, -1.3 * v.s, w * v.s, 2.6 * v.s); x.fillStyle = 'rgba(60,40,20,.28)'; x.fillRect(-w / 2 * v.s, 1.05 * v.s, w * v.s, 0.25 * v.s);
-            if (i % 4 === 3) { x.fillStyle = glass; x.fillRect(-0.5 * v.s, -0.9 * v.s, 1 * v.s, 1.6 * v.s); } x.restore();
+        drawPhoto(x, v, p, t, still, im, m) {
+          const PW = 657, PH = 1500, MX = 321, MY = 200, MW = 148, MH = 567, BX = MX + MW / 2, BY = MY + MH; // plate pixels; BX, BY: the minaret's foot on the cornice
+          const tf = still ? 99 : m.fall != null ? m.fall : -1;
+          // the camera: on the doorway, tilting up as the minaret climbs, then settling back down through the dust
+          const rise = still ? 0 : seg(t, 0.6, 7.5), gone = tf >= 0;
+          const s0 = v.W / PW, half = v.H / s0 / 2;
+          let cy = PH - half - 10;
+          const up = Math.max(half, MY - 40 + half);
+          cy += (up - cy) * (gone ? 1 - seg(tf, 1.5, 5.5) * 0.7 : seg(t, 1.5, 8)) * (still ? 0 : 1);
+          if (still) cy = Math.max(half, BY - 120 + half * 0.2);
+          const z = 1.02 + (still ? 0 : 0.03 * seg(t, 0, 20));
+          let sx = 0, sy = 0; // the ground shakes when the stones land
+          if (tf > 2.0 && tf < 3.6) { const a = (1 - seg(tf, 2.0, 3.6)) * 6; sx = Math.sin(t * 71) * a; sy = Math.cos(t * 53) * a * 0.7; }
+          const s = s0 * z;
+          x.fillStyle = '#000'; x.fillRect(0, 0, v.W, v.H);
+          const hw = v.W / s / 2, cx = Math.min(PW - hw, Math.max(hw, BX));
+          x.save(); x.translate(v.W / 2 - cx * s + sx, v.H / 2 - Math.min(PH - half / z, Math.max(half / z, cy)) * s + sy); x.scale(s, s);
+          x.drawImage(im.plate, 0, 0, PW, PH);
+          if (!gone && !still) { // course by course, from the cornice up, the fresh stone paler
+            const h = rise * MH, top = BY - h;
+            if (h > 1) {
+              x.save(); x.beginPath(); x.moveTo(MX - 4, BY);
+              for (let a = 0; a <= 6; a++) { const j = rise >= 1 ? 0 : (Math.sin(a * 2.7 + Math.floor(t * 1.6) * 1.9) * 0.5 + 0.5) * 6; x.lineTo(MX + (MW * a) / 6, top + j); x.lineTo(MX + (MW * (a + 1)) / 6, top + j); }
+              x.lineTo(MX + MW + 4, BY); x.closePath(); x.clip(); x.drawImage(im.min, MX, MY, MW, MH);
+              if (rise < 1) { const g = x.createLinearGradient(0, top, 0, top + 26); g.addColorStop(0, 'rgba(255,244,220,.35)'); g.addColorStop(1, 'rgba(255,244,220,0)'); x.fillStyle = g; x.globalCompositeOperation = 'screen'; x.fillRect(MX, top, MW, 26); }
+              x.restore();
+              if (rise < 1) { const r = rnd(5 + Math.floor(t * 8)); for (let i = 0; i < 10; i++) { const px = MX + r() * MW, py = top - r() * 30, rr = 4 + r() * 9; const g = x.createRadialGradient(px, py, 0, px, py, rr); g.addColorStop(0, `rgba(250,236,205,${0.3 + 0.3 * r()})`); g.addColorStop(1, 'rgba(250,236,205,0)'); x.fillStyle = g; x.fillRect(px - rr, py - rr, rr * 2, rr * 2); } }
+            }
           }
-          if (!still && p < 0.66 && H < 30) scaffold(x, v, -3.6, 3.6, 37.7, 37.7 + H + 2.5, 1);
-          if (dust > 0.01) { const r4 = rnd(3); for (let i = 0; i < 22; i++) { const a = 10 + r4() * 34, y = 4 + r4() * 26 * seg(p, 0.74, 0.86), rad = (6 + r4() * 10) * (0.6 + seg(p, 0.74, 0.95)) * v.s;
-            const g = x.createRadialGradient(v.X(a), v.Y(y), 0, v.X(a), v.Y(y), rad); g.addColorStop(0, `rgba(205,185,150,${0.5 * dust})`); g.addColorStop(1, 'rgba(205,185,150,0)'); x.fillStyle = g; x.fillRect(v.X(a) - rad, v.Y(y) - rad, rad * 2, rad * 2); } }
-          vignette(x, v, lt); x.restore();
+          if (gone && !still) fallMinaret(x, im.min, tf, MX, MY, MW, MH, BX, BY);
+          if (gone) dustClouds(x, still ? 12 : tf, BX, BY, still);
+          x.restore();
+          if (!still) { // days pass over the rising stone, then the light holds still
+            const fl = 1 - seg(t, 7, 8.5), day = Math.sin(t * 2.3 - 1.2), night = fl * Math.max(0, -day) * 0.6;
+            if (night > 0.01) { x.save(); x.globalCompositeOperation = 'multiply'; x.fillStyle = `rgb(${255 - 190 * night | 0},${255 - 170 * night | 0},${255 - 110 * night | 0})`; x.fillRect(0, 0, v.W, v.H); x.restore(); }
+            grain(x, v, t, 0.09);
+          } else grain(x, v, 0, 0.07);
+          const vg = x.createRadialGradient(v.W / 2, v.H * 0.5, Math.max(v.W, v.H) * 0.45, v.W / 2, v.H * 0.5, Math.max(v.W, v.H) * 0.85); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,.45)');
+          x.fillStyle = vg; x.fillRect(0, 0, v.W, v.H);
         },
         sound(c, out, T, bufs) {
-          const t0 = c.currentTime + 0.05, r = rnd(61), dest = master(c, out, 5), at = (p) => t0 + p * T;
+          const t0 = c.currentTime + 0.05, r = rnd(61), dest = master(c, out, 5);
           const nodes = [wind(c, dest, t0, T, 0.012)];
-          for (let tt = 1.2; tt < T * 0.6; tt += 0.8 + r() * 2.2) burst(c, dest, t0 + tt, { f: 2600 + r() * 1800, q: 14, dur: 0.06, vol: 0.08, x: r() * 0.6 - 0.3 }); // a mason above the gate
-          const s = rec(c, out, bufs.kuttab, t0 + 0.5, { vol: 0.7, x: 0.35 }); if (s) nodes.push(s); // the recording fades out by itself, about 24 s in: nothing cuts it off
-          groan(c, dest, at(0.69), 2.2, 0.14); burst(c, dest, at(0.7), { f: 1700, q: 1.5, dur: 0.25, vol: 0.4 }); knock(c, dest, at(0.705), { f: 160, vol: 0.4 });
-          rumble(c, dest, at(0.735), 6.5, 0.6);
-          for (let i = 0; i < 26; i++) { const tt = at(0.74 + r() * 0.07); knock(c, dest, tt, { f: 110 + r() * 120, vol: 0.25 + r() * 0.3, x: 0.1 + r() * 0.7 }); burst(c, dest, tt, { f: 500 + r() * 700, q: 1, dur: 0.2, vol: 0.2, x: 0.3 }); }
-          for (let i = 0; i < 30; i++) burst(c, dest, at(0.81 + r() * 0.12), { f: 2000 + r() * 3000, q: 4, dur: 0.05, vol: 0.06 * (1 - i / 30), x: 0.2 + r() * 0.6 }); // the last stones settle
-          return nodes;
+          for (let tt = 0.8; tt < 7.2; tt += 0.25 + r() * 0.5) (r() < 0.75 ? burst : knock)(c, dest, t0 + tt, { f: r() < 0.75 ? 2600 + r() * 1800 : 200 + r() * 80, q: 14, dur: 0.06, vol: 0.09 + r() * 0.06, x: r() * 0.4 - 0.2 }); // masons on the rising shaft
+          const kg = c.createGain(); kg.connect(out); const s = rec(c, kg, bufs.kuttab, t0 + 0.6, { vol: 0.55, x: 0.35 }); if (s) nodes.push(s); // the school below
+          return {
+            nodes,
+            mark(name) {
+              const n = c.currentTime;
+              if (name === 'hush') { kg.gain.cancelScheduledValues(n); kg.gain.setValueAtTime(kg.gain.value, n); kg.gain.setTargetAtTime(0.0001, n, 0.7); return; } // the reading ends gently, before the fall
+              if (name !== 'fall') return;
+              kg.gain.cancelScheduledValues(n); kg.gain.setValueAtTime(0.0001, n);
+              groan(c, dest, n + 0.05, 1.6, 0.16); burst(c, dest, n + 0.3, { f: 1700, q: 1.5, dur: 0.25, vol: 0.4 }); knock(c, dest, n + 0.32, { f: 160, vol: 0.4 });
+              burst(c, dest, n + 1.3, { f: 1200, q: 1.2, dur: 0.35, vol: 0.45 }); knock(c, dest, n + 1.32, { f: 120, vol: 0.45 }); // it breaks
+              rumble(c, dest, n + 2.0, 4.2, 0.6);
+              for (let i = 0; i < 24; i++) { const tt = n + 2.0 + r() * 1.3; knock(c, dest, tt, { f: 110 + r() * 120, vol: 0.25 + r() * 0.3, x: 0.1 + r() * 0.7 }); burst(c, dest, tt, { f: 500 + r() * 700, q: 1, dur: 0.2, vol: 0.2, x: 0.3 }); }
+              for (let i = 0; i < 18; i++) burst(c, dest, n + 3.4 + r() * 2.4, { f: 2000 + r() * 3000, q: 4, dur: 0.05, vol: 0.05 * (1 - i / 18), x: 0.2 + r() * 0.6 }); // the last stones settle, quietly, as the voice comes back
+            },
+          };
         },
       },
     } };
@@ -3861,35 +3928,43 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       let raf = 0, mix = null, alive = true, resolve;
       const done = new Promise((r) => { resolve = r; });
       const stop = (fade = 1.2) => {
-        if (!alive) return; alive = false; cancelAnimationFrame(raf); if (mix) mix.stop(0.8); bed.hush(false);
+        if (!alive) return; alive = false; cancelAnimationFrame(raf); if (mix) mix.stop(0.8); bed.hush(false); document.getElementById('app').classList.remove('lpx-on');
         ov.classList.add('out'); setTimeout(() => ov.remove(), fade * 1000 + 100); if (run && run.ov === ov) run = null; resolve();
       };
-      run = { k, ov, done, stop };
+      const me = run = { k, ov, done, stop, l, early: [] };
       track('lapse', l.id);
       (async () => {
         const pics = {}; let photo = false;
         if (l.imgs && l.drawPhoto) { await Promise.race([Promise.all(Object.entries(l.imgs).map(([n, src]) => loadImg(src).then((i) => { pics[n] = i; }))), wait(2000)]); photo = Object.keys(l.imgs).every((n) => pics[n]); }
         if (!alive) return;
-        const paint = (pp, tt, stl) => (photo ? l.drawPhoto(x, v, pp, tt, stl, pics) : l.draw(x, v, pp, tt, stl));
+        if (!photo && !l.draw) return stop(0.3); // a photographic chapter without its pictures is left out
+        const mk = {}, secs = (now) => { const o = {}; for (const n in mk) o[n] = (now - mk[n]) / 1000; return o; };
+        const paint = (pp, tt, stl, ms = {}) => (photo ? l.drawPhoto(x, v, pp, tt, stl, pics, ms) : l.draw(x, v, pp, tt, stl));
         let c = null; try { if (actx && actx.state === 'running') c = actx; } catch {}
         const bufs = {}; if (c && l.recs) await Promise.race([Promise.all(l.recs.map((n) => loadRec(c, n).then((b) => { bufs[n] = b; }))), wait(1500)]);
         if (!alive) return;
-        if (c) { bed.hush(true); mix = mixer(c, l.under || 0.5); try { l.sound(c, mix.out, T, bufs); } catch {} } // under the voice, in place of the music bed
+        let snd = null; if (c) { bed.hush(true); mix = mixer(c, l.under || 0.5); try { snd = l.sound(c, mix.out, T, bufs); } catch {} } // under the voice, in place of the music bed
+        me.mark = (n) => { if (mk[n] != null) return; mk[n] = performance.now(); if (snd && snd.mark) try { snd.mark(n); } catch {} }; // a word of the narration was reached
+        (me.early || []).forEach(me.mark);
+        if (l.home && !site) document.getElementById('app').classList.add('lpx-on'); // at home, keep the picture lit through a "look up" line
         ov.classList.add('in');
+        const reached = (b, t, p, ms) => (b.m ? ms[b.m] != null && ms[b.m] >= (b.d || 0) : b.t != null ? t >= b.t : p >= b.p);
         const showBeat = (b) => { cap.innerHTML = say(b) ? `${esc(say(b))}${b.s ? ` <span class="lpx-src">[${b.s}]</span>` : ''}` : ''; if (b.y) yr.textContent = b.y; if (b.tag) dy.textContent = b.tag; };
-        if (still) { paint(1, 0, true); showBeat(l.beats[l.beats.length - 1]); await wait(T * 1000); stop(); return; }
+        if (still) { paint(1, 0, true); showBeat(l.beats[l.beats.length - 1]); await wait((l.stillT || T) * 1000); stop(); return; }
         const t0 = performance.now(); let shown = -1;
         const frame = (now) => {
           if (!alive) return;
           if (!ov.isConnected || cur.slide !== k || STOPS[cur.stop] !== s) return stop(0.3); // the walker moved on
           const t = (now - t0) / 1000, p = Math.min(1, t / T);
-          paint(p, t, false);
-          let i = 0; while (i + 1 < l.beats.length && p >= l.beats[i + 1].p) i++;
+          if (l.late) for (const n in l.late) if (t >= l.late[n]) me.mark(n); // the voice never reached it: go on anyway
+          const ms = secs(now);
+          paint(p, t, false, ms);
+          let i = 0; while (i + 1 < l.beats.length && reached(l.beats[i + 1], t, p, ms)) i++;
           if (i !== shown) { shown = i; showBeat(l.beats[i]); cap.classList.remove('in'); void cap.offsetWidth; cap.classList.add('in'); }
           const d = l.beats.find((b) => Array.isArray(b.days));
           if (d) { const [a, z, n] = d.days, q = (p - a) / (z - a), day = Math.max(1, Math.round(Math.min(1, q) * n)); dy.textContent = q > 0 && q <= 1.06 ? `Day ${day.toLocaleString('en')}` : '';
             if (q > 0 && q <= 1.06) yr.textContent = String(parseInt(l.span, 10) + Math.floor((day - 1) / 365)); } // our arithmetic, from three years of days
-          if (p < 1) raf = requestAnimationFrame(frame); else setTimeout(() => stop(), (l.hold || 2) * 1000); // hold the last image, then give the frame back to the scene's own picture
+          if (!(l.until ? l.until(t, ms) || p >= 1 : p >= 1)) raf = requestAnimationFrame(frame); else setTimeout(() => stop(), (l.hold || 2) * 1000); // hold the last image, then give the frame back to the scene's own picture
         };
         raf = requestAnimationFrame(frame);
       })();
@@ -3901,6 +3976,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
     stageHooks.line = (s, k, i, w) => {
       if (!s || !LAPSES[s.id] || !stage.on()) return;
       const l = LAPSES[s.id][s.slides[k].title]; if (!l || l.off || !l.cue) return;
+      if (run && run.k === k && run.l === l && l.marks) for (const n in l.marks) { const q = l.marks[n]; if (i > q.l || (i === q.l && w >= (q.w || 0))) (run.mark ? run.mark(n) : run.early.includes(n) || run.early.push(n)); }
       const id = s.id + ':' + k; if (i < l.cue.l || (i === l.cue.l && w < (l.cue.w || 0))) { fired.delete(id); return; } // replay from the start re-arms it
       if (fired.has(id) || (run && run.k === k)) return;
       fired.add(id); if (run) run.stop(0.3); start(l, s, k);
