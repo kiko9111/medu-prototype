@@ -418,6 +418,7 @@ details.transcript p { margin: 0 0 14px; line-height: 1.6; color: #e2e8f0; max-w
 .g-pane a { color: var(--accent); }
 .souv-card { max-height: 92%; overflow: auto; }
 .souv-card img { width: 100%; border-radius: 12px; display: block; border: 1px solid var(--raised); }
+.souv-card img.tall { width: auto; max-width: 100%; height: min(52vh, 560px); margin-inline: auto; object-fit: contain; }
 .souv-card input[type=text] { width: 100%; height: 46px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg); color: var(--text); padding: 0 12px; font: inherit; }
 .souv-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .teaser { margin-top: 6px; padding: 12px 14px; border-radius: 14px; border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); background: color-mix(in srgb, var(--accent) 8%, transparent); }
@@ -890,6 +891,141 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
 .stage.lpp-on .st-body { transform: translateY(-35vh) scale(.86); }
 .stage.lpp-on .veil { background: #000; }
 
+/* ---- Polish (polish/polish.css, inlined last by build-prototype.py so it wins): one design system, the first-run overture,
+   the intro's single choice, a full-bleed Today, text size, reduced motion and focus rings. ---- */
+
+/* Design tokens. Type: Cormorant for display, Inter for everything you read or tap. Sizes, spacing, radii and motion come
+   from here so screens built by different threads look like one app. --ts is the reader's text size (Settings). */
+#app {
+  --ts: 1;
+  --fs-d1: 40px; --fs-d2: 32px; --fs-d3: 24px; --fs-d4: 21px;
+  --fs-body: calc(15px * var(--ts)); --fs-small: calc(13px * var(--ts)); --fs-fine: calc(12px * var(--ts)); --fs-kick: 11px;
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px; --sp-6: 32px;
+  --r-s: 12px; --r-m: 18px; --r-l: 22px; --r-pill: 99px;
+  --tap: 44px; --btn: 50px;
+  --ease: cubic-bezier(.16,1,.3,1); --ease-io: cubic-bezier(.33,0,.15,1); --t-fast: 200ms; --t-mid: 420ms; --t-slow: 900ms;
+  --gutter: max(18px, env(safe-area-inset-left, 0px));
+  font-size: var(--fs-body);
+}
+#app[data-ts="1"] { --ts: 1.15; }
+#app[data-ts="2"] { --ts: 1.3; }
+
+/* Kickers: one spec everywhere (small caps line above a title). */
+.st-kicker, .sx-kicker, .sx-book .k, .say-who { font-size: var(--fs-kick); letter-spacing: .26em; text-transform: uppercase; font-weight: 500; }
+.sx-kicker { color: var(--muted); }
+
+/* Display type scale. */
+.st-title { font-size: var(--fs-d1); font-weight: 500; letter-spacing: -.005em; }
+.st-title.sm, .sx-head h1 { font-size: var(--fs-d2); font-weight: 500; }
+.modal-card h3, .dial-title, .map-top h2 { font-size: var(--fs-d3); font-weight: 500; }
+.sx-h, .sheet-head h3, .teaser b { font-size: var(--fs-d4); font-weight: 500; }
+
+/* Reading text follows the text size. */
+.st-sub { font-size: var(--fs-body); }
+.st-sub.small, .teaser p, .sx-item small, .sx-ep small, .toggle small, .sx-labs small, .sx-ticket small { font-size: var(--fs-fine); }
+.sx-fine { font-size: calc(11.5px * var(--ts)); }
+.sx-item b, .sx-labs b { font-size: var(--fs-body); }
+.say-win { font-size: calc(20px * var(--ts)); }
+details.transcript p, .g-pane p, .g-pane li { font-size: calc(15px * var(--ts)); }
+.focus { font-size: calc(19px * var(--ts)); }
+.qz-q { font-size: calc(27px * min(var(--ts), 1.15)); } .qz-say { font-size: calc(19px * var(--ts)); } .qz-fine, .qz-opt small { font-size: var(--fs-fine); }
+.st-cue { font-size: calc(32px * min(var(--ts), 1.15)); }
+
+/* Buttons: three kinds only. Primary (ivory pill), ghost (outlined pill), text (no frame). All at least 44 px tall. */
+.btn { min-height: var(--btn); border-radius: var(--r-pill); font-size: 15px; font-weight: 500; letter-spacing: .03em; padding-inline: 20px; transition: background var(--t-fast), opacity var(--t-fast), transform 120ms, border-color var(--t-fast); }
+.btn:active, .btn-text:active, .sx-cta:active { transform: scale(.98); }
+.btn-ghost:hover { border-color: rgba(239,231,216,.36); }
+.btn-text { min-height: var(--tap); padding: 0 16px; border-radius: var(--r-pill); color: rgba(239,231,216,.78); font-size: 14.5px; letter-spacing: .03em; justify-self: center; }
+.btn-text:hover { color: var(--text); }
+.tlog .btn { min-height: var(--tap); font-size: 13.5px; }
+.sx-cta { height: var(--tap); padding: 0 20px; font-size: 14.5px; letter-spacing: .03em; }
+.sx-acts button, .sx-opts button, .sx-prints button, .sx-seg button { min-height: 36px; position: relative; }
+.sx-acts button::after, .sx-seg button::after, .sx-prints button::after { content: ""; position: absolute; inset: -4px 0; } /* 44 px touch area */
+.sx-pill { height: 36px; position: relative; } .sx-pill::after { content: ""; position: absolute; inset: -4px; }
+
+/* Segmented control (souvenir shape, text size). */
+.seg { display: inline-flex; padding: 3px; gap: 2px; border-radius: var(--r-pill); background: rgba(239,231,216,.06); border: 1px solid var(--line); justify-self: center; }
+.seg button { min-height: 38px; padding: 0 16px; border-radius: var(--r-pill); color: var(--muted); font-size: 13px; letter-spacing: .03em; transition: background var(--t-fast), color var(--t-fast); }
+.seg button[aria-pressed="true"], .seg button[aria-checked="true"] { background: var(--text); color: var(--ink); }
+
+/* Keyboard focus: one clear ring, never on touch. */
+#app :focus { outline: none; }
+#app.kbd :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.toggle:focus-visible { outline-offset: -2px; border-radius: var(--r-s); }
+
+/* Sheets rise and screens fade with the same curve. */
+.modal:not([hidden]) { animation: pdFade var(--t-mid) var(--ease) both; }
+.modal:not([hidden]) .modal-card { animation: pdSheet 560ms var(--ease) both; }
+@keyframes pdFade { from { opacity: 0; } }
+@keyframes pdSheet { from { transform: translateY(28px); opacity: 0; } }
+.screen { transition: opacity 650ms var(--ease-io); }
+
+/* ---- Intro: one clear choice ---- */
+.intro-actions { gap: 6px; }
+.btn-hero { display: grid; justify-items: center; gap: 2px; min-height: 64px; padding-block: 10px; font-size: 17px; letter-spacing: .02em; }
+.btn-hero small { font-size: 12px; letter-spacing: .04em; opacity: .62; font-weight: 400; }
+#intro .btn-text { margin-top: 2px; }
+
+/* ---- Overture: the first-run opening, three documentary pictures and three lines ---- */
+.pd-ov { position: absolute; inset: 0; z-index: 80; background: #000; overflow: hidden; cursor: pointer; transition: opacity 1400ms var(--ease-io); }
+.pd-ov.out { opacity: 0; pointer-events: none; }
+.pd-shot { position: absolute; inset: 0; opacity: 0; transition: opacity 1500ms var(--ease-io); }
+.pd-shot.on { opacity: 1; }
+.pd-shot i { position: absolute; inset: -3%; background: center 32% / cover no-repeat; filter: saturate(.85) contrast(1.04); }
+.pd-shot.old i { filter: sepia(.35) saturate(.7) contrast(1.12) brightness(.8); }
+.pd-ov.move .pd-shot.on i { animation: pdKb 6s linear both; }
+.pd-ov.move .pd-shot.on.kb2 i { animation-name: pdKb2; }
+@keyframes pdKb { from { transform: scale(1.0) translate(0, 0); } to { transform: scale(1.08) translate(-1.2%, -.6%); } }
+@keyframes pdKb2 { from { transform: scale(1.1) translate(0, 1%); } to { transform: scale(1.02) translate(.8%, 0); } }
+.pd-shot::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,0) 30%, rgba(0,0,0,.25) 55%, rgba(0,0,0,.82)); }
+.pd-line { position: absolute; z-index: 2; left: var(--gutter); right: var(--gutter); bottom: calc(110px + env(safe-area-inset-bottom, 0px)); margin: 0;
+  font-family: var(--display); font-weight: 500; font-size: 34px; line-height: 1.14; color: #f6efe2; text-wrap: balance; max-width: 15ch;
+  opacity: 0; transform: translateY(10px); transition: opacity 1100ms var(--ease), transform 1400ms var(--ease); text-shadow: 0 2px 24px rgba(0,0,0,.5); }
+.pd-line.on { opacity: 1; transform: none; }
+.pd-cred { position: absolute; z-index: 2; left: var(--gutter); bottom: calc(76px + env(safe-area-inset-bottom, 0px)); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: rgba(239,231,216,.62); opacity: 0; transition: opacity 900ms ease; }
+.pd-cred.on { opacity: 1; }
+.pd-mark { position: absolute; z-index: 2; top: calc(env(safe-area-inset-top, 0px) + 28px); left: var(--gutter); font-family: var(--display); font-size: 22px; font-weight: 600; letter-spacing: .04em; color: var(--gold); opacity: .9; }
+.pd-skip { position: absolute; z-index: 3; top: calc(env(safe-area-inset-top, 0px) + 18px); right: calc(var(--gutter) - 8px); min-height: var(--tap); padding: 0 16px; border-radius: var(--r-pill);
+  font-size: 13px; letter-spacing: .08em; color: rgba(239,231,216,.8); background: rgba(0,0,0,.28); border: 1px solid rgba(239,231,216,.18); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.pd-bar { position: absolute; z-index: 2; left: var(--gutter); right: var(--gutter); bottom: calc(52px + env(safe-area-inset-bottom, 0px)); display: flex; gap: 6px; }
+.pd-bar b { flex: 1; height: 2px; border-radius: 2px; background: rgba(239,231,216,.22); overflow: hidden; }
+.pd-bar b::before { content: ""; display: block; height: 100%; width: 0; background: rgba(239,231,216,.85); }
+.pd-bar b.on::before { width: 100%; transition: width var(--d, 3s) linear; }
+.pd-bar b.done::before { width: 100%; }
+
+/* ---- Today: the episode as a full-bleed documentary photograph, the greeting laid over it ---- */
+#app.sx #sxToday .sx-scroll { position: relative; padding-top: 0; }
+#app.sx #sxToday .sx-head { position: absolute; z-index: 3; top: calc(env(safe-area-inset-top, 0px) + 30px); left: var(--gutter); right: var(--gutter); margin: 0; }
+#app.sx #sxToday .sx-head h1 { text-shadow: 0 2px 18px rgba(0,0,0,.45); }
+#app.sx #sxToday .sx-head .sx-kicker { color: rgba(239,231,216,.8); }
+#app.sx #sxToday .sx-head .sx-pill { background: rgba(0,0,0,.3); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+#app.sx .sx-hero { width: calc(100% + 2 * var(--gutter)); margin-inline: calc(-1 * var(--gutter)); height: min(68vh, 600px); border-radius: 0; }
+#app.sx .sx-hero::before { content: ""; position: absolute; inset: 0 0 auto; height: 160px; z-index: 1; background: linear-gradient(rgba(0,0,0,.55), transparent); }
+#app.sx .sx-hero::after { background: linear-gradient(transparent 38%, rgba(7,7,8,.6) 66%, var(--bg)); }
+#app.sx .sx-hero-txt { left: var(--gutter); right: var(--gutter); bottom: 8px; gap: 6px; }
+#app.sx .sx-hero-txt b { font-size: 34px; }
+#app.sx .sx-hero-txt .sx-kicker { color: var(--gold); }
+#app.sx .sx-live { margin-top: 22px; }
+.sx-ep { border-radius: var(--r-m); }
+.sx-ep i { filter: saturate(.9); }
+
+/* ---- Settings additions ---- */
+.pd-ts { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(239,231,216,.08); }
+.pd-ts small { display: block; color: var(--muted); font-size: var(--fs-fine); margin-top: 2px; }
+.pd-ts .seg button { min-width: 44px; padding: 0 10px; color: var(--text); }
+.pd-ts .seg button[aria-checked="true"] { color: var(--ink); }
+
+/* ---- Reduced motion (the phone's setting or Settings > Reduce motion): no drift, no travel; scenes still dissolve. ---- */
+#app.rm *, #app.rm *::before, #app.rm *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+#app.rm .lb, #app.rm .sheet, #app.rm .album-top > *, #app.rm .dots-bar, #app.rm .say-txt { transition-duration: 1ms !important; }
+#app.rm .pin .halo, #app.rm .st-pulse { animation: none !important; }
+#app.rm .modal:not([hidden]) .modal-card { animation: pdFade 300ms ease both !important; }
+#app.rm .pd-line { transform: none; }
+#app.rm .screen, #app.rm .dip, #app.rm .pd-shot, #app.rm .stage, #app.rm .st-body { transition-duration: 600ms !important; transition-property: opacity !important; }
+
+/* Screen-reader only text. */
+.pd-sr { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
 </style>
 
 <aside class="showcase" aria-label="About this prototype">
@@ -921,13 +1057,9 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       <div class="span-years"><span>Episode 1 · The Sultan Who Built a Mountain</span></div>
     </div>
     <div class="intro-actions">
-      <button class="btn btn-primary" id="begin">Begin</button>
-      <button class="btn btn-ghost" id="installBtn" disabled>Install the app from the public link</button>
-      <div class="lang" role="group" aria-label="Language">
-        <button aria-pressed="true">English</button>
-        <button aria-pressed="false" disabled>العربية</button>
-        <small>Arabic soon</small>
-      </div>
+      <button class="btn btn-primary btn-hero" id="startHassan"><span id="startLbl">Start Sultan Hassan</span><small id="startSub">Episode 1 · about 15 minutes · earphones in</small></button>
+      <button class="btn-text" id="begin">Explore Cairo first</button>
+      <button class="btn-text" id="installBtn" disabled hidden>Install the app</button>
     </div>
   </section>
 
@@ -1059,14 +1191,15 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
   <div class="modal" id="souvenir" hidden>
     <div class="modal-card gutter souv-card" role="dialog" aria-label="Your souvenir">
       <h3>You walked with Sultan Hasan</h3>
-      <img id="souvImg" alt="Your souvenir card">
+      <div class="seg" id="souvFmt" role="group" aria-label="Card shape"><button data-f="story">Story · 9:16</button><button data-f="post">Post · 4:5</button></div>
+      <img id="souvImg" alt="Your souvenir card: a photograph of Sultan Hassan with the date, your time and the scenes you heard">
       <label style="font-size:12.5px;color:var(--muted);margin-top:8px" for="souvName">Name on the card</label>
       <input type="text" id="souvName" maxlength="32" placeholder="Your name" autocomplete="given-name">
       <div class="souv-row" style="margin-top:8px">
         <button class="btn btn-ghost" id="souvPhoto">Add a photo</button>
         <button class="btn btn-ghost" id="souvSave">Save image</button>
       </div>
-      <button class="btn btn-primary" id="souvShare" style="margin-top:8px">Share</button>
+      <button class="btn btn-primary" id="souvShare" style="margin-top:8px">Share to Instagram, WhatsApp…</button>
       <button class="btn btn-ghost two" id="souvBonus" style="margin-top:8px;width:100%" hidden>Bonus track</button>
       <div class="teaser"><b>Next: Al-Rifa'i</b><p>It looks as old as Sultan Hassan. It was begun in 1869. Why build a medieval-looking mosque five centuries later, right opposite?</p>
         <button class="btn btn-ghost" id="souvNext" style="width:100%">Cross the lane to Al-Rifa'i</button></div>
@@ -1089,7 +1222,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
         <div class="souv-row"><button class="btn btn-ghost" id="tlogShare">Share log</button><button class="btn btn-ghost" id="tlogClear">Clear log</button></div></div>
       <button class="btn btn-ghost" id="resetWalk" style="margin-top:12px">Reset visited stops</button>
       <button class="btn btn-primary" id="closeSettings" style="margin-top:6px">Done</button>
-      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 29 Oct 19:43 UTC</p>
+      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 30 Oct 14:11 UTC</p>
     </div>
   </div>
   <!-- ===== Super app layer (super/super.html, inlined by build-prototype.py). Hidden with ?edition=preview. ===== -->
@@ -1379,8 +1512,9 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
     get(k, d) { try { const v = localStorage.getItem('medu.' + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
     set(k, v) { try { localStorage.setItem('medu.' + k, JSON.stringify(v)); } catch {} },
   };
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const S = { cine: store.get('cine', !reduced), sfx: store.get('sfx2', false), auto: store.get('auto', false), rate: store.get('rate', 1), amb: store.get('amb', true), cap: store.get('cap', true), shut: store.get('shut', true), plain: store.get('plain', false) };
+  const osReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let reduced = osReduced || store.get('rm', false); // the phone's setting, or Settings > Reduce motion
+  const S = { cine: store.get('cine', !osReduced), sfx: store.get('sfx2', false), auto: store.get('auto', false), rate: store.get('rate', 1), amb: store.get('amb', true), cap: store.get('cap', true), shut: store.get('shut', true), plain: store.get('plain', false) };
   let visited = new Set(store.get('visited', []));
   const cinematic = () => S.cine && !reduced;
 
@@ -2026,6 +2160,8 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
     };
   })();
 
+  // Add-on hooks (quiz, lapse, polish chain onto these). Declared before narr, which reports play state to them.
+  const stageHooks = {};
   const narr = (() => {
     const tts = 'speechSynthesis' in window ? window.speechSynthesis : null;
     const voice = new Audio(); voice.preload = 'auto';
@@ -2039,7 +2175,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
     const icon = (p) => { playBtn.innerHTML = p
       ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>'
       : '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
-      playBtn.setAttribute('aria-label', p ? 'Pause narration' : 'Play narration'); };
+      playBtn.setAttribute('aria-label', p ? 'Pause narration' : 'Play narration'); if (stageHooks.playing) stageHooks.playing(p); };
     icon(false);
     const sub = (st, k) => { $('#pSub').textContent = clipFor(st, k) ? (st.slides[k].lines && st.slides[k].lines.some((l) => l.who !== 'narrator') ? 'Narration and voices' : 'Narration')
       : tts ? 'Preview voice (your device\'s text-to-speech)' : 'Voice preview not supported in this browser. Read the transcript.'; };
@@ -2168,7 +2304,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
         mode = 'spatial'; loaded = key;
         const from = resume && spAt.key === key ? spAt.line : 0;
         say.use(st, k, true, !from);
-        spatial(s.lines, c.lines, s.space, my, from, (i, l) => { spAt = { key, line: i }; const v = stage.voice(l.who); $('#pSub').textContent = v.name + (l.kind ? ` · ${stage.kind(l.kind)}` : ''); })
+        spatial(s.lines, c.lines, s.space, my, from, (i, l) => { spAt = { key, line: i }; if (stageHooks.atLine) stageHooks.atLine(k, i); const v = stage.voice(l.who); $('#pSub').textContent = v.name + (l.kind ? ` · ${stage.kind(l.kind)}` : ''); })
           .then((r) => { if (r === 'end') { spAt = {}; done(my); } else if (r === 'fail' && my === token) clip(); });
         return;
       }
@@ -2217,6 +2353,10 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       onSlide(k) { bar.style.width = '0%'; loaded = null; sub(STOPS[cur.stop], k); const c = clipFor(STOPS[cur.stop], k); say.use(STOPS[cur.stop], k, c ? !!c.lines : !!tts, true); prefetch(); if (!wantPlay) { stop(); return; } stop(); debounce = setTimeout(() => speak(false), 350); },
       start() { wantPlay = true; icon(true); sub(STOPS[cur.stop], cur.slide); prefetch(); bed.start(); speak(false); },
       play() { wantPlay = true; icon(true); sub(STOPS[cur.stop], cur.slide); prefetch(); speak(false); },
+      // Resume a story scene from line `line` (where the walker stopped last time).
+      playFrom(line) { spAt = { key: `${STOPS[cur.stop].id}-${cur.slide}`, line }; loaded = null; wantPlay = true; icon(true); sub(STOPS[cur.stop], cur.slide); prefetch(); speak(true); },
+      pause() { wantPlay = false; stop(); icon(false); },
+      playing: () => wantPlay,
       // Directions spoken while the walker heads to scene k's standing point (story stops, on site). Arrival interrupts it.
       approach(k) {
         const st = STOPS[cur.stop], a = st.slides[k].approach; if (!a) return;
@@ -2333,7 +2473,6 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
 
   // Hooks for add-ons inlined later (quiz/quiz.js): scene(k, ctx) after a scene's act and keepsake, end(ctx) before the souvenir, card(id) for a souvenir line.
   // (lapse/lapse.js): lapse(k, 'open' | 'after', ctx) for a time-lapse chapter before the voice or after the act.
-  const stageHooks = {};
   const stage = (() => {
     const box = $('#stage'), body = $('#stBody'), skip = $('#stSkip'), hud = $('#stHud');
     let on = false, tok = 0, t0 = 0, site = true, photoUrl = null, gps = null, lastFix = null;
@@ -2364,10 +2503,30 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
 
     function updHud() { hud.hidden = !on; $('#stKeepN').textContent = keeps.size; }
 
+    // Resume: where the walker stopped last time (scene, line, at the mosque or at home), kept on this phone for two weeks.
+    let autoRes = false;
+    const saved = () => { const r = store.get('resume', null); return r && r.id === st().id && Date.now() - r.t < 14 * 864e5 && (r.k > 0 || r.line > 0) ? r : null; };
     async function begin() {
       on = true; t0 = Date.now(); seen.clear(); updHud(); bed.start();
-      const s = st(), th = s.theatre;
+      const s = st(), th = s.theatre, r = saved();
       cue.swell();
+      if (r) {
+        const sl = scene(r.k), go2 = autoRes ? 'go' : await panel(`<div class="st-kicker">Welcome back</div><h2 class="st-title sm">${esc(sl.title)}</h2><div class="st-rule"></div>
+          <p class="st-sub">You stopped ${r.line ? 'part way through' : 'at the start of'} ${r.k ? esc(sl.scene || 'this scene').toLowerCase() : 'the prologue'}, ${r.site ? 'at the mosque' : 'listening from home'}.</p>
+          <div class="st-actions"><button class="btn btn-primary two" data-v="go">Continue<small>${r.line ? 'From the line where you stopped' : 'From the start of this scene'}</small></button>
+          <button class="btn btn-ghost" data-v="new">Start from the beginning</button>
+          <button class="btn btn-ghost" data-v="map" style="min-height:44px;border:0;color:var(--muted)">Back to the map</button></div>`, { mode: 'full center' });
+        autoRes = false;
+        if (!on) return;
+        if (go2 === 'map') { closeStop(); return; }
+        if (go2 === 'go') {
+          site = !!r.site; mockPaid = !!r.paid;
+          s.slides.forEach((x, j) => { if (j < r.k && !x.deeper) seen.add(j); });
+          if (r.min) t0 -= r.min * 6e4;
+          track('resume', r.k); go(r.k, r.line); return;
+        }
+        store.set('resume', null);
+      }
       const v = await panel(`<div class="st-kicker">Medu presents</div><h2 class="st-title">${esc(th.title)}</h2><div class="st-rule"></div>
         <p class="st-sub">${esc(th.sub)}. About ${th.mins} minutes.</p>
         <p class="st-sub small">Voices from the chronicles are labelled. Anything imagined is marked "dramatised". Earphones recommended, one ear free near traffic.</p>
@@ -2381,12 +2540,14 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       go(0);
     }
 
-    async function go(k) {
+    function mark(k, line) { store.set('resume', { id: st().id, k, line, site, paid: mockPaid, t: Date.now(), min: Math.round((Date.now() - t0) / 6e4) }); }
+    async function go(k, line = 0) {
       if (!on) return;
       if (!(await gate(k))) return;
       const s = st(), sl = scene(k);
       if (k !== cur.slide) goSlide(k);
-      seen.add(k);
+      seen.add(k); mark(k, line);
+      if (stageHooks.at) stageHooks.at(k);
       cue.swell();
       await panel(`<div class="st-kicker">${esc(sl.scene || '')}</div><h2 class="st-title">${esc(sl.title)}</h2>${sl.dramatised ? '<p class="st-sub small">Dramatised scene</p>' : ''}`,
         { mode: 'full center chapter', ms: cinematic() ? 2600 : 1200 });
@@ -2395,7 +2556,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       if (stageHooks.lapse) { await stageHooks.lapse(k, 'open', { site, panel }); if (!on) return; }
       close();
       track('scene', k);
-      narr.play();
+      if (line > 0) narr.playFrom(line); else narr.play();
     }
 
     // Preview edition: the prologue and scenes 1-2 are free; the next scene asks to continue.
@@ -2531,45 +2692,58 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
 
     // Souvenir card: drawn on a canvas, shared as an image with the Web Share API where the phone supports it.
     const loadImg = (src) => new Promise((ok) => { const im = new Image(); im.onload = () => ok(im); im.onerror = () => ok(null); im.src = src; });
+    // Story (9:16, Instagram and WhatsApp status) or post (4:5): a full-bleed documentary photograph over a dark field.
+    let fmt = store.get('cardFmt', 'story');
     async function drawCard() {
-      const s = st(), W = 1080, H = 1350, c = document.createElement('canvas'); c.width = W; c.height = H;
-      const x = c.getContext('2d'), gold = ERA[s.era].accent;
-      const bg = x.createLinearGradient(0, 0, 0, H); bg.addColorStop(0, '#16110a'); bg.addColorStop(1, '#05070d'); x.fillStyle = bg; x.fillRect(0, 0, W, H);
-      x.strokeStyle = gold; x.globalAlpha = .55; x.lineWidth = 2; x.strokeRect(36, 36, W - 72, H - 72); x.globalAlpha = 1;
-      const pic = await loadImg(photoUrl || (photo(s.id, 0) || photo(s.id, 1) || {}).src || '');
-      const py = 150, ph = 600, px = 90, pw = W - 180;
-      if (pic) { const r = Math.max(pw / pic.width, ph / pic.height), sw = pw / r, sh = ph / r;
-        x.save(); x.beginPath(); x.roundRect ? x.roundRect(px, py, pw, ph, 18) : x.rect(px, py, pw, ph); x.clip();
-        x.drawImage(pic, (pic.width - sw) / 2, (pic.height - sh) / 2, sw, sh, px, py, pw, ph);
-        if (!photoUrl) { x.fillStyle = 'rgba(40,28,10,.25)'; x.fillRect(px, py, pw, ph); } x.restore(); }
-      else { x.fillStyle = '#1e293b'; x.fillRect(px, py, pw, ph); }
-      x.fillStyle = gold; x.font = '600 26px Inter, sans-serif'; x.textAlign = 'center';
-      x.fillText('MEDU  ·  CAIRO EDITION', W / 2, 105);
-      x.fillStyle = '#f6efe2'; x.font = '600 68px "Cormorant Garamond", Georgia, serif';
+      const s = st(), W = 1080, H = fmt === 'post' ? 1350 : 1920, c = document.createElement('canvas'); c.width = W; c.height = H;
+      const x = c.getContext('2d'), gold = ERA[s.era].accent, ink = '#0b0a08', ivory = '#f3ead8';
+      const fit = (t, max) => { while (x.measureText(t).width > max && t.length > 4) t = t.slice(0, -2).trimEnd() + '…'; return t.replace(/……$/, '…'); };
+      x.fillStyle = ink; x.fillRect(0, 0, W, H);
+      const p0 = photo(s.id, 2) || photo(s.id, 0) || photo(s.id, 1), pic = await loadImg(photoUrl || (p0 || {}).src || '');
+      const ph = Math.round(H * (fmt === 'post' ? 0.6 : 0.66));
+      if (pic) { const r = Math.max(W / pic.width, ph / pic.height), sw = W / r, sh = ph / r;
+        x.drawImage(pic, (pic.width - sw) / 2, Math.max(0, (pic.height - sh) * 0.3), sw, sh, 0, 0, W, ph); }
+      let g = x.createLinearGradient(0, 0, 0, 260); g.addColorStop(0, 'rgba(0,0,0,.55)'); g.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = g; x.fillRect(0, 0, W, 260);
+      g = x.createLinearGradient(0, ph * 0.45, 0, ph + 2); g.addColorStop(0, 'rgba(11,10,8,0)'); g.addColorStop(1, ink); x.fillStyle = g; x.fillRect(0, ph * 0.45, W, ph * 0.55 + 2);
+      x.textBaseline = 'alphabetic';
+      x.fillStyle = gold; x.font = '600 64px "Cormorant Garamond", Georgia, serif'; x.textAlign = 'left'; x.fillText('Medu', 72, 132);
+      x.fillStyle = 'rgba(243,234,216,.85)'; x.font = '500 22px Inter, sans-serif'; x.textAlign = 'right';
+      x.letterSpacing = '6px'; x.fillText('AUDIO PLAYS · CAIRO', W - 72, 124); x.letterSpacing = '0px';
+      x.textAlign = 'center';
+      let y = ph - (fmt === 'post' ? 70 : 40);
+      x.fillStyle = gold; x.font = '500 24px Inter, sans-serif'; x.letterSpacing = '7px'; x.fillText('EPISODE 1 · SULTAN HASSAN', W / 2, y); x.letterSpacing = '0px';
       const name = ($('#souvName').value || '').trim();
-      x.fillText(name ? `${name} walked with` : 'I walked with', W / 2, 840);
-      x.fillText('Sultan Hasan', W / 2, 912);
+      x.fillStyle = ivory; x.font = 'italic 500 58px "Cormorant Garamond", Georgia, serif';
+      y += fmt === 'post' ? 80 : 104; x.fillText(fit(name ? `${name} walked with` : 'I walked with', W - 160), W / 2, y);
+      x.font = '600 112px "Cormorant Garamond", Georgia, serif'; y += fmt === 'post' ? 104 : 124; x.fillText('Sultan Hasan', W / 2, y);
+      x.strokeStyle = gold; x.globalAlpha = .7; x.lineWidth = 2; x.beginPath(); x.moveTo(W / 2 - 40, y + 40); x.lineTo(W / 2 + 40, y + 40); x.stroke(); x.globalAlpha = 1;
       const mins = Math.max(1, Math.round((Date.now() - t0) / 6e4)), main = s.slides.filter((z) => !z.deeper).length, saw = [...seen].filter((k) => !s.slides[k].deeper).length;
-      x.fillStyle = '#cbd5e1'; x.font = '400 30px Inter, sans-serif';
-      x.fillText(`${new Date().toLocaleDateString([], { day: 'numeric', month: 'long', year: 'numeric' })}  ·  ${mins} min  ·  ${saw} of ${main} scenes`, W / 2, 975);
-      x.fillStyle = '#94a3b8'; x.font = '400 26px Inter, sans-serif';
-      x.fillText('From the Citadel square to an empty tomb, 1347–1361', W / 2, 1020);
-      const qz = stageHooks.card && stageHooks.card(s.id); if (qz) { x.fillStyle = gold; x.font = '400 22px Inter, sans-serif'; x.fillText(qz, W / 2, 1056); }
+      y += fmt === 'post' ? 96 : 110;
+      x.fillStyle = 'rgba(243,234,216,.82)'; x.font = '400 30px Inter, sans-serif';
+      x.fillText(`${new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}  ·  ${mins} min  ·  ${saw} of ${main} scenes`, W / 2, y);
+      x.fillStyle = 'rgba(243,234,216,.55)'; x.font = 'italic 400 34px "Cormorant Garamond", Georgia, serif'; y += 54;
+      x.fillText('From the Citadel square to an empty tomb, 1347–1361', W / 2, y);
+      const qz = stageHooks.card && stageHooks.card(s.id); if (qz) { y += 50; x.fillStyle = gold; x.font = '400 24px Inter, sans-serif'; x.fillText(qz, W / 2, y); }
       const ks = allKeeps().filter((kp) => keeps.has(kp.id)), gap = 150, sx = W / 2 - (ks.length - 1) * gap / 2;
-      ks.forEach((kp, i) => { const cx = sx + i * gap, cy = 1120;
-        x.beginPath(); x.arc(cx, cy, 46, 0, Math.PI * 2); x.strokeStyle = gold; x.globalAlpha = .6; x.lineWidth = 2; x.stroke(); x.globalAlpha = 1;
-        x.save(); x.translate(cx - 30, cy - 30); x.scale(2.5, 2.5); x.strokeStyle = '#f3e6c8'; x.lineWidth = 1.3; x.lineCap = 'round'; x.lineJoin = 'round'; x.stroke(new Path2D(ICONS[kp.icon])); x.restore();
-        x.fillStyle = '#b9a582'; x.font = '400 19px Inter, sans-serif'; x.fillText(kp.name.replace(/^(The|A) /, ''), cx, cy + 74); });
-      x.fillStyle = '#64748b'; x.font = '400 22px Inter, sans-serif';
-      x.fillText(location.host + location.pathname.replace(/index\.html$/, ''), W / 2, H - 70);
-      if (photoUrl) { x.textAlign = 'right'; x.fillText('Your photo', W - 100, py + ph + 30); }
-      else { const p0 = photo(s.id, 0); if (p0) { x.textAlign = 'left'; x.fillStyle = '#8f9bad'; x.font = '400 21px Inter, sans-serif'; x.fillText(`Print: ${p0.author.split(' (')[0]} · ${p0.license}`.slice(0, 70), px, py + ph + 32); } }
-      return new Promise((ok) => c.toBlob((b) => { const u = URL.createObjectURL(b); $('#souvImg').src = u; card = { blob: b, url: u }; ok(); }, 'image/jpeg', 0.9));
+      if (ks.length && H - y > 330) { const cy = y + (fmt === 'post' ? 100 : 150);
+        ks.forEach((kp, i) => { const cx = sx + i * gap;
+          x.beginPath(); x.arc(cx, cy, 46, 0, Math.PI * 2); x.strokeStyle = gold; x.globalAlpha = .6; x.lineWidth = 2; x.stroke(); x.globalAlpha = 1;
+          x.save(); x.translate(cx - 30, cy - 30); x.scale(2.5, 2.5); x.strokeStyle = '#f3e6c8'; x.lineWidth = 1.3; x.lineCap = 'round'; x.lineJoin = 'round'; x.stroke(new Path2D(ICONS[kp.icon])); x.restore();
+          x.fillStyle = '#b9a582'; x.font = '400 19px Inter, sans-serif'; x.fillText(kp.name.replace(/^(The|A) /, ''), cx, cy + 74); }); }
+      x.fillStyle = 'rgba(243,234,216,.5)'; x.font = '500 24px Inter, sans-serif'; x.letterSpacing = '2px';
+      x.fillText(location.host + location.pathname.replace(/index\.html$/, ''), W / 2, H - 82); x.letterSpacing = '0px';
+      x.fillStyle = 'rgba(243,234,216,.4)'; x.font = '400 19px Inter, sans-serif';
+      x.fillText(photoUrl ? 'Your photo' : p0 ? fit(`Photo: ${p0.author.split(' (')[0]} · ${p0.license}`, 800) : '', W / 2, H - 44);
+      return new Promise((ok) => c.toBlob((b) => { if (card) URL.revokeObjectURL(card.url); const u = URL.createObjectURL(b); $('#souvImg').src = u; $('#souvImg').classList.toggle('tall', fmt !== 'post'); card = { blob: b, url: u }; ok(); }, 'image/jpeg', 0.9));
     }
+    document.querySelectorAll('#souvFmt button').forEach((b) => {
+      b.setAttribute('aria-pressed', String(b.dataset.f === fmt));
+      b.addEventListener('click', () => { fmt = b.dataset.f; store.set('cardFmt', fmt); document.querySelectorAll('#souvFmt button').forEach((z) => z.setAttribute('aria-pressed', String(z === b))); drawCard(); });
+    });
     let card = null;
     async function finale() {
       const s = st();
-      track('complete');
+      track('complete'); store.set('resume', null);
       cue.swell();
       await panel(`<div class="st-kicker">The end</div><h2 class="st-title">Sultan Hasan</h2><p class="st-sub">Sultan at thirteen, dead at about twenty-seven. He began a building that al-Maqrizi said had no equal in the lands of Islam, and he never lay in it.</p>`, { mode: 'full center chapter', ms: cinematic() ? 4200 : 2200 });
       if (stageHooks.end) { await stageHooks.end({ site, panel }); if (!on) return; }
@@ -2588,12 +2762,12 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
     $('#souvBonus').addEventListener('click', () => { $('#souvenir').hidden = true; go(st().theatre.bonus); });
     $('#souvName').addEventListener('input', () => { store.set('name', $('#souvName').value.trim()); clearTimeout(drawCard.t); drawCard.t = setTimeout(drawCard, 250); });
     $('#souvPhoto').addEventListener('click', pickPhoto);
-    $('#souvSave').addEventListener('click', () => { if (!card) return; const a = document.createElement('a'); a.href = card.url; a.download = 'medu-sultan-hasan.jpg'; document.body.appendChild(a); a.click(); a.remove(); });
+    $('#souvSave').addEventListener('click', () => { if (!card) return; const a = document.createElement('a'); a.href = card.url; a.download = `medu-sultan-hasan-${fmt}.jpg`; document.body.appendChild(a); a.click(); a.remove(); });
     $('#souvShare').addEventListener('click', async () => {
       const url = location.origin + location.pathname, text = 'I walked with Sultan Hasan, below the Citadel in Cairo.';
       try {
-        const file = card && new File([card.blob], 'medu-sultan-hasan.jpg', { type: 'image/jpeg' });
-        if (file && navigator.canShare && navigator.canShare({ files: [file] })) await navigator.share({ files: [file], text: `${text} ${url}` });
+        const file = card && new File([card.blob], `medu-sultan-hasan-${fmt}.jpg`, { type: 'image/jpeg' });
+        if (file && navigator.canShare && navigator.canShare({ files: [file] })) await navigator.share({ files: [file], title: 'Medu · Sultan Hasan', text: `${text} ${url}` });
         else if (navigator.share) await navigator.share({ title: 'Medu', text, url });
         else { await navigator.clipboard.writeText(`${text} ${url}`); $('#souvShare').textContent = 'Link copied'; }
       } catch {}
@@ -2606,6 +2780,9 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
 
     return {
       on: live, begin, after, linesHtml, eyes, free, site: () => site,
+      // For add-ons: resume points per line, a direct "continue" from the intro, and the lock screen's next/previous.
+      mark: (line) => { if (on) mark(cur.slide, line); }, resumeNext() { autoRes = true; }, saved: () => saved(), scene: () => cur.slide,
+      next() { if (!on) return; const s = st(), j = s.slides.findIndex((x, i) => i > cur.slide && !x.deeper); narr.pause(); if (j > 0) go(j); else if (cur.slide !== s.theatre.bonus) finale(); },
       ask: (k) => { if (on) go(k); },
       // Multi-voice preview: each line in the device voice, pitched per speaker, until the recorded clip exists.
       voice: (who) => VOICES[who] || VOICES.narrator, kind: (k) => KIND[k],
@@ -2724,7 +2901,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
     if (standalone) { btn.hidden = true; return; }
     if (!hosted) return;
     const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    if (ios) { btn.disabled = false; btn.textContent = 'Add to Home Screen'; btn.onclick = () => { $('#iosHelp').hidden = false; }; }
+    if (ios) { btn.disabled = false; btn.hidden = false; btn.textContent = 'Add to Home Screen'; btn.onclick = () => { $('#iosHelp').hidden = false; }; }
     else btn.hidden = true; // shown again only if the browser offers an install prompt
     let deferred;
     window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferred = e; btn.hidden = false; btn.disabled = false; btn.textContent = 'Install the app'; });
@@ -2742,7 +2919,7 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
     const b = document.getElementById(id); b.setAttribute('aria-checked', String(!!S[key]));
     b.addEventListener('click', () => { S[key] = !S[key]; store.set(key, S[key]); b.setAttribute('aria-checked', String(S[key])); if (key === 'cine') setDepth(); if (key === 'amb') bed.setEnabled(); if (key === 'cap') app.classList.toggle('nocap', !S.cap); if (key === 'plain') app.classList.toggle('plaincap', !!S.plain); });
   });
-  if (reduced) { const c = $('#tCine'); c.disabled = true; c.querySelector('small').textContent = 'Off because your device asks for reduced motion.'; c.setAttribute('aria-checked', 'false'); }
+  if (osReduced) { const c = $('#tCine'); c.disabled = true; c.querySelector('small').textContent = 'Off because your device asks for reduced motion.'; c.setAttribute('aria-checked', 'false'); }
   $('#openSettings').addEventListener('click', () => { const L = logSummary(); $('#tlogSum').textContent = L.sessions ? L.text.split('\n').slice(1).join(' · ') : 'No sessions yet on this phone.'; $('#settings').hidden = false; });
   $('#tlogShare').addEventListener('click', async () => {
     const L = logSummary(), text = `${L.text}\n\n${L.csv}`;
@@ -4195,6 +4372,165 @@ details.transcript p { font-size: 15px; line-height: 1.7; color: rgba(239,231,21
       if (at === 'after' && run && run.k === k) await Promise.race([run.done, wait(25000)]);
       if (at === 'open' && PASSAGES[s.id] && PASSAGES[s.id][s.slides[k].title] && stage.on()) await passage(PASSAGES[s.id][s.slides[k].title]); // years pass, between two scenes
     };
+  })();
+
+  // ---- Polish (polish/polish.js, inlined last by build-prototype.py): the first-run overture and the intro's one choice,
+  // resume, lock-screen and headphone controls, text size, reduced motion and screen-reader labels. ----
+  (() => {
+    const qs = new URLSearchParams(location.search);
+    const hassan = BY_ID.hassan;
+    const fresh = () => { const r = store.get('resume', null); return r && r.id === 'hassan' && Date.now() - r.t < 14 * 864e5 && (r.k > 0 || r.line > 0) ? r : null; };
+
+    // ---- Intro: one clear choice. "Start Sultan Hassan" (or "Continue" when there is a place to go back to); Cairo is a quiet link. ----
+    function introState() {
+      const r = fresh(), sl = r && hassan.slides[r.k];
+      $('#startLbl').textContent = r ? 'Continue Sultan Hassan' : 'Start Sultan Hassan';
+      $('#startSub').textContent = r ? `${r.k ? sl.scene : 'Prologue'} · ${sl.title}` : `Episode 1 · about ${hassan.theatre.mins} minutes · earphones in`;
+      const cta = document.querySelector('#sxHero .sx-cta span'); if (cta) cta.textContent = r ? `Continue · ${r.k ? sl.scene : 'Prologue'}` : 'Start the play';
+    }
+    function startHassan() {
+      if (fresh()) stage.resumeNext();
+      $('#begin').click();
+      const tab = document.querySelector('#sxTabs [data-tab="map"]'); if (tab) tab.click();
+      if (walk.id !== 'cairo' && WALKS.some((w) => w.id === 'cairo')) selectWalk('cairo');
+      const i = STOPS.findIndex((s) => s.id === 'hassan');
+      if (i >= 0) setTimeout(() => openStop(i), 320);
+    }
+    $('#startHassan').addEventListener('click', startHassan);
+    // The Today hero continues too, so both doors lead to the same place.
+    const hero = $('#sxHero'); if (hero) hero.addEventListener('click', () => { if (fresh()) stage.resumeNext(); }, true);
+    introState();
+    new MutationObserver(() => { if ($('#album').classList.contains('off')) introState(); }).observe($('#album'), { attributes: true, attributeFilter: ['class'] });
+
+    // ---- Overture: first run only (or ?intro). Three documentary pictures, three lines, about ten seconds; tap to skip.
+    // It ends on the same photograph the intro uses, so the welcome screen simply comes up through it. ----
+    function overture() {
+      const pics = [[photo('hassan', 11), 'Below the Citadel, Cairo.', 'old'], [photo('hassan', 'then-1'), 'In 1356 a young sultan began a building so vast they called it a mountain.', 'old'],
+        [photo('hassan', 2), 'Six centuries on, it still speaks.', '']].filter((x) => x[0]);
+      if (pics.length < 2) return;
+      const cred = (p) => p.year ? `${p.year < 1850 ? 'c. ' : ''}${p.year} · ${p.author.split(/ \(|, /)[0]}` : `Today · ${p.author.split(/ \(|, /)[0]}`;
+      const ms = [3600, 4600, 3400], move = cinematic();
+      const ov = document.createElement('div'); ov.className = 'pd-ov' + (move ? ' move' : ''); ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-label', 'Opening');
+      ov.innerHTML = pics.map(([p, , old], i) => `<div class="pd-shot ${old}${i % 2 ? ' kb2' : ''}"><i style="background-image:url('${p.src}')"></i></div>`).join('') +
+        `<div class="pd-mark" aria-hidden="true">Medu</div><p class="pd-line" aria-live="polite"></p><small class="pd-cred" aria-hidden="true"></small>
+        <div class="pd-bar" aria-hidden="true">${pics.map(() => '<b></b>').join('')}</div><button class="pd-skip">Skip</button>`;
+      app.appendChild(ov);
+      const shots = ov.querySelectorAll('.pd-shot'), bars = ov.querySelectorAll('.pd-bar b'), line = ov.querySelector('.pd-line'), cr = ov.querySelector('.pd-cred');
+      let i = -1, tm = 0, over = false;
+      function step() {
+        i++;
+        if (i >= pics.length) return end();
+        shots.forEach((s, j) => s.classList.toggle('on', j === i));
+        bars.forEach((b, j) => { b.classList.toggle('done', j < i); b.classList.toggle('on', j === i); if (j === i) b.style.setProperty('--d', ms[i] + 'ms'); });
+        line.classList.remove('on'); cr.classList.remove('on');
+        setTimeout(() => { if (over) return; line.textContent = pics[i][1]; cr.textContent = cred(pics[i][0]); line.classList.add('on'); cr.classList.add('on'); }, i ? 700 : 500);
+        tm = setTimeout(step, ms[i] || 3000);
+      }
+      function end() {
+        if (over) return; over = true; clearTimeout(tm); store.set('seenIntro', true);
+        const intro = $('#intro'); intro.classList.remove('intro-in'); void intro.offsetWidth; if (cinematic()) intro.classList.add('intro-in');
+        ov.classList.add('out'); setTimeout(() => ov.remove(), 1500);
+        if (app.classList.contains('kbd')) setTimeout(() => $('#startHassan').focus({ preventScroll: true }), 400);
+      }
+      ov.addEventListener('click', end);
+      requestAnimationFrame(() => requestAnimationFrame(step));
+    }
+    if ((!store.get('seenIntro', false) || qs.has('intro')) && ASSETS && !fresh()) overture();
+
+    // ---- Lock screen and headphones (Media Session). The story plays through Web Audio, which phones don't list as media,
+    // so a silent looping clip runs beside it while a play is on: that gives the lock-screen card, and play/pause and
+    // next/previous from headphones and car buttons. ----
+    const ms = 'mediaSession' in navigator ? navigator.mediaSession : null;
+    let keep = null, held = false; // held: the walker paused it themselves
+    function silence() { // six seconds of 8 kHz silence as a WAV (Chrome only shows the card for clips longer than five seconds)
+      const n = 8000 * 6, b = new Uint8Array(44 + n), v = new DataView(b.buffer), w = (o, t) => [...t].forEach((c, j) => { b[o + j] = c.charCodeAt(0); });
+      w(0, 'RIFF'); v.setUint32(4, 36 + n, true); w(8, 'WAVE'); w(12, 'fmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+      v.setUint32(24, 8000, true); v.setUint32(28, 8000, true); v.setUint16(32, 1, true); v.setUint16(34, 8, true); w(36, 'data'); v.setUint32(40, n, true); b.fill(128, 44);
+      return URL.createObjectURL(new Blob([b], { type: 'audio/wav' }));
+    }
+    if (ms) {
+      keep = new Audio(silence()); keep.loop = true; keep.setAttribute('playsinline', ''); keep.preload = 'auto';
+      // iPhone only lets an element play from a tap: unlock it on the first one.
+      document.addEventListener('pointerdown', function unlock() { keep.play().then(() => { if (!stage.on()) keep.pause(); }).catch(() => {}); document.removeEventListener('pointerdown', unlock, true); }, true);
+      const run = () => { if (stage.on() && !held) keep.play().catch(() => {}); };
+      const playerUp = () => $('#stage').classList.contains('off'); // no scene card waiting for a tap
+      const act = (a, f) => { try { ms.setActionHandler(a, f); } catch {} };
+      act('play', () => { if (!stage.on()) return; held = false; run(); if (!narr.playing() && playerUp()) $('#playBtn').click(); ms.playbackState = 'playing'; });
+      act('pause', () => { held = true; if (narr.playing()) $('#playBtn').click(); keep.pause(); ms.playbackState = 'paused'; });
+      act('nexttrack', () => { held = false; stage.next(); });
+      act('previoustrack', () => { if (!stage.on()) return; held = false; if (playerUp()) $('#replay').click(); else stage.ask(stage.scene()); });
+      act('stop', () => { held = true; if (narr.playing()) $('#playBtn').click(); keep.pause(); });
+      // The on-screen button counts as the walker's own pause too.
+      $('#playBtn').addEventListener('click', () => { held = narr.playing(); if (held) keep.pause(); }, true);
+      const prevP = stageHooks.playing;
+      stageHooks.playing = (p) => { if (prevP) prevP(p); if (p) { held = false; run(); } ms.playbackState = p || (stage.on() && !held) ? 'playing' : 'paused'; };
+      new MutationObserver(() => { if ($('#album').classList.contains('off')) { keep.pause(); ms.playbackState = 'none'; ms.metadata = null; held = false; } })
+        .observe($('#album'), { attributes: true, attributeFilter: ['class'] });
+    }
+    function meta(k) {
+      if (!ms || !window.MediaMetadata) return;
+      const st = STOPS[cur.stop], sl = st.slides[k], p = photo(st.id, k) || photo(st.id, 0), abs = (u) => new URL(u, location.href).href;
+      try {
+        ms.metadata = new MediaMetadata({ title: sl.title, artist: `${k ? sl.scene || '' : 'Prologue'} · ${st.title}`, album: `Medu · ${st.theatre ? st.theatre.title : 'Cairo'}`,
+          artwork: [...(p ? [{ src: abs(p.src), sizes: '1200x800', type: 'image/jpeg' }] : []), { src: abs('icons/icon-512.png'), sizes: '512x512', type: 'image/png' }] });
+      } catch {}
+    }
+    const prevAt = stageHooks.at;
+    stageHooks.at = (k) => { if (prevAt) prevAt(k); meta(k); if (keep && !held) keep.play().catch(() => {}); };
+    // Remember the line, so "Continue" starts where the walker stopped.
+    const prevLine = stageHooks.atLine;
+    stageHooks.atLine = (k, i) => { if (prevLine) prevLine(k, i); stage.mark(i); };
+
+    // ---- Settings: text size and reduce motion, next to the caption switches ----
+    const cap = $('#tCap');
+    cap.insertAdjacentHTML('beforebegin', `<div class="pd-ts"><span id="tsLbl">Text size<small>Captions, scene cards, the guide and the riddles.</small></span>
+      <div class="seg" role="radiogroup" aria-labelledby="tsLbl" id="tSize"><button role="radio" data-s="0" aria-label="Standard">A</button><button role="radio" data-s="1" aria-label="Large" style="font-size:16px">A</button><button role="radio" data-s="2" aria-label="Largest" style="font-size:19px">A</button></div></div>`);
+    const setTs = (n) => { app.dataset.ts = n; store.set('ts', n); document.querySelectorAll('#tSize button').forEach((b) => b.setAttribute('aria-checked', String(+b.dataset.s === n))); };
+    document.querySelectorAll('#tSize button').forEach((b) => b.addEventListener('click', () => setTs(+b.dataset.s)));
+    setTs(store.get('ts', 0));
+    $('#tCine').insertAdjacentHTML('afterend', `<button class="toggle" role="switch" id="tRm"><span>Reduce motion<small>No drifting photos or moving titles. Scenes still change with gentle fades.</small></span><span class="sw"></span></button>`);
+    const rm = $('#tRm'), cine = $('#tCine'), cineNote = cine.querySelector('small').textContent;
+    function applyRm() {
+      reduced = osReduced || store.get('rm', false);
+      app.classList.toggle('rm', reduced); setDepth(); app.classList.toggle('nograin', !cinematic());
+      rm.setAttribute('aria-checked', String(reduced)); rm.disabled = osReduced;
+      if (osReduced) rm.querySelector('small').textContent = 'On, because your phone asks for reduced motion.';
+      cine.disabled = reduced; cine.setAttribute('aria-checked', String(cinematic()));
+      cine.querySelector('small').textContent = reduced ? 'Off while motion is reduced.' : cineNote;
+    }
+    rm.addEventListener('click', () => { store.set('rm', !store.get('rm', false)); applyRm(); });
+    applyRm();
+    // Captions are on by default; say so where people look for it.
+    const capNote = cap.querySelector('small'); if (capNote && !/default/.test(capNote.textContent)) capNote.textContent += ' On by default.';
+
+    // ---- Screen readers: names for icon-only controls, dialogs announced as dialogs, focus kept inside them ----
+    const names = { closeAlbum: 'Back to the map', handle: 'Show the full stop list', planHud: 'Key plan. Tap to enlarge', stSkip: 'Skip this part', souvPhoto: 'Add your own photo to the card', souvSave: 'Save the card as an image' };
+    Object.entries(names).forEach(([id, n]) => { const el = document.getElementById(id); if (el && !el.getAttribute('aria-label')) el.setAttribute('aria-label', n); });
+    $('#closeAlbum').setAttribute('aria-label', 'Back to the map');
+    document.querySelectorAll('#app button svg, #app a svg').forEach((s) => s.setAttribute('aria-hidden', 'true'));
+    document.querySelectorAll('.modal').forEach((m) => {
+      const card = m.querySelector('[role=dialog]') || m.firstElementChild; if (!card) return;
+      card.setAttribute('role', 'dialog'); card.setAttribute('aria-modal', 'true');
+      if (!card.getAttribute('aria-label')) { const h = card.querySelector('h3, h2'); if (h) { h.id = h.id || `${m.id}H`; card.setAttribute('aria-labelledby', h.id); } }
+      let back = null;
+      new MutationObserver(() => {
+        if (!m.hidden) { back = document.activeElement; setTimeout(() => { const f = card.querySelector('button:not([disabled]), input, [tabindex="0"]'); if (f && !card.contains(document.activeElement)) f.focus({ preventScroll: true }); }, 60); }
+        else if (back && document.contains(back)) { try { back.focus({ preventScroll: true }); } catch {} back = null; }
+      }).observe(m, { attributes: true, attributeFilter: ['hidden'] });
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      const m = [...document.querySelectorAll('.modal')].find((x) => !x.hidden); if (!m) return;
+      const c = m.querySelector('[data-close], #closeSettings, #iosHelpClose'); if (c) { e.stopImmediatePropagation(); c.click(); }
+    }, true);
+    // Focus rings only for keyboard users, never after a tap.
+    document.addEventListener('keydown', (e) => { if (e.key === 'Tab') app.classList.add('kbd'); }, true);
+    document.addEventListener('pointerdown', () => app.classList.remove('kbd'), true);
+    // The scene picture keeps a name for screen readers even when its caption is hidden.
+    const stageEl = $('#stage'); stageEl.setAttribute('role', 'region'); stageEl.setAttribute('aria-label', 'Scene');
+
+    // QA: ?qa exposes the play for fast-forward tests (jump to a scene, open the souvenir) without listening in real time.
+    if (qs.has('qa')) window.__medu = { stage, narr, store, openStop, get STOPS() { return STOPS; }, cur, stageHooks, startHassan };
   })();
 
 })();
