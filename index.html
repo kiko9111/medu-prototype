@@ -1056,6 +1056,15 @@ details.transcript p, .g-pane p, .g-pane li { font-size: calc(15px * var(--ts));
 #app.sw-on #album .print.bleed .frame::after { content: ""; display: block; position: absolute; inset: 0; z-index: 3; pointer-events: none;
   background: radial-gradient(125% 95% at 50% 42%, transparent 52%, rgba(0,0,0,.28) 78%, rgba(0,0,0,.6) 100%); }
 
+/* TV edition (Google TV / Android TV): the remote moves a focus, so it must be unmistakable from the sofa. */
+html.tv, html.tv body { cursor: none; }
+#app.tv :is(button, a[href], input, select, [tabindex], [role="button"]):focus { outline: 3px solid var(--gold, #cdb07a) !important; outline-offset: 3px; box-shadow: 0 0 0 7px rgba(205,176,122,.22); transition: outline-offset .15s; }
+#app.tv svg :is([tabindex], [role="button"]):focus { outline: none !important; box-shadow: none; filter: drop-shadow(0 0 6px #cdb07a) drop-shadow(0 0 2px #cdb07a); }
+#app.tv .btn:focus, #app.tv .btn-text:focus { transform: scale(1.04); }
+@media (prefers-reduced-motion: reduce) { #app.tv .btn:focus, #app.tv .btn-text:focus { transform: none; } }
+/* Nothing to install, photograph or record on a TV. */
+#app.tv #installBtn, #app.tv input[type=file] { display: none !important; }
+
 </style>
 
 <aside class="showcase" aria-label="About this prototype">
@@ -1252,7 +1261,7 @@ details.transcript p, .g-pane p, .g-pane li { font-size: calc(15px * var(--ts));
         <div class="souv-row"><button class="btn btn-ghost" id="tlogShare">Share log</button><button class="btn btn-ghost" id="tlogClear">Clear log</button></div></div>
       <button class="btn btn-ghost" id="resetWalk" style="margin-top:12px">Reset visited stops</button>
       <button class="btn btn-primary" id="closeSettings" style="margin-top:6px">Done</button>
-      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 31 Oct 02:03 UTC</p>
+      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 31 Oct 13:06 UTC</p>
     </div>
   </div>
   <!-- ===== Super app layer (super/super.html, inlined by build-prototype.py). Hidden with ?edition=preview. ===== -->
@@ -4625,6 +4634,101 @@ details.transcript p, .g-pane p, .g-pane li { font-size: calc(15px * var(--ts));
     const INTENSITY = new URLSearchParams(location.search).has('gentle') ? 'gentle' : 'full';
     app.classList.toggle('sw-gentle', INTENSITY === 'gentle');
     stageHooks._poles = POLES; // for tests
+  })();
+
+  // TV edition (Google TV / Android TV). The Medu TV app is a thin shell around this site that adds "MeduTV" to the
+  // user agent; ?tv turns the same mode on in a desktop browser for testing. The remote has only arrows, OK and Back,
+  // so this layer gives every screen a visible focus, moves it with the arrows, and answers Back and the media keys.
+  (() => {
+    const TV = /MeduTV/.test(navigator.userAgent) || new URLSearchParams(location.search).has('tv');
+    if (!TV) return;
+    const root = document.getElementById('app');
+    document.documentElement.classList.add('tv'); root.classList.add('tv', 'kbd');
+    document.addEventListener('pointerdown', () => setTimeout(() => root.classList.add('kbd'), 0), true); // polish drops focus rings on taps; a TV always shows them
+    // Camera, mic, GPS, compass and file inputs make no sense on a TV; the layers hide what carries these markers.
+    root.querySelectorAll('input[type=file], #installBtn').forEach((n) => { n.hidden = true; });
+
+    const SEL = 'button, a[href], input:not([type=hidden]), select, textarea, [tabindex], [role="button"]';
+    const shown = (n) => !n.closest('[hidden], .off') && !n.disabled && n.getAttribute('tabindex') !== '-1' && n.getAttribute('aria-hidden') !== 'true';
+    const layer = () => [...document.querySelectorAll('.modal')].reverse().find((m) => !m.hidden && getComputedStyle(m).display !== 'none') || root;
+    function scroller(n) { for (let p = n.parentElement; p && p !== document.body; p = p.parentElement) { const cs = getComputedStyle(p); if (/(auto|scroll)/.test(cs.overflowY) && p.scrollHeight > p.clientHeight + 4) return p; } return null; }
+    function candidates() {
+      const L = layer(), W = innerWidth, H = innerHeight;
+      return [...L.querySelectorAll(SEL)].filter((n) => {
+        if (!shown(n)) return false;
+        const r = n.getBoundingClientRect(); if (r.width < 2 || r.height < 2) return false;
+        const cs = getComputedStyle(n); if (cs.visibility === 'hidden' || +cs.opacity === 0 || cs.pointerEvents === 'none') return false;
+        const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+        if (cx < 0 || cx > W || cy < 0 || cy > H) return !!scroller(n); // off screen: only reachable inside a scrolling list
+        const hit = document.elementFromPoint(Math.min(W - 1, Math.max(0, cx)), Math.min(H - 1, Math.max(0, cy)));
+        return !!hit && (n === hit || n.contains(hit) || hit.contains(n) || (n instanceof SVGElement && n.contains(hit)));
+      });
+    }
+    const rect = (n) => n.getBoundingClientRect();
+    function focusEl(n) { if (!n) return; if (n instanceof SVGElement && !n.hasAttribute('tabindex')) n.setAttribute('tabindex', '0'); n.focus({ preventScroll: true }); const s = scroller(n); if (s) n.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }
+    function home() {
+      const c = candidates(); if (!c.length) return null;
+      return c.find((n) => n.matches('.btn-primary, .btn-hero, #playBtn')) || c.sort((a, b) => rect(a).top - rect(b).top || rect(a).left - rect(b).left)[0];
+    }
+    function best(from, dir) {
+      const a = rect(from), ax = a.left + a.width / 2, ay = a.top + a.height / 2; let win = null, score = Infinity;
+      for (const n of candidates()) {
+        if (n === from || n.contains(from) || from.contains(n)) continue;
+        const b = rect(n), bx = b.left + b.width / 2, by = b.top + b.height / 2;
+        let main, side;
+        if (dir === 'ArrowRight') { main = b.left - a.right; side = Math.abs(by - ay); if (bx <= ax + 1) continue; }
+        else if (dir === 'ArrowLeft') { main = a.left - b.right; side = Math.abs(by - ay); if (bx >= ax - 1) continue; }
+        else if (dir === 'ArrowDown') { main = b.top - a.bottom; side = Math.abs(bx - ax); if (by <= ay + 1) continue; }
+        else { main = a.top - b.bottom; side = Math.abs(bx - ax); if (by >= ay - 1) continue; }
+        const s = Math.max(main, -8) + side * 2; if (s < score) { score = s; win = n; }
+      }
+      return win;
+    }
+    const current = () => { const f = document.activeElement; return f && f !== document.body && layer().contains(f) && candidates().includes(f) ? f : null; };
+    const typing = (n) => n && (n.tagName === 'TEXTAREA' || (n.tagName === 'INPUT' && !/^(button|checkbox|radio|submit|reset|range|color)$/.test(n.type)) || n.tagName === 'SELECT');
+    const albumOpen = () => !document.getElementById('album').classList.contains('off');
+
+    // Arrows run first (capture), so moving between buttons never also turns an album page; at the row's end the
+    // album's own left/right page turn still happens.
+    window.addEventListener('keydown', (e) => {
+      const k = e.key; if (!/^Arrow/.test(k)) return;
+      const f = current(), side = k === 'ArrowLeft' || k === 'ArrowRight';
+      if (side && (typing(f) || (f && f.type === 'range'))) return;
+      if (!f) { e.preventDefault(); e.stopImmediatePropagation(); focusEl(home()); return; }
+      const n = best(f, k);
+      if (n) { e.preventDefault(); e.stopImmediatePropagation(); focusEl(n); return; }
+      if (side && albumOpen() && layer() === root) return; // nothing further that way: let the album turn the page
+      e.preventDefault(); e.stopImmediatePropagation();
+      if (!side) { const s = scroller(f) || layer().querySelector('.modal-card'); if (s) s.scrollBy({ top: (k === 'ArrowDown' ? 1 : -1) * s.clientHeight * 0.6, behavior: 'smooth' }); }
+    }, true);
+    window.addEventListener('keydown', (e) => {
+      const k = e.key, f = current();
+      if (k === 'Enter' || e.keyCode === 23) {
+        if (e.defaultPrevented) return;
+        if (!f) { e.preventDefault(); focusEl(home()); return; }
+        if (!f.matches('button, a[href], input, select, textarea')) { e.preventDefault(); f.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true })); }
+      }
+    });
+    // Keep a focus on screen as screens, overlays and scenes change, so OK always does something.
+    let t = 0;
+    new MutationObserver(() => { clearTimeout(t); t = setTimeout(() => { if (!current()) focusEl(home()); }, 180); })
+      .observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ['class', 'hidden', 'disabled'] });
+    setTimeout(() => focusEl(home()), 600);
+
+    // The shell asks the page first when Back is pressed: true means the page handled it, false lets the app close.
+    window.meduTvBack = () => {
+      const m = [...document.querySelectorAll('.modal')].find((x) => !x.hidden);
+      if (m) { const c = m.querySelector('[data-close], #closeSettings, #iosHelpClose') || [...m.querySelectorAll('button')].find((b) => /^(close|done|not now|back)$/i.test(b.textContent.trim())); if (c) c.click(); else m.hidden = true; return true; }
+      if (albumOpen()) { window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); return true; }
+      return false;
+    };
+    // Play/pause, play and pause keys on the remote drive the narration button.
+    window.meduTvMedia = (what) => {
+      const b = document.getElementById('playBtn'); if (!b || b.closest('.off, [hidden]')) return false;
+      const playing = narr.playing();
+      if (what === 'playpause' || (what === 'play' && !playing) || (what === 'pause' && playing)) b.click();
+      return true;
+    };
   })();
 
 })();
