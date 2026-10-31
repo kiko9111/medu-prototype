@@ -1027,8 +1027,8 @@ details.transcript p, .g-pane p, .g-pane li { font-size: calc(15px * var(--ts));
 .pd-sr { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* ---- Blaze and Ash (swing/swing.css, inlined after polish): the play's highs and lows, felt on screen and never labelled.
-   #app carries sw-H (Blaze) or sw-L (Ash) while Sultan Hassan plays; sw-T marks the four turns; sw-gentle is Settings >
-   Intensity > Gentle. Only the photograph's grade, the caption and the controls change. No indicator, no label. ---- */
+   #app carries sw-H (Blaze) or sw-L (Ash) while Sultan Hassan plays; sw-T marks the four turns; sw-gentle is the Gentle
+   intensity (a back-end choice in swing.js, no control). Only the photograph's grade, the caption and the controls change. No indicator, no label. ---- */
 #album .frame > *, #album .reel img { transition: filter var(--t-slow, 900ms) var(--ease-io, ease); }
 #app.sw-H #album .frame > *, #app.sw-H #album .reel img { filter: saturate(1.22) contrast(1.06) sepia(.1) brightness(1.03); }
 #app.sw-L #album .frame > *, #app.sw-L #album .reel img { filter: grayscale(.85) brightness(.58) contrast(1.1); }
@@ -1248,7 +1248,7 @@ details.transcript p, .g-pane p, .g-pane li { font-size: calc(15px * var(--ts));
         <div class="souv-row"><button class="btn btn-ghost" id="tlogShare">Share log</button><button class="btn btn-ghost" id="tlogClear">Clear log</button></div></div>
       <button class="btn btn-ghost" id="resetWalk" style="margin-top:12px">Reset visited stops</button>
       <button class="btn btn-primary" id="closeSettings" style="margin-top:6px">Done</button>
-      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 31 Oct 01:36 UTC</p>
+      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 31 Oct 01:37 UTC</p>
     </div>
   </div>
   <!-- ===== Super app layer (super/super.html, inlined by build-prototype.py). Hidden with ?edition=preview. ===== -->
@@ -4580,7 +4580,7 @@ details.transcript p, .g-pane p, .g-pane li { font-size: calc(15px * var(--ts));
     } };
     const album = $('#album');
     let pole = null, peekT = 0;
-    const gentle = () => store.get('int', 'full') === 'gentle';
+    const gentle = () => app.classList.contains('sw-gentle');
     function poleAt(id, k, i, w) {
       const e = ((POLES[id] || {})[k] || [])[i];
       if (!Array.isArray(e)) return e || null;
@@ -4609,15 +4609,10 @@ details.transcript p, .g-pane p, .g-pane li { font-size: calc(15px * var(--ts));
     document.addEventListener('pointerdown', () => { if (!app.classList.contains('sw-L')) return; app.classList.add('sw-peek'); clearTimeout(peekT); peekT = setTimeout(() => app.classList.remove('sw-peek'), 4000); }, true);
     album.addEventListener('focusin', () => { if (app.classList.contains('sw-L')) app.classList.add('sw-peek'); });
 
-    // Settings > Intensity: Full swing (default) or Gentle (same story, softer changes, no black frame).
-    const anchor = $('#tCine');
-    if (anchor) {
-      anchor.insertAdjacentHTML('beforebegin', `<div class="pd-ts"><span id="intLbl">Intensity<small>Gentle keeps the same story with softer changes between highs and lows.</small></span>
-        <div class="seg" role="radiogroup" aria-labelledby="intLbl" id="tInt"><button role="radio" data-v="full">Full swing</button><button role="radio" data-v="gentle">Gentle</button></div></div>`);
-      const setInt = (v) => { store.set('int', v); app.classList.toggle('sw-gentle', v === 'gentle'); document.querySelectorAll('#tInt button').forEach((b) => b.setAttribute('aria-checked', String(b.dataset.v === v))); };
-      document.querySelectorAll('#tInt button').forEach((b) => b.addEventListener('click', () => setInt(b.dataset.v)));
-      setInt(store.get('int', 'full'));
-    }
+    // Intensity is a back-end choice, never a control: 'full' (default) or 'gentle' (softer changes, no black frame).
+    // Set it here, or for testing with ?gentle. Reduce motion (system or Settings) always gets instant changes and no black frame.
+    const INTENSITY = new URLSearchParams(location.search).has('gentle') ? 'gentle' : 'full';
+    app.classList.toggle('sw-gentle', INTENSITY === 'gentle');
     stageHooks._poles = POLES; // for tests
   })();
 
