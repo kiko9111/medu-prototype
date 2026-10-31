@@ -1026,6 +1026,32 @@ details.transcript p, .g-pane p, .g-pane li { font-size: calc(15px * var(--ts));
 /* Screen-reader only text. */
 .pd-sr { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
+/* ---- Blaze and Ash (swing/swing.css, inlined after polish): the play's highs and lows, felt on screen and never labelled.
+   #app carries sw-H (Blaze) or sw-L (Ash) while Sultan Hassan plays; sw-T marks the four turns; sw-gentle is Settings >
+   Intensity > Gentle. Only the photograph's grade, the caption and the controls change. No indicator, no label. ---- */
+#album .frame > *, #album .reel img { transition: filter var(--t-slow, 900ms) var(--ease-io, ease); }
+#app.sw-H #album .frame > *, #app.sw-H #album .reel img { filter: saturate(1.22) contrast(1.06) sepia(.1) brightness(1.03); }
+#app.sw-L #album .frame > *, #app.sw-L #album .reel img { filter: grayscale(.85) brightness(.58) contrast(1.1); }
+#app.sw-gentle.sw-H #album .frame > *, #app.sw-gentle.sw-H #album .reel img { filter: saturate(1.08) sepia(.05); }
+#app.sw-gentle.sw-L #album .frame > *, #app.sw-gentle.sw-L #album .reel img { filter: grayscale(.4) brightness(.78) contrast(1.04); }
+#app.sw-gentle #album .frame > *, #app.sw-gentle #album .reel img { transition-duration: 420ms; }
+/* Blaze: pictures change on the beat. */
+#app.sw-H:not(.sw-gentle):not(.rm) #album .reel .rl { transition-duration: 160ms; }
+/* Captions: Blaze lands hard, Ash speaks small and close. */
+#app.sw-H #album .say-win { font-weight: 600; color: #fbf1df; }
+#app.sw-L #album .say-win { font-family: var(--ui, Inter, system-ui, sans-serif); font-size: calc(16px * var(--ts, 1)); font-weight: 400; line-height: 1.5; letter-spacing: .005em; color: rgba(239,231,216,.86); }
+#app.sw-L #album .say-txt span.now { color: inherit; }
+#app.sw-T #album .say-win { font-family: var(--display); font-style: italic; font-weight: 500; font-size: calc(24px * min(var(--ts, 1), 1.15)); color: #fbf3e4; }
+#app.sw-gentle.sw-T #album .say-win { font-size: calc(20px * var(--ts, 1)); }
+/* Ash: the controls step back; any tap brings them for a few seconds. */
+#album .player, #album .album-top > *, #album .dots-bar { transition: opacity 600ms var(--ease-io, ease); }
+#app.sw-L:not(.sw-peek) #album .player { opacity: 0; }
+#app.sw-L:not(.sw-peek) #album .album-top > *, #app.sw-L:not(.sw-peek) #album .dots-bar { opacity: 0; pointer-events: none; }
+/* The cut: one black frame, then the turn. Never in Gentle or with reduced motion. */
+.sw-cut { position: absolute; inset: 0; z-index: 60; background: #000; pointer-events: none; }
+#app.sw-cutting #album .frame > *, #app.sw-cutting #album .reel img, #app.sw-cutting #album .player, #app.sw-cutting #album .album-top > * { transition: none; }
+#app.rm #album .frame > *, #app.rm #album .reel img, #app.rm #album .player, #app.rm #album .album-top > *, #app.rm #album .dots-bar { transition: none; }
+
 </style>
 
 <aside class="showcase" aria-label="About this prototype">
@@ -1222,7 +1248,7 @@ details.transcript p, .g-pane p, .g-pane li { font-size: calc(15px * var(--ts));
         <div class="souv-row"><button class="btn btn-ghost" id="tlogShare">Share log</button><button class="btn btn-ghost" id="tlogClear">Clear log</button></div></div>
       <button class="btn btn-ghost" id="resetWalk" style="margin-top:12px">Reset visited stops</button>
       <button class="btn btn-primary" id="closeSettings" style="margin-top:6px">Done</button>
-      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 30 Oct 14:11 UTC</p>
+      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 31 Oct 01:36 UTC</p>
     </div>
   </div>
   <!-- ===== Super app layer (super/super.html, inlined by build-prototype.py). Hidden with ?edition=preview. ===== -->
@@ -4531,6 +4557,68 @@ details.transcript p, .g-pane p, .g-pane li { font-size: calc(15px * var(--ts));
 
     // QA: ?qa exposes the play for fast-forward tests (jump to a scene, open the souvenir) without listening in real time.
     if (qs.has('qa')) window.__medu = { stage, narr, store, openStop, get STOPS() { return STOPS; }, cur, stageHooks, startHassan };
+  })();
+
+  // ---- Blaze and Ash (swing/swing.js, inlined after polish): the play swings between highs (Blaze) and lows (Ash), and the
+  // screen follows without ever saying so. POLES is the only table: per scene, per line, 'H' or 'L', or a list of
+  // [fromWord, pole] when a line turns mid-way. 'C' is one of the four hard cuts (a black frame, then the turn line), and the
+  // scene stays in Ash after it. Keyed to the current script; rekey when the recorded Blaze and Ash script ships. ----
+  (() => {
+    const POLES = { hassan: {
+      0: ['L', 'L', 'L', 'H', 'H', 'H', 'H'],
+      1: ['H', [[0, 'H'], [6, 'L']], 'L'],
+      2: ['H', 'H', 'H', 'H', 'L'],
+      3: ['H', 'H', 'H', [[0, 'H'], [19, 'L']], 'L'],
+      4: ['H', [[0, 'H'], [4, 'C']], 'L', 'L', 'L', 'L', 'L'],
+      5: ['L', 'H', [[0, 'C'], [3, 'L']], 'L'],
+      6: ['L', 'L', [[0, 'L'], [28, 'H']]],
+      7: ['H', 'H', 'H', 'H', 'L'],
+      8: ['L', 'H', 'H', 'H', 'H', 'L'],
+      9: ['H', 'H', 'H', 'H', 'C', [[0, 'L'], [19, 'H']]],
+      10: ['L', 'L', 'L', [[0, 'L'], [14, 'C']], 'L'],
+      11: ['H', 'H', 'H'],
+    } };
+    const album = $('#album');
+    let pole = null, peekT = 0;
+    const gentle = () => store.get('int', 'full') === 'gentle';
+    function poleAt(id, k, i, w) {
+      const e = ((POLES[id] || {})[k] || [])[i];
+      if (!Array.isArray(e)) return e || null;
+      let p = null; for (const [from, q] of e) if (w >= from) p = q; return p;
+    }
+    function set(p) {
+      if (p === pole) return;
+      const prev = pole; pole = p;
+      const paint = () => {
+        app.classList.toggle('sw-H', p === 'H'); app.classList.toggle('sw-L', p === 'L' || p === 'C'); app.classList.toggle('sw-T', p === 'C');
+        if (p !== 'L' && p !== 'C') app.classList.remove('sw-peek');
+      };
+      if (p === 'C' && prev && !gentle() && !reduced) {
+        const f = document.createElement('div'); f.className = 'sw-cut'; album.appendChild(f);
+        app.classList.add('sw-cutting'); paint();
+        setTimeout(() => { f.remove(); requestAnimationFrame(() => app.classList.remove('sw-cutting')); }, 140);
+      } else paint();
+    }
+    function clear() { pole = null; app.classList.remove('sw-H', 'sw-L', 'sw-T', 'sw-peek', 'sw-cutting'); }
+    const prevLine = stageHooks.line;
+    stageHooks.line = (st, k, i, w) => { if (prevLine) prevLine(st, k, i, w); if (!st || !POLES[st.id]) { if (pole) clear(); return; } set(poleAt(st.id, k, i, w)); };
+    const prevEnd = stageHooks.end;
+    stageHooks.end = async (o) => { clear(); if (prevEnd) return prevEnd(o); };
+    new MutationObserver(() => { if (album.classList.contains('off')) clear(); }).observe(album, { attributes: true, attributeFilter: ['class'] });
+    // In Ash a tap brings the controls back for a few seconds.
+    document.addEventListener('pointerdown', () => { if (!app.classList.contains('sw-L')) return; app.classList.add('sw-peek'); clearTimeout(peekT); peekT = setTimeout(() => app.classList.remove('sw-peek'), 4000); }, true);
+    album.addEventListener('focusin', () => { if (app.classList.contains('sw-L')) app.classList.add('sw-peek'); });
+
+    // Settings > Intensity: Full swing (default) or Gentle (same story, softer changes, no black frame).
+    const anchor = $('#tCine');
+    if (anchor) {
+      anchor.insertAdjacentHTML('beforebegin', `<div class="pd-ts"><span id="intLbl">Intensity<small>Gentle keeps the same story with softer changes between highs and lows.</small></span>
+        <div class="seg" role="radiogroup" aria-labelledby="intLbl" id="tInt"><button role="radio" data-v="full">Full swing</button><button role="radio" data-v="gentle">Gentle</button></div></div>`);
+      const setInt = (v) => { store.set('int', v); app.classList.toggle('sw-gentle', v === 'gentle'); document.querySelectorAll('#tInt button').forEach((b) => b.setAttribute('aria-checked', String(b.dataset.v === v))); };
+      document.querySelectorAll('#tInt button').forEach((b) => b.addEventListener('click', () => setInt(b.dataset.v)));
+      setInt(store.get('int', 'full'));
+    }
+    stageHooks._poles = POLES; // for tests
   })();
 
 })();
