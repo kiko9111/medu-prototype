@@ -124,7 +124,7 @@ Fonts: Cormorant Garamond and Inter (SIL Open Font License), served by Google Fo
 Audio:
 
 - Narration voice (all stops except Sultan Hassan): Kokoro-82M (bf_emma), open-source neural text-to-speech (Apache 2.0), rendered offline with kokoro-onnx.
-- Sultan Hassan voices: made with ElevenLabs (https://elevenlabs.io), model eleven_v3, free plan, for this non-commercial prototype.
+- Sultan Hassan play (Blaze and Ash): made with ElevenLabs (https://elevenlabs.io), model eleven_v3, paid plan. Narrator George; al-Maqrizi, al-Subki, Muqbil and the student speak Arabic in ElevenLabs voice-library voices (Moncellence, Odai, Haytham, Adeeb), shared by their owners for use. No real person's voice is imitated. The walking directions, the student's morning and the bonus track keep the earlier ElevenLabs voices.
 - Background "Ney and drone": original music synthesised for Medu (audio-tools/ambient.py).
 - Children reciting in a Qur'an school (kuttab), Fes medina, Morocco, 9 August 1995. Field recording by Justin Bennett for Radio Aporee, Public Domain Mark (archive.org aporee_17466_20325). First 24 s, faded and levelled for Medu. A stand-in: no recording of a Cairo kuttab was used.
 - Qur'an recitation, Sultanahmet Mosque, Istanbul, 5 September 2010. Field recording by Charalambos Ganotis (akouse) for Radio Aporee, CC BY-SA 3.0 (archive.org aporee_8034_9802). Excerpt 5:45-6:02, faded and levelled for Medu (CC BY-SA 3.0). A stand-in for a teacher in the colleges.
