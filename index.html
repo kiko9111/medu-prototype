@@ -1065,6 +1065,38 @@ html.tv, html.tv body { cursor: none; }
 /* Nothing to install, photograph or record on a TV. */
 #app.tv #installBtn, #app.tv input[type=file] { display: none !important; }
 
+/* ---- Widescreen: the TV is 16:9, so the app fills it instead of a phone column ---- */
+#app.tv { width: 100%; max-width: none; height: 100%; margin: 0; border: 0; border-radius: 0; box-shadow: none; }
+html.tv body { display: block; background: #050505; }
+html.tv .showcase { display: none !important; }
+/* A TV chip has no spare power for blur behind glass: solid panels instead. */
+#app.tv *, #app.tv *::before, #app.tv *::after { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+#app.tv .player-card, #app.tv .plan-hud, #app.tv .close, #app.tv .st-hud button { background: rgba(16,16,18,.94) !important; }
+/* Controls never fade away on a TV (the remote needs something to land on). */
+#app.tv #album .player, #app.tv #album .album-top > *, #app.tv #album .dots-bar { opacity: 1 !important; pointer-events: auto; }
+#app.tv #album.calm .album-top > * { transform: none; }
+
+/* Welcome: words on the left over the full-width photo. */
+#app.tv #intro { padding-left: 6%; padding-right: 50%; }
+#app.tv #intro .intro-actions { max-width: 420px; }
+#app.tv #begin, #app.tv #installBtn { display: none !important; }
+
+/* The play: picture on the left (58%), words and player on the right. */
+#app.tv #album .pager { display: grid; grid-template-columns: 58% 42%; grid-template-rows: auto 1fr; overflow: hidden; height: 100%; }
+#app.tv #album .hero { grid-column: 1; grid-row: 1 / 3; height: 100%; max-height: none; min-height: 0; padding: 0; }
+#app.tv #album .print { top: 70px; left: 28px; right: 28px; bottom: 44px; }
+#app.tv #album .print.bleed { top: 0; left: 0; right: 0; bottom: 0; }
+#app.tv #album .say { grid-column: 2; grid-row: 1; padding: 36px 32px 10px 28px; }
+#app.tv #album #bodies { grid-column: 2; grid-row: 2; overflow-y: auto; scrollbar-width: none; padding: 0 32px 170px 28px; min-height: 0; }
+#app.tv #album #bodies .slide { padding-left: 0; padding-right: 0; }
+#app.tv #album .player { left: 58%; padding-inline: 24px; }
+#app.tv #album .album-top { right: 42%; padding-inline: 24px; padding-top: 22px; }
+#app.tv #album .dots-bar { top: auto; bottom: 14px; right: 42%; }
+#app.tv #stage .st-body { max-width: 720px; margin-inline: auto; }
+#app.tv .modal-card { max-width: 560px; margin-inline: auto; }
+/* Nothing on a TV is "at the mosque", and Back already leaves. */
+#app.tv #stage [data-v="site"], #app.tv #stage [data-v="map"] { display: none !important; }
+
 </style>
 
 <aside class="showcase" aria-label="About this prototype">
@@ -1261,7 +1293,7 @@ html.tv, html.tv body { cursor: none; }
         <div class="souv-row"><button class="btn btn-ghost" id="tlogShare">Share log</button><button class="btn btn-ghost" id="tlogClear">Clear log</button></div></div>
       <button class="btn btn-ghost" id="resetWalk" style="margin-top:12px">Reset visited stops</button>
       <button class="btn btn-primary" id="closeSettings" style="margin-top:6px">Done</button>
-      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 31 Oct 13:06 UTC</p>
+      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 31 Oct 13:30 UTC</p>
     </div>
   </div>
   <!-- ===== Super app layer (super/super.html, inlined by build-prototype.py). Hidden with ?edition=preview. ===== -->
@@ -1552,7 +1584,8 @@ html.tv, html.tv body { cursor: none; }
     set(k, v) { try { localStorage.setItem('medu.' + k, JSON.stringify(v)); } catch {} },
   };
   const osReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let reduced = osReduced || store.get('rm', false); // the phone's setting, or Settings > Reduce motion
+  const TV = /MeduTV/.test(navigator.userAgent) || /[?&]tv\b/.test(location.search); // Google TV app (tv/): calm visuals and one clip per scene, so a TV chip never stutters
+  let reduced = TV || osReduced || store.get('rm', false); // the phone's setting, or Settings > Reduce motion
   const S = { cine: store.get('cine', !osReduced), sfx: store.get('sfx2', false), auto: store.get('auto', false), rate: store.get('rate', 1), amb: store.get('amb', true), cap: store.get('cap', true), shut: store.get('shut', true), plain: store.get('plain', false) };
   let visited = new Set(store.get('visited', []));
   const cinematic = () => S.cine && !reduced;
@@ -2346,7 +2379,7 @@ html.tv, html.tv body { cursor: none; }
           voice.play().catch(() => { if (my === token) { speaking = false; eqLoop(); wantPlay = false; icon(false); bed.duck(false); } });
         });
       };
-      if (c && c.lines && s.lines && c.lines.length === s.lines.length) {
+      if (!TV && c && c.lines && s.lines && c.lines.length === s.lines.length) {
         mode = 'spatial'; loaded = key;
         const from = resume && spAt.key === key ? spAt.line : 0;
         say.use(st, k, true, !from);
@@ -2410,7 +2443,7 @@ html.tv, html.tv body { cursor: none; }
         const fin = () => { if (my === token) bed.duck(false); };
         bed.duck(true);
         const whole = () => urlFor(c.src).then((u) => { if (my !== token) return; voice.src = u; voice.playbackRate = S.rate; voice.onended = fin; voice.play().catch(fin); });
-        if (ok && c.lines) spatial(a.lines, c.lines, a.space, my).then((r) => { if (r === 'fail') whole(); else fin(); });
+        if (ok && c.lines && !TV) spatial(a.lines, c.lines, a.space, my).then((r) => { if (r === 'fail') whole(); else fin(); });
         else if (ok) whole();
         else if (tts) { const u = new SpeechSynthesisUtterance(a.text); u.lang = 'en-GB'; u.rate = S.rate * 0.95; const v = bestVoice(); if (v) u.voice = v; u.onend = fin; tts.speak(u); }
       },
@@ -2986,7 +3019,7 @@ html.tv, html.tv body { cursor: none; }
   // pins) plus Labs for Module A (head tracking, beacons, adaptive pacing). What a browser cannot really do (beacons, payments,
   // ticketing) is a demo and says so on screen; no prices, fees or unlock logic live here. ?edition=preview skips this layer. ----
   (() => {
-    if (/[?&]edition=preview\b/.test(location.search)) return;
+    if (/[?&]edition=preview\b/.test(location.search) || TV) return; // the TV app gets the plain edition: the play, no phone-only tools
     app.classList.add('sx');
     const sx = (k, d) => store.get('sx.' + k, d), sxSet = (k, v) => store.set('sx.' + k, v);
     const HS = BY_ID.hassan, CAIRO_TZ = 'Africa/Cairo';
@@ -4494,7 +4527,7 @@ html.tv, html.tv body { cursor: none; }
       v.setUint32(24, 8000, true); v.setUint32(28, 8000, true); v.setUint16(32, 1, true); v.setUint16(34, 8, true); w(36, 'data'); v.setUint32(40, n, true); b.fill(128, 44);
       return URL.createObjectURL(new Blob([b], { type: 'audio/wav' }));
     }
-    if (ms) {
+    if (ms && !TV) { // a TV needs no lock-screen card, and a second looping element only competes with the narration
       keep = new Audio(silence()); keep.loop = true; keep.setAttribute('playsinline', ''); keep.preload = 'auto';
       // iPhone only lets an element play from a tap: unlock it on the first one.
       document.addEventListener('pointerdown', function unlock() { keep.play().then(() => { if (!stage.on()) keep.pause(); }).catch(() => {}); document.removeEventListener('pointerdown', unlock, true); }, true);
@@ -4647,8 +4680,11 @@ html.tv, html.tv body { cursor: none; }
     document.addEventListener('pointerdown', () => setTimeout(() => root.classList.add('kbd'), 0), true); // polish drops focus rings on taps; a TV always shows them
     // Camera, mic, GPS, compass and file inputs make no sense on a TV; the layers hide what carries these markers.
     root.querySelectorAll('input[type=file], #installBtn').forEach((n) => { n.hidden = true; });
+    { const ca = document.getElementById('closeAlbum'); if (ca && ca.lastChild) ca.lastChild.textContent = 'Home'; } // there is no map on the TV
+    if (ASSETS) document.getElementById('intro').style.setProperty('--intro-img', "url('img/hassan-portal.jpg')"); // a 16:9 photo for a 16:9 screen (site build)
 
-    const SEL = 'button, a[href], input:not([type=hidden]), select, textarea, [tabindex], [role="button"]';
+    // Links are left out: they are photo credits and outside pages, which the TV app does not open.
+    const SEL = 'button, input:not([type=hidden]), select, textarea, [tabindex], [role="button"]';
     const shown = (n) => !n.closest('[hidden], .off') && !n.disabled && n.getAttribute('tabindex') !== '-1' && n.getAttribute('aria-hidden') !== 'true';
     const layer = () => [...document.querySelectorAll('.modal')].reverse().find((m) => !m.hidden && getComputedStyle(m).display !== 'none') || root;
     function scroller(n) { for (let p = n.parentElement; p && p !== document.body; p = p.parentElement) { const cs = getComputedStyle(p); if (/(auto|scroll)/.test(cs.overflowY) && p.scrollHeight > p.clientHeight + 4) return p; } return null; }
@@ -4657,7 +4693,7 @@ html.tv, html.tv body { cursor: none; }
       return [...L.querySelectorAll(SEL)].filter((n) => {
         if (!shown(n)) return false;
         const r = n.getBoundingClientRect(); if (r.width < 2 || r.height < 2) return false;
-        const cs = getComputedStyle(n); if (cs.visibility === 'hidden' || +cs.opacity === 0 || cs.pointerEvents === 'none') return false;
+        const cs = getComputedStyle(n); if (cs.visibility === 'hidden' || cs.pointerEvents === 'none' || +cs.opacity === 0) return false;
         const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
         if (cx < 0 || cx > W || cy < 0 || cy > H) return !!scroller(n); // off screen: only reachable inside a scrolling list
         const hit = document.elementFromPoint(Math.min(W - 1, Math.max(0, cx)), Math.min(H - 1, Math.max(0, cy)));
@@ -4710,10 +4746,17 @@ html.tv, html.tv body { cursor: none; }
       }
     });
     // Keep a focus on screen as screens, overlays and scenes change, so OK always does something.
-    let t = 0;
-    new MutationObserver(() => { clearTimeout(t); t = setTimeout(() => { if (!current()) focusEl(home()); }, 180); })
-      .observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ['class', 'hidden', 'disabled'] });
-    setTimeout(() => focusEl(home()), 600);
+    // Checked twice a second (screens fade in, so the moment a card appears its buttons may not be landable yet).
+    // The cheap test runs first; the full search only when the focus is gone or sits somewhere hidden.
+    setInterval(() => {
+      const a = document.activeElement;
+      const lost = !a || a === document.body || !layer().contains(a) || a.closest('[hidden], .off') || a.disabled;
+      if (lost || !current()) { const h = home(); if (h) focusEl(h); }
+    }, 500);
+    // No map on a TV: whenever the app would show it (leaving a play, first run), the welcome screen comes back instead.
+    const map = document.getElementById('map'), intro = document.getElementById('intro');
+    const noMap = () => { if (!map.classList.contains('off')) { map.classList.add('off'); intro.classList.remove('off'); } };
+    new MutationObserver(noMap).observe(map, { attributes: true, attributeFilter: ['class'] }); noMap();
 
     // The shell asks the page first when Back is pressed: true means the page handled it, false lets the app close.
     window.meduTvBack = () => {
