@@ -1097,6 +1097,11 @@ html.tv .showcase { display: none !important; }
 /* Nothing on a TV is "at the mosque", and Back already leaves. */
 #app.tv #stage [data-v="site"], #app.tv #stage [data-v="map"] { display: none !important; }
 
+/* Android's own highlight (a blue box) must never cover the player. */
+html.tv, html.tv * { -webkit-tap-highlight-color: transparent !important; }
+html.tv *:focus:not(:focus-visible) { outline: none; }
+#app.tv .tv-hint { margin-left: 14px; font-size: 10.5px; letter-spacing: .08em; color: var(--muted); }
+
 </style>
 
 <aside class="showcase" aria-label="About this prototype">
@@ -1293,7 +1298,7 @@ html.tv .showcase { display: none !important; }
         <div class="souv-row"><button class="btn btn-ghost" id="tlogShare">Share log</button><button class="btn btn-ghost" id="tlogClear">Clear log</button></div></div>
       <button class="btn btn-ghost" id="resetWalk" style="margin-top:12px">Reset visited stops</button>
       <button class="btn btn-primary" id="closeSettings" style="margin-top:6px">Done</button>
-      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 31 Oct 13:30 UTC</p>
+      <p style="margin:8px 0 0;text-align:center;color:var(--muted);font-size:11.5px">Prototype · version 31 Oct 13:44 UTC</p>
     </div>
   </div>
   <!-- ===== Super app layer (super/super.html, inlined by build-prototype.py). Hidden with ?edition=preview. ===== -->
@@ -4676,10 +4681,14 @@ html.tv .showcase { display: none !important; }
     const TV = /MeduTV/.test(navigator.userAgent) || new URLSearchParams(location.search).has('tv');
     if (!TV) return;
     const root = document.getElementById('app');
-    document.documentElement.classList.add('tv'); root.classList.add('tv', 'kbd');
+    document.documentElement.classList.add('tv'); root.classList.add('tv', 'kbd', 'plaincap'); // plain captions: no per-word animation
+    // Audio contexts made from now on ask for the larger, steadier buffer: on a TV chip the default low-latency one
+    // runs dry and the sound drops out. (The app only creates its context on the first key press, after this runs.)
+    if (window.AudioContext) { const AC = window.AudioContext; window.AudioContext = class extends AC { constructor(o) { super(Object.assign({ latencyHint: 'playback' }, o)); } }; window.webkitAudioContext = window.AudioContext; }
     document.addEventListener('pointerdown', () => setTimeout(() => root.classList.add('kbd'), 0), true); // polish drops focus rings on taps; a TV always shows them
     // Camera, mic, GPS, compass and file inputs make no sense on a TV; the layers hide what carries these markers.
     root.querySelectorAll('input[type=file], #installBtn').forEach((n) => { n.hidden = true; });
+    { const bar = root.querySelector('#album .dots-bar'); if (bar) bar.insertAdjacentHTML('beforeend', '<span class="tv-hint" aria-hidden="true">◀ ▶ chapters · OK select · ▲ ▼ buttons</span>'); }
     { const ca = document.getElementById('closeAlbum'); if (ca && ca.lastChild) ca.lastChild.textContent = 'Home'; } // there is no map on the TV
     if (ASSETS) document.getElementById('intro').style.setProperty('--intro-img', "url('img/hassan-portal.jpg')"); // a 16:9 photo for a 16:9 screen (site build)
 
@@ -4730,6 +4739,7 @@ html.tv .showcase { display: none !important; }
       const k = e.key; if (!/^Arrow/.test(k)) return;
       const f = current(), side = k === 'ArrowLeft' || k === 'ArrowRight';
       if (side && (typing(f) || (f && f.type === 'range'))) return;
+      if (side && albumOpen() && layer() === root && document.getElementById('stage').classList.contains('off')) return; // in the play, left/right are previous/next chapter (the album's own handler)
       if (!f) { e.preventDefault(); e.stopImmediatePropagation(); focusEl(home()); return; }
       const n = best(f, k);
       if (n) { e.preventDefault(); e.stopImmediatePropagation(); focusEl(n); return; }
@@ -4741,17 +4751,18 @@ html.tv .showcase { display: none !important; }
       const k = e.key, f = current();
       if (k === 'Enter' || e.keyCode === 23) {
         if (e.defaultPrevented) return;
-        if (!f) { e.preventDefault(); focusEl(home()); return; }
+        if (!f) { e.preventDefault(); const h = home(); if (h) { focusEl(h); h.click(); } return; } // OK with nothing highlighted means the main button
         if (!f.matches('button, a[href], input, select, textarea')) { e.preventDefault(); f.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true })); }
       }
     });
     // Keep a focus on screen as screens, overlays and scenes change, so OK always does something.
     // Checked twice a second (screens fade in, so the moment a card appears its buttons may not be landable yet).
     // The cheap test runs first; the full search only when the focus is gone or sits somewhere hidden.
+    let tick = 0;
     setInterval(() => {
       const a = document.activeElement;
       const lost = !a || a === document.body || !layer().contains(a) || a.closest('[hidden], .off') || a.disabled;
-      if (lost || !current()) { const h = home(); if (h) focusEl(h); }
+      if (lost || (++tick % 4 === 0 && !current())) { const h = home(); if (h) focusEl(h); } // full check only every 2 s: layout reads cost a TV chip
     }, 500);
     // No map on a TV: whenever the app would show it (leaving a play, first run), the welcome screen comes back instead.
     const map = document.getElementById('map'), intro = document.getElementById('intro');
