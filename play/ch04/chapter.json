@@ -1,0 +1,172 @@
+{
+ "id": "ch04",
+ "n": 4,
+ "title": "The portal",
+ "place": "In the lane, a few steps back from the main portal, facing it.",
+ "mix": "dialogue/mix.mp3",
+ "lines": "dialogue/lines.json",
+ "speakers": {
+  "narrator": "Narrator",
+  "maqrizi": "al-Maqrizi",
+  "sultan": "Sultan Hasan",
+  "bashir": "Bashir"
+ },
+ "shots": [],
+ "pano": {
+  "kind": "flat",
+  "src": "shots/hassan-portal.jpg",
+  "haov": 92,
+  "vaov": 52,
+  "credit": "Ovedc, CC BY-SA 4.0, Wikimedia Commons",
+  "note": "Flat stand-in until a real 360 source is confirmed"
+ },
+ "find": {
+  "on": "photo",
+  "src": "shots/hassan-r3-3.jpg",
+  "x": 0.16,
+  "y": 0.79,
+  "r": 0.08,
+  "crop": [
+   0,
+   0.3,
+   1,
+   0.83
+  ],
+  "prompt": "Find it: tap the medallion at the foot of the left-hand niche.",
+  "answer": "One medallion was carved; its twin was only drawn, still waiting for a chisel.",
+  "verify": true
+ },
+ "quiz": [
+  {
+   "q": "Why is the portal turned 17° out from the wall?",
+   "options": [
+    "To face Mecca",
+    "To be seen from the Citadel",
+    "To follow the old street"
+   ],
+   "correct": 1,
+   "why": "It was angled so it could be seen from the sultan's palace on the Citadel hill.",
+   "cite": "W"
+  }
+ ],
+ "onsite": {
+  "stand": "Stand in the lane a few steps back from the main portal and face it."
+ },
+ "lineTags": {
+  "2": "Unverified on site: the Citadel's direction from here. The 17 degrees and 'most likely to be seen from the Citadel': Wikipedia, after Behrens-Abouseif",
+  "3": "Dramatised: the sultan watching his portal from the Citadel is invented; the portal was turned to face the Citadel: Wikipedia, after Behrens-Abouseif",
+  "4": "Portal nearly 38 m high (Behrens-Abouseif via Wikipedia; Williams gives 36 m for the building) and the muqarnas hood: Wikipedia",
+  "5": "Two tall niches, and black marble panels with white Kufic of Surat al-Fath (the Sura of Victory): Wikipedia",
+  "6": "Dramatised: Bashir's presence at the carving is invented; the method (a master draws, apprentices cut) is what scholars think likely (Wikipedia, Williams 2018). The minaret over the door: al-Maqrizi, Khitat",
+  "7": "Four minarets planned, the one over the door fell and its twin was never built: al-Maqrizi, Khitat. The ghost minaret is the 3D thread's reconstruction",
+  "9": "About 300 dead, orphans of the sabil school among them: al-Maqrizi, Khitat",
+  "10": "al-Maqrizi, Khitat, his own words, abridged; 'Misr' here is Fustat",
+  "12": "Killed 33 days after the fall; never rebuilt: al-Maqrizi, Khitat",
+  "13": "Bashir al-Jamdar finished the marble: al-Maqrizi, Khitat",
+  "14": "Unverified: which niche holds the medallion",
+  "15": "One medallion carved, its twin only outlined: Wikipedia, after Behrens-Abouseif"
+ },
+ "next": "Step inside. The answer waits in the hall.",
+ "status": "dialogue edition, draft: historical people speak, the narrator sets the scene; on-site only",
+ "modes": {
+  "home": {
+   "mix": "dialogue/mix.mp3"
+  },
+  "site": {
+   "mix": "dialogue/mix-onsite.mp3",
+   "inserts": "dialogue/onsite.json",
+   "stage": {
+    "reveals": [
+     {
+      "t0": 9.84,
+      "t1": 14.84,
+      "kind": "still",
+      "cue": "al-Maqrizi",
+      "label": "Taqi al-Din al-Maqrizi · historian of Cairo, 1364–1442 · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/maqrizi.jpg"
+     },
+     {
+      "t0": 31.14,
+      "t1": 36.14,
+      "kind": "still",
+      "cue": "Sultan Hasan",
+      "label": "al-Nasir Hasan · sultan, 1347–51 and 1354–61 · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/sultan.jpg"
+     },
+     {
+      "t0": 56.13,
+      "t1": 61.13,
+      "kind": "still",
+      "cue": "Bashir",
+      "label": "Bashir al-Jamdar · palace eunuch who finished the marble · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/bashir.jpg"
+     },
+     {
+      "kind": "clip",
+      "src": "model-shots/M6-ghost-pov.mp4",
+      "cue": "Raise your phone to the top of the portal",
+      "label": "The minaret that stood on the portal · a reconstruction, not a record",
+      "t0": 74.99,
+      "t1": 83.49
+     },
+     {
+      "kind": "dark",
+      "buzz": [
+       120,
+       60,
+       520
+      ],
+      "t0": 87.21,
+      "t1": 89.41
+     },
+     {
+      "kind": "wipe",
+      "cue": "Hold it up to the portal: then and now",
+      "then": "stage/then-portal-bonfils.jpg",
+      "thenCap": "1870s · Bonfils, Library of Congress",
+      "now": "shots/hassan-portal.jpg",
+      "nowCap": "Today · Ovedc, CC BY-SA 4.0, Wikimedia Commons",
+      "t0": 131.75,
+      "t1": 142.75
+     }
+    ]
+   }
+  }
+ },
+ "siteOnly": true,
+ "edition": "dialogue",
+ "_planDefault": [
+  {
+   "t": 0,
+   "x": 50.0,
+   "y": 10.0,
+   "facing": 215
+  },
+  {
+   "at": {
+    "l": 0,
+    "w": 7
+   },
+   "x": 50.0,
+   "y": 10.0,
+   "facing": 140,
+   "ms": 900
+  },
+  {
+   "at": {
+    "l": 1,
+    "w": 0
+   },
+   "x": 50.0,
+   "y": 10.0,
+   "facing": 215,
+   "ms": 900
+  }
+ ]
+}

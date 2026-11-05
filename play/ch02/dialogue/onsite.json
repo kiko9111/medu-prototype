@@ -1,0 +1,27 @@
+{
+ "note": "Look pauses for the on-site version; on-site t = base t + sum(dur of inserts with at <= t). Made by tools/dialogue.py from dialogue/lines.json.",
+ "inserts": [
+  {
+   "at": 34.93,
+   "dur": 5.0,
+   "line": 1,
+   "element": "The two minarets",
+   "cue": "Find the two minarets: the taller one is the original."
+  },
+  {
+   "at": 44.21,
+   "dur": 5.0,
+   "line": 2,
+   "element": "The original minaret",
+   "cue": "Look up the original minaret, all the way to the tip."
+  },
+  {
+   "at": 112.62,
+   "dur": 5.0,
+   "line": 9,
+   "element": "The rebuilt minaret",
+   "cue": "Find the smaller, newer minaret with its single head."
+  }
+ ],
+ "total_added": 15.0
+}

@@ -1,0 +1,27 @@
+{
+ "note": "Look pauses for the on-site version; on-site t = base t + sum(dur of inserts with at <= t). Made by tools/dialogue.py from dialogue/lines.json.",
+ "inserts": [
+  {
+   "at": 45.5,
+   "dur": 6.0,
+   "line": 3,
+   "element": "The Kufic band",
+   "cue": "Look high along the walls: the giant Kufic band."
+  },
+  {
+   "at": 56.94,
+   "dur": 6.0,
+   "line": 4,
+   "element": "The mihrab and the minbar",
+   "cue": "Find the sunrise in the hood of the prayer niche, and the pulpit beside it."
+  },
+  {
+   "at": 108.0,
+   "dur": 5.0,
+   "line": 11,
+   "element": "The lamp chains",
+   "cue": "Look up at the chains hanging from the vault."
+  }
+ ],
+ "total_added": 17.0
+}

@@ -1,0 +1,55 @@
+{
+ "note": "Look pauses for the on-site version; on-site t = base t + sum(dur of inserts with at <= t). Made by tools/dialogue.py from dialogue/lines.json.",
+ "inserts": [
+  {
+   "at": 17.51,
+   "dur": 5.0,
+   "line": 1,
+   "element": "The Citadel on its hill",
+   "cue": "Turn around and find the Citadel on the hill."
+  },
+  {
+   "at": 38.2,
+   "dur": 6.0,
+   "line": 3,
+   "element": "The whole portal, nearly 38 m",
+   "cue": "Face the portal and look all the way up."
+  },
+  {
+   "at": 47.08,
+   "dur": 5.0,
+   "line": 4,
+   "element": "The muqarnas hood",
+   "cue": "Look at the hood above the door."
+  },
+  {
+   "at": 55.88,
+   "dur": 5.0,
+   "line": 5,
+   "element": "The niches and the Sura al-Fath panels",
+   "cue": "Find the two tall niches, and the dark panels with white writing above them."
+  },
+  {
+   "at": 131.5,
+   "dur": 4.0,
+   "line": 12,
+   "element": "Empty sky above the portal",
+   "cue": "Look above the portal: no minaret."
+  },
+  {
+   "at": 146.45,
+   "dur": 6.0,
+   "line": 14,
+   "element": "The foot of the left-hand niche",
+   "cue": "Go to the left-hand niche and look at its foot."
+  },
+  {
+   "at": 157.41,
+   "dur": 6.0,
+   "line": 15,
+   "element": "The uncarved twin",
+   "cue": "Find its twin: only the outline was drawn."
+  }
+ ],
+ "total_added": 37.0
+}

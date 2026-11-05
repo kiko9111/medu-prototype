@@ -1,0 +1,95 @@
+{
+ "id": "ch01",
+ "n": 1,
+ "title": "The square",
+ "place": "Salah al-Din Square, on the Citadel side, facing the domed tomb end of the mosque across the road.",
+ "mix": "dialogue/mix.mp3",
+ "lines": "dialogue/lines.json",
+ "speakers": {
+  "narrator": "Narrator",
+  "maqrizi": "al-Maqrizi",
+  "sultan": "Sultan Hasan"
+ },
+ "shots": [],
+ "quiz": [
+  {
+   "q": "How old was Hasan when he became sultan?",
+   "options": [
+    "Thirteen",
+    "Twenty-five",
+    "Forty"
+   ],
+   "correct": 0
+  }
+ ],
+ "onsite": {
+  "stand": "Salah al-Din Square, on the Citadel side, facing the domed tomb end of the mosque across the road."
+ },
+ "next": "Look up at them, one on each side of the dome.",
+ "modes": {
+  "home": {
+   "mix": "dialogue/mix.mp3"
+  },
+  "site": {
+   "mix": "dialogue/mix-onsite.mp3",
+   "inserts": "dialogue/onsite.json",
+   "stage": {
+    "reveals": [
+     {
+      "t0": 13.04,
+      "t1": 18.04,
+      "kind": "still",
+      "cue": "al-Maqrizi",
+      "label": "Taqi al-Din al-Maqrizi · historian of Cairo, 1364–1442 · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/maqrizi.jpg"
+     },
+     {
+      "t0": 67.02,
+      "t1": 72.02,
+      "kind": "still",
+      "cue": "Sultan Hasan",
+      "label": "al-Nasir Hasan · sultan, 1347–51 and 1354–61 · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/sultan.jpg"
+     },
+     {
+      "kind": "wipe",
+      "cue": "Hold it up to the mosque: then and now",
+      "then": "stage/then-ch01.jpg",
+      "thenCap": "19th century · photogravure, NYPL",
+      "now": "stage/now-ch01.jpg",
+      "nowCap": "Today · photo ولاء, public domain",
+      "t0": 97.5,
+      "t1": 107.5
+     }
+    ]
+   }
+  }
+ },
+ "status": "dialogue edition, draft: historical people speak, the narrator sets the scene; on-site only",
+ "lineTags": {
+  "0": "Unverified on site: the standing point and the view across the traffic",
+  "1": "His body was never found; he was never buried here: Wikipedia, after Behrens-Abouseif",
+  "2": "Rumayla, the fleur-de-lis crest and the tiled triangles: Wikipedia",
+  "3": "al-Maqrizi, Khitat, his own words",
+  "5": "Sultan at 13 in 748 AH; arrested 1351 and held three years: Wikipedia. The 1347 conversion is the validator's to check",
+  "7": "The palace of the emir Yalbugha al-Yahyawi, demolished for the mosque: al-Maqrizi, Khitat; Wikipedia. The order's words are dramatised",
+  "8": "Dramatised: the order's words are invented. The palace of the emir Yalbugha al-Yahyawi was demolished for the mosque: al-Maqrizi, Khitat; Wikipedia",
+  "9": "Dramatised: the order's words are invented. The palace of the emir Yalbugha al-Yahyawi was demolished for the mosque: al-Maqrizi, Khitat; Wikipedia",
+  "10": "al-Maqrizi, Khitat",
+  "11": "'Probably to make it more prominent when seen from the Citadel': Wikipedia"
+ },
+ "siteOnly": true,
+ "edition": "dialogue",
+ "_planDefault": [
+  {
+   "t": 0,
+   "x": 81.2,
+   "y": 77.0,
+   "facing": 312
+  }
+ ]
+}

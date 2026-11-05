@@ -1,0 +1,1445 @@
+[
+ {
+  "who": "narrator",
+  "beat": 1,
+  "say": "Inside the door now, in the small domed hall. Face the back wall of marble. Three men claim this room: a historian, and two sultans. Neither sultan built it.",
+  "after": 0.6,
+  "file": "00-narrator-d836e317.mp3",
+  "t0": 1.0,
+  "t1": 13.8,
+  "w": [
+   [
+    "Inside",
+    1.1
+   ],
+   [
+    "the",
+    1.5
+   ],
+   [
+    "door",
+    1.64
+   ],
+   [
+    "now,",
+    1.92
+   ],
+   [
+    "in",
+    2.56
+   ],
+   [
+    "the",
+    2.66
+   ],
+   [
+    "small",
+    2.82
+   ],
+   [
+    "domed",
+    3.2
+   ],
+   [
+    "hall.",
+    3.56
+   ],
+   [
+    "Face",
+    4.82
+   ],
+   [
+    "the",
+    5.1
+   ],
+   [
+    "back",
+    5.2
+   ],
+   [
+    "wall",
+    5.5
+   ],
+   [
+    "of",
+    5.74
+   ],
+   [
+    "marble.",
+    5.88
+   ],
+   [
+    "Three",
+    7.3
+   ],
+   [
+    "men",
+    7.6
+   ],
+   [
+    "claim",
+    7.9
+   ],
+   [
+    "this",
+    8.22
+   ],
+   [
+    "room:",
+    8.44
+   ],
+   [
+    "a",
+    9.34
+   ],
+   [
+    "historian,",
+    9.42
+   ],
+   [
+    "and",
+    10.34
+   ],
+   [
+    "two",
+    10.54
+   ],
+   [
+    "sultans.",
+    10.8
+   ],
+   [
+    "Neither",
+    12.52
+   ],
+   [
+    "sultan",
+    12.88
+   ],
+   [
+    "built",
+    13.34
+   ],
+   [
+    "it.",
+    13.62
+   ]
+  ],
+  "ar": "",
+  "cap": "Inside the door now, in the small domed hall. Face the back wall of marble. Three men claim this room: a historian, and two sultans. Neither sultan built it."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 1,
+  "say": "What door would close that gateway? A bronze one. As far as anyone knew, I wrote, none like it had ever been made. It is not here. It hangs at Bab Zuweila, on another sultan's mosque. You will meet him.",
+  "tag": "'The bronze door, the like of which was never made': al-Maqrizi, Khitat. The door at al-Mu'ayyad's mosque today: Wikipedia (Williams 2018)",
+  "file": "01-maqrizi-e290fd44.mp3",
+  "t0": 14.4,
+  "t1": 31.52,
+  "w": [
+   [
+    "What",
+    14.48
+   ],
+   [
+    "door",
+    14.7
+   ],
+   [
+    "would",
+    15.16
+   ],
+   [
+    "close",
+    15.4
+   ],
+   [
+    "that",
+    15.88
+   ],
+   [
+    "gateway?",
+    16.22
+   ],
+   [
+    "A",
+    17.46
+   ],
+   [
+    "bronze",
+    17.56
+   ],
+   [
+    "one.",
+    18.28
+   ],
+   [
+    "As",
+    19.0
+   ],
+   [
+    "far",
+    19.22
+   ],
+   [
+    "as",
+    19.46
+   ],
+   [
+    "anyone",
+    19.64
+   ],
+   [
+    "knew,",
+    20.06
+   ],
+   [
+    "I",
+    20.6
+   ],
+   [
+    "wrote,",
+    20.68
+   ],
+   [
+    "none",
+    21.46
+   ],
+   [
+    "like",
+    21.8
+   ],
+   [
+    "it",
+    22.1
+   ],
+   [
+    "had",
+    22.26
+   ],
+   [
+    "ever",
+    22.52
+   ],
+   [
+    "been",
+    22.72
+   ],
+   [
+    "made.",
+    22.92
+   ],
+   [
+    "It",
+    24.06
+   ],
+   [
+    "is",
+    24.16
+   ],
+   [
+    "not",
+    24.34
+   ],
+   [
+    "here.",
+    24.6
+   ],
+   [
+    "It",
+    25.54
+   ],
+   [
+    "hangs",
+    25.68
+   ],
+   [
+    "at",
+    26.08
+   ],
+   [
+    "Bab",
+    26.3
+   ],
+   [
+    "Zuweila,",
+    26.68
+   ],
+   [
+    "on",
+    27.84
+   ],
+   [
+    "another",
+    27.98
+   ],
+   [
+    "sultan's",
+    28.64
+   ],
+   [
+    "mosque.",
+    29.3
+   ],
+   [
+    "You",
+    30.66
+   ],
+   [
+    "will",
+    30.82
+   ],
+   [
+    "meet",
+    31.02
+   ],
+   [
+    "him.",
+    31.22
+   ]
+  ],
+  "ar": "",
+  "cap": "What door would close that gateway? A bronze one. As far as anyone knew, I wrote, none like it had ever been made. It is not here. It hangs at Bab Zuweila, on another sultan's mosque. You will meet him."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 2,
+  "say": "Look up.",
+  "look": {
+   "dur": 5,
+   "cue": "Look up into the small dome.",
+   "element": "The vestibule dome"
+  },
+  "file": "02-maqrizi-6643d265.mp3",
+  "t0": 31.92,
+  "t1": 32.88,
+  "w": [
+   [
+    "Look",
+    32.02
+   ],
+   [
+    "up.",
+    32.28
+   ]
+  ],
+  "ar": "",
+  "cap": "Look up."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 2,
+  "say": "A small dome, ringed with stalactite vaults. It recalls the churches of Byzantium, and may echo the craftsmen of Armenia. Now the back wall: a square of red and white marble, knotted in the Syrian style.",
+  "tag": "'Reminiscent of Byzantine architecture, but may have been inspired from Armenian craftsmanship'; the Syrian-style marble square: Wikipedia",
+  "look": {
+   "dur": 5,
+   "cue": "Find the square of red and white marble on the back wall.",
+   "element": "The marble square"
+  },
+  "file": "03-maqrizi-283872f5.mp3",
+  "t0": 33.28,
+  "t1": 50.19,
+  "w": [
+   [
+    "A",
+    33.4
+   ],
+   [
+    "small",
+    33.52
+   ],
+   [
+    "dome,",
+    34.0
+   ],
+   [
+    "ringed",
+    35.02
+   ],
+   [
+    "with",
+    35.46
+   ],
+   [
+    "stalactite",
+    35.78
+   ],
+   [
+    "vaults.",
+    36.66
+   ],
+   [
+    "It",
+    37.84
+   ],
+   [
+    "recalls",
+    37.96
+   ],
+   [
+    "the",
+    38.54
+   ],
+   [
+    "churches",
+    38.7
+   ],
+   [
+    "of",
+    39.22
+   ],
+   [
+    "Byzantium,",
+    39.38
+   ],
+   [
+    "and",
+    40.7
+   ],
+   [
+    "may",
+    41.08
+   ],
+   [
+    "echo",
+    41.36
+   ],
+   [
+    "the",
+    41.74
+   ],
+   [
+    "craftsmen",
+    41.88
+   ],
+   [
+    "of",
+    42.56
+   ],
+   [
+    "Armenia.",
+    42.74
+   ],
+   [
+    "Now",
+    44.28
+   ],
+   [
+    "the",
+    44.44
+   ],
+   [
+    "back",
+    44.54
+   ],
+   [
+    "wall:",
+    44.86
+   ],
+   [
+    "a",
+    45.74
+   ],
+   [
+    "square",
+    45.88
+   ],
+   [
+    "of",
+    46.2
+   ],
+   [
+    "red",
+    46.36
+   ],
+   [
+    "and",
+    46.78
+   ],
+   [
+    "white",
+    46.98
+   ],
+   [
+    "marble,",
+    47.38
+   ],
+   [
+    "knotted",
+    48.2
+   ],
+   [
+    "in",
+    48.82
+   ],
+   [
+    "the",
+    48.92
+   ],
+   [
+    "Syrian",
+    49.08
+   ],
+   [
+    "style.",
+    49.6
+   ]
+  ],
+  "ar": "",
+  "cap": "A small dome, ringed with stalactite vaults. It recalls the churches of Byzantium, and may echo the craftsmen of Armenia. Now the back wall: a square of red and white marble, knotted in the Syrian style."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 3,
+  "say": "قَلَّمَا تَكُونُ فِتْنَةٌ بَيْنَ أَهْلِ الدَّوْلَةِ إِلَّا وَيَصْعَدُ عِدَّةٌ مِنَ الْأُمَرَاءِ إِلَى أَعْلَاهُ، وَيَصِيرُ الرَّمْيُ مِنْهُ عَلَى الْقَلْعَةِ.",
+  "cap": "Hardly was there strife among the rulers, but emirs climbed to its top and shot from it at the Citadel.",
+  "tag": "al-Maqrizi, Khitat, his own words, abridged",
+  "file": "04-maqrizi-ba8b34f7.mp3",
+  "t0": 50.59,
+  "t1": 61.15,
+  "w": [
+   [
+    "Hardly",
+    50.69
+   ],
+   [
+    "was",
+    51.37
+   ],
+   [
+    "there",
+    51.76
+   ],
+   [
+    "strife",
+    52.46
+   ],
+   [
+    "among",
+    52.99
+   ],
+   [
+    "the",
+    53.81
+   ],
+   [
+    "rulers,",
+    54.31
+   ],
+   [
+    "but",
+    55.06
+   ],
+   [
+    "emirs",
+    55.46
+   ],
+   [
+    "climbed",
+    56.13
+   ],
+   [
+    "to",
+    56.9
+   ],
+   [
+    "its",
+    57.12
+   ],
+   [
+    "top",
+    57.6
+   ],
+   [
+    "and",
+    58.26
+   ],
+   [
+    "shot",
+    58.74
+   ],
+   [
+    "from",
+    59.12
+   ],
+   [
+    "it",
+    59.47
+   ],
+   [
+    "at",
+    59.74
+   ],
+   [
+    "the",
+    60.15
+   ],
+   [
+    "Citadel.",
+    60.47
+   ]
+  ],
+  "ar": "قَلَّمَا تَكُونُ فِتْنَةٌ بَيْنَ أَهْلِ الدَّوْلَةِ إِلَّا وَيَصْعَدُ عِدَّةٌ مِنَ الْأُمَرَاءِ إِلَى أَعْلَاهُ، وَيَصِيرُ الرَّمْيُ مِنْهُ عَلَى الْقَلْعَةِ."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 3,
+  "say": "The mosque rose right across from the Citadel. That worked both ways: hardly was there strife among the rulers, but emirs climbed to its roof and shot from it at the Citadel.",
+  "after": 0.5,
+  "file": "05-maqrizi-6a2a9fd8.mp3",
+  "t0": 61.55,
+  "t1": 74.5,
+  "w": [
+   [
+    "The",
+    61.64
+   ],
+   [
+    "mosque",
+    61.78
+   ],
+   [
+    "rose",
+    62.46
+   ],
+   [
+    "right",
+    63.14
+   ],
+   [
+    "across",
+    63.34
+   ],
+   [
+    "from",
+    63.92
+   ],
+   [
+    "the",
+    64.16
+   ],
+   [
+    "Citadel.",
+    64.32
+   ],
+   [
+    "That",
+    65.44
+   ],
+   [
+    "worked",
+    65.6
+   ],
+   [
+    "both",
+    65.9
+   ],
+   [
+    "ways:",
+    66.18
+   ],
+   [
+    "hardly",
+    67.2
+   ],
+   [
+    "was",
+    67.7
+   ],
+   [
+    "there",
+    67.98
+   ],
+   [
+    "strife",
+    68.28
+   ],
+   [
+    "among",
+    68.78
+   ],
+   [
+    "the",
+    69.04
+   ],
+   [
+    "rulers,",
+    69.18
+   ],
+   [
+    "but",
+    70.14
+   ],
+   [
+    "emirs",
+    70.28
+   ],
+   [
+    "climbed",
+    70.88
+   ],
+   [
+    "to",
+    71.4
+   ],
+   [
+    "its",
+    71.56
+   ],
+   [
+    "roof",
+    71.78
+   ],
+   [
+    "and",
+    72.54
+   ],
+   [
+    "shot",
+    72.78
+   ],
+   [
+    "from",
+    73.18
+   ],
+   [
+    "it",
+    73.4
+   ],
+   [
+    "at",
+    73.74
+   ],
+   [
+    "the",
+    73.88
+   ],
+   [
+    "Citadel.",
+    74.04
+   ]
+  ],
+  "ar": "",
+  "cap": "The mosque rose right across from the Citadel. That worked both ways: hardly was there strife among the rulers, but emirs climbed to its roof and shot from it at the Citadel."
+ },
+ {
+  "who": "barquq",
+  "beat": 3,
+  "say": "[hard] My roof. I am Barquq, the sultan. Thirteen ninety-one. I had the stairs torn down, and the platform before the door, and I had that bronze door walled up from behind. Let them climb now.",
+  "bed": "out",
+  "tag": "Barquq's demolition and the walled-up door, work begun 8 Safar 793 (January 1391): al-Maqrizi, Khitat. The words are dramatised",
+  "reveal": {
+   "kind": "dark",
+   "at_word": "walled",
+   "dur": 1.6,
+   "buzz": [
+    220
+   ]
+  },
+  "after": 1.2,
+  "file": "06-barquq-2dec68b7.mp3",
+  "t0": 75.0,
+  "t1": 91.48,
+  "w": [
+   [
+    "My",
+    75.22
+   ],
+   [
+    "roof.",
+    75.52
+   ],
+   [
+    "I",
+    76.66
+   ],
+   [
+    "am",
+    76.78
+   ],
+   [
+    "Barquq,",
+    76.96
+   ],
+   [
+    "the",
+    77.92
+   ],
+   [
+    "sultan.",
+    78.1
+   ],
+   [
+    "Thirteen",
+    79.5
+   ],
+   [
+    "ninety-one.",
+    80.12
+   ],
+   [
+    "I",
+    81.82
+   ],
+   [
+    "had",
+    81.92
+   ],
+   [
+    "the",
+    82.1
+   ],
+   [
+    "stairs",
+    82.28
+   ],
+   [
+    "torn",
+    82.82
+   ],
+   [
+    "down,",
+    83.12
+   ],
+   [
+    "and",
+    84.0
+   ],
+   [
+    "the",
+    84.1
+   ],
+   [
+    "platform",
+    84.26
+   ],
+   [
+    "before",
+    84.86
+   ],
+   [
+    "the",
+    85.2
+   ],
+   [
+    "door,",
+    85.36
+   ],
+   [
+    "and",
+    86.22
+   ],
+   [
+    "I",
+    86.42
+   ],
+   [
+    "had",
+    86.5
+   ],
+   [
+    "that",
+    86.7
+   ],
+   [
+    "bronze",
+    86.92
+   ],
+   [
+    "door",
+    87.44
+   ],
+   [
+    "walled",
+    87.9
+   ],
+   [
+    "up",
+    88.36
+   ],
+   [
+    "from",
+    88.52
+   ],
+   [
+    "behind.",
+    88.7
+   ],
+   [
+    "Let",
+    89.94
+   ],
+   [
+    "them",
+    90.18
+   ],
+   [
+    "climb",
+    90.46
+   ],
+   [
+    "now.",
+    90.9
+   ]
+  ],
+  "ar": "",
+  "cap": "My roof. I am Barquq, the sultan. Thirteen ninety-one. I had the stairs torn down, and the platform before the door, and I had that bronze door walled up from behind. Let them climb now."
+ },
+ {
+  "who": "barquq",
+  "beat": 3,
+  "say": "The call to prayer was sung from the doorstep. The faithful came in through a window of one of the colleges.",
+  "bed": "soft",
+  "tag": "al-Maqrizi, Khitat",
+  "file": "07-barquq-28a040f6.mp3",
+  "t0": 92.68,
+  "t1": 99.32,
+  "w": [
+   [
+    "The",
+    92.8
+   ],
+   [
+    "call",
+    92.96
+   ],
+   [
+    "to",
+    93.32
+   ],
+   [
+    "prayer",
+    93.5
+   ],
+   [
+    "was",
+    94.08
+   ],
+   [
+    "sung",
+    94.3
+   ],
+   [
+    "from",
+    94.64
+   ],
+   [
+    "the",
+    94.8
+   ],
+   [
+    "doorstep.",
+    94.94
+   ],
+   [
+    "The",
+    96.28
+   ],
+   [
+    "faithful",
+    96.44
+   ],
+   [
+    "came",
+    97.04
+   ],
+   [
+    "in",
+    97.32
+   ],
+   [
+    "through",
+    97.5
+   ],
+   [
+    "a",
+    97.74
+   ],
+   [
+    "window",
+    97.84
+   ],
+   [
+    "of",
+    98.3
+   ],
+   [
+    "one",
+    98.44
+   ],
+   [
+    "of",
+    98.56
+   ],
+   [
+    "the",
+    98.64
+   ],
+   [
+    "colleges.",
+    98.76
+   ]
+  ],
+  "ar": "",
+  "cap": "The call to prayer was sung from the doorstep. The faithful came in through a window of one of the colleges."
+ },
+ {
+  "who": "muayyad",
+  "beat": 4,
+  "say": "And twenty-five years later, I bought the door. al-Mu'ayyad, sultan. The door and the great bronze lamp, for five hundred dinars. A sealed door helps no one. I carried it to my own mosque, at Bab Zuweila.",
+  "bed": "up",
+  "tag": "Bought with the bronze lamp for 500 dinars and moved in December 1416: al-Maqrizi, Khitat. The words are dramatised",
+  "file": "08-muayyad-9b8115ad.mp3",
+  "t0": 99.72,
+  "t1": 114.2,
+  "w": [
+   [
+    "And",
+    99.78
+   ],
+   [
+    "twenty-five",
+    99.92
+   ],
+   [
+    "years",
+    100.28
+   ],
+   [
+    "later,",
+    100.5
+   ],
+   [
+    "I",
+    101.26
+   ],
+   [
+    "bought",
+    101.38
+   ],
+   [
+    "the",
+    101.6
+   ],
+   [
+    "door.",
+    101.7
+   ],
+   [
+    "al-Mu'ayyad,",
+    103.26
+   ],
+   [
+    "sultan.",
+    104.42
+   ],
+   [
+    "The",
+    105.56
+   ],
+   [
+    "door",
+    105.72
+   ],
+   [
+    "and",
+    106.2
+   ],
+   [
+    "the",
+    106.3
+   ],
+   [
+    "great",
+    106.56
+   ],
+   [
+    "bronze",
+    106.96
+   ],
+   [
+    "lamp,",
+    107.44
+   ],
+   [
+    "for",
+    108.02
+   ],
+   [
+    "five",
+    108.32
+   ],
+   [
+    "hundred",
+    108.6
+   ],
+   [
+    "dinars.",
+    108.84
+   ],
+   [
+    "A",
+    110.2
+   ],
+   [
+    "sealed",
+    110.32
+   ],
+   [
+    "door",
+    110.54
+   ],
+   [
+    "helps",
+    110.72
+   ],
+   [
+    "no",
+    111.04
+   ],
+   [
+    "one.",
+    111.2
+   ],
+   [
+    "I",
+    112.08
+   ],
+   [
+    "carried",
+    112.18
+   ],
+   [
+    "it",
+    112.36
+   ],
+   [
+    "to",
+    112.46
+   ],
+   [
+    "my",
+    112.54
+   ],
+   [
+    "own",
+    112.64
+   ],
+   [
+    "mosque,",
+    112.82
+   ],
+   [
+    "at",
+    113.28
+   ],
+   [
+    "Bab",
+    113.46
+   ],
+   [
+    "Zuweila.",
+    113.76
+   ]
+  ],
+  "ar": "",
+  "cap": "And twenty-five years later, I bought the door. al-Mu'ayyad, sultan. The door and the great bronze lamp, for five hundred dinars. A sealed door helps no one. I carried it to my own mosque, at Bab Zuweila."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 4,
+  "say": "A recorded price. A guide of your own day calls it a forced sale. The door never came back.",
+  "tag": "'Forcibly purchased at a modest price': Williams 2018, via Wikipedia",
+  "file": "09-maqrizi-1f48083e.mp3",
+  "t0": 114.6,
+  "t1": 123.08,
+  "w": [
+   [
+    "A",
+    114.68
+   ],
+   [
+    "recorded",
+    114.78
+   ],
+   [
+    "price.",
+    115.5
+   ],
+   [
+    "A",
+    116.58
+   ],
+   [
+    "guide",
+    116.68
+   ],
+   [
+    "of",
+    117.04
+   ],
+   [
+    "your",
+    117.16
+   ],
+   [
+    "own",
+    117.36
+   ],
+   [
+    "day",
+    117.62
+   ],
+   [
+    "calls",
+    118.0
+   ],
+   [
+    "it",
+    118.3
+   ],
+   [
+    "a",
+    118.92
+   ],
+   [
+    "forced",
+    119.12
+   ],
+   [
+    "sale.",
+    119.88
+   ],
+   [
+    "The",
+    121.14
+   ],
+   [
+    "door",
+    121.26
+   ],
+   [
+    "never",
+    121.92
+   ],
+   [
+    "came",
+    122.3
+   ],
+   [
+    "back.",
+    122.62
+   ]
+  ],
+  "ar": "",
+  "cap": "A recorded price. A guide of your own day calls it a forced sale. The door never came back."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 5,
+  "say": "One portal and one small room, three borrowed styles: Anatolian, Byzantine, Syrian. Find it: the red and white marble square.",
+  "tag": "Anatolian Seljuk portal, Byzantine-like dome, Syrian marble: Wikipedia",
+  "reveal": {
+   "kind": "wipe",
+   "cue": "Hold it up: then and now",
+   "then": "stage/then-ch05.jpg",
+   "thenCap": "19th century · photogravure, NYPL",
+   "now": "stage/now-ch05.jpg",
+   "nowCap": "Today · Hatem Moushir, CC BY-SA 4.0 (modified)",
+   "dur": 10
+  },
+  "after": 3.0,
+  "file": "10-maqrizi-e91bc485.mp3",
+  "t0": 123.48,
+  "t1": 135.4,
+  "w": [
+   [
+    "One",
+    123.62
+   ],
+   [
+    "portal",
+    123.84
+   ],
+   [
+    "and",
+    124.56
+   ],
+   [
+    "one",
+    124.8
+   ],
+   [
+    "small",
+    125.24
+   ],
+   [
+    "room,",
+    125.72
+   ],
+   [
+    "three",
+    126.64
+   ],
+   [
+    "borrowed",
+    127.26
+   ],
+   [
+    "styles:",
+    127.78
+   ],
+   [
+    "Anatolian,",
+    128.9
+   ],
+   [
+    "Byzantine,",
+    129.94
+   ],
+   [
+    "Syrian.",
+    131.16
+   ],
+   [
+    "Find",
+    132.32
+   ],
+   [
+    "it:",
+    132.64
+   ],
+   [
+    "the",
+    133.32
+   ],
+   [
+    "red",
+    133.46
+   ],
+   [
+    "and",
+    133.7
+   ],
+   [
+    "white",
+    133.92
+   ],
+   [
+    "marble",
+    134.34
+   ],
+   [
+    "square.",
+    134.84
+   ]
+  ],
+  "ar": "",
+  "cap": "One portal and one small room, three borrowed styles: Anatolian, Byzantine, Syrian. Find it: the red and white marble square."
+ },
+ {
+  "who": "barquq",
+  "beat": 6,
+  "say": "Now look at the passage ahead. It does not run straight. Why does it turn?",
+  "after": 0.8,
+  "file": "11-barquq-3f81df90.mp3",
+  "t0": 138.4,
+  "t1": 144.47,
+  "w": [
+   [
+    "Now",
+    138.55
+   ],
+   [
+    "look",
+    138.81
+   ],
+   [
+    "at",
+    138.97
+   ],
+   [
+    "the",
+    139.11
+   ],
+   [
+    "passage",
+    139.27
+   ],
+   [
+    "ahead.",
+    139.77
+   ],
+   [
+    "It",
+    140.81
+   ],
+   [
+    "does",
+    140.97
+   ],
+   [
+    "not",
+    141.23
+   ],
+   [
+    "run",
+    141.55
+   ],
+   [
+    "straight.",
+    141.99
+   ],
+   [
+    "Why",
+    143.09
+   ],
+   [
+    "does",
+    143.35
+   ],
+   [
+    "it",
+    143.55
+   ],
+   [
+    "turn?",
+    143.75
+   ]
+  ],
+  "ar": "",
+  "cap": "Now look at the passage ahead. It does not run straight. Why does it turn?"
+ },
+ {
+  "who": "narrator",
+  "beat": 6,
+  "say": "Follow it. Mind the dark.",
+  "file": "12-narrator-db9a1c20.mp3",
+  "t0": 145.27,
+  "t1": 147.27,
+  "w": [
+   [
+    "Follow",
+    145.37
+   ],
+   [
+    "it.",
+    145.63
+   ],
+   [
+    "Mind",
+    146.43
+   ],
+   [
+    "the",
+    146.71
+   ],
+   [
+    "dark.",
+    146.83
+   ]
+  ],
+  "ar": "",
+  "cap": "Follow it. Mind the dark."
+ }
+]

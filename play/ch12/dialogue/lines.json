@@ -1,0 +1,1308 @@
+[
+ {
+  "who": "narrator",
+  "beat": 1,
+  "say": "Outside again, on the north-west side, by the ruins. Then back into the lane, facing the mosque opposite. The last stop.",
+  "tag": "Unverified: whether the ruins are open or only seen over a fence; if only seen, play this from the lane",
+  "after": 0.6,
+  "file": "00-narrator-713a411d.mp3",
+  "t0": 1.0,
+  "t1": 10.28,
+  "w": [
+   [
+    "Outside",
+    1.12
+   ],
+   [
+    "again,",
+    1.62
+   ],
+   [
+    "on",
+    2.2
+   ],
+   [
+    "the",
+    2.3
+   ],
+   [
+    "north-west",
+    2.42
+   ],
+   [
+    "side,",
+    3.12
+   ],
+   [
+    "by",
+    3.7
+   ],
+   [
+    "the",
+    3.86
+   ],
+   [
+    "ruins.",
+    3.98
+   ],
+   [
+    "Then",
+    5.4
+   ],
+   [
+    "back",
+    5.64
+   ],
+   [
+    "into",
+    5.88
+   ],
+   [
+    "the",
+    6.08
+   ],
+   [
+    "lane,",
+    6.18
+   ],
+   [
+    "facing",
+    6.94
+   ],
+   [
+    "the",
+    7.28
+   ],
+   [
+    "mosque",
+    7.42
+   ],
+   [
+    "opposite.",
+    7.82
+   ],
+   [
+    "The",
+    9.22
+   ],
+   [
+    "last",
+    9.36
+   ],
+   [
+    "stop.",
+    9.92
+   ]
+  ],
+  "ar": "",
+  "cap": "Outside again, on the north-west side, by the ruins. Then back into the lane, facing the mosque opposite. The last stop."
+ },
+ {
+  "who": "sultan",
+  "beat": 1,
+  "say": "What was this place, really? Not just a mosque. A working town. On this side I built a primary school for children, with latrines, and fountains for washing.",
+  "tag": "A maktab, latrines and ablutions fountains on the north-west side: Wikipedia",
+  "look": {
+   "dur": 6,
+   "cue": "Look over the ruins on this side of the mosque.",
+   "element": "The ruins"
+  },
+  "file": "01-sultan-035679b8.mp3",
+  "t0": 10.88,
+  "t1": 20.88,
+  "w": [
+   [
+    "What",
+    10.98
+   ],
+   [
+    "was",
+    11.2
+   ],
+   [
+    "this",
+    11.46
+   ],
+   [
+    "place,",
+    11.68
+   ],
+   [
+    "really?",
+    12.04
+   ],
+   [
+    "Not",
+    12.82
+   ],
+   [
+    "just",
+    13.0
+   ],
+   [
+    "a",
+    13.2
+   ],
+   [
+    "mosque.",
+    13.32
+   ],
+   [
+    "A",
+    14.24
+   ],
+   [
+    "working",
+    14.36
+   ],
+   [
+    "town.",
+    14.82
+   ],
+   [
+    "On",
+    15.98
+   ],
+   [
+    "this",
+    16.12
+   ],
+   [
+    "side",
+    16.34
+   ],
+   [
+    "I",
+    16.72
+   ],
+   [
+    "built",
+    16.82
+   ],
+   [
+    "a",
+    17.04
+   ],
+   [
+    "primary",
+    17.12
+   ],
+   [
+    "school",
+    17.7
+   ],
+   [
+    "for",
+    18.0
+   ],
+   [
+    "children,",
+    18.2
+   ],
+   [
+    "with",
+    18.66
+   ],
+   [
+    "latrines,",
+    18.84
+   ],
+   [
+    "and",
+    19.58
+   ],
+   [
+    "fountains",
+    19.8
+   ],
+   [
+    "for",
+    20.28
+   ],
+   [
+    "washing.",
+    20.46
+   ]
+  ],
+  "ar": "",
+  "cap": "What was this place, really? Not just a mosque. A working town. On this side I built a primary school for children, with latrines, and fountains for washing."
+ },
+ {
+  "who": "herz",
+  "beat": 2,
+  "say": "Look at the row of arched rooms. They may have been shops, part of a weapons market. And there: a long pool and a waterwheel, probably part of an older aqueduct that carried water up to the royal stables of the Citadel.",
+  "tag": "The arched rooms 'may have been' shops of a weapons market; the pool and waterwheel 'probably' part of an older aqueduct: Wikipedia",
+  "look": {
+   "dur": 6,
+   "cue": "Find the row of arched rooms, and the pool with the waterwheel.",
+   "element": "The arched rooms and the waterwheel"
+  },
+  "file": "02-herz-2470e4ee.mp3",
+  "t0": 21.28,
+  "t1": 35.92,
+  "w": [
+   [
+    "Look",
+    21.36
+   ],
+   [
+    "at",
+    21.48
+   ],
+   [
+    "the",
+    21.58
+   ],
+   [
+    "row",
+    21.7
+   ],
+   [
+    "of",
+    21.9
+   ],
+   [
+    "arched",
+    22.14
+   ],
+   [
+    "rooms.",
+    22.54
+   ],
+   [
+    "They",
+    23.58
+   ],
+   [
+    "may",
+    23.7
+   ],
+   [
+    "have",
+    23.84
+   ],
+   [
+    "been",
+    23.98
+   ],
+   [
+    "shops,",
+    24.26
+   ],
+   [
+    "part",
+    25.02
+   ],
+   [
+    "of",
+    25.2
+   ],
+   [
+    "a",
+    25.3
+   ],
+   [
+    "weapons",
+    25.38
+   ],
+   [
+    "market.",
+    25.8
+   ],
+   [
+    "And",
+    26.94
+   ],
+   [
+    "there:",
+    27.08
+   ],
+   [
+    "a",
+    28.2
+   ],
+   [
+    "long",
+    28.32
+   ],
+   [
+    "pool",
+    28.72
+   ],
+   [
+    "and",
+    29.14
+   ],
+   [
+    "a",
+    29.26
+   ],
+   [
+    "waterwheel,",
+    29.4
+   ],
+   [
+    "probably",
+    30.52
+   ],
+   [
+    "part",
+    30.94
+   ],
+   [
+    "of",
+    31.16
+   ],
+   [
+    "an",
+    31.24
+   ],
+   [
+    "older",
+    31.46
+   ],
+   [
+    "aqueduct",
+    31.82
+   ],
+   [
+    "that",
+    32.66
+   ],
+   [
+    "carried",
+    32.88
+   ],
+   [
+    "water",
+    33.28
+   ],
+   [
+    "up",
+    33.76
+   ],
+   [
+    "to",
+    33.94
+   ],
+   [
+    "the",
+    34.06
+   ],
+   [
+    "royal",
+    34.18
+   ],
+   [
+    "stables",
+    34.64
+   ],
+   [
+    "of",
+    35.2
+   ],
+   [
+    "the",
+    35.3
+   ],
+   [
+    "Citadel.",
+    35.44
+   ]
+  ],
+  "ar": "",
+  "cap": "Look at the row of arched rooms. They may have been shops, part of a weapons market. And there: a long pool and a waterwheel, probably part of an older aqueduct that carried water up to the royal stables of the Citadel."
+ },
+ {
+  "who": "sultan",
+  "beat": 3,
+  "say": "All of it had to be paid for: teachers, students, water, lamps. So I gave the foundation vast endowments: farmland and villages in Egypt and in Syria. They were meant to last forever.",
+  "tag": "'Very great endowments' in Egypt and Syria: al-Maqrizi, Khitat",
+  "file": "03-sultan-44971979.mp3",
+  "t0": 36.32,
+  "t1": 49.76,
+  "w": [
+   [
+    "All",
+    36.48
+   ],
+   [
+    "of",
+    36.7
+   ],
+   [
+    "it",
+    36.8
+   ],
+   [
+    "had",
+    36.94
+   ],
+   [
+    "to",
+    37.08
+   ],
+   [
+    "be",
+    37.18
+   ],
+   [
+    "paid",
+    37.36
+   ],
+   [
+    "for:",
+    37.68
+   ],
+   [
+    "teachers,",
+    38.36
+   ],
+   [
+    "students,",
+    39.12
+   ],
+   [
+    "water,",
+    39.9
+   ],
+   [
+    "lamps.",
+    40.6
+   ],
+   [
+    "So",
+    41.86
+   ],
+   [
+    "I",
+    42.04
+   ],
+   [
+    "gave",
+    42.14
+   ],
+   [
+    "the",
+    42.34
+   ],
+   [
+    "foundation",
+    42.48
+   ],
+   [
+    "vast",
+    43.24
+   ],
+   [
+    "endowments:",
+    43.72
+   ],
+   [
+    "farmland",
+    44.92
+   ],
+   [
+    "and",
+    45.62
+   ],
+   [
+    "villages",
+    45.8
+   ],
+   [
+    "in",
+    46.3
+   ],
+   [
+    "Egypt",
+    46.56
+   ],
+   [
+    "and",
+    47.04
+   ],
+   [
+    "in",
+    47.2
+   ],
+   [
+    "Syria.",
+    47.42
+   ],
+   [
+    "They",
+    48.42
+   ],
+   [
+    "were",
+    48.54
+   ],
+   [
+    "meant",
+    48.66
+   ],
+   [
+    "to",
+    48.84
+   ],
+   [
+    "last",
+    48.98
+   ],
+   [
+    "forever.",
+    49.3
+   ]
+  ],
+  "ar": "",
+  "cap": "All of it had to be paid for: teachers, students, water, lamps. So I gave the foundation vast endowments: farmland and villages in Egypt and in Syria. They were meant to last forever."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 3,
+  "say": "I saw what happened to them.",
+  "file": "04-maqrizi-9f578462.mp3",
+  "t0": 50.16,
+  "t1": 52.15,
+  "w": [
+   [
+    "I",
+    50.31
+   ],
+   [
+    "saw",
+    50.45
+   ],
+   [
+    "what",
+    50.63
+   ],
+   [
+    "happened",
+    50.81
+   ],
+   [
+    "to",
+    51.19
+   ],
+   [
+    "them.",
+    51.31
+   ]
+  ],
+  "ar": "",
+  "cap": "I saw what happened to them."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 3,
+  "say": "فَلَمْ يُتْرَكْ مِنْهَا إِلَّا شَيْءٌ يَسِيرٌ، وَأُقْطِعَ أَكْثَرُ الْبِلَادِ الَّتِي وُقِفَتْ عَلَيْهَا لِلْجَمَاعَةِ مِنَ الْأُمَرَاءِ وَغَيْرِهِمْ.",
+  "cap": "Only a little of it was left. Most of the lands endowed for it were handed out to emirs and others.",
+  "tag": "al-Maqrizi, Khitat, his own words, abridged",
+  "file": "05-maqrizi-38394219.mp3",
+  "t0": 52.55,
+  "t1": 62.39,
+  "w": [
+   [
+    "Only",
+    52.67
+   ],
+   [
+    "a",
+    53.0
+   ],
+   [
+    "little",
+    53.09
+   ],
+   [
+    "of",
+    53.73
+   ],
+   [
+    "it",
+    53.99
+   ],
+   [
+    "was",
+    54.26
+   ],
+   [
+    "left.",
+    54.77
+   ],
+   [
+    "Most",
+    55.89
+   ],
+   [
+    "of",
+    56.49
+   ],
+   [
+    "the",
+    56.73
+   ],
+   [
+    "lands",
+    57.05
+   ],
+   [
+    "endowed",
+    57.53
+   ],
+   [
+    "for",
+    58.22
+   ],
+   [
+    "it",
+    58.57
+   ],
+   [
+    "were",
+    58.81
+   ],
+   [
+    "handed",
+    59.52
+   ],
+   [
+    "out",
+    60.3
+   ],
+   [
+    "to",
+    60.65
+   ],
+   [
+    "emirs",
+    60.82
+   ],
+   [
+    "and",
+    61.34
+   ],
+   [
+    "others.",
+    61.65
+   ]
+  ],
+  "ar": "فَلَمْ يُتْرَكْ مِنْهَا إِلَّا شَيْءٌ يَسِيرٌ، وَأُقْطِعَ أَكْثَرُ الْبِلَادِ الَّتِي وُقِفَتْ عَلَيْهَا لِلْجَمَاعَةِ مِنَ الْأُمَرَاءِ وَغَيْرِهِمْ."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 3,
+  "say": "Only a little was left. Most of the lands were handed out to emirs and others.",
+  "after": 0.5,
+  "file": "06-maqrizi-a03ddee1.mp3",
+  "t0": 62.79,
+  "t1": 68.36,
+  "w": [
+   [
+    "Only",
+    62.92
+   ],
+   [
+    "a",
+    63.12
+   ],
+   [
+    "little",
+    63.2
+   ],
+   [
+    "was",
+    63.44
+   ],
+   [
+    "left.",
+    63.66
+   ],
+   [
+    "Most",
+    64.64
+   ],
+   [
+    "of",
+    64.96
+   ],
+   [
+    "the",
+    65.06
+   ],
+   [
+    "lands",
+    65.18
+   ],
+   [
+    "were",
+    65.62
+   ],
+   [
+    "handed",
+    65.82
+   ],
+   [
+    "out",
+    66.18
+   ],
+   [
+    "to",
+    66.38
+   ],
+   [
+    "emirs",
+    66.64
+   ],
+   [
+    "and",
+    67.58
+   ],
+   [
+    "others.",
+    67.76
+   ]
+  ],
+  "ar": "",
+  "cap": "Only a little was left. Most of the lands were handed out to emirs and others."
+ },
+ {
+  "who": "herz",
+  "beat": 3,
+  "say": "Later, a sultan even tried to pull the mosque down. Fifteen hundred: his workers attacked the walls facing the Citadel for three days, and gave up.",
+  "tag": "Sultan Janbalat's three days of demolition in 1500: Wikipedia",
+  "file": "07-herz-27aac548.mp3",
+  "t0": 68.86,
+  "t1": 79.02,
+  "w": [
+   [
+    "Later,",
+    68.94
+   ],
+   [
+    "a",
+    69.72
+   ],
+   [
+    "sultan",
+    69.84
+   ],
+   [
+    "even",
+    70.26
+   ],
+   [
+    "tried",
+    70.52
+   ],
+   [
+    "to",
+    70.76
+   ],
+   [
+    "pull",
+    70.9
+   ],
+   [
+    "the",
+    71.08
+   ],
+   [
+    "mosque",
+    71.2
+   ],
+   [
+    "down.",
+    71.56
+   ],
+   [
+    "Fifteen",
+    72.86
+   ],
+   [
+    "hundred:",
+    73.3
+   ],
+   [
+    "his",
+    74.42
+   ],
+   [
+    "workers",
+    74.64
+   ],
+   [
+    "attacked",
+    75.06
+   ],
+   [
+    "the",
+    75.42
+   ],
+   [
+    "walls",
+    75.56
+   ],
+   [
+    "facing",
+    76.06
+   ],
+   [
+    "the",
+    76.4
+   ],
+   [
+    "Citadel",
+    76.52
+   ],
+   [
+    "for",
+    76.98
+   ],
+   [
+    "three",
+    77.14
+   ],
+   [
+    "days,",
+    77.48
+   ],
+   [
+    "and",
+    78.34
+   ],
+   [
+    "gave",
+    78.54
+   ],
+   [
+    "up.",
+    78.88
+   ]
+  ],
+  "ar": "",
+  "cap": "Later, a sultan even tried to pull the mosque down. Fifteen hundred: his workers attacked the walls facing the Citadel for three days, and gave up."
+ },
+ {
+  "who": "herz",
+  "beat": 4,
+  "say": "The town around it fell into ruins. The mosque stayed. When rulers tried to harm it, the people of Cairo spoke up, and repairs often followed. In my day, we mended it again.",
+  "tag": "Demolition attempts drew criticism and the authorities were pressured into repairs: Wikipedia. The Comité's repairs under Herz: Comité bulletins (researcher)",
+  "file": "08-herz-42c66a57.mp3",
+  "t0": 79.42,
+  "t1": 94.3,
+  "w": [
+   [
+    "The",
+    79.48
+   ],
+   [
+    "town",
+    79.62
+   ],
+   [
+    "around",
+    79.88
+   ],
+   [
+    "it",
+    80.18
+   ],
+   [
+    "fell",
+    80.86
+   ],
+   [
+    "into",
+    81.06
+   ],
+   [
+    "ruins.",
+    81.4
+   ],
+   [
+    "The",
+    82.98
+   ],
+   [
+    "mosque",
+    83.1
+   ],
+   [
+    "stayed.",
+    83.92
+   ],
+   [
+    "When",
+    85.16
+   ],
+   [
+    "rulers",
+    85.34
+   ],
+   [
+    "tried",
+    85.7
+   ],
+   [
+    "to",
+    85.92
+   ],
+   [
+    "harm",
+    86.04
+   ],
+   [
+    "it,",
+    86.26
+   ],
+   [
+    "the",
+    86.84
+   ],
+   [
+    "people",
+    86.96
+   ],
+   [
+    "of",
+    87.2
+   ],
+   [
+    "Cairo",
+    87.34
+   ],
+   [
+    "spoke",
+    87.92
+   ],
+   [
+    "up,",
+    88.28
+   ],
+   [
+    "and",
+    89.08
+   ],
+   [
+    "repairs",
+    89.2
+   ],
+   [
+    "often",
+    89.88
+   ],
+   [
+    "followed.",
+    90.26
+   ],
+   [
+    "In",
+    91.84
+   ],
+   [
+    "my",
+    91.96
+   ],
+   [
+    "day,",
+    92.2
+   ],
+   [
+    "we",
+    93.28
+   ],
+   [
+    "mended",
+    93.46
+   ],
+   [
+    "it",
+    93.78
+   ],
+   [
+    "again.",
+    93.92
+   ]
+  ],
+  "ar": "",
+  "cap": "The town around it fell into ruins. The mosque stayed. When rulers tried to harm it, the people of Cairo spoke up, and repairs often followed. In my day, we mended it again."
+ },
+ {
+  "who": "sultan",
+  "beat": 5,
+  "say": "A foundation was a small town: prayer, schools, water and shops, each serving the others. Find it: the waterwheel.",
+  "tag": "Our summary of the parts Wikipedia lists. Unverified: whether the waterwheel remains are visible; fallback: the row of arched rooms",
+  "file": "09-sultan-84e99179.mp3",
+  "t0": 94.7,
+  "t1": 103.74,
+  "w": [
+   [
+    "A",
+    94.82
+   ],
+   [
+    "foundation",
+    94.92
+   ],
+   [
+    "was",
+    95.6
+   ],
+   [
+    "a",
+    95.74
+   ],
+   [
+    "small",
+    95.86
+   ],
+   [
+    "town:",
+    96.2
+   ],
+   [
+    "prayer,",
+    97.08
+   ],
+   [
+    "schools,",
+    97.82
+   ],
+   [
+    "water",
+    98.7
+   ],
+   [
+    "and",
+    99.16
+   ],
+   [
+    "shops,",
+    99.38
+   ],
+   [
+    "each",
+    100.14
+   ],
+   [
+    "serving",
+    100.44
+   ],
+   [
+    "the",
+    100.78
+   ],
+   [
+    "others.",
+    100.96
+   ],
+   [
+    "Find",
+    102.04
+   ],
+   [
+    "it:",
+    102.34
+   ],
+   [
+    "the",
+    102.9
+   ],
+   [
+    "waterwheel.",
+    103.08
+   ]
+  ],
+  "ar": "",
+  "cap": "A foundation was a small town: prayer, schools, water and shops, each serving the others. Find it: the waterwheel."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 6,
+  "say": "And that mosque across the lane… it looks just as old. How old is it, really?",
+  "after": 0.5,
+  "file": "10-maqrizi-b2924905.mp3",
+  "t0": 104.14,
+  "t1": 110.94,
+  "w": [
+   [
+    "And",
+    104.24
+   ],
+   [
+    "that",
+    104.34
+   ],
+   [
+    "mosque",
+    104.6
+   ],
+   [
+    "across",
+    105.02
+   ],
+   [
+    "the",
+    105.44
+   ],
+   [
+    "lane…",
+    105.58
+   ],
+   [
+    "it",
+    106.78
+   ],
+   [
+    "looks",
+    106.92
+   ],
+   [
+    "just",
+    107.38
+   ],
+   [
+    "as",
+    107.76
+   ],
+   [
+    "old.",
+    108.12
+   ],
+   [
+    "How",
+    109.0
+   ],
+   [
+    "old",
+    109.36
+   ],
+   [
+    "is",
+    109.64
+   ],
+   [
+    "it,",
+    109.8
+   ],
+   [
+    "really?",
+    109.96
+   ]
+  ],
+  "ar": "",
+  "cap": "And that mosque across the lane… it looks just as old. How old is it, really?"
+ },
+ {
+  "who": "herz",
+  "beat": 6,
+  "say": "[amused] I could tell you. But that is the next story.",
+  "after": 0.6,
+  "file": "11-herz-da380f4b.mp3",
+  "t0": 111.44,
+  "t1": 114.32,
+  "w": [
+   [
+    "I",
+    111.58
+   ],
+   [
+    "could",
+    111.66
+   ],
+   [
+    "tell",
+    111.84
+   ],
+   [
+    "you.",
+    112.1
+   ],
+   [
+    "But",
+    113.16
+   ],
+   [
+    "that",
+    113.32
+   ],
+   [
+    "is",
+    113.48
+   ],
+   [
+    "the",
+    113.6
+   ],
+   [
+    "next",
+    113.72
+   ],
+   [
+    "story.",
+    114.0
+   ]
+  ],
+  "ar": "",
+  "cap": "I could tell you. But that is the next story."
+ },
+ {
+  "who": "narrator",
+  "beat": 6,
+  "say": "Cross the lane, and look up. That is the next story.",
+  "file": "12-narrator-c79c99f5.mp3",
+  "t0": 114.92,
+  "t1": 118.76,
+  "w": [
+   [
+    "Cross",
+    115.02
+   ],
+   [
+    "the",
+    115.34
+   ],
+   [
+    "lane,",
+    115.46
+   ],
+   [
+    "and",
+    115.98
+   ],
+   [
+    "look",
+    116.14
+   ],
+   [
+    "up.",
+    116.42
+   ],
+   [
+    "That",
+    117.62
+   ],
+   [
+    "is",
+    117.82
+   ],
+   [
+    "the",
+    117.96
+   ],
+   [
+    "next",
+    118.06
+   ],
+   [
+    "story.",
+    118.34
+   ]
+  ],
+  "ar": "",
+  "cap": "Cross the lane, and look up. That is the next story."
+ }
+]
