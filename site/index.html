@@ -221,7 +221,7 @@ body.big .capline{font-size:32px}
         <button class="pill quiet" id="btnPlan">Plan your visit · hours, dress, Friday</button>
       </div>
       <p class="small">The play only opens at the mosque. Bring headphones. Download it at home or at the hotel so it runs with no signal inside the walls.</p>
-      <div class="credit">Photo: ولاء, public domain, via Wikimedia Commons. Voices are AI; faces of historical people are imagined.</div>
+      <div class="credit">Photo: ولاء, public domain, via Wikimedia Commons.</div>
     </div>
   </div>
 </section>
@@ -508,7 +508,7 @@ function settingsSheet() {
   <div class="row"><div>Offline copy<div class="small">${S.dl ? 'Stored on this phone · ' + (S.dlMB || 40) + ' MB' : 'Not downloaded yet'}</div></div><button class="pill ghost" style="width:auto;padding:0 18px;min-height:40px" data-act="dl">${S.dl ? 'Refresh' : 'Download'}</button></div>
   <div class="row"><div>Plan your visit</div><button class="pill ghost" style="width:auto;padding:0 18px;min-height:40px" onclick="planSheet()">Open</button></div>
   <div class="row"><div>Start the walk again</div><button class="pill ghost" style="width:auto;padding:0 18px;min-height:40px" data-act="reset">Reset</button></div>
-  <p class="small" style="margin-top:16px">Medu · Sultan Hassan · on-site edition, preview. Voices: AI (ElevenLabs). Faces of historical people are imagined. Facts carry their sources in each stop's credits; lines marked Dramatised are our words.</p>
+  <p class="small" style="margin-top:16px">Medu · Sultan Hassan · on-site edition. Facts carry their sources in each stop's credits; lines marked Dramatised are our words.</p>
   <div class="btns"><button class="pill quiet" data-act="close">Close</button></div>`);
 }
 async function creditsSheet(n) {
@@ -519,7 +519,7 @@ async function creditsSheet(n) {
     rows.push(`<li><b>${esc(who)}</b>${l ? ': “' + esc((l.cap || l.say).slice(0, 70)) + ((l.cap || l.say).length > 70 ? '…' : '') + '”' : ''}<br><span class="small">${esc(tags[k])}</span></li>`);
   }
   const pics = [];
-  if (c.credits && typeof c.credits === 'object') for (const [p, v] of Object.entries(c.credits)) { if (v && typeof v === 'object') pics.push(`<li>${esc(v.note || p)}: ${esc(v.author || '')}${v.license ? ', ' + (v.licenseUrl ? `<a href="${esc(v.licenseUrl)}" target="_blank" rel="noopener">${esc(v.license)}</a>` : esc(v.license)) : ''}${v.source ? `, <a href="${esc(v.source)}" target="_blank" rel="noopener">${esc(v.sourceName || 'source')}</a>` : ''}</li>`); }
+  if (c.credits && typeof c.credits === 'object') for (const [p, v] of Object.entries(c.credits)) { if (v && typeof v === 'object') pics.push(`<li><b>${esc(v.what || v.note || p)}</b>: ${esc(v.author || '')}${v.license ? ', ' + (v.licenseUrl ? `<a href="${esc(v.licenseUrl)}" target="_blank" rel="noopener">${esc(v.license)}</a>` : esc(v.license)) : ''}${v.source ? `, <a href="${esc(v.source)}" target="_blank" rel="noopener">${esc(v.sourceName || 'source')}</a>` : ''}</li>`); }
   else {
     for (const r of ch.reveals) { if (r.kind === 'wipe') { pics.push(`<li>Then: ${esc(r.thenCap)}</li>`, `<li>Now: ${esc(r.nowCap)}</li>`); } else if (r.kind === 'clip') pics.push(`<li>${esc(r.label)}</li>`); else if (r.kind === 'still' && r.label) pics.push(`<li>Portrait: ${esc(r.label)}</li>`); }
     if (c.pano && c.pano.credit) pics.push(`<li>Stop photo: ${esc(c.pano.credit)}</li>`);
@@ -528,7 +528,6 @@ async function creditsSheet(n) {
     <p class="small">Where each fact comes from. “Dramatised” marks words we wrote for a real person; “Unverified” marks what we still have to check on site.</p>
     <h3>Sources, line by line</h3><ul>${rows.join('') || '<li>No notes for this stop.</li>'}</ul>
     <h3>Pictures</h3><ul>${pics.join('') || '<li>None.</li>'}</ul>
-    <h3>Voices</h3><p>AI voices (ElevenLabs). Historical faces are imagined.</p>
     <div class="btns"><button class="pill quiet" data-act="close">Close</button></div>`);
 }
 
