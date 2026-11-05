@@ -86,7 +86,7 @@
   "1": "Each madrasa centred on a small courtyard with four storeys of cells: Wikipedia",
   "2": "The small qibla iwan with its stucco band: Wikipedia. Up to 100 students per college and a keeper of the roof: the endowment as reproduced by Ali Mubarak, in Herz 1899 (page to confirm)",
   "3": "A reported anecdote: al-Suyuti, Husn al-muhadara, quoting Ibn Hajar. The spoken words are dramatised paraphrases",
-  "4": "Dramatised paraphrase of the anecdote in al-Suyuti, Husn al-muhadara, quoting Ibn Hajar. Arabic: \"of its own\" (wahdahu) cut, the voice could not say it; the English line keeps it",
+  "4": "Dramatised paraphrase of the anecdote in al-Suyuti, Husn al-muhadara, quoting Ibn Hajar. Arabic shortened; the English keeps 'of its own'",
   "5": "Dramatised paraphrase of the anecdote in al-Suyuti, Husn al-muhadara, quoting Ibn Hajar",
   "6": "Dramatised paraphrase of the anecdote in al-Suyuti, Husn al-muhadara, quoting Ibn Hajar",
   "7": "Dramatised paraphrase of the anecdote in al-Suyuti, Husn al-muhadara, quoting Ibn Hajar",
@@ -102,6 +102,28 @@
    "x": 32.0,
    "y": 40.0,
    "facing": 125
+  }
+ ],
+ "credits": [
+  {
+   "what": "Portraits",
+   "author": "MEDU",
+   "license": "Faces imagined",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "no likeness of these people survives",
+   "src": "_portrait"
+  },
+  {
+   "what": "Ney bed and bell",
+   "author": "MEDU",
+   "license": "Own work",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "synthesised",
+   "src": "_sound"
   }
  ]
 }

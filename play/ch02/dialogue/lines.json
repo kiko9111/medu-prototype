@@ -887,7 +887,7 @@
   "beat": 3,
   "say": "Jean de Thévenot, from France. I came in sixteen fifty-seven, a hundred and forty years after that siege, and the holes from the cannonballs were still there, mostly in the dome. Two years after my visit, the minaret fell.",
   "bed": "soft",
-  "tag": "Thévenot (1657) saw the cannon holes, mainly in the dome: researcher, ch07/research.md row 11. The 1660 chronicle and the 1659 fall: Wikipedia",
+  "tag": "Thévenot (1657) saw the cannon holes, mainly in the dome: Thévenot, quoted in Herz 1899. The 1660 chronicle and the 1659 fall: Wikipedia",
   "file": "08-thevenot-0eddcb75.mp3",
   "t0": 81.67,
   "t1": 96.71,
@@ -1235,7 +1235,7 @@
   "who": "herz",
   "beat": 5,
   "say": "So this pair tells two times at once. And the double head did come back, a century and a half after Hasan, on Sultan al-Ghuri's minaret at al-Azhar. Find it: the top of the original minaret.",
-  "tag": "The double head on al-Ghuri's minaret at al-Azhar: Wikipedia; exact year for the validator",
+  "tag": "The double head on al-Ghuri's minaret at al-Azhar: Wikipedia; 1509–10",
   "reveal": {
    "kind": "wipe",
    "cue": "Hold it up to the minarets: then and now",

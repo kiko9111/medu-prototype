@@ -77,7 +77,7 @@
   "3": "'Very great endowments' in Egypt and Syria: al-Maqrizi, Khitat",
   "5": "al-Maqrizi, Khitat, his own words, abridged",
   "7": "Sultan Janbalat's three days of demolition in 1500: Wikipedia",
-  "8": "Demolition attempts drew criticism and the authorities were pressured into repairs: Wikipedia. The Comité's repairs under Herz: Comité bulletins (researcher)",
+  "8": "Demolition attempts drew criticism and the authorities were pressured into repairs: Wikipedia. The Comité's repairs under Herz: Herz 1899, 'Travaux'",
   "9": "Our summary of the parts Wikipedia lists. Unverified: whether the waterwheel remains are visible; fallback: the row of arched rooms"
  },
  "siteOnly": true,
@@ -89,6 +89,28 @@
    "y": 32.0,
    "facing": 45,
    "ms": 600
+  }
+ ],
+ "credits": [
+  {
+   "what": "Portraits",
+   "author": "MEDU",
+   "license": "Faces imagined",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "no likeness of these people survives",
+   "src": "_portrait"
+  },
+  {
+   "what": "Ney bed and bell",
+   "author": "MEDU",
+   "license": "Own work",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "synthesised",
+   "src": "_sound"
   }
  ]
 }

@@ -110,5 +110,47 @@
    "y": 45.8,
    "facing": 125
   }
+ ],
+ "credits": [
+  {
+   "what": "Portraits",
+   "author": "MEDU",
+   "license": "Faces imagined",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "no likeness of these people survives",
+   "src": "_portrait"
+  },
+  {
+   "what": "The courtyard, 1839",
+   "author": "Pascal Coste, Architecture arabe 1839 (d. 1879) (NYPL image 82550)",
+   "license": "Public domain",
+   "licenseUrl": null,
+   "source": "https://digitalcollections.nypl.org/collections/3cf9b310-c6cf-012f-771a-58d385a7bc34",
+   "sourceName": "New York Public Library",
+   "note": "courtesy credit; cropped/resized",
+   "src": "stage/then-ch07.jpg"
+  },
+  {
+   "what": "The courtyard, today",
+   "author": "Ahmedsamirhamadah",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%AD%D8%B3%D9%86.jpg",
+   "sourceName": "Wikimedia Commons",
+   "note": "modified (cropped/resized)",
+   "src": "stage/now-ch07.jpg"
+  },
+  {
+   "what": "Ney bed and bell",
+   "author": "MEDU",
+   "license": "Own work",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "synthesised",
+   "src": "_sound"
+  }
  ]
 }

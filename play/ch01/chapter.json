@@ -75,7 +75,7 @@
   "1": "His body was never found; he was never buried here: Wikipedia, after Behrens-Abouseif",
   "2": "Rumayla, the fleur-de-lis crest and the tiled triangles: Wikipedia",
   "3": "al-Maqrizi, Khitat, his own words",
-  "5": "Sultan at 13 in 748 AH; arrested 1351 and held three years: Wikipedia. The 1347 conversion is the validator's to check",
+  "5": "Sultan at 13 in 748 AH; arrested 1351 and held three years: Wikipedia. 748 AH = 1347",
   "7": "The palace of the emir Yalbugha al-Yahyawi, demolished for the mosque: al-Maqrizi, Khitat; Wikipedia. The order's words are dramatised",
   "8": "Dramatised: the order's words are invented. The palace of the emir Yalbugha al-Yahyawi was demolished for the mosque: al-Maqrizi, Khitat; Wikipedia",
   "9": "Dramatised: the order's words are invented. The palace of the emir Yalbugha al-Yahyawi was demolished for the mosque: al-Maqrizi, Khitat; Wikipedia",
@@ -90,6 +90,48 @@
    "x": 81.2,
    "y": 77.0,
    "facing": 312
+  }
+ ],
+ "credits": [
+  {
+   "what": "Portraits",
+   "author": "MEDU",
+   "license": "Faces imagined",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "no likeness of these people survives",
+   "src": "_portrait"
+  },
+  {
+   "what": "The square, then",
+   "author": "NYPL photogravure, maker not given (NYPL image 96038)",
+   "license": "Public domain",
+   "licenseUrl": null,
+   "source": "https://digitalcollections.nypl.org/items/d958c1c0-c6be-012f-7ee0-58d385a7bc34",
+   "sourceName": "New York Public Library",
+   "note": "courtesy credit; cropped/resized",
+   "src": "stage/then-ch01.jpg"
+  },
+  {
+   "what": "The square, today",
+   "author": "ولاء",
+   "license": "Public domain",
+   "licenseUrl": null,
+   "source": "https://commons.wikimedia.org/wiki/File:Panoramic_view_of_Saladin_Square_with_Sultan_Hassan,_Al-Rifa%27i,_and_Qanibay_al-Rammah_mosques1.jpg",
+   "sourceName": "Wikimedia Commons",
+   "note": "courtesy credit",
+   "src": "stage/now-ch01.jpg"
+  },
+  {
+   "what": "Ney bed and bell",
+   "author": "MEDU",
+   "license": "Own work",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "synthesised",
+   "src": "_sound"
   }
  ]
 }

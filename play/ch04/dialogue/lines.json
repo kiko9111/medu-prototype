@@ -743,7 +743,7 @@
    "dur": 8.5
   },
   "after": 4.5,
-  "tag": "Four minarets planned, the one over the door fell and its twin was never built: al-Maqrizi, Khitat. The ghost minaret is the 3D thread's reconstruction",
+  "tag": "Four minarets planned, the one over the door fell and its twin was never built: al-Maqrizi, Khitat. The ghost minaret is a reconstruction by the MEDU 3D model, not a record",
   "file": "07-sultan-b82b37f2.mp3",
   "t0": 69.77,
   "t1": 76.89,
@@ -1314,7 +1314,7 @@
    "then": "stage/then-portal-bonfils.jpg",
    "thenCap": "1867–99 · Bonfils, Library of Congress",
    "now": "shots/hassan-portal.jpg",
-   "nowCap": "Today · Ovedc, CC BY-SA 4.0, Wikimedia Commons",
+   "nowCap": "Today · Ovedc, CC BY-SA 4.0 (modified)",
    "dur": 11
   },
   "after": 3.5,
