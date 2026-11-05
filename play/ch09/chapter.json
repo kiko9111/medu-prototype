@@ -1,0 +1,107 @@
+{
+ "id": "ch09",
+ "n": 9,
+ "title": "A college courtyard",
+ "place": "through a corner doorway, in one of the four college (madrasa) courtyards. UNVERIFIED: whether a college court is open to visitors today. If not, this chapter plays at the corner doorway, looking through, and the 360 view does the walking.",
+ "mix": "dialogue/mix.mp3",
+ "lines": "dialogue/lines.json",
+ "speakers": {
+  "narrator": "Narrator",
+  "sultan": "Sultan Hasan",
+  "herz": "Max Herz",
+  "subki": "al-Subki",
+  "kalai": "al-Kala'i"
+ },
+ "shots": [],
+ "quiz": [
+  {
+   "q": "Up to how many students did the founding deed pay for in each college?",
+   "options": [
+    "Ten",
+    "A hundred",
+    "A thousand"
+   ],
+   "correct": 1
+  }
+ ],
+ "onsite": {
+  "stand": "through a corner doorway, in one of the four college (madrasa) courtyards. UNVERIFIED: whether a college court is open to visitors today. If not, this chapter plays at the corner doorway, looking through, and the 360 view does the walking."
+ },
+ "next": "Go back to the courtyard, and face the great hall.",
+ "modes": {
+  "home": {
+   "mix": "dialogue/mix.mp3"
+  },
+  "site": {
+   "mix": "dialogue/mix-onsite.mp3",
+   "inserts": "dialogue/onsite.json",
+   "stage": {
+    "reveals": [
+     {
+      "t0": 9.92,
+      "t1": 14.92,
+      "kind": "still",
+      "cue": "Sultan Hasan",
+      "label": "al-Nasir Hasan · sultan, 1347–51 and 1354–61 · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/sultan.jpg"
+     },
+     {
+      "t0": 20.32,
+      "t1": 25.32,
+      "kind": "still",
+      "cue": "Max Herz",
+      "label": "Max Herz · chief architect of the Comité, surveyed the mosque in 1899",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance"
+     },
+     {
+      "t0": 39.44,
+      "t1": 44.44,
+      "kind": "still",
+      "cue": "al-Subki",
+      "label": "Baha' al-Din al-Subki · jurist · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/subki.jpg"
+     },
+     {
+      "t0": 66.99,
+      "t1": 71.99,
+      "kind": "still",
+      "cue": "al-Kala'i",
+      "label": "Shams al-Din al-Kala'i · jurist · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/kalai.jpg"
+     }
+    ]
+   }
+  }
+ },
+ "status": "dialogue edition, draft: historical people speak, the narrator sets the scene; on-site only",
+ "lineTags": {
+  "0": "Unverified: whether a college court is open to visitors; if not, play this at the doorway, looking through",
+  "1": "Each madrasa centred on a small courtyard with four storeys of cells: Wikipedia",
+  "2": "The small qibla iwan with its stucco band: Wikipedia. Up to 100 students per college and a keeper of the roof: the endowment as reproduced by Ali Mubarak, in Herz 1899 (page to confirm)",
+  "3": "A reported anecdote: al-Suyuti, Husn al-muhadara, quoting Ibn Hajar. The spoken words are dramatised paraphrases",
+  "4": "Dramatised paraphrase of the anecdote in al-Suyuti, Husn al-muhadara, quoting Ibn Hajar. Arabic: \"of its own\" (wahdahu) cut, the voice could not say it; the English line keeps it",
+  "5": "Dramatised paraphrase of the anecdote in al-Suyuti, Husn al-muhadara, quoting Ibn Hajar",
+  "6": "Dramatised paraphrase of the anecdote in al-Suyuti, Husn al-muhadara, quoting Ibn Hajar",
+  "7": "Dramatised paraphrase of the anecdote in al-Suyuti, Husn al-muhadara, quoting Ibn Hajar",
+  "8": "Dramatised paraphrase of the anecdote in al-Suyuti, Husn al-muhadara, quoting Ibn Hajar",
+  "9": "Hasan studied in jail: Wikipedia; the lesson he wanted: al-Suyuti, quoting Ibn Hajar",
+  "10": "'May have been because… a greater measure of privacy or tranquility was desired for the students': Wikipedia"
+ },
+ "siteOnly": true,
+ "edition": "dialogue",
+ "_planDefault": [
+  {
+   "t": 0,
+   "x": 32.0,
+   "y": 40.0,
+   "facing": 125
+  }
+ ]
+}

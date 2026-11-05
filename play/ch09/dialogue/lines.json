@@ -1,0 +1,1346 @@
+[
+ {
+  "who": "narrator",
+  "beat": 1,
+  "say": "Through the corner doorway, into a college courtyard. Two scholars are arguing. They have been arguing since Sultan Hasan's day.",
+  "tag": "Unverified: whether a college court is open to visitors; if not, play this at the doorway, looking through",
+  "after": 0.6,
+  "file": "00-narrator-9dcf88a5.mp3",
+  "t0": 1.0,
+  "t1": 9.32,
+  "w": [
+   [
+    "Through",
+    1.08
+   ],
+   [
+    "the",
+    1.26
+   ],
+   [
+    "corner",
+    1.42
+   ],
+   [
+    "doorway,",
+    1.74
+   ],
+   [
+    "into",
+    2.5
+   ],
+   [
+    "a",
+    2.72
+   ],
+   [
+    "college",
+    2.84
+   ],
+   [
+    "courtyard.",
+    3.24
+   ],
+   [
+    "Two",
+    4.94
+   ],
+   [
+    "scholars",
+    5.22
+   ],
+   [
+    "are",
+    5.56
+   ],
+   [
+    "arguing.",
+    5.74
+   ],
+   [
+    "They",
+    6.9
+   ],
+   [
+    "have",
+    7.0
+   ],
+   [
+    "been",
+    7.12
+   ],
+   [
+    "arguing",
+    7.36
+   ],
+   [
+    "since",
+    7.86
+   ],
+   [
+    "Sultan",
+    8.12
+   ],
+   [
+    "Hasan's",
+    8.48
+   ],
+   [
+    "day.",
+    9.04
+   ]
+  ],
+  "ar": "",
+  "cap": "Through the corner doorway, into a college courtyard. Two scholars are arguing. They have been arguing since Sultan Hasan's day."
+ },
+ {
+  "who": "sultan",
+  "beat": 1,
+  "say": "Where did they live? In here. Each college had its own small courtyard, ringed by four storeys of rooms. Look up at the rows of cells.",
+  "tag": "Each madrasa centred on a small courtyard with four storeys of cells: Wikipedia",
+  "look": {
+   "dur": 6,
+   "cue": "Look up at the rows of students' cells.",
+   "element": "The cells"
+  },
+  "file": "01-sultan-cb0a8834.mp3",
+  "t0": 9.92,
+  "t1": 19.92,
+  "w": [
+   [
+    "Where",
+    10.04
+   ],
+   [
+    "did",
+    10.2
+   ],
+   [
+    "they",
+    10.34
+   ],
+   [
+    "live?",
+    10.54
+   ],
+   [
+    "In",
+    11.8
+   ],
+   [
+    "here.",
+    11.96
+   ],
+   [
+    "Each",
+    12.86
+   ],
+   [
+    "college",
+    13.16
+   ],
+   [
+    "had",
+    13.58
+   ],
+   [
+    "its",
+    13.72
+   ],
+   [
+    "own",
+    13.9
+   ],
+   [
+    "small",
+    14.24
+   ],
+   [
+    "courtyard,",
+    14.6
+   ],
+   [
+    "ringed",
+    15.58
+   ],
+   [
+    "by",
+    15.94
+   ],
+   [
+    "four",
+    16.24
+   ],
+   [
+    "storeys",
+    16.58
+   ],
+   [
+    "of",
+    16.98
+   ],
+   [
+    "rooms.",
+    17.14
+   ],
+   [
+    "Look",
+    18.32
+   ],
+   [
+    "up",
+    18.52
+   ],
+   [
+    "at",
+    18.62
+   ],
+   [
+    "the",
+    18.72
+   ],
+   [
+    "rows",
+    18.86
+   ],
+   [
+    "of",
+    19.16
+   ],
+   [
+    "cells.",
+    19.34
+   ]
+  ],
+  "ar": "",
+  "cap": "Where did they live? In here. Each college had its own small courtyard, ringed by four storeys of rooms. Look up at the rows of cells."
+ },
+ {
+  "who": "herz",
+  "beat": 2,
+  "say": "On the side facing Mecca, the college has its own small prayer hall, with a band of carved plaster writing, like the great hall's. The founding deed, as I read it, paid for up to a hundred students in each college, under one shaykh. And a man just to look after the roof.",
+  "tag": "The small qibla iwan with its stucco band: Wikipedia. Up to 100 students per college and a keeper of the roof: the endowment as reproduced by Ali Mubarak, in Herz 1899 (page to confirm)",
+  "look": {
+   "dur": 5,
+   "cue": "Find the college's own small prayer hall.",
+   "element": "The small iwan"
+  },
+  "file": "02-herz-0f766099.mp3",
+  "t0": 20.32,
+  "t1": 39.04,
+  "w": [
+   [
+    "On",
+    20.42
+   ],
+   [
+    "the",
+    20.52
+   ],
+   [
+    "side",
+    20.66
+   ],
+   [
+    "facing",
+    21.0
+   ],
+   [
+    "Mecca,",
+    21.38
+   ],
+   [
+    "the",
+    22.12
+   ],
+   [
+    "college",
+    22.24
+   ],
+   [
+    "has",
+    22.6
+   ],
+   [
+    "its",
+    22.76
+   ],
+   [
+    "own",
+    22.98
+   ],
+   [
+    "small",
+    23.36
+   ],
+   [
+    "prayer",
+    23.74
+   ],
+   [
+    "hall,",
+    24.06
+   ],
+   [
+    "with",
+    24.82
+   ],
+   [
+    "a",
+    24.94
+   ],
+   [
+    "band",
+    25.04
+   ],
+   [
+    "of",
+    25.4
+   ],
+   [
+    "carved",
+    25.62
+   ],
+   [
+    "plaster",
+    26.14
+   ],
+   [
+    "writing,",
+    26.58
+   ],
+   [
+    "like",
+    27.58
+   ],
+   [
+    "the",
+    27.76
+   ],
+   [
+    "great",
+    27.86
+   ],
+   [
+    "hall's.",
+    28.12
+   ],
+   [
+    "The",
+    29.68
+   ],
+   [
+    "founding",
+    29.8
+   ],
+   [
+    "deed,",
+    30.26
+   ],
+   [
+    "as",
+    30.7
+   ],
+   [
+    "I",
+    30.92
+   ],
+   [
+    "read",
+    31.02
+   ],
+   [
+    "it,",
+    31.2
+   ],
+   [
+    "paid",
+    31.84
+   ],
+   [
+    "for",
+    32.16
+   ],
+   [
+    "up",
+    32.34
+   ],
+   [
+    "to",
+    32.48
+   ],
+   [
+    "a",
+    32.62
+   ],
+   [
+    "hundred",
+    32.72
+   ],
+   [
+    "students",
+    33.18
+   ],
+   [
+    "in",
+    33.7
+   ],
+   [
+    "each",
+    33.9
+   ],
+   [
+    "college,",
+    34.18
+   ],
+   [
+    "under",
+    34.98
+   ],
+   [
+    "one",
+    35.34
+   ],
+   [
+    "shaykh.",
+    35.68
+   ],
+   [
+    "And",
+    37.24
+   ],
+   [
+    "a",
+    37.36
+   ],
+   [
+    "man",
+    37.46
+   ],
+   [
+    "just",
+    37.88
+   ],
+   [
+    "to",
+    38.04
+   ],
+   [
+    "look",
+    38.14
+   ],
+   [
+    "after",
+    38.38
+   ],
+   [
+    "the",
+    38.58
+   ],
+   [
+    "roof.",
+    38.72
+   ]
+  ],
+  "ar": "",
+  "cap": "On the side facing Mecca, the college has its own small prayer hall, with a band of carved plaster writing, like the great hall's. The founding deed, as I read it, paid for up to a hundred students in each college, under one shaykh. And a man just to look after the roof."
+ },
+ {
+  "who": "subki",
+  "beat": 3,
+  "say": "A hundred students. And where there are scholars, there are quarrels. Baha' al-Din al-Subki; I taught the law. The sultan wanted lessons in the law of inheritance. I told him:",
+  "tag": "A reported anecdote: al-Suyuti, Husn al-muhadara, quoting Ibn Hajar. The spoken words are dramatised paraphrases",
+  "after": 0.3,
+  "file": "03-subki-039fdc45.mp3",
+  "t0": 39.44,
+  "t1": 51.84,
+  "w": [
+   [
+    "A",
+    39.54
+   ],
+   [
+    "hundred",
+    39.59
+   ],
+   [
+    "students.",
+    39.85
+   ],
+   [
+    "And",
+    40.19
+   ],
+   [
+    "where",
+    40.36
+   ],
+   [
+    "there",
+    40.64
+   ],
+   [
+    "are",
+    40.92
+   ],
+   [
+    "scholars,",
+    41.05
+   ],
+   [
+    "there",
+    41.27
+   ],
+   [
+    "are",
+    41.36
+   ],
+   [
+    "quarrels.",
+    41.42
+   ],
+   [
+    "Baha'",
+    41.68
+   ],
+   [
+    "al-Din",
+    41.94
+   ],
+   [
+    "al-Subki;",
+    42.26
+   ],
+   [
+    "I",
+    42.73
+   ],
+   [
+    "taught",
+    42.74
+   ],
+   [
+    "the",
+    42.85
+   ],
+   [
+    "law.",
+    42.92
+   ],
+   [
+    "The",
+    43.08
+   ],
+   [
+    "sultan",
+    43.28
+   ],
+   [
+    "wanted",
+    43.74
+   ],
+   [
+    "lessons",
+    44.19
+   ],
+   [
+    "in",
+    44.65
+   ],
+   [
+    "the",
+    44.77
+   ],
+   [
+    "law",
+    44.95
+   ],
+   [
+    "of",
+    45.14
+   ],
+   [
+    "inheritance.",
+    45.26
+   ],
+   [
+    "I",
+    45.9
+   ],
+   [
+    "told",
+    45.94
+   ],
+   [
+    "him:",
+    46.11
+   ]
+  ],
+  "ar": "",
+  "cap": "A hundred students. And where there are scholars, there are quarrels. Baha' al-Din al-Subki; I taught the law. The sultan wanted lessons in the law of inheritance. I told him:"
+ },
+ {
+  "who": "subki",
+  "beat": 3,
+  "say": "عِلْمُ الْفَرَائِضِ يَا مَوْلَانَا فَرْعٌ مِنَ الْفِقْهِ. لَا يَحْتَاجُ دَرْسًا.",
+  "cap": "Inheritance law, my lord, is just a branch of jurisprudence. It needs no lessons of its own.",
+  "file": "04-subki-8e71bac6.mp3",
+  "t0": 52.14,
+  "t1": 57.5,
+  "w": [
+   [
+    "Inheritance",
+    52.24
+   ],
+   [
+    "law,",
+    52.84
+   ],
+   [
+    "my",
+    53.08
+   ],
+   [
+    "lord,",
+    53.2
+   ],
+   [
+    "is",
+    53.51
+   ],
+   [
+    "just",
+    53.69
+   ],
+   [
+    "a",
+    54.08
+   ],
+   [
+    "branch",
+    54.17
+   ],
+   [
+    "of",
+    54.72
+   ],
+   [
+    "jurisprudence.",
+    54.87
+   ],
+   [
+    "It",
+    55.94
+   ],
+   [
+    "needs",
+    56.14
+   ],
+   [
+    "no",
+    56.47
+   ],
+   [
+    "lessons",
+    56.59
+   ],
+   [
+    "of",
+    56.99
+   ],
+   [
+    "its",
+    57.1
+   ],
+   [
+    "own.",
+    57.25
+   ]
+  ],
+  "ar": "عِلْمُ الْفَرَائِضِ يَا مَوْلَانَا فَرْعٌ مِنَ الْفِقْهِ. لَا يَحْتَاجُ دَرْسًا.",
+  "tag": "Dramatised paraphrase of the anecdote in al-Suyuti, Husn al-muhadara, quoting Ibn Hajar. Arabic: \"of its own\" (wahdahu) cut, the voice could not say it; the English line keeps it"
+ },
+ {
+  "who": "subki",
+  "beat": 3,
+  "say": "Inheritance law, my lord, is only a branch of jurisprudence. It needs no lessons of its own. So he dropped the lesson.",
+  "after": 0.5,
+  "file": "05-subki-3cb661ef.mp3",
+  "t0": 57.9,
+  "t1": 66.49,
+  "w": [
+   [
+    "Inheritance",
+    58.0
+   ],
+   [
+    "law,",
+    58.68
+   ],
+   [
+    "my",
+    58.96
+   ],
+   [
+    "lord,",
+    59.14
+   ],
+   [
+    "is",
+    59.92
+   ],
+   [
+    "only",
+    60.2
+   ],
+   [
+    "a",
+    60.5
+   ],
+   [
+    "branch",
+    60.6
+   ],
+   [
+    "of",
+    60.94
+   ],
+   [
+    "jurisprudence.",
+    61.06
+   ],
+   [
+    "It",
+    62.44
+   ],
+   [
+    "needs",
+    62.58
+   ],
+   [
+    "no",
+    63.04
+   ],
+   [
+    "lessons",
+    63.3
+   ],
+   [
+    "of",
+    63.72
+   ],
+   [
+    "its",
+    63.82
+   ],
+   [
+    "own.",
+    64.02
+   ],
+   [
+    "So",
+    65.1
+   ],
+   [
+    "he",
+    65.3
+   ],
+   [
+    "dropped",
+    65.48
+   ],
+   [
+    "the",
+    65.82
+   ],
+   [
+    "lesson.",
+    65.94
+   ]
+  ],
+  "ar": "",
+  "cap": "Inheritance law, my lord, is only a branch of jurisprudence. It needs no lessons of its own. So he dropped the lesson.",
+  "tag": "Dramatised paraphrase of the anecdote in al-Suyuti, Husn al-muhadara, quoting Ibn Hajar"
+ },
+ {
+  "who": "kalai",
+  "beat": 3,
+  "say": "[dry] And then a hard inheritance case came to the shaykh. And he could not solve it. Shams al-Din al-Kala'i, at your service. I asked him one small question.",
+  "after": 0.3,
+  "file": "06-kalai-16e8d882.mp3",
+  "t0": 66.99,
+  "t1": 78.65,
+  "w": [
+   [
+    "And",
+    67.13
+   ],
+   [
+    "then",
+    67.31
+   ],
+   [
+    "a",
+    67.83
+   ],
+   [
+    "hard",
+    67.95
+   ],
+   [
+    "inheritance",
+    68.19
+   ],
+   [
+    "case",
+    68.85
+   ],
+   [
+    "came",
+    69.17
+   ],
+   [
+    "to",
+    69.37
+   ],
+   [
+    "the",
+    69.47
+   ],
+   [
+    "shaykh.",
+    69.61
+   ],
+   [
+    "And",
+    71.01
+   ],
+   [
+    "he",
+    71.17
+   ],
+   [
+    "could",
+    71.37
+   ],
+   [
+    "not",
+    71.59
+   ],
+   [
+    "solve",
+    71.87
+   ],
+   [
+    "it.",
+    72.15
+   ],
+   [
+    "Shams",
+    73.39
+   ],
+   [
+    "al-Din",
+    73.81
+   ],
+   [
+    "al-Kala'i,",
+    74.29
+   ],
+   [
+    "at",
+    75.27
+   ],
+   [
+    "your",
+    75.43
+   ],
+   [
+    "service.",
+    75.59
+   ],
+   [
+    "I",
+    77.07
+   ],
+   [
+    "asked",
+    77.17
+   ],
+   [
+    "him",
+    77.39
+   ],
+   [
+    "one",
+    77.61
+   ],
+   [
+    "small",
+    77.81
+   ],
+   [
+    "question.",
+    78.09
+   ]
+  ],
+  "ar": "",
+  "cap": "And then a hard inheritance case came to the shaykh. And he could not solve it. Shams al-Din al-Kala'i, at your service. I asked him one small question.",
+  "tag": "Dramatised paraphrase of the anecdote in al-Suyuti, Husn al-muhadara, quoting Ibn Hajar"
+ },
+ {
+  "who": "kalai",
+  "beat": 3,
+  "say": "يَا شَيْخُ… أَلَيْسَ فَرْعًا مِنَ الْفِقْهِ؟",
+  "cap": "Shaykh… isn't it just a branch of jurisprudence?",
+  "after": 0.3,
+  "file": "07-kalai-04df28dc.mp3",
+  "t0": 78.95,
+  "t1": 81.91,
+  "w": [
+   [
+    "Shaykh…",
+    79.09
+   ],
+   [
+    "isn't",
+    79.88
+   ],
+   [
+    "it",
+    80.49
+   ],
+   [
+    "just",
+    80.6
+   ],
+   [
+    "a",
+    80.82
+   ],
+   [
+    "branch",
+    80.87
+   ],
+   [
+    "of",
+    81.2
+   ],
+   [
+    "jurisprudence?",
+    81.3
+   ]
+  ],
+  "ar": "يَا شَيْخُ… أَلَيْسَ فَرْعًا مِنَ الْفِقْهِ؟",
+  "tag": "Dramatised paraphrase of the anecdote in al-Suyuti, Husn al-muhadara, quoting Ibn Hajar"
+ },
+ {
+  "who": "kalai",
+  "beat": 3,
+  "say": "Shaykh… isn't it just a branch of jurisprudence?",
+  "after": 0.8,
+  "file": "08-kalai-41943b27.mp3",
+  "t0": 82.21,
+  "t1": 85.49,
+  "w": [
+   [
+    "Shaykh…",
+    82.33
+   ],
+   [
+    "isn't",
+    83.43
+   ],
+   [
+    "it",
+    83.63
+   ],
+   [
+    "just",
+    83.75
+   ],
+   [
+    "a",
+    83.91
+   ],
+   [
+    "branch",
+    84.01
+   ],
+   [
+    "of",
+    84.33
+   ],
+   [
+    "jurisprudence?",
+    84.47
+   ]
+  ],
+  "ar": "",
+  "cap": "Shaykh… isn't it just a branch of jurisprudence?",
+  "tag": "Dramatised paraphrase of the anecdote in al-Suyuti, Husn al-muhadara, quoting Ibn Hajar"
+ },
+ {
+  "who": "sultan",
+  "beat": 4,
+  "say": "I lost a lesson I wanted. But remember who is speaking to you: a ruler who studied through three years of prison, and still wanted lessons in law.",
+  "tag": "Hasan studied in jail: Wikipedia; the lesson he wanted: al-Suyuti, quoting Ibn Hajar",
+  "file": "09-sultan-765c1bc8.mp3",
+  "t0": 86.29,
+  "t1": 95.89,
+  "w": [
+   [
+    "I",
+    86.45
+   ],
+   [
+    "lost",
+    86.55
+   ],
+   [
+    "a",
+    86.87
+   ],
+   [
+    "lesson",
+    86.97
+   ],
+   [
+    "I",
+    87.41
+   ],
+   [
+    "wanted.",
+    87.53
+   ],
+   [
+    "But",
+    88.55
+   ],
+   [
+    "remember",
+    88.69
+   ],
+   [
+    "who",
+    89.13
+   ],
+   [
+    "is",
+    89.27
+   ],
+   [
+    "speaking",
+    89.49
+   ],
+   [
+    "to",
+    89.91
+   ],
+   [
+    "you:",
+    90.09
+   ],
+   [
+    "a",
+    90.83
+   ],
+   [
+    "ruler",
+    90.99
+   ],
+   [
+    "who",
+    91.43
+   ],
+   [
+    "studied",
+    91.63
+   ],
+   [
+    "through",
+    91.97
+   ],
+   [
+    "three",
+    92.27
+   ],
+   [
+    "years",
+    92.59
+   ],
+   [
+    "of",
+    92.91
+   ],
+   [
+    "prison,",
+    93.07
+   ],
+   [
+    "and",
+    93.75
+   ],
+   [
+    "still",
+    94.01
+   ],
+   [
+    "wanted",
+    94.37
+   ],
+   [
+    "lessons",
+    94.75
+   ],
+   [
+    "in",
+    95.29
+   ],
+   [
+    "law.",
+    95.47
+   ]
+  ],
+  "ar": "",
+  "cap": "I lost a lesson I wanted. But remember who is speaking to you: a ruler who studied through three years of prison, and still wanted lessons in law."
+ },
+ {
+  "who": "herz",
+  "beat": 5,
+  "say": "These colleges were closed off from the busy public mosque, perhaps so students could study in peace. Find it: this college's small prayer hall.",
+  "tag": "'May have been because… a greater measure of privacy or tranquility was desired for the students': Wikipedia",
+  "file": "10-herz-5dc7bae0.mp3",
+  "t0": 96.29,
+  "t1": 107.49,
+  "w": [
+   [
+    "These",
+    96.39
+   ],
+   [
+    "colleges",
+    96.61
+   ],
+   [
+    "were",
+    97.01
+   ],
+   [
+    "closed",
+    97.17
+   ],
+   [
+    "off",
+    97.55
+   ],
+   [
+    "from",
+    97.73
+   ],
+   [
+    "the",
+    97.89
+   ],
+   [
+    "busy",
+    98.03
+   ],
+   [
+    "public",
+    98.39
+   ],
+   [
+    "mosque,",
+    98.81
+   ],
+   [
+    "perhaps",
+    99.61
+   ],
+   [
+    "so",
+    100.03
+   ],
+   [
+    "students",
+    100.25
+   ],
+   [
+    "could",
+    100.65
+   ],
+   [
+    "study",
+    100.93
+   ],
+   [
+    "in",
+    101.25
+   ],
+   [
+    "peace.",
+    101.45
+   ],
+   [
+    "Find",
+    103.03
+   ],
+   [
+    "it:",
+    103.31
+   ],
+   [
+    "this",
+    104.15
+   ],
+   [
+    "college's",
+    104.39
+   ],
+   [
+    "small",
+    105.35
+   ],
+   [
+    "prayer",
+    106.13
+   ],
+   [
+    "hall.",
+    106.59
+   ]
+  ],
+  "ar": "",
+  "cap": "These colleges were closed off from the busy public mosque, perhaps so students could study in peace. Find it: this college's small prayer hall."
+ },
+ {
+  "who": "kalai",
+  "beat": 6,
+  "say": "They say the great hall is bigger than the Persian king's famous arch. Is that true?",
+  "after": 0.8,
+  "file": "11-kalai-7c9b6657.mp3",
+  "t0": 107.89,
+  "t1": 113.17,
+  "w": [
+   [
+    "They",
+    107.97
+   ],
+   [
+    "say",
+    108.19
+   ],
+   [
+    "the",
+    108.39
+   ],
+   [
+    "great",
+    108.53
+   ],
+   [
+    "hall",
+    108.83
+   ],
+   [
+    "is",
+    109.11
+   ],
+   [
+    "bigger",
+    109.31
+   ],
+   [
+    "than",
+    109.63
+   ],
+   [
+    "the",
+    109.77
+   ],
+   [
+    "Persian",
+    109.91
+   ],
+   [
+    "king's",
+    110.27
+   ],
+   [
+    "famous",
+    110.63
+   ],
+   [
+    "arch.",
+    111.01
+   ],
+   [
+    "Is",
+    112.29
+   ],
+   [
+    "that",
+    112.41
+   ],
+   [
+    "true?",
+    112.63
+   ]
+  ],
+  "ar": "",
+  "cap": "They say the great hall is bigger than the Persian king's famous arch. Is that true?"
+ },
+ {
+  "who": "narrator",
+  "beat": 6,
+  "say": "Go back to the courtyard, and face the great hall.",
+  "file": "12-narrator-febcec19.mp3",
+  "t0": 113.97,
+  "t1": 116.68,
+  "w": [
+   [
+    "Go",
+    114.06
+   ],
+   [
+    "back",
+    114.26
+   ],
+   [
+    "to",
+    114.46
+   ],
+   [
+    "the",
+    114.56
+   ],
+   [
+    "courtyard,",
+    114.7
+   ],
+   [
+    "and",
+    115.42
+   ],
+   [
+    "face",
+    115.62
+   ],
+   [
+    "the",
+    115.92
+   ],
+   [
+    "great",
+    116.02
+   ],
+   [
+    "hall.",
+    116.32
+   ]
+  ],
+  "ar": "",
+  "cap": "Go back to the courtyard, and face the great hall."
+ }
+]

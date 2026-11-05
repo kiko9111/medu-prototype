@@ -1,0 +1,1499 @@
+[
+ {
+  "who": "narrator",
+  "beat": 1,
+  "say": "Salah al-Din Square. Stand with the Citadel behind you, and face the mosque across the road. Two men want a word with you: a historian, and the sultan who built it.",
+  "after": 0.6,
+  "tag": "Unverified on site: the standing point and the view across the traffic",
+  "file": "00-narrator-df5ea505.mp3",
+  "t0": 1.0,
+  "t1": 12.44,
+  "w": [
+   [
+    "Salah",
+    1.1
+   ],
+   [
+    "al-Din",
+    1.48
+   ],
+   [
+    "Square.",
+    2.08
+   ],
+   [
+    "Stand",
+    3.52
+   ],
+   [
+    "with",
+    3.88
+   ],
+   [
+    "the",
+    4.0
+   ],
+   [
+    "Citadel",
+    4.12
+   ],
+   [
+    "behind",
+    4.6
+   ],
+   [
+    "you,",
+    5.04
+   ],
+   [
+    "and",
+    5.4
+   ],
+   [
+    "face",
+    5.6
+   ],
+   [
+    "the",
+    5.9
+   ],
+   [
+    "mosque",
+    6.04
+   ],
+   [
+    "across",
+    6.42
+   ],
+   [
+    "the",
+    6.74
+   ],
+   [
+    "road.",
+    6.86
+   ],
+   [
+    "Two",
+    8.16
+   ],
+   [
+    "men",
+    8.4
+   ],
+   [
+    "want",
+    8.66
+   ],
+   [
+    "a",
+    8.84
+   ],
+   [
+    "word",
+    8.92
+   ],
+   [
+    "with",
+    9.18
+   ],
+   [
+    "you:",
+    9.38
+   ],
+   [
+    "a",
+    10.12
+   ],
+   [
+    "historian,",
+    10.2
+   ],
+   [
+    "and",
+    11.12
+   ],
+   [
+    "the",
+    11.24
+   ],
+   [
+    "sultan",
+    11.38
+   ],
+   [
+    "who",
+    11.88
+   ],
+   [
+    "built",
+    12.04
+   ],
+   [
+    "it.",
+    12.3
+   ]
+  ],
+  "ar": "",
+  "cap": "Salah al-Din Square. Stand with the Citadel behind you, and face the mosque across the road. Two men want a word with you: a historian, and the sultan who built it."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 1,
+  "say": "[warm] Taqi al-Din al-Maqrizi. I wrote the history of this city, street by street. This building has a tomb. Its sultan has never lain in it. By the time you stand inside that tomb, you will know why.",
+  "tag": "His body was never found; he was never buried here: Wikipedia, after Behrens-Abouseif",
+  "look": {
+   "dur": 4,
+   "cue": "Find the domed tomb end of the mosque across the road.",
+   "element": "The tomb dome"
+  },
+  "file": "01-maqrizi-80c15a3d.mp3",
+  "t0": 13.04,
+  "t1": 28.16,
+  "w": [
+   [
+    "Taqi",
+    13.12
+   ],
+   [
+    "al-Din",
+    13.74
+   ],
+   [
+    "al-Maqrizi.",
+    14.54
+   ],
+   [
+    "I",
+    16.08
+   ],
+   [
+    "wrote",
+    16.3
+   ],
+   [
+    "the",
+    16.54
+   ],
+   [
+    "history",
+    16.7
+   ],
+   [
+    "of",
+    17.14
+   ],
+   [
+    "this",
+    17.28
+   ],
+   [
+    "city,",
+    17.48
+   ],
+   [
+    "street",
+    17.84
+   ],
+   [
+    "by",
+    18.16
+   ],
+   [
+    "street.",
+    18.46
+   ],
+   [
+    "This",
+    19.56
+   ],
+   [
+    "building",
+    19.82
+   ],
+   [
+    "has",
+    20.4
+   ],
+   [
+    "a",
+    20.66
+   ],
+   [
+    "tomb.",
+    20.8
+   ],
+   [
+    "Its",
+    21.98
+   ],
+   [
+    "sultan",
+    22.18
+   ],
+   [
+    "has",
+    22.62
+   ],
+   [
+    "never",
+    22.88
+   ],
+   [
+    "lain",
+    23.26
+   ],
+   [
+    "in",
+    23.76
+   ],
+   [
+    "it.",
+    23.9
+   ],
+   [
+    "By",
+    24.82
+   ],
+   [
+    "the",
+    24.94
+   ],
+   [
+    "time",
+    25.06
+   ],
+   [
+    "you",
+    25.34
+   ],
+   [
+    "stand",
+    25.52
+   ],
+   [
+    "inside",
+    25.84
+   ],
+   [
+    "that",
+    26.3
+   ],
+   [
+    "tomb,",
+    26.6
+   ],
+   [
+    "you",
+    27.0
+   ],
+   [
+    "will",
+    27.12
+   ],
+   [
+    "know",
+    27.34
+   ],
+   [
+    "why.",
+    27.58
+   ]
+  ],
+  "ar": "",
+  "cap": "Taqi al-Din al-Maqrizi. I wrote the history of this city, street by street. This building has a tomb. Its sultan has never lain in it. By the time you stand inside that tomb, you will know why."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 2,
+  "say": "Look at its walls, pushing out into the square. In my day this was Rumayla, the square of the royal parades. Along the very top runs a crest of stone lilies. Above the lowest windows, empty triangles: once they held glazed tiles.",
+  "tag": "Rumayla, the fleur-de-lis crest and the tiled triangles: Wikipedia",
+  "look": {
+   "dur": 6,
+   "cue": "Find the crest of stone lilies along the top, and the empty triangles above the lowest windows.",
+   "element": "The crest and the triangles"
+  },
+  "file": "02-maqrizi-33576368.mp3",
+  "t0": 28.56,
+  "t1": 46.96,
+  "w": [
+   [
+    "Look",
+    28.66
+   ],
+   [
+    "at",
+    28.82
+   ],
+   [
+    "its",
+    28.92
+   ],
+   [
+    "walls,",
+    29.16
+   ],
+   [
+    "pushing",
+    30.0
+   ],
+   [
+    "out",
+    30.42
+   ],
+   [
+    "into",
+    30.62
+   ],
+   [
+    "the",
+    30.82
+   ],
+   [
+    "square.",
+    30.94
+   ],
+   [
+    "In",
+    31.86
+   ],
+   [
+    "my",
+    32.0
+   ],
+   [
+    "day",
+    32.26
+   ],
+   [
+    "this",
+    32.56
+   ],
+   [
+    "was",
+    32.86
+   ],
+   [
+    "Rumayla,",
+    33.3
+   ],
+   [
+    "the",
+    34.36
+   ],
+   [
+    "square",
+    34.56
+   ],
+   [
+    "of",
+    35.12
+   ],
+   [
+    "the",
+    35.26
+   ],
+   [
+    "royal",
+    35.42
+   ],
+   [
+    "parades.",
+    35.88
+   ],
+   [
+    "Along",
+    37.3
+   ],
+   [
+    "the",
+    37.64
+   ],
+   [
+    "very",
+    37.74
+   ],
+   [
+    "top",
+    38.02
+   ],
+   [
+    "runs",
+    38.4
+   ],
+   [
+    "a",
+    38.68
+   ],
+   [
+    "crest",
+    38.8
+   ],
+   [
+    "of",
+    39.2
+   ],
+   [
+    "stone",
+    39.46
+   ],
+   [
+    "lilies.",
+    39.94
+   ],
+   [
+    "Above",
+    41.08
+   ],
+   [
+    "the",
+    41.42
+   ],
+   [
+    "lowest",
+    41.58
+   ],
+   [
+    "windows,",
+    42.02
+   ],
+   [
+    "empty",
+    42.96
+   ],
+   [
+    "triangles:",
+    43.48
+   ],
+   [
+    "once",
+    44.8
+   ],
+   [
+    "they",
+    45.12
+   ],
+   [
+    "held",
+    45.28
+   ],
+   [
+    "glazed",
+    45.68
+   ],
+   [
+    "tiles.",
+    46.36
+   ]
+  ],
+  "ar": "",
+  "cap": "Look at its walls, pushing out into the square. In my day this was Rumayla, the square of the royal parades. Along the very top runs a crest of stone lilies. Above the lowest windows, empty triangles: once they held glazed tiles."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 2,
+  "say": "فَلَا يُعْرَفُ فِي بِلَادِ الْإِسْلَامِ مَعْبَدٌ مِنْ مَعَابِدِ الْمُسْلِمِينَ يَحْكِي هٰذَا الْجَامِعَ.",
+  "cap": "In the lands of Islam, no house of worship is known that matches this mosque.",
+  "tag": "al-Maqrizi, Khitat, his own words",
+  "file": "03-maqrizi-20194586.mp3",
+  "t0": 47.36,
+  "t1": 54.53,
+  "w": [
+   [
+    "In",
+    47.46
+   ],
+   [
+    "the",
+    47.65
+   ],
+   [
+    "lands",
+    47.98
+   ],
+   [
+    "of",
+    48.59
+   ],
+   [
+    "Islam,",
+    48.81
+   ],
+   [
+    "no",
+    49.35
+   ],
+   [
+    "house",
+    49.53
+   ],
+   [
+    "of",
+    50.09
+   ],
+   [
+    "worship",
+    50.44
+   ],
+   [
+    "is",
+    51.23
+   ],
+   [
+    "known",
+    51.42
+   ],
+   [
+    "that",
+    52.01
+   ],
+   [
+    "matches",
+    52.55
+   ],
+   [
+    "this",
+    53.48
+   ],
+   [
+    "mosque.",
+    53.84
+   ]
+  ],
+  "ar": "فَلَا يُعْرَفُ فِي بِلَادِ الْإِسْلَامِ مَعْبَدٌ مِنْ مَعَابِدِ الْمُسْلِمِينَ يَحْكِي هٰذَا الْجَامِعَ."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 2,
+  "say": "That is what I wrote. In all the lands of Islam, no house of worship matches this mosque. Who built this mountain? A man who was crowned as a boy.",
+  "after": 0.5,
+  "file": "04-maqrizi-546ec1cd.mp3",
+  "t0": 54.93,
+  "t1": 66.52,
+  "w": [
+   [
+    "That",
+    55.04
+   ],
+   [
+    "is",
+    55.34
+   ],
+   [
+    "what",
+    55.7
+   ],
+   [
+    "I",
+    56.04
+   ],
+   [
+    "wrote.",
+    56.14
+   ],
+   [
+    "In",
+    57.46
+   ],
+   [
+    "all",
+    57.6
+   ],
+   [
+    "the",
+    57.74
+   ],
+   [
+    "lands",
+    57.86
+   ],
+   [
+    "of",
+    58.18
+   ],
+   [
+    "Islam,",
+    58.3
+   ],
+   [
+    "no",
+    59.22
+   ],
+   [
+    "house",
+    59.52
+   ],
+   [
+    "of",
+    59.86
+   ],
+   [
+    "worship",
+    60.0
+   ],
+   [
+    "matches",
+    60.68
+   ],
+   [
+    "this",
+    61.28
+   ],
+   [
+    "mosque.",
+    61.56
+   ],
+   [
+    "Who",
+    62.66
+   ],
+   [
+    "built",
+    62.8
+   ],
+   [
+    "this",
+    63.06
+   ],
+   [
+    "mountain?",
+    63.28
+   ],
+   [
+    "A",
+    64.3
+   ],
+   [
+    "man",
+    64.42
+   ],
+   [
+    "who",
+    64.76
+   ],
+   [
+    "was",
+    64.88
+   ],
+   [
+    "crowned",
+    65.1
+   ],
+   [
+    "as",
+    65.86
+   ],
+   [
+    "a",
+    66.0
+   ],
+   [
+    "boy.",
+    66.12
+   ]
+  ],
+  "ar": "",
+  "cap": "That is what I wrote. In all the lands of Islam, no house of worship matches this mosque. Who built this mountain? A man who was crowned as a boy."
+ },
+ {
+  "who": "sultan",
+  "beat": 3,
+  "say": "I was thirteen. The year thirteen forty-seven. They sat me on the throne up there, and the emirs ruled in my name. When I tried to rule myself, they put me in a cell for three years.",
+  "tag": "Sultan at 13 in 748 AH; arrested 1351 and held three years: Wikipedia. The 1347 conversion is the validator's to check",
+  "file": "05-sultan-a853b666.mp3",
+  "t0": 67.02,
+  "t1": 79.08,
+  "w": [
+   [
+    "I",
+    67.18
+   ],
+   [
+    "was",
+    67.24
+   ],
+   [
+    "thirteen.",
+    67.4
+   ],
+   [
+    "The",
+    68.64
+   ],
+   [
+    "year",
+    68.76
+   ],
+   [
+    "thirteen",
+    69.0
+   ],
+   [
+    "forty-seven.",
+    69.52
+   ],
+   [
+    "They",
+    70.88
+   ],
+   [
+    "sat",
+    71.08
+   ],
+   [
+    "me",
+    71.32
+   ],
+   [
+    "on",
+    71.46
+   ],
+   [
+    "the",
+    71.56
+   ],
+   [
+    "throne",
+    71.68
+   ],
+   [
+    "up",
+    72.08
+   ],
+   [
+    "there,",
+    72.24
+   ],
+   [
+    "and",
+    72.9
+   ],
+   [
+    "the",
+    73.02
+   ],
+   [
+    "emirs",
+    73.18
+   ],
+   [
+    "ruled",
+    73.78
+   ],
+   [
+    "in",
+    74.12
+   ],
+   [
+    "my",
+    74.24
+   ],
+   [
+    "name.",
+    74.48
+   ],
+   [
+    "When",
+    75.6
+   ],
+   [
+    "I",
+    75.76
+   ],
+   [
+    "tried",
+    75.86
+   ],
+   [
+    "to",
+    76.1
+   ],
+   [
+    "rule",
+    76.24
+   ],
+   [
+    "myself,",
+    76.44
+   ],
+   [
+    "they",
+    77.02
+   ],
+   [
+    "put",
+    77.22
+   ],
+   [
+    "me",
+    77.4
+   ],
+   [
+    "in",
+    77.52
+   ],
+   [
+    "a",
+    77.64
+   ],
+   [
+    "cell",
+    77.78
+   ],
+   [
+    "for",
+    78.1
+   ],
+   [
+    "three",
+    78.26
+   ],
+   [
+    "years.",
+    78.56
+   ]
+  ],
+  "ar": "",
+  "cap": "I was thirteen. The year thirteen forty-seven. They sat me on the throne up there, and the emirs ruled in my name. When I tried to rule myself, they put me in a cell for three years."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 3,
+  "say": "A sultan, in prison. He spent those years studying.",
+  "file": "06-maqrizi-f1a7052d.mp3",
+  "t0": 79.48,
+  "t1": 83.84,
+  "w": [
+   [
+    "A",
+    79.62
+   ],
+   [
+    "sultan,",
+    79.76
+   ],
+   [
+    "in",
+    80.54
+   ],
+   [
+    "prison.",
+    80.76
+   ],
+   [
+    "He",
+    81.88
+   ],
+   [
+    "spent",
+    82.06
+   ],
+   [
+    "those",
+    82.32
+   ],
+   [
+    "years",
+    82.6
+   ],
+   [
+    "studying.",
+    83.2
+   ]
+  ],
+  "ar": "",
+  "cap": "A sultan, in prison. He spent those years studying."
+ },
+ {
+  "who": "sultan",
+  "beat": 3,
+  "say": "Every book they let in. Then I came back. Right here stood a palace my own father had built for an emir.",
+  "tag": "The palace of the emir Yalbugha al-Yahyawi, demolished for the mosque: al-Maqrizi, Khitat; Wikipedia. The order's words are dramatised",
+  "after": 0.3,
+  "file": "07-sultan-3b1bf87d.mp3",
+  "t0": 84.24,
+  "t1": 91.6,
+  "w": [
+   [
+    "Every",
+    84.38
+   ],
+   [
+    "book",
+    84.8
+   ],
+   [
+    "they",
+    85.1
+   ],
+   [
+    "let",
+    85.3
+   ],
+   [
+    "in.",
+    85.56
+   ],
+   [
+    "Then",
+    86.5
+   ],
+   [
+    "I",
+    86.72
+   ],
+   [
+    "came",
+    86.84
+   ],
+   [
+    "back.",
+    87.1
+   ],
+   [
+    "Right",
+    88.2
+   ],
+   [
+    "here",
+    88.48
+   ],
+   [
+    "stood",
+    88.82
+   ],
+   [
+    "a",
+    88.98
+   ],
+   [
+    "palace",
+    89.12
+   ],
+   [
+    "my",
+    89.54
+   ],
+   [
+    "own",
+    89.78
+   ],
+   [
+    "father",
+    90.08
+   ],
+   [
+    "had",
+    90.44
+   ],
+   [
+    "built",
+    90.62
+   ],
+   [
+    "for",
+    90.9
+   ],
+   [
+    "an",
+    91.04
+   ],
+   [
+    "emir.",
+    91.16
+   ]
+  ],
+  "ar": "",
+  "cap": "Every book they let in. Then I came back. Right here stood a palace my own father had built for an emir."
+ },
+ {
+  "who": "sultan",
+  "beat": 3,
+  "say": "اِهْدِمُوا الْقَصْرَ. هُنَا أَبْنِي.",
+  "cap": "Pull down the palace. Here I build.",
+  "after": 0.3,
+  "file": "08-sultan-1f7d943f.mp3",
+  "t0": 91.9,
+  "t1": 94.06,
+  "w": [
+   [
+    "Pull",
+    91.98
+   ],
+   [
+    "down",
+    92.18
+   ],
+   [
+    "the",
+    92.38
+   ],
+   [
+    "palace.",
+    92.64
+   ],
+   [
+    "Here",
+    93.31
+   ],
+   [
+    "I",
+    93.64
+   ],
+   [
+    "build.",
+    93.7
+   ]
+  ],
+  "ar": "اِهْدِمُوا الْقَصْرَ. هُنَا أَبْنِي.",
+  "tag": "Dramatised: the order's words are invented. The palace of the emir Yalbugha al-Yahyawi was demolished for the mosque: al-Maqrizi, Khitat; Wikipedia"
+ },
+ {
+  "who": "sultan",
+  "beat": 3,
+  "say": "Pull down the palace. Here I build.",
+  "after": 0.5,
+  "file": "09-sultan-3d99eb4f.mp3",
+  "t0": 94.36,
+  "t1": 97.0,
+  "w": [
+   [
+    "Pull",
+    94.42
+   ],
+   [
+    "down",
+    94.64
+   ],
+   [
+    "the",
+    94.86
+   ],
+   [
+    "palace.",
+    94.98
+   ],
+   [
+    "Here",
+    95.86
+   ],
+   [
+    "I",
+    96.42
+   ],
+   [
+    "build.",
+    96.54
+   ]
+  ],
+  "ar": "",
+  "cap": "Pull down the palace. Here I build.",
+  "tag": "Dramatised: the order's words are invented. The palace of the emir Yalbugha al-Yahyawi was demolished for the mosque: al-Maqrizi, Khitat; Wikipedia"
+ },
+ {
+  "who": "maqrizi",
+  "beat": 4,
+  "say": "Work began in thirteen fifty-six, facing the Citadel, and went on for three years without one idle day. He would not live to see it finished.",
+  "tag": "al-Maqrizi, Khitat",
+  "reveal": {
+   "kind": "wipe",
+   "cue": "Hold it up to the mosque: then and now",
+   "then": "stage/then-ch01.jpg",
+   "thenCap": "19th century · photogravure, NYPL",
+   "now": "stage/now-ch01.jpg",
+   "nowCap": "Today · photo ولاء, public domain",
+   "dur": 10
+  },
+  "after": 3.0,
+  "file": "10-maqrizi-8fee4e56.mp3",
+  "t0": 97.5,
+  "t1": 109.34,
+  "w": [
+   [
+    "Work",
+    97.6
+   ],
+   [
+    "began",
+    97.94
+   ],
+   [
+    "in",
+    98.44
+   ],
+   [
+    "thirteen",
+    98.7
+   ],
+   [
+    "fifty-six,",
+    99.38
+   ],
+   [
+    "facing",
+    100.56
+   ],
+   [
+    "the",
+    101.06
+   ],
+   [
+    "Citadel,",
+    101.24
+   ],
+   [
+    "and",
+    102.38
+   ],
+   [
+    "went",
+    102.54
+   ],
+   [
+    "on",
+    102.76
+   ],
+   [
+    "for",
+    103.04
+   ],
+   [
+    "three",
+    103.28
+   ],
+   [
+    "years",
+    103.74
+   ],
+   [
+    "without",
+    104.3
+   ],
+   [
+    "one",
+    105.0
+   ],
+   [
+    "idle",
+    105.68
+   ],
+   [
+    "day.",
+    106.1
+   ],
+   [
+    "He",
+    107.24
+   ],
+   [
+    "would",
+    107.38
+   ],
+   [
+    "not",
+    107.58
+   ],
+   [
+    "live",
+    107.94
+   ],
+   [
+    "to",
+    108.32
+   ],
+   [
+    "see",
+    108.52
+   ],
+   [
+    "it",
+    108.68
+   ],
+   [
+    "finished.",
+    108.86
+   ]
+  ],
+  "ar": "",
+  "cap": "Work began in thirteen fifty-six, facing the Citadel, and went on for three years without one idle day. He would not live to see it finished."
+ },
+ {
+  "who": "sultan",
+  "beat": 5,
+  "say": "The tomb is the part that pushes out toward the Citadel. From my window up there I would see it. So they say. Find it: the crest of stone lilies.",
+  "tag": "'Probably to make it more prominent when seen from the Citadel': Wikipedia",
+  "look": {
+   "dur": 5,
+   "cue": "Find the crest of stone lilies on the tomb walls.",
+   "element": "The crest"
+  },
+  "file": "11-sultan-af72bea2.mp3",
+  "t0": 112.34,
+  "t1": 121.61,
+  "w": [
+   [
+    "The",
+    112.45
+   ],
+   [
+    "tomb",
+    112.61
+   ],
+   [
+    "is",
+    112.99
+   ],
+   [
+    "the",
+    113.11
+   ],
+   [
+    "part",
+    113.23
+   ],
+   [
+    "that",
+    113.49
+   ],
+   [
+    "pushes",
+    113.67
+   ],
+   [
+    "out",
+    114.05
+   ],
+   [
+    "toward",
+    114.25
+   ],
+   [
+    "the",
+    114.49
+   ],
+   [
+    "Citadel.",
+    114.63
+   ],
+   [
+    "From",
+    115.69
+   ],
+   [
+    "my",
+    115.87
+   ],
+   [
+    "window",
+    116.05
+   ],
+   [
+    "up",
+    116.39
+   ],
+   [
+    "there",
+    116.51
+   ],
+   [
+    "I",
+    116.77
+   ],
+   [
+    "would",
+    116.83
+   ],
+   [
+    "see",
+    117.03
+   ],
+   [
+    "it.",
+    117.23
+   ],
+   [
+    "So",
+    117.69
+   ],
+   [
+    "they",
+    117.85
+   ],
+   [
+    "say.",
+    118.09
+   ],
+   [
+    "Find",
+    118.89
+   ],
+   [
+    "it:",
+    119.21
+   ],
+   [
+    "the",
+    119.79
+   ],
+   [
+    "crest",
+    119.95
+   ],
+   [
+    "of",
+    120.33
+   ],
+   [
+    "stone",
+    120.55
+   ],
+   [
+    "lilies.",
+    121.03
+   ]
+  ],
+  "ar": "",
+  "cap": "The tomb is the part that pushes out toward the Citadel. From my window up there I would see it. So they say. Find it: the crest of stone lilies."
+ },
+ {
+  "who": "sultan",
+  "beat": 6,
+  "say": "Now look up. Two minarets, one on each side of the dome. Why does one look newer than the other?",
+  "after": 0.8,
+  "file": "12-sultan-228d3787.mp3",
+  "t0": 122.01,
+  "t1": 128.17,
+  "w": [
+   [
+    "Now",
+    122.11
+   ],
+   [
+    "look",
+    122.31
+   ],
+   [
+    "up.",
+    122.55
+   ],
+   [
+    "Two",
+    123.25
+   ],
+   [
+    "minarets,",
+    123.47
+   ],
+   [
+    "one",
+    124.39
+   ],
+   [
+    "on",
+    124.63
+   ],
+   [
+    "each",
+    124.83
+   ],
+   [
+    "side",
+    125.07
+   ],
+   [
+    "of",
+    125.29
+   ],
+   [
+    "the",
+    125.37
+   ],
+   [
+    "dome.",
+    125.51
+   ],
+   [
+    "Why",
+    126.45
+   ],
+   [
+    "does",
+    126.63
+   ],
+   [
+    "one",
+    126.83
+   ],
+   [
+    "look",
+    127.05
+   ],
+   [
+    "newer",
+    127.29
+   ],
+   [
+    "than",
+    127.57
+   ],
+   [
+    "the",
+    127.73
+   ],
+   [
+    "other?",
+    127.89
+   ]
+  ],
+  "ar": "",
+  "cap": "Now look up. Two minarets, one on each side of the dome. Why does one look newer than the other?"
+ },
+ {
+  "who": "narrator",
+  "beat": 6,
+  "say": "Stay where you are, and look up at them.",
+  "file": "13-narrator-57da05ec.mp3",
+  "t0": 128.97,
+  "t1": 130.89,
+  "w": [
+   [
+    "Stay",
+    129.13
+   ],
+   [
+    "where",
+    129.33
+   ],
+   [
+    "you",
+    129.53
+   ],
+   [
+    "are,",
+    129.69
+   ],
+   [
+    "and",
+    130.09
+   ],
+   [
+    "look",
+    130.25
+   ],
+   [
+    "up",
+    130.43
+   ],
+   [
+    "at",
+    130.55
+   ],
+   [
+    "them.",
+    130.67
+   ]
+  ],
+  "ar": "",
+  "cap": "Stay where you are, and look up at them."
+ }
+]

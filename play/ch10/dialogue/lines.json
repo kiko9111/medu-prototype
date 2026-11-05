@@ -1,0 +1,1424 @@
+[
+ {
+  "who": "narrator",
+  "beat": 1,
+  "say": "Face the great hall from the edge of the court, then walk in, toward the prayer niche. The historian has a confession to make.",
+  "after": 0.6,
+  "file": "00-narrator-1c0e88dd.mp3",
+  "t0": 1.0,
+  "t1": 9.4,
+  "w": [
+   [
+    "Face",
+    1.14
+   ],
+   [
+    "the",
+    1.4
+   ],
+   [
+    "great",
+    1.54
+   ],
+   [
+    "hall",
+    1.86
+   ],
+   [
+    "from",
+    2.18
+   ],
+   [
+    "the",
+    2.34
+   ],
+   [
+    "edge",
+    2.52
+   ],
+   [
+    "of",
+    2.7
+   ],
+   [
+    "the",
+    2.8
+   ],
+   [
+    "court,",
+    2.96
+   ],
+   [
+    "then",
+    3.8
+   ],
+   [
+    "walk",
+    4.06
+   ],
+   [
+    "in,",
+    4.38
+   ],
+   [
+    "toward",
+    4.9
+   ],
+   [
+    "the",
+    5.24
+   ],
+   [
+    "prayer",
+    5.36
+   ],
+   [
+    "niche.",
+    5.66
+   ],
+   [
+    "The",
+    7.16
+   ],
+   [
+    "historian",
+    7.24
+   ],
+   [
+    "has",
+    8.1
+   ],
+   [
+    "a",
+    8.26
+   ],
+   [
+    "confession",
+    8.34
+   ],
+   [
+    "to",
+    8.98
+   ],
+   [
+    "make.",
+    9.1
+   ]
+  ],
+  "ar": "",
+  "cap": "Face the great hall from the edge of the court, then walk in, toward the prayer niche. The historian has a confession to make."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 1,
+  "say": "وَيُقَالُ إِنَّهُ أَكْبَرُ مِنْ إِيوَانِ كِسْرَى الَّذِي بِالْمَدَائِنِ مِنَ الْعِرَاقِ بِخَمْسَةِ أَذْرُعٍ.",
+  "cap": "It is said to be larger than the hall of Kisra at al-Mada'in in Iraq, by five cubits.",
+  "tag": "al-Maqrizi, Khitat, his own words",
+  "file": "01-maqrizi-1df44c27.mp3",
+  "t0": 10.0,
+  "t1": 18.24,
+  "w": [
+   [
+    "It",
+    10.08
+   ],
+   [
+    "is",
+    10.38
+   ],
+   [
+    "said",
+    10.69
+   ],
+   [
+    "to",
+    11.21
+   ],
+   [
+    "be",
+    11.4
+   ],
+   [
+    "larger",
+    11.6
+   ],
+   [
+    "than",
+    12.2
+   ],
+   [
+    "the",
+    12.64
+   ],
+   [
+    "hall",
+    13.01
+   ],
+   [
+    "of",
+    13.75
+   ],
+   [
+    "Kisra",
+    14.04
+   ],
+   [
+    "at",
+    14.52
+   ],
+   [
+    "al-Mada'in",
+    14.74
+   ],
+   [
+    "in",
+    15.73
+   ],
+   [
+    "Iraq,",
+    16.01
+   ],
+   [
+    "by",
+    16.72
+   ],
+   [
+    "five",
+    16.96
+   ],
+   [
+    "cubits.",
+    17.46
+   ]
+  ],
+  "ar": "وَيُقَالُ إِنَّهُ أَكْبَرُ مِنْ إِيوَانِ كِسْرَى الَّذِي بِالْمَدَائِنِ مِنَ الْعِرَاقِ بِخَمْسَةِ أَذْرُعٍ."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 1,
+  "say": "That is what I wrote: larger than the Persian king's arch, by five cubits. It is not. The arch at Ctesiphon is bigger still. But we believed it.",
+  "tag": "'The iwan of Sultan Hasan's mosque is not actually as large': Wikipedia",
+  "file": "02-maqrizi-b3f76bde.mp3",
+  "t0": 18.64,
+  "t1": 31.36,
+  "w": [
+   [
+    "That",
+    18.76
+   ],
+   [
+    "is",
+    18.92
+   ],
+   [
+    "what",
+    19.08
+   ],
+   [
+    "I",
+    19.32
+   ],
+   [
+    "wrote:",
+    19.4
+   ],
+   [
+    "larger",
+    20.32
+   ],
+   [
+    "than",
+    20.82
+   ],
+   [
+    "the",
+    20.98
+   ],
+   [
+    "Persian",
+    21.14
+   ],
+   [
+    "king's",
+    21.66
+   ],
+   [
+    "arch,",
+    22.2
+   ],
+   [
+    "by",
+    23.1
+   ],
+   [
+    "five",
+    23.3
+   ],
+   [
+    "cubits.",
+    23.64
+   ],
+   [
+    "It",
+    24.84
+   ],
+   [
+    "is",
+    24.94
+   ],
+   [
+    "not.",
+    25.12
+   ],
+   [
+    "The",
+    25.9
+   ],
+   [
+    "arch",
+    26.08
+   ],
+   [
+    "at",
+    26.52
+   ],
+   [
+    "Ctesiphon",
+    26.82
+   ],
+   [
+    "is",
+    27.92
+   ],
+   [
+    "bigger",
+    28.16
+   ],
+   [
+    "still.",
+    28.54
+   ],
+   [
+    "But",
+    29.66
+   ],
+   [
+    "we",
+    30.6
+   ],
+   [
+    "believed",
+    30.74
+   ],
+   [
+    "it.",
+    31.18
+   ]
+  ],
+  "ar": "",
+  "cap": "That is what I wrote: larger than the Persian king's arch, by five cubits. It is not. The arch at Ctesiphon is bigger still. But we believed it."
+ },
+ {
+  "who": "muqbil",
+  "beat": 2,
+  "say": "Face the hall. High along its walls, giant Kufic letters on swirling leaves: verses from the Sura of Victory. No other Mamluk building has a band like it.",
+  "tag": "The Kufic band on a vegetal arabesque, unique in Mamluk architecture, text from Surat al-Fath: Wikipedia",
+  "look": {
+   "dur": 6,
+   "cue": "Look high along the walls: the giant Kufic band.",
+   "element": "The Kufic band"
+  },
+  "file": "03-muqbil-3b0f518d.mp3",
+  "t0": 31.76,
+  "t1": 45.35,
+  "w": [
+   [
+    "Face",
+    31.91
+   ],
+   [
+    "the",
+    32.23
+   ],
+   [
+    "hall.",
+    32.35
+   ],
+   [
+    "High",
+    33.99
+   ],
+   [
+    "along",
+    34.21
+   ],
+   [
+    "its",
+    34.49
+   ],
+   [
+    "walls,",
+    34.75
+   ],
+   [
+    "giant",
+    35.55
+   ],
+   [
+    "Kufic",
+    36.11
+   ],
+   [
+    "letters",
+    36.69
+   ],
+   [
+    "on",
+    37.21
+   ],
+   [
+    "swirling",
+    37.55
+   ],
+   [
+    "leaves:",
+    38.13
+   ],
+   [
+    "verses",
+    39.29
+   ],
+   [
+    "from",
+    40.05
+   ],
+   [
+    "the",
+    40.27
+   ],
+   [
+    "Sura",
+    40.53
+   ],
+   [
+    "of",
+    41.05
+   ],
+   [
+    "Victory.",
+    41.25
+   ],
+   [
+    "No",
+    42.77
+   ],
+   [
+    "other",
+    42.95
+   ],
+   [
+    "Mamluk",
+    43.17
+   ],
+   [
+    "building",
+    43.69
+   ],
+   [
+    "has",
+    44.11
+   ],
+   [
+    "a",
+    44.29
+   ],
+   [
+    "band",
+    44.47
+   ],
+   [
+    "like",
+    44.97
+   ],
+   [
+    "it.",
+    45.23
+   ]
+  ],
+  "ar": "",
+  "cap": "Face the hall. High along its walls, giant Kufic letters on swirling leaves: verses from the Sura of Victory. No other Mamluk building has a band like it."
+ },
+ {
+  "who": "muqbil",
+  "beat": 2,
+  "say": "Below, coloured marble around the prayer niche. In its hood, a sunrise spreads out from the word Allah. Beside it, the pulpit, with its bronze doors.",
+  "tag": "The mihrab's marble, the sunrise motif radiating from the word 'Allah', the minbar's bronze doors: Wikipedia",
+  "look": {
+   "dur": 6,
+   "cue": "Find the sunrise in the hood of the prayer niche, and the pulpit beside it.",
+   "element": "The mihrab and the minbar"
+  },
+  "file": "04-muqbil-f7bbce62.mp3",
+  "t0": 45.75,
+  "t1": 56.79,
+  "w": [
+   [
+    "Below,",
+    45.83
+   ],
+   [
+    "coloured",
+    46.69
+   ],
+   [
+    "marble",
+    47.13
+   ],
+   [
+    "around",
+    47.55
+   ],
+   [
+    "the",
+    47.83
+   ],
+   [
+    "prayer",
+    47.99
+   ],
+   [
+    "niche.",
+    48.33
+   ],
+   [
+    "In",
+    49.33
+   ],
+   [
+    "its",
+    49.43
+   ],
+   [
+    "hood,",
+    49.65
+   ],
+   [
+    "a",
+    50.35
+   ],
+   [
+    "sunrise",
+    50.51
+   ],
+   [
+    "spreads",
+    51.31
+   ],
+   [
+    "out",
+    51.69
+   ],
+   [
+    "from",
+    51.89
+   ],
+   [
+    "the",
+    52.07
+   ],
+   [
+    "word",
+    52.19
+   ],
+   [
+    "Allah.",
+    52.65
+   ],
+   [
+    "Beside",
+    53.99
+   ],
+   [
+    "it,",
+    54.37
+   ],
+   [
+    "the",
+    54.75
+   ],
+   [
+    "pulpit,",
+    54.93
+   ],
+   [
+    "with",
+    55.49
+   ],
+   [
+    "its",
+    55.61
+   ],
+   [
+    "bronze",
+    55.87
+   ],
+   [
+    "doors.",
+    56.33
+   ]
+  ],
+  "ar": "",
+  "cap": "Below, coloured marble around the prayer niche. In its hood, a sunrise spreads out from the word Allah. Beside it, the pulpit, with its bronze doors."
+ },
+ {
+  "who": "muqbil",
+  "beat": 3,
+  "say": "To raise an arch this wide, the carpenters first build a frame of timber, to hold the stones until the arch can stand. I heard what this one cost.",
+  "tag": "How centring works: general building practice, stated as such. The 100,000 dirhams: Muqbil's report in al-Maqrizi, Khitat (validator ruling R4)",
+  "after": 0.3,
+  "file": "05-muqbil-11c5d8c7.mp3",
+  "t0": 57.19,
+  "t1": 66.92,
+  "w": [
+   [
+    "To",
+    57.31
+   ],
+   [
+    "raise",
+    57.47
+   ],
+   [
+    "an",
+    57.75
+   ],
+   [
+    "arch",
+    57.99
+   ],
+   [
+    "this",
+    58.43
+   ],
+   [
+    "wide,",
+    58.73
+   ],
+   [
+    "the",
+    59.47
+   ],
+   [
+    "carpenters",
+    59.59
+   ],
+   [
+    "first",
+    60.23
+   ],
+   [
+    "build",
+    60.57
+   ],
+   [
+    "a",
+    60.85
+   ],
+   [
+    "frame",
+    60.99
+   ],
+   [
+    "of",
+    61.31
+   ],
+   [
+    "timber,",
+    61.49
+   ],
+   [
+    "to",
+    62.19
+   ],
+   [
+    "hold",
+    62.33
+   ],
+   [
+    "the",
+    62.59
+   ],
+   [
+    "stones",
+    62.73
+   ],
+   [
+    "until",
+    63.17
+   ],
+   [
+    "the",
+    63.45
+   ],
+   [
+    "arch",
+    63.59
+   ],
+   [
+    "can",
+    63.83
+   ],
+   [
+    "stand.",
+    64.05
+   ],
+   [
+    "I",
+    65.57
+   ],
+   [
+    "heard",
+    65.65
+   ],
+   [
+    "what",
+    65.85
+   ],
+   [
+    "this",
+    66.05
+   ],
+   [
+    "one",
+    66.27
+   ],
+   [
+    "cost.",
+    66.47
+   ]
+  ],
+  "ar": "",
+  "cap": "To raise an arch this wide, the carpenters first build a frame of timber, to hold the stones until the arch can stand. I heard what this one cost."
+ },
+ {
+  "who": "muqbil",
+  "beat": 3,
+  "say": "سَمِعْتُ السُّلْطَانَ بِنَفْسِي.",
+  "cap": "I heard the sultan myself.",
+  "after": 0.2,
+  "file": "06-muqbil-9757b5d3.mp3",
+  "t0": 67.22,
+  "t1": 69.06,
+  "w": [
+   [
+    "I",
+    67.32
+   ],
+   [
+    "heard",
+    67.39
+   ],
+   [
+    "the",
+    67.77
+   ],
+   [
+    "sultan",
+    68.02
+   ],
+   [
+    "myself.",
+    68.5
+   ]
+  ],
+  "ar": "سَمِعْتُ السُّلْطَانَ بِنَفْسِي.",
+  "tag": "Dramatised: the Khitat has 'I heard the sultan say' (Muqbil, reported by al-Maqrizi); 'myself' is a paraphrase"
+ },
+ {
+  "who": "muqbil",
+  "beat": 3,
+  "say": "I heard the sultan say: the frame the great arch was built on cost a hundred thousand dirhams.",
+  "file": "07-muqbil-920f3d44.mp3",
+  "t0": 69.26,
+  "t1": 75.98,
+  "w": [
+   [
+    "I",
+    69.4
+   ],
+   [
+    "heard",
+    69.46
+   ],
+   [
+    "the",
+    69.68
+   ],
+   [
+    "sultan",
+    69.84
+   ],
+   [
+    "say:",
+    70.32
+   ],
+   [
+    "the",
+    71.26
+   ],
+   [
+    "frame",
+    71.44
+   ],
+   [
+    "the",
+    72.02
+   ],
+   [
+    "great",
+    72.14
+   ],
+   [
+    "arch",
+    72.56
+   ],
+   [
+    "was",
+    72.88
+   ],
+   [
+    "built",
+    73.12
+   ],
+   [
+    "on",
+    73.46
+   ],
+   [
+    "cost",
+    73.76
+   ],
+   [
+    "a",
+    74.08
+   ],
+   [
+    "hundred",
+    74.22
+   ],
+   [
+    "thousand",
+    74.8
+   ],
+   [
+    "dirhams.",
+    75.4
+   ]
+  ],
+  "ar": "",
+  "cap": "I heard the sultan say: the frame the great arch was built on cost a hundred thousand dirhams."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 3,
+  "say": "When the arch stood, the frame was thrown on the rubbish heaps. Now you know what he meant, in the lane.",
+  "tag": "al-Maqrizi, Khitat, read with Herz's 1899 French translation (research.md, 1 Nov)",
+  "after": 0.5,
+  "file": "08-maqrizi-742d32b7.mp3",
+  "t0": 76.38,
+  "t1": 84.29,
+  "w": [
+   [
+    "When",
+    76.51
+   ],
+   [
+    "the",
+    76.69
+   ],
+   [
+    "arch",
+    76.87
+   ],
+   [
+    "stood,",
+    77.37
+   ],
+   [
+    "the",
+    78.33
+   ],
+   [
+    "frame",
+    78.51
+   ],
+   [
+    "was",
+    78.93
+   ],
+   [
+    "thrown",
+    79.17
+   ],
+   [
+    "on",
+    79.75
+   ],
+   [
+    "the",
+    79.91
+   ],
+   [
+    "rubbish",
+    80.05
+   ],
+   [
+    "heaps.",
+    80.43
+   ],
+   [
+    "Now",
+    81.77
+   ],
+   [
+    "you",
+    82.05
+   ],
+   [
+    "know",
+    82.23
+   ],
+   [
+    "what",
+    82.43
+   ],
+   [
+    "he",
+    82.57
+   ],
+   [
+    "meant,",
+    82.73
+   ],
+   [
+    "in",
+    83.57
+   ],
+   [
+    "the",
+    83.69
+   ],
+   [
+    "lane.",
+    83.83
+   ]
+  ],
+  "ar": "",
+  "cap": "When the arch stood, the frame was thrown on the rubbish heaps. Now you know what he meant, in the lane."
+ },
+ {
+  "who": "sultan",
+  "beat": 3,
+  "say": "لَوْلَا أَنْ يُقَالَ مَلِكُ مِصْرَ عَجَزَ… لَتَرَكْتُ بِنَاءَ هٰذَا الْجَامِعِ.",
+  "cap": "Were it not that people would say the king of Egypt could not finish… I would abandon building this mosque.",
+  "tag": "al-Maqrizi, Khitat, his words abridged; the full line is in chapter 3",
+  "file": "09-sultan-12b0177f.mp3",
+  "t0": 84.79,
+  "t1": 90.23,
+  "w": [
+   [
+    "Were",
+    84.89
+   ],
+   [
+    "it",
+    85.06
+   ],
+   [
+    "not",
+    85.15
+   ],
+   [
+    "that",
+    85.28
+   ],
+   [
+    "people",
+    85.47
+   ],
+   [
+    "would",
+    85.86
+   ],
+   [
+    "say",
+    86.2
+   ],
+   [
+    "the",
+    86.4
+   ],
+   [
+    "king",
+    86.6
+   ],
+   [
+    "of",
+    86.86
+   ],
+   [
+    "Egypt",
+    87.0
+   ],
+   [
+    "could",
+    87.47
+   ],
+   [
+    "not",
+    88.01
+   ],
+   [
+    "finish…",
+    88.19
+   ],
+   [
+    "I",
+    88.54
+   ],
+   [
+    "would",
+    88.59
+   ],
+   [
+    "abandon",
+    88.88
+   ],
+   [
+    "building",
+    89.31
+   ],
+   [
+    "this",
+    89.7
+   ],
+   [
+    "mosque.",
+    89.89
+   ]
+  ],
+  "ar": "لَوْلَا أَنْ يُقَالَ مَلِكُ مِصْرَ عَجَزَ… لَتَرَكْتُ بِنَاءَ هٰذَا الْجَامِعِ."
+ },
+ {
+  "who": "sultan",
+  "beat": 4,
+  "say": "I did not abandon it. Look up: my arch has stood for six and a half centuries.",
+  "tag": "The iwan dates from 1356–63",
+  "reveal": {
+   "kind": "wipe",
+   "cue": "Hold it up to the great hall: then and now",
+   "then": "stage/then-ch10.jpg",
+   "thenCap": "c.1875 · photochrom, NYPL",
+   "now": "stage/now-ch10.jpg",
+   "nowCap": "Today · Mohamed abdelzaher, CC BY-SA 4.0 (modified)",
+   "dur": 11
+  },
+  "after": 3.0,
+  "file": "10-sultan-5c0d35c8.mp3",
+  "t0": 90.63,
+  "t1": 96.05,
+  "w": [
+   [
+    "I",
+    90.77
+   ],
+   [
+    "did",
+    90.85
+   ],
+   [
+    "not",
+    91.01
+   ],
+   [
+    "abandon",
+    91.19
+   ],
+   [
+    "it.",
+    91.67
+   ],
+   [
+    "Look",
+    92.43
+   ],
+   [
+    "up:",
+    92.69
+   ],
+   [
+    "my",
+    93.31
+   ],
+   [
+    "arch",
+    93.61
+   ],
+   [
+    "has",
+    93.89
+   ],
+   [
+    "stood",
+    94.07
+   ],
+   [
+    "for",
+    94.33
+   ],
+   [
+    "six",
+    94.63
+   ],
+   [
+    "and",
+    94.89
+   ],
+   [
+    "a",
+    95.03
+   ],
+   [
+    "half",
+    95.11
+   ],
+   [
+    "centuries.",
+    95.39
+   ]
+  ],
+  "ar": "",
+  "cap": "I did not abandon it. Look up: my arch has stood for six and a half centuries."
+ },
+ {
+  "who": "herz",
+  "beat": 4,
+  "say": "Chains hang from the vault. Each once held a glass lamp. Thirty-four of them, enamelled, were in the museum in my day.",
+  "tag": "Each chain held a glass lamp; 34 enamelled lamps from the mosque were in the Arab Museum in 1899: Herz 1899",
+  "look": {
+   "dur": 5,
+   "cue": "Look up at the chains hanging from the vault.",
+   "element": "The lamp chains"
+  },
+  "file": "11-herz-9dc95108.mp3",
+  "t0": 99.05,
+  "t1": 107.85,
+  "w": [
+   [
+    "Chains",
+    99.13
+   ],
+   [
+    "hang",
+    99.69
+   ],
+   [
+    "from",
+    100.03
+   ],
+   [
+    "the",
+    100.19
+   ],
+   [
+    "vault.",
+    100.33
+   ],
+   [
+    "Each",
+    101.25
+   ],
+   [
+    "once",
+    101.77
+   ],
+   [
+    "held",
+    102.01
+   ],
+   [
+    "a",
+    102.25
+   ],
+   [
+    "glass",
+    102.35
+   ],
+   [
+    "lamp.",
+    102.81
+   ],
+   [
+    "Thirty-four",
+    104.01
+   ],
+   [
+    "of",
+    104.57
+   ],
+   [
+    "them,",
+    104.69
+   ],
+   [
+    "enamelled,",
+    105.25
+   ],
+   [
+    "were",
+    106.17
+   ],
+   [
+    "in",
+    106.33
+   ],
+   [
+    "the",
+    106.43
+   ],
+   [
+    "museum",
+    106.53
+   ],
+   [
+    "in",
+    107.07
+   ],
+   [
+    "my",
+    107.21
+   ],
+   [
+    "day.",
+    107.49
+   ]
+  ],
+  "ar": "",
+  "cap": "Chains hang from the vault. Each once held a glass lamp. Thirty-four of them, enamelled, were in the museum in my day."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 5,
+  "say": "The richest marble, the golden writing, the sunrise: all gathered around one point, the niche that faces Mecca. Find it: the sunrise in the niche.",
+  "tag": "Wikipedia",
+  "file": "12-maqrizi-5569883a.mp3",
+  "t0": 108.25,
+  "t1": 121.26,
+  "w": [
+   [
+    "The",
+    108.37
+   ],
+   [
+    "richest",
+    108.49
+   ],
+   [
+    "marble,",
+    109.13
+   ],
+   [
+    "the",
+    109.95
+   ],
+   [
+    "golden",
+    110.09
+   ],
+   [
+    "writing,",
+    110.63
+   ],
+   [
+    "the",
+    111.49
+   ],
+   [
+    "sunrise:",
+    111.65
+   ],
+   [
+    "all",
+    113.03
+   ],
+   [
+    "gathered",
+    113.39
+   ],
+   [
+    "around",
+    113.81
+   ],
+   [
+    "one",
+    114.35
+   ],
+   [
+    "point,",
+    114.65
+   ],
+   [
+    "the",
+    115.67
+   ],
+   [
+    "niche",
+    115.87
+   ],
+   [
+    "that",
+    116.51
+   ],
+   [
+    "faces",
+    116.77
+   ],
+   [
+    "Mecca.",
+    117.45
+   ],
+   [
+    "Find",
+    118.45
+   ],
+   [
+    "it:",
+    118.79
+   ],
+   [
+    "the",
+    119.47
+   ],
+   [
+    "sunrise",
+    119.67
+   ],
+   [
+    "in",
+    120.45
+   ],
+   [
+    "the",
+    120.61
+   ],
+   [
+    "niche.",
+    120.75
+   ]
+  ],
+  "ar": "",
+  "cap": "The richest marble, the golden writing, the sunrise: all gathered around one point, the niche that faces Mecca. Find it: the sunrise in the niche."
+ },
+ {
+  "who": "muqbil",
+  "beat": 6,
+  "say": "Behind this wall, toward Mecca… a tomb. Whose?",
+  "after": 0.8,
+  "file": "13-muqbil-a74e7b9a.mp3",
+  "t0": 121.66,
+  "t1": 126.42,
+  "w": [
+   [
+    "Behind",
+    121.78
+   ],
+   [
+    "this",
+    122.28
+   ],
+   [
+    "wall,",
+    122.56
+   ],
+   [
+    "toward",
+    123.2
+   ],
+   [
+    "Mecca…",
+    123.58
+   ],
+   [
+    "a",
+    124.62
+   ],
+   [
+    "tomb.",
+    124.78
+   ],
+   [
+    "Whose?",
+    125.88
+   ]
+  ],
+  "ar": "",
+  "cap": "Behind this wall, toward Mecca… a tomb. Whose?"
+ },
+ {
+  "who": "narrator",
+  "beat": 6,
+  "say": "Go through the door to the left of the prayer niche.",
+  "tag": "The mausoleum is reached through a doorway to the left of the mihrab: Wikipedia",
+  "file": "14-narrator-c5a25bbe.mp3",
+  "t0": 127.22,
+  "t1": 129.7,
+  "w": [
+   [
+    "Go",
+    127.34
+   ],
+   [
+    "through",
+    127.54
+   ],
+   [
+    "the",
+    127.78
+   ],
+   [
+    "door",
+    127.92
+   ],
+   [
+    "to",
+    128.26
+   ],
+   [
+    "the",
+    128.38
+   ],
+   [
+    "left",
+    128.5
+   ],
+   [
+    "of",
+    128.82
+   ],
+   [
+    "the",
+    128.92
+   ],
+   [
+    "prayer",
+    129.06
+   ],
+   [
+    "niche.",
+    129.36
+   ]
+  ],
+  "ar": "",
+  "cap": "Go through the door to the left of the prayer niche."
+ }
+]

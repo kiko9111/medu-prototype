@@ -1,0 +1,114 @@
+{
+ "id": "ch02",
+ "n": 2,
+ "title": "The two minarets",
+ "place": "Salah al-Din Square, on the pavement facing the domed tomb end, looking up at the two minarets on either side of the dome.",
+ "mix": "dialogue/mix.mp3",
+ "lines": "dialogue/lines.json",
+ "speakers": {
+  "narrator": "Narrator",
+  "herz": "Max Herz",
+  "tumanbay": "Tumanbay",
+  "thevenot": "Thévenot"
+ },
+ "shots": [],
+ "quiz": [
+  {
+   "q": "What was special about the minaret that fell?",
+   "options": [
+    "It was made of wood",
+    "It had two lanterns at the top",
+    "It leaned. Feedback: \"It was said to be double-headed.\""
+   ],
+   "correct": 1
+  }
+ ],
+ "onsite": {
+  "stand": "Salah al-Din Square, on the pavement facing the domed tomb end, looking up at the two minarets on either side of the dome."
+ },
+ "next": "Walk into the lane along the long wall, and look up.",
+ "modes": {
+  "home": {
+   "mix": "dialogue/mix.mp3"
+  },
+  "site": {
+   "mix": "dialogue/mix-onsite.mp3",
+   "inserts": "dialogue/onsite.json",
+   "stage": {
+    "reveals": [
+     {
+      "t0": 12.88,
+      "t1": 17.88,
+      "kind": "still",
+      "cue": "Max Herz",
+      "label": "Max Herz · chief architect of the Comité, surveyed the mosque in 1899",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance"
+     },
+     {
+      "t0": 59.49,
+      "t1": 64.49,
+      "kind": "still",
+      "cue": "Tumanbay",
+      "label": "al-Ashraf Tumanbay II · last Mamluk sultan, r. 1516–17 · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/tumanbay.jpg"
+     },
+     {
+      "kind": "dark",
+      "buzz": [
+       60,
+       40,
+       300
+      ],
+      "t0": 79.31,
+      "t1": 81.11
+     },
+     {
+      "t0": 81.67,
+      "t1": 86.67,
+      "kind": "still",
+      "cue": "Thévenot",
+      "label": "Jean de Thévenot · French traveller, in Cairo 1657",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance"
+     },
+     {
+      "kind": "wipe",
+      "cue": "Hold it up to the minarets: then and now",
+      "then": "stage/then-ch02.jpg",
+      "thenCap": "1867–99 · Bonfils, Library of Congress",
+      "now": "stage/now-ch02.jpg",
+      "nowCap": "Today · Sohilaali869, public domain",
+      "t0": 112.87,
+      "t1": 122.87
+     }
+    ]
+   }
+  }
+ },
+ "status": "dialogue edition, draft: historical people speak, the narrator sets the scene; on-site only",
+ "lineTags": {
+  "1": "Herz 1899, La mosquée du sultan Hassan au Caire. The fall of 1659 and the rebuild of 1671–72: Wikipedia. Unverified on site: which minaret is on your left from here",
+  "2": "84 m above the street level of its time: Wikipedia",
+  "3": "'Said to be' double-headed: Wikipedia. Why it fell: no source we have says",
+  "4": "His refuge in the mosque and the bombardment from the Citadel: Wikipedia. The words are dramatised",
+  "5": "Dramatised: Tumanbay's words are invented. He hid here in 1517 and was taken alive and hanged at Bab Zuweila: Wikipedia",
+  "6": "Dramatised: Tumanbay's words are invented. He hid here in 1517 and was taken alive and hanged at Bab Zuweila: Wikipedia",
+  "8": "Thévenot (1657) saw the cannon holes, mainly in the dome: researcher, ch07/research.md row 11. The 1660 chronicle and the 1659 fall: Wikipedia",
+  "9": "Rebuilt 1671–72 with a smaller minaret and a new dome: Wikipedia. 'Nobody can say' is our reading",
+  "10": "The double head on al-Ghuri's minaret at al-Azhar: Wikipedia; exact year for the validator",
+  "12": "Unverified: the walking route from the square into the lane"
+ },
+ "siteOnly": true,
+ "edition": "dialogue",
+ "_planDefault": [
+  {
+   "t": 0,
+   "x": 79.0,
+   "y": 78.5,
+   "facing": 335
+  }
+ ]
+}

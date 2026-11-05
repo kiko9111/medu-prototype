@@ -8,6 +8,7 @@ This build is the **super app prototype** (Today, Map, Lens, Souk, Passport). Th
 
 - **Android (Chrome):** open the link, then tap **Install the app** on the first screen (or Chrome menu, then *Install app*).
 - **iPhone (Safari):** open the link, tap **Share**, then **Add to Home Screen**.
+- **The Sultan Hassan on-site play (dialogue edition):** `kiko9111.github.io/medu-prototype/play/` — 12 stops, headphones on at the mosque; the screen lights up only for what the eye cannot see.
 - **Google TV / Android TV:** install the free *Downloader* app from the TV's Play Store, allow it to install unknown apps, and open `kiko9111.github.io/medu-prototype/tv.apk` in it.
 
 After the first visit it works offline.

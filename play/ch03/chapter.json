@@ -1,0 +1,107 @@
+{
+ "id": "ch03",
+ "n": 3,
+ "title": "The long wall",
+ "place": "the lane between Sultan Hassan and Al-Rifa'i, close to the long north-east wall, walking toward the portal.",
+ "mix": "dialogue/mix.mp3",
+ "lines": "dialogue/lines.json",
+ "speakers": {
+  "narrator": "Narrator",
+  "muqbil": "Muqbil",
+  "maqrizi": "al-Maqrizi",
+  "sultan": "Sultan Hasan"
+ },
+ "shots": [],
+ "quiz": [
+  {
+   "q": "What did the sultan say he would do, if people wouldn't talk?",
+   "options": [
+    "Build a second mosque",
+    "Abandon this one",
+    "Move to Damascus"
+   ],
+   "correct": 1
+  }
+ ],
+ "onsite": {
+  "stand": "the lane between Sultan Hassan and Al-Rifa'i, close to the long north-east wall, walking toward the portal."
+ },
+ "next": "Walk to it, slowly. Stop a few steps before it.",
+ "modes": {
+  "home": {
+   "mix": "dialogue/mix.mp3"
+  },
+  "site": {
+   "mix": "dialogue/mix-onsite.mp3",
+   "inserts": "dialogue/onsite.json",
+   "stage": {
+    "reveals": [
+     {
+      "t0": 12.63,
+      "t1": 17.63,
+      "kind": "still",
+      "cue": "Muqbil",
+      "label": "Muqbil al-Shami · palace eunuch, al-Maqrizi's informant · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/muqbil.jpg"
+     },
+     {
+      "t0": 46.39,
+      "t1": 51.39,
+      "kind": "still",
+      "cue": "al-Maqrizi",
+      "label": "Taqi al-Din al-Maqrizi · historian of Cairo, 1364–1442 · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/maqrizi.jpg"
+     },
+     {
+      "t0": 84.49,
+      "t1": 89.49,
+      "kind": "still",
+      "cue": "Sultan Hasan",
+      "label": "al-Nasir Hasan · sultan, 1347–51 and 1354–61 · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/sultan.jpg"
+     }
+    ]
+   }
+  }
+ },
+ "status": "dialogue edition, draft: historical people speak, the narrator sets the scene; on-site only",
+ "lineTags": {
+  "1": "Four madrasas with four storeys of rooms: Wikipedia; 'one for each school', as the source says it is said",
+  "3": "36 m high, 150 m long, a cornice projecting 1.5 m, unprecedented: Wikipedia (Williams; Herz gives other figures)",
+  "4": "Corbels below street level, 'likely' a covered market: Wikipedia; the hedge is given to today's scholars, not to al-Maqrizi. Not visible from this lane",
+  "5": "20,000 dirhams a day: al-Maqrizi, Khitat (Wikipedia gives 30,000). The plague and the emirs' estates: Wikipedia",
+  "7": "al-Maqrizi, Khitat: the sultan's words as Muqbil reported them",
+  "10": "al-Maqrizi, Khitat",
+  "11": "Rows of eight windows: Wikipedia"
+ },
+ "siteOnly": true,
+ "edition": "dialogue",
+ "_planDefault": [
+  {
+   "t": 0,
+   "x": 70.0,
+   "y": 44.0,
+   "facing": 315
+  },
+  {
+   "t": 30,
+   "x": 62.0,
+   "y": 32.0,
+   "facing": 315,
+   "ms": 20000
+  },
+  {
+   "t": 70,
+   "x": 54.0,
+   "y": 21.0,
+   "facing": 315,
+   "ms": 20000
+  }
+ ]
+}

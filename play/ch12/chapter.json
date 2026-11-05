@@ -1,0 +1,94 @@
+{
+ "id": "ch12",
+ "n": 12,
+ "title": "The working town",
+ "place": "outside, on the north-west side of the mosque, by the ruins and excavated remains, then back in the lane facing Al-Rifa'i. UNVERIFIED: whether the ruins are open or only seen over a fence; if only seen, the chapter plays from the lane and the 360 view does the walking.",
+ "mix": "dialogue/mix.mp3",
+ "lines": "dialogue/lines.json",
+ "speakers": {
+  "narrator": "Narrator",
+  "sultan": "Sultan Hasan",
+  "herz": "Max Herz",
+  "maqrizi": "al-Maqrizi"
+ },
+ "shots": [],
+ "quiz": [
+  {
+   "q": "What happened to most of the lands that paid for the mosque?",
+   "options": [
+    "They were sold to build Al-Rifa'i",
+    "They were handed out to emirs and others",
+    "The Nile flooded them"
+   ],
+   "correct": 1
+  }
+ ],
+ "onsite": {
+  "stand": "outside, on the north-west side of the mosque, by the ruins and excavated remains, then back in the lane facing Al-Rifa'i. UNVERIFIED: whether the ruins are open or only seen over a fence; if only seen, the chapter plays from the lane and the 360 view does the walking."
+ },
+ "next": "Cross the lane, and look up. That's the next story.",
+ "modes": {
+  "home": {
+   "mix": "dialogue/mix.mp3"
+  },
+  "site": {
+   "mix": "dialogue/mix-onsite.mp3",
+   "inserts": "dialogue/onsite.json",
+   "stage": {
+    "reveals": [
+     {
+      "t0": 10.88,
+      "t1": 15.88,
+      "kind": "still",
+      "cue": "Sultan Hasan",
+      "label": "al-Nasir Hasan · sultan, 1347–51 and 1354–61 · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/sultan.jpg"
+     },
+     {
+      "t0": 21.28,
+      "t1": 26.28,
+      "kind": "still",
+      "cue": "Max Herz",
+      "label": "Max Herz · chief architect of the Comité, surveyed the mosque in 1899",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance"
+     },
+     {
+      "t0": 50.16,
+      "t1": 52.15,
+      "kind": "still",
+      "cue": "al-Maqrizi",
+      "label": "Taqi al-Din al-Maqrizi · historian of Cairo, 1364–1442 · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/maqrizi.jpg"
+     }
+    ]
+   }
+  }
+ },
+ "status": "dialogue edition, draft: historical people speak, the narrator sets the scene; on-site only",
+ "lineTags": {
+  "0": "Unverified: whether the ruins are open or only seen over a fence; if only seen, play this from the lane",
+  "1": "A maktab, latrines and ablutions fountains on the north-west side: Wikipedia",
+  "2": "The arched rooms 'may have been' shops of a weapons market; the pool and waterwheel 'probably' part of an older aqueduct: Wikipedia",
+  "3": "'Very great endowments' in Egypt and Syria: al-Maqrizi, Khitat",
+  "5": "al-Maqrizi, Khitat, his own words, abridged",
+  "7": "Sultan Janbalat's three days of demolition in 1500: Wikipedia",
+  "8": "Demolition attempts drew criticism and the authorities were pressured into repairs: Wikipedia. The Comité's repairs under Herz: Comité bulletins (researcher)",
+  "9": "Our summary of the parts Wikipedia lists. Unverified: whether the waterwheel remains are visible; fallback: the row of arched rooms"
+ },
+ "siteOnly": true,
+ "edition": "dialogue",
+ "_planDefault": [
+  {
+   "t": 0,
+   "x": 20.0,
+   "y": 32.0,
+   "facing": 45,
+   "ms": 600
+  }
+ ]
+}
