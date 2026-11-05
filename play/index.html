@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Sultan Hassan play preview</title><meta name="medu-build" content="2026-11-04T23:56Z">
+<title>Sultan Hassan play preview</title><meta name="medu-build" content="2026-11-05T09:22Z">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&family=Noto+Naskh+Arabic:wght@500&display=swap" rel="stylesheet">
 <style>/* Pannellum 2.5.6, https://github.com/mpetroff/pannellum */
@@ -854,8 +854,13 @@ async function boot() {
   const pc = PLAY && PLAY.chapters.find(c => BASE === c.dir + '/'); if (pc && (pc.siteS || pc.min)) $('sDur').textContent = siteOnly() && pc.siteS ? Math.max(1, Math.round(pc.siteS / 60)) : (pc.min || 2);   // minutes on the start card, from the running order
   const credits = new Map(); (C.shots || []).forEach(s => s.credit && credits.set(s.src, s.credit)); if (C.pano && C.pano.credit) credits.set(C.pano.src, C.pano.credit);
   const seen = new Set(); $('credList').innerHTML = '';
-  Object.entries(C.lineTags || {}).forEach(([i, t]) => { const li = document.createElement('li'); li.textContent = 'Line ' + i + ' (' + ((C.speakers || {})[L[i] && L[i].who] || '') + '): ' + t; $('credList').appendChild(li); });
-  credits.forEach((c, src) => { if (seen.has(c)) return; seen.add(c); const li = document.createElement('li'); li.textContent = src.split('/').pop() + ': ' + c; $('credList').appendChild(li); });
+  credits.forEach((c, src) => { if (seen.has(c) || (C.credits || []).some(x => x.src === src)) return; seen.add(c); const li = document.createElement('li'); li.textContent = src.split('/').pop() + ': ' + c; $('credList').appendChild(li); });
+  (C.credits || []).forEach(x => {   // stage pictures, portraits, clip, sound: author, licence link, source link, changes (CC BY-SA 4.0 s3(a))
+    const li = document.createElement('li'); const b = document.createElement('b'); b.textContent = x.what + ': '; li.appendChild(b); li.appendChild(document.createTextNode(x.author));
+    const add = (txt, href) => { li.appendChild(document.createTextNode(' · ')); if (href) { const a = document.createElement('a'); a.href = href; a.target = '_blank'; a.rel = 'noopener'; a.textContent = txt; li.appendChild(a); } else li.appendChild(document.createTextNode(txt)); };
+    if (x.license) add(x.license, x.licenseUrl); if (x.source) add(x.sourceName || 'source', x.source); if (x.note) add(x.note);
+    $('credList').appendChild(li); });
+  Object.entries(C.lineTags || {}).forEach(([i, t]) => { const li = document.createElement('li'); li.className = 'note'; li.textContent = 'Line ' + i + ' (' + ((C.speakers || {})[L[i] && L[i].who] || '') + '): ' + t; $('credList').appendChild(li); });
   if (!store.get('cc', true)) { $('app').classList.add('nocc'); $('ccBtn').classList.add('off'); }
   requestAnimationFrame(tick);
 }

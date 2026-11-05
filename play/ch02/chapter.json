@@ -96,9 +96,9 @@
   "4": "His refuge in the mosque and the bombardment from the Citadel: Wikipedia. The words are dramatised",
   "5": "Dramatised: Tumanbay's words are invented. He hid here in 1517 and was taken alive and hanged at Bab Zuweila: Wikipedia",
   "6": "Dramatised: Tumanbay's words are invented. He hid here in 1517 and was taken alive and hanged at Bab Zuweila: Wikipedia",
-  "8": "Thévenot (1657) saw the cannon holes, mainly in the dome: researcher, ch07/research.md row 11. The 1660 chronicle and the 1659 fall: Wikipedia",
+  "8": "Thévenot (1657) saw the cannon holes, mainly in the dome: Thévenot, quoted in Herz 1899. The 1660 chronicle and the 1659 fall: Wikipedia",
   "9": "Rebuilt 1671–72 with a smaller minaret and a new dome: Wikipedia. 'Nobody can say' is our reading",
-  "10": "The double head on al-Ghuri's minaret at al-Azhar: Wikipedia; exact year for the validator",
+  "10": "The double head on al-Ghuri's minaret at al-Azhar: Wikipedia; 1509–10",
   "12": "Unverified: the walking route from the square into the lane"
  },
  "siteOnly": true,
@@ -109,6 +109,48 @@
    "x": 79.0,
    "y": 78.5,
    "facing": 335
+  }
+ ],
+ "credits": [
+  {
+   "what": "Portraits",
+   "author": "MEDU",
+   "license": "Faces imagined",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "no likeness of these people survives",
+   "src": "_portrait"
+  },
+  {
+   "what": "Dome and minarets, then",
+   "author": "Maison Bonfils, 1867-99 (Library of Congress)",
+   "license": "Public domain",
+   "licenseUrl": null,
+   "source": "https://www.loc.gov/item/2004668128/",
+   "sourceName": "Library of Congress",
+   "note": "courtesy credit; cropped/resized",
+   "src": "stage/then-ch02.jpg"
+  },
+  {
+   "what": "Dome and minarets, today",
+   "author": "Sohilaali869",
+   "license": "Public domain",
+   "licenseUrl": null,
+   "source": "https://commons.wikimedia.org/wiki/File:Rifa%27i_and_Sultan_Hassan_Mosques-%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%B1%D9%81%D8%A7%D8%B9%D9%8A_%D9%88%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A7%D9%86_%D8%AD%D8%B3%D9%86-EWUG_01.jpg",
+   "sourceName": "Wikimedia Commons",
+   "note": "courtesy credit",
+   "src": "stage/now-ch02.jpg"
+  },
+  {
+   "what": "Ney bed and bell",
+   "author": "MEDU",
+   "license": "Own work",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "synthesised",
+   "src": "_sound"
   }
  ]
 }

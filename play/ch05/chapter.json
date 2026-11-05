@@ -108,5 +108,47 @@
    "y": 15.6,
    "facing": 160
   }
+ ],
+ "credits": [
+  {
+   "what": "Portraits",
+   "author": "MEDU",
+   "license": "Faces imagined",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "no likeness of these people survives",
+   "src": "_portrait"
+  },
+  {
+   "what": "The portal recess, then",
+   "author": "NYPL photogravure, maker not given (NYPL image 96039)",
+   "license": "Public domain",
+   "licenseUrl": null,
+   "source": "https://digitalcollections.nypl.org/items/d9b44670-c6be-012f-0520-58d385a7bc34",
+   "sourceName": "New York Public Library",
+   "note": "courtesy credit; cropped/resized",
+   "src": "stage/then-ch05.jpg"
+  },
+  {
+   "what": "The entrance, today",
+   "author": "Hatem Moushir",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:Madrasah_of_Sultan_Hassan_in_2017,_photo_by_Hatem_Moushir_37.jpg",
+   "sourceName": "Wikimedia Commons",
+   "note": "modified (cropped/resized)",
+   "src": "stage/now-ch05.jpg"
+  },
+  {
+   "what": "Ney bed and bell",
+   "author": "MEDU",
+   "license": "Own work",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "synthesised",
+   "src": "_sound"
+  }
  ]
 }

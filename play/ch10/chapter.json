@@ -96,7 +96,7 @@
   "2": "'The iwan of Sultan Hasan's mosque is not actually as large': Wikipedia",
   "3": "The Kufic band on a vegetal arabesque, unique in Mamluk architecture, text from Surat al-Fath: Wikipedia",
   "4": "The mihrab's marble, the sunrise motif radiating from the word 'Allah', the minbar's bronze doors: Wikipedia",
-  "5": "How centring works: general building practice, stated as such. The 100,000 dirhams: Muqbil's report in al-Maqrizi, Khitat (validator ruling R4)",
+  "5": "How centring works: general building practice, stated as such. The 100,000 dirhams: Muqbil's report in al-Maqrizi, Khitat",
   "6": "Dramatised: the Khitat has 'I heard the sultan say' (Muqbil, reported by al-Maqrizi); 'myself' is a paraphrase",
   "8": "al-Maqrizi, Khitat, read with Herz's 1899 French translation (research.md, 1 Nov)",
   "9": "al-Maqrizi, Khitat, his words abridged; the full line is in chapter 3",
@@ -113,6 +113,48 @@
    "x": 50.5,
    "y": 53.5,
    "facing": 125
+  }
+ ],
+ "credits": [
+  {
+   "what": "Portraits",
+   "author": "MEDU",
+   "license": "Faces imagined",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "no likeness of these people survives",
+   "src": "_portrait"
+  },
+  {
+   "what": "The great hall, c.1875",
+   "author": "Photoglob photochrom c.1870-75 (NYPL image 425800)",
+   "license": "Public domain",
+   "licenseUrl": null,
+   "source": "https://digitalcollections.nypl.org/items/233d22d0-c6e9-012f-a2de-58d385a7bc34",
+   "sourceName": "New York Public Library",
+   "note": "courtesy credit; cropped/resized",
+   "src": "stage/then-ch10.jpg"
+  },
+  {
+   "what": "The great hall, today",
+   "author": "Mohamed abdelzaher",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:Mosque-Madrassa_of_Sultan_Hassan_(1).jpg",
+   "sourceName": "Wikimedia Commons",
+   "note": "modified (cropped/resized)",
+   "src": "stage/now-ch10.jpg"
+  },
+  {
+   "what": "Ney bed and bell",
+   "author": "MEDU",
+   "license": "Own work",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "synthesised",
+   "src": "_sound"
   }
  ]
 }
