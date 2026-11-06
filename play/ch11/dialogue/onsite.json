@@ -2,21 +2,21 @@
  "note": "Look pauses for the on-site version; on-site t = base t + sum(dur of inserts with at <= t). Made by tools/dialogue.py from dialogue/lines.json.",
  "inserts": [
   {
-   "at": 27.09,
+   "at": 31.35,
    "dur": 6.0,
    "line": 2,
    "element": "The Throne Verse band",
    "cue": "Follow the Throne Verse around the room."
   },
   {
-   "at": 37.57,
+   "at": 41.99,
    "dur": 6.0,
    "line": 3,
    "element": "The pendentives",
    "cue": "Look up into a corner, where the square becomes a circle."
   },
   {
-   "at": 111.05,
+   "at": 118.93,
    "dur": 10.0,
    "line": 13,
    "element": "Stillness",

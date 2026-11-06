@@ -48,8 +48,8 @@
       "src": "dialogue/stills/sultan.jpg"
      },
      {
-      "t0": 14.16,
-      "t1": 19.16,
+      "t0": 15.6,
+      "t1": 20.6,
       "kind": "still",
       "cue": "Max Herz",
       "label": "Max Herz · chief architect of the Comité, surveyed the mosque in 1899",
@@ -63,12 +63,12 @@
       "thenCap": "1839 · Pascal Coste, NYPL",
       "now": "stage/now-ch07.jpg",
       "nowCap": "Today · Ahmedsamirhamadah, CC BY-SA 4.0 (modified)",
-      "t0": 23.92,
-      "t1": 34.92
+      "t0": 25.36,
+      "t1": 36.36
      },
      {
-      "t0": 55.82,
-      "t1": 60.82,
+      "t0": 57.34,
+      "t1": 62.34,
       "kind": "still",
       "cue": "al-Maqrizi",
       "label": "Taqi al-Din al-Maqrizi · historian of Cairo, 1364–1442 · face imagined",
@@ -77,8 +77,8 @@
       "src": "dialogue/stills/maqrizi.jpg"
      },
      {
-      "t0": 68.86,
-      "t1": 73.86,
+      "t0": 70.38,
+      "t1": 75.38,
       "kind": "still",
       "cue": "Bashir",
       "label": "Bashir al-Jamdar · palace eunuch who finished the marble · face imagined",

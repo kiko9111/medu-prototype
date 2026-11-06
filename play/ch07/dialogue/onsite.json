@@ -2,21 +2,21 @@
  "note": "Look pauses for the on-site version; on-site t = base t + sum(dur of inserts with at <= t). Made by tools/dialogue.py from dialogue/lines.json.",
  "inserts": [
   {
-   "at": 13.91,
+   "at": 15.35,
    "dur": 6.0,
    "line": 1,
    "element": "The open court",
    "cue": "Look up: one square of sky."
   },
   {
-   "at": 23.67,
+   "at": 25.11,
    "dur": 6.0,
    "line": 2,
    "element": "The four iwans",
    "cue": "Turn slowly: the four halls around you."
   },
   {
-   "at": 51.47,
+   "at": 53.71,
    "dur": 6.0,
    "line": 4,
    "element": "The empty band",
