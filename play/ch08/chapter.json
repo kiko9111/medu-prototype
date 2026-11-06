@@ -46,8 +46,8 @@
       "src": "dialogue/stills/sultan.jpg"
      },
      {
-      "t0": 26.08,
-      "t1": 31.08,
+      "t0": 31.44,
+      "t1": 36.44,
       "kind": "still",
       "cue": "al-Maqrizi",
       "label": "Taqi al-Din al-Maqrizi · historian of Cairo, 1364–1442 · face imagined",
@@ -62,8 +62,8 @@
       "thenCap": "1870s–90s · NYPL",
       "now": "stage/now-ch08.jpg",
       "nowCap": "Today · Magoopic, CC BY-SA 4.0 (modified)",
-      "t0": 40.4,
-      "t1": 51.4
+      "t0": 45.76,
+      "t1": 56.76
      }
     ]
    }

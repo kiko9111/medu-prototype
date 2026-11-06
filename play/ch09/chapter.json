@@ -48,8 +48,8 @@
       "src": "dialogue/stills/sultan.jpg"
      },
      {
-      "t0": 20.32,
-      "t1": 25.32,
+      "t0": 20.08,
+      "t1": 25.08,
       "kind": "still",
       "cue": "Max Herz",
       "label": "Max Herz · chief architect of the Comité, surveyed the mosque in 1899",
@@ -57,8 +57,8 @@
       "why": "a person the eye cannot see: portrait on first entrance"
      },
      {
-      "t0": 39.44,
-      "t1": 44.44,
+      "t0": 39.2,
+      "t1": 44.2,
       "kind": "still",
       "cue": "al-Subki",
       "label": "Baha' al-Din al-Subki · jurist · face imagined",
@@ -67,8 +67,8 @@
       "src": "dialogue/stills/subki.jpg"
      },
      {
-      "t0": 66.99,
-      "t1": 71.99,
+      "t0": 66.75,
+      "t1": 71.75,
       "kind": "still",
       "cue": "al-Kala'i",
       "label": "Shams al-Din al-Kala'i · jurist · face imagined",

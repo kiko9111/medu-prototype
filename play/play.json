@@ -8,7 +8,7 @@
    "ready": true,
    "checked": true,
    "min": 2,
-   "siteS": 148.3,
+   "siteS": 152.7,
    "stand": "Salah al-Din Square, on the Citadel side, facing the domed tomb end of the mosque across the road.",
    "moments": [
     {
@@ -22,7 +22,7 @@
      "cue": "Sultan Hasan"
     },
     {
-     "t0": 97.5,
+     "t0": 101.13,
      "kind": "wipe",
      "cue": "Hold it up to the mosque: then and now"
     }
@@ -80,7 +80,7 @@
    "ready": true,
    "checked": true,
    "min": 2,
-   "siteS": 157.2,
+   "siteS": 159.2,
    "stand": "the lane between Sultan Hassan and Al-Rifa'i, close to the long north-east wall, walking toward the portal.",
    "moments": [
     {
@@ -111,7 +111,7 @@
    "ready": true,
    "checked": true,
    "min": 3,
-   "siteS": 209.4,
+   "siteS": 212.1,
    "stand": "Stand in the lane a few steps back from the main portal and face it.",
    "moments": [
     {
@@ -125,22 +125,22 @@
      "cue": "Sultan Hasan"
     },
     {
-     "t0": 56.13,
+     "t0": 55.94,
      "kind": "still",
      "cue": "Bashir"
     },
     {
-     "t0": 74.99,
+     "t0": 75.83,
      "kind": "clip",
      "cue": "Raise your phone to the top of the portal"
     },
     {
-     "t0": 87.21,
+     "t0": 87.81,
      "kind": "dark",
      "cue": ""
     },
     {
-     "t0": 131.75,
+     "t0": 134.7,
      "kind": "wipe",
      "cue": "Hold it up to the portal: then and now"
     }
@@ -198,7 +198,7 @@
    "ready": true,
    "checked": true,
    "min": 2,
-   "siteS": 103.5,
+   "siteS": 103.0,
    "stand": "from the back of the entrance hall, up the steps, into the passage that turns toward the courtyard.",
    "moments": [
     {
@@ -212,7 +212,7 @@
      "cue": "Sultan Hasan"
     },
     {
-     "t0": 51.44,
+     "t0": 50.64,
      "kind": "still",
      "cue": "al-Maqrizi"
     }
@@ -229,7 +229,7 @@
    "ready": true,
    "checked": true,
    "min": 2,
-   "siteS": 123.0,
+   "siteS": 124.5,
    "stand": "the centre of the courtyard, beside the fountain pavilion.",
    "moments": [
     {
@@ -238,22 +238,22 @@
      "cue": "Sultan Hasan"
     },
     {
-     "t0": 14.16,
+     "t0": 15.6,
      "kind": "still",
      "cue": "Max Herz"
     },
     {
-     "t0": 23.92,
+     "t0": 25.36,
      "kind": "wipe",
      "cue": "Hold it up to the courtyard: then and now"
     },
     {
-     "t0": 55.82,
+     "t0": 57.34,
      "kind": "still",
      "cue": "al-Maqrizi"
     },
     {
-     "t0": 68.86,
+     "t0": 70.38,
      "kind": "still",
      "cue": "Bashir"
     }
@@ -270,7 +270,7 @@
    "ready": true,
    "checked": true,
    "min": 2,
-   "siteS": 108.4,
+   "siteS": 114.8,
    "stand": "the courtyard, turning from the side halls (iwans) to one of the corner doorways.",
    "moments": [
     {
@@ -279,12 +279,12 @@
      "cue": "Sultan Hasan"
     },
     {
-     "t0": 26.08,
+     "t0": 31.44,
      "kind": "still",
      "cue": "al-Maqrizi"
     },
     {
-     "t0": 40.4,
+     "t0": 45.76,
      "kind": "wipe",
      "cue": "Hold it up to the court: then and now"
     }
@@ -301,7 +301,7 @@
    "ready": true,
    "checked": true,
    "min": 2,
-   "siteS": 130.1,
+   "siteS": 130.3,
    "stand": "through a corner doorway, in one of the four college (madrasa) courtyards. UNVERIFIED: whether a college court is open to visitors today. If not, this chapter plays at the corner doorway, looking through, and the 360 view does the walking.",
    "moments": [
     {
@@ -310,17 +310,17 @@
      "cue": "Sultan Hasan"
     },
     {
-     "t0": 20.32,
+     "t0": 20.08,
      "kind": "still",
      "cue": "Max Herz"
     },
     {
-     "t0": 39.44,
+     "t0": 39.2,
      "kind": "still",
      "cue": "al-Subki"
     },
     {
-     "t0": 66.99,
+     "t0": 66.75,
      "kind": "still",
      "cue": "al-Kala'i"
     }
@@ -337,7 +337,7 @@
    "ready": true,
    "checked": true,
    "min": 2,
-   "siteS": 149.2,
+   "siteS": 149.9,
    "stand": "the courtyard edge, then inside the qibla iwan (the great hall facing Mecca), facing the prayer niche.",
    "moments": [
     {
@@ -356,12 +356,12 @@
      "cue": "Sultan Hasan"
     },
     {
-     "t0": 90.63,
+     "t0": 90.79,
      "kind": "wipe",
      "cue": "Hold it up to the great hall: then and now"
     },
     {
-     "t0": 101.63,
+     "t0": 101.79,
      "kind": "still",
      "cue": "Max Herz"
     }
@@ -378,7 +378,7 @@
    "ready": true,
    "checked": true,
    "min": 2,
-   "siteS": 146.8,
+   "siteS": 153.9,
    "stand": "inside the tomb chamber, behind the prayer-niche wall, under the dome.",
    "moments": [
     {
@@ -387,17 +387,17 @@
      "cue": "Sultan Hasan"
     },
     {
-     "t0": 37.82,
+     "t0": 42.24,
      "kind": "still",
      "cue": "al-Maqrizi"
     },
     {
-     "t0": 47.36,
+     "t0": 51.78,
      "kind": "still",
      "cue": "Yalbugha"
     },
     {
-     "t0": 54.62,
+     "t0": 59.36,
      "kind": "dark",
      "cue": ""
     }
@@ -414,7 +414,7 @@
    "ready": true,
    "checked": true,
    "min": 2,
-   "siteS": 133.2,
+   "siteS": 135.4,
    "stand": "outside, on the north-west side of the mosque, by the ruins and excavated remains, then back in the lane facing Al-Rifa'i. UNVERIFIED: whether the ruins are open or only seen over a fence; if only seen, the chapter plays from the lane and the 360 view does the walking.",
    "moments": [
     {
@@ -423,12 +423,12 @@
      "cue": "Sultan Hasan"
     },
     {
-     "t0": 21.28,
+     "t0": 22.88,
      "kind": "still",
      "cue": "Max Herz"
     },
     {
-     "t0": 50.16,
+     "t0": 51.44,
      "kind": "still",
      "cue": "al-Maqrizi"
     }

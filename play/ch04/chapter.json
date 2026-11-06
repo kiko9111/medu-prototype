@@ -98,8 +98,8 @@
       "src": "dialogue/stills/sultan.jpg"
      },
      {
-      "t0": 56.13,
-      "t1": 61.13,
+      "t0": 55.94,
+      "t1": 60.94,
       "kind": "still",
       "cue": "Bashir",
       "label": "Bashir al-Jamdar · palace eunuch who finished the marble · face imagined",
@@ -112,8 +112,8 @@
       "src": "model-shots/M6-ghost-pov.mp4",
       "cue": "Raise your phone to the top of the portal",
       "label": "The minaret that stood on the portal · a reconstruction, not a record",
-      "t0": 74.99,
-      "t1": 83.49
+      "t0": 75.83,
+      "t1": 84.33
      },
      {
       "kind": "dark",
@@ -122,8 +122,8 @@
        60,
        520
       ],
-      "t0": 87.21,
-      "t1": 89.41
+      "t0": 87.81,
+      "t1": 90.01
      },
      {
       "kind": "wipe",
@@ -132,8 +132,8 @@
       "thenCap": "1867–99 · Bonfils, Library of Congress",
       "now": "shots/hassan-portal.jpg",
       "nowCap": "Today · Ovedc, CC BY-SA 4.0 (modified)",
-      "t0": 131.75,
-      "t1": 142.75
+      "t0": 134.7,
+      "t1": 145.7
      }
     ]
    }

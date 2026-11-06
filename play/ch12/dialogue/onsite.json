@@ -2,14 +2,14 @@
  "note": "Look pauses for the on-site version; on-site t = base t + sum(dur of inserts with at <= t). Made by tools/dialogue.py from dialogue/lines.json.",
  "inserts": [
   {
-   "at": 21.03,
+   "at": 22.63,
    "dur": 6.0,
    "line": 1,
    "element": "The ruins",
    "cue": "Look over the ruins on this side of the mosque."
   },
   {
-   "at": 36.07,
+   "at": 37.67,
    "dur": 6.0,
    "line": 2,
    "element": "The arched rooms and the waterwheel",
