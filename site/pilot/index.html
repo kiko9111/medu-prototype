@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Medu pilot counter</title>
+<meta name="robots" content="noindex">
+<meta name="medu-pilot" content="">
+<style>
+:root{--night:#0B0A08;--card:#1F1C17;--ivory:#EFE7D8;--gold:#D4B062;--dust:#9A958B;--nile:#0E5E4E;color-scheme:dark}
+body{margin:0;background:var(--night);color:var(--ivory);font:15px/1.5 Inter,system-ui,sans-serif;padding:24px max(16px,env(safe-area-inset-left))}
+h1{font:600 30px/1.1 Georgia,serif;margin:0 0 4px}.sub{color:var(--dust);margin:0 0 20px}
+.code{background:var(--card);border-radius:14px;padding:16px;margin:0 0 14px;max-width:720px}
+.code h2{margin:0 0 10px;font:600 20px Georgia,serif;color:var(--gold)}
+.nums{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:12px}.nums b{display:block;font:600 24px Georgia,serif}
+.bar{display:grid;grid-template-columns:28px 1fr 64px;gap:8px;align-items:center;font-size:13px;margin:3px 0;font-variant-numeric:tabular-nums}
+.bar i{display:block;height:10px;border-radius:5px;background:var(--nile)}.bar span{color:var(--dust)}
+.empty{color:var(--dust)}
+</style></head><body>
+<h1>Pilot counter</h1>
+<p class="sub">Phones per partner code: who opened the app, began the walk, started and finished each stop, and finished the play. No names, places or photos.</p>
+<div id="out" class="empty">Loading…</div>
+<script>
+const EP = document.querySelector('meta[name="medu-pilot"]').content;
+const out = document.getElementById('out');
+const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+if (!EP) out.textContent = 'No counter is connected yet. Until one is, each phone keeps its own count (Settings in the app).';
+else fetch(EP).then((r) => r.json()).then((d) => {
+  const codes = Object.keys(d); if (!codes.length) { out.textContent = 'No visits counted yet.'; return; }
+  out.className = ''; out.innerHTML = codes.map((k) => { const c = d[k], max = Math.max(1, c.walk, ...Object.values(c.start));
+    let bars = ''; for (let n = 1; n <= 12; n++) { const s = c.start[n] || 0, e = c.end[n] || 0; bars += `<div class="bar"><span>${n}</span><i style="width:${(e / max * 100).toFixed(0)}%"></i><span>${e} / ${s}</span></div>`; }
+    return `<div class="code"><h2>${esc(k)}</h2><div class="nums"><div><b>${c.open}</b>opened</div><div><b>${c.walk}</b>began the walk</div><div><b>${c.finish}</b>finished</div><div><b>${c.card}</b>made a card</div></div><div class="sub" style="margin:0 0 6px">Finished / started, per stop</div>${bars}</div>`; }).join('');
+}).catch(() => { out.textContent = 'The counter did not answer. Check the connection.'; });
+</script></body></html>
