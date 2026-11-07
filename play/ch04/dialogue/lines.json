@@ -1476,96 +1476,108 @@
  {
   "who": "bashir",
   "beat": 4,
-  "say": "One medallion is carved. Its twin is only drawn: the master's line, still waiting for a chisel. Find it.",
+  "say": "One medallion is carved, full of leaves. Its twin is cut to shape but blank: its pattern was never carved. Find it.",
   "look": {
    "dur": 6,
-   "cue": "Find its twin: only the outline was drawn.",
+   "cue": "Find its twin: cut to shape, but blank.",
    "element": "The uncarved twin"
   },
-  "tag": "One medallion carved, its twin only outlined: Wikipedia, after Behrens-Abouseif",
-  "file": "15-bashir-378a9aa2.mp3",
+  "tag": "One medallion carved, its twin cut to shape but left blank: Wikipedia, after Behrens-Abouseif",
+  "file": "15-bashir-04bda6ae.mp3",
   "t0": 149.65,
-  "t1": 160.21,
+  "t1": 157.81,
   "w": [
    [
     "One",
-    149.83
+    149.77
    ],
    [
     "medallion",
-    149.97
+    149.91
    ],
    [
     "is",
-    150.49
+    150.39
    ],
    [
-    "carved.",
-    150.69
+    "carved,",
+    150.57
+   ],
+   [
+    "full",
+    151.07
+   ],
+   [
+    "of",
+    151.23
+   ],
+   [
+    "leaves.",
+    151.37
    ],
    [
     "Its",
-    151.53
+    152.39
    ],
    [
     "twin",
-    151.77
+    152.59
    ],
    [
     "is",
-    152.45
+    152.87
    ],
    [
-    "only",
-    152.61
+    "cut",
+    153.03
    ],
    [
-    "drawn:",
-    152.89
+    "to",
+    153.23
    ],
    [
-    "the",
-    154.15
+    "shape",
+    153.41
    ],
    [
-    "master's",
-    154.31
+    "but",
+    153.85
    ],
    [
-    "line,",
-    154.79
+    "blank:",
+    154.03
    ],
    [
-    "still",
-    155.49
+    "its",
+    155.05
    ],
    [
-    "waiting",
+    "pattern",
+    155.23
+   ],
+   [
+    "was",
+    155.59
+   ],
+   [
+    "never",
     155.73
    ],
    [
-    "for",
-    156.05
-   ],
-   [
-    "a",
-    156.19
-   ],
-   [
-    "chisel.",
-    156.29
+    "carved.",
+    156.01
    ],
    [
     "Find",
-    157.65
+    157.35
    ],
    [
     "it.",
-    157.95
+    157.63
    ]
   ],
   "ar": "",
-  "cap": "One medallion is carved. Its twin is only drawn: the master's line, still waiting for a chisel. Find it."
+  "cap": "One medallion is carved, full of leaves. Its twin is cut to shape but blank: its pattern was never carved. Find it."
  },
  {
   "who": "maqrizi",
@@ -1573,40 +1585,40 @@
   "say": "More than six hundred years, and still waiting.",
   "after": 0.6,
   "file": "16-maqrizi-584e0473.mp3",
-  "t0": 160.61,
-  "t1": 163.89,
+  "t0": 158.21,
+  "t1": 161.49,
   "w": [
    [
     "More",
-    160.71
+    158.31
    ],
    [
     "than",
-    160.87
+    158.47
    ],
    [
     "six",
-    161.11
+    158.71
    ],
    [
     "hundred",
-    161.37
+    158.97
    ],
    [
     "years,",
-    161.73
+    159.33
    ],
    [
     "and",
-    162.87
+    160.47
    ],
    [
     "still",
-    163.11
+    160.71
    ],
    [
     "waiting.",
-    163.39
+    160.99
    ]
   ],
   "ar": "",
@@ -1618,60 +1630,60 @@
   "say": "One more thing. This great gateway of mine: what door would close it?",
   "after": 0.8,
   "file": "17-sultan-fd32d3d0.mp3",
-  "t0": 164.49,
-  "t1": 169.21,
+  "t0": 162.09,
+  "t1": 166.81,
   "w": [
    [
     "One",
-    164.65
+    162.25
    ],
    [
     "more",
-    164.81
+    162.41
    ],
    [
     "thing.",
-    165.05
+    162.65
    ],
    [
     "This",
-    166.11
+    163.71
    ],
    [
     "great",
-    166.35
+    163.95
    ],
    [
     "gateway",
-    166.71
+    164.31
    ],
    [
     "of",
-    167.07
+    164.67
    ],
    [
     "mine:",
-    167.23
+    164.83
    ],
    [
     "what",
-    168.07
+    165.67
    ],
    [
     "door",
-    168.29
+    165.89
    ],
    [
     "would",
-    168.53
+    166.13
    ],
    [
     "close",
-    168.73
+    166.33
    ],
    [
     "it?",
-    169.05
+    166.65
    ]
   ],
   "ar": "",
@@ -1682,40 +1694,40 @@
   "beat": 6,
   "say": "Step inside. The answer waits in the hall.",
   "file": "18-narrator-2a25feb4.mp3",
-  "t0": 170.01,
-  "t1": 172.65,
+  "t0": 167.61,
+  "t1": 170.25,
   "w": [
    [
     "Step",
-    170.07
+    167.67
    ],
    [
     "inside.",
-    170.29
+    167.89
    ],
    [
     "The",
-    171.19
+    168.79
    ],
    [
     "answer",
-    171.35
+    168.95
    ],
    [
     "waits",
-    171.73
+    169.33
    ],
    [
     "in",
-    172.05
+    169.65
    ],
    [
     "the",
-    172.17
+    169.77
    ],
    [
     "hall.",
-    172.27
+    169.87
    ]
   ],
   "ar": "",
