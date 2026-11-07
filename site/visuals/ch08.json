@@ -1,0 +1,19 @@
+{
+ "about": "Gold line layer for ch08: real photos with the named element traced; paths are fractions of the photo. Traced by eye: validator to check each outline.",
+ "looks": [
+  null,
+  null
+ ],
+ "credits": [],
+ "replace": {
+  "2": {
+   "kind": "wipe",
+   "cue": "Hold it up to the court: then and now",
+   "then": "wipe-then.jpg",
+   "thenCap": "1870s–90s · NYPL",
+   "now": "wipe-now.jpg",
+   "nowCap": "Today · أحمد ناجي, CC BY-SA 4.0 (aligned)",
+   "aligned": true
+  }
+ }
+}

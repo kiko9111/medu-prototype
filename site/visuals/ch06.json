@@ -1,0 +1,67 @@
+{
+ "about": "Gold line layer for ch06: real photos with the named element traced; paths are fractions of the photo. Traced by eye: validator to check each outline.",
+ "looks": [
+  {
+   "src": "hassan-r6-2.jpg",
+   "label": "The steps up from the entrance hall",
+   "paths": [
+    {
+     "d": "M .17 .735 L .78 .725"
+    },
+    {
+     "d": "M .14 .825 L .80 .815"
+    },
+    {
+     "d": "M .12 .915 L .82 .905"
+    }
+   ],
+   "tags": [
+    {
+     "at": [
+      0.48,
+      0.7
+     ],
+     "t": "count the steps",
+     "side": "b"
+    }
+   ],
+   "ar": 1.5005
+  },
+  {
+   "src": "hassan-r6-4.jpg",
+   "label": "The passage narrows toward the light, then turns",
+   "paths": [
+    {
+     "d": "M .43 .49 L .43 .28 C .45 .21 .63 .21 .65 .28 L .65 .49"
+    }
+   ],
+   "tags": [
+    {
+     "at": [
+      0.54,
+      0.5
+     ],
+     "t": "toward the light",
+     "side": "b"
+    }
+   ],
+   "ar": 0.5629
+  }
+ ],
+ "credits": [
+  {
+   "what": "The steps up from the entrance hall",
+   "author": "Mariam Mohamed Kamal",
+   "license": "CC BY-SA 3.0 (lines added)",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:Sultan_Hassan_Mosque_3.JPG"
+  },
+  {
+   "what": "The passage narrows toward the light, then turns",
+   "author": "أحمد ناجي",
+   "license": "CC BY-SA 4.0 (lines added)",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A7%D9%86_%D8%AD%D8%B3%D9%86_2026_17.jpg"
+  }
+ ]
+}

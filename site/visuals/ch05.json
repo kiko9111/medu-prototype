@@ -1,0 +1,46 @@
+{
+ "about": "Gold line layer for ch05: real photos with the named element traced; paths are fractions of the photo. Traced by eye: validator to check each outline.",
+ "looks": [
+  {
+   "src": "hassan-r6-1.jpg",
+   "label": "The small dome of the entrance hall",
+   "paths": [
+    {
+     "d": "M 0.3700 0.4600 C 0.3700 0.3385 0.4282 0.2400 0.5000 0.2400 C 0.5718 0.2400 0.6300 0.3385 0.6300 0.4600 C 0.6300 0.5815 0.5718 0.6800 0.5000 0.6800 C 0.4282 0.6800 0.3700 0.5815 0.3700 0.4600"
+    }
+   ],
+   "tags": [
+    {
+     "at": [
+      0.5,
+      0.7
+     ],
+     "t": "the small dome",
+     "side": "b"
+    }
+   ],
+   "ar": 1.5873
+  },
+  null
+ ],
+ "credits": [
+  {
+   "what": "The small dome of the entrance hall",
+   "author": "Morhaf Aljanee",
+   "license": "CC BY-SA 3.0 (lines added)",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:The_Ceiling_Decoration_Art_(86688649).jpeg"
+  }
+ ],
+ "replace": {
+  "4": {
+   "kind": "wipe",
+   "cue": "Hold it up to the niche by the door: then and now",
+   "then": "wipe-then.jpg",
+   "thenCap": "19th century · photogravure, NYPL",
+   "now": "wipe-now.jpg",
+   "nowCap": "Today · Ovedc, CC BY-SA 4.0 (aligned)",
+   "aligned": true
+  }
+ }
+}
