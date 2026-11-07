@@ -301,6 +301,40 @@ async function shareCard() {
   toast('Sharing pictures isn\'t available here. Use "Save to this phone".');
 }
 
+
+// ================================================================ the way to the next stop (3D guide walk mode, from the 3D thread)
+// The next-stop card offers "Show me the way": the 3D guide opens at #walk-chNN (gold route, arrows, ring at the mark,
+// "Follow me" with GPS + compass, "I'm on the mark"). When the guide reports arrival (mode back to "stand", or its hash
+// turns to #chNN), the overlay closes and the next chapter's stand card opens. Routes are [VERIFY ON SITE].
+const wv = document.createElement('div'); wv.id = 'w1way';
+wv.innerHTML = '<iframe title="The way to the next stop" allow="geolocation; accelerometer; gyroscope; magnetometer"></iframe><div class="w1waytop"><button class="x" aria-label="Close the map"><svg width="20" height="20"><use href="#close"/></svg></button><span class="w1wayhint">Needs a signal the first time; then it is stored.</span></div>';
+document.getElementById('stage').appendChild(wv);
+let wayTimer = 0, wayTarget = 0;
+function wayClose() { clearInterval(wayTimer); wv.classList.remove('on'); const f = wv.querySelector('iframe'); f.src = 'about:blank'; }
+wv.querySelector('button').onclick = wayClose;
+function wayOpen(n) {
+  wayTarget = n; const id = 'ch' + String(n).padStart(2, '0'); const f = wv.querySelector('iframe');
+  f.src = 'guide3d/index.html#walk-' + id; wv.classList.add('on'); track('way', n);
+  let walked = false; clearInterval(wayTimer);
+  wayTimer = setInterval(() => {
+    let mode = '', hash = '';
+    try { const w = f.contentWindow; hash = w.location.hash; mode = w.__r && w.__r.state ? w.__r.state().mode : ''; } catch (e) { return; }
+    if (mode === 'walk' || hash.startsWith('#walk-')) walked = true;
+    if (walked && (mode === 'stand' || hash === '#' + id)) { clearInterval(wayTimer); setTimeout(() => { wayClose(); openStop(wayTarget); }, 1900); }
+  }, 400);
+}
+const origFinish2 = window.finishStop;
+window.finishStop = function () {
+  const r = origFinish2.apply(this, arguments);
+  const card = document.getElementById('nextCard'), btns = card && card.querySelector('.btns');
+  if (btns && card.classList.contains('on') && S.cur) {
+    let b = document.getElementById('w1wayBtn');
+    if (!b) { b = document.createElement('button'); b.id = 'w1wayBtn'; b.className = 'pill ghost'; btns.insertBefore(b, btns.children[1]); }
+    b.textContent = 'Show me the way'; b.onclick = () => wayOpen(S.cur);
+  }
+  return r;
+};
+
 // ================================================================ UI: styles + hooks into the existing screens
 const css = document.createElement('style');
 css.textContent = `
@@ -322,6 +356,12 @@ css.textContent = `
 .w1call{color:var(--gold);margin-top:8px}
 .w1quiet{font:500 19px/1.4 var(--serif);color:var(--paper)}
 .w1prev{border-radius:14px;background:var(--night3);min-height:120px;display:grid;place-items:center;overflow:hidden;margin-top:6px}
+#w1way{position:absolute;inset:0;z-index:20;background:#0B0A08;display:none}
+#w1way.on{display:block}
+#w1way iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.w1waytop{position:absolute;top:calc(var(--top) + 10px);left:12px;right:12px;display:flex;align-items:center;gap:10px;pointer-events:none}
+.w1waytop .x{pointer-events:auto;background:rgba(11,10,8,.7)}
+.w1wayhint{font-size:11px;color:var(--dust);background:rgba(11,10,8,.6);padding:4px 8px;border-radius:8px}
 .w1prev img{display:block;width:100%;max-width:280px;margin:12px auto;border-radius:8px}
 `;
 document.head.appendChild(css);
