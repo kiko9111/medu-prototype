@@ -196,6 +196,10 @@ body.big .capline{font-size:32px}
   <symbol id="next" viewBox="0 0 24 24"><path d="M5 5v14l9-7zM15 5h3v14h-3z" fill="currentColor"/></symbol>
   <symbol id="close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
   <symbol id="info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 10.5v6M12 7.2v.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="hand" viewBox="0 0 24 24"><path d="M12 3.5v9M8.5 6.5V13M15.5 6.5V13M5.5 11.5v3.2A6.5 6.5 0 0 0 12 21a6.5 6.5 0 0 0 6.5-6.3V9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="steps" viewBox="0 0 24 24"><path d="M3 20h4.5v-4.5H12V11h4.5V6.5H21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="wave" viewBox="0 0 24 24"><path d="M2.5 12c2-5 4-5 6 0s4 5 6 0 4-5 6 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="still" viewBox="0 0 24 24"><circle cx="12" cy="4.5" r="2.2" fill="currentColor"/><path d="M12 8v7.5M12 15.5l-3 6M12 15.5l3 6M7.5 11.5h9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
   <symbol id="eye" viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" fill="currentColor"/></symbol>
   <symbol id="list" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
 </svg>
@@ -265,7 +269,7 @@ body.big .capline{font-size:32px}
   </div>
   <div class="mid">
     <div class="say"><div class="who" id="stWho"></div><div class="arline" id="stAr" lang="ar"></div><div class="capline" id="stCap"></div></div>
-    <div class="look"><div class="eye"><svg class="ring" width="64" height="64"><circle cx="32" cy="32" r="31" fill="none" stroke="#D4B062" stroke-width="2" stroke-dasharray="194.8" stroke-dashoffset="0" id="lookRing"/></svg><svg width="26" height="26"><use href="#eye"/></svg></div><div class="lab">LOOK</div><div class="cue" id="lookCue"></div><div class="el" id="lookEl"></div></div>
+    <div class="look"><div class="eye"><svg class="ring" width="64" height="64"><circle cx="32" cy="32" r="31" fill="none" stroke="#D4B062" stroke-width="2" stroke-dasharray="194.8" stroke-dashoffset="0" id="lookRing"/></svg><svg width="26" height="26"><use href="#eye" id="lookIco"/></svg></div><div class="lab" id="lookLab">LOOK</div><div class="cue" id="lookCue"></div><div class="el" id="lookEl"></div></div>
   </div>
   <div id="rev"></div>
   <div class="ctl">
@@ -408,6 +412,7 @@ async function allFiles() {
   const out = [PLAY + 'play.json'];
   for (const m of PLAYJ.chapters) { const ch = await loadCh(m.n); out.push(...stopFiles(ch)); }
   const ch1 = await loadCh(1); out.push(url(ch1.meta.dir, ch1.c.mix || 'dialogue/mix.mp3')); // the trailer
+  if (PLAYJ.door) out.push(url(PLAYJ.door.dir, PLAYJ.door.mix), url(PLAYJ.door.dir, PLAYJ.door.lines));   // the door scene
   return [...new Set(out)];
 }
 let dlBusy = false;
@@ -478,7 +483,7 @@ $('#sheetIn').addEventListener('click', (e) => {
   else if (a === 'close') closeSheet();
   else if (a === 'fx') { S.fx = !S.fx; save(); applyPrefs(); b.setAttribute('aria-checked', S.fx); }
   else if (a === 'big') { S.big = !S.big; save(); applyPrefs(); b.setAttribute('aria-checked', !!S.big); }
-  else if (a === 'reset') { if (confirm('Clear your progress on this phone?')) { S.done = []; S.pos = {}; S.cur = 0; save(); closeSheet(); renderWalk(); } }
+  else if (a === 'reset') { if (confirm('Clear your progress on this phone?')) { S.done = []; S.pos = {}; S.cur = 0; S.door = 0; save(); closeSheet(); renderWalk(); } }
   else if (a === 'dl') { closeSheet(); download(); }
 });
 function planSheet() {
@@ -528,6 +533,15 @@ async function creditsSheet(n) {
     <p class="small">Where each fact comes from. “Dramatised” marks words we wrote for a real person; “Unverified” marks what we still have to check on site.</p>
     <h3>Sources, line by line</h3><ul>${rows.join('') || '<li>No notes for this stop.</li>'}</ul>
     <h3>Pictures</h3><ul>${pics.join('') || '<li>None.</li>'}</ul>
+    <div class="btns"><button class="pill quiet" data-act="close">Close</button></div>`);
+}
+
+function doorSheet() {
+  const c = CUR.c, rows = [];
+  for (const [i, l] of CUR.lines.entries()) if (l.tag) rows.push(`<li><b>${esc((c.speakers || {})[l.who] || l.who)}</b>: “${esc((l.cap || l.say).slice(0, 70))}${(l.cap || l.say).length > 70 ? '…' : ''}”<br><span class="small">${esc(l.tag)}</span></li>`);
+  sheet(`<h2>${esc(c.title)}</h2>
+    <p class="small">The house rules, spoken by the historian. What we still have to check on site is marked Unverified.</p>
+    <ul>${rows.join('') || '<li>No notes.</li>'}</ul>
     <div class="btns"><button class="pill quiet" data-act="close">Close</button></div>`);
 }
 
@@ -581,12 +595,17 @@ function renderWalk() {
 $('#stops').addEventListener('click', (e) => { const b = e.target.closest('.stop'); if (b) openStop(+b.dataset.n); });
 
 // ---------------------------------------------------------------- stage (one stop)
-let CUR = null, raf = 0, revShown = -1, wakeLock = null, lastIns = null;
+let CUR = null, DOOR = null, raf = 0, revShown = -1, wakeLock = null, lastIns = null;
+// what an insert asks of the visitor (onsite.json act): label, icon, buzz. A hum, never claps (feature 22).
+const ACTS = { look: ['LOOK', 'eye', 40], touch: ['TOUCH', 'hand', [30, 40, 30]], count: ['COUNT', 'steps', 40], hum: ['HUM', 'wave', 20], still: ['STAND STILL', 'still', 60], listen: ['LISTEN', 'wave', 20] };
+const emit = (name, detail) => { try { document.dispatchEvent(new CustomEvent(name, { detail })); } catch (e) {} };   // hooks for add-on layers (wave1.js, gold line)
 async function openStop(n, skipStand) {
   stopAudio();
+  if (n === 1 && PLAYJ.door && !S.door && !skipStand && !S.pos[1] && !S.done.length) return openDoor();   // first entry: the house rules first
   try { CUR = await loadCh(n); } catch (e) { toast('This stop did not load. Check the download or the signal.'); return; }
   S.cur = n; save();
   show('stage'); $('#stage').classList.remove('looking', 'dark'); hideReveal(true);
+  emit('medu:stopstart', { n, dir: CUR.meta.dir });
   $('#stTtl').innerHTML = `<b>${n} · ${esc(CUR.c.title)}</b>`;
   au.src = url(CUR.meta.dir, CUR.site.mix || CUR.c.mix);
   au.load();
@@ -600,17 +619,36 @@ async function openStop(n, skipStand) {
 }
 function standCard() {
   const m = CUR.meta, ph = standPhoto(CUR);
-  $('#standK').textContent = 'Stop ' + m.n + ' of ' + PLAYJ.chapters.length;
+  $('#standK').textContent = CUR.door ? 'Before stop 1' : 'Stop ' + m.n + ' of ' + PLAYJ.chapters.length;
   $('#standH').textContent = CUR.c.title;
   $('#standP').textContent = (CUR.c.onsite && CUR.c.onsite.stand) || m.stand || CUR.c.place || '';
-  $('#standM').textContent = fmt(m.siteS || 0) + ' · headphones on, then lower your phone.';
+  $('#standM').textContent = fmt(m.siteS || 0) + (CUR.door ? ' · the historian on how the house receives us.' : ' · headphones on, then lower your phone.');
   $('#standPh').style.backgroundImage = ph ? `url("${url(m.dir, ph)}")` : 'none';
   $('#standPh').style.display = ph ? '' : 'none';
+  $('#standGo').textContent = CUR.door ? 'I\'m at the door · listen' : 'I\'m standing here · begin';
+  $('#standBack').textContent = CUR.door ? 'Skip, I know the house rules' : 'Back to the walk';
   $('#standCard').classList.add('on');
 }
+// The door scene: a short pre-roll before stop 1 (play.json "door", built only from the validated door/dialogue files).
+async function openDoor() {
+  const d = PLAYJ.door;
+  try {
+    if (!DOOR) { const lines = await getJSON(url(d.dir, d.lines)); DOOR = { meta: { n: 0, dir: d.dir, siteS: d.siteS, stand: 'Before the first stop, wherever you stand. Headphones on, one earbud out.' }, c: { title: d.title || 'At the door', speakers: d.speakers || {}, next: '' }, lines, ins: [], site: { mix: d.mix }, reveals: [], door: true }; }
+  } catch (e) { S.door = Date.now(); save(); return openStop(1); }   // no door files: straight to stop 1
+  CUR = DOOR; S.cur = 1; save();
+  show('stage'); $('#stage').classList.remove('looking', 'dark'); hideReveal(true);
+  emit('medu:stopstart', { n: 0, dir: d.dir, door: true });
+  $('#stTtl').innerHTML = `<b>${esc(CUR.c.title)}</b>`;
+  au.src = url(d.dir, d.mix); au.load();
+  au.addEventListener('loadedmetadata', function f() { au.removeEventListener('loadedmetadata', f); paint(); }, { once: true });
+  renderLine($('#stCap'), $('#stAr'), $('#stWho'), CUR, null, 0);
+  $('#nextCard').classList.remove('on');
+  standCard(); mediaSession();
+}
+function skipDoor() { S.door = Date.now(); save(); openStop(1); }
 function playPause() { if (au.paused) { au.play().catch(() => toast('Tap play again to start the sound.')); } else au.pause(); }
 au.addEventListener('play', () => { setIco(); tick(); lock(true); });
-au.addEventListener('pause', () => { setIco(); cancelAnimationFrame(raf); if (CUR) { S.pos[CUR.meta.n] = au.currentTime; save(); } lock(false); });
+au.addEventListener('pause', () => { setIco(); cancelAnimationFrame(raf); if (CUR && !CUR.door) { S.pos[CUR.meta.n] = au.currentTime; save(); } lock(false); });
 au.addEventListener('ended', () => { cancelAnimationFrame(raf); finishStop(); });
 function setIco() { $('#stPlayIco').innerHTML = `<use href="#${au.paused ? 'play' : 'pause'}"/>`; if ('mediaSession' in navigator) navigator.mediaSession.playbackState = au.paused ? 'paused' : 'playing'; }
 function tick() { paint(); raf = requestAnimationFrame(tick); }
@@ -622,14 +660,18 @@ function paint() {
   // look pause
   const stage = $('#stage');
   if (b.ins) {
-    if (lastIns !== b.ins) { lastIns = b.ins; $('#lookCue').textContent = b.ins.cue || 'Look.'; $('#lookEl').textContent = b.ins.element || ''; buzz(40); }
+    if (lastIns !== b.ins) {
+      lastIns = b.ins; const a = ACTS[b.ins.act] || ACTS.look;   // stage acts (wave 1): the panel says what to do, not only where to look
+      $('#lookLab').textContent = a[0]; $('#lookIco').setAttribute('href', '#' + a[1]);
+      $('#lookCue').textContent = b.ins.cue || 'Look.'; $('#lookEl').textContent = b.ins.element || ''; buzz(a[2] || 40);
+    }
     $('#lookRing').style.strokeDashoffset = (194.8 * b.k).toFixed(1);
     stage.classList.add('looking');
   } else { stage.classList.remove('looking'); lastIns = null; renderLine($('#stCap'), $('#stAr'), $('#stWho'), CUR, lineAt(CUR.lines, b.t), b.t); }
   // reveals (base timeline)
   const i = CUR.reveals.findIndex((r) => b.t >= r.t0 && b.t < r.t1);
   if (i !== revShown) { if (i < 0) hideReveal(); else showReveal(CUR.reveals[i]); revShown = i; }
-  if (s - lastSave > 5) { lastSave = s; S.pos[CUR.meta.n] = s; save(); }
+  if (s - lastSave > 5 && !CUR.door) { lastSave = s; S.pos[CUR.meta.n] = s; save(); }
 }
 function showReveal(r) {
   const rev = $('#rev'), stage = $('#stage'); rev.className = ''; stage.classList.remove('dark');
@@ -662,7 +704,9 @@ function wipeCtl(el, dur) {
   el.addEventListener('pointermove', (e) => { if (user && e.buttons) mv(e); });
 }
 function finishStop() {
+  if (CUR.door) { lock(false); hideReveal(true); emit('medu:stopend', { n: 0, door: true }); return skipDoor(); }   // the door scene ends: on to the stand card of stop 1
   const n = CUR.meta.n; if (!S.done.includes(n)) S.done.push(n); delete S.pos[n]; save(); lock(false); hideReveal();
+  emit('medu:stopend', { n, dir: CUR.meta.dir });
   const nx = PLAYJ.chapters.find((c) => c.n === n + 1);
   if (!nx) { show('finale'); return; }
   S.cur = nx.n; save();
@@ -690,7 +734,7 @@ async function lock(on) {
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && !au.paused) lock(true); });
 function mediaSession() {
   if (!('mediaSession' in navigator) || !CUR) return;
-  navigator.mediaSession.metadata = new MediaMetadata({ title: CUR.meta.n + ' · ' + CUR.c.title, artist: 'Medu · Sultan Hassan', album: 'On-site edition', artwork: [{ src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png' }] });
+  navigator.mediaSession.metadata = new MediaMetadata({ title: (CUR.door ? '' : CUR.meta.n + ' · ') + CUR.c.title, artist: 'Medu · Sultan Hassan', album: 'On-site edition', artwork: [{ src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png' }] });
   const h = { play: () => au.play(), pause: () => au.pause(), seekbackward: () => seek(au.currentTime - 10), nexttrack: () => nextLine() };
   for (const k in h) try { navigator.mediaSession.setActionHandler(k, h[k]); } catch (e) {}
 }
@@ -715,12 +759,12 @@ $('#trPlan').onclick = () => { trStop(); planSheet(); };
 $('#trShare').onclick = () => share('A play staged inside the Sultan Hassan mosque in Cairo. It only plays there. Come with me?');
 $('#wkInfo').onclick = settingsSheet;
 $('#stList').onclick = () => { stopAudio(); openWalk(); };
-$('#stInfo').onclick = () => CUR && creditsSheet(CUR.meta.n);
+$('#stInfo').onclick = () => CUR && (CUR.door ? doorSheet() : creditsSheet(CUR.meta.n));
 $('#stPlay').onclick = playPause;
 $('#stBack').onclick = () => seek(au.currentTime - 10);
 $('#stNext').onclick = nextLine;
 $('#standGo').onclick = () => { $('#standCard').classList.remove('on'); au.play().catch(() => {}); };
-$('#standBack').onclick = () => { stopAudio(); openWalk(); };
+$('#standBack').onclick = () => { stopAudio(); if (CUR && CUR.door) skipDoor(); else openWalk(); };
 $('#nextGo').onclick = () => openStop(S.cur);
 $('#nextAgain').onclick = () => { const n = CUR.meta.n; S.done = S.done.filter((x) => x !== n); save(); openStop(n, true).then(() => au.play().catch(() => {})); };
 $('#nextList').onclick = openWalk;
