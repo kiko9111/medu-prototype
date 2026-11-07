@@ -33,7 +33,7 @@
    0.83
   ],
   "prompt": "Find it: tap the medallion at the foot of the left-hand niche.",
-  "answer": "One medallion was carved; its twin was only drawn, still waiting for a chisel.",
+  "answer": "One medallion was carved, full of leaves; its twin was cut to shape but left blank: its pattern was never carved.",
   "verify": true
  },
  "quiz": [
@@ -64,7 +64,7 @@
   "12": "Killed 33 days after the fall; never rebuilt: al-Maqrizi, Khitat",
   "13": "Bashir al-Jamdar finished the marble: al-Maqrizi, Khitat",
   "14": "Unverified: which niche holds the medallion",
-  "15": "One medallion carved, its twin only outlined: Wikipedia, after Behrens-Abouseif"
+  "15": "One medallion carved, its twin cut to shape but left blank: Wikipedia, after Behrens-Abouseif"
  },
  "next": "Step inside. The answer waits in the hall.",
  "status": "dialogue edition, draft: historical people speak, the narrator sets the scene; on-site only",
