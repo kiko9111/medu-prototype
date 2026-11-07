@@ -32,6 +32,9 @@ canvas{display:block;touch-action:none}
 .btn{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:9px;
   padding:8px 11px;font:inherit;font-size:13px;cursor:pointer;backdrop-filter:blur(6px)}
 .btn[aria-pressed="true"]{border-color:var(--gold);color:var(--gold)}
+.btn.pulse{border-color:var(--gold);color:var(--gold);animation:markpulse 1.3s ease-in-out infinite}
+@keyframes markpulse{0%,100%{box-shadow:0 0 0 0 #d4b06200}50%{box-shadow:0 0 0 6px #d4b06255}}
+@media (prefers-reduced-motion:reduce){.btn.pulse{animation:none}}
 #say{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 11px;color:var(--dim);
   font-size:12.5px;backdrop-filter:blur(6px);max-width:52ch}
 #say b{color:var(--ink);font-weight:600}
@@ -837,7 +840,7 @@ function nextStop(k){ const i = CH.indexOf(k); return i >= 0 && i < CH.length - 
 function walkStop(){
   if (!walk) return;
   while (walkGrp.children.length) { const c = walkGrp.children.pop(); if (c.geometry && c.geometry !== CHEV) c.geometry.dispose(); if (c.material) { if (c.material.map) c.material.map.dispose(); c.material.dispose(); const i = lineMats.indexOf(c.material); if (i >= 0) lineMats.splice(i, 1); } }
-  walk = null; $('fade').style.opacity = 0; walkUI();
+  walk = null; $('fade').style.opacity = 0; $('arrive').classList.remove('pulse'); walkUI();
 }
 function walkUI(){
   const nb = $('next'), ab = $('arrive'), fb = $('follow');
@@ -877,7 +880,7 @@ function toWalk(k){
 }
 function arrive(){
   if (!walk || walk.arrived) return;
-  const k = walk.k; walk.arrived = performance.now();
+  const k = walk.k; walk.arrived = performance.now(); $('arrive').classList.remove('pulse');
   say('<span class="tier">On the mark</span> ' + k.replace('ch', '') + ' · ' + PTS[k].title + '. ' + (PTS[k].look ? 'Now look: ' + PTS[k].look : ''));
   setTimeout(() => { if (walk && walk.k === k) go(k); }, 1700);
 }
@@ -915,7 +918,7 @@ function tickWalk(){
     const {p, t} = pathAt(path, s); pos.copy(p).setY(p.y + 1.55);
     $('fade').style.opacity = w.doorS != null ? Math.max(0, 1 - Math.abs(s - w.doorS)/3.5) : 0;   // a blackout through the door: the massing has no passage
     if (!drag) { const th = THREE.MathUtils.radToDeg(Math.atan2(t.x, -t.z)); head = norm180(th, head)*0.1 + head*0.9; pitch += (-3 - pitch)*0.05; }
-    if (u >= 1) arrive();
+    if (u >= 1 && !w.flyDone) { w.flyDone = true; $('arrive').classList.add('pulse'); say('<span class="tier">The mark</span> The ring is the mark for ' + w.k.replace('ch', '') + ' ' + PTS[w.k].title + '. When you stand on it, tap <b>I\'m on the mark</b>.' + (follow ? '' : ' On site, <b>Follow me</b> walks the model with you.')); }
   }
   if (now - w.lastLab > 800) { w.lastLab = now; const d = Math.hypot(pos.x - w.end.x, pos.z - w.end.z); w.label.material.map.dispose();
     const nl = goldLabel(w.k.replace('ch', '') + ' · ' + PTS[w.k].title + ' · ' + Math.round(d) + ' m', w.label.position, Math.max(6, d)); beatGrp.remove(nl); walkGrp.remove(w.label); walkGrp.add(nl); w.label = nl; }
@@ -925,7 +928,7 @@ $('arrive').onclick = () => arrive();
 $('follow').onclick = e => setFollow(e.currentTarget.getAttribute('aria-pressed') !== 'true');
 window.__r = {renderer, scene, cam, frame, go, light, jump: () => { if (anim) anim.t = anim.dur; }};
 window.__r.look = (h, p) => { head = h; pitch = p; };
-window.__r.beat = startBeat; window.__r.walk = toWalk; window.__r.arrive = arrive; window.__r.hi = HI; window.__r.cutU = CUT_U; window.__r.setPos = (x, y, z) => pos.set(x, y, z); window.__r.__beatDur = () => beat ? beat.dur : 5000; window.__r.__el3 = () => EL3; window.__r.__walk = () => walk ? {k: walk.k, dur: walk.dur, len: walk.path.len, arrived: walk.arrived, fly: walk.fly} : null; window.__r.state = () => ({cur, mode, beat: beat && beat.b.type, glow: !!glow, clip: PL_BUILD.constant, head, pitch, say: document.getElementById('say').innerText.slice(0, 90)});
+window.__r.beat = startBeat; window.__r.walk = toWalk; window.__r.arrive = arrive; window.__r.hi = HI; window.__r.cutU = CUT_U; window.__r.setPos = (x, y, z) => pos.set(x, y, z); window.__r.__beatDur = () => beat ? beat.dur : 5000; window.__r.version = '11.2'; window.__r.__el3 = () => EL3; window.__r.__walk = () => walk ? {k: walk.k, dur: walk.dur, len: walk.path.len, arrived: walk.arrived, fly: walk.fly} : null; window.__r.state = () => ({cur, mode, beat: beat && beat.b.type, glow: !!glow, clip: PL_BUILD.constant, head, pitch, say: document.getElementById('say').innerText.slice(0, 90)});
 window.__then = {fire: armThen, drag: x => { thenX = x; applyThen(); }, state: () => [thenOn, thenX, cur, mode]};
 drawPlan();
 </script>
