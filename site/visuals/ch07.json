@@ -19,7 +19,7 @@
    "label": "The great halls (iwans) around the court",
    "paths": [
     {
-     "d": "M .065 .82 L .07 .45 C .09 .30 .20 .26 .29 .28"
+     "d": "M .065 .82 L .07 .45 C .09 .30 .20 .24 .29 .27 C .34 .30 .37 .36 .38 .45"
     },
     {
      "d": "M .73 .82 L .735 .40 C .76 .22 .90 .18 .955 .30 L .955 .82"
@@ -50,14 +50,14 @@
    "label": "The empty band along the top of the walls",
    "paths": [
     {
-     "d": "M .50 .29 L .97 .10"
+     "d": "M .64 .233 L .97 .10"
     }
    ],
    "tags": [
     {
      "at": [
-      0.74,
-      0.22
+      0.8,
+      0.19
      ],
      "t": "the empty band",
      "side": "b"

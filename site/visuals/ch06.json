@@ -4,28 +4,24 @@
   {
    "src": "hassan-r6-2.jpg",
    "label": "The steps up from the entrance hall",
-   "paths": [
-    {
-     "d": "M .17 .735 L .78 .725"
-    },
-    {
-     "d": "M .14 .825 L .80 .815"
-    },
-    {
-     "d": "M .12 .915 L .82 .905"
-    }
-   ],
+   "paths": [],
    "tags": [
     {
      "at": [
-      0.48,
-      0.7
+      0.47,
+      0.62
      ],
      "t": "count the steps",
      "side": "b"
     }
    ],
-   "ar": 1.5005
+   "ar": 1.5005,
+   "spot": [
+    0.08,
+    0.66,
+    0.86,
+    0.98
+   ]
   },
   {
    "src": "hassan-r6-4.jpg",

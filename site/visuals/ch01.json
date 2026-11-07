@@ -17,14 +17,14 @@
    "label": "The crest of stone lilies along the top",
    "paths": [
     {
-     "d": "M .02 .70 L .45 .625 L .97 .55"
+     "d": "M .02 .655 L .45 .58 L .97 .51"
     }
    ],
    "tags": [
     {
      "at": [
       0.45,
-      0.62
+      0.58
      ],
      "t": "crest of stone lilies",
      "side": "b"

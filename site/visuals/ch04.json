@@ -9,7 +9,7 @@
     0.88,
     0.64
    ],
-   "label": "The Citadel: the sultan's palace was up there",
+   "label": "The Citadel today: the sultan's palace stood up there (the big domed mosque is 19th-century)",
    "ar": 1.5005
   },
   {
@@ -88,32 +88,35 @@
   },
   {
    "src": "twin.jpg",
+   "ar": 1.8049,
    "paths": [
     {
-     "d": "M 0.75 0.39 C 0.70 0.39 0.70 0.31 0.75 0.31 C 0.80 0.31 0.80 0.39 0.75 0.39 L 0.75 0.47 C 0.64 0.50 0.61 0.62 0.64 0.70 C 0.67 0.78 0.83 0.78 0.86 0.70 C 0.89 0.62 0.86 0.50 0.75 0.47",
+     "d": "M 0.1280 0.5850 C 0.1280 0.4690 0.1728 0.3750 0.2280 0.3750 C 0.2832 0.3750 0.3280 0.4690 0.3280 0.5850 C 0.3280 0.7010 0.2832 0.7950 0.2280 0.7950 C 0.1728 0.7950 0.1280 0.7010 0.1280 0.5850"
+    },
+    {
+     "d": "M 0.6350 0.5850 C 0.6350 0.4690 0.6798 0.3750 0.7350 0.3750 C 0.7902 0.3750 0.8350 0.4690 0.8350 0.5850 C 0.8350 0.7010 0.7902 0.7950 0.7350 0.7950 C 0.6798 0.7950 0.6350 0.7010 0.6350 0.5850",
      "dash": 1
     }
    ],
    "tags": [
     {
      "at": [
-      0.25,
-      0.9
+      0.228,
+      0.86
      ],
      "t": "carved",
      "side": "b"
     },
     {
      "at": [
-      0.75,
-      0.9
+      0.735,
+      0.86
      ],
-     "t": "its twin: never carved",
+     "t": "cut, but never carved",
      "side": "b"
     }
    ],
-   "label": "One medallion was carved; its twin was only drawn (sketch, not to scale)",
-   "ar": 1.25
+   "label": "One medallion was carved; its twin was cut to shape but left blank · 1890s photo, NYPL"
   }
  ],
  "replace": {
@@ -187,6 +190,12 @@
    "author": "Bonfils (Library of Congress, public domain) and Ovedc (CC BY-SA 4.0)",
    "license": "aligned, cropped, toned",
    "source": "https://commons.wikimedia.org/wiki/File:By_ovedc_-_Mosque_of_Sultan_Hasan_-_07.jpg"
+  },
+  {
+   "what": "The two medallions, 1890s",
+   "author": "Photogravure, NYPL (public domain)",
+   "license": "public domain, toned",
+   "source": "https://digitalcollections.nypl.org/items/d9b44670-c6be-012f-0520-58d385a7bc34"
   }
  ]
 }
