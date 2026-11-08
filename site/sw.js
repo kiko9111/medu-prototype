@@ -2,7 +2,7 @@
 // The app shell is cached on install (network first, so updates show on the next open).
 // The play's files (../play/...) are stored by the page's "Download for the visit" button in MEDIA_CACHE and served
 // from there first. Audio is served with Range support (206), which Safari needs to play cached files.
-const SHELL_CACHE = 'medu-site-shell-v3';
+const SHELL_CACHE = 'medu-site-shell-v4';
 const MEDIA_CACHE = 'medu-site-media';
 const SHELL = ['./', 'index.html', 'wave1.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png', 'icons/favicon.png'];
 
