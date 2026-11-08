@@ -1,0 +1,53 @@
+{
+ "about": "Gold line layer for ch10: real photos with the named element traced; paths are fractions of the photo. Traced by eye: validator to check each outline.",
+ "looks": [
+  null,
+  null,
+  {
+   "src": "hassan-r9-5.jpg",
+   "label": "Lamp chains hanging from the vault",
+   "paths": [
+    {
+     "d": "M 0.7400 0.1200 C 0.7400 0.0813 0.7669 0.0500 0.8000 0.0500 C 0.8331 0.0500 0.8600 0.0813 0.8600 0.1200 C 0.8600 0.1587 0.8331 0.1900 0.8000 0.1900 C 0.7669 0.1900 0.7400 0.1587 0.7400 0.1200"
+    },
+    {
+     "d": "M 0.5050 0.8800 C 0.5050 0.8413 0.5274 0.8100 0.5550 0.8100 C 0.5826 0.8100 0.6050 0.8413 0.6050 0.8800 C 0.6050 0.9187 0.5826 0.9500 0.5550 0.9500 C 0.5274 0.9500 0.5050 0.9187 0.5050 0.8800"
+    }
+   ],
+   "tags": [
+    {
+     "at": [
+      0.7,
+      0.25
+     ],
+     "t": "the chains carry the lamps",
+     "side": "b"
+    }
+   ],
+   "ar": 1.3333
+  }
+ ],
+ "credits": [
+  {
+   "what": "Lamp chains hanging from the vault",
+   "author": "Ahmed Al.Badawy",
+   "license": "CC BY-SA 2.0 (lines added)",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:Flickr_-_HuTect_ShOts_-_Ceiling_-_Masjid_of_Sultan_Hassan_%D9%85%D8%B3%D8%AC%D8%AF_%D9%88%D9%85%D8%AF%D8%B1%D8%B3%D8%A9_%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A7%D9%86_%D8%AD%D8%B3%D9%86_-_Cairo_-_Egypt_-_28_05_2010.jpg"
+  }
+ ],
+ "replace": {
+  "3": {
+   "kind": "wipe",
+   "cue": "Hold it up to the great hall: then and now",
+   "then": "wipe-then.jpg",
+   "thenCap": "c.1875 · photochrom, NYPL",
+   "aligned": false
+  }
+ },
+ "portraits": {
+  "0": "maqrizi/pride",
+  "1": "muqbil/speaking",
+  "2": "sultan/warning"
+ }
+}

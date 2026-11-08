@@ -1,0 +1,85 @@
+{
+ "about": "Gold line layer for ch01: real photos with the named element traced; paths are fractions of the photo. Traced by eye: validator to check each outline.",
+ "looks": [
+  {
+   "src": "hassan-midan.jpg",
+   "label": "The domed tomb end of the mosque",
+   "paths": [
+    {
+     "d": "M .205 .92 L .205 .28 L .31 .28 C .31 .12 .40 .075 .445 .075 C .49 .075 .58 .12 .58 .28 L .74 .28 L .74 .92"
+    }
+   ],
+   "tags": [],
+   "ar": 1.2987
+  },
+  {
+   "src": "hassan-r4-1.jpg",
+   "label": "The crest of stone lilies along the top",
+   "paths": [
+    {
+     "d": "M .02 .655 L .45 .58 L .97 .51"
+    }
+   ],
+   "tags": [
+    {
+     "at": [
+      0.45,
+      0.58
+     ],
+     "t": "crest of stone lilies",
+     "side": "b"
+    }
+   ],
+   "ar": 1.3333
+  },
+  {
+   "src": "hassan-midan.jpg",
+   "label": "The crest runs along the tomb walls",
+   "paths": [
+    {
+     "d": "M .205 .285 L .74 .285"
+    }
+   ],
+   "tags": [
+    {
+     "at": [
+      0.47,
+      0.29
+     ],
+     "t": "the crest",
+     "side": "b"
+    }
+   ],
+   "ar": 1.2987
+  }
+ ],
+ "credits": [
+  {
+   "what": "The domed tomb end of the mosque",
+   "author": "Sailko",
+   "license": "CC BY 3.0 (lines added)",
+   "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:Moschea_del_sultano_hasan,_1362,_esterno_01.JPG"
+  },
+  {
+   "what": "The crest of stone lilies along the top",
+   "author": "Richard Mortel",
+   "license": "CC BY 2.0 (lines added)",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:Madrasa_of_Sultan_Hasan,_1356-63,_Cairo_05.jpg"
+  }
+ ],
+ "replace": {
+  "2": {
+   "kind": "wipe",
+   "cue": "Hold it up to the mosque: then and now",
+   "then": "wipe-then.jpg",
+   "thenCap": "19th century · photogravure, NYPL",
+   "aligned": false
+  }
+ },
+ "portraits": {
+  "0": "maqrizi/speaking",
+  "1": "sultan/grief"
+ }
+}

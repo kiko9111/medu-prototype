@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Medu · Sultan Hassan</title>
+<meta name="description" content="A play in twelve scenes, staged inside the Mosque-Madrasa of Sultan Hassan, Cairo. On site only.">
+<meta name="theme-color" content="#0B0A08">
+<meta name="medu-play" content="../play/">
+<meta name="medu-pilot" content="">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/favicon.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0B0A08; --night2:#15130F; --night3:#1F1C17; --ivory:#EFE7D8; --gold:#D4B062; --dust:#9A958B;
+  --paper:#ECDEC0; --nile:#0E5E4E; --line:rgba(239,231,216,.12);
+  --serif:"Cormorant Garamond",Georgia,serif; --sans:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; --ar:Amiri,"Noto Naskh Arabic",serif;
+  --top:env(safe-area-inset-top,0px); --bot:env(safe-area-inset-bottom,0px); color-scheme:dark;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--night);color:var(--ivory);font:16px/1.5 var(--sans);overscroll-behavior:none}
+body{overflow:hidden}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+a{color:var(--gold)}
+.screen{position:fixed;inset:0;display:none;flex-direction:column;overflow:hidden}
+.screen.on{display:flex}
+.scroll{overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1}
+.wrap{max-width:560px;margin:0 auto;padding:0 20px}
+.mark{font:600 13px/1 var(--serif);letter-spacing:.32em;color:var(--gold)}
+.mark svg{vertical-align:-3px;margin-right:8px}
+.pill{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:54px;border-radius:999px;font-weight:600;font-size:16px;transition:transform .15s,opacity .2s}
+.pill:active{transform:scale(.98)}
+.pill.gold{background:var(--gold);color:var(--night)}
+.pill.ghost{border:1px solid rgba(239,231,216,.28)}
+.pill.quiet{min-height:44px;font-weight:400;color:var(--dust);font-size:14px}
+.pill[disabled]{opacity:.45}
+.small{font-size:13px;color:var(--dust)}
+.verify{color:#E8B86A;font-size:12px;letter-spacing:.02em}
+
+/* HOME */
+#home .hero{position:relative;min-height:78vh;display:flex;flex-direction:column;justify-content:flex-end;padding:calc(var(--top) + 18px) 0 26px}
+#home .hero .bg{position:absolute;inset:0 0 34% 0;background:#000 center/cover no-repeat;opacity:0;transition:opacity 1.2s}
+#home .hero .bg.ok{opacity:1}
+#home .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,10,8,.55) 0%,rgba(11,10,8,0) 18%,rgba(11,10,8,0) 40%,rgba(11,10,8,.75) 58%,var(--night) 68%)}
+#home .hero h1,#home .hero .lede,#home .hero .ar{text-shadow:0 2px 14px rgba(0,0,0,.7)}
+#home .hero>*{position:relative;z-index:1}
+#home .hero .mark{position:absolute;top:calc(var(--top) + 18px);left:20px}
+#home h1{font:600 52px/1 var(--serif);margin:0 0 6px;letter-spacing:.01em}
+#home .ar{font:700 26px/1.2 var(--ar);color:var(--gold);margin-bottom:12px}
+#home .lede{font:500 21px/1.35 var(--serif);color:var(--paper);margin:0;max-width:30ch}
+#home .facts{display:flex;gap:18px;margin:16px 0 0;font-size:13px;color:var(--dust)}
+#home .facts b{display:block;color:var(--ivory);font:600 20px/1.1 var(--serif)}
+#home .actions{display:grid;gap:12px;padding:8px 0 18px}
+#dl{position:relative;overflow:hidden}
+#dl .bar{position:absolute;left:0;top:0;bottom:0;background:rgba(212,176,98,.18);width:0;transition:width .3s}
+#dl span{position:relative}
+.credit{font-size:11px;color:var(--dust);opacity:.8;padding:6px 0 calc(var(--bot) + 18px)}
+
+/* SHEETS */
+.veil{position:fixed;inset:0;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity .25s;z-index:40}
+.veil.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;max-height:88vh;background:var(--night2);border-radius:22px 22px 0 0;z-index:41;transform:translateY(105%);transition:transform .3s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;padding-bottom:var(--bot)}
+.sheet.on{transform:none}
+.sheet .grab{width:40px;height:4px;border-radius:2px;background:rgba(239,231,216,.25);margin:10px auto 4px}
+.sheet .in{overflow-y:auto;padding:8px 22px 22px;max-width:560px;margin:0 auto;width:100%}
+.sheet h2{font:600 28px/1.15 var(--serif);margin:6px 0 10px}
+.sheet h3{font:600 13px/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:22px 0 8px}
+.sheet p{margin:0 0 10px;color:#D9D1C1}
+.sheet ul{margin:0;padding:0 0 0 18px;color:#D9D1C1}
+.sheet li{margin:0 0 8px}
+.sheet .btns{display:grid;gap:10px;margin-top:18px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;border-top:1px solid var(--line)}
+.switch{width:50px;height:30px;border-radius:15px;background:#3a3630;position:relative;flex:none;transition:background .2s}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:var(--ivory);transition:transform .2s}
+.switch[aria-checked=true]{background:var(--nile)}
+.switch[aria-checked=true]::after{transform:translateX(20px)}
+
+/* TRAILER */
+#trailer{background:#000}
+#trailer .bg{position:absolute;inset:0;background:#000 center/cover no-repeat;opacity:.5;transform:scale(1.08);transition:transform 60s linear}
+#trailer.go .bg{transform:scale(1)}
+#trailer .fade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.5),rgba(0,0,0,.15) 40%,rgba(0,0,0,.85))}
+#trailer .top{position:relative;display:flex;justify-content:space-between;align-items:center;padding:calc(var(--top) + 14px) 20px 0}
+#trailer .cap{position:absolute;left:0;right:0;bottom:calc(var(--bot) + 90px);padding:0 24px;text-align:center}
+#trailer .end{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;padding:0 28px;background:rgba(11,10,8,.88);text-align:center}
+#trailer.done .end{display:flex}
+#trailer .end h2{font:600 34px/1.1 var(--serif);margin:0 0 12px}
+#trailer .end p{color:var(--paper);font:500 19px/1.4 var(--serif);margin:0 auto 26px;max-width:28ch}
+.x{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.08)}
+
+/* CAPTIONS (shared) */
+.who{font:600 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;min-height:12px}
+.arline{font:700 24px/1.6 var(--ar);color:var(--paper);direction:rtl;margin-bottom:10px}
+.capline{font:500 27px/1.3 var(--serif);color:var(--ivory)}
+.capline .w{opacity:.32;transition:opacity .25s}
+.capline .w.on{opacity:1}
+body.big .capline{font-size:32px}
+
+/* WALK */
+#walk header{padding:calc(var(--top) + 16px) 20px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:var(--night)}
+#walk h2{font:600 30px/1.1 var(--serif);margin:18px 0 4px}
+#walk .sub{color:var(--dust);font-size:14px;margin-bottom:8px}
+.progress{height:3px;background:var(--line);border-radius:2px;overflow:hidden;margin:12px 0 18px}
+.progress i{display:block;height:100%;background:var(--gold);width:0;transition:width .6s}
+.stop{display:flex;gap:14px;padding:14px 0;border-top:1px solid var(--line);align-items:flex-start;text-align:left;width:100%}
+.stop .n{flex:none;width:36px;height:36px;border-radius:50%;border:1px solid rgba(239,231,216,.3);display:grid;place-items:center;font:600 16px/1 var(--serif);color:var(--dust)}
+.stop.done .n{background:var(--nile);border-color:var(--nile);color:var(--ivory)}
+.stop.cur .n{background:var(--gold);border-color:var(--gold);color:var(--night)}
+.stop .t{flex:1;min-width:0}
+.stop .t b{display:block;font:600 21px/1.2 var(--serif);color:var(--ivory)}
+.stop .t span{display:block;font-size:13px;color:var(--dust);margin-top:3px}
+.stop.cur .t span.st{color:#D9D1C1}
+.stop .go{flex:none;align-self:center;font-size:13px;color:var(--gold);font-weight:600}
+.walkline{margin:-2px 0 0 17px;border-left:1px dashed rgba(239,231,216,.2);padding:4px 0 4px 31px;font-size:12px;color:var(--dust)}
+.zone{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--dust);margin:22px 0 4px}
+.status{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--dust)}
+.dot{width:8px;height:8px;border-radius:50%;background:#6b665d}
+.dot.ok{background:#5FB88F}
+
+/* STAGE */
+#stage{background:#000}
+#stage .top{position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:calc(var(--top) + 12px) 16px 0}
+#stage .top .ttl{font:600 15px/1.2 var(--serif);color:var(--dust);text-align:center;flex:1;padding:0 8px}
+#stage .top .ttl b{color:var(--ivory);font-weight:600}
+#stage .mid{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 26px;position:relative;z-index:3;max-width:620px;margin:0 auto;width:100%}
+#stage .look{display:none;text-align:center}
+#stage.looking .look{display:block}
+#stage.looking .say{display:none}
+.look .eye{width:62px;height:62px;margin:0 auto 16px;border-radius:50%;border:1px solid var(--gold);display:grid;place-items:center;position:relative}
+.look .eye svg.ring{position:absolute;inset:-1px;transform:rotate(-90deg)}
+.look .lab{font:600 12px/1 var(--sans);letter-spacing:.24em;color:var(--gold);margin-bottom:10px}
+.look .cue{font:500 29px/1.25 var(--serif);color:var(--ivory)}
+.look .el{font-size:13px;color:var(--dust);margin-top:10px}
+#stage .ctl{position:relative;z-index:5;padding:0 18px calc(var(--bot) + 18px)}
+#stage .bar{height:3px;background:rgba(239,231,216,.12);border-radius:2px;margin:0 6px 14px;position:relative;touch-action:none}
+#stage .bar i{position:absolute;left:0;top:0;bottom:0;background:var(--gold);border-radius:2px;width:0}
+#stage .bar b{position:absolute;top:-5px;width:2px;height:13px;background:rgba(212,176,98,.45)}
+#stage .row2{display:flex;align-items:center;justify-content:space-between}
+.cb{width:56px;height:56px;border-radius:50%;display:grid;place-items:center}
+.cb.main{width:72px;height:72px;background:var(--ivory);color:var(--night)}
+.tm{font-size:12px;color:var(--dust);width:56px;text-align:center;font-variant-numeric:tabular-nums}
+/* reveal layer */
+#rev{position:absolute;inset:0;z-index:4;opacity:0;pointer-events:none;transition:opacity .6s;background:#000;display:flex;flex-direction:column;justify-content:center;padding-top:calc(var(--top) + 68px)}
+#rev.on{opacity:1;pointer-events:auto}
+#rev .media{position:relative;flex:1;max-height:72vh;overflow:hidden}
+#rev img,#rev video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+#rev.portrait img{object-fit:cover;animation:drift 6s ease-out both}
+@keyframes drift{from{transform:scale(1.1)}to{transform:scale(1)}}
+#rev .lbl{padding:14px 24px calc(var(--bot) + 150px);font-size:13px;color:var(--paper);text-align:center}
+#rev .lbl b{display:block;font:600 22px/1.2 var(--serif);color:var(--ivory);margin-bottom:6px}
+#rev .wipe{position:absolute;inset:0;touch-action:none}
+#rev .wipe img{object-fit:cover}
+#rev .wipe .then{position:absolute;inset:0;clip-path:inset(0 50% 0 0)}
+#rev .wipe .then img{filter:sepia(.3)}
+#rev .wipe .hand{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--gold);box-shadow:0 0 12px rgba(0,0,0,.6)}
+#rev .wipe .hand::after{content:"⟷";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:var(--gold);color:var(--night);display:grid;place-items:center;font-size:18px}
+#rev .tag{position:absolute;bottom:10px;max-width:46%;font-size:11px;background:rgba(0,0,0,.6);padding:4px 8px;border-radius:6px;color:var(--paper)}
+#rev .cuebig{flex:none;text-align:center;font:500 22px/1.25 var(--serif);padding:0 24px 12px;color:var(--ivory)}
+#stage.dark #rev{opacity:1;background:#000}
+#stage.dark .mid{opacity:0}
+/* stand card + walk-to card */
+.card{position:absolute;inset:0;z-index:8;background:var(--night);display:none;flex-direction:column}
+.card.on{display:flex}
+.card .ph{flex:none;height:38vh;background:#111 center/cover no-repeat;position:relative}
+.card .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,10,8,0) 40%,var(--night))}
+.card .body{flex:1;padding:18px 24px calc(var(--bot) + 20px);display:flex;flex-direction:column;max-width:560px;margin:0 auto;width:100%}
+.card .k{font:600 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.card h2{font:600 36px/1.05 var(--serif);margin:0 0 12px}
+.card p{font:500 20px/1.4 var(--serif);color:var(--paper);margin:0 0 10px}
+.card .meta{font-size:13px;color:var(--dust)}
+.card .sp{flex:1;min-height:16px}
+.card .btns{display:grid;gap:10px}
+.toast{position:fixed;left:50%;bottom:calc(var(--bot) + 24px);transform:translateX(-50%) translateY(20px);background:var(--night3);color:var(--ivory);padding:12px 18px;border-radius:12px;font-size:14px;opacity:0;transition:.3s;z-index:60;max-width:90vw;text-align:center;pointer-events:none}
+.toast.on{opacity:1;transform:translateX(-50%)}
+/* FINALE */
+#finale{justify-content:center;text-align:center;padding:0 28px;background:radial-gradient(ellipse at 50% 30%,#2a2216,var(--night) 70%)}
+#finale h2{font:600 44px/1.05 var(--serif);margin:18px 0 12px}
+#finale p{font:500 20px/1.4 var(--serif);color:var(--paper);max-width:28ch;margin:0 auto 10px}
+#finale .btns{display:grid;gap:10px;max-width:420px;margin:28px auto 0;width:100%}
+.nofx *{animation:none!important;transition:none!important}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (min-width:700px){#home .hero{min-height:56vh}#home h1{font-size:64px}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="arch" viewBox="0 0 24 28"><path d="M2 27V12C2 6 7 2 12 1c5 1 10 5 10 11v15" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M6.5 27V14c0-3.4 2.6-6 5.5-7 2.9 1 5.5 3.6 5.5 7v13" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M12 15.5l1 2 2.2.3-1.6 1.5.4 2.2-2-1-2 1 .4-2.2-1.6-1.5 2.2-.3z" fill="currentColor"/></symbol>
+  <symbol id="play" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="currentColor"/></symbol>
+  <symbol id="pause" viewBox="0 0 24 24"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="currentColor"/></symbol>
+  <symbol id="back" viewBox="0 0 24 24"><path d="M12 5V2L7 6l5 4V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z" fill="currentColor"/><text x="12" y="16.3" font-size="6.5" text-anchor="middle" fill="currentColor" font-family="Inter,sans-serif" font-weight="600">10</text></symbol>
+  <symbol id="next" viewBox="0 0 24 24"><path d="M5 5v14l9-7zM15 5h3v14h-3z" fill="currentColor"/></symbol>
+  <symbol id="close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 10.5v6M12 7.2v.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="hand" viewBox="0 0 24 24"><path d="M12 3.5v9M8.5 6.5V13M15.5 6.5V13M5.5 11.5v3.2A6.5 6.5 0 0 0 12 21a6.5 6.5 0 0 0 6.5-6.3V9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="steps" viewBox="0 0 24 24"><path d="M3 20h4.5v-4.5H12V11h4.5V6.5H21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="wave" viewBox="0 0 24 24"><path d="M2.5 12c2-5 4-5 6 0s4 5 6 0 4-5 6 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="still" viewBox="0 0 24 24"><circle cx="12" cy="4.5" r="2.2" fill="currentColor"/><path d="M12 8v7.5M12 15.5l-3 6M12 15.5l3 6M7.5 11.5h9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="eye" viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" fill="currentColor"/></symbol>
+  <symbol id="list" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+</svg>
+
+<!-- HOME (at home: trailer, plan, download) -->
+<section id="home" class="screen on">
+  <div class="scroll">
+    <div class="hero">
+      <div class="bg" id="heroBg"></div>
+      <div class="mark"><svg width="18" height="21"><use href="#arch"/></svg>MEDU</div>
+      <div class="wrap">
+        <div class="ar" lang="ar">مدرسة السلطان حسن</div>
+        <h1>Sultan Hassan</h1>
+        <p class="lede">A play in twelve scenes, staged in the mosque itself. The people who built it, ruled it and wrote it down speak to you where it happened.</p>
+        <div class="facts"><div><b>12</b>stops</div><div><b id="factMin">30</b>min of play</div><div><b>~1 h</b>on foot</div></div>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="actions">
+        <button class="pill gold" id="btnBegin"><svg width="18" height="18"><use href="#arch"/></svg><span id="beginLbl">Begin at the mosque</span></button>
+        <button class="pill ghost" id="btnTrailer"><svg width="16" height="16"><use href="#play"/></svg>Hear the trailer</button>
+        <button class="pill ghost" id="dl"><i class="bar"></i><span id="dlLbl">Download for the visit · about 40 MB</span></button>
+        <button class="pill quiet" id="btnPlan">Plan your visit · hours, dress, Friday</button>
+      </div>
+      <p class="small">The play only opens at the mosque. Bring headphones. Download it at home or at the hotel so it runs with no signal inside the walls.</p>
+      <div class="credit">Photo: ولاء, public domain, via Wikimedia Commons.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAILER -->
+<section id="trailer" class="screen">
+  <div class="bg" id="trBg"></div><div class="fade"></div>
+  <div class="top"><div class="mark"><svg width="18" height="21"><use href="#arch"/></svg>MEDU</div><button class="x" id="trClose" aria-label="Close"><svg width="20" height="20"><use href="#close"/></svg></button></div>
+  <div class="cap"><div class="who" id="trWho"></div><div class="arline" id="trAr" lang="ar"></div><div class="capline" id="trCap"></div></div>
+  <div class="end">
+    <div class="mark" style="margin-bottom:22px"><svg width="18" height="21"><use href="#arch"/></svg>MEDU</div>
+    <h2>The rest waits at the mosque.</h2>
+    <p>Eleven more scenes play only in front of the walls they talk about. Come and stand there.</p>
+    <div style="display:grid;gap:10px;max-width:420px;width:100%;margin:0 auto">
+      <button class="pill gold" id="trPlan">Plan your visit</button>
+      <button class="pill ghost" id="trShare">Share with whoever you'll go with</button>
+      <button class="pill quiet" id="trBack">Back</button>
+    </div>
+  </div>
+</section>
+
+<!-- WALK (on site: the route) -->
+<section id="walk" class="screen">
+  <header><div class="mark"><svg width="18" height="21"><use href="#arch"/></svg>MEDU</div><div class="status"><i class="dot" id="offDot"></i><span id="offLbl">Not downloaded</span></div><button class="x" id="wkInfo" aria-label="Settings and visit info"><svg width="20" height="20"><use href="#info"/></svg></button></header>
+  <div class="scroll"><div class="wrap">
+    <h2>The walk</h2>
+    <div class="sub" id="wkSub">Twelve stops, outside to inside.</div>
+    <div class="progress"><i id="wkProg"></i></div>
+    <button class="pill gold" id="wkResume" style="margin-bottom:18px"></button>
+    <div id="stops"></div>
+    <p class="small" style="margin:22px 0 calc(var(--bot) + 28px)">Walking times are estimates. Stand where each stop tells you; the voices will point at what they mean. <span class="verify">Standing points not yet checked on site.</span></p>
+  </div></div>
+</section>
+
+<!-- STAGE (one stop) -->
+<section id="stage" class="screen">
+  <div class="top">
+    <button class="x" id="stList" aria-label="Back to the walk"><svg width="20" height="20"><use href="#list"/></svg></button>
+    <div class="ttl" id="stTtl"></div>
+    <button class="x" id="stInfo" aria-label="Sources and credits"><svg width="20" height="20"><use href="#info"/></svg></button>
+  </div>
+  <div class="mid">
+    <div class="say"><div class="who" id="stWho"></div><div class="arline" id="stAr" lang="ar"></div><div class="capline" id="stCap"></div></div>
+    <div class="look"><div class="eye"><svg class="ring" width="64" height="64"><circle cx="32" cy="32" r="31" fill="none" stroke="#D4B062" stroke-width="2" stroke-dasharray="194.8" stroke-dashoffset="0" id="lookRing"/></svg><svg width="26" height="26"><use href="#eye" id="lookIco"/></svg></div><div class="lab" id="lookLab">LOOK</div><div class="cue" id="lookCue"></div><div class="el" id="lookEl"></div></div>
+  </div>
+  <div id="rev"></div>
+  <div class="ctl">
+    <div class="bar" id="stBar"><i></i></div>
+    <div class="row2">
+      <span class="tm" id="stTm">0:00</span>
+      <button class="cb" id="stBack" aria-label="Back 10 seconds"><svg width="28" height="28"><use href="#back"/></svg></button>
+      <button class="cb main" id="stPlay" aria-label="Play"><svg width="30" height="30" id="stPlayIco"><use href="#play"/></svg></button>
+      <button class="cb" id="stNext" aria-label="Next line"><svg width="26" height="26"><use href="#next"/></svg></button>
+      <span class="tm" id="stLeft">0:00</span>
+    </div>
+  </div>
+  <!-- before the stop: where to stand -->
+  <div class="card" id="standCard"><div class="ph" id="standPh"></div><div class="body">
+    <div class="k" id="standK"></div><h2 id="standH"></h2><p id="standP"></p><div class="meta" id="standM"></div>
+    <div class="sp"></div><div class="btns"><button class="pill gold" id="standGo">I'm standing here · begin</button><button class="pill quiet" id="standBack">Back to the walk</button></div>
+  </div></div>
+  <!-- after the stop: the walk to the next one -->
+  <div class="card" id="nextCard"><div class="body" style="justify-content:center">
+    <div class="k" id="nextK"></div><p id="nextLine" style="font-size:26px;color:var(--ivory);margin-bottom:22px"></p>
+    <h2 id="nextH"></h2><p id="nextP" style="font-size:18px"></p><div class="meta" id="nextM"></div>
+    <div class="sp"></div><div class="btns"><button class="pill gold" id="nextGo">I'm there · play</button><button class="pill quiet" id="nextAgain">Hear this stop again</button><button class="pill quiet" id="nextList">Back to the walk</button></div>
+  </div></div>
+</section>
+
+<!-- FINALE -->
+<section id="finale" class="screen">
+  <div class="mark"><svg width="18" height="21"><use href="#arch"/></svg>MEDU</div>
+  <h2>You walked Sultan Hassan.</h2>
+  <p>Twelve stops, from the square to the tomb and out to the working town around it.</p>
+  <p class="small" style="font-family:var(--sans)">Next story: Al-Rifa'i, across the lane. Coming soon.</p>
+  <div class="btns">
+    <button class="pill gold" id="fnShare">Tell someone to come and stand here</button>
+    <button class="pill ghost" id="fnWalk">Back to the walk</button>
+  </div>
+</section>
+
+<div class="veil" id="veil"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true"><div class="grab"></div><div class="in" id="sheetIn"></div></div>
+<div class="toast" id="toast"></div>
+<audio id="au" preload="auto" playsinline></audio>
+<audio id="tr" preload="none" playsinline></audio>
+
+<script>
+'use strict';
+// ---------------------------------------------------------------- config
+const PLAY = document.querySelector('meta[name="medu-play"]').content; // where the play build lives
+const MOSQUE = { lat: 30.0322, lon: 31.2565 };  // [VERIFY] Sultan Hassan, centre of the building
+const GATE_M = 350;                              // [VERIFY] radius that counts as "at the mosque"
+const ONSITE_HOURS = 8;                          // a positive check lasts this long
+const MEDIA_CACHE = 'medu-site-media';
+const Q = new URLSearchParams(location.search);
+const $ = (s) => document.querySelector(s);
+const au = $('#au'), tr = $('#tr');
+
+// ---------------------------------------------------------------- state (this phone only)
+const S = (() => { try { return JSON.parse(localStorage.getItem('medu.site') || '{}'); } catch (e) { return {}; } })();
+S.done = S.done || []; S.pos = S.pos || {}; if (S.fx === undefined) S.fx = true;
+const save = () => { try { localStorage.setItem('medu.site', JSON.stringify(S)); } catch (e) {} };
+const applyPrefs = () => { document.body.classList.toggle('nofx', !S.fx); document.body.classList.toggle('big', !!S.big); };
+applyPrefs();
+
+// ---------------------------------------------------------------- helpers
+const fmt = (s) => { s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
+const esc = (t) => String(t == null ? '' : t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const url = (dir, f) => PLAY + dir + '/' + f;
+const hasAr = (t) => /[؀-ۿ]/.test(t || '');
+let toastT = 0;
+function toast(t, ms) { const el = $('#toast'); el.textContent = t; el.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('on'), ms || 2600); }
+function show(id) { document.querySelectorAll('.screen').forEach((s) => s.classList.toggle('on', s.id === id)); }
+function buzz(p) { if (S.fx !== false && navigator.vibrate) try { navigator.vibrate(p); } catch (e) {} }
+function dist(a, b) { const R = 6371e3, r = Math.PI / 180, dl = (b.lat - a.lat) * r, dn = (b.lon - a.lon) * r; const h = Math.sin(dl / 2) ** 2 + Math.cos(a.lat * r) * Math.cos(b.lat * r) * Math.sin(dn / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); }
+async function getJSON(u) { const r = await fetch(u); if (!r.ok) throw new Error(u + ' ' + r.status); return r.json(); }
+
+// ---------------------------------------------------------------- data
+let PLAYJ = null; const CH = {}; // n -> {meta, c, lines, ins}
+async function loadPlay() {
+  PLAYJ = await getJSON(PLAY + 'play.json');
+  const total = PLAYJ.chapters.reduce((a, c) => a + (c.siteS || 0), 0);
+  if (total) $('#factMin').textContent = Math.round(total / 60);
+  return PLAYJ;
+}
+async function loadCh(n) {
+  if (CH[n]) return CH[n];
+  const meta = PLAYJ.chapters.find((c) => c.n === n);
+  const c = await getJSON(url(meta.dir, 'chapter.json'));
+  const lines = await getJSON(url(meta.dir, c.lines));
+  const site = (c.modes && c.modes.site) || {};
+  let ins = [];
+  if (site.inserts) { try { ins = (await getJSON(url(meta.dir, site.inserts))).inserts || []; } catch (e) {} }
+  ins.sort((a, b) => a.at - b.at);
+  return (CH[n] = { meta, c, lines, ins, site, reveals: ((site.stage || {}).reveals || []) });
+}
+// Lines and reveals are on the base timeline; the on-site mix adds look pauses (onsite.json):
+// on-site t = base t + sum(dur of inserts with at <= t).
+function siteToBase(ch, s) {
+  let off = 0;
+  for (const x of ch.ins) { const st = x.at + off; if (s < st) break; if (s < st + x.dur) return { t: x.at, ins: x, k: (s - st) / x.dur }; off += x.dur; }
+  return { t: s - off, ins: null };
+}
+function baseToSite(ch, t) { let off = 0; for (const x of ch.ins) { if (x.at <= t) off += x.dur; } return t + off; }
+
+// files one stop needs on site (for the offline download)
+function stopFiles(ch) {
+  const d = ch.meta.dir, f = new Set(['chapter.json', ch.c.lines, ch.site.mix || ch.c.mix]);
+  if (ch.site.inserts) f.add(ch.site.inserts);
+  for (const r of ch.reveals) for (const k of ['src', 'then', 'now']) if (r[k]) f.add(r[k]);
+  const ph = standPhoto(ch); if (ph) f.add(ph);
+  return [...f].filter(Boolean).map((x) => url(d, x));
+}
+function standPhoto(ch) {
+  if (ch.c.pano && ch.c.pano.src) return ch.c.pano.src;
+  const w = ch.reveals.find((r) => r.kind === 'wipe' && r.now); return w ? w.now : null;
+}
+
+// ---------------------------------------------------------------- captions
+function renderLine(el, arEl, whoEl, ch, line, t) {
+  if (!line) { whoEl.textContent = ''; arEl.textContent = ''; el.innerHTML = ''; el._ln = null; return; }
+  if (el._ln !== line) {
+    el._ln = line;
+    whoEl.textContent = (ch.c.speakers && ch.c.speakers[line.who]) || (line.who === 'narrator' ? 'Narrator' : line.who);
+    const ar = line.ar || (hasAr(line.say) ? line.say : '');
+    arEl.textContent = ar; arEl.style.display = ar ? '' : 'none';
+    const words = (line.w && line.w.length) ? line.w : null;
+    el.innerHTML = words ? words.map((w, i) => '<span class="w" data-t="' + w[1] + '">' + esc(w[0]) + '</span>').join(' ') : esc(line.cap || line.say);
+    el._spans = words ? [...el.querySelectorAll('.w')] : null;
+  }
+  if (el._spans) for (const s of el._spans) s.classList.toggle('on', +s.dataset.t <= t + 0.05);
+}
+function lineAt(lines, t) {
+  let cur = null;
+  for (const l of lines) { if (l.t0 <= t + 0.05) cur = l; else break; }
+  if (cur && t > cur.t1 + 1.6) { const nx = lines[lines.indexOf(cur) + 1]; if (!nx || nx.t0 - cur.t1 > 2.5) return cur; }
+  return cur;
+}
+
+// ---------------------------------------------------------------- offline download
+async function mediaCached(u) { try { const c = await caches.open(MEDIA_CACHE); return !!(await c.match(new URL(u, location.href).href)); } catch (e) { return false; } }
+async function allFiles() {
+  const out = [PLAY + 'play.json'];
+  for (const m of PLAYJ.chapters) { const ch = await loadCh(m.n); out.push(...stopFiles(ch)); }
+  const ch1 = await loadCh(1); out.push(url(ch1.meta.dir, ch1.c.mix || 'dialogue/mix.mp3')); // the trailer
+  if (PLAYJ.door) out.push(url(PLAYJ.door.dir, PLAYJ.door.mix), url(PLAYJ.door.dir, PLAYJ.door.lines));   // the door scene
+  return [...new Set(out)];
+}
+let dlBusy = false;
+async function download() {
+  if (dlBusy) return; if (!('caches' in window)) { toast('This browser cannot store the play. Keep a signal on site.'); return; }
+  dlBusy = true; const bar = $('#dl .bar'), lbl = $('#dlLbl');
+  try {
+    lbl.textContent = 'Preparing…';
+    const files = await allFiles(); const c = await caches.open(MEDIA_CACHE);
+    let done = 0, bytes = 0, i = 0, fails = 0;
+    const one = async (u) => {
+      const abs = new URL(u, location.href).href;
+      try { const r = await fetch(abs, { cache: 'reload' }); if (!r.ok) throw 0; const b = await r.clone().blob(); bytes += b.size; await c.put(abs, r); }
+      catch (e) { fails++; }
+      done++; bar.style.width = (done / files.length * 100) + '%'; lbl.textContent = 'Downloading · ' + Math.round(done / files.length * 100) + '% · ' + (bytes / 1e6).toFixed(0) + ' MB';
+    };
+    await Promise.all([0, 1, 2, 3].map(async () => { while (i < files.length) await one(files[i++]); }));
+    if (fails) { lbl.textContent = 'Download incomplete · tap to retry'; toast(fails + ' files failed. Tap Download again on Wi-Fi.'); S.dl = 0; }
+    else { S.dl = Date.now(); S.dlMB = Math.round(bytes / 1e6); try { S.dlSig = await sig(); } catch (e) {} lbl.textContent = '✓ Ready offline · ' + S.dlMB + ' MB'; toast('Downloaded. The play now runs with no signal.'); try { navigator.storage && navigator.storage.persist && navigator.storage.persist(); } catch (e) {} }
+    save(); offlineBadge();
+  } catch (e) { lbl.textContent = 'Download failed · tap to retry'; }
+  dlBusy = false;
+}
+async function sig() { const r = await fetch(PLAY + 'play.json', { cache: 'no-store' }); const t = await r.text(); let h = 0; for (let i = 0; i < t.length; i++) h = (h * 31 + t.charCodeAt(i)) | 0; return h; }
+function offlineBadge() {
+  const ok = !!S.dl;
+  $('#offDot').classList.toggle('ok', ok); $('#offLbl').textContent = ok ? 'Ready offline' : 'Not downloaded';
+  if (ok && !dlBusy) $('#dlLbl').textContent = '✓ Ready offline · ' + (S.dlMB || 40) + ' MB · tap to refresh';
+}
+async function checkUpdate() { if (!S.dl || !navigator.onLine) return; try { const s = await sig(); if (S.dlSig && s !== S.dlSig) { S.dl = 0; save(); offlineBadge(); $('#dlLbl').textContent = 'New version of the play · tap to download'; } } catch (e) {} }
+
+// ---------------------------------------------------------------- on-site gate
+function onsite() { return Q.has('rehearse') || (S.onsite && Date.now() - S.onsite < ONSITE_HOURS * 3600e3); }
+function begin() {
+  if (onsite()) return openWalk();
+  if (!navigator.geolocation) return gateSheet({ err: 'This phone cannot share its location.' });
+  $('#beginLbl').textContent = 'Checking where you are…';
+  navigator.geolocation.getCurrentPosition((p) => {
+    $('#beginLbl').textContent = 'Begin at the mosque';
+    const d = dist({ lat: p.coords.latitude, lon: p.coords.longitude }, MOSQUE);
+    if (d <= GATE_M + Math.min(p.coords.accuracy || 0, 150)) { S.onsite = Date.now(); save(); toast('You are at Sultan Hassan. Headphones on.'); openWalk(); }
+    else gateSheet({ d });
+  }, (e) => { $('#beginLbl').textContent = 'Begin at the mosque'; gateSheet({ err: e.code === 1 ? 'Location is switched off for this page.' : 'We could not get a location fix.' }); },
+  { enableHighAccuracy: true, timeout: 15000, maximumAge: 60000 });
+}
+function gateSheet(o) {
+  const far = o.d != null;
+  const km = far ? (o.d >= 1000 ? (o.d / 1000).toFixed(1) + ' km' : Math.round(o.d) + ' m') : '';
+  sheet(`<h2>${far ? 'You are ' + km + ' from Sultan Hassan' : 'Where are you?'}</h2>
+    <p>${far ? 'The play only plays at the mosque, in front of the walls it talks about. Until then, here is the trailer.' : esc(o.err) + ' The play opens at the mosque, so we check once when you begin.'}</p>
+    <div class="btns">
+      <a class="pill gold" href="https://www.google.com/maps/search/?api=1&query=Mosque-Madrasa+of+Sultan+Hassan+Cairo" target="_blank" rel="noopener" style="text-decoration:none;color:var(--night)">Directions to the mosque</a>
+      ${far ? '<button class="pill ghost" data-act="trailer">Hear the trailer</button>' : '<button class="pill ghost" data-act="retry">Try again</button>'}
+      <button class="pill quiet" data-act="here">I'm at the mosque, my location is wrong</button>
+    </div>`);
+}
+function sayHere() { S.onsite = Date.now(); save(); closeSheet(); openWalk(); }
+
+// ---------------------------------------------------------------- sheets
+function sheet(html) { $('#sheetIn').innerHTML = html; $('#sheet').classList.add('on'); $('#veil').classList.add('on'); $('#sheetIn').scrollTop = 0; }
+function closeSheet() { $('#sheet').classList.remove('on'); $('#veil').classList.remove('on'); }
+$('#veil').onclick = closeSheet;
+$('#sheetIn').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-act]'); if (!b) return; const a = b.dataset.act;
+  if (a === 'trailer') { closeSheet(); trailer(); }
+  else if (a === 'retry') { closeSheet(); begin(); }
+  else if (a === 'here') sayHere();
+  else if (a === 'close') closeSheet();
+  else if (a === 'fx') { S.fx = !S.fx; save(); applyPrefs(); b.setAttribute('aria-checked', S.fx); }
+  else if (a === 'big') { S.big = !S.big; save(); applyPrefs(); b.setAttribute('aria-checked', !!S.big); }
+  else if (a === 'reset') { if (confirm('Clear your progress on this phone?')) { S.done = []; S.pos = {}; S.cur = 0; S.door = 0; save(); closeSheet(); renderWalk(); } }
+  else if (a === 'dl') { closeSheet(); download(); }
+});
+function planSheet() {
+  sheet(`<h2>Plan your visit</h2>
+  <p>The play is about an hour on foot: twelve stops, outside to inside, with ${$('#factMin').textContent} minutes of listening. Start at Salah al-Din Square, below the Citadel.</p>
+  <h3>Before you go</h3>
+  <ul>
+    <li><b>Download the play</b> on Wi-Fi (about 40 MB). Signal inside the walls is weak.</li>
+    <li><b>Headphones.</b> The voices do the directing; your phone stays mostly dark.</li>
+    <li><b>Dress for a mosque.</b> Shoulders and knees covered; women bring a headscarf. Shoes come off where the floor is carpeted.</li>
+    <li><b>Fridays:</b> start by 9:30 so you finish before the midday prayer. <span class="verify">Closing time not yet checked.</span></li>
+  </ul>
+  <h3>Hours and tickets</h3>
+  <p>Opening hours and the ticket price change. Check them on the day. <span class="verify">Not yet verified for this app.</span> One ticket usually covers Sultan Hassan and Al-Rifa'i across the lane.</p>
+  <h3>Getting there</h3>
+  <p>Salah al-Din Square (Midan al-Qal'a), Al-Khalifa, Cairo. Taxis and ride apps know "Sultan Hassan Mosque".</p>
+  <div class="btns">
+    <a class="pill gold" href="https://www.google.com/maps/search/?api=1&query=Mosque-Madrasa+of+Sultan+Hassan+Cairo" target="_blank" rel="noopener" style="text-decoration:none;color:var(--night)">Open in Maps</a>
+    ${S.dl ? '' : '<button class="pill ghost" data-act="dl">Download the play now</button>'}
+    <button class="pill quiet" data-act="close">Close</button>
+  </div>`);
+}
+function settingsSheet() {
+  sheet(`<h2>Settings</h2>
+  <div class="row"><div>Cinematic effects<div class="small">Slow photo moves, fades and buzzes. Off = still and quiet.</div></div><button class="switch" role="switch" aria-checked="${!!S.fx}" data-act="fx" aria-label="Cinematic effects"></button></div>
+  <div class="row"><div>Larger captions</div><button class="switch" role="switch" aria-checked="${!!S.big}" data-act="big" aria-label="Larger captions"></button></div>
+  <div class="row"><div>Offline copy<div class="small">${S.dl ? 'Stored on this phone · ' + (S.dlMB || 40) + ' MB' : 'Not downloaded yet'}</div></div><button class="pill ghost" style="width:auto;padding:0 18px;min-height:40px" data-act="dl">${S.dl ? 'Refresh' : 'Download'}</button></div>
+  <div class="row"><div>Plan your visit</div><button class="pill ghost" style="width:auto;padding:0 18px;min-height:40px" onclick="planSheet()">Open</button></div>
+  <div class="row"><div>Start the walk again</div><button class="pill ghost" style="width:auto;padding:0 18px;min-height:40px" data-act="reset">Reset</button></div>
+  <p class="small" style="margin-top:16px">Medu · Sultan Hassan · on-site edition. Facts carry their sources in each stop's credits; lines marked Dramatised are our words.</p>
+  <div class="btns"><button class="pill quiet" data-act="close">Close</button></div>`);
+}
+async function creditsSheet(n) {
+  const ch = await loadCh(n); const c = ch.c;
+  const tags = c.lineTags || {}; const rows = [];
+  for (const k of Object.keys(tags).sort((a, b) => a - b)) {
+    const l = ch.lines[+k]; const who = l ? ((c.speakers || {})[l.who] || l.who) : '';
+    rows.push(`<li><b>${esc(who)}</b>${l ? ': “' + esc((l.cap || l.say).slice(0, 70)) + ((l.cap || l.say).length > 70 ? '…' : '') + '”' : ''}<br><span class="small">${esc(tags[k])}</span></li>`);
+  }
+  const pics = [];
+  if (c.credits && typeof c.credits === 'object') for (const [p, v] of Object.entries(c.credits)) { if (v && typeof v === 'object') pics.push(`<li><b>${esc(v.what || v.note || p)}</b>: ${esc(v.author || '')}${v.license ? ', ' + (v.licenseUrl ? `<a href="${esc(v.licenseUrl)}" target="_blank" rel="noopener">${esc(v.license)}</a>` : esc(v.license)) : ''}${v.source ? `, <a href="${esc(v.source)}" target="_blank" rel="noopener">${esc(v.sourceName || 'source')}</a>` : ''}</li>`); }
+  else {
+    for (const r of ch.reveals) { if (r.kind === 'wipe') { pics.push(`<li>Then: ${esc(r.thenCap)}</li>`, `<li>Now: ${esc(r.nowCap)}</li>`); } else if (r.kind === 'clip') pics.push(`<li>${esc(r.label)}</li>`); else if (r.kind === 'still' && r.label) pics.push(`<li>Portrait: ${esc(r.label)}</li>`); }
+    if (c.pano && c.pano.credit) pics.push(`<li>Stop photo: ${esc(c.pano.credit)}</li>`);
+  }
+  sheet(`<h2>${n} · ${esc(c.title)}</h2>
+    <p class="small">Where each fact comes from. “Dramatised” marks words we wrote for a real person; “Unverified” marks what we still have to check on site.</p>
+    <h3>Sources, line by line</h3><ul>${rows.join('') || '<li>No notes for this stop.</li>'}</ul>
+    <h3>Pictures</h3><ul>${pics.join('') || '<li>None.</li>'}</ul>
+    <div class="btns"><button class="pill quiet" data-act="close">Close</button></div>`);
+}
+
+function doorSheet() {
+  const c = CUR.c, rows = [];
+  for (const [i, l] of CUR.lines.entries()) if (l.tag) rows.push(`<li><b>${esc((c.speakers || {})[l.who] || l.who)}</b>: “${esc((l.cap || l.say).slice(0, 70))}${(l.cap || l.say).length > 70 ? '…' : ''}”<br><span class="small">${esc(l.tag)}</span></li>`);
+  sheet(`<h2>${esc(c.title)}</h2>
+    <p class="small">The house rules, spoken by the historian. What we still have to check on site is marked Unverified.</p>
+    <ul>${rows.join('') || '<li>No notes.</li>'}</ul>
+    <div class="btns"><button class="pill quiet" data-act="close">Close</button></div>`);
+}
+
+// ---------------------------------------------------------------- trailer (at home)
+let trCh = null, trEnd = 0, trRaf = 0;
+async function trailer() {
+  show('trailer'); $('#trailer').classList.remove('done', 'go');
+  try {
+    trCh = await loadCh(1);
+    const ph = standPhoto(trCh); if (ph) $('#trBg').style.backgroundImage = `url("${url(trCh.meta.dir, ph)}")`;
+    // cut after the first line that ends past ~50 s
+    const L = trCh.lines; let end = L[L.length - 1].t1; for (const l of L) { if (l.t1 >= 50) { end = l.t1 + 0.8; break; } }
+    trEnd = end; tr.src = url(trCh.meta.dir, trCh.c.mix || 'dialogue/mix.mp3'); tr.currentTime = 0; tr.volume = 1;
+    await tr.play(); requestAnimationFrame(() => $('#trailer').classList.add('go'));
+    trTick();
+  } catch (e) { toast('Could not play the trailer. Check your connection.'); }
+}
+function trTick() {
+  cancelAnimationFrame(trRaf);
+  const t = tr.currentTime;
+  if (t >= trEnd - 1.2) tr.volume = Math.max(0, (trEnd - t) / 1.2);
+  if (t >= trEnd || tr.ended) { tr.pause(); $('#trailer').classList.add('done'); return; }
+  renderLine($('#trCap'), $('#trAr'), $('#trWho'), trCh, lineAt(trCh.lines, t), t);
+  trRaf = requestAnimationFrame(trTick);
+}
+function trStop() { cancelAnimationFrame(trRaf); tr.pause(); show('home'); }
+
+// ---------------------------------------------------------------- walk
+function openWalk() { show('walk'); renderWalk(); offlineBadge(); }
+function renderWalk() {
+  if (!PLAYJ) return;
+  const ch = PLAYJ.chapters, done = new Set(S.done);
+  const next = ch.find((c) => !done.has(c.n)) || null;
+  const cur = S.cur && !done.has(S.cur) ? S.cur : next && next.n;
+  $('#wkProg').style.width = (done.size / ch.length * 100) + '%';
+  $('#wkSub').textContent = done.size ? done.size + ' of ' + ch.length + ' stops heard' : 'Twelve stops, outside to inside. About an hour.';
+  const rb = $('#wkResume');
+  if (cur) { const m = ch.find((c) => c.n === cur); rb.innerHTML = `<svg width="16" height="16"><use href="#play"/></svg>${S.pos[cur] ? 'Continue' : (done.size ? 'Next' : 'Start')}: ${cur} · ${esc(m.title)}`; rb.onclick = () => openStop(cur); rb.style.display = ''; }
+  else { rb.innerHTML = 'You heard every stop · see the ending'; rb.onclick = () => show('finale'); }
+  let h = '', lastZone = '';
+  for (const c of ch) {
+    const zone = c.n <= 4 ? 'Outside' : c.n <= 11 ? 'Inside' : 'Around the walls';
+    if (zone !== lastZone) { h += `<div class="zone">${zone}</div>`; lastZone = zone; }
+    if (c.n > 1 && c.walk) h += `<div class="walkline">${c.walk} min walk</div>`;
+    const st = (c.stand || '').replace(/^./, (x) => x.toUpperCase()).replace(/UNVERIFIED:.*$/s, '').trim();
+    const cls = done.has(c.n) ? 'done' : c.n === cur ? 'cur' : '';
+    h += `<button class="stop ${cls}" data-n="${c.n}"><span class="n">${done.has(c.n) ? '✓' : c.n}</span><span class="t"><b>${esc(c.title)}</b><span class="st">${esc(st)}</span><span>${fmt(c.siteS || c.min * 60)}${(c.stand || '').includes('UNVERIFIED') ? ' · <span class="verify">access to be checked</span>' : ''}</span></span>${c.n === cur ? '<span class="go">Play</span>' : ''}</button>`;
+  }
+  $('#stops').innerHTML = h;
+}
+$('#stops').addEventListener('click', (e) => { const b = e.target.closest('.stop'); if (b) openStop(+b.dataset.n); });
+
+// ---------------------------------------------------------------- stage (one stop)
+let CUR = null, DOOR = null, raf = 0, revShown = -1, wakeLock = null, lastIns = null;
+// what an insert asks of the visitor (onsite.json act): label, icon, buzz. A hum, never claps (feature 22).
+const ACTS = { look: ['LOOK', 'eye', 40], touch: ['TOUCH', 'hand', [30, 40, 30]], count: ['COUNT', 'steps', 40], hum: ['HUM', 'wave', 20], still: ['STAND STILL', 'still', 60], listen: ['LISTEN', 'wave', 20] };
+const emit = (name, detail) => { try { document.dispatchEvent(new CustomEvent(name, { detail })); } catch (e) {} };   // hooks for add-on layers (wave1.js, gold line)
+async function openStop(n, skipStand) {
+  stopAudio();
+  if (n === 1 && PLAYJ.door && !S.door && !skipStand && !S.pos[1] && !S.done.length) return openDoor();   // first entry: the house rules first
+  try { CUR = await loadCh(n); } catch (e) { toast('This stop did not load. Check the download or the signal.'); return; }
+  S.cur = n; save();
+  show('stage'); $('#stage').classList.remove('looking', 'dark'); hideReveal(true);
+  emit('medu:stopstart', { n, dir: CUR.meta.dir });
+  $('#stTtl').innerHTML = `<b>${n} · ${esc(CUR.c.title)}</b>`;
+  au.src = url(CUR.meta.dir, CUR.site.mix || CUR.c.mix);
+  au.load();
+  const resume = S.pos[n] || 0;
+  au.addEventListener('loadedmetadata', function f() { au.removeEventListener('loadedmetadata', f); if (resume && resume < au.duration - 3) au.currentTime = resume; paint(); }, { once: true });
+  renderLine($('#stCap'), $('#stAr'), $('#stWho'), CUR, null, 0);
+  $('#nextCard').classList.remove('on');
+  if (skipStand || resume) { $('#standCard').classList.remove('on'); if (resume) toast('Picking up where you stopped. Tap play.'); }
+  else standCard();
+  mediaSession();
+}
+function standCard() {
+  const m = CUR.meta, ph = standPhoto(CUR);
+  $('#standK').textContent = CUR.door ? 'Before stop 1' : 'Stop ' + m.n + ' of ' + PLAYJ.chapters.length;
+  $('#standH').textContent = CUR.c.title;
+  $('#standP').textContent = (CUR.c.onsite && CUR.c.onsite.stand) || m.stand || CUR.c.place || '';
+  $('#standM').textContent = fmt(m.siteS || 0) + (CUR.door ? ' · the historian on how the house receives us.' : ' · headphones on, then lower your phone.');
+  $('#standPh').style.backgroundImage = ph ? `url("${url(m.dir, ph)}")` : 'none';
+  $('#standPh').style.display = ph ? '' : 'none';
+  $('#standGo').textContent = CUR.door ? 'I\'m at the door · listen' : 'I\'m standing here · begin';
+  $('#standBack').textContent = CUR.door ? 'Skip, I know the house rules' : 'Back to the walk';
+  $('#standCard').classList.add('on');
+}
+// The door scene: a short pre-roll before stop 1 (play.json "door", built only from the validated door/dialogue files).
+async function openDoor() {
+  const d = PLAYJ.door;
+  try {
+    if (!DOOR) { const lines = await getJSON(url(d.dir, d.lines)); DOOR = { meta: { n: 0, dir: d.dir, siteS: d.siteS, stand: 'Before the first stop, wherever you stand. Headphones on, one earbud out.' }, c: { title: d.title || 'At the door', speakers: d.speakers || {}, next: '' }, lines, ins: [], site: { mix: d.mix }, reveals: [], door: true }; }
+  } catch (e) { S.door = Date.now(); save(); return openStop(1); }   // no door files: straight to stop 1
+  CUR = DOOR; S.cur = 1; save();
+  show('stage'); $('#stage').classList.remove('looking', 'dark'); hideReveal(true);
+  emit('medu:stopstart', { n: 0, dir: d.dir, door: true });
+  $('#stTtl').innerHTML = `<b>${esc(CUR.c.title)}</b>`;
+  au.src = url(d.dir, d.mix); au.load();
+  au.addEventListener('loadedmetadata', function f() { au.removeEventListener('loadedmetadata', f); paint(); }, { once: true });
+  renderLine($('#stCap'), $('#stAr'), $('#stWho'), CUR, null, 0);
+  $('#nextCard').classList.remove('on');
+  standCard(); mediaSession();
+}
+function skipDoor() { S.door = Date.now(); save(); openStop(1); }
+function playPause() { if (au.paused) { au.play().catch(() => toast('Tap play again to start the sound.')); } else au.pause(); }
+au.addEventListener('play', () => { setIco(); tick(); lock(true); });
+au.addEventListener('pause', () => { setIco(); cancelAnimationFrame(raf); if (CUR && !CUR.door) { S.pos[CUR.meta.n] = au.currentTime; save(); } lock(false); });
+au.addEventListener('ended', () => { cancelAnimationFrame(raf); finishStop(); });
+function setIco() { $('#stPlayIco').innerHTML = `<use href="#${au.paused ? 'play' : 'pause'}"/>`; if ('mediaSession' in navigator) navigator.mediaSession.playbackState = au.paused ? 'paused' : 'playing'; }
+function tick() { paint(); raf = requestAnimationFrame(tick); }
+let lastSave = 0;
+function paint() {
+  if (!CUR) return;
+  const s = au.currentTime, d = au.duration || CUR.meta.siteS || 1, b = siteToBase(CUR, s);
+  $('#stBar i').style.width = (s / d * 100) + '%'; $('#stTm').textContent = fmt(s); $('#stLeft').textContent = '-' + fmt(d - s);
+  // look pause
+  const stage = $('#stage');
+  if (b.ins) {
+    if (lastIns !== b.ins) {
+      lastIns = b.ins; const a = ACTS[b.ins.act] || ACTS.look;   // stage acts (wave 1): the panel says what to do, not only where to look
+      $('#lookLab').textContent = a[0]; $('#lookIco').setAttribute('href', '#' + a[1]);
+      $('#lookCue').textContent = b.ins.cue || 'Look.'; $('#lookEl').textContent = b.ins.element || ''; buzz(a[2] || 40);
+    }
+    $('#lookRing').style.strokeDashoffset = (194.8 * b.k).toFixed(1);
+    stage.classList.add('looking');
+  } else { stage.classList.remove('looking'); lastIns = null; renderLine($('#stCap'), $('#stAr'), $('#stWho'), CUR, lineAt(CUR.lines, b.t), b.t); }
+  // reveals (base timeline)
+  const i = CUR.reveals.findIndex((r) => b.t >= r.t0 && b.t < r.t1);
+  if (i !== revShown) { if (i < 0) hideReveal(); else showReveal(CUR.reveals[i]); revShown = i; }
+  if (s - lastSave > 5 && !CUR.door) { lastSave = s; S.pos[CUR.meta.n] = s; save(); }
+}
+function showReveal(r) {
+  const rev = $('#rev'), stage = $('#stage'); rev.className = ''; stage.classList.remove('dark');
+  const d = CUR.meta.dir;
+  if (r.kind === 'dark') { rev.innerHTML = ''; stage.classList.add('dark'); buzz(r.buzz || [120, 60, 300]); return; }
+  if (r.kind === 'still') {
+    if (!r.src) { rev.innerHTML = ''; return; } // no portrait: the caption carries the name
+    rev.innerHTML = `<div class="media"><img alt="" src="${url(d, r.src)}"></div><div class="lbl"><b>${esc(r.cue || '')}</b>${esc((r.label || '').split('·').slice(1).join('·').trim())}</div>`;
+    rev.classList.add('portrait');
+    if (!r.quiet) buzz(30);
+  } else if (r.kind === 'clip') {
+    rev.innerHTML = `<div class="cuebig">${esc(r.cue || '')}</div><div class="media"><video muted playsinline autoplay src="${url(d, r.src)}"></video></div><div class="lbl">${esc(r.label || '')}</div>`;
+    buzz([60, 40, 60]);
+  } else if (r.kind === 'wipe') {
+    rev.innerHTML = `<div class="cuebig">${esc(r.cue || '')}</div><div class="media"><div class="wipe"><img alt="Today" src="${url(d, r.now)}"><div class="then"><img alt="Then" src="${url(d, r.then)}"></div><div class="hand"></div><span class="tag" style="left:10px">${esc(r.thenCap || 'Then')}</span><span class="tag" style="right:10px">${esc(r.nowCap || 'Now')}</span></div></div><div class="lbl">Drag to compare</div>`;
+    wipeCtl(rev.querySelector('.wipe'), r.t1 - r.t0);
+    buzz([60, 40, 60]);
+  }
+  rev.classList.add('on');
+}
+function hideReveal(now) { const rev = $('#rev'); rev.classList.remove('on'); $('#stage').classList.remove('dark'); if (now) rev.innerHTML = ''; else setTimeout(() => { if (!rev.classList.contains('on')) rev.innerHTML = ''; }, 700); revShown = -1; }
+function wipeCtl(el, dur) {
+  const th = el.querySelector('.then'), hd = el.querySelector('.hand'); let user = false;
+  const set = (p) => { p = Math.max(0, Math.min(1, p)); th.style.clipPath = `inset(0 ${(1 - p) * 100}% 0 0)`; hd.style.left = (p * 100) + '%'; };
+  const t0 = performance.now();
+  const auto = () => { if (user || !el.isConnected) return; const k = (performance.now() - t0) / 1000; set(S.fx ? 0.5 + 0.42 * Math.sin(k / Math.max(2, dur / 3) * Math.PI) : 0.5); requestAnimationFrame(auto); };
+  auto();
+  const mv = (e) => { const r = el.getBoundingClientRect(); set(((e.touches ? e.touches[0].clientX : e.clientX) - r.left) / r.width); };
+  el.addEventListener('pointerdown', (e) => { user = true; mv(e); el.setPointerCapture(e.pointerId); });
+  el.addEventListener('pointermove', (e) => { if (user && e.buttons) mv(e); });
+}
+function finishStop() {
+  if (CUR.door) { lock(false); hideReveal(true); emit('medu:stopend', { n: 0, door: true }); return skipDoor(); }   // the door scene ends: on to the stand card of stop 1
+  const n = CUR.meta.n; if (!S.done.includes(n)) S.done.push(n); delete S.pos[n]; save(); lock(false); hideReveal();
+  emit('medu:stopend', { n, dir: CUR.meta.dir });
+  const nx = PLAYJ.chapters.find((c) => c.n === n + 1);
+  if (!nx) { show('finale'); return; }
+  S.cur = nx.n; save();
+  $('#nextK').textContent = 'Stop ' + n + ' done';
+  $('#nextLine').textContent = CUR.c.next || '';
+  $('#nextH').textContent = nx.n + ' · ' + nx.title;
+  $('#nextP').textContent = (nx.stand || '').replace(/^./, (x) => x.toUpperCase()).replace(/UNVERIFIED:.*$/s, '').trim();
+  $('#nextM').textContent = (nx.walk ? 'About ' + nx.walk + ' min on foot · ' : '') + fmt(nx.siteS || 0) + ' of play';
+  $('#nextCard').classList.add('on');
+  buzz([40, 60, 40]);
+}
+function stopAudio() { cancelAnimationFrame(raf); if (!au.paused) au.pause(); }
+function seek(s) { au.currentTime = Math.max(0, Math.min((au.duration || 0) - 0.2, s)); paint(); }
+function nextLine() {
+  const b = siteToBase(CUR, au.currentTime).t;
+  const nx = CUR.lines.find((l) => l.t0 > b + 0.3);
+  if (nx) seek(baseToSite(CUR, nx.t0) - 0.1); else seek((au.duration || 0) - 0.3);
+}
+async function lock(on) {
+  try {
+    if (on && 'wakeLock' in navigator && !wakeLock) { wakeLock = await navigator.wakeLock.request('screen'); wakeLock.addEventListener('release', () => { wakeLock = null; }); }
+    if (!on && wakeLock) { await wakeLock.release(); wakeLock = null; }
+  } catch (e) {}
+}
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && !au.paused) lock(true); });
+function mediaSession() {
+  if (!('mediaSession' in navigator) || !CUR) return;
+  navigator.mediaSession.metadata = new MediaMetadata({ title: (CUR.door ? '' : CUR.meta.n + ' · ') + CUR.c.title, artist: 'Medu · Sultan Hassan', album: 'On-site edition', artwork: [{ src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png' }] });
+  const h = { play: () => au.play(), pause: () => au.pause(), seekbackward: () => seek(au.currentTime - 10), nexttrack: () => nextLine() };
+  for (const k in h) try { navigator.mediaSession.setActionHandler(k, h[k]); } catch (e) {}
+}
+// progress bar scrubbing
+(() => { const bar = $('#stBar'); const to = (e) => { const r = bar.getBoundingClientRect(); seek(((e.clientX) - r.left) / r.width * (au.duration || 0)); };
+  bar.addEventListener('pointerdown', (e) => { bar.setPointerCapture(e.pointerId); to(e); }); bar.addEventListener('pointermove', (e) => { if (e.buttons) to(e); }); })();
+
+// ---------------------------------------------------------------- share
+async function share(text) {
+  const u = new URL('./', location.href).href;
+  try { if (navigator.share) { await navigator.share({ title: 'Medu · Sultan Hassan', text, url: u }); return; } } catch (e) { return; }
+  try { await navigator.clipboard.writeText(text + ' ' + u); toast('Link copied.'); } catch (e) { toast(u); }
+}
+
+// ---------------------------------------------------------------- wiring
+$('#btnBegin').onclick = begin;
+$('#btnTrailer').onclick = trailer;
+$('#btnPlan').onclick = planSheet;
+$('#dl').onclick = download;
+$('#trClose').onclick = trStop; $('#trBack').onclick = trStop;
+$('#trPlan').onclick = () => { trStop(); planSheet(); };
+$('#trShare').onclick = () => share('A play staged inside the Sultan Hassan mosque in Cairo. It only plays there. Come with me?');
+$('#wkInfo').onclick = settingsSheet;
+$('#stList').onclick = () => { stopAudio(); openWalk(); };
+$('#stInfo').onclick = () => CUR && (CUR.door ? doorSheet() : creditsSheet(CUR.meta.n));
+$('#stPlay').onclick = playPause;
+$('#stBack').onclick = () => seek(au.currentTime - 10);
+$('#stNext').onclick = nextLine;
+$('#standGo').onclick = () => { $('#standCard').classList.remove('on'); au.play().catch(() => {}); };
+$('#standBack').onclick = () => { stopAudio(); if (CUR && CUR.door) skipDoor(); else openWalk(); };
+$('#nextGo').onclick = () => openStop(S.cur);
+$('#nextAgain').onclick = () => { const n = CUR.meta.n; S.done = S.done.filter((x) => x !== n); save(); openStop(n, true).then(() => au.play().catch(() => {})); };
+$('#nextList').onclick = openWalk;
+$('#fnShare').onclick = () => share('I just walked Sultan Hassan with a play staged inside it. Go and stand there.');
+$('#fnWalk').onclick = openWalk;
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSheet(); if (e.key === ' ' && $('#stage').classList.contains('on')) { e.preventDefault(); playPause(); } });
+
+// ---------------------------------------------------------------- start
+(async () => {
+  try { await loadPlay(); } catch (e) { toast('Could not load the play. Check the connection.', 6000); }
+  const hero = new Image(); hero.onload = () => { $('#heroBg').style.backgroundImage = `url("${hero.src}")`; $('#heroBg').classList.add('ok'); };
+  hero.src = url('ch01', 'stage/now-ch01.jpg');
+  offlineBadge(); checkUpdate();
+  if (onsite() && PLAYJ) { $('#beginLbl').textContent = S.done.length ? 'Continue the walk' : 'Begin the walk'; }
+  if (Q.has('rehearse') && PLAYJ) openWalk();
+  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+    try { navigator.serviceWorker.register('sw.js'); } catch (e) {}
+  }
+})();
+</script>
+<script src="wave1.js"></script>
+</body>
+</html>

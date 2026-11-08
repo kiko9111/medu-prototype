@@ -1,0 +1,21 @@
+{
+ "about": "Gold line layer for ch08: real photos with the named element traced; paths are fractions of the photo. Traced by eye: validator to check each outline.",
+ "looks": [
+  null,
+  null
+ ],
+ "credits": [],
+ "replace": {
+  "2": {
+   "kind": "wipe",
+   "cue": "Hold it up to the court: then and now",
+   "then": "wipe-then.jpg",
+   "thenCap": "1870s–90s · NYPL",
+   "aligned": true
+  }
+ },
+ "portraits": {
+  "0": "sultan/speaking",
+  "1": "maqrizi/speaking"
+ }
+}

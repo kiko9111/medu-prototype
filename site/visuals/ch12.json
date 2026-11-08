@@ -1,0 +1,25 @@
+{
+ "about": "Visual layer for this stop: portrait expressions.",
+ "portraits": {
+  "0": "sultan/pride",
+  "2": "maqrizi/grief"
+ },
+ "extra": [
+  {
+   "t0": 80.7,
+   "t1": 95.0,
+   "kind": "wipe",
+   "cue": "This side, in ruins, 1890s",
+   "then": "then-nw.jpg",
+   "thenCap": "1890s · Max Herz, 1899, pl. V"
+  }
+ ],
+ "credits": [
+  {
+   "what": "The portal and north-west side among ruins, 1890s (archive view)",
+   "author": "Max Herz, La mosquée du sultan Hassan au Caire, 1899, pl. V",
+   "license": "Public domain",
+   "source": "https://archive.org/details/mosqueedusultanHassanauCaire00leca"
+  }
+ ]
+}

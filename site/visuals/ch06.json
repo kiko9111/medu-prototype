@@ -1,0 +1,66 @@
+{
+ "about": "Gold line layer for ch06: real photos with the named element traced; paths are fractions of the photo. Traced by eye: validator to check each outline. Re-indexed by the site app to the play v29 look pauses (matched by element).",
+ "looks": [
+  {
+   "src": "hassan-r6-2.jpg",
+   "label": "The steps up from the entrance hall",
+   "paths": [],
+   "tags": [
+    {
+     "at": [
+      0.47,
+      0.62
+     ],
+     "t": "count the steps",
+     "side": "b"
+    }
+   ],
+   "ar": 1.5005,
+   "spot": [
+    0.08,
+    0.66,
+    0.86,
+    0.98
+   ]
+  },
+  null
+ ],
+ "credits": [
+  {
+   "what": "The steps up from the entrance hall",
+   "author": "Mariam Mohamed Kamal",
+   "license": "CC BY-SA 3.0 (lines added)",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:Sultan_Hassan_Mosque_3.JPG"
+  },
+  {
+   "what": "The passage narrows toward the light, then turns",
+   "author": "أحمد ناجي",
+   "license": "CC BY-SA 4.0 (lines added)",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A7%D9%86_%D8%AD%D8%B3%D9%86_2026_17.jpg"
+  },
+  {
+   "what": "Dome and vaulting of the entrance hall, 1916–21 (archive view)",
+   "author": "K.A.C. Creswell / © Victoria and Albert Museum, London",
+   "license": "V&A: free for non-commercial use (licence needed before a public release)",
+   "source": "https://collections.vam.ac.uk/item/O1287591/"
+  }
+ ],
+ "portraits": {
+  "1": "sultan/pride",
+  "2": "maqrizi/grief"
+ },
+ "extra": [
+  {
+   "t0": 1.0,
+   "t1": 9.8,
+   "kind": "wipe",
+   "cue": "Before the dark: look up",
+   "then": "then-vestibule.jpg",
+   "thenCap": "1916–21 · K.A.C. Creswell",
+   "how": "Stand at the back of the hall and look up",
+   "howSub": "The dome you pass under, about a century ago"
+  }
+ ]
+}

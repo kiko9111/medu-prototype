@@ -342,7 +342,7 @@ function arrivalCard(n) {
   wa.innerHTML = `<div class="w1arrow"><div class="w1arph"></div><div class="w1artxt"><div class="k">You are at the mark</div><h2>${n} · ${esc(m.title)}</h2><p>${esc(st)}</p><div class="meta">${fmt(m.siteS || 0)} of play · headphones on, then lower your phone.</div></div></div><div class="btns"><button class="pill gold" data-w1arr="begin">I'm standing here · begin</button><button class="pill quiet" data-w1arr="map">Let me look at the map first</button></div>`;
   wb.textContent = 'Begin stop ' + n; wb.style.display = 'none'; wa.classList.add('on'); wa.scrollTop = 0;
   buzz([40, 60, 40]);
-  loadCh(n).then((ch) => { const p = standPhoto(ch), el = wa.querySelector('.w1arph'); if (p && el && wayTarget === n) el.style.backgroundImage = `url('${url(ch.meta.dir, p)}')`; }).catch(() => {});   // the stand photo joins when loaded
+  loadCh(n).then((ch) => { const p = standPhoto(ch), el = wa.querySelector('.w1arph'); if (p && el && wayTarget === n) el.style.backgroundImage = `url('${p}')`; }).catch(() => {});   // the stand photo joins when loaded
 }
 wa.addEventListener('click', (e) => {
   const b = e.target.closest('[data-w1arr]'); if (!b) return; const n = wayTarget;
