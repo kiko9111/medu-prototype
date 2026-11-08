@@ -1,0 +1,134 @@
+{
+ "id": "ch08",
+ "n": 8,
+ "title": "The side halls and the corner doors",
+ "place": "the courtyard, turning from the side halls (iwans) to one of the corner doorways.",
+ "mix": "dialogue/mix.mp3",
+ "lines": "dialogue/lines.json",
+ "speakers": {
+  "narrator": "Narrator",
+  "sultan": "Sultan Hasan",
+  "maqrizi": "al-Maqrizi"
+ },
+ "shots": [],
+ "quiz": [
+  {
+   "q": "Which two colleges were the largest?",
+   "options": [
+    "Maliki and Hanbali",
+    "Hanafi and Shafi'i",
+    "All four were equal"
+   ],
+   "correct": 1
+  }
+ ],
+ "onsite": {
+  "stand": "in the courtyard, north-east of the fountain pavilion, about seventeen metres from it, facing it, with the south-west hall beyond it. UNVERIFIED: mark to be checked on site (3D guide v12)."
+ },
+ "next": "Go to a corner doorway, and look through. You will see where they lived.",
+ "modes": {
+  "home": {
+   "mix": "dialogue/mix.mp3"
+  },
+  "site": {
+   "mix": "dialogue/mix-onsite.mp3",
+   "inserts": "dialogue/onsite.json",
+   "stage": {
+    "reveals": [
+     {
+      "t0": 6.4,
+      "t1": 11.4,
+      "kind": "still",
+      "cue": "Sultan Hasan",
+      "label": "al-Nasir Hasan · sultan, 1347–51 and 1354–61 · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/sultan.jpg"
+     },
+     {
+      "t0": 31.44,
+      "t1": 36.44,
+      "kind": "still",
+      "cue": "al-Maqrizi",
+      "label": "Taqi al-Din al-Maqrizi · historian of Cairo, 1364–1442 · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/maqrizi.jpg"
+     },
+     {
+      "kind": "wipe",
+      "cue": "Hold it up to the court: then and now",
+      "then": "stage/then-ch08.jpg",
+      "thenCap": "1870s–90s · NYPL",
+      "now": "stage/now-ch08.jpg",
+      "nowCap": "Today · Magoopic, CC BY-SA 4.0 (modified)",
+      "t0": 45.76,
+      "t1": 56.76
+     }
+    ]
+   }
+  }
+ },
+ "status": "dialogue edition, draft: historical people speak, the narrator sets the scene; on-site only",
+ "lineTags": {
+  "1": "'Said to have each been devoted' to one of the four madhhabs: Wikipedia",
+  "2": "'It is possible that the other iwans were intended to be decorated too but were never finished': Wikipedia",
+  "3": "Corner doorways in ablaq stone with inscription bands and mosaics: Wikipedia",
+  "4": "al-Maqrizi, Khitat, his own words",
+  "5": "The Hanafi and Shafi'i madrasas the largest, either side of the great iwan: Wikipedia",
+  "6": "'At least in part because of the irregular floor plan of the mosque, which was limited by existing streets and structures': Wikipedia",
+  "7": "Wikipedia"
+ },
+ "siteOnly": true,
+ "edition": "dialogue",
+ "_planDefault": [
+  {
+   "t": 0,
+   "x": 39.9,
+   "y": 45.8,
+   "facing": 215
+  }
+ ],
+ "credits": [
+  {
+   "what": "Portraits",
+   "author": "MEDU",
+   "license": "Faces imagined",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "no likeness of these people survives",
+   "src": "_portrait"
+  },
+  {
+   "what": "The ablution fountain, then",
+   "author": "Albumen photo 1870s-90s, photographer not given (NYPL image 79724)",
+   "license": "Public domain",
+   "licenseUrl": null,
+   "source": "https://digitalcollections.nypl.org/items/bec3cfe0-c6e0-012f-4709-58d385a7bc34",
+   "sourceName": "New York Public Library",
+   "note": "courtesy credit; cropped/resized",
+   "src": "stage/then-ch08.jpg"
+  },
+  {
+   "what": "The court, today",
+   "author": "Magoopic",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:%D8%AA%D9%81%D9%83%D9%8A%D8%B1.jpg",
+   "sourceName": "Wikimedia Commons",
+   "note": "modified (cropped/resized)",
+   "src": "stage/now-ch08.jpg"
+  },
+  {
+   "what": "Ney bed and bell",
+   "author": "MEDU",
+   "license": "Own work",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "synthesised",
+   "src": "_sound"
+  }
+ ]
+}

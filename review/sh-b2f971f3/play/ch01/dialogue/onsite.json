@@ -1,0 +1,30 @@
+{
+ "note": "Look pauses for the on-site version; on-site t = base t + sum(dur of inserts with at <= t). Made by tools/dialogue.py from dialogue/lines.json.",
+ "inserts": [
+  {
+   "at": 28.31,
+   "dur": 4.0,
+   "line": 1,
+   "element": "The tomb dome",
+   "cue": "Find the domed tomb end of the mosque across the road.",
+   "act": "look"
+  },
+  {
+   "at": 47.11,
+   "dur": 6.0,
+   "line": 2,
+   "element": "The crest and the triangles",
+   "cue": "Find the crest of stone lilies along the top, and the empty triangles above the lowest windows.",
+   "act": "look"
+  },
+  {
+   "at": 125.32,
+   "dur": 5.0,
+   "line": 11,
+   "element": "The crest",
+   "cue": "Find the crest of stone lilies on the tomb walls.",
+   "act": "look"
+  }
+ ],
+ "total_added": 15.0
+}

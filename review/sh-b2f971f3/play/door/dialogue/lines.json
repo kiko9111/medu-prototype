@@ -1,0 +1,632 @@
+[
+ {
+  "who": "narrator",
+  "say": "Before you go in: a word from the historian, at the door.",
+  "after": 0.6,
+  "tag": "",
+  "beat": 0,
+  "cap": "Before you go in: a word from the historian, at the door.",
+  "file": "00-narrator-69538c90.mp3",
+  "t0": 1.0,
+  "t1": 4.36,
+  "w": [
+   [
+    "Before",
+    1.06
+   ],
+   [
+    "you",
+    1.38
+   ],
+   [
+    "go",
+    1.5
+   ],
+   [
+    "in:",
+    1.72
+   ],
+   [
+    "a",
+    2.28
+   ],
+   [
+    "word",
+    2.38
+   ],
+   [
+    "from",
+    2.66
+   ],
+   [
+    "the",
+    2.82
+   ],
+   [
+    "historian,",
+    2.9
+   ],
+   [
+    "at",
+    3.78
+   ],
+   [
+    "the",
+    3.92
+   ],
+   [
+    "door.",
+    4.04
+   ]
+  ],
+  "ar": ""
+ },
+ {
+  "who": "maqrizi",
+  "say": "Taqi al-Din al-Maqrizi. Before we begin, four things from me, so that the house receives us well.",
+  "after": 0.6,
+  "tag": "",
+  "beat": 0,
+  "cap": "Taqi al-Din al-Maqrizi. Before we begin, four things from me, so that the house receives us well.",
+  "file": "01-maqrizi-9d0f34a1.mp3",
+  "t0": 4.96,
+  "t1": 13.33,
+  "w": [
+   [
+    "Taqi",
+    5.09
+   ],
+   [
+    "al-Din",
+    5.65
+   ],
+   [
+    "al-Maqrizi.",
+    6.53
+   ],
+   [
+    "Before",
+    7.93
+   ],
+   [
+    "we",
+    8.35
+   ],
+   [
+    "begin,",
+    8.51
+   ],
+   [
+    "four",
+    9.41
+   ],
+   [
+    "things",
+    9.69
+   ],
+   [
+    "from",
+    10.09
+   ],
+   [
+    "me,",
+    10.29
+   ],
+   [
+    "so",
+    10.91
+   ],
+   [
+    "that",
+    11.07
+   ],
+   [
+    "the",
+    11.25
+   ],
+   [
+    "house",
+    11.43
+   ],
+   [
+    "receives",
+    12.01
+   ],
+   [
+    "us",
+    12.63
+   ],
+   [
+    "well.",
+    12.96
+   ]
+  ],
+  "ar": ""
+ },
+ {
+  "who": "maqrizi",
+  "say": "Shoes. They come off where the carpet begins. Carry them, or use the covers at the door.",
+  "after": 0.6,
+  "tag": "Unverified on site: where shoes come off at Sultan Hassan, and whether covers are offered",
+  "beat": 0,
+  "cap": "Shoes. They come off where the carpet begins. Carry them, or use the covers at the door.",
+  "file": "02-maqrizi-609380d7.mp3",
+  "t0": 13.93,
+  "t1": 20.56,
+  "w": [
+   [
+    "Shoes.",
+    14.07
+   ],
+   [
+    "They",
+    14.85
+   ],
+   [
+    "come",
+    15.05
+   ],
+   [
+    "off",
+    15.31
+   ],
+   [
+    "where",
+    15.63
+   ],
+   [
+    "the",
+    15.85
+   ],
+   [
+    "carpet",
+    16.03
+   ],
+   [
+    "begins.",
+    16.59
+   ],
+   [
+    "Carry",
+    17.89
+   ],
+   [
+    "them,",
+    18.21
+   ],
+   [
+    "or",
+    18.85
+   ],
+   [
+    "use",
+    19.15
+   ],
+   [
+    "the",
+    19.39
+   ],
+   [
+    "covers",
+    19.53
+   ],
+   [
+    "at",
+    19.89
+   ],
+   [
+    "the",
+    19.99
+   ],
+   [
+    "door.",
+    20.11
+   ]
+  ],
+  "ar": ""
+ },
+ {
+  "who": "maqrizi",
+  "say": "Cover your shoulders and your knees. Women, please cover your hair in the prayer halls; the mosque may lend a scarf.",
+  "after": 0.6,
+  "tag": "Unverified on site: what the mosque asks visitors to wear",
+  "beat": 0,
+  "cap": "Cover your shoulders and your knees. Women, please cover your hair in the prayer halls; the mosque may lend a scarf.",
+  "file": "03-maqrizi-110a2abf.mp3",
+  "t0": 21.16,
+  "t1": 29.72,
+  "w": [
+   [
+    "Cover",
+    21.26
+   ],
+   [
+    "your",
+    21.5
+   ],
+   [
+    "shoulders",
+    21.68
+   ],
+   [
+    "and",
+    22.21
+   ],
+   [
+    "your",
+    22.41
+   ],
+   [
+    "knees.",
+    22.69
+   ],
+   [
+    "Women,",
+    22.99
+   ],
+   [
+    "please",
+    23.63
+   ],
+   [
+    "cover",
+    24.43
+   ],
+   [
+    "your",
+    24.8
+   ],
+   [
+    "hair",
+    25.04
+   ],
+   [
+    "in",
+    25.25
+   ],
+   [
+    "the",
+    25.35
+   ],
+   [
+    "prayer",
+    25.48
+   ],
+   [
+    "halls;",
+    25.74
+   ],
+   [
+    "the",
+    26.07
+   ],
+   [
+    "mosque",
+    26.23
+   ],
+   [
+    "may",
+    26.47
+   ],
+   [
+    "lend",
+    26.62
+   ],
+   [
+    "a",
+    26.82
+   ],
+   [
+    "scarf.",
+    26.88
+   ]
+  ],
+  "ar": ""
+ },
+ {
+  "who": "maqrizi",
+  "say": "The great hall that faces Mecca is for prayer. When the call sounds, step back, fall silent, and let them pray. We will wait with you.",
+  "after": 0.6,
+  "tag": "",
+  "beat": 0,
+  "cap": "The great hall that faces Mecca is for prayer. When the call sounds, step back, fall silent, and let them pray. We will wait with you.",
+  "file": "04-maqrizi-b62f5ffb.mp3",
+  "t0": 30.32,
+  "t1": 41.36,
+  "w": [
+   [
+    "The",
+    30.38
+   ],
+   [
+    "great",
+    30.5
+   ],
+   [
+    "hall",
+    30.88
+   ],
+   [
+    "that",
+    31.36
+   ],
+   [
+    "faces",
+    31.64
+   ],
+   [
+    "Mecca",
+    32.14
+   ],
+   [
+    "is",
+    32.68
+   ],
+   [
+    "for",
+    32.88
+   ],
+   [
+    "prayer.",
+    33.08
+   ],
+   [
+    "When",
+    34.16
+   ],
+   [
+    "the",
+    34.28
+   ],
+   [
+    "call",
+    34.44
+   ],
+   [
+    "sounds,",
+    34.86
+   ],
+   [
+    "step",
+    35.92
+   ],
+   [
+    "back,",
+    36.24
+   ],
+   [
+    "fall",
+    37.02
+   ],
+   [
+    "silent,",
+    37.42
+   ],
+   [
+    "and",
+    38.36
+   ],
+   [
+    "let",
+    38.54
+   ],
+   [
+    "them",
+    38.76
+   ],
+   [
+    "pray.",
+    39.04
+   ],
+   [
+    "We",
+    39.98
+   ],
+   [
+    "will",
+    40.14
+   ],
+   [
+    "wait",
+    40.4
+   ],
+   [
+    "with",
+    40.84
+   ],
+   [
+    "you.",
+    41.12
+   ]
+  ],
+  "ar": ""
+ },
+ {
+  "who": "maqrizi",
+  "say": "And one ear stays free. Keep one earbud out, and the other low: the guards, and the call to prayer, come before any of us. Speak softly. So will we.",
+  "after": 0.7,
+  "tag": "",
+  "beat": 0,
+  "cap": "And one ear stays free. Keep one earbud out, and the other low: the guards, and the call to prayer, come before any of us. Speak softly. So will we.",
+  "file": "05-maqrizi-4555d2c1.mp3",
+  "t0": 41.96,
+  "t1": 54.12,
+  "w": [
+   [
+    "And",
+    42.04
+   ],
+   [
+    "one",
+    42.2
+   ],
+   [
+    "ear",
+    42.5
+   ],
+   [
+    "stays",
+    43.06
+   ],
+   [
+    "free.",
+    43.52
+   ],
+   [
+    "Keep",
+    44.48
+   ],
+   [
+    "one",
+    44.8
+   ],
+   [
+    "earbud",
+    45.06
+   ],
+   [
+    "out,",
+    45.72
+   ],
+   [
+    "and",
+    46.1
+   ],
+   [
+    "the",
+    46.24
+   ],
+   [
+    "other",
+    46.42
+   ],
+   [
+    "low:",
+    46.74
+   ],
+   [
+    "the",
+    47.58
+   ],
+   [
+    "guards,",
+    47.7
+   ],
+   [
+    "and",
+    48.44
+   ],
+   [
+    "the",
+    48.54
+   ],
+   [
+    "call",
+    48.7
+   ],
+   [
+    "to",
+    49.08
+   ],
+   [
+    "prayer,",
+    49.24
+   ],
+   [
+    "come",
+    50.0
+   ],
+   [
+    "before",
+    50.28
+   ],
+   [
+    "any",
+    50.72
+   ],
+   [
+    "of",
+    50.9
+   ],
+   [
+    "us.",
+    51.04
+   ],
+   [
+    "Speak",
+    52.04
+   ],
+   [
+    "softly.",
+    52.44
+   ],
+   [
+    "So",
+    53.44
+   ],
+   [
+    "will",
+    53.64
+   ],
+   [
+    "we.",
+    53.86
+   ]
+  ],
+  "ar": ""
+ },
+ {
+  "who": "maqrizi",
+  "say": "Now, to the first mark. I will meet you there.",
+  "after": 0.4,
+  "tag": "",
+  "beat": 0,
+  "cap": "Now, to the first mark. I will meet you there.",
+  "file": "06-maqrizi-2af0fdbf.mp3",
+  "t0": 54.82,
+  "t1": 57.7,
+  "w": [
+   [
+    "Now,",
+    54.9
+   ],
+   [
+    "to",
+    55.12
+   ],
+   [
+    "the",
+    55.22
+   ],
+   [
+    "first",
+    55.36
+   ],
+   [
+    "mark.",
+    55.7
+   ],
+   [
+    "I",
+    56.72
+   ],
+   [
+    "will",
+    56.8
+   ],
+   [
+    "meet",
+    56.96
+   ],
+   [
+    "you",
+    57.22
+   ],
+   [
+    "there.",
+    57.36
+   ]
+  ],
+  "ar": ""
+ }
+]

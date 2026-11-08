@@ -1,0 +1,164 @@
+{
+ "id": "ch05",
+ "n": 5,
+ "title": "The entrance hall",
+ "place": "inside the door, in the domed entrance hall (vestibule), facing the back wall of marble.",
+ "mix": "dialogue/mix.mp3",
+ "lines": "dialogue/lines.json",
+ "speakers": {
+  "narrator": "Narrator",
+  "maqrizi": "al-Maqrizi",
+  "barquq": "Sultan Barquq",
+  "muayyad": "Sultan al-Mu'ayyad",
+  "herz": "Max Herz"
+ },
+ "shots": [],
+ "quiz": [
+  {
+   "q": "Why did Sultan Barquq wall up the door in 1391?",
+   "options": [
+    "The mosque was unfinished",
+    "Emirs were shooting from its roof at the Citadel",
+    "The door was stolen"
+   ],
+   "correct": 1
+  }
+ ],
+ "onsite": {
+  "stand": "inside the door, in the domed entrance hall (vestibule), facing the back wall of marble."
+ },
+ "next": "Follow the passage ahead, up the steps. Mind the dark: it turns.",
+ "modes": {
+  "home": {
+   "mix": "dialogue/mix.mp3"
+  },
+  "site": {
+   "mix": "dialogue/mix-onsite.mp3",
+   "inserts": "dialogue/onsite.json",
+   "stage": {
+    "reveals": [
+     {
+      "t0": 14.4,
+      "t1": 19.4,
+      "kind": "still",
+      "cue": "al-Maqrizi",
+      "label": "Taqi al-Din al-Maqrizi · historian of Cairo, 1364–1442 · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/maqrizi.jpg"
+     },
+     {
+      "t0": 75.0,
+      "t1": 80.0,
+      "kind": "still",
+      "cue": "Sultan Barquq",
+      "label": "al-Zahir Barquq · sultan, r. 1382–99 · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/barquq.jpg"
+     },
+     {
+      "kind": "dark",
+      "buzz": [
+       220
+      ],
+      "t0": 87.9,
+      "t1": 89.5
+     },
+     {
+      "t0": 99.72,
+      "t1": 104.72,
+      "kind": "still",
+      "cue": "Sultan al-Mu'ayyad",
+      "label": "al-Mu'ayyad Shaykh · sultan, r. 1412–21 · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/muayyad.jpg"
+     },
+     {
+      "kind": "wipe",
+      "cue": "Hold it up: then and now",
+      "then": "stage/then-ch05.jpg",
+      "thenCap": "19th century · photogravure, NYPL",
+      "now": "stage/now-ch05.jpg",
+      "nowCap": "Today · Hatem Moushir, CC BY-SA 4.0 (modified)",
+      "t0": 123.48,
+      "t1": 133.48
+     },
+     {
+      "t0": 145.27,
+      "t1": 150.27,
+      "kind": "still",
+      "cue": "Max Herz",
+      "label": "Max Herz · chief architect of the Comité, surveyed the mosque in 1899",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance"
+     }
+    ]
+   }
+  }
+ },
+ "status": "dialogue edition, draft: historical people speak, the narrator sets the scene; on-site only",
+ "lineTags": {
+  "1": "'The bronze door, the like of which was never made': al-Maqrizi, Khitat. The door at al-Mu'ayyad's mosque today: Wikipedia (Williams 2018)",
+  "3": "'Reminiscent of Byzantine architecture, but may have been inspired from Armenian craftsmanship'; the Syrian-style marble square: Wikipedia",
+  "4": "al-Maqrizi, Khitat, his own words, abridged",
+  "6": "Barquq's demolition and the walled-up door, work begun 8 Safar 793 (January 1391): al-Maqrizi, Khitat. The words are dramatised",
+  "7": "al-Maqrizi, Khitat",
+  "8": "Bought with the bronze lamp for 500 dinars and moved in December 1416: al-Maqrizi, Khitat. The words are dramatised",
+  "9": "'Forcibly purchased at a modest price': Williams 2018, via Wikipedia",
+  "10": "Anatolian Seljuk portal, Byzantine-like dome, Syrian marble: Wikipedia"
+ },
+ "siteOnly": true,
+ "edition": "dialogue",
+ "_planDefault": [
+  {
+   "t": 0,
+   "x": 44.2,
+   "y": 15.6,
+   "facing": 160
+  }
+ ],
+ "credits": [
+  {
+   "what": "Portraits",
+   "author": "MEDU",
+   "license": "Faces imagined",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "no likeness of these people survives",
+   "src": "_portrait"
+  },
+  {
+   "what": "The portal recess, then",
+   "author": "NYPL photogravure, maker not given (NYPL image 96039)",
+   "license": "Public domain",
+   "licenseUrl": null,
+   "source": "https://digitalcollections.nypl.org/items/d9b44670-c6be-012f-0520-58d385a7bc34",
+   "sourceName": "New York Public Library",
+   "note": "courtesy credit; cropped/resized",
+   "src": "stage/then-ch05.jpg"
+  },
+  {
+   "what": "The entrance, today",
+   "author": "Hatem Moushir",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:Madrasah_of_Sultan_Hassan_in_2017,_photo_by_Hatem_Moushir_37.jpg",
+   "sourceName": "Wikimedia Commons",
+   "note": "modified (cropped/resized)",
+   "src": "stage/now-ch05.jpg"
+  },
+  {
+   "what": "Ney bed and bell",
+   "author": "MEDU",
+   "license": "Own work",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "synthesised",
+   "src": "_sound"
+  }
+ ]
+}

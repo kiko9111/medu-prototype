@@ -1,0 +1,484 @@
+{
+ "title": "Sultan Hassan",
+ "chapters": [
+  {
+   "n": 1,
+   "dir": "ch01",
+   "title": "The square",
+   "ready": true,
+   "checked": true,
+   "min": 2,
+   "siteS": 158.0,
+   "stand": "Salah al-Din Square, on the Citadel side, facing the domed tomb end of the mosque across the road.",
+   "moments": [
+    {
+     "t0": 13.04,
+     "kind": "still",
+     "cue": "al-Maqrizi"
+    },
+    {
+     "t0": 67.02,
+     "kind": "still",
+     "cue": "Sultan Hasan"
+    },
+    {
+     "t0": 101.13,
+     "kind": "wipe",
+     "cue": "Hold it up to the mosque: then and now"
+    },
+    {
+     "t0": 133.33,
+     "kind": "still",
+     "cue": "Max Herz"
+    }
+   ],
+   "edition": "dialogue",
+   "find": false,
+   "walk": 1,
+   "siteOnly": true
+  },
+  {
+   "n": 2,
+   "dir": "ch02",
+   "title": "The two minarets",
+   "ready": true,
+   "checked": true,
+   "min": 2,
+   "siteS": 159.9,
+   "stand": "Salah al-Din Square, on the pavement facing the domed tomb end, looking up at the two minarets on either side of the dome.",
+   "moments": [
+    {
+     "t0": 12.88,
+     "kind": "still",
+     "cue": "Max Herz"
+    },
+    {
+     "t0": 59.49,
+     "kind": "still",
+     "cue": "Tumanbay"
+    },
+    {
+     "t0": 79.31,
+     "kind": "dark",
+     "cue": ""
+    },
+    {
+     "t0": 81.67,
+     "kind": "still",
+     "cue": "Thévenot"
+    },
+    {
+     "t0": 112.87,
+     "kind": "wipe",
+     "cue": "Hold it up to the minarets: then and now"
+    },
+    {
+     "t0": 137.23,
+     "kind": "still",
+     "cue": "Muqbil"
+    }
+   ],
+   "edition": "dialogue",
+   "find": false,
+   "walk": 3,
+   "siteOnly": true
+  },
+  {
+   "n": 3,
+   "dir": "ch03",
+   "title": "The long wall",
+   "ready": true,
+   "checked": true,
+   "min": 2,
+   "siteS": 163.2,
+   "stand": "the lane between Sultan Hassan and Al-Rifa'i, close to the long north-east wall, walking toward the portal.",
+   "moments": [
+    {
+     "t0": 12.63,
+     "kind": "still",
+     "cue": "Muqbil"
+    },
+    {
+     "t0": 46.39,
+     "kind": "still",
+     "cue": "al-Maqrizi"
+    },
+    {
+     "t0": 84.49,
+     "kind": "still",
+     "cue": "Sultan Hasan"
+    }
+   ],
+   "edition": "dialogue",
+   "find": false,
+   "walk": 2,
+   "siteOnly": true
+  },
+  {
+   "n": 4,
+   "dir": "ch04",
+   "title": "The portal",
+   "ready": true,
+   "checked": true,
+   "min": 3,
+   "siteS": 215.9,
+   "stand": "Stand on the portal steps, about ten metres from the door, centred on it, and face the portal. UNVERIFIED: mark to be checked on site (3D guide v12).",
+   "moments": [
+    {
+     "t0": 9.84,
+     "kind": "still",
+     "cue": "al-Maqrizi"
+    },
+    {
+     "t0": 31.14,
+     "kind": "still",
+     "cue": "Sultan Hasan"
+    },
+    {
+     "t0": 55.94,
+     "kind": "still",
+     "cue": "Bashir"
+    },
+    {
+     "t0": 75.83,
+     "kind": "clip",
+     "cue": "Raise your phone to the top of the portal"
+    },
+    {
+     "t0": 87.81,
+     "kind": "dark",
+     "cue": ""
+    },
+    {
+     "t0": 134.7,
+     "kind": "wipe",
+     "cue": "Hold it up to the portal: then and now"
+    }
+   ],
+   "edition": "dialogue",
+   "find": true,
+   "walk": 1,
+   "siteOnly": true
+  },
+  {
+   "n": 5,
+   "dir": "ch05",
+   "title": "The entrance hall",
+   "ready": true,
+   "checked": true,
+   "min": 3,
+   "siteS": 163.1,
+   "stand": "inside the door, in the domed entrance hall (vestibule), facing the back wall of marble.",
+   "moments": [
+    {
+     "t0": 14.4,
+     "kind": "still",
+     "cue": "al-Maqrizi"
+    },
+    {
+     "t0": 75.0,
+     "kind": "still",
+     "cue": "Sultan Barquq"
+    },
+    {
+     "t0": 87.9,
+     "kind": "dark",
+     "cue": ""
+    },
+    {
+     "t0": 99.72,
+     "kind": "still",
+     "cue": "Sultan al-Mu'ayyad"
+    },
+    {
+     "t0": 123.48,
+     "kind": "wipe",
+     "cue": "Hold it up: then and now"
+    },
+    {
+     "t0": 145.27,
+     "kind": "still",
+     "cue": "Max Herz"
+    }
+   ],
+   "edition": "dialogue",
+   "find": false,
+   "walk": 1,
+   "siteOnly": true
+  },
+  {
+   "n": 6,
+   "dir": "ch06",
+   "title": "The bent, dark passage",
+   "ready": true,
+   "checked": true,
+   "min": 2,
+   "siteS": 114.5,
+   "stand": "from the back of the entrance hall, up the steps, into the passage that turns toward the courtyard.",
+   "moments": [
+    {
+     "t0": 10.16,
+     "kind": "still",
+     "cue": "Max Herz"
+    },
+    {
+     "t0": 49.17,
+     "kind": "still",
+     "cue": "Sultan Hasan"
+    },
+    {
+     "t0": 58.53,
+     "kind": "still",
+     "cue": "al-Maqrizi"
+    }
+   ],
+   "edition": "dialogue",
+   "find": false,
+   "walk": 1,
+   "siteOnly": true
+  },
+  {
+   "n": 7,
+   "dir": "ch07",
+   "title": "The courtyard",
+   "ready": true,
+   "checked": true,
+   "min": 2,
+   "siteS": 128.4,
+   "stand": "at the mouth of the north-west hall (iwan), facing the fountain pavilion, with the biggest arch, the great hall facing Mecca, rising behind it. UNVERIFIED: mark to be checked on site (3D guide v12).",
+   "moments": [
+    {
+     "t0": 7.68,
+     "kind": "still",
+     "cue": "Sultan Hasan"
+    },
+    {
+     "t0": 15.6,
+     "kind": "still",
+     "cue": "Max Herz"
+    },
+    {
+     "t0": 25.36,
+     "kind": "wipe",
+     "cue": "Hold it up to the courtyard: then and now"
+    },
+    {
+     "t0": 57.34,
+     "kind": "still",
+     "cue": "al-Maqrizi"
+    },
+    {
+     "t0": 70.38,
+     "kind": "still",
+     "cue": "Bashir"
+    }
+   ],
+   "edition": "dialogue",
+   "find": false,
+   "walk": 1,
+   "siteOnly": true
+  },
+  {
+   "n": 8,
+   "dir": "ch08",
+   "title": "The side halls and the corner doors",
+   "ready": true,
+   "checked": true,
+   "min": 2,
+   "siteS": 116.4,
+   "stand": "in the courtyard, north-east of the fountain pavilion, about seventeen metres from it, facing it, with the south-west hall beyond it. UNVERIFIED: mark to be checked on site (3D guide v12).",
+   "moments": [
+    {
+     "t0": 6.4,
+     "kind": "still",
+     "cue": "Sultan Hasan"
+    },
+    {
+     "t0": 31.44,
+     "kind": "still",
+     "cue": "al-Maqrizi"
+    },
+    {
+     "t0": 45.76,
+     "kind": "wipe",
+     "cue": "Hold it up to the court: then and now"
+    }
+   ],
+   "edition": "dialogue",
+   "find": false,
+   "walk": 2,
+   "siteOnly": true
+  },
+  {
+   "n": 9,
+   "dir": "ch09",
+   "title": "A college courtyard",
+   "ready": true,
+   "checked": true,
+   "min": 2,
+   "siteS": 133.7,
+   "stand": "inside the college (madrasa) door, in the small court, facing the student cells across it. UNVERIFIED: whether a college court is open to visitors today; if not, this chapter plays at the corner doorway, looking through, and the 360 view does the walking. Mark to be checked on site (3D guide v12).",
+   "moments": [
+    {
+     "t0": 9.92,
+     "kind": "still",
+     "cue": "Sultan Hasan"
+    },
+    {
+     "t0": 20.08,
+     "kind": "still",
+     "cue": "Max Herz"
+    },
+    {
+     "t0": 39.2,
+     "kind": "still",
+     "cue": "al-Subki"
+    },
+    {
+     "t0": 66.75,
+     "kind": "still",
+     "cue": "al-Kala'i"
+    },
+    {
+     "t0": 114.13,
+     "kind": "still",
+     "cue": "al-Maqrizi"
+    }
+   ],
+   "edition": "dialogue",
+   "find": false,
+   "walk": 2,
+   "siteOnly": true
+  },
+  {
+   "n": 10,
+   "dir": "ch10",
+   "title": "The great hall",
+   "ready": true,
+   "checked": true,
+   "min": 2,
+   "siteS": 153.2,
+   "stand": "on the carpet at the north-east side of the great hall facing Mecca (the qibla iwan), the raised platform (dikka) ahead of you and the prayer niche to your left. UNVERIFIED: mark to be checked on site (3D guide v12).",
+   "moments": [
+    {
+     "t0": 10.0,
+     "kind": "still",
+     "cue": "al-Maqrizi"
+    },
+    {
+     "t0": 31.76,
+     "kind": "still",
+     "cue": "Muqbil"
+    },
+    {
+     "t0": 84.79,
+     "kind": "still",
+     "cue": "Sultan Hasan"
+    },
+    {
+     "t0": 90.79,
+     "kind": "wipe",
+     "cue": "Hold it up to the great hall: then and now"
+    },
+    {
+     "t0": 101.79,
+     "kind": "still",
+     "cue": "Max Herz"
+    }
+   ],
+   "edition": "dialogue",
+   "find": false,
+   "walk": 1,
+   "siteOnly": true
+  },
+  {
+   "n": 11,
+   "dir": "ch11",
+   "title": "The tomb",
+   "ready": true,
+   "checked": true,
+   "min": 3,
+   "siteS": 193.0,
+   "stand": "inside the tomb chamber, by the wooden screen around the cenotaph, facing the prayer-niche wall, under the dome. UNVERIFIED: mark to be checked on site (3D guide v12).",
+   "moments": [
+    {
+     "t0": 10.96,
+     "kind": "still",
+     "cue": "Sultan Hasan"
+    },
+    {
+     "t0": 52.18,
+     "kind": "still",
+     "cue": "al-Maqrizi"
+    },
+    {
+     "t0": 61.72,
+     "kind": "still",
+     "cue": "Yalbugha"
+    },
+    {
+     "t0": 69.3,
+     "kind": "dark",
+     "cue": ""
+    }
+   ],
+   "edition": "dialogue",
+   "find": false,
+   "walk": 5,
+   "siteOnly": true
+  },
+  {
+   "n": 12,
+   "dir": "ch12",
+   "title": "The working town",
+   "ready": true,
+   "checked": true,
+   "min": 2,
+   "siteS": 135.4,
+   "stand": "outside, on the north-west side of the mosque, by the ruins and excavated remains, then back in the lane facing Al-Rifa'i. UNVERIFIED: whether the ruins are open or only seen over a fence; if only seen, the chapter plays from the lane and the 360 view does the walking.",
+   "moments": [
+    {
+     "t0": 10.88,
+     "kind": "still",
+     "cue": "Sultan Hasan"
+    },
+    {
+     "t0": 22.88,
+     "kind": "still",
+     "cue": "Max Herz"
+    },
+    {
+     "t0": 51.44,
+     "kind": "still",
+     "cue": "al-Maqrizi"
+    }
+   ],
+   "edition": "dialogue",
+   "find": false,
+   "walk": null,
+   "siteOnly": true
+  }
+ ],
+ "rehearsal": {
+  "note": "Walking times are estimates, not measured. Check the opening hours on the day; on a Friday, start by 9:30 so the walk ends before the midday prayer (closing time unverified). Headphones on, phone down: the screen lights up only for what you cannot see."
+ },
+ "door": {
+  "dir": "door",
+  "title": "At the door",
+  "mix": "dialogue/mix-onsite.mp3",
+  "lines": "dialogue/lines.json",
+  "speakers": {
+   "narrator": "Narrator",
+   "maqrizi": "al-Maqrizi"
+  },
+  "siteS": 60.2,
+  "checked": true
+ },
+ "tourlink": {
+  "href": "https://www.klapty.com/p/mazen-emad-omar/t/mosque-madrassa-of-sultan-hassan-1-27598",
+  "label": "Walk the 360° tour (Mazen Emad Omar, via Klapty) ↗"
+ },
+ "guide3d": {
+  "src": "guide3d/index.html"
+ }
+}

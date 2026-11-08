@@ -1,0 +1,46 @@
+{
+ "note": "Look pauses for the on-site version; on-site t = base t + sum(dur of inserts with at <= t). Made by tools/dialogue.py from dialogue/lines.json.",
+ "inserts": [
+  {
+   "at": 31.35,
+   "dur": 6.0,
+   "line": 2,
+   "element": "The Throne Verse band",
+   "cue": "Follow the Throne Verse around the room.",
+   "act": "look"
+  },
+  {
+   "at": 41.99,
+   "dur": 6.0,
+   "line": 3,
+   "element": "The pendentives",
+   "cue": "Look up into a corner, where the square becomes a circle.",
+   "act": "look"
+  },
+  {
+   "at": 51.83,
+   "dur": 8.0,
+   "line": 4,
+   "element": "The dome",
+   "cue": "If the room is quiet: hum softly, and listen.",
+   "act": "hum"
+  },
+  {
+   "at": 120.07,
+   "dur": 8.0,
+   "line": 14,
+   "element": "The wooden screen around the cenotaph",
+   "cue": "Stand still by the screen, and look up.",
+   "act": "still"
+  },
+  {
+   "at": 138.33,
+   "dur": 10.0,
+   "line": 15,
+   "element": "Stillness",
+   "cue": "Just the room.",
+   "act": "look"
+  }
+ ],
+ "total_added": 38.0
+}

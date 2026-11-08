@@ -1,0 +1,86 @@
+{
+ "about": "Gold line layer for ch03: real photos with the named element traced; paths are fractions of the photo. Traced by eye: validator to check each outline.",
+ "looks": [
+  {
+   "src": "hassan-r2-1.jpg",
+   "label": "The long wall of Sultan Hassan, on your right",
+   "paths": [
+    {
+     "d": "M .565 .03 L .565 .64 L 1.0 .95"
+    }
+   ],
+   "tags": [
+    {
+     "at": [
+      0.565,
+      0.3
+     ],
+     "t": "about 36 m high",
+     "side": "l"
+    }
+   ],
+   "ar": 0.755
+  },
+  {
+   "src": "hassan-r2-2.jpg",
+   "label": "The stalactite (muqarnas) cornice at the very top",
+   "paths": [
+    {
+     "d": "M .25 .44 L 1.0 .41"
+    },
+    {
+     "d": "M .25 .51 L 1.0 .475"
+    }
+   ],
+   "tags": [
+    {
+     "at": [
+      0.62,
+      0.52
+     ],
+     "t": "the cornice",
+     "side": "b"
+    }
+   ],
+   "ar": 1.3321
+  },
+  null
+ ],
+ "credits": [
+  {
+   "what": "The long wall of Sultan Hassan, on your right",
+   "author": "Sherif Alyamany",
+   "license": "Public domain, lines added",
+   "licenseUrl": null,
+   "source": "https://commons.wikimedia.org/wiki/File:%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A7%D9%86_%D8%AD%D8%B3%D9%86_%D9%88_%D8%A7%D9%84%D8%B1%D9%81%D8%A7%D8%B9%D9%8A_%D9%88_%D8%A7%D9%84%D9%85%D8%AD%D9%85%D9%88%D8%AF%D9%8A%D8%A9.jpg"
+  },
+  {
+   "what": "The stalactite (muqarnas) cornice at the very top",
+   "author": "Ibrahim Magdy",
+   "license": "CC BY-SA 4.0 (lines added)",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:%D9%85%D8%B3%D8%AC%D8%AF_%D9%88%D9%85%D8%AF%D8%B1%D8%B3%D8%A9_%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A7%D9%86_%D8%AD%D8%B3%D9%86.jpg"
+  },
+  {
+   "what": "The long wall and the east corner, 1890s (archive view)",
+   "author": "Max Herz, La mosquée du sultan Hassan au Caire, 1899, pl. III",
+   "license": "Public domain",
+   "source": "https://archive.org/details/mosqueedusultanHassanauCaire00leca"
+  }
+ ],
+ "portraits": {
+  "0": "muqbil/speaking",
+  "1": "maqrizi/speaking",
+  "2": "sultan/pride"
+ },
+ "extra": [
+  {
+   "t0": 110.0,
+   "t1": 124.5,
+   "kind": "wipe",
+   "cue": "The long wall, in the 1890s",
+   "then": "then-wall.jpg",
+   "thenCap": "1890s · Max Herz, 1899, pl. III"
+  }
+ ]
+}

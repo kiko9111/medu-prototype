@@ -1,0 +1,1778 @@
+[
+ {
+  "who": "narrator",
+  "beat": 1,
+  "say": "The portal. Stand in the lane, a few steps back, and face it. Three men who knew this doorway are waiting for you.",
+  "after": 0.6,
+  "file": "00-narrator-a7e2d1e0.mp3",
+  "t0": 1.0,
+  "t1": 9.24,
+  "w": [
+   [
+    "The",
+    1.1
+   ],
+   [
+    "portal.",
+    1.24
+   ],
+   [
+    "Stand",
+    2.76
+   ],
+   [
+    "in",
+    3.06
+   ],
+   [
+    "the",
+    3.18
+   ],
+   [
+    "lane,",
+    3.28
+   ],
+   [
+    "a",
+    3.86
+   ],
+   [
+    "few",
+    3.96
+   ],
+   [
+    "steps",
+    4.2
+   ],
+   [
+    "back,",
+    4.56
+   ],
+   [
+    "and",
+    4.92
+   ],
+   [
+    "face",
+    5.12
+   ],
+   [
+    "it.",
+    5.4
+   ],
+   [
+    "Three",
+    6.46
+   ],
+   [
+    "men",
+    6.78
+   ],
+   [
+    "who",
+    7.04
+   ],
+   [
+    "knew",
+    7.2
+   ],
+   [
+    "this",
+    7.42
+   ],
+   [
+    "doorway",
+    7.64
+   ],
+   [
+    "are",
+    8.22
+   ],
+   [
+    "waiting",
+    8.36
+   ],
+   [
+    "for",
+    8.78
+   ],
+   [
+    "you.",
+    9.0
+   ]
+  ],
+  "ar": "",
+  "cap": "The portal. Stand in the lane, a few steps back, and face it. Three men who knew this doorway are waiting for you."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 1,
+  "say": "[warm] Yes, you, with the wires in your ears. al-Maqrizi, historian of this city. Turn around.",
+  "look": {
+   "dur": 5,
+   "cue": "Turn around and find the Citadel on the hill.",
+   "element": "The Citadel on its hill"
+  },
+  "file": "01-maqrizi-c1558727.mp3",
+  "t0": 9.84,
+  "t1": 17.36,
+  "w": [
+   [
+    "Yes,",
+    10.0
+   ],
+   [
+    "you,",
+    10.5
+   ],
+   [
+    "with",
+    11.3
+   ],
+   [
+    "the",
+    11.5
+   ],
+   [
+    "wires",
+    11.64
+   ],
+   [
+    "in",
+    12.2
+   ],
+   [
+    "your",
+    12.36
+   ],
+   [
+    "ears.",
+    12.58
+   ],
+   [
+    "al-Maqrizi,",
+    13.54
+   ],
+   [
+    "historian",
+    14.66
+   ],
+   [
+    "of",
+    15.48
+   ],
+   [
+    "this",
+    15.64
+   ],
+   [
+    "city.",
+    15.86
+   ],
+   [
+    "Turn",
+    16.56
+   ],
+   [
+    "around.",
+    16.78
+   ]
+  ],
+  "ar": "",
+  "cap": "Yes, you, with the wires in your ears. al-Maqrizi, historian of this city. Turn around."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 1,
+  "say": "Up on the hill: the Citadel, the sultan's palace. This doorway was turned to face it: seventeen degrees out from the wall, most likely so it could be seen from up there.",
+  "tag": "Unverified on site: the Citadel's direction from here. The 17 degrees and 'most likely to be seen from the Citadel': Wikipedia, after Behrens-Abouseif",
+  "after": 0.5,
+  "file": "02-maqrizi-ff938ebf.mp3",
+  "t0": 17.76,
+  "t1": 30.64,
+  "w": [
+   [
+    "Up",
+    17.84
+   ],
+   [
+    "on",
+    18.0
+   ],
+   [
+    "the",
+    18.12
+   ],
+   [
+    "hill:",
+    18.22
+   ],
+   [
+    "the",
+    19.04
+   ],
+   [
+    "Citadel,",
+    19.18
+   ],
+   [
+    "the",
+    20.08
+   ],
+   [
+    "sultan's",
+    20.24
+   ],
+   [
+    "palace.",
+    20.96
+   ],
+   [
+    "This",
+    22.22
+   ],
+   [
+    "doorway",
+    22.46
+   ],
+   [
+    "was",
+    22.96
+   ],
+   [
+    "turned",
+    23.28
+   ],
+   [
+    "to",
+    23.78
+   ],
+   [
+    "face",
+    23.96
+   ],
+   [
+    "it:",
+    24.26
+   ],
+   [
+    "seventeen",
+    24.88
+   ],
+   [
+    "degrees",
+    25.42
+   ],
+   [
+    "out",
+    26.04
+   ],
+   [
+    "from",
+    26.38
+   ],
+   [
+    "the",
+    26.6
+   ],
+   [
+    "wall,",
+    26.74
+   ],
+   [
+    "most",
+    27.64
+   ],
+   [
+    "likely",
+    27.96
+   ],
+   [
+    "so",
+    28.52
+   ],
+   [
+    "it",
+    28.7
+   ],
+   [
+    "could",
+    28.86
+   ],
+   [
+    "be",
+    29.06
+   ],
+   [
+    "seen",
+    29.3
+   ],
+   [
+    "from",
+    29.84
+   ],
+   [
+    "up",
+    30.04
+   ],
+   [
+    "there.",
+    30.24
+   ]
+  ],
+  "ar": "",
+  "cap": "Up on the hill: the Citadel, the sultan's palace. This doorway was turned to face it: seventeen degrees out from the wall, most likely so it could be seen from up there."
+ },
+ {
+  "who": "sultan",
+  "beat": 2,
+  "say": "[proud] Seen from my window. I am Hasan, the sultan. Now face my door, and look all the way up.",
+  "look": {
+   "dur": 6,
+   "cue": "Face the portal and look all the way up.",
+   "element": "The whole portal, nearly 38 m"
+  },
+  "file": "03-sultan-82a04071.mp3",
+  "t0": 31.14,
+  "t1": 38.26,
+  "w": [
+   [
+    "Seen",
+    31.28
+   ],
+   [
+    "from",
+    31.56
+   ],
+   [
+    "my",
+    31.76
+   ],
+   [
+    "window.",
+    31.94
+   ],
+   [
+    "I",
+    33.04
+   ],
+   [
+    "am",
+    33.14
+   ],
+   [
+    "Hasan,",
+    33.26
+   ],
+   [
+    "the",
+    34.12
+   ],
+   [
+    "sultan.",
+    34.28
+   ],
+   [
+    "Now",
+    35.38
+   ],
+   [
+    "face",
+    35.64
+   ],
+   [
+    "my",
+    35.94
+   ],
+   [
+    "door,",
+    36.18
+   ],
+   [
+    "and",
+    36.92
+   ],
+   [
+    "look",
+    37.1
+   ],
+   [
+    "all",
+    37.44
+   ],
+   [
+    "the",
+    37.62
+   ],
+   [
+    "way",
+    37.72
+   ],
+   [
+    "up.",
+    38.02
+   ]
+  ],
+  "ar": "",
+  "cap": "Seen from my window. I am Hasan, the sultan. Now face my door, and look all the way up.",
+  "tag": "Dramatised: the sultan watching his portal from the Citadel is invented; the portal was turned to face the Citadel: Wikipedia, after Behrens-Abouseif"
+ },
+ {
+  "who": "sultan",
+  "beat": 2,
+  "say": "Nearly thirty-eight metres of stone. Above the door, a hood of carved stalactites, like a frozen waterfall.",
+  "look": {
+   "dur": 5,
+   "cue": "Look at the hood above the door.",
+   "element": "The muqarnas hood"
+  },
+  "file": "04-sultan-51ccd1a1.mp3",
+  "t0": 38.66,
+  "t1": 46.74,
+  "w": [
+   [
+    "Nearly",
+    38.78
+   ],
+   [
+    "thirty-eight",
+    39.14
+   ],
+   [
+    "metres",
+    39.82
+   ],
+   [
+    "of",
+    40.26
+   ],
+   [
+    "stone.",
+    40.46
+   ],
+   [
+    "Above",
+    41.92
+   ],
+   [
+    "the",
+    42.22
+   ],
+   [
+    "door,",
+    42.36
+   ],
+   [
+    "a",
+    42.96
+   ],
+   [
+    "hood",
+    43.1
+   ],
+   [
+    "of",
+    43.42
+   ],
+   [
+    "carved",
+    43.62
+   ],
+   [
+    "stalactites,",
+    44.1
+   ],
+   [
+    "like",
+    45.3
+   ],
+   [
+    "a",
+    45.46
+   ],
+   [
+    "frozen",
+    45.6
+   ],
+   [
+    "waterfall.",
+    46.1
+   ]
+  ],
+  "ar": "",
+  "cap": "Nearly thirty-eight metres of stone. Above the door, a hood of carved stalactites, like a frozen waterfall.",
+  "tag": "Portal nearly 38 m high (Behrens-Abouseif via Wikipedia; Williams gives 36 m for the building) and the muqarnas hood: Wikipedia"
+ },
+ {
+  "who": "maqrizi",
+  "beat": 2,
+  "say": "Either side of the door, two tall niches. Above them, black panels, white script: the Sura of Victory.",
+  "look": {
+   "dur": 5,
+   "cue": "Find the two tall niches, and the dark panels with white writing above them.",
+   "element": "The niches and the Sura al-Fath panels"
+  },
+  "file": "05-maqrizi-91f4a630.mp3",
+  "t0": 47.14,
+  "t1": 55.54,
+  "w": [
+   [
+    "Either",
+    47.24
+   ],
+   [
+    "side",
+    47.54
+   ],
+   [
+    "of",
+    47.8
+   ],
+   [
+    "the",
+    47.88
+   ],
+   [
+    "door,",
+    48.02
+   ],
+   [
+    "two",
+    48.46
+   ],
+   [
+    "tall",
+    48.82
+   ],
+   [
+    "niches.",
+    49.26
+   ],
+   [
+    "Above",
+    50.24
+   ],
+   [
+    "them,",
+    50.56
+   ],
+   [
+    "black",
+    51.24
+   ],
+   [
+    "panels,",
+    51.64
+   ],
+   [
+    "white",
+    52.2
+   ],
+   [
+    "script:",
+    52.58
+   ],
+   [
+    "the",
+    53.68
+   ],
+   [
+    "Sura",
+    53.88
+   ],
+   [
+    "of",
+    54.62
+   ],
+   [
+    "Victory.",
+    54.86
+   ]
+  ],
+  "ar": "",
+  "cap": "Either side of the door, two tall niches. Above them, black panels, white script: the Sura of Victory.",
+  "tag": "Two tall niches, and black marble panels with white Kufic of Surat al-Fath (the Sura of Victory): Wikipedia"
+ },
+ {
+  "who": "bashir",
+  "beat": 3,
+  "say": "Bashir al-Jamdar, the sultan's servant. I watched them work this stone: the master drew the pattern, the apprentices cut it. And above us, on this very doorway, a minaret was rising.",
+  "tag": "Dramatised: Bashir's presence at the carving is invented; the method (a master draws, apprentices cut) is what scholars think likely (Wikipedia, Williams 2018). The minaret over the door: al-Maqrizi, Khitat",
+  "file": "06-bashir-c21a1cad.mp3",
+  "t0": 55.94,
+  "t1": 69.17,
+  "w": [
+   [
+    "Bashir",
+    56.02
+   ],
+   [
+    "al-Jamdar,",
+    56.7
+   ],
+   [
+    "the",
+    58.0
+   ],
+   [
+    "sultan's",
+    58.18
+   ],
+   [
+    "servant.",
+    58.62
+   ],
+   [
+    "I",
+    60.02
+   ],
+   [
+    "watched",
+    60.14
+   ],
+   [
+    "them",
+    60.42
+   ],
+   [
+    "work",
+    60.58
+   ],
+   [
+    "this",
+    60.8
+   ],
+   [
+    "stone:",
+    61.02
+   ],
+   [
+    "the",
+    61.92
+   ],
+   [
+    "master",
+    62.06
+   ],
+   [
+    "drew",
+    62.44
+   ],
+   [
+    "the",
+    62.62
+   ],
+   [
+    "pattern,",
+    62.74
+   ],
+   [
+    "the",
+    63.44
+   ],
+   [
+    "apprentices",
+    63.56
+   ],
+   [
+    "cut",
+    64.24
+   ],
+   [
+    "it.",
+    64.44
+   ],
+   [
+    "And",
+    65.24
+   ],
+   [
+    "above",
+    65.38
+   ],
+   [
+    "us,",
+    65.66
+   ],
+   [
+    "on",
+    66.18
+   ],
+   [
+    "this",
+    66.32
+   ],
+   [
+    "very",
+    66.58
+   ],
+   [
+    "doorway,",
+    66.88
+   ],
+   [
+    "a",
+    67.8
+   ],
+   [
+    "minaret",
+    67.92
+   ],
+   [
+    "was",
+    68.42
+   ],
+   [
+    "rising.",
+    68.6
+   ]
+  ],
+  "ar": "",
+  "cap": "Bashir al-Jamdar, the sultan's servant. I watched them work this stone: the master drew the pattern, the apprentices cut it. And above us, on this very doorway, a minaret was rising."
+ },
+ {
+  "who": "sultan",
+  "beat": 3,
+  "say": "I wanted four. Two by my tomb, two here, over the door. Raise your phone to the top of the portal.",
+  "reveal": {
+   "kind": "clip",
+   "src": "model-shots/M6-ghost-pov.mp4",
+   "cue": "Raise your phone to the top of the portal",
+   "label": "The minaret that stood on the portal · a reconstruction, not a record",
+   "at_word": "Raise",
+   "dur": 8.5
+  },
+  "after": 4.5,
+  "tag": "Four minarets planned, the one over the door fell and its twin was never built: al-Maqrizi, Khitat. The ghost minaret is a reconstruction by the MEDU 3D model, not a record",
+  "file": "07-sultan-1338da69.mp3",
+  "t0": 69.57,
+  "t1": 77.49,
+  "w": [
+   [
+    "I",
+    69.75
+   ],
+   [
+    "wanted",
+    69.81
+   ],
+   [
+    "four.",
+    70.21
+   ],
+   [
+    "Two",
+    71.43
+   ],
+   [
+    "by",
+    71.65
+   ],
+   [
+    "my",
+    71.81
+   ],
+   [
+    "tomb,",
+    72.01
+   ],
+   [
+    "two",
+    72.91
+   ],
+   [
+    "here,",
+    73.19
+   ],
+   [
+    "over",
+    73.89
+   ],
+   [
+    "the",
+    74.07
+   ],
+   [
+    "door.",
+    74.19
+   ],
+   [
+    "Raise",
+    75.83
+   ],
+   [
+    "your",
+    76.07
+   ],
+   [
+    "phone",
+    76.23
+   ],
+   [
+    "to",
+    76.49
+   ],
+   [
+    "the",
+    76.59
+   ],
+   [
+    "top",
+    76.69
+   ],
+   [
+    "of",
+    76.83
+   ],
+   [
+    "the",
+    76.89
+   ],
+   [
+    "portal.",
+    77.03
+   ]
+  ],
+  "ar": "",
+  "cap": "I wanted four. Two by my tomb, two here, over the door. Raise your phone to the top of the portal."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 3,
+  "say": "[quietly] On a Saturday, in the year thirteen sixty-one, it fell.",
+  "bed": "out",
+  "reveal": {
+   "kind": "dark",
+   "at_word": "fell",
+   "dur": 2.2,
+   "buzz": [
+    120,
+    60,
+    520
+   ]
+  },
+  "after": 2.4,
+  "file": "08-maqrizi-287126d7.mp3",
+  "t0": 81.99,
+  "t1": 88.21,
+  "w": [
+   [
+    "On",
+    82.09
+   ],
+   [
+    "a",
+    82.21
+   ],
+   [
+    "Saturday,",
+    82.33
+   ],
+   [
+    "in",
+    83.75
+   ],
+   [
+    "the",
+    83.87
+   ],
+   [
+    "year",
+    84.01
+   ],
+   [
+    "thirteen",
+    84.65
+   ],
+   [
+    "sixty-one,",
+    85.51
+   ],
+   [
+    "it",
+    87.59
+   ],
+   [
+    "fell.",
+    87.81
+   ]
+  ],
+  "ar": "",
+  "cap": "On a Saturday, in the year thirteen sixty-one, it fell."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 3,
+  "say": "[sad] About three hundred people died beneath it. Among them, orphans from the school above the public fountain. I wrote down what the people said.",
+  "bed": "soft",
+  "after": 0.5,
+  "tag": "About 300 dead, orphans of the sabil school among them: al-Maqrizi, Khitat",
+  "file": "09-maqrizi-8bfe26fb.mp3",
+  "t0": 90.61,
+  "t1": 100.45,
+  "w": [
+   [
+    "About",
+    90.75
+   ],
+   [
+    "three",
+    91.13
+   ],
+   [
+    "hundred",
+    91.65
+   ],
+   [
+    "people",
+    92.27
+   ],
+   [
+    "died",
+    92.77
+   ],
+   [
+    "beneath",
+    93.21
+   ],
+   [
+    "it.",
+    93.61
+   ],
+   [
+    "Among",
+    94.41
+   ],
+   [
+    "them,",
+    94.75
+   ],
+   [
+    "orphans",
+    95.35
+   ],
+   [
+    "from",
+    95.83
+   ],
+   [
+    "the",
+    96.01
+   ],
+   [
+    "school",
+    96.17
+   ],
+   [
+    "above",
+    96.69
+   ],
+   [
+    "the",
+    97.03
+   ],
+   [
+    "public",
+    97.19
+   ],
+   [
+    "fountain.",
+    97.63
+   ],
+   [
+    "I",
+    98.67
+   ],
+   [
+    "wrote",
+    98.75
+   ],
+   [
+    "down",
+    99.01
+   ],
+   [
+    "what",
+    99.33
+   ],
+   [
+    "the",
+    99.51
+   ],
+   [
+    "people",
+    99.63
+   ],
+   [
+    "said.",
+    100.01
+   ]
+  ],
+  "ar": "",
+  "cap": "About three hundred people died beneath it. Among them, orphans from the school above the public fountain. I wrote down what the people said."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 3,
+  "say": "وَلَمَّا سَقَطَتِ الْمَنَارَةُ، لَهِجَتْ عَامَّةُ مِصْرَ وَالْقَاهِرَةِ بِأَنَّ ذٰلِكَ مُنْذِرٌ بِزَوَالِ الدَّوْلَةِ.",
+  "cap": "When the minaret fell, the common people of Fustat and Cairo said it foretold the end of the reign.",
+  "tag": "al-Maqrizi, Khitat, his own words, abridged; 'Misr' here is Fustat",
+  "file": "10-maqrizi-d82078f9.mp3",
+  "t0": 100.95,
+  "t1": 111.59,
+  "w": [
+   [
+    "When",
+    101.05
+   ],
+   [
+    "the",
+    101.57
+   ],
+   [
+    "minaret",
+    101.94
+   ],
+   [
+    "fell,",
+    102.84
+   ],
+   [
+    "the",
+    103.6
+   ],
+   [
+    "common",
+    104.06
+   ],
+   [
+    "people",
+    104.71
+   ],
+   [
+    "of",
+    105.44
+   ],
+   [
+    "Fustat",
+    105.66
+   ],
+   [
+    "and",
+    106.39
+   ],
+   [
+    "Cairo",
+    106.78
+   ],
+   [
+    "said",
+    107.45
+   ],
+   [
+    "it",
+    108.04
+   ],
+   [
+    "foretold",
+    108.34
+   ],
+   [
+    "the",
+    109.79
+   ],
+   [
+    "end",
+    110.24
+   ],
+   [
+    "of",
+    110.61
+   ],
+   [
+    "the",
+    110.86
+   ],
+   [
+    "reign.",
+    111.07
+   ]
+  ],
+  "ar": "وَلَمَّا سَقَطَتِ الْمَنَارَةُ، لَهِجَتْ عَامَّةُ مِصْرَ وَالْقَاهِرَةِ بِأَنَّ ذٰلِكَ مُنْذِرٌ بِزَوَالِ الدَّوْلَةِ."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 3,
+  "say": "When the minaret fell, the people of Fustat and Cairo said: this foretells the end of the reign.",
+  "after": 0.7,
+  "file": "11-maqrizi-4f3358d5.mp3",
+  "t0": 111.99,
+  "t1": 120.0,
+  "w": [
+   [
+    "When",
+    112.09
+   ],
+   [
+    "the",
+    112.23
+   ],
+   [
+    "minaret",
+    112.37
+   ],
+   [
+    "fell,",
+    112.97
+   ],
+   [
+    "the",
+    113.87
+   ],
+   [
+    "people",
+    114.01
+   ],
+   [
+    "of",
+    114.33
+   ],
+   [
+    "Fustat",
+    114.49
+   ],
+   [
+    "and",
+    115.15
+   ],
+   [
+    "Cairo",
+    115.45
+   ],
+   [
+    "said:",
+    116.03
+   ],
+   [
+    "this",
+    117.07
+   ],
+   [
+    "foretells",
+    117.49
+   ],
+   [
+    "the",
+    118.55
+   ],
+   [
+    "end",
+    118.79
+   ],
+   [
+    "of",
+    119.21
+   ],
+   [
+    "the",
+    119.33
+   ],
+   [
+    "reign.",
+    119.47
+   ]
+  ],
+  "ar": "",
+  "cap": "When the minaret fell, the people of Fustat and Cairo said: this foretells the end of the reign."
+ },
+ {
+  "who": "sultan",
+  "beat": 4,
+  "say": "[quiet] Thirty-three days later, they killed me. My minaret was never rebuilt, nor its twin. Others finished my mosque without me. Look above the door: nothing.",
+  "bed": "up",
+  "look": {
+   "dur": 4,
+   "cue": "Look above the portal: no minaret.",
+   "element": "Empty sky above the portal"
+  },
+  "tag": "Killed 33 days after the fall; never rebuilt: al-Maqrizi, Khitat",
+  "file": "12-sultan-9fc9f163.mp3",
+  "t0": 120.7,
+  "t1": 134.3,
+  "w": [
+   [
+    "Thirty-three",
+    120.84
+   ],
+   [
+    "days",
+    121.36
+   ],
+   [
+    "later,",
+    121.66
+   ],
+   [
+    "they",
+    122.74
+   ],
+   [
+    "killed",
+    122.92
+   ],
+   [
+    "me.",
+    123.2
+   ],
+   [
+    "My",
+    125.04
+   ],
+   [
+    "minaret",
+    125.22
+   ],
+   [
+    "was",
+    125.64
+   ],
+   [
+    "never",
+    125.78
+   ],
+   [
+    "rebuilt,",
+    126.02
+   ],
+   [
+    "nor",
+    127.0
+   ],
+   [
+    "its",
+    127.18
+   ],
+   [
+    "twin.",
+    127.4
+   ],
+   [
+    "Others",
+    128.9
+   ],
+   [
+    "finished",
+    129.48
+   ],
+   [
+    "my",
+    129.82
+   ],
+   [
+    "mosque",
+    130.0
+   ],
+   [
+    "without",
+    130.34
+   ],
+   [
+    "me.",
+    130.72
+   ],
+   [
+    "Look",
+    132.22
+   ],
+   [
+    "above",
+    132.4
+   ],
+   [
+    "the",
+    132.66
+   ],
+   [
+    "door:",
+    132.78
+   ],
+   [
+    "nothing.",
+    133.94
+   ]
+  ],
+  "ar": "",
+  "cap": "Thirty-three days later, they killed me. My minaret was never rebuilt, nor its twin. Others finished my mosque without me. Look above the door: nothing."
+ },
+ {
+  "who": "bashir",
+  "beat": 4,
+  "say": "I finished the marble after him. Hold your phone up to the doorway: five hundred years after him, and today. Still no minaret.",
+  "reveal": {
+   "kind": "wipe",
+   "cue": "Hold it up to the portal: then and now",
+   "then": "stage/then-portal-bonfils.jpg",
+   "thenCap": "1867–99 · Bonfils, Library of Congress",
+   "now": "shots/hassan-portal.jpg",
+   "nowCap": "Today · Ovedc, CC BY-SA 4.0 (modified)",
+   "dur": 11
+  },
+  "after": 3.5,
+  "tag": "Bashir al-Jamdar finished the marble: al-Maqrizi, Khitat",
+  "file": "13-bashir-3b62f1dd.mp3",
+  "t0": 134.7,
+  "t1": 143.74,
+  "w": [
+   [
+    "I",
+    134.88
+   ],
+   [
+    "finished",
+    135.0
+   ],
+   [
+    "the",
+    135.28
+   ],
+   [
+    "marble",
+    135.42
+   ],
+   [
+    "after",
+    135.84
+   ],
+   [
+    "him.",
+    136.12
+   ],
+   [
+    "Hold",
+    137.56
+   ],
+   [
+    "your",
+    137.78
+   ],
+   [
+    "phone",
+    137.92
+   ],
+   [
+    "up",
+    138.16
+   ],
+   [
+    "to",
+    138.28
+   ],
+   [
+    "the",
+    138.38
+   ],
+   [
+    "doorway:",
+    138.5
+   ],
+   [
+    "five",
+    139.4
+   ],
+   [
+    "hundred",
+    139.66
+   ],
+   [
+    "years",
+    139.94
+   ],
+   [
+    "after",
+    140.26
+   ],
+   [
+    "him,",
+    140.56
+   ],
+   [
+    "and",
+    141.28
+   ],
+   [
+    "today.",
+    141.44
+   ],
+   [
+    "Still",
+    142.78
+   ],
+   [
+    "no",
+    143.02
+   ],
+   [
+    "minaret.",
+    143.18
+   ]
+  ],
+  "ar": "",
+  "cap": "I finished the marble after him. Hold your phone up to the doorway: five hundred years after him, and today. Still no minaret."
+ },
+ {
+  "who": "bashir",
+  "beat": 4,
+  "say": "Now go to the foot of the left-hand niche.",
+  "look": {
+   "dur": 6,
+   "cue": "Go to the left-hand niche and look at its foot.",
+   "element": "The foot of the left-hand niche"
+  },
+  "tag": "Unverified: which niche holds the medallion",
+  "file": "14-bashir-78390413.mp3",
+  "t0": 147.24,
+  "t1": 149.25,
+  "w": [
+   [
+    "Now",
+    147.36
+   ],
+   [
+    "go",
+    147.54
+   ],
+   [
+    "to",
+    147.66
+   ],
+   [
+    "the",
+    147.76
+   ],
+   [
+    "foot",
+    147.92
+   ],
+   [
+    "of",
+    148.08
+   ],
+   [
+    "the",
+    148.2
+   ],
+   [
+    "left-hand",
+    148.32
+   ],
+   [
+    "niche.",
+    148.84
+   ]
+  ],
+  "ar": "",
+  "cap": "Now go to the foot of the left-hand niche."
+ },
+ {
+  "who": "bashir",
+  "beat": 4,
+  "say": "One medallion is carved, full of leaves. Its twin is cut to shape but blank: its pattern was never carved. Find it.",
+  "look": {
+   "dur": 6,
+   "cue": "Find its twin: cut to shape, but blank.",
+   "element": "The uncarved twin"
+  },
+  "tag": "One medallion carved, its twin cut to shape but left blank: Wikipedia, after Behrens-Abouseif",
+  "file": "15-bashir-04bda6ae.mp3",
+  "t0": 149.65,
+  "t1": 157.81,
+  "w": [
+   [
+    "One",
+    149.77
+   ],
+   [
+    "medallion",
+    149.91
+   ],
+   [
+    "is",
+    150.39
+   ],
+   [
+    "carved,",
+    150.57
+   ],
+   [
+    "full",
+    151.07
+   ],
+   [
+    "of",
+    151.23
+   ],
+   [
+    "leaves.",
+    151.37
+   ],
+   [
+    "Its",
+    152.39
+   ],
+   [
+    "twin",
+    152.59
+   ],
+   [
+    "is",
+    152.87
+   ],
+   [
+    "cut",
+    153.03
+   ],
+   [
+    "to",
+    153.23
+   ],
+   [
+    "shape",
+    153.41
+   ],
+   [
+    "but",
+    153.85
+   ],
+   [
+    "blank:",
+    154.03
+   ],
+   [
+    "its",
+    155.05
+   ],
+   [
+    "pattern",
+    155.23
+   ],
+   [
+    "was",
+    155.59
+   ],
+   [
+    "never",
+    155.73
+   ],
+   [
+    "carved.",
+    156.01
+   ],
+   [
+    "Find",
+    157.35
+   ],
+   [
+    "it.",
+    157.63
+   ]
+  ],
+  "ar": "",
+  "cap": "One medallion is carved, full of leaves. Its twin is cut to shape but blank: its pattern was never carved. Find it."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 5,
+  "say": "More than six hundred years, and still waiting.",
+  "after": 0.6,
+  "file": "16-maqrizi-584e0473.mp3",
+  "t0": 158.21,
+  "t1": 161.49,
+  "w": [
+   [
+    "More",
+    158.31
+   ],
+   [
+    "than",
+    158.47
+   ],
+   [
+    "six",
+    158.71
+   ],
+   [
+    "hundred",
+    158.97
+   ],
+   [
+    "years,",
+    159.33
+   ],
+   [
+    "and",
+    160.47
+   ],
+   [
+    "still",
+    160.71
+   ],
+   [
+    "waiting.",
+    160.99
+   ]
+  ],
+  "ar": "",
+  "cap": "More than six hundred years, and still waiting."
+ },
+ {
+  "who": "sultan",
+  "beat": 6,
+  "say": "One more thing. This great gateway of mine: what door would close it?",
+  "after": 0.8,
+  "file": "17-sultan-fd32d3d0.mp3",
+  "t0": 162.09,
+  "t1": 166.81,
+  "w": [
+   [
+    "One",
+    162.25
+   ],
+   [
+    "more",
+    162.41
+   ],
+   [
+    "thing.",
+    162.65
+   ],
+   [
+    "This",
+    163.71
+   ],
+   [
+    "great",
+    163.95
+   ],
+   [
+    "gateway",
+    164.31
+   ],
+   [
+    "of",
+    164.67
+   ],
+   [
+    "mine:",
+    164.83
+   ],
+   [
+    "what",
+    165.67
+   ],
+   [
+    "door",
+    165.89
+   ],
+   [
+    "would",
+    166.13
+   ],
+   [
+    "close",
+    166.33
+   ],
+   [
+    "it?",
+    166.65
+   ]
+  ],
+  "ar": "",
+  "cap": "One more thing. This great gateway of mine: what door would close it?"
+ },
+ {
+  "who": "maqrizi",
+  "beat": 6,
+  "say": "Step inside, into the small domed hall, and face the back wall of marble. The answer waits there.",
+  "cap": "Step inside, into the small domed hall, and face the back wall of marble. The answer waits there.",
+  "after": 0.4,
+  "tag": "",
+  "file": "18-maqrizi-eb66b570.mp3",
+  "t0": 167.61,
+  "t1": 176.44,
+  "w": [
+   [
+    "Step",
+    167.77
+   ],
+   [
+    "inside,",
+    168.07
+   ],
+   [
+    "into",
+    169.21
+   ],
+   [
+    "the",
+    169.43
+   ],
+   [
+    "small",
+    169.61
+   ],
+   [
+    "domed",
+    170.15
+   ],
+   [
+    "hall,",
+    170.63
+   ],
+   [
+    "and",
+    171.47
+   ],
+   [
+    "face",
+    171.71
+   ],
+   [
+    "the",
+    172.11
+   ],
+   [
+    "back",
+    172.29
+   ],
+   [
+    "wall",
+    172.67
+   ],
+   [
+    "of",
+    173.17
+   ],
+   [
+    "marble.",
+    173.41
+   ],
+   [
+    "The",
+    174.49
+   ],
+   [
+    "answer",
+    174.69
+   ],
+   [
+    "waits",
+    175.63
+   ],
+   [
+    "there.",
+    176.03
+   ]
+  ],
+  "ar": ""
+ }
+]

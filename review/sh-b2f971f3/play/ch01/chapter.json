@@ -1,0 +1,147 @@
+{
+ "id": "ch01",
+ "n": 1,
+ "title": "The square",
+ "place": "Salah al-Din Square, on the Citadel side, facing the domed tomb end of the mosque across the road.",
+ "mix": "dialogue/mix.mp3",
+ "lines": "dialogue/lines.json",
+ "speakers": {
+  "narrator": "Narrator",
+  "maqrizi": "al-Maqrizi",
+  "sultan": "Sultan Hasan",
+  "herz": "Max Herz"
+ },
+ "shots": [],
+ "quiz": [
+  {
+   "q": "How old was Hasan when he became sultan?",
+   "options": [
+    "Thirteen",
+    "Twenty-five",
+    "Forty"
+   ],
+   "correct": 0
+  }
+ ],
+ "onsite": {
+  "stand": "Salah al-Din Square, on the Citadel side, facing the domed tomb end of the mosque across the road."
+ },
+ "next": "Stay where you are, and look up at them, one on each side of the dome. I have a story about each.",
+ "modes": {
+  "home": {
+   "mix": "dialogue/mix.mp3"
+  },
+  "site": {
+   "mix": "dialogue/mix-onsite.mp3",
+   "inserts": "dialogue/onsite.json",
+   "stage": {
+    "reveals": [
+     {
+      "t0": 13.04,
+      "t1": 18.04,
+      "kind": "still",
+      "cue": "al-Maqrizi",
+      "label": "Taqi al-Din al-Maqrizi · historian of Cairo, 1364–1442 · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/maqrizi.jpg"
+     },
+     {
+      "t0": 67.02,
+      "t1": 72.02,
+      "kind": "still",
+      "cue": "Sultan Hasan",
+      "label": "al-Nasir Hasan · sultan, 1347–51 and 1354–61 · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/sultan.jpg"
+     },
+     {
+      "kind": "wipe",
+      "cue": "Hold it up to the mosque: then and now",
+      "then": "stage/then-ch01.jpg",
+      "thenCap": "19th century · photogravure, NYPL",
+      "now": "stage/now-ch01.jpg",
+      "nowCap": "Today · photo ولاء, public domain",
+      "t0": 101.13,
+      "t1": 111.13
+     },
+     {
+      "t0": 133.33,
+      "t1": 138.33,
+      "kind": "still",
+      "cue": "Max Herz",
+      "label": "Max Herz · chief architect of the Comité, surveyed the mosque in 1899",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance"
+     }
+    ]
+   }
+  }
+ },
+ "status": "dialogue edition, draft: historical people speak, the narrator sets the scene; on-site only",
+ "lineTags": {
+  "0": "Unverified on site: the standing point and the view across the traffic",
+  "1": "His body was never found; he was never buried here: Wikipedia, after Behrens-Abouseif",
+  "2": "Rumayla, the fleur-de-lis crest and the tiled triangles: Wikipedia",
+  "3": "al-Maqrizi, Khitat, his own words",
+  "5": "Sultan at 13 in 748 AH; arrested 1351 and held three years: Wikipedia. 748 AH = 1347",
+  "7": "The palace of the emir Yalbugha al-Yahyawi, demolished for the mosque: al-Maqrizi, Khitat; Wikipedia. The order's words are dramatised",
+  "8": "Dramatised: the order's words are invented. The palace of the emir Yalbugha al-Yahyawi was demolished for the mosque: al-Maqrizi, Khitat; Wikipedia",
+  "9": "Dramatised: the order's words are invented. The palace of the emir Yalbugha al-Yahyawi was demolished for the mosque: al-Maqrizi, Khitat; Wikipedia",
+  "10": "al-Maqrizi, Khitat",
+  "11": "'Probably to make it more prominent when seen from the Citadel': Wikipedia"
+ },
+ "siteOnly": true,
+ "edition": "dialogue",
+ "_planDefault": [
+  {
+   "t": 0,
+   "x": 81.2,
+   "y": 77.0,
+   "facing": 312
+  }
+ ],
+ "credits": [
+  {
+   "what": "Portraits",
+   "author": "MEDU",
+   "license": "Faces imagined",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "no likeness of these people survives",
+   "src": "_portrait"
+  },
+  {
+   "what": "The square, then",
+   "author": "NYPL photogravure, maker not given (NYPL image 96038)",
+   "license": "Public domain",
+   "licenseUrl": null,
+   "source": "https://digitalcollections.nypl.org/items/d958c1c0-c6be-012f-7ee0-58d385a7bc34",
+   "sourceName": "New York Public Library",
+   "note": "courtesy credit; cropped/resized",
+   "src": "stage/then-ch01.jpg"
+  },
+  {
+   "what": "The square, today",
+   "author": "ولاء",
+   "license": "Public domain",
+   "licenseUrl": null,
+   "source": "https://commons.wikimedia.org/wiki/File:Panoramic_view_of_Saladin_Square_with_Sultan_Hassan,_Al-Rifa%27i,_and_Qanibay_al-Rammah_mosques1.jpg",
+   "sourceName": "Wikimedia Commons",
+   "note": "courtesy credit",
+   "src": "stage/now-ch01.jpg"
+  },
+  {
+   "what": "Ney bed and bell",
+   "author": "MEDU",
+   "license": "Own work",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "synthesised",
+   "src": "_sound"
+  }
+ ]
+}
