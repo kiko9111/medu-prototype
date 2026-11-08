@@ -205,5 +205,10 @@
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
    "source": "https://commons.wikimedia.org/wiki/File:By_ovedc_-_Mosque_of_Sultan_Hasan_-_07.jpg"
   }
- ]
+ ],
+ "portraits": {
+  "0": "maqrizi/speaking",
+  "1": "sultan/pride",
+  "2": "bashir/speaking"
+ }
 }

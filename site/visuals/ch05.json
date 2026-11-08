@@ -42,5 +42,10 @@
    "nowCap": "Today · Ovedc, CC BY-SA 4.0 (aligned)",
    "aligned": true
   }
+ },
+ "portraits": {
+  "0": "maqrizi/pride",
+  "1": "barquq/warning",
+  "3": "muayyad/pride"
  }
 }

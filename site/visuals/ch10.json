@@ -46,5 +46,10 @@
    "nowCap": "Today · Mohamed abdelzaher, CC BY-SA 4.0 (modified)",
    "aligned": false
   }
+ },
+ "portraits": {
+  "0": "maqrizi/pride",
+  "1": "muqbil/speaking",
+  "2": "sultan/warning"
  }
 }

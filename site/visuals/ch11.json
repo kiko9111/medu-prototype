@@ -61,5 +61,10 @@
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
    "source": "https://commons.wikimedia.org/wiki/File:Sultan_Hasan_mausoleum_DSCF7808.jpg"
   }
- ]
+ ],
+ "portraits": {
+  "0": "sultan/grief",
+  "1": "maqrizi/warning",
+  "2": "yalbugha/warning"
+ }
 }

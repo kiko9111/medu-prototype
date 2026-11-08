@@ -24,5 +24,10 @@
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
    "source": "https://commons.wikimedia.org/wiki/File:View_from_inside_El_sultan_Hassan_mosque.jpg"
   }
- ]
+ ],
+ "portraits": {
+  "0": "sultan/speaking",
+  "2": "subki/speaking",
+  "3": "kalai/pride"
+ }
 }

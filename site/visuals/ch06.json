@@ -59,5 +59,9 @@
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
    "source": "https://commons.wikimedia.org/wiki/File:%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A7%D9%86_%D8%AD%D8%B3%D9%86_2026_17.jpg"
   }
- ]
+ ],
+ "portraits": {
+  "1": "sultan/pride",
+  "2": "maqrizi/grief"
+ }
 }

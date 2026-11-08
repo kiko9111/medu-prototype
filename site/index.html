@@ -150,7 +150,10 @@ body.big .capline{font-size:32px}
 #rev .media{position:relative;flex:1;max-height:72vh;overflow:hidden}
 #rev img,#rev video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 #rev.portrait img{object-fit:cover;animation:drift 6s ease-out both}
+#rev.portrait .media{background:#0B0A08;animation:breathe 3s ease-in-out infinite alternate}
+#rev.portrait img{object-position:50% 22%}
 @keyframes drift{from{transform:scale(1.1)}to{transform:scale(1)}}
+@keyframes breathe{from{transform:scale(1) translateY(0)}to{transform:scale(1.015) translateY(-2px)}}
 #rev .lbl{padding:14px 24px calc(var(--bot) + 150px);font-size:13px;color:var(--paper);text-align:center}
 #rev .lbl b{display:block;font:600 22px/1.2 var(--serif);color:var(--ivory);margin-bottom:6px}
 #rev .wipe{position:absolute;inset:0;touch-action:none}
@@ -382,6 +385,8 @@ async function loadCh(n) {
     const v = await getJSON('visuals/' + meta.dir + '.json'), vdir = 'visuals/' + meta.dir + '/';
     for (const k in (v.replace || {})) if (reveals[k]) reveals[k] = Object.assign({ t0: reveals[k].t0, t1: reveals[k].t1 }, v.replace[k], { vdir });
     if (v.looks) looks = v.looks.map((l) => l && Object.assign({ vdir }, l));
+    // portrait expressions (visuals/portraits/<who>/<speaking|grief|pride|warning>.jpg), keyed by reveal index
+    for (const k in (v.portraits || {})) if (reveals[k] && reveals[k].kind === 'still') reveals[k] = Object.assign({}, reveals[k], { psrc: 'visuals/portraits/' + v.portraits[k] + '.jpg' });
   } catch (e) {}
   return (CH[n] = { meta, c, lines, ins, site, reveals, looks });
 }
@@ -401,6 +406,7 @@ function stopFiles(ch) {
   for (const r of ch.reveals) for (const k of ['src', 'then', 'now']) if (r[k]) f.add(r[k]);
   const ph = standPhoto(ch); if (ph) f.add(ph);
   const own = new Set();
+  for (const r of ch.reveals) if (r.psrc) { own.add('visuals/' + d + '.json'); own.add(r.psrc); f.delete(r.src); }
   for (const r of [...ch.reveals, ...(ch.looks || [])]) if (r && r.vdir) { own.add('visuals/' + d + '.json'); for (const k of ['src', 'then', 'now']) if (r[k]) { own.add(r.vdir + r[k]); f.delete(r[k]); } }
   return [...[...f].filter(Boolean).map((x) => url(d, x)), ...own];
 }
@@ -693,7 +699,7 @@ function showReveal(r) {
   if (r.kind === 'dark') { rev.innerHTML = ''; stage.classList.add('dark'); buzz(r.buzz || [120, 60, 300]); return; }
   if (r.kind === 'still') {
     if (!r.src) { rev.innerHTML = ''; return; } // no portrait: the caption carries the name
-    rev.innerHTML = `<div class="media"><img alt="" src="${url(d, r.src)}"></div><div class="lbl"><b>${esc(r.cue || '')}</b>${esc((r.label || '').split('·').slice(1).join('·').trim())}</div>`;
+    rev.innerHTML = `<div class="media"><img alt="" src="${r.psrc || url(d, r.src)}"></div><div class="lbl"><b>${esc(r.cue || '')}</b>${esc((r.label || '').split('·').slice(1).join('·').trim())}</div>`;
     rev.classList.add('portrait');
     if (!r.quiet) buzz(30);
   } else if (r.kind === 'clip') {
