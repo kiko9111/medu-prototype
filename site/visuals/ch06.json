@@ -1,5 +1,5 @@
 {
- "about": "Gold line layer for ch06: real photos with the named element traced; paths are fractions of the photo. Traced by eye: validator to check each outline. Re-indexed by the site app to the play v29 look pauses (matched by element).",
+ "about": "Gold line layer for ch06: real photos with the named element traced; paths are fractions of the photo. Traced by eye: validator to check each outline.",
  "looks": [
   {
    "src": "hassan-r6-2.jpg",
@@ -32,13 +32,6 @@
    "license": "CC BY-SA 3.0 (lines added)",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
    "source": "https://commons.wikimedia.org/wiki/File:Sultan_Hassan_Mosque_3.JPG"
-  },
-  {
-   "what": "The passage narrows toward the light, then turns",
-   "author": "أحمد ناجي",
-   "license": "CC BY-SA 4.0 (lines added)",
-   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-   "source": "https://commons.wikimedia.org/wiki/File:%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A7%D9%86_%D8%AD%D8%B3%D9%86_2026_17.jpg"
   },
   {
    "what": "Dome and vaulting of the entrance hall, 1916–21 (archive view)",
