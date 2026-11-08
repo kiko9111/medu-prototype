@@ -664,7 +664,8 @@ function standCard() {
   const m = CUR.meta, ph = standPhoto(CUR);
   $('#standK').textContent = CUR.door ? 'Before stop 1' : 'Stop ' + m.n + ' of ' + PLAYJ.chapters.length;
   $('#standH').textContent = CUR.c.title;
-  $('#standP').textContent = (CUR.c.onsite && CUR.c.onsite.stand) || m.stand || CUR.c.place || '';
+  const sraw = (CUR.c.onsite && CUR.c.onsite.stand) || m.stand || CUR.c.place || '';   // the play's [VERIFY] notes stay out of the visitor's text
+  $('#standP').textContent = sraw.replace(/^./, (x) => x.toUpperCase()).replace(/UNVERIFIED:.*$/s, '').trim() + (/UNVERIFIED/.test(sraw) ? ' The exact spot is still to be checked on site.' : '');
   $('#standM').textContent = fmt(m.siteS || 0) + (CUR.door ? ' · the historian on how the house receives us.' : ' · headphones on, then lower your phone.');
   $('#standPh').style.backgroundImage = ph ? `url("${ph}")` : 'none';
   $('#standPh').style.display = ph ? '' : 'none';
