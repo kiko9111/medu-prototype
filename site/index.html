@@ -589,7 +589,7 @@ function renderWalk() {
     if (c.n > 1 && c.walk) h += `<div class="walkline">${c.walk} min walk</div>`;
     const st = (c.stand || '').replace(/^./, (x) => x.toUpperCase()).replace(/UNVERIFIED:.*$/s, '').trim();
     const cls = done.has(c.n) ? 'done' : c.n === cur ? 'cur' : '';
-    h += `<button class="stop ${cls}" data-n="${c.n}"><span class="n">${done.has(c.n) ? '✓' : c.n}</span><span class="t"><b>${esc(c.title)}</b><span class="st">${esc(st)}</span><span>${fmt(c.siteS || c.min * 60)}${(c.stand || '').includes('UNVERIFIED') ? ' · <span class="verify">access to be checked</span>' : ''}</span></span>${c.n === cur ? '<span class="go">Play</span>' : ''}</button>`;
+    h += `<button class="stop ${cls}" data-n="${c.n}"><span class="n">${done.has(c.n) ? '✓' : c.n}</span><span class="t"><b>${esc(c.title)}</b><span class="st">${esc(st)}</span><span>${fmt(c.siteS || c.min * 60)}${(c.stand || '').includes('UNVERIFIED') ? ' · <span class="verify">to be checked on site</span>' : ''}</span></span>${c.n === cur ? '<span class="go">Play</span>' : ''}</button>`;
   }
   $('#stops').innerHTML = h;
 }
