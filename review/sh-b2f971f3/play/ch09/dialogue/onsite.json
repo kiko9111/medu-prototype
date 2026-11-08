@@ -1,0 +1,22 @@
+{
+ "note": "Look pauses for the on-site version; on-site t = base t + sum(dur of inserts with at <= t). Made by tools/dialogue.py from dialogue/lines.json.",
+ "inserts": [
+  {
+   "at": 19.83,
+   "dur": 6.0,
+   "line": 1,
+   "element": "The cells",
+   "cue": "Look up at the rows of students' cells.",
+   "act": "look"
+  },
+  {
+   "at": 38.95,
+   "dur": 5.0,
+   "line": 2,
+   "element": "The small iwan",
+   "cue": "Find the college's own small prayer hall.",
+   "act": "look"
+  }
+ ],
+ "total_added": 11.0
+}

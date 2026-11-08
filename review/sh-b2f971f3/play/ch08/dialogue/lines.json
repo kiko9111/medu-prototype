@@ -1,0 +1,1069 @@
+[
+ {
+  "who": "narrator",
+  "beat": 1,
+  "say": "Still in the courtyard. Turn from the side halls to one of the corner doorways.",
+  "after": 0.6,
+  "file": "00-narrator-044de033.mp3",
+  "t0": 1.0,
+  "t1": 5.8,
+  "w": [
+   [
+    "Still",
+    1.12
+   ],
+   [
+    "in",
+    1.32
+   ],
+   [
+    "the",
+    1.42
+   ],
+   [
+    "courtyard.",
+    1.56
+   ],
+   [
+    "Turn",
+    3.06
+   ],
+   [
+    "from",
+    3.34
+   ],
+   [
+    "the",
+    3.5
+   ],
+   [
+    "side",
+    3.66
+   ],
+   [
+    "halls",
+    3.98
+   ],
+   [
+    "to",
+    4.34
+   ],
+   [
+    "one",
+    4.46
+   ],
+   [
+    "of",
+    4.58
+   ],
+   [
+    "the",
+    4.68
+   ],
+   [
+    "corner",
+    4.86
+   ],
+   [
+    "doorways.",
+    5.22
+   ]
+  ],
+  "ar": "",
+  "cap": "Still in the courtyard. Turn from the side halls to one of the corner doorways."
+ },
+ {
+  "who": "sultan",
+  "beat": 1,
+  "say": "Why four? One for each of the four schools of Sunni law: Hanafi, Shafi'i, Maliki, Hanbali. Each school taught in its own hall. So it is said.",
+  "tag": "'Said to have each been devoted' to one of the four madhhabs: Wikipedia",
+  "file": "01-sultan-c785ce1d.mp3",
+  "t0": 6.4,
+  "t1": 19.6,
+  "w": [
+   [
+    "Why",
+    6.54
+   ],
+   [
+    "four?",
+    6.92
+   ],
+   [
+    "One",
+    8.12
+   ],
+   [
+    "for",
+    8.44
+   ],
+   [
+    "each",
+    8.62
+   ],
+   [
+    "of",
+    8.84
+   ],
+   [
+    "the",
+    8.96
+   ],
+   [
+    "four",
+    9.14
+   ],
+   [
+    "schools",
+    9.46
+   ],
+   [
+    "of",
+    10.06
+   ],
+   [
+    "Sunni",
+    10.28
+   ],
+   [
+    "law:",
+    10.66
+   ],
+   [
+    "Hanafi,",
+    11.62
+   ],
+   [
+    "Shafi'i,",
+    12.5
+   ],
+   [
+    "Maliki,",
+    13.48
+   ],
+   [
+    "Hanbali.",
+    14.34
+   ],
+   [
+    "Each",
+    16.0
+   ],
+   [
+    "school",
+    16.28
+   ],
+   [
+    "taught",
+    16.66
+   ],
+   [
+    "in",
+    17.06
+   ],
+   [
+    "its",
+    17.16
+   ],
+   [
+    "own",
+    17.38
+   ],
+   [
+    "hall.",
+    17.64
+   ],
+   [
+    "So",
+    18.74
+   ],
+   [
+    "it",
+    18.92
+   ],
+   [
+    "is",
+    19.02
+   ],
+   [
+    "said.",
+    19.22
+   ]
+  ],
+  "ar": "",
+  "cap": "Why four? One for each of the four schools of Sunni law: Hanafi, Shafi'i, Maliki, Hanbali. Each school taught in its own hall. So it is said."
+ },
+ {
+  "who": "sultan",
+  "beat": 2,
+  "say": "Look at the three side halls. Huge, and plain. Perhaps they were meant to be decorated too, and never were.",
+  "tag": "'It is possible that the other iwans were intended to be decorated too but were never finished': Wikipedia",
+  "look": {
+   "dur": 5,
+   "cue": "Look at the three plain side halls.",
+   "element": "The side iwans"
+  },
+  "file": "02-sultan-8b3fba55.mp3",
+  "t0": 20.0,
+  "t1": 31.04,
+  "w": [
+   [
+    "Look",
+    20.1
+   ],
+   [
+    "at",
+    20.24
+   ],
+   [
+    "the",
+    20.34
+   ],
+   [
+    "three",
+    20.46
+   ],
+   [
+    "side",
+    20.86
+   ],
+   [
+    "halls.",
+    21.18
+   ],
+   [
+    "Huge,",
+    22.2
+   ],
+   [
+    "and",
+    23.2
+   ],
+   [
+    "plain.",
+    23.42
+   ],
+   [
+    "Perhaps",
+    24.9
+   ],
+   [
+    "they",
+    25.36
+   ],
+   [
+    "were",
+    25.56
+   ],
+   [
+    "meant",
+    25.72
+   ],
+   [
+    "to",
+    25.94
+   ],
+   [
+    "be",
+    26.04
+   ],
+   [
+    "decorated",
+    26.16
+   ],
+   [
+    "too,",
+    26.84
+   ],
+   [
+    "and",
+    28.2
+   ],
+   [
+    "never",
+    28.38
+   ],
+   [
+    "were.",
+    28.74
+   ]
+  ],
+  "ar": "",
+  "cap": "Look at the three side halls. Huge, and plain. Perhaps they were meant to be decorated too, and never were."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 2,
+  "say": "Now the corners of the court. Each has a doorway framed in striped stone, bands of inscription, and coloured mosaic.",
+  "tag": "Corner doorways in ablaq stone with inscription bands and mosaics: Wikipedia",
+  "look": {
+   "dur": 6,
+   "cue": "Find a corner doorway with striped stone.",
+   "element": "A corner doorway"
+  },
+  "file": "03-maqrizi-c61c53ed.mp3",
+  "t0": 31.44,
+  "t1": 41.12,
+  "w": [
+   [
+    "Now",
+    31.6
+   ],
+   [
+    "the",
+    32.14
+   ],
+   [
+    "corners",
+    32.3
+   ],
+   [
+    "of",
+    32.82
+   ],
+   [
+    "the",
+    32.94
+   ],
+   [
+    "court.",
+    33.1
+   ],
+   [
+    "Each",
+    34.18
+   ],
+   [
+    "has",
+    34.58
+   ],
+   [
+    "a",
+    34.78
+   ],
+   [
+    "doorway",
+    34.92
+   ],
+   [
+    "framed",
+    35.62
+   ],
+   [
+    "in",
+    36.14
+   ],
+   [
+    "striped",
+    36.38
+   ],
+   [
+    "stone,",
+    36.96
+   ],
+   [
+    "bands",
+    37.84
+   ],
+   [
+    "of",
+    38.46
+   ],
+   [
+    "inscription,",
+    38.58
+   ],
+   [
+    "and",
+    39.76
+   ],
+   [
+    "coloured",
+    40.08
+   ],
+   [
+    "mosaic.",
+    40.48
+   ]
+  ],
+  "ar": "",
+  "cap": "Now the corners of the court. Each has a doorway framed in striped stone, bands of inscription, and coloured mosaic."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 2,
+  "say": "وَمِنْهَا الْمَدَارِسُ الْأَرْبَعُ الَّتِي بِدَوْرِ قَاعَةِ الْجَامِعِ.",
+  "cap": "Among its wonders: the four colleges around the hall of the mosque.",
+  "tag": "al-Maqrizi, Khitat, his own words",
+  "file": "04-maqrizi-60cee08a.mp3",
+  "t0": 41.52,
+  "t1": 45.36,
+  "w": [
+   [
+    "Among",
+    41.6
+   ],
+   [
+    "its",
+    41.83
+   ],
+   [
+    "wonders:",
+    41.98
+   ],
+   [
+    "the",
+    42.49
+   ],
+   [
+    "four",
+    42.72
+   ],
+   [
+    "colleges",
+    43.16
+   ],
+   [
+    "around",
+    43.94
+   ],
+   [
+    "the",
+    44.42
+   ],
+   [
+    "hall",
+    44.64
+   ],
+   [
+    "of",
+    44.95
+   ],
+   [
+    "the",
+    45.1
+   ],
+   [
+    "mosque.",
+    45.2
+   ]
+  ],
+  "ar": "وَمِنْهَا الْمَدَارِسُ الْأَرْبَعُ الَّتِي بِدَوْرِ قَاعَةِ الْجَامِعِ."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 3,
+  "say": "Among its wonders, I wrote: the four colleges around the hall of the mosque. Through these doors they lay. And they were not equal. The Hanafi and the Shafi'i colleges were the largest, one on each side of the great hall.",
+  "tag": "The Hanafi and Shafi'i madrasas the largest, either side of the great iwan: Wikipedia",
+  "reveal": {
+   "kind": "wipe",
+   "cue": "Hold it up to the court: then and now",
+   "then": "stage/then-ch08.jpg",
+   "thenCap": "1870s–90s · NYPL",
+   "now": "stage/now-ch08.jpg",
+   "nowCap": "Today · Magoopic, CC BY-SA 4.0 (modified)",
+   "dur": 11
+  },
+  "after": 3.0,
+  "file": "05-maqrizi-9abae351.mp3",
+  "t0": 45.76,
+  "t1": 61.52,
+  "w": [
+   [
+    "Among",
+    45.84
+   ],
+   [
+    "its",
+    46.14
+   ],
+   [
+    "wonders,",
+    46.42
+   ],
+   [
+    "I",
+    46.96
+   ],
+   [
+    "wrote:",
+    47.04
+   ],
+   [
+    "the",
+    48.24
+   ],
+   [
+    "four",
+    48.36
+   ],
+   [
+    "colleges",
+    48.7
+   ],
+   [
+    "around",
+    49.3
+   ],
+   [
+    "the",
+    49.62
+   ],
+   [
+    "hall",
+    49.78
+   ],
+   [
+    "of",
+    50.08
+   ],
+   [
+    "the",
+    50.18
+   ],
+   [
+    "mosque.",
+    50.32
+   ],
+   [
+    "Through",
+    51.18
+   ],
+   [
+    "these",
+    51.44
+   ],
+   [
+    "doors",
+    51.86
+   ],
+   [
+    "they",
+    52.36
+   ],
+   [
+    "lay.",
+    52.56
+   ],
+   [
+    "And",
+    53.62
+   ],
+   [
+    "they",
+    53.78
+   ],
+   [
+    "were",
+    53.94
+   ],
+   [
+    "not",
+    54.12
+   ],
+   [
+    "equal.",
+    54.54
+   ],
+   [
+    "The",
+    55.78
+   ],
+   [
+    "Hanafi",
+    55.88
+   ],
+   [
+    "and",
+    56.74
+   ],
+   [
+    "the",
+    56.86
+   ],
+   [
+    "Shafi'i",
+    57.0
+   ],
+   [
+    "colleges",
+    57.66
+   ],
+   [
+    "were",
+    58.22
+   ],
+   [
+    "the",
+    58.38
+   ],
+   [
+    "largest,",
+    58.5
+   ],
+   [
+    "one",
+    59.64
+   ],
+   [
+    "on",
+    59.84
+   ],
+   [
+    "each",
+    60.06
+   ],
+   [
+    "side",
+    60.32
+   ],
+   [
+    "of",
+    60.64
+   ],
+   [
+    "the",
+    60.74
+   ],
+   [
+    "great",
+    60.84
+   ],
+   [
+    "hall.",
+    61.12
+   ]
+  ],
+  "ar": "",
+  "cap": "Among its wonders, I wrote: the four colleges around the hall of the mosque. Through these doors they lay. And they were not equal. The Hanafi and the Shafi'i colleges were the largest, one on each side of the great hall."
+ },
+ {
+  "who": "sultan",
+  "beat": 4,
+  "say": "Who decided that? Not only I. The streets did. My plan had to squeeze between the streets and the buildings already here, so the colleges came out in different sizes. At least in part for that reason.",
+  "tag": "'At least in part because of the irregular floor plan of the mosque, which was limited by existing streets and structures': Wikipedia",
+  "file": "06-sultan-74c9ef1c.mp3",
+  "t0": 64.52,
+  "t1": 77.72,
+  "w": [
+   [
+    "Who",
+    64.62
+   ],
+   [
+    "decided",
+    64.76
+   ],
+   [
+    "that?",
+    65.26
+   ],
+   [
+    "Not",
+    66.12
+   ],
+   [
+    "only",
+    66.3
+   ],
+   [
+    "I.",
+    66.76
+   ],
+   [
+    "The",
+    67.4
+   ],
+   [
+    "streets",
+    67.56
+   ],
+   [
+    "did.",
+    67.92
+   ],
+   [
+    "My",
+    69.26
+   ],
+   [
+    "plan",
+    69.44
+   ],
+   [
+    "had",
+    69.76
+   ],
+   [
+    "to",
+    69.86
+   ],
+   [
+    "squeeze",
+    70.06
+   ],
+   [
+    "between",
+    70.44
+   ],
+   [
+    "the",
+    70.72
+   ],
+   [
+    "streets",
+    70.88
+   ],
+   [
+    "and",
+    71.26
+   ],
+   [
+    "the",
+    71.38
+   ],
+   [
+    "buildings",
+    71.5
+   ],
+   [
+    "already",
+    71.94
+   ],
+   [
+    "here,",
+    72.34
+   ],
+   [
+    "so",
+    73.04
+   ],
+   [
+    "the",
+    73.16
+   ],
+   [
+    "colleges",
+    73.28
+   ],
+   [
+    "came",
+    73.8
+   ],
+   [
+    "out",
+    74.0
+   ],
+   [
+    "in",
+    74.14
+   ],
+   [
+    "different",
+    74.26
+   ],
+   [
+    "sizes.",
+    74.56
+   ],
+   [
+    "At",
+    75.64
+   ],
+   [
+    "least",
+    75.76
+   ],
+   [
+    "in",
+    76.26
+   ],
+   [
+    "part",
+    76.44
+   ],
+   [
+    "for",
+    77.0
+   ],
+   [
+    "that",
+    77.14
+   ],
+   [
+    "reason.",
+    77.36
+   ]
+  ],
+  "ar": "",
+  "cap": "Who decided that? Not only I. The streets did. My plan had to squeeze between the streets and the buildings already here, so the colleges came out in different sizes. At least in part for that reason."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 5,
+  "say": "Apart from the great hall, the richest stone in this court frames the corner doorways, where the colleges begin. Find it: a corner doorway with striped stone.",
+  "tag": "Wikipedia",
+  "file": "07-maqrizi-86ce7e72.mp3",
+  "t0": 78.12,
+  "t1": 92.36,
+  "w": [
+   [
+    "Apart",
+    78.22
+   ],
+   [
+    "from",
+    78.7
+   ],
+   [
+    "the",
+    78.86
+   ],
+   [
+    "great",
+    78.98
+   ],
+   [
+    "hall,",
+    79.34
+   ],
+   [
+    "the",
+    80.28
+   ],
+   [
+    "richest",
+    80.42
+   ],
+   [
+    "stone",
+    81.12
+   ],
+   [
+    "in",
+    81.7
+   ],
+   [
+    "this",
+    81.9
+   ],
+   [
+    "court",
+    82.18
+   ],
+   [
+    "frames",
+    83.02
+   ],
+   [
+    "the",
+    83.58
+   ],
+   [
+    "corner",
+    83.76
+   ],
+   [
+    "doorways,",
+    84.2
+   ],
+   [
+    "where",
+    85.38
+   ],
+   [
+    "the",
+    85.56
+   ],
+   [
+    "colleges",
+    85.72
+   ],
+   [
+    "begin.",
+    86.62
+   ],
+   [
+    "Find",
+    87.92
+   ],
+   [
+    "it:",
+    88.26
+   ],
+   [
+    "a",
+    89.26
+   ],
+   [
+    "corner",
+    89.48
+   ],
+   [
+    "doorway",
+    90.0
+   ],
+   [
+    "with",
+    90.66
+   ],
+   [
+    "striped",
+    91.02
+   ],
+   [
+    "stone.",
+    91.72
+   ]
+  ],
+  "ar": "",
+  "cap": "Apart from the great hall, the richest stone in this court frames the corner doorways, where the colleges begin. Find it: a corner doorway with striped stone."
+ },
+ {
+  "who": "sultan",
+  "beat": 6,
+  "say": "Do you see a single student's window on this court? No. So where did they live?",
+  "after": 0.8,
+  "file": "08-sultan-8d04b601.mp3",
+  "t0": 92.76,
+  "t1": 98.12,
+  "w": [
+   [
+    "Do",
+    92.92
+   ],
+   [
+    "you",
+    93.04
+   ],
+   [
+    "see",
+    93.2
+   ],
+   [
+    "a",
+    93.34
+   ],
+   [
+    "single",
+    93.46
+   ],
+   [
+    "student's",
+    93.9
+   ],
+   [
+    "window",
+    94.3
+   ],
+   [
+    "on",
+    94.68
+   ],
+   [
+    "this",
+    94.82
+   ],
+   [
+    "court?",
+    95.04
+   ],
+   [
+    "No.",
+    96.08
+   ],
+   [
+    "So",
+    97.16
+   ],
+   [
+    "where",
+    97.32
+   ],
+   [
+    "did",
+    97.46
+   ],
+   [
+    "they",
+    97.62
+   ],
+   [
+    "live?",
+    97.78
+   ]
+  ],
+  "ar": "",
+  "cap": "Do you see a single student's window on this court? No. So where did they live?"
+ },
+ {
+  "who": "sultan",
+  "beat": 6,
+  "say": "Go to a corner doorway, and look through. You will see where they lived.",
+  "cap": "Go to a corner doorway, and look through. You will see where they lived.",
+  "after": 0.4,
+  "tag": "",
+  "file": "09-sultan-920b2d79.mp3",
+  "t0": 98.92,
+  "t1": 102.92,
+  "w": [
+   [
+    "Go",
+    99.0
+   ],
+   [
+    "to",
+    99.18
+   ],
+   [
+    "a",
+    99.28
+   ],
+   [
+    "corner",
+    99.4
+   ],
+   [
+    "doorway,",
+    99.7
+   ],
+   [
+    "and",
+    100.24
+   ],
+   [
+    "look",
+    100.4
+   ],
+   [
+    "through.",
+    100.62
+   ],
+   [
+    "You",
+    101.74
+   ],
+   [
+    "will",
+    101.82
+   ],
+   [
+    "see",
+    102.04
+   ],
+   [
+    "where",
+    102.26
+   ],
+   [
+    "they",
+    102.42
+   ],
+   [
+    "lived.",
+    102.58
+   ]
+  ],
+  "ar": ""
+ }
+]

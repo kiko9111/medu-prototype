@@ -47,6 +47,7 @@ self.addEventListener('fetch', (e) => {
   if (url.origin !== location.origin) return;
   if (rel(e.request.url).startsWith('site/')) return; // the on-site edition (site/) has its own service worker
   if (rel(e.request.url).startsWith('play/')) return; // the Sultan Hassan play (play/) has its own files: never cached as the app shell
+  if (rel(e.request.url).startsWith('review/')) return; // review copies of the site app have their own service worker
   // The app page and manifest: network first, so a new version shows on the next open; cache when offline.
   if (e.request.mode === 'navigate' || /[/](index[.]html|manifest[.]webmanifest)?$/.test(url.pathname)) {
     e.respondWith(fetch(e.request, { cache: 'no-store' }).then((r) => {

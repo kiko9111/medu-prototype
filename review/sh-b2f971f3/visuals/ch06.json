@@ -1,0 +1,60 @@
+{
+ "about": "Gold line layer for ch06: real photos with the named element traced; paths are fractions of the photo. Traced by eye: validator to check each outline.",
+ "looks": [
+  {
+   "src": "hassan-r6-2.jpg",
+   "label": "The steps up from the entrance hall",
+   "paths": [],
+   "tags": [
+    {
+     "at": [
+      0.47,
+      0.62
+     ],
+     "t": "count the steps",
+     "side": "b"
+    }
+   ],
+   "ar": 1.5005,
+   "spot": [
+    0.08,
+    0.66,
+    0.86,
+    0.98
+   ]
+  },
+  null
+ ],
+ "credits": [
+  {
+   "what": "The steps up from the entrance hall",
+   "author": "Mariam Mohamed Kamal",
+   "license": "CC BY-SA 3.0 (lines added)",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:Sultan_Hassan_Mosque_3.JPG"
+  },
+  {
+   "what": "Section through the entrance hall and its dome, 1899",
+   "author": "Max Herz, La mosquée du sultan Hassan au Caire, pl. XII",
+   "license": "Public domain",
+   "licenseUrl": null,
+   "source": "https://archive.org/details/mosqueedusultanHassanauCaire00leca"
+  }
+ ],
+ "portraits": {
+  "1": "sultan/pride",
+  "2": "maqrizi/grief"
+ },
+ "extra": [
+  {
+   "t0": 1.0,
+   "t1": 9.8,
+   "kind": "wipe",
+   "cue": "Before the dark: look up",
+   "then": "then-vestibule-herz.jpg",
+   "thenCap": "1899 · Max Herz, measured section",
+   "how": "Stand at the back of the hall and look up",
+   "howSub": "The dome you pass under, as measured in 1899"
+  }
+ ]
+}

@@ -1,0 +1,1563 @@
+[
+ {
+  "who": "narrator",
+  "beat": 1,
+  "say": "The tomb chamber, behind the prayer wall, under the dome. Speak softly here. The man who built it is about to tell you how he died.",
+  "after": 0.6,
+  "file": "00-narrator-643559af.mp3",
+  "t0": 1.0,
+  "t1": 10.36,
+  "w": [
+   [
+    "The",
+    1.08
+   ],
+   [
+    "tomb",
+    1.24
+   ],
+   [
+    "chamber,",
+    1.54
+   ],
+   [
+    "behind",
+    2.26
+   ],
+   [
+    "the",
+    2.64
+   ],
+   [
+    "prayer",
+    2.78
+   ],
+   [
+    "wall,",
+    3.12
+   ],
+   [
+    "under",
+    3.82
+   ],
+   [
+    "the",
+    4.1
+   ],
+   [
+    "dome.",
+    4.24
+   ],
+   [
+    "Speak",
+    5.66
+   ],
+   [
+    "softly",
+    5.94
+   ],
+   [
+    "here.",
+    6.38
+   ],
+   [
+    "The",
+    7.4
+   ],
+   [
+    "man",
+    7.52
+   ],
+   [
+    "who",
+    7.76
+   ],
+   [
+    "built",
+    7.92
+   ],
+   [
+    "it",
+    8.18
+   ],
+   [
+    "is",
+    8.54
+   ],
+   [
+    "about",
+    8.68
+   ],
+   [
+    "to",
+    8.94
+   ],
+   [
+    "tell",
+    9.1
+   ],
+   [
+    "you",
+    9.34
+   ],
+   [
+    "how",
+    9.52
+   ],
+   [
+    "he",
+    9.72
+   ],
+   [
+    "died.",
+    9.86
+   ]
+  ],
+  "ar": "",
+  "cap": "The tomb chamber, behind the prayer wall, under the dome. Speak softly here. The man who built it is about to tell you how he died."
+ },
+ {
+  "who": "sultan",
+  "beat": 1,
+  "say": "Whose tomb? Mine. I built it for myself. And, as you heard at the start, I have never lain in it.",
+  "tag": "Sultan Hasan's body was never found; he was never buried here: Wikipedia",
+  "file": "01-sultan-f8d900a9.mp3",
+  "t0": 10.96,
+  "t1": 20.4,
+  "w": [
+   [
+    "Whose",
+    11.08
+   ],
+   [
+    "tomb?",
+    11.36
+   ],
+   [
+    "Mine.",
+    12.66
+   ],
+   [
+    "I",
+    13.84
+   ],
+   [
+    "built",
+    13.96
+   ],
+   [
+    "it",
+    14.24
+   ],
+   [
+    "for",
+    14.76
+   ],
+   [
+    "myself.",
+    14.88
+   ],
+   [
+    "And,",
+    16.32
+   ],
+   [
+    "as",
+    17.08
+   ],
+   [
+    "you",
+    17.26
+   ],
+   [
+    "heard",
+    17.38
+   ],
+   [
+    "at",
+    17.58
+   ],
+   [
+    "the",
+    17.68
+   ],
+   [
+    "start,",
+    17.82
+   ],
+   [
+    "I",
+    18.98
+   ],
+   [
+    "have",
+    19.04
+   ],
+   [
+    "never",
+    19.28
+   ],
+   [
+    "lain",
+    19.88
+   ],
+   [
+    "in",
+    20.12
+   ],
+   [
+    "it.",
+    20.24
+   ]
+  ],
+  "ar": "",
+  "cap": "Whose tomb? Mine. I built it for myself. And, as you heard at the start, I have never lain in it."
+ },
+ {
+  "who": "sultan",
+  "beat": 2,
+  "say": "Look around. Coloured marble below. Above it, carved in wood and painted, the Throne Verse runs all the way round the room.",
+  "tag": "Marble panelling and the painted wooden Throne Verse inscription: Wikipedia",
+  "look": {
+   "dur": 6,
+   "cue": "Follow the Throne Verse around the room.",
+   "element": "The Throne Verse band"
+  },
+  "file": "02-sultan-99165f96.mp3",
+  "t0": 20.8,
+  "t1": 31.2,
+  "w": [
+   [
+    "Look",
+    20.92
+   ],
+   [
+    "around.",
+    21.1
+   ],
+   [
+    "Coloured",
+    22.56
+   ],
+   [
+    "marble",
+    22.92
+   ],
+   [
+    "below.",
+    23.32
+   ],
+   [
+    "Above",
+    24.84
+   ],
+   [
+    "it,",
+    25.18
+   ],
+   [
+    "carved",
+    25.8
+   ],
+   [
+    "in",
+    26.18
+   ],
+   [
+    "wood",
+    26.38
+   ],
+   [
+    "and",
+    26.62
+   ],
+   [
+    "painted,",
+    26.84
+   ],
+   [
+    "the",
+    28.02
+   ],
+   [
+    "Throne",
+    28.18
+   ],
+   [
+    "Verse",
+    28.66
+   ],
+   [
+    "runs",
+    29.5
+   ],
+   [
+    "all",
+    29.94
+   ],
+   [
+    "the",
+    30.12
+   ],
+   [
+    "way",
+    30.24
+   ],
+   [
+    "round",
+    30.46
+   ],
+   [
+    "the",
+    30.78
+   ],
+   [
+    "room.",
+    30.92
+   ]
+  ],
+  "ar": "",
+  "cap": "Look around. Coloured marble below. Above it, carved in wood and painted, the Throne Verse runs all the way round the room."
+ },
+ {
+  "who": "sultan",
+  "beat": 2,
+  "say": "Now the corners. Tiers of carved, painted, gilded stalactites step out, row by row, until the square room becomes a round dome.",
+  "tag": "Wooden muqarnas pendentives, painted and gilded: Wikipedia",
+  "look": {
+   "dur": 6,
+   "cue": "Look up into a corner, where the square becomes a circle.",
+   "element": "The pendentives"
+  },
+  "file": "03-sultan-696dfde4.mp3",
+  "t0": 31.6,
+  "t1": 41.84,
+  "w": [
+   [
+    "Now",
+    31.8
+   ],
+   [
+    "the",
+    31.98
+   ],
+   [
+    "corners.",
+    32.1
+   ],
+   [
+    "Tiers",
+    33.2
+   ],
+   [
+    "of",
+    33.66
+   ],
+   [
+    "carved,",
+    33.84
+   ],
+   [
+    "painted,",
+    34.48
+   ],
+   [
+    "gilded",
+    35.34
+   ],
+   [
+    "stalactites",
+    35.92
+   ],
+   [
+    "step",
+    36.7
+   ],
+   [
+    "out,",
+    37.04
+   ],
+   [
+    "row",
+    37.68
+   ],
+   [
+    "by",
+    37.98
+   ],
+   [
+    "row,",
+    38.22
+   ],
+   [
+    "until",
+    38.96
+   ],
+   [
+    "the",
+    39.26
+   ],
+   [
+    "square",
+    39.42
+   ],
+   [
+    "room",
+    39.86
+   ],
+   [
+    "becomes",
+    40.38
+   ],
+   [
+    "a",
+    40.76
+   ],
+   [
+    "round",
+    40.9
+   ],
+   [
+    "dome.",
+    41.46
+   ]
+  ],
+  "ar": "",
+  "cap": "Now the corners. Tiers of carved, painted, gilded stalactites step out, row by row, until the square room becomes a round dome."
+ },
+ {
+  "who": "sultan",
+  "beat": 2,
+  "say": "If the room is quiet, hum. Softly, under your breath. Hear how this dome answers you.",
+  "cap": "If the room is quiet, hum. Softly, under your breath. Hear how this dome answers you.",
+  "after": 0.5,
+  "hush": true,
+  "look": {
+   "dur": 8,
+   "cue": "If the room is quiet: hum softly, and listen.",
+   "element": "The dome",
+   "act": "hum"
+  },
+  "tag": "Stage act, only if the room is quiet. Unverified on site: how long the dome answers",
+  "file": "04-sultan-81d3afb3.mp3",
+  "t0": 42.24,
+  "t1": 51.68,
+  "w": [
+   [
+    "If",
+    42.42
+   ],
+   [
+    "the",
+    42.56
+   ],
+   [
+    "room",
+    42.68
+   ],
+   [
+    "is",
+    42.9
+   ],
+   [
+    "quiet,",
+    43.1
+   ],
+   [
+    "hum.",
+    44.5
+   ],
+   [
+    "Softly,",
+    46.0
+   ],
+   [
+    "under",
+    46.96
+   ],
+   [
+    "your",
+    47.18
+   ],
+   [
+    "breath.",
+    47.34
+   ],
+   [
+    "Hear",
+    49.58
+   ],
+   [
+    "how",
+    49.92
+   ],
+   [
+    "this",
+    50.1
+   ],
+   [
+    "dome",
+    50.38
+   ],
+   [
+    "answers",
+    51.02
+   ],
+   [
+    "you.",
+    51.5
+   ]
+  ],
+  "ar": ""
+ },
+ {
+  "who": "maqrizi",
+  "beat": 3,
+  "say": "Thirty-three days after the minaret fell, it was over. He had ridden out to seize his own mamluk, the emir Yalbugha.",
+  "tag": "33 days to his killing: al-Maqrizi, Khitat. Yalbugha al-Umari was Hasan's own mamluk and amir majlis; commander of the army only after Hasan's death: Wikipedia, after Van Steenbergen. The ride against Yalbugha: al-Maqrizi's biography of Hasan in Herz 1899; Wikipedia",
+  "after": 0.5,
+  "file": "05-maqrizi-9ead60e0.mp3",
+  "t0": 52.18,
+  "t1": 61.22,
+  "w": [
+   [
+    "Thirty-three",
+    52.26
+   ],
+   [
+    "days",
+    52.82
+   ],
+   [
+    "after",
+    53.32
+   ],
+   [
+    "the",
+    53.58
+   ],
+   [
+    "minaret",
+    53.7
+   ],
+   [
+    "fell,",
+    54.24
+   ],
+   [
+    "it",
+    55.34
+   ],
+   [
+    "was",
+    55.46
+   ],
+   [
+    "over.",
+    55.68
+   ],
+   [
+    "He",
+    56.7
+   ],
+   [
+    "had",
+    56.8
+   ],
+   [
+    "ridden",
+    56.94
+   ],
+   [
+    "out",
+    57.24
+   ],
+   [
+    "to",
+    57.46
+   ],
+   [
+    "seize",
+    57.64
+   ],
+   [
+    "his",
+    58.0
+   ],
+   [
+    "own",
+    58.24
+   ],
+   [
+    "mamluk,",
+    58.56
+   ],
+   [
+    "the",
+    59.52
+   ],
+   [
+    "emir",
+    59.74
+   ],
+   [
+    "Yalbugha.",
+    60.46
+   ]
+  ],
+  "ar": "",
+  "cap": "Thirty-three days after the minaret fell, it was over. He had ridden out to seize his own mamluk, the emir Yalbugha."
+ },
+ {
+  "who": "yalbugha",
+  "beat": 3,
+  "say": "[cold] I escaped him. I gathered my men, and I beat him.",
+  "tag": "Dramatised; the escape and the rout are in al-Maqrizi's biography of Hasan (Herz 1899). Yalbugha is seen from behind only",
+  "file": "06-yalbugha-ca4ae8b9.mp3",
+  "t0": 61.72,
+  "t1": 65.4,
+  "w": [
+   [
+    "I",
+    61.92
+   ],
+   [
+    "escaped",
+    62.02
+   ],
+   [
+    "him.",
+    62.48
+   ],
+   [
+    "I",
+    63.28
+   ],
+   [
+    "gathered",
+    63.44
+   ],
+   [
+    "my",
+    63.78
+   ],
+   [
+    "men,",
+    63.96
+   ],
+   [
+    "and",
+    64.6
+   ],
+   [
+    "I",
+    64.76
+   ],
+   [
+    "beat",
+    64.98
+   ],
+   [
+    "him.",
+    65.22
+   ]
+  ],
+  "ar": "",
+  "cap": "I escaped him. I gathered my men, and I beat him."
+ },
+ {
+  "who": "sultan",
+  "beat": 3,
+  "say": "I fled, and hid in the house of an officer I trusted.",
+  "bed": "out",
+  "tag": "He hid in the house of the hajib Ibn al-Azkashi: al-Maqrizi's biography of Hasan in Herz's French. The whispered words are dramatised",
+  "after": 0.3,
+  "file": "07-sultan-10686a44.mp3",
+  "t0": 65.8,
+  "t1": 68.84,
+  "w": [
+   [
+    "I",
+    65.92
+   ],
+   [
+    "fled,",
+    66.04
+   ],
+   [
+    "and",
+    66.78
+   ],
+   [
+    "hid",
+    66.94
+   ],
+   [
+    "in",
+    67.1
+   ],
+   [
+    "the",
+    67.22
+   ],
+   [
+    "house",
+    67.3
+   ],
+   [
+    "of",
+    67.6
+   ],
+   [
+    "an",
+    67.68
+   ],
+   [
+    "officer",
+    67.78
+   ],
+   [
+    "I",
+    68.22
+   ],
+   [
+    "trusted.",
+    68.34
+   ]
+  ],
+  "ar": "",
+  "cap": "I fled, and hid in the house of an officer I trusted."
+ },
+ {
+  "who": "sultan",
+  "beat": 3,
+  "say": "[whispers] لَا تُخْبِرْ أَحَدًا أَنِّي هُنَا.",
+  "cap": "Tell no one I am here.",
+  "reveal": {
+   "kind": "dark",
+   "at_word": "Tell",
+   "dur": 2.0,
+   "buzz": [
+    40
+   ]
+  },
+  "after": 0.4,
+  "file": "08-sultan-6631685e.mp3",
+  "t0": 69.14,
+  "t1": 71.22,
+  "w": [
+   [
+    "Tell",
+    69.3
+   ],
+   [
+    "no",
+    69.75
+   ],
+   [
+    "one",
+    69.96
+   ],
+   [
+    "I",
+    70.31
+   ],
+   [
+    "am",
+    70.44
+   ],
+   [
+    "here.",
+    70.63
+   ]
+  ],
+  "ar": "لَا تُخْبِرْ أَحَدًا أَنِّي هُنَا.",
+  "tag": "Dramatised: the whisper is invented. Hasan's flight, hiding and killing: al-Maqrizi (via Herz 1899); Wikipedia"
+ },
+ {
+  "who": "sultan",
+  "beat": 3,
+  "say": "[whispers] Tell no one I am here.",
+  "after": 1.6,
+  "file": "09-sultan-c79df099.mp3",
+  "t0": 71.62,
+  "t1": 73.3,
+  "w": [
+   [
+    "Tell",
+    71.74
+   ],
+   [
+    "no",
+    72.02
+   ],
+   [
+    "one",
+    72.32
+   ],
+   [
+    "I",
+    72.62
+   ],
+   [
+    "am",
+    72.7
+   ],
+   [
+    "here.",
+    72.9
+   ]
+  ],
+  "ar": "",
+  "cap": "Tell no one I am here.",
+  "tag": "Dramatised: the whisper is invented. Hasan's flight, hiding and killing: al-Maqrizi (via Herz 1899); Wikipedia"
+ },
+ {
+  "who": "yalbugha",
+  "beat": 3,
+  "say": "The officer told me.",
+  "bed": "soft",
+  "after": 0.8,
+  "file": "10-yalbugha-004e555c.mp3",
+  "t0": 74.9,
+  "t1": 76.66,
+  "w": [
+   [
+    "The",
+    75.0
+   ],
+   [
+    "officer",
+    75.14
+   ],
+   [
+    "told",
+    75.54
+   ],
+   [
+    "me.",
+    75.82
+   ]
+  ],
+  "ar": "",
+  "cap": "The officer told me."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 3,
+  "say": "Hasan was taken. Since then, I wrote, his trace was lost forever, though his servants searched. Others tell it differently. His body was never found.",
+  "tag": "'His trace was lost forever, despite the searches of his servants': Herz's French of al-Maqrizi's biography (Arabic not yet checked); Ibn Hajar's rival version not merged; body never found: Wikipedia",
+  "file": "11-maqrizi-b6e3edcb.mp3",
+  "t0": 77.46,
+  "t1": 91.52,
+  "w": [
+   [
+    "Hasan",
+    77.56
+   ],
+   [
+    "was",
+    78.62
+   ],
+   [
+    "taken.",
+    78.84
+   ],
+   [
+    "Since",
+    80.0
+   ],
+   [
+    "then,",
+    80.3
+   ],
+   [
+    "I",
+    80.86
+   ],
+   [
+    "wrote,",
+    80.94
+   ],
+   [
+    "his",
+    81.86
+   ],
+   [
+    "trace",
+    82.1
+   ],
+   [
+    "was",
+    82.58
+   ],
+   [
+    "lost",
+    82.86
+   ],
+   [
+    "forever,",
+    83.54
+   ],
+   [
+    "though",
+    84.74
+   ],
+   [
+    "his",
+    84.96
+   ],
+   [
+    "servants",
+    85.2
+   ],
+   [
+    "searched.",
+    85.9
+   ],
+   [
+    "Others",
+    87.18
+   ],
+   [
+    "tell",
+    87.74
+   ],
+   [
+    "it",
+    87.9
+   ],
+   [
+    "differently.",
+    88.06
+   ],
+   [
+    "His",
+    89.28
+   ],
+   [
+    "body",
+    89.5
+   ],
+   [
+    "was",
+    89.92
+   ],
+   [
+    "never",
+    90.28
+   ],
+   [
+    "found.",
+    90.62
+   ]
+  ],
+  "ar": "",
+  "cap": "Hasan was taken. Since then, I wrote, his trace was lost forever, though his servants searched. Others tell it differently. His body was never found."
+ },
+ {
+  "who": "sultan",
+  "beat": 4,
+  "say": "So the tomb went to others. My two young sons are buried in this room. Even the dome is not mine: the first, of wood and shaped like an egg, was replaced three centuries later.",
+  "bed": "up",
+  "tag": "His two young sons in the tomb; the egg-shaped wooden dome replaced in 1671: Wikipedia",
+  "file": "12-sultan-ae8dad31.mp3",
+  "t0": 91.92,
+  "t1": 106.96,
+  "w": [
+   [
+    "So",
+    92.06
+   ],
+   [
+    "the",
+    92.2
+   ],
+   [
+    "tomb",
+    92.34
+   ],
+   [
+    "went",
+    92.82
+   ],
+   [
+    "to",
+    93.04
+   ],
+   [
+    "others.",
+    93.22
+   ],
+   [
+    "My",
+    95.18
+   ],
+   [
+    "two",
+    95.38
+   ],
+   [
+    "young",
+    95.6
+   ],
+   [
+    "sons",
+    95.9
+   ],
+   [
+    "are",
+    96.5
+   ],
+   [
+    "buried",
+    96.66
+   ],
+   [
+    "in",
+    96.96
+   ],
+   [
+    "this",
+    97.06
+   ],
+   [
+    "room.",
+    97.3
+   ],
+   [
+    "Even",
+    98.68
+   ],
+   [
+    "the",
+    98.94
+   ],
+   [
+    "dome",
+    99.1
+   ],
+   [
+    "is",
+    99.66
+   ],
+   [
+    "not",
+    99.8
+   ],
+   [
+    "mine:",
+    100.04
+   ],
+   [
+    "the",
+    101.52
+   ],
+   [
+    "first,",
+    101.7
+   ],
+   [
+    "of",
+    102.46
+   ],
+   [
+    "wood",
+    102.64
+   ],
+   [
+    "and",
+    103.22
+   ],
+   [
+    "shaped",
+    103.44
+   ],
+   [
+    "like",
+    103.8
+   ],
+   [
+    "an",
+    103.98
+   ],
+   [
+    "egg,",
+    104.12
+   ],
+   [
+    "was",
+    105.02
+   ],
+   [
+    "replaced",
+    105.2
+   ],
+   [
+    "three",
+    105.84
+   ],
+   [
+    "centuries",
+    106.1
+   ],
+   [
+    "later.",
+    106.62
+   ]
+  ],
+  "ar": "",
+  "cap": "So the tomb went to others. My two young sons are buried in this room. Even the dome is not mine: the first, of wood and shaped like an egg, was replaced three centuries later."
+ },
+ {
+  "who": "sultan",
+  "beat": 4,
+  "say": "You wondered why I never lay here. Now you know.",
+  "after": 0.8,
+  "file": "13-sultan-9ca66be0.mp3",
+  "t0": 107.36,
+  "t1": 110.16,
+  "w": [
+   [
+    "You",
+    107.54
+   ],
+   [
+    "wondered",
+    107.64
+   ],
+   [
+    "why",
+    107.94
+   ],
+   [
+    "I",
+    108.1
+   ],
+   [
+    "never",
+    108.18
+   ],
+   [
+    "lay",
+    108.4
+   ],
+   [
+    "here.",
+    108.64
+   ],
+   [
+    "Now",
+    109.56
+   ],
+   [
+    "you",
+    109.74
+   ],
+   [
+    "know.",
+    109.86
+   ]
+  ],
+  "ar": "",
+  "cap": "You wondered why I never lay here. Now you know."
+ },
+ {
+  "who": "sultan",
+  "beat": 4,
+  "say": "Stand still a moment, by the wooden screen. My sons lie in this room. I was meant to. Now look up.",
+  "cap": "Stand still a moment, by the wooden screen. My sons lie in this room. I was meant to. Now look up.",
+  "after": 0.5,
+  "hush": true,
+  "look": {
+   "dur": 8,
+   "cue": "Stand still by the screen, and look up.",
+   "element": "The wooden screen around the cenotaph",
+   "act": "still"
+  },
+  "tag": "The cenotaph (1384) behind a wooden screen; his two young sons buried here; he never was: Wikipedia, after Behrens-Abouseif",
+  "file": "14-sultan-eb2fbc67.mp3",
+  "t0": 110.96,
+  "t1": 119.92,
+  "w": [
+   [
+    "Stand",
+    111.12
+   ],
+   [
+    "still",
+    111.42
+   ],
+   [
+    "a",
+    111.62
+   ],
+   [
+    "moment,",
+    111.72
+   ],
+   [
+    "by",
+    112.44
+   ],
+   [
+    "the",
+    112.6
+   ],
+   [
+    "wooden",
+    112.7
+   ],
+   [
+    "screen.",
+    113.08
+   ],
+   [
+    "My",
+    114.5
+   ],
+   [
+    "sons",
+    114.7
+   ],
+   [
+    "lie",
+    115.14
+   ],
+   [
+    "in",
+    115.3
+   ],
+   [
+    "this",
+    115.4
+   ],
+   [
+    "room.",
+    115.6
+   ],
+   [
+    "I",
+    116.58
+   ],
+   [
+    "was",
+    116.66
+   ],
+   [
+    "meant",
+    116.8
+   ],
+   [
+    "to.",
+    117.04
+   ],
+   [
+    "Now",
+    118.5
+   ],
+   [
+    "look",
+    118.68
+   ],
+   [
+    "up.",
+    118.96
+   ]
+  ],
+  "ar": ""
+ },
+ {
+  "who": "maqrizi",
+  "beat": 5,
+  "say": "No other Mamluk building places its tomb here, behind the prayer wall, in the direction of prayer. Find it: a gilded corner where the square becomes a circle. Now, just the room.",
+  "tag": "A mausoleum behind the qibla wall, found in no other Mamluk religious building: Wikipedia",
+  "look": {
+   "dur": 10,
+   "cue": "Just the room.",
+   "element": "Stillness"
+  },
+  "file": "15-maqrizi-6a6a1fdc.mp3",
+  "t0": 120.42,
+  "t1": 138.18,
+  "w": [
+   [
+    "No",
+    120.56
+   ],
+   [
+    "other",
+    121.02
+   ],
+   [
+    "Mamluk",
+    121.4
+   ],
+   [
+    "building",
+    122.08
+   ],
+   [
+    "places",
+    122.74
+   ],
+   [
+    "its",
+    123.38
+   ],
+   [
+    "tomb",
+    123.8
+   ],
+   [
+    "here,",
+    124.4
+   ],
+   [
+    "behind",
+    125.28
+   ],
+   [
+    "the",
+    125.96
+   ],
+   [
+    "prayer",
+    126.14
+   ],
+   [
+    "wall,",
+    126.54
+   ],
+   [
+    "in",
+    127.56
+   ],
+   [
+    "the",
+    127.64
+   ],
+   [
+    "direction",
+    127.74
+   ],
+   [
+    "of",
+    128.54
+   ],
+   [
+    "prayer.",
+    128.8
+   ],
+   [
+    "Find",
+    130.26
+   ],
+   [
+    "it:",
+    130.54
+   ],
+   [
+    "a",
+    131.46
+   ],
+   [
+    "gilded",
+    131.62
+   ],
+   [
+    "corner",
+    132.16
+   ],
+   [
+    "where",
+    132.9
+   ],
+   [
+    "the",
+    133.06
+   ],
+   [
+    "square",
+    133.28
+   ],
+   [
+    "becomes",
+    133.8
+   ],
+   [
+    "a",
+    134.64
+   ],
+   [
+    "circle.",
+    134.76
+   ],
+   [
+    "Now,",
+    136.2
+   ],
+   [
+    "just",
+    137.42
+   ],
+   [
+    "the",
+    137.66
+   ],
+   [
+    "room.",
+    137.8
+   ]
+  ],
+  "ar": "",
+  "cap": "No other Mamluk building places its tomb here, behind the prayer wall, in the direction of prayer. Find it: a gilded corner where the square becomes a circle. Now, just the room."
+ },
+ {
+  "who": "sultan",
+  "beat": 6,
+  "say": "And outside, among the ruins… a school, shops, a waterwheel. What was this place, really?",
+  "after": 0.8,
+  "file": "16-sultan-7887a94c.mp3",
+  "t0": 138.58,
+  "t1": 145.3,
+  "w": [
+   [
+    "And",
+    138.68
+   ],
+   [
+    "outside,",
+    138.82
+   ],
+   [
+    "among",
+    139.46
+   ],
+   [
+    "the",
+    139.7
+   ],
+   [
+    "ruins…",
+    139.82
+   ],
+   [
+    "a",
+    140.54
+   ],
+   [
+    "school,",
+    140.66
+   ],
+   [
+    "shops,",
+    141.56
+   ],
+   [
+    "a",
+    142.46
+   ],
+   [
+    "waterwheel.",
+    142.56
+   ],
+   [
+    "What",
+    144.08
+   ],
+   [
+    "was",
+    144.22
+   ],
+   [
+    "this",
+    144.42
+   ],
+   [
+    "place,",
+    144.6
+   ],
+   [
+    "really?",
+    144.92
+   ]
+  ],
+  "ar": "",
+  "cap": "And outside, among the ruins… a school, shops, a waterwheel. What was this place, really?"
+ },
+ {
+  "who": "sultan",
+  "beat": 6,
+  "say": "Go back out, and round to the north-west side. I built more than a mosque.",
+  "cap": "Go back out, and round to the north-west side. I built more than a mosque.",
+  "after": 0.4,
+  "tag": "",
+  "file": "17-sultan-e5b94a99.mp3",
+  "t0": 146.1,
+  "t1": 152.58,
+  "w": [
+   [
+    "Go",
+    146.16
+   ],
+   [
+    "back",
+    146.36
+   ],
+   [
+    "out,",
+    146.66
+   ],
+   [
+    "and",
+    147.12
+   ],
+   [
+    "round",
+    147.32
+   ],
+   [
+    "to",
+    147.62
+   ],
+   [
+    "the",
+    147.72
+   ],
+   [
+    "north-west",
+    147.84
+   ],
+   [
+    "side.",
+    148.42
+   ],
+   [
+    "I",
+    150.14
+   ],
+   [
+    "built",
+    150.26
+   ],
+   [
+    "more",
+    150.58
+   ],
+   [
+    "than",
+    150.78
+   ],
+   [
+    "a",
+    150.92
+   ],
+   [
+    "mosque.",
+    151.02
+   ]
+  ],
+  "ar": ""
+ }
+]

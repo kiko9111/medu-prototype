@@ -1,0 +1,129 @@
+{
+ "id": "ch11",
+ "n": 11,
+ "title": "The tomb",
+ "place": "inside the tomb chamber, behind the prayer-niche wall, under the dome.",
+ "mix": "dialogue/mix.mp3",
+ "lines": "dialogue/lines.json",
+ "speakers": {
+  "narrator": "Narrator",
+  "sultan": "Sultan Hasan",
+  "maqrizi": "al-Maqrizi",
+  "yalbugha": "Yalbugha"
+ },
+ "shots": [],
+ "quiz": [
+  {
+   "q": "Who is buried in this tomb?",
+   "options": [
+    "Sultan Hasan",
+    "His two young sons",
+    "Nobody. Feedback: \"His body was never found.\""
+   ],
+   "correct": 1
+  }
+ ],
+ "onsite": {
+  "stand": "inside the tomb chamber, by the wooden screen around the cenotaph, facing the prayer-niche wall, under the dome. UNVERIFIED: mark to be checked on site (3D guide v12)."
+ },
+ "next": "Go back out, and round to the north-west side. I built more than a mosque.",
+ "modes": {
+  "home": {
+   "mix": "dialogue/mix.mp3"
+  },
+  "site": {
+   "mix": "dialogue/mix-onsite.mp3",
+   "inserts": "dialogue/onsite.json",
+   "stage": {
+    "reveals": [
+     {
+      "t0": 10.96,
+      "t1": 15.96,
+      "kind": "still",
+      "cue": "Sultan Hasan",
+      "label": "al-Nasir Hasan · sultan, 1347–51 and 1354–61 · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/sultan.jpg"
+     },
+     {
+      "t0": 52.18,
+      "t1": 57.18,
+      "kind": "still",
+      "cue": "al-Maqrizi",
+      "label": "Taqi al-Din al-Maqrizi · historian of Cairo, 1364–1442 · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/maqrizi.jpg"
+     },
+     {
+      "t0": 61.72,
+      "t1": 65.4,
+      "kind": "still",
+      "cue": "Yalbugha",
+      "label": "Yalbugha al-Umari · Hasan's own mamluk, later commander of the army · seen from behind only",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/yalbugha.jpg"
+     },
+     {
+      "kind": "dark",
+      "buzz": [
+       40
+      ],
+      "t0": 69.3,
+      "t1": 71.3
+     }
+    ]
+   }
+  }
+ },
+ "status": "dialogue edition, draft: historical people speak, the narrator sets the scene; on-site only",
+ "lineTags": {
+  "1": "Sultan Hasan's body was never found; he was never buried here: Wikipedia",
+  "2": "Marble panelling and the painted wooden Throne Verse inscription: Wikipedia",
+  "3": "Wooden muqarnas pendentives, painted and gilded: Wikipedia",
+  "4": "Stage act, only if the room is quiet. Unverified on site: how long the dome answers",
+  "5": "33 days to his killing: al-Maqrizi, Khitat. Yalbugha al-Umari was Hasan's own mamluk and amir majlis; commander of the army only after Hasan's death: Wikipedia, after Van Steenbergen. The ride against Yalbugha: al-Maqrizi's biography of Hasan in Herz 1899; Wikipedia",
+  "6": "Dramatised; the escape and the rout are in al-Maqrizi's biography of Hasan (Herz 1899). Yalbugha is seen from behind only",
+  "7": "He hid in the house of the hajib Ibn al-Azkashi: al-Maqrizi's biography of Hasan in Herz's French. The whispered words are dramatised",
+  "8": "Dramatised: the whisper is invented. Hasan's flight, hiding and killing: al-Maqrizi (via Herz 1899); Wikipedia",
+  "9": "Dramatised: the whisper is invented. Hasan's flight, hiding and killing: al-Maqrizi (via Herz 1899); Wikipedia",
+  "11": "'His trace was lost forever, despite the searches of his servants': Herz's French of al-Maqrizi's biography (Arabic not yet checked); Ibn Hajar's rival version not merged; body never found: Wikipedia",
+  "12": "His two young sons in the tomb; the egg-shaped wooden dome replaced in 1671: Wikipedia",
+  "14": "The cenotaph (1384) behind a wooden screen; his two young sons buried here; he never was: Wikipedia, after Behrens-Abouseif",
+  "15": "A mausoleum behind the qibla wall, found in no other Mamluk religious building: Wikipedia"
+ },
+ "siteOnly": true,
+ "edition": "dialogue",
+ "_planDefault": [
+  {
+   "t": 0,
+   "x": 60.9,
+   "y": 62.0,
+   "facing": 125
+  }
+ ],
+ "credits": [
+  {
+   "what": "Portraits",
+   "author": "MEDU",
+   "license": "Faces imagined",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "no likeness of these people survives",
+   "src": "_portrait"
+  },
+  {
+   "what": "Ney bed and bell",
+   "author": "MEDU",
+   "license": "Own work",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "synthesised",
+   "src": "_sound"
+  }
+ ]
+}

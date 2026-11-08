@@ -1,0 +1,1132 @@
+[
+ {
+  "who": "narrator",
+  "beat": 1,
+  "say": "Out of the dark. The courtyard. Stand by the fountain in the middle, and look up.",
+  "after": 0.6,
+  "file": "00-narrator-0c0024e9.mp3",
+  "t0": 1.0,
+  "t1": 7.08,
+  "w": [
+   [
+    "Out",
+    1.14
+   ],
+   [
+    "of",
+    1.32
+   ],
+   [
+    "the",
+    1.42
+   ],
+   [
+    "dark.",
+    1.54
+   ],
+   [
+    "The",
+    2.84
+   ],
+   [
+    "courtyard.",
+    2.98
+   ],
+   [
+    "Stand",
+    4.6
+   ],
+   [
+    "by",
+    4.92
+   ],
+   [
+    "the",
+    5.08
+   ],
+   [
+    "fountain",
+    5.22
+   ],
+   [
+    "in",
+    5.7
+   ],
+   [
+    "the",
+    5.8
+   ],
+   [
+    "middle,",
+    5.9
+   ],
+   [
+    "and",
+    6.42
+   ],
+   [
+    "look",
+    6.58
+   ],
+   [
+    "up.",
+    6.86
+   ]
+  ],
+  "ar": "",
+  "cap": "Out of the dark. The courtyard. Stand by the fountain in the middle, and look up."
+ },
+ {
+  "who": "sultan",
+  "beat": 1,
+  "say": "Why the dark first? Perhaps I wanted this to hit you all at once. One square of sky.",
+  "tag": "Dramatised: our reading of the dark-to-light passage, hedged with 'perhaps'",
+  "look": {
+   "dur": 6,
+   "cue": "Look up: one square of sky.",
+   "element": "The open court"
+  },
+  "file": "01-sultan-c35af5b6.mp3",
+  "t0": 7.68,
+  "t1": 15.2,
+  "w": [
+   [
+    "Why",
+    7.78
+   ],
+   [
+    "the",
+    7.96
+   ],
+   [
+    "dark",
+    8.1
+   ],
+   [
+    "first?",
+    8.52
+   ],
+   [
+    "Perhaps",
+    10.1
+   ],
+   [
+    "I",
+    10.54
+   ],
+   [
+    "wanted",
+    10.58
+   ],
+   [
+    "this",
+    10.96
+   ],
+   [
+    "to",
+    11.16
+   ],
+   [
+    "hit",
+    11.28
+   ],
+   [
+    "you",
+    11.5
+   ],
+   [
+    "all",
+    11.68
+   ],
+   [
+    "at",
+    11.8
+   ],
+   [
+    "once.",
+    11.96
+   ],
+   [
+    "One",
+    13.34
+   ],
+   [
+    "square",
+    13.92
+   ],
+   [
+    "of",
+    14.6
+   ],
+   [
+    "sky.",
+    14.78
+   ]
+  ],
+  "ar": "",
+  "cap": "Why the dark first? Perhaps I wanted this to hit you all at once. One square of sky."
+ },
+ {
+  "who": "herz",
+  "beat": 2,
+  "say": "Thirty-two metres by thirty-five. I measured it. Four huge vaulted halls open onto this one court.",
+  "tag": "Courtyard about 32 by 34.6 m: Herz 1899; four monumental iwans: Wikipedia",
+  "look": {
+   "dur": 6,
+   "cue": "Turn slowly: the four halls around you.",
+   "element": "The four iwans"
+  },
+  "file": "02-herz-c9c5e382.mp3",
+  "t0": 15.6,
+  "t1": 24.96,
+  "w": [
+   [
+    "Thirty-two",
+    15.66
+   ],
+   [
+    "metres",
+    16.14
+   ],
+   [
+    "by",
+    16.52
+   ],
+   [
+    "thirty-five.",
+    16.72
+   ],
+   [
+    "I",
+    18.08
+   ],
+   [
+    "measured",
+    18.2
+   ],
+   [
+    "it.",
+    18.5
+   ],
+   [
+    "Four",
+    19.52
+   ],
+   [
+    "huge",
+    20.3
+   ],
+   [
+    "vaulted",
+    20.94
+   ],
+   [
+    "halls",
+    21.36
+   ],
+   [
+    "open",
+    22.34
+   ],
+   [
+    "onto",
+    22.8
+   ],
+   [
+    "this",
+    23.06
+   ],
+   [
+    "one",
+    23.38
+   ],
+   [
+    "court.",
+    23.72
+   ]
+  ],
+  "ar": "",
+  "cap": "Thirty-two metres by thirty-five. I measured it. Four huge vaulted halls open onto this one court."
+ },
+ {
+  "who": "herz",
+  "beat": 2,
+  "say": "Under your feet, marble patterns. The Comité relaid them in nineteen twelve; the designs may go back to Hasan's day. And in the middle, a fountain under a wooden dome: built for beauty, not for washing.",
+  "tag": "The floor relaid by the Comité in 1912, patterns 'may well be' original; the wooden-domed fountain meant as decoration: Wikipedia",
+  "reveal": {
+   "kind": "wipe",
+   "cue": "Hold it up to the courtyard: then and now",
+   "then": "stage/then-ch07.jpg",
+   "thenCap": "1839 · Pascal Coste, NYPL",
+   "now": "stage/now-ch07.jpg",
+   "nowCap": "Today · Ahmedsamirhamadah, CC BY-SA 4.0 (modified)",
+   "dur": 11
+  },
+  "after": 3.0,
+  "file": "03-herz-6d7d4db2.mp3",
+  "t0": 25.36,
+  "t1": 40.88,
+  "w": [
+   [
+    "Under",
+    25.46
+   ],
+   [
+    "your",
+    25.55
+   ],
+   [
+    "feet,",
+    25.63
+   ],
+   [
+    "marble",
+    25.72
+   ],
+   [
+    "patterns.",
+    25.83
+   ],
+   [
+    "The",
+    26.29
+   ],
+   [
+    "Comité",
+    26.5
+   ],
+   [
+    "relaid",
+    26.86
+   ],
+   [
+    "them",
+    27.01
+   ],
+   [
+    "in",
+    27.11
+   ],
+   [
+    "nineteen",
+    27.16
+   ],
+   [
+    "twelve;",
+    27.54
+   ],
+   [
+    "the",
+    27.92
+   ],
+   [
+    "designs",
+    28.08
+   ],
+   [
+    "may",
+    28.46
+   ],
+   [
+    "go",
+    28.54
+   ],
+   [
+    "back",
+    28.57
+   ],
+   [
+    "to",
+    28.64
+   ],
+   [
+    "Hasan's",
+    28.71
+   ],
+   [
+    "day.",
+    28.95
+   ],
+   [
+    "And",
+    29.09
+   ],
+   [
+    "in",
+    29.18
+   ],
+   [
+    "the",
+    29.24
+   ],
+   [
+    "middle,",
+    29.32
+   ],
+   [
+    "a",
+    29.52
+   ],
+   [
+    "fountain",
+    29.55
+   ],
+   [
+    "under",
+    29.67
+   ],
+   [
+    "a",
+    29.74
+   ],
+   [
+    "wooden",
+    29.77
+   ],
+   [
+    "dome:",
+    29.93
+   ],
+   [
+    "built",
+    30.05
+   ],
+   [
+    "for",
+    30.18
+   ],
+   [
+    "beauty,",
+    30.26
+   ],
+   [
+    "not",
+    30.45
+   ],
+   [
+    "for",
+    30.55
+   ],
+   [
+    "washing.",
+    30.64
+   ]
+  ],
+  "ar": "",
+  "cap": "Under your feet, marble patterns. The Comité relaid them in nineteen twelve; the designs may go back to Hasan's day. And in the middle, a fountain under a wooden dome: built for beauty, not for washing."
+ },
+ {
+  "who": "sultan",
+  "beat": 3,
+  "say": "Now look up, along the top of the walls, above the halls. A band runs all the way round: marked out, and left empty.",
+  "look": {
+   "dur": 6,
+   "cue": "Find the empty band along the top of the walls.",
+   "element": "The empty band"
+  },
+  "file": "04-sultan-ab1c3ac8.mp3",
+  "t0": 43.88,
+  "t1": 53.56,
+  "w": [
+   [
+    "Now",
+    44.02
+   ],
+   [
+    "look",
+    44.2
+   ],
+   [
+    "up,",
+    44.46
+   ],
+   [
+    "along",
+    45.02
+   ],
+   [
+    "the",
+    45.28
+   ],
+   [
+    "top",
+    45.42
+   ],
+   [
+    "of",
+    45.64
+   ],
+   [
+    "the",
+    45.74
+   ],
+   [
+    "walls,",
+    45.86
+   ],
+   [
+    "above",
+    46.66
+   ],
+   [
+    "the",
+    46.96
+   ],
+   [
+    "halls.",
+    47.06
+   ],
+   [
+    "A",
+    48.74
+   ],
+   [
+    "band",
+    48.88
+   ],
+   [
+    "runs",
+    49.42
+   ],
+   [
+    "all",
+    49.88
+   ],
+   [
+    "the",
+    50.04
+   ],
+   [
+    "way",
+    50.12
+   ],
+   [
+    "round:",
+    50.34
+   ],
+   [
+    "marked",
+    51.4
+   ],
+   [
+    "out,",
+    51.84
+   ],
+   [
+    "and",
+    52.7
+   ],
+   [
+    "left",
+    52.86
+   ],
+   [
+    "empty.",
+    53.14
+   ]
+  ],
+  "ar": "",
+  "cap": "Now look up, along the top of the walls, above the halls. A band runs all the way round: marked out, and left empty."
+ },
+ {
+  "who": "sultan",
+  "beat": 3,
+  "say": "Perhaps words were meant to go there. They never came.",
+  "tag": "'May have been intended for another monumental inscription': Wikipedia",
+  "after": 0.5,
+  "file": "05-sultan-854351d7.mp3",
+  "t0": 53.96,
+  "t1": 56.84,
+  "w": [
+   [
+    "Perhaps",
+    54.1
+   ],
+   [
+    "words",
+    54.54
+   ],
+   [
+    "were",
+    54.8
+   ],
+   [
+    "meant",
+    54.96
+   ],
+   [
+    "to",
+    55.14
+   ],
+   [
+    "go",
+    55.26
+   ],
+   [
+    "there.",
+    55.48
+   ],
+   [
+    "They",
+    56.16
+   ],
+   [
+    "never",
+    56.3
+   ],
+   [
+    "came.",
+    56.58
+   ]
+  ],
+  "ar": "",
+  "cap": "Perhaps words were meant to go there. They never came."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 3,
+  "say": "وَمَاتَ السُّلْطَانُ قَبْلَ أَنْ يَتِمَّ رُخَامُ هٰذَا الْجَامِعِ، فَأَتَمَّهُ مِنْ بَعْدِهِ الطَّوَاشِي بَشِيرُ الْجَمْدَارْ.",
+  "cap": "The sultan died before the marble of this mosque was finished; after him the eunuch Bashir al-Jamdar completed it.",
+  "tag": "al-Maqrizi, Khitat, his own words",
+  "file": "06-maqrizi-7fa473ee.mp3",
+  "t0": 57.34,
+  "t1": 66.86,
+  "w": [
+   [
+    "The",
+    57.46
+   ],
+   [
+    "sultan",
+    57.76
+   ],
+   [
+    "died",
+    58.44
+   ],
+   [
+    "before",
+    58.95
+   ],
+   [
+    "the",
+    59.56
+   ],
+   [
+    "marble",
+    59.78
+   ],
+   [
+    "of",
+    60.23
+   ],
+   [
+    "this",
+    60.41
+   ],
+   [
+    "mosque",
+    60.78
+   ],
+   [
+    "was",
+    61.25
+   ],
+   [
+    "finished;",
+    61.61
+   ],
+   [
+    "after",
+    62.75
+   ],
+   [
+    "him",
+    63.14
+   ],
+   [
+    "the",
+    63.37
+   ],
+   [
+    "eunuch",
+    63.53
+   ],
+   [
+    "Bashir",
+    63.9
+   ],
+   [
+    "al-Jamdar",
+    64.69
+   ],
+   [
+    "completed",
+    65.7
+   ],
+   [
+    "it.",
+    66.41
+   ]
+  ],
+  "ar": "وَمَاتَ السُّلْطَانُ قَبْلَ أَنْ يَتِمَّ رُخَامُ هٰذَا الْجَامِعِ، فَأَتَمَّهُ مِنْ بَعْدِهِ الطَّوَاشِي بَشِيرُ الْجَمْدَارْ."
+ },
+ {
+  "who": "maqrizi",
+  "beat": 3,
+  "say": "He died before even the marble was finished.",
+  "file": "07-maqrizi-d01f3c8c.mp3",
+  "t0": 67.26,
+  "t1": 69.98,
+  "w": [
+   [
+    "He",
+    67.38
+   ],
+   [
+    "died",
+    67.52
+   ],
+   [
+    "before",
+    67.92
+   ],
+   [
+    "even",
+    68.38
+   ],
+   [
+    "the",
+    68.6
+   ],
+   [
+    "marble",
+    68.74
+   ],
+   [
+    "was",
+    69.16
+   ],
+   [
+    "finished.",
+    69.46
+   ]
+  ],
+  "ar": "",
+  "cap": "He died before even the marble was finished."
+ },
+ {
+  "who": "bashir",
+  "beat": 4,
+  "say": "The sultan is dead. But the marble will not stay unfinished. Bashir al-Jamdar: I finished it after him.",
+  "tag": "Bashir completed the marble: al-Maqrizi, Khitat. The words are dramatised",
+  "file": "08-bashir-43625c56.mp3",
+  "t0": 70.38,
+  "t1": 80.68,
+  "w": [
+   [
+    "The",
+    70.46
+   ],
+   [
+    "sultan",
+    70.62
+   ],
+   [
+    "is",
+    71.26
+   ],
+   [
+    "dead.",
+    71.46
+   ],
+   [
+    "But",
+    73.16
+   ],
+   [
+    "the",
+    73.32
+   ],
+   [
+    "marble",
+    73.46
+   ],
+   [
+    "will",
+    73.96
+   ],
+   [
+    "not",
+    74.24
+   ],
+   [
+    "stay",
+    74.6
+   ],
+   [
+    "unfinished.",
+    75.16
+   ],
+   [
+    "Bashir",
+    76.98
+   ],
+   [
+    "al-Jamdar:",
+    77.58
+   ],
+   [
+    "I",
+    79.42
+   ],
+   [
+    "finished",
+    79.58
+   ],
+   [
+    "it",
+    79.9
+   ],
+   [
+    "after",
+    80.1
+   ],
+   [
+    "him.",
+    80.36
+   ]
+  ],
+  "ar": "",
+  "cap": "The sultan is dead. But the marble will not stay unfinished. Bashir al-Jamdar: I finished it after him."
+ },
+ {
+  "who": "bashir",
+  "beat": 4,
+  "say": "But the band at the top is still blank today, as if the building were still waiting for its last line.",
+  "tag": "The blank band: Wikipedia; 'waiting for its last line' is our image",
+  "file": "09-bashir-bd815bc9.mp3",
+  "t0": 81.08,
+  "t1": 87.56,
+  "w": [
+   [
+    "But",
+    81.14
+   ],
+   [
+    "the",
+    81.26
+   ],
+   [
+    "band",
+    81.38
+   ],
+   [
+    "at",
+    81.6
+   ],
+   [
+    "the",
+    81.7
+   ],
+   [
+    "top",
+    81.84
+   ],
+   [
+    "is",
+    82.66
+   ],
+   [
+    "still",
+    82.84
+   ],
+   [
+    "blank",
+    83.08
+   ],
+   [
+    "today,",
+    83.44
+   ],
+   [
+    "as",
+    84.34
+   ],
+   [
+    "if",
+    84.46
+   ],
+   [
+    "the",
+    84.58
+   ],
+   [
+    "building",
+    84.7
+   ],
+   [
+    "were",
+    85.68
+   ],
+   [
+    "still",
+    85.88
+   ],
+   [
+    "waiting",
+    86.12
+   ],
+   [
+    "for",
+    86.48
+   ],
+   [
+    "its",
+    86.58
+   ],
+   [
+    "last",
+    86.78
+   ],
+   [
+    "line.",
+    87.1
+   ]
+  ],
+  "ar": "",
+  "cap": "But the band at the top is still blank today, as if the building were still waiting for its last line."
+ },
+ {
+  "who": "herz",
+  "beat": 5,
+  "say": "Four halls around one court, and the hall facing Mecca bigger than the rest. Find it: the empty band along the top of the walls.",
+  "tag": "The qibla iwan larger than the other three: Wikipedia",
+  "file": "10-herz-9536d431.mp3",
+  "t0": 87.96,
+  "t1": 98.04,
+  "w": [
+   [
+    "Four",
+    88.06
+   ],
+   [
+    "halls",
+    88.32
+   ],
+   [
+    "around",
+    88.84
+   ],
+   [
+    "one",
+    89.22
+   ],
+   [
+    "court,",
+    89.48
+   ],
+   [
+    "and",
+    90.34
+   ],
+   [
+    "the",
+    90.44
+   ],
+   [
+    "hall",
+    90.56
+   ],
+   [
+    "facing",
+    90.94
+   ],
+   [
+    "Mecca",
+    91.38
+   ],
+   [
+    "bigger",
+    92.32
+   ],
+   [
+    "than",
+    92.58
+   ],
+   [
+    "the",
+    92.74
+   ],
+   [
+    "rest.",
+    92.88
+   ],
+   [
+    "Find",
+    94.56
+   ],
+   [
+    "it:",
+    94.82
+   ],
+   [
+    "the",
+    95.74
+   ],
+   [
+    "empty",
+    95.9
+   ],
+   [
+    "band",
+    96.22
+   ],
+   [
+    "along",
+    96.64
+   ],
+   [
+    "the",
+    96.9
+   ],
+   [
+    "top",
+    97.02
+   ],
+   [
+    "of",
+    97.22
+   ],
+   [
+    "the",
+    97.32
+   ],
+   [
+    "walls.",
+    97.46
+   ]
+  ],
+  "ar": "",
+  "cap": "Four halls around one court, and the hall facing Mecca bigger than the rest. Find it: the empty band along the top of the walls."
+ },
+ {
+  "who": "bashir",
+  "beat": 6,
+  "say": "Four great halls. Why four?",
+  "after": 0.8,
+  "file": "11-bashir-f0c5ddfb.mp3",
+  "t0": 98.44,
+  "t1": 100.84,
+  "w": [
+   [
+    "Four",
+    98.56
+   ],
+   [
+    "great",
+    98.88
+   ],
+   [
+    "halls.",
+    99.16
+   ],
+   [
+    "Why",
+    100.22
+   ],
+   [
+    "four?",
+    100.5
+   ]
+  ],
+  "ar": "",
+  "cap": "Four great halls. Why four?"
+ },
+ {
+  "who": "sultan",
+  "beat": 6,
+  "say": "Turn slowly, and face each of my four halls in turn. Then I will show you a door.",
+  "cap": "Turn slowly, and face each of my four halls in turn. Then I will show you a door.",
+  "after": 0.4,
+  "tag": "",
+  "file": "12-sultan-88313061.mp3",
+  "t0": 101.64,
+  "t1": 107.96,
+  "w": [
+   [
+    "Turn",
+    101.72
+   ],
+   [
+    "slowly,",
+    102.02
+   ],
+   [
+    "and",
+    102.94
+   ],
+   [
+    "face",
+    103.16
+   ],
+   [
+    "each",
+    103.5
+   ],
+   [
+    "of",
+    103.74
+   ],
+   [
+    "my",
+    103.88
+   ],
+   [
+    "four",
+    104.12
+   ],
+   [
+    "halls",
+    104.4
+   ],
+   [
+    "in",
+    104.82
+   ],
+   [
+    "turn.",
+    105.02
+   ],
+   [
+    "Then",
+    106.32
+   ],
+   [
+    "I",
+    106.82
+   ],
+   [
+    "will",
+    106.88
+   ],
+   [
+    "show",
+    107.08
+   ],
+   [
+    "you",
+    107.36
+   ],
+   [
+    "a",
+    107.48
+   ],
+   [
+    "door.",
+    107.6
+   ]
+  ],
+  "ar": ""
+ }
+]

@@ -1,0 +1,1564 @@
+[
+ {
+  "who": "narrator",
+  "beat": 1,
+  "say": "Same pavement, facing the dome. Look up at the two minarets. The historian died in fourteen forty-two, so for this stop you will hear from the men who came after him.",
+  "after": 0.6,
+  "file": "00-narrator-ff93baf7.mp3",
+  "t0": 1.0,
+  "t1": 12.28,
+  "w": [
+   [
+    "Same",
+    1.1
+   ],
+   [
+    "pavement,",
+    1.4
+   ],
+   [
+    "facing",
+    2.14
+   ],
+   [
+    "the",
+    2.52
+   ],
+   [
+    "dome.",
+    2.62
+   ],
+   [
+    "Look",
+    4.04
+   ],
+   [
+    "up",
+    4.24
+   ],
+   [
+    "at",
+    4.34
+   ],
+   [
+    "the",
+    4.44
+   ],
+   [
+    "two",
+    4.58
+   ],
+   [
+    "minarets.",
+    4.82
+   ],
+   [
+    "The",
+    6.42
+   ],
+   [
+    "historian",
+    6.52
+   ],
+   [
+    "died",
+    7.2
+   ],
+   [
+    "in",
+    7.52
+   ],
+   [
+    "fourteen",
+    7.7
+   ],
+   [
+    "forty-two,",
+    8.2
+   ],
+   [
+    "so",
+    9.32
+   ],
+   [
+    "for",
+    9.46
+   ],
+   [
+    "this",
+    9.6
+   ],
+   [
+    "stop",
+    9.84
+   ],
+   [
+    "you",
+    10.5
+   ],
+   [
+    "will",
+    10.58
+   ],
+   [
+    "hear",
+    10.76
+   ],
+   [
+    "from",
+    11.0
+   ],
+   [
+    "the",
+    11.14
+   ],
+   [
+    "men",
+    11.3
+   ],
+   [
+    "who",
+    11.56
+   ],
+   [
+    "came",
+    11.7
+   ],
+   [
+    "after",
+    11.98
+   ],
+   [
+    "him.",
+    12.22
+   ]
+  ],
+  "ar": "",
+  "cap": "Same pavement, facing the dome. Look up at the two minarets. The historian died in fourteen forty-two, so for this stop you will hear from the men who came after him."
+ },
+ {
+  "who": "herz",
+  "beat": 1,
+  "say": "Max Herz, architect. I surveyed this mosque for the Comité, every stone of it, and published it in eighteen ninety-nine. Why does one minaret look newer? Because it is. The southern one is the original. The northern one fell in sixteen fifty-nine, and a smaller one took its place.",
+  "tag": "Herz 1899, La mosquée du sultan Hassan au Caire. The fall of 1659 and the rebuild of 1671–72: Wikipedia. Unverified on site: which minaret is on your left from here",
+  "look": {
+   "dur": 5,
+   "cue": "Find the two minarets: the taller one is the original.",
+   "element": "The two minarets"
+  },
+  "file": "01-herz-cb065280.mp3",
+  "t0": 12.88,
+  "t1": 34.78,
+  "w": [
+   [
+    "Max",
+    12.98
+   ],
+   [
+    "Herz,",
+    13.28
+   ],
+   [
+    "architect.",
+    14.18
+   ],
+   [
+    "I",
+    15.82
+   ],
+   [
+    "surveyed",
+    15.94
+   ],
+   [
+    "this",
+    16.32
+   ],
+   [
+    "mosque",
+    16.54
+   ],
+   [
+    "for",
+    16.82
+   ],
+   [
+    "the",
+    16.92
+   ],
+   [
+    "Comité,",
+    17.06
+   ],
+   [
+    "every",
+    18.08
+   ],
+   [
+    "stone",
+    18.5
+   ],
+   [
+    "of",
+    18.76
+   ],
+   [
+    "it,",
+    18.88
+   ],
+   [
+    "and",
+    19.46
+   ],
+   [
+    "published",
+    19.64
+   ],
+   [
+    "it",
+    20.02
+   ],
+   [
+    "in",
+    20.58
+   ],
+   [
+    "eighteen",
+    20.84
+   ],
+   [
+    "ninety-nine.",
+    21.5
+   ],
+   [
+    "Why",
+    23.56
+   ],
+   [
+    "does",
+    23.74
+   ],
+   [
+    "one",
+    23.94
+   ],
+   [
+    "minaret",
+    24.1
+   ],
+   [
+    "look",
+    24.5
+   ],
+   [
+    "newer?",
+    24.72
+   ],
+   [
+    "Because",
+    25.76
+   ],
+   [
+    "it",
+    26.02
+   ],
+   [
+    "is.",
+    26.2
+   ],
+   [
+    "The",
+    27.6
+   ],
+   [
+    "southern",
+    27.74
+   ],
+   [
+    "one",
+    28.1
+   ],
+   [
+    "is",
+    28.44
+   ],
+   [
+    "the",
+    28.6
+   ],
+   [
+    "original.",
+    28.72
+   ],
+   [
+    "The",
+    29.78
+   ],
+   [
+    "northern",
+    29.9
+   ],
+   [
+    "one",
+    30.26
+   ],
+   [
+    "fell",
+    30.5
+   ],
+   [
+    "in",
+    30.68
+   ],
+   [
+    "sixteen",
+    30.84
+   ],
+   [
+    "fifty-nine,",
+    31.32
+   ],
+   [
+    "and",
+    32.5
+   ],
+   [
+    "a",
+    32.62
+   ],
+   [
+    "smaller",
+    32.8
+   ],
+   [
+    "one",
+    33.2
+   ],
+   [
+    "took",
+    33.82
+   ],
+   [
+    "its",
+    33.98
+   ],
+   [
+    "place.",
+    34.2
+   ]
+  ],
+  "ar": "",
+  "cap": "Max Herz, architect. I surveyed this mosque for the Comité, every stone of it, and published it in eighteen ninety-nine. Why does one minaret look newer? Because it is. The southern one is the original. The northern one fell in sixteen fifty-nine, and a smaller one took its place."
+ },
+ {
+  "who": "herz",
+  "beat": 2,
+  "say": "Look at the original. It is the tallest minaret the Mamluks ever built: its tip stood eighty-four metres above the street of its day.",
+  "tag": "84 m above the street level of its time: Wikipedia",
+  "look": {
+   "dur": 5,
+   "cue": "Look up the original minaret, all the way to the tip.",
+   "element": "The original minaret"
+  },
+  "file": "02-herz-fd4e0a48.mp3",
+  "t0": 35.18,
+  "t1": 44.06,
+  "w": [
+   [
+    "Look",
+    35.26
+   ],
+   [
+    "at",
+    35.4
+   ],
+   [
+    "the",
+    35.5
+   ],
+   [
+    "original.",
+    35.64
+   ],
+   [
+    "It",
+    37.1
+   ],
+   [
+    "is",
+    37.22
+   ],
+   [
+    "the",
+    37.34
+   ],
+   [
+    "tallest",
+    37.52
+   ],
+   [
+    "minaret",
+    37.96
+   ],
+   [
+    "the",
+    38.4
+   ],
+   [
+    "Mamluks",
+    38.54
+   ],
+   [
+    "ever",
+    39.08
+   ],
+   [
+    "built:",
+    39.3
+   ],
+   [
+    "its",
+    40.3
+   ],
+   [
+    "tip",
+    40.56
+   ],
+   [
+    "stood",
+    41.28
+   ],
+   [
+    "eighty-four",
+    41.66
+   ],
+   [
+    "metres",
+    42.26
+   ],
+   [
+    "above",
+    42.64
+   ],
+   [
+    "the",
+    42.9
+   ],
+   [
+    "street",
+    43.12
+   ],
+   [
+    "of",
+    43.38
+   ],
+   [
+    "its",
+    43.48
+   ],
+   [
+    "day.",
+    43.7
+   ]
+  ],
+  "ar": "",
+  "cap": "Look at the original. It is the tallest minaret the Mamluks ever built: its tip stood eighty-four metres above the street of its day."
+ },
+ {
+  "who": "herz",
+  "beat": 2,
+  "say": "The one that fell was said to be grander still: a double head, two lanterns at the top instead of one. Why did it fall? No record I know of says. But I do know this building had been shot at.",
+  "tag": "'Said to be' double-headed: Wikipedia. Why it fell: no source we have says",
+  "file": "03-herz-457812d6.mp3",
+  "t0": 44.46,
+  "t1": 59.09,
+  "w": [
+   [
+    "The",
+    44.55
+   ],
+   [
+    "one",
+    44.69
+   ],
+   [
+    "that",
+    44.81
+   ],
+   [
+    "fell",
+    45.03
+   ],
+   [
+    "was",
+    45.83
+   ],
+   [
+    "said",
+    46.01
+   ],
+   [
+    "to",
+    46.23
+   ],
+   [
+    "be",
+    46.33
+   ],
+   [
+    "grander",
+    46.49
+   ],
+   [
+    "still:",
+    47.01
+   ],
+   [
+    "a",
+    48.27
+   ],
+   [
+    "double",
+    48.39
+   ],
+   [
+    "head,",
+    48.71
+   ],
+   [
+    "two",
+    49.47
+   ],
+   [
+    "lanterns",
+    49.71
+   ],
+   [
+    "at",
+    50.17
+   ],
+   [
+    "the",
+    50.27
+   ],
+   [
+    "top",
+    50.41
+   ],
+   [
+    "instead",
+    50.99
+   ],
+   [
+    "of",
+    51.35
+   ],
+   [
+    "one.",
+    51.57
+   ],
+   [
+    "Why",
+    53.09
+   ],
+   [
+    "did",
+    53.25
+   ],
+   [
+    "it",
+    53.39
+   ],
+   [
+    "fall?",
+    53.61
+   ],
+   [
+    "No",
+    54.75
+   ],
+   [
+    "record",
+    54.91
+   ],
+   [
+    "I",
+    55.23
+   ],
+   [
+    "know",
+    55.33
+   ],
+   [
+    "of",
+    55.53
+   ],
+   [
+    "says.",
+    55.71
+   ],
+   [
+    "But",
+    56.91
+   ],
+   [
+    "I",
+    57.11
+   ],
+   [
+    "do",
+    57.23
+   ],
+   [
+    "know",
+    57.41
+   ],
+   [
+    "this",
+    57.61
+   ],
+   [
+    "building",
+    57.83
+   ],
+   [
+    "had",
+    58.17
+   ],
+   [
+    "been",
+    58.31
+   ],
+   [
+    "shot",
+    58.61
+   ],
+   [
+    "at.",
+    58.91
+   ]
+  ],
+  "ar": "",
+  "cap": "The one that fell was said to be grander still: a double head, two lanterns at the top instead of one. Why did it fall? No record I know of says. But I do know this building had been shot at."
+ },
+ {
+  "who": "tumanbay",
+  "beat": 3,
+  "say": "[grim] Shot at. Yes. I am Tumanbay, the last sultan of the Mamluks. Fifteen seventeen: the Ottomans took Cairo, and I hid inside this mosque.",
+  "tag": "His refuge in the mosque and the bombardment from the Citadel: Wikipedia. The words are dramatised",
+  "after": 0.3,
+  "file": "04-tumanbay-f226be58.mp3",
+  "t0": 59.49,
+  "t1": 71.33,
+  "w": [
+   [
+    "Shot",
+    59.67
+   ],
+   [
+    "at.",
+    60.07
+   ],
+   [
+    "Yes.",
+    60.91
+   ],
+   [
+    "I",
+    61.95
+   ],
+   [
+    "am",
+    62.03
+   ],
+   [
+    "Tumanbay,",
+    62.21
+   ],
+   [
+    "the",
+    63.13
+   ],
+   [
+    "last",
+    63.27
+   ],
+   [
+    "sultan",
+    63.69
+   ],
+   [
+    "of",
+    64.15
+   ],
+   [
+    "the",
+    64.27
+   ],
+   [
+    "Mamluks.",
+    64.37
+   ],
+   [
+    "Fifteen",
+    66.41
+   ],
+   [
+    "seventeen:",
+    66.87
+   ],
+   [
+    "the",
+    68.03
+   ],
+   [
+    "Ottomans",
+    68.17
+   ],
+   [
+    "took",
+    68.61
+   ],
+   [
+    "Cairo,",
+    68.83
+   ],
+   [
+    "and",
+    69.49
+   ],
+   [
+    "I",
+    69.71
+   ],
+   [
+    "hid",
+    69.83
+   ],
+   [
+    "inside",
+    70.19
+   ],
+   [
+    "this",
+    70.65
+   ],
+   [
+    "mosque.",
+    70.91
+   ]
+  ],
+  "ar": "",
+  "cap": "Shot at. Yes. I am Tumanbay, the last sultan of the Mamluks. Fifteen seventeen: the Ottomans took Cairo, and I hid inside this mosque."
+ },
+ {
+  "who": "tumanbay",
+  "beat": 3,
+  "say": "أَغْلِقُوا الْأَبْوَابَ!",
+  "cap": "Bar the doors!",
+  "after": 0.2,
+  "file": "05-tumanbay-6b574c5f.mp3",
+  "t0": 71.63,
+  "t1": 72.88,
+  "w": [
+   [
+    "Bar",
+    71.73
+   ],
+   [
+    "the",
+    71.98
+   ],
+   [
+    "doors!",
+    72.23
+   ]
+  ],
+  "ar": "أَغْلِقُوا الْأَبْوَابَ!",
+  "tag": "Dramatised: Tumanbay's words are invented. He hid here in 1517 and was taken alive and hanged at Bab Zuweila: Wikipedia"
+ },
+ {
+  "who": "tumanbay",
+  "beat": 3,
+  "say": "Bar the doors! They will not take me alive.",
+  "file": "06-tumanbay-ee4dee24.mp3",
+  "t0": 73.08,
+  "t1": 76.12,
+  "w": [
+   [
+    "Bar",
+    73.18
+   ],
+   [
+    "the",
+    73.42
+   ],
+   [
+    "doors!",
+    73.54
+   ],
+   [
+    "They",
+    74.46
+   ],
+   [
+    "will",
+    74.68
+   ],
+   [
+    "not",
+    74.9
+   ],
+   [
+    "take",
+    75.16
+   ],
+   [
+    "me",
+    75.38
+   ],
+   [
+    "alive.",
+    75.52
+   ]
+  ],
+  "ar": "",
+  "cap": "Bar the doors! They will not take me alive.",
+  "tag": "Dramatised: Tumanbay's words are invented. He hid here in 1517 and was taken alive and hanged at Bab Zuweila: Wikipedia"
+ },
+ {
+  "who": "tumanbay",
+  "beat": 3,
+  "say": "From the Citadel, the Ottomans answered with cannon.",
+  "bed": "out",
+  "reveal": {
+   "kind": "dark",
+   "at_word": "cannon",
+   "dur": 1.8,
+   "buzz": [
+    60,
+    40,
+    300
+   ]
+  },
+  "after": 1.8,
+  "file": "07-tumanbay-5a27e006.mp3",
+  "t0": 76.52,
+  "t1": 79.87,
+  "w": [
+   [
+    "From",
+    76.65
+   ],
+   [
+    "the",
+    76.81
+   ],
+   [
+    "Citadel,",
+    76.95
+   ],
+   [
+    "the",
+    77.77
+   ],
+   [
+    "Ottomans",
+    77.95
+   ],
+   [
+    "answered",
+    78.49
+   ],
+   [
+    "with",
+    79.07
+   ],
+   [
+    "cannon.",
+    79.31
+   ]
+  ],
+  "ar": "",
+  "cap": "From the Citadel, the Ottomans answered with cannon."
+ },
+ {
+  "who": "thevenot",
+  "beat": 3,
+  "say": "Jean de Thévenot, from France. I came in sixteen fifty-seven, a hundred and forty years after that siege, and the holes from the cannonballs were still there, mostly in the dome. Two years after my visit, the minaret fell.",
+  "bed": "soft",
+  "tag": "Thévenot (1657) saw the cannon holes, mainly in the dome: Thévenot, quoted in Herz 1899. The 1660 chronicle and the 1659 fall: Wikipedia",
+  "file": "08-thevenot-0eddcb75.mp3",
+  "t0": 81.67,
+  "t1": 96.71,
+  "w": [
+   [
+    "Jean",
+    81.83
+   ],
+   [
+    "de",
+    82.17
+   ],
+   [
+    "Thévenot,",
+    82.33
+   ],
+   [
+    "from",
+    82.93
+   ],
+   [
+    "France.",
+    83.15
+   ],
+   [
+    "I",
+    84.49
+   ],
+   [
+    "came",
+    84.63
+   ],
+   [
+    "in",
+    84.97
+   ],
+   [
+    "sixteen",
+    85.19
+   ],
+   [
+    "fifty-seven,",
+    85.83
+   ],
+   [
+    "a",
+    86.93
+   ],
+   [
+    "hundred",
+    87.03
+   ],
+   [
+    "and",
+    87.41
+   ],
+   [
+    "forty",
+    87.61
+   ],
+   [
+    "years",
+    87.93
+   ],
+   [
+    "after",
+    88.39
+   ],
+   [
+    "that",
+    88.71
+   ],
+   [
+    "siege,",
+    88.95
+   ],
+   [
+    "and",
+    89.61
+   ],
+   [
+    "the",
+    89.73
+   ],
+   [
+    "holes",
+    89.85
+   ],
+   [
+    "from",
+    90.21
+   ],
+   [
+    "the",
+    90.35
+   ],
+   [
+    "cannonballs",
+    90.49
+   ],
+   [
+    "were",
+    91.11
+   ],
+   [
+    "still",
+    91.31
+   ],
+   [
+    "there,",
+    91.61
+   ],
+   [
+    "mostly",
+    92.21
+   ],
+   [
+    "in",
+    92.57
+   ],
+   [
+    "the",
+    92.67
+   ],
+   [
+    "dome.",
+    92.79
+   ],
+   [
+    "Two",
+    93.93
+   ],
+   [
+    "years",
+    94.17
+   ],
+   [
+    "after",
+    94.59
+   ],
+   [
+    "my",
+    94.85
+   ],
+   [
+    "visit,",
+    95.03
+   ],
+   [
+    "the",
+    95.55
+   ],
+   [
+    "minaret",
+    95.71
+   ],
+   [
+    "fell.",
+    96.33
+   ]
+  ],
+  "ar": "",
+  "cap": "Jean de Thévenot, from France. I came in sixteen fifty-seven, a hundred and forty years after that siege, and the holes from the cannonballs were still there, mostly in the dome. Two years after my visit, the minaret fell."
+ },
+ {
+  "who": "herz",
+  "beat": 4,
+  "say": "Whether the cannon brought it down, nobody can say. Twelve years after the fall, builders raised the smaller minaret you see, with a single head. And they gave the tomb a new dome, in a different shape from the first.",
+  "bed": "up",
+  "tag": "Rebuilt 1671–72 with a smaller minaret and a new dome: Wikipedia. 'Nobody can say' is our reading",
+  "look": {
+   "dur": 5,
+   "cue": "Find the smaller, newer minaret with its single head.",
+   "element": "The rebuilt minaret"
+  },
+  "file": "09-herz-39042861.mp3",
+  "t0": 97.11,
+  "t1": 112.47,
+  "w": [
+   [
+    "Whether",
+    97.19
+   ],
+   [
+    "the",
+    97.45
+   ],
+   [
+    "cannon",
+    97.61
+   ],
+   [
+    "brought",
+    97.95
+   ],
+   [
+    "it",
+    98.17
+   ],
+   [
+    "down,",
+    98.33
+   ],
+   [
+    "nobody",
+    99.23
+   ],
+   [
+    "can",
+    99.59
+   ],
+   [
+    "say.",
+    99.85
+   ],
+   [
+    "Twelve",
+    100.95
+   ],
+   [
+    "years",
+    101.25
+   ],
+   [
+    "after",
+    101.59
+   ],
+   [
+    "the",
+    101.79
+   ],
+   [
+    "fall,",
+    101.95
+   ],
+   [
+    "builders",
+    102.91
+   ],
+   [
+    "raised",
+    103.41
+   ],
+   [
+    "the",
+    103.83
+   ],
+   [
+    "smaller",
+    104.05
+   ],
+   [
+    "minaret",
+    104.41
+   ],
+   [
+    "you",
+    104.87
+   ],
+   [
+    "see,",
+    105.07
+   ],
+   [
+    "with",
+    105.83
+   ],
+   [
+    "a",
+    105.97
+   ],
+   [
+    "single",
+    106.15
+   ],
+   [
+    "head.",
+    106.59
+   ],
+   [
+    "And",
+    107.69
+   ],
+   [
+    "they",
+    107.81
+   ],
+   [
+    "gave",
+    107.99
+   ],
+   [
+    "the",
+    108.23
+   ],
+   [
+    "tomb",
+    108.39
+   ],
+   [
+    "a",
+    109.09
+   ],
+   [
+    "new",
+    109.27
+   ],
+   [
+    "dome,",
+    109.67
+   ],
+   [
+    "in",
+    110.69
+   ],
+   [
+    "a",
+    110.79
+   ],
+   [
+    "different",
+    110.89
+   ],
+   [
+    "shape",
+    111.25
+   ],
+   [
+    "from",
+    111.57
+   ],
+   [
+    "the",
+    111.73
+   ],
+   [
+    "first.",
+    111.89
+   ]
+  ],
+  "ar": "",
+  "cap": "Whether the cannon brought it down, nobody can say. Twelve years after the fall, builders raised the smaller minaret you see, with a single head. And they gave the tomb a new dome, in a different shape from the first."
+ },
+ {
+  "who": "herz",
+  "beat": 5,
+  "say": "So this pair tells two times at once. And the double head did come back, a century and a half after Hasan, on Sultan al-Ghuri's minaret at al-Azhar. Find it: the top of the original minaret.",
+  "tag": "The double head on al-Ghuri's minaret at al-Azhar: Wikipedia; 1509–10",
+  "reveal": {
+   "kind": "wipe",
+   "cue": "Hold it up to the minarets: then and now",
+   "then": "stage/then-ch02.jpg",
+   "thenCap": "1867–99 · Bonfils, Library of Congress",
+   "now": "stage/now-ch02.jpg",
+   "nowCap": "Today · Sohilaali869, public domain",
+   "dur": 10
+  },
+  "after": 3.0,
+  "file": "10-herz-5eab26f3.mp3",
+  "t0": 112.87,
+  "t1": 128.07,
+  "w": [
+   [
+    "So",
+    112.95
+   ],
+   [
+    "this",
+    113.11
+   ],
+   [
+    "pair",
+    113.33
+   ],
+   [
+    "tells",
+    113.59
+   ],
+   [
+    "two",
+    113.95
+   ],
+   [
+    "times",
+    114.19
+   ],
+   [
+    "at",
+    114.55
+   ],
+   [
+    "once.",
+    114.75
+   ],
+   [
+    "And",
+    116.29
+   ],
+   [
+    "the",
+    116.39
+   ],
+   [
+    "double",
+    116.51
+   ],
+   [
+    "head",
+    116.75
+   ],
+   [
+    "did",
+    116.99
+   ],
+   [
+    "come",
+    117.21
+   ],
+   [
+    "back,",
+    117.41
+   ],
+   [
+    "a",
+    118.53
+   ],
+   [
+    "century",
+    118.65
+   ],
+   [
+    "and",
+    119.05
+   ],
+   [
+    "a",
+    119.17
+   ],
+   [
+    "half",
+    119.25
+   ],
+   [
+    "after",
+    119.71
+   ],
+   [
+    "Hasan,",
+    119.95
+   ],
+   [
+    "on",
+    121.01
+   ],
+   [
+    "Sultan",
+    121.27
+   ],
+   [
+    "al-Ghuri's",
+    121.75
+   ],
+   [
+    "minaret",
+    122.41
+   ],
+   [
+    "at",
+    123.41
+   ],
+   [
+    "al-Azhar.",
+    123.63
+   ],
+   [
+    "Find",
+    125.53
+   ],
+   [
+    "it:",
+    125.79
+   ],
+   [
+    "the",
+    126.63
+   ],
+   [
+    "top",
+    126.77
+   ],
+   [
+    "of",
+    126.95
+   ],
+   [
+    "the",
+    127.05
+   ],
+   [
+    "original",
+    127.17
+   ],
+   [
+    "minaret.",
+    127.63
+   ]
+  ],
+  "ar": "",
+  "cap": "So this pair tells two times at once. And the double head did come back, a century and a half after Hasan, on Sultan al-Ghuri's minaret at al-Azhar. Find it: the top of the original minaret."
+ },
+ {
+  "who": "thevenot",
+  "beat": 6,
+  "say": "And tell me… why all these windows, one above the other? A mosque has no need of them.",
+  "after": 0.8,
+  "file": "11-thevenot-2c11f00c.mp3",
+  "t0": 131.07,
+  "t1": 136.43,
+  "w": [
+   [
+    "And",
+    131.19
+   ],
+   [
+    "tell",
+    131.31
+   ],
+   [
+    "me…",
+    131.53
+   ],
+   [
+    "why",
+    132.15
+   ],
+   [
+    "all",
+    132.39
+   ],
+   [
+    "these",
+    132.53
+   ],
+   [
+    "windows,",
+    132.77
+   ],
+   [
+    "one",
+    133.57
+   ],
+   [
+    "above",
+    133.75
+   ],
+   [
+    "the",
+    134.01
+   ],
+   [
+    "other?",
+    134.15
+   ],
+   [
+    "A",
+    134.97
+   ],
+   [
+    "mosque",
+    135.09
+   ],
+   [
+    "has",
+    135.51
+   ],
+   [
+    "no",
+    135.71
+   ],
+   [
+    "need",
+    135.87
+   ],
+   [
+    "of",
+    136.05
+   ],
+   [
+    "them.",
+    136.19
+   ]
+  ],
+  "ar": "",
+  "cap": "And tell me… why all these windows, one above the other? A mosque has no need of them."
+ },
+ {
+  "who": "muqbil",
+  "beat": 6,
+  "say": "Come into the lane, along my master's long wall. Keep close to it, and look up.",
+  "cap": "Come into the lane, along my master's long wall. Keep close to it, and look up.",
+  "after": 0.4,
+  "tag": "",
+  "file": "12-muqbil-49d5eee0.mp3",
+  "t0": 137.23,
+  "t1": 142.51,
+  "w": [
+   [
+    "Come",
+    137.31
+   ],
+   [
+    "into",
+    137.47
+   ],
+   [
+    "the",
+    137.73
+   ],
+   [
+    "lane,",
+    137.85
+   ],
+   [
+    "along",
+    138.41
+   ],
+   [
+    "my",
+    138.71
+   ],
+   [
+    "master's",
+    138.89
+   ],
+   [
+    "long",
+    139.43
+   ],
+   [
+    "wall.",
+    139.81
+   ],
+   [
+    "Keep",
+    140.63
+   ],
+   [
+    "close",
+    140.89
+   ],
+   [
+    "to",
+    141.21
+   ],
+   [
+    "it,",
+    141.37
+   ],
+   [
+    "and",
+    141.91
+   ],
+   [
+    "look",
+    142.13
+   ],
+   [
+    "up.",
+    142.37
+   ]
+  ],
+  "ar": ""
+ }
+]

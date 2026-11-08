@@ -1,0 +1,90 @@
+{
+ "about": "Gold line layer for ch11: real photos with the named element traced; paths are fractions of the photo. Traced by eye: validator to check each outline.",
+ "looks": [
+  {
+   "src": "hassan-r10-4.jpg",
+   "label": "The Throne Verse runs around the room",
+   "paths": [
+    {
+     "d": "M 0 .785 L 1 .785"
+    },
+    {
+     "d": "M 0 .885 L 1 .885"
+    }
+   ],
+   "tags": [
+    {
+     "at": [
+      0.5,
+      0.7
+     ],
+     "t": "the Throne Verse",
+     "side": "b"
+    }
+   ],
+   "ar": 1.5005
+  },
+  {
+   "src": "hassan-r10-2.jpg",
+   "label": "Where the square room turns into the round dome",
+   "paths": [
+    {
+     "d": "M 0.2250 0.4100 C 0.2250 0.1725 0.3481 -0.0200 0.5000 -0.0200 C 0.6519 -0.0200 0.7750 0.1725 0.7750 0.4100 C 0.7750 0.6475 0.6519 0.8400 0.5000 0.8400 C 0.3481 0.8400 0.2250 0.6475 0.2250 0.4100"
+    }
+   ],
+   "tags": [
+    {
+     "at": [
+      0.2,
+      0.86
+     ],
+     "t": "square becomes circle",
+     "side": "b"
+    }
+   ],
+   "ar": 1.3333
+  },
+  null,
+  null,
+  null
+ ],
+ "credits": [
+  {
+   "what": "The Throne Verse runs around the room",
+   "author": "Aymanrefaat09",
+   "license": "CC BY-SA 3.0 (lines added)",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:The_ceiling_of_the_back_chamber_of_Sultan_Hassan_Mosque_during_daylight.jpg"
+  },
+  {
+   "what": "Where the square room turns into the round dome",
+   "author": "R Prazeres",
+   "license": "CC BY-SA 4.0 (lines added)",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:Sultan_Hasan_mausoleum_DSCF7808.jpg"
+  },
+  {
+   "what": "The tomb chamber, section drawing, 1839 (archive view)",
+   "author": "Pascal Coste, Architecture arabe (1839), The New York Public Library",
+   "license": "Public domain",
+   "source": "https://digitalcollections.nypl.org/collections/3cf9b310-c6cf-012f-771a-58d385a7bc34"
+  }
+ ],
+ "portraits": {
+  "0": "sultan/grief",
+  "1": "maqrizi/warning",
+  "2": "yalbugha/warning"
+ },
+ "extra": [
+  {
+   "t0": 20.8,
+   "t1": 28.0,
+   "kind": "wipe",
+   "cue": "This room, drawn in 1839",
+   "then": "then-tomb.jpg",
+   "thenCap": "1839 · Pascal Coste, tomb chamber section",
+   "how": "Face the prayer niche",
+   "howSub": "This is that wall, as an architect drew it"
+  }
+ ]
+}

@@ -1,0 +1,30 @@
+{
+ "note": "Look pauses for the on-site version; on-site t = base t + sum(dur of inserts with at <= t). Made by tools/dialogue.py from dialogue/lines.json.",
+ "inserts": [
+  {
+   "at": 31.66,
+   "dur": 6.0,
+   "line": 2,
+   "element": "The long wall, about 36 m",
+   "cue": "Stand close to the wall and look straight up.",
+   "act": "look"
+  },
+  {
+   "at": 46.14,
+   "dur": 5.0,
+   "line": 3,
+   "element": "The muqarnas cornice",
+   "cue": "Look at the stalactite cornice along the very top.",
+   "act": "look"
+  },
+  {
+   "at": 128.35,
+   "dur": 6.0,
+   "line": 11,
+   "element": "One column of windows",
+   "cue": "Count the windows in one column: eight.",
+   "act": "look"
+  }
+ ],
+ "total_added": 17.0
+}

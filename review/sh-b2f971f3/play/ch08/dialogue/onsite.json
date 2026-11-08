@@ -1,0 +1,22 @@
+{
+ "note": "Look pauses for the on-site version; on-site t = base t + sum(dur of inserts with at <= t). Made by tools/dialogue.py from dialogue/lines.json.",
+ "inserts": [
+  {
+   "at": 31.19,
+   "dur": 5.0,
+   "line": 2,
+   "element": "The side iwans",
+   "cue": "Look at the three plain side halls.",
+   "act": "look"
+  },
+  {
+   "at": 41.27,
+   "dur": 6.0,
+   "line": 3,
+   "element": "A corner doorway",
+   "cue": "Find a corner doorway with striped stone.",
+   "act": "look"
+  }
+ ],
+ "total_added": 11.0
+}

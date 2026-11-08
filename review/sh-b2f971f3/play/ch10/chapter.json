@@ -1,0 +1,159 @@
+{
+ "id": "ch10",
+ "n": 10,
+ "title": "The great hall",
+ "place": "the courtyard edge, then inside the qibla iwan (the great hall facing Mecca), facing the prayer niche.",
+ "mix": "dialogue/mix.mp3",
+ "lines": "dialogue/lines.json",
+ "speakers": {
+  "narrator": "Narrator",
+  "maqrizi": "al-Maqrizi",
+  "muqbil": "Muqbil",
+  "sultan": "Sultan Hasan",
+  "herz": "Max Herz"
+ },
+ "shots": [],
+ "quiz": [
+  {
+   "q": "What cost a hundred thousand dirhams, according to the sultan?",
+   "options": [
+    "The marble floor",
+    "The timber frame for the great arch",
+    "The bronze door"
+   ],
+   "correct": 1
+  }
+ ],
+ "onsite": {
+  "stand": "on the carpet at the north-east side of the great hall facing Mecca (the qibla iwan), the raised platform (dikka) ahead of you and the prayer niche to your left. UNVERIFIED: mark to be checked on site (3D guide v12)."
+ },
+ "next": "Come through the door to the left of the prayer niche. Softly. That room was built for me.",
+ "modes": {
+  "home": {
+   "mix": "dialogue/mix.mp3"
+  },
+  "site": {
+   "mix": "dialogue/mix-onsite.mp3",
+   "inserts": "dialogue/onsite.json",
+   "stage": {
+    "reveals": [
+     {
+      "t0": 10.0,
+      "t1": 15.0,
+      "kind": "still",
+      "cue": "al-Maqrizi",
+      "label": "Taqi al-Din al-Maqrizi · historian of Cairo, 1364–1442 · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/maqrizi.jpg"
+     },
+     {
+      "t0": 31.76,
+      "t1": 36.76,
+      "kind": "still",
+      "cue": "Muqbil",
+      "label": "Muqbil al-Shami · palace eunuch, al-Maqrizi's informant · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/muqbil.jpg"
+     },
+     {
+      "t0": 84.79,
+      "t1": 89.79,
+      "kind": "still",
+      "cue": "Sultan Hasan",
+      "label": "al-Nasir Hasan · sultan, 1347–51 and 1354–61 · face imagined",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance",
+      "src": "dialogue/stills/sultan.jpg"
+     },
+     {
+      "kind": "wipe",
+      "cue": "Hold it up to the great hall: then and now",
+      "then": "stage/then-ch10.jpg",
+      "thenCap": "c.1875 · photochrom, NYPL",
+      "now": "stage/now-ch10.jpg",
+      "nowCap": "Today · Mohamed abdelzaher, CC BY-SA 4.0 (modified)",
+      "t0": 90.79,
+      "t1": 101.79
+     },
+     {
+      "t0": 101.79,
+      "t1": 104.79,
+      "kind": "still",
+      "cue": "Max Herz",
+      "label": "Max Herz · chief architect of the Comité, surveyed the mosque in 1899",
+      "quiet": true,
+      "why": "a person the eye cannot see: portrait on first entrance"
+     }
+    ]
+   }
+  }
+ },
+ "status": "dialogue edition, draft: historical people speak, the narrator sets the scene; on-site only",
+ "lineTags": {
+  "1": "al-Maqrizi, Khitat, his own words",
+  "2": "'The iwan of Sultan Hasan's mosque is not actually as large': Wikipedia",
+  "3": "The Kufic band on a vegetal arabesque, unique in Mamluk architecture, text from Surat al-Fath: Wikipedia",
+  "4": "The mihrab's marble, the sunrise motif radiating from the word 'Allah', the minbar's bronze doors: Wikipedia",
+  "5": "How centring works: general building practice, stated as such. The 100,000 dirhams: Muqbil's report in al-Maqrizi, Khitat",
+  "6": "Dramatised: the Khitat has 'I heard the sultan say' (Muqbil, reported by al-Maqrizi); 'myself' is a paraphrase",
+  "8": "al-Maqrizi, Khitat, read with Herz's 1899 French translation",
+  "9": "al-Maqrizi, Khitat, his words abridged; the full line is in chapter 3",
+  "10": "The iwan dates from 1356–63",
+  "11": "Each chain held a glass lamp; 34 enamelled lamps from the mosque were in the Arab Museum in 1899: Herz 1899",
+  "12": "Wikipedia"
+ },
+ "siteOnly": true,
+ "edition": "dialogue",
+ "_planDefault": [
+  {
+   "t": 0,
+   "x": 50.5,
+   "y": 53.5,
+   "facing": 125
+  }
+ ],
+ "credits": [
+  {
+   "what": "Portraits",
+   "author": "MEDU",
+   "license": "Faces imagined",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "no likeness of these people survives",
+   "src": "_portrait"
+  },
+  {
+   "what": "The great hall, c.1875",
+   "author": "Photoglob photochrom c.1870-75 (NYPL image 425800)",
+   "license": "Public domain",
+   "licenseUrl": null,
+   "source": "https://digitalcollections.nypl.org/items/233d22d0-c6e9-012f-a2de-58d385a7bc34",
+   "sourceName": "New York Public Library",
+   "note": "courtesy credit; cropped/resized",
+   "src": "stage/then-ch10.jpg"
+  },
+  {
+   "what": "The great hall, today",
+   "author": "Mohamed abdelzaher",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:Mosque-Madrassa_of_Sultan_Hassan_(1).jpg",
+   "sourceName": "Wikimedia Commons",
+   "note": "modified (cropped/resized)",
+   "src": "stage/now-ch10.jpg"
+  },
+  {
+   "what": "Ney bed and bell",
+   "author": "MEDU",
+   "license": "Own work",
+   "licenseUrl": null,
+   "source": null,
+   "sourceName": null,
+   "note": "synthesised",
+   "src": "_sound"
+  }
+ ]
+}
