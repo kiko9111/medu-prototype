@@ -310,19 +310,46 @@ const wv = document.createElement('div'); wv.id = 'w1way';
 wv.innerHTML = '<iframe title="The way to the next stop" allow="geolocation; accelerometer; gyroscope; magnetometer"></iframe><div class="w1waytop"><button class="x" aria-label="Close the map"><svg width="20" height="20"><use href="#close"/></svg></button><span class="w1wayhint">Needs a signal the first time; then it is stored.</span></div>';
 document.getElementById('stage').appendChild(wv);
 let wayTimer = 0, wayTarget = 0;
-function wayClose() { clearInterval(wayTimer); wv.classList.remove('on'); const f = wv.querySelector('iframe'); f.src = 'about:blank'; }
-wv.querySelector('button').onclick = wayClose;
+function wayClose() { clearInterval(wayTimer); wv.classList.remove('on'); const f = wv.querySelector('iframe'); f.src = 'about:blank'; if (typeof wa !== 'undefined') { wa.classList.remove('on'); wb.style.display = 'none'; } }
+wv.querySelector('button').onclick = () => { const arrived = wayArrived, n = wayTarget; wayClose(); if (arrived && n) openStop(n); };   // after arrival the close button leads to the stop's stand card
 function wayOpen(n) {
-  wayTarget = n; const id = 'ch' + String(n).padStart(2, '0'); const f = wv.querySelector('iframe');
+  wayTarget = n; wayArrived = false; wa.innerHTML = ''; wa.classList.remove('on'); wb.style.display = 'none'; const id = 'ch' + String(n).padStart(2, '0'); const f = wv.querySelector('iframe');
   f.src = 'guide3d/index.html#walk-' + id; wv.classList.add('on'); track('way', n);
   let walked = false; clearInterval(wayTimer);
   wayTimer = setInterval(() => {
-    let mode = '', hash = '';
-    try { const w = f.contentWindow; hash = w.location.hash; mode = w.__r && w.__r.state ? w.__r.state().mode : ''; } catch (e) { return; }
+    let mode = '', hash = '', arrived = false, holdsMark = false;
+    try { const w = f.contentWindow; hash = w.location.hash; mode = w.__r && w.__r.state ? w.__r.state().mode : ''; const wk = w.__r && w.__r.__walk ? w.__r.__walk() : null; arrived = !!(wk && wk.arrived); holdsMark = parseFloat((w.__r && w.__r.version) || '0') >= 11.3; } catch (e) { return; }
     if (mode === 'walk' || hash.startsWith('#walk-')) walked = true;
-    if (walked && (mode === 'stand' || hash === '#' + id)) { clearInterval(wayTimer); setTimeout(() => { wayClose(); openStop(wayTarget); }, 1900); }
+    // Arrival moment. Guide v11.3+ holds it itself: on arrival it lands on a "You are here" view (#mark-chNN) with one button,
+    // "Look from the mark", which opens the chapter view (#chNN / mode stand). The card then sits over that view, so the
+    // visitor sees the mark, and the play starts on the card's one tap. Older guides have no mark view: the card comes at once.
+    if (walked && (mode === 'stand' || hash === '#' + id || (arrived && !holdsMark))) { clearInterval(wayTimer); wayArrived = true; arrivalCard(wayTarget); return; }
+    if (holdsMark && hash.startsWith('#mark-')) {   // safety net: if the guide's own "Look from the mark" button is off-screen (seen at 412 px wide, 8 Nov), offer "Begin stop N" here
+      let reach = true; try { const en = f.contentWindow.document.getElementById('enter'); const r = en && en.getBoundingClientRect(); reach = !!(r && r.width > 40 && r.left >= 0 && r.right <= f.contentWindow.innerWidth + 1 && r.bottom <= f.contentWindow.innerHeight + 1 && getComputedStyle(en).display !== 'none'); } catch (e) {}
+      wb.textContent = 'Begin stop ' + wayTarget; wb.style.display = reach ? 'none' : '';
+    }
   }, 400);
 }
+// Arrival moment (kareem, 8 Nov): when the guide reports arrival, the map stays in its stand view and a card over it
+// shows the stop, the stand photo and where to stand. The play starts only when the visitor taps. Before this the
+// overlay closed itself 1.9 s after arrival, so the stop's location was gone before it could be seen.
+let wayArrived = false;
+const wa = document.createElement('div'); wa.className = 'w1arrive'; wv.appendChild(wa);
+const wb = document.createElement('button'); wb.className = 'pill gold w1begin'; wb.style.display = 'none'; wv.appendChild(wb);
+function arrivalCard(n) {
+  const m = PLAYJ.chapters.find((c) => c.n === n); if (!m) { wayClose(); openStop(n); return; }
+  const st = (m.stand || '').replace(/^./, (x) => x.toUpperCase()).replace(/UNVERIFIED:.*$/s, '').trim();
+  wa.innerHTML = `<div class="w1arrow"><div class="w1arph"></div><div class="w1artxt"><div class="k">You are at the mark</div><h2>${n} · ${esc(m.title)}</h2><p>${esc(st)}</p><div class="meta">${fmt(m.siteS || 0)} of play · headphones on, then lower your phone.</div></div></div><div class="btns"><button class="pill gold" data-w1arr="begin">I'm standing here · begin</button><button class="pill quiet" data-w1arr="map">Let me look at the map first</button></div>`;
+  wb.textContent = 'Begin stop ' + n; wb.style.display = 'none'; wa.classList.add('on'); wa.scrollTop = 0;
+  buzz([40, 60, 40]);
+  loadCh(n).then((ch) => { const p = standPhoto(ch), el = wa.querySelector('.w1arph'); if (p && el && wayTarget === n) el.style.backgroundImage = `url('${url(ch.meta.dir, p)}')`; }).catch(() => {});   // the stand photo joins when loaded
+}
+wa.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-w1arr]'); if (!b) return; const n = wayTarget;
+  if (b.dataset.w1arr === 'begin') { try { track('way', n); } catch (e) {} wa.classList.remove('on'); wayClose(); openStop(n, true).then(() => au.play().catch(() => {})); }   // the existing 'way' event, as the on-site thread asked
+  else { wa.classList.remove('on'); wb.style.display = ''; }   // the map stays in its stand view; "Begin stop N" waits at the bottom
+});
+wb.onclick = () => { clearInterval(wayTimer); wayArrived = true; arrivalCard(wayTarget); };
 const origFinish2 = window.finishStop;
 window.finishStop = function () {
   const r = origFinish2.apply(this, arguments);
@@ -362,6 +389,17 @@ css.textContent = `
 .w1waytop{position:absolute;top:calc(var(--top) + 10px);left:12px;right:12px;display:flex;align-items:center;gap:10px;pointer-events:none}
 .w1waytop .x{pointer-events:auto;background:rgba(11,10,8,.7)}
 .w1wayhint{font-size:11px;color:var(--dust);background:rgba(11,10,8,.6);padding:4px 8px;border-radius:8px}
+.w1arrive{position:absolute;left:0;right:0;bottom:0;z-index:2;display:none;max-height:62%;overflow:auto;background:linear-gradient(180deg,rgba(11,10,8,0) 0%,rgba(11,10,8,.94) 40px,#0B0A08 100%);padding:40px 18px calc(env(safe-area-inset-bottom) + 16px)}
+.w1arrive.on{display:block}
+.w1arrow{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+.w1arph{flex:0 0 92px;height:92px;border-radius:12px;background:#1a1712 center/cover no-repeat;border:1px solid rgba(212,176,98,.3)}
+.w1artxt{min-width:0}
+.w1arrive .k{font:600 11px/1 var(--sans);letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
+.w1arrive h2{font:500 24px/1.15 var(--serif);color:var(--ivory);margin:0 0 6px}
+.w1arrive p{font:400 15px/1.35 var(--serif);color:var(--ivory);margin:0 0 6px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.w1arrive .meta{font-size:12px;color:var(--dust)}
+.w1arrive .btns{display:flex;flex-direction:column;gap:10px}
+.w1begin{position:absolute;left:20px;right:20px;width:auto;bottom:calc(env(safe-area-inset-bottom) + 18px);z-index:2}
 .w1prev img{display:block;width:100%;max-width:280px;margin:12px auto;border-radius:8px}
 `;
 document.head.appendChild(css);
