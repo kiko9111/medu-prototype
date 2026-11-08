@@ -60,11 +60,27 @@
    "license": "CC BY-SA 4.0 (lines added)",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
    "source": "https://commons.wikimedia.org/wiki/File:%D9%85%D8%B3%D8%AC%D8%AF_%D9%88%D9%85%D8%AF%D8%B1%D8%B3%D8%A9_%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A7%D9%86_%D8%AD%D8%B3%D9%86.jpg"
+  },
+  {
+   "what": "The long wall and the east corner, 1890s (archive view)",
+   "author": "Max Herz, La mosquée du sultan Hassan au Caire, 1899, pl. III",
+   "license": "Public domain",
+   "source": "https://archive.org/details/mosqueedusultanHassanauCaire00leca"
   }
  ],
  "portraits": {
   "0": "muqbil/speaking",
   "1": "maqrizi/speaking",
   "2": "sultan/pride"
- }
+ },
+ "extra": [
+  {
+   "t0": 110.0,
+   "t1": 124.5,
+   "kind": "wipe",
+   "cue": "The long wall, in the 1890s",
+   "then": "then-wall.jpg",
+   "thenCap": "1890s · Max Herz, 1899, pl. III"
+  }
+ ]
 }

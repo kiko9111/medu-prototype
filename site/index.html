@@ -156,6 +156,11 @@ body.big .capline{font-size:32px}
 @keyframes breathe{from{transform:scale(1) translateY(0)}to{transform:scale(1.015) translateY(-2px)}}
 #rev .lbl{padding:14px 24px calc(var(--bot) + 150px);font-size:13px;color:var(--paper);text-align:center}
 #rev .lbl b{display:block;font:600 22px/1.2 var(--serif);color:var(--ivory);margin-bottom:6px}
+/* historical grade: every archive picture and portrait in one sepia black and white; gold stays the only colour */
+#rev .media img,#rev .media video,#standPh,#trBg{filter:grayscale(1) sepia(.62) saturate(1.15) contrast(1.05) brightness(.93)}
+#rev .media::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 42%,transparent 55%,rgba(8,6,4,.62) 100%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .45 0 0 0 0 .38 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");mix-blend-mode:multiply;opacity:.55}
+#rev .media.trace::after{display:none}#rev .tbox::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,transparent 60%,rgba(8,6,4,.5) 100%)}
+#rev .then1 img{object-fit:contain!important}
 #rev .wipe{position:absolute;inset:0;touch-action:none}
 #rev .wipe img{object-fit:cover}
 #rev .wipe .then{position:absolute;inset:0;clip-path:inset(0 50% 0 0)}
@@ -387,6 +392,8 @@ async function loadCh(n) {
     if (v.looks) looks = v.looks.map((l) => l && Object.assign({ vdir }, l));
     // portrait expressions (visuals/portraits/<who>/<speaking|grief|pride|warning>.jpg), keyed by reveal index
     for (const k in (v.portraits || {})) if (reveals[k] && reveals[k].kind === 'still') reveals[k] = Object.assign({}, reveals[k], { psrc: 'visuals/portraits/' + v.portraits[k] + '.jpg' });
+    // extra archive views for stops the play gave none (every stop shows its 'then' image)
+    if (v.extra) { for (const r of v.extra) reveals.push(Object.assign({ vdir }, r)); reveals.sort((a, b) => a.t0 - b.t0); }
   } catch (e) {}
   return (CH[n] = { meta, c, lines, ins, site, reveals, looks });
 }
@@ -403,16 +410,16 @@ function baseToSite(ch, t) { let off = 0; for (const x of ch.ins) { if (x.at <= 
 function stopFiles(ch) {
   const d = ch.meta.dir, f = new Set(['chapter.json', ch.c.lines, ch.site.mix || ch.c.mix]);
   if (ch.site.inserts) f.add(ch.site.inserts);
-  for (const r of ch.reveals) for (const k of ['src', 'then', 'now']) if (r[k]) f.add(r[k]);
-  const ph = standPhoto(ch); if (ph) f.add(ph);
+  for (const r of ch.reveals) for (const k of ['src', 'then']) if (r[k]) f.add(r[k]);
   const own = new Set();
   for (const r of ch.reveals) if (r.psrc) { own.add('visuals/' + d + '.json'); own.add(r.psrc); f.delete(r.src); }
-  for (const r of [...ch.reveals, ...(ch.looks || [])]) if (r && r.vdir) { own.add('visuals/' + d + '.json'); for (const k of ['src', 'then', 'now']) if (r[k]) { own.add(r.vdir + r[k]); f.delete(r[k]); } }
+  for (const r of [...ch.reveals, ...(ch.looks || [])]) if (r && r.vdir) { own.add('visuals/' + d + '.json'); for (const k of ['src', 'then']) if (r[k]) { own.add(r.vdir + r[k]); f.delete(r[k]); } }
+  const ph = standPhoto(ch); if (ph) own.add(ph);
   return [...[...f].filter(Boolean).map((x) => url(d, x)), ...own];
 }
 function standPhoto(ch) {
-  if (ch.c.pano && ch.c.pano.src) return ch.c.pano.src;
-  const w = ch.reveals.find((r) => r.kind === 'wipe' && r.now); return w ? w.now : null;
+  // the stop's archive view: "find this view" (no photos of today; the visitor sees the real site)
+  const w = ch.reveals.find((r) => r.kind === 'wipe' && r.then); return w ? (w.vdir ? w.vdir + w.then : url(ch.meta.dir, w.then)) : null;
 }
 
 // ---------------------------------------------------------------- captions
@@ -555,7 +562,7 @@ async function creditsSheet(n) {
   const pics = [];
   if (c.credits && typeof c.credits === 'object') for (const [p, v] of Object.entries(c.credits)) { if (v && typeof v === 'object') pics.push(`<li><b>${esc(v.what || v.note || p)}</b>: ${esc(v.author || '')}${v.license ? ', ' + (v.licenseUrl ? `<a href="${esc(v.licenseUrl)}" target="_blank" rel="noopener">${esc(v.license)}</a>` : esc(v.license)) : ''}${v.source ? `, <a href="${esc(v.source)}" target="_blank" rel="noopener">${esc(v.sourceName || 'source')}</a>` : ''}</li>`); }
   else {
-    for (const r of ch.reveals) { if (r.kind === 'wipe') { pics.push(`<li>Then: ${esc(r.thenCap)}</li>`, `<li>Now: ${esc(r.nowCap)}</li>`); } else if (r.kind === 'clip' || r.kind === 'trace') pics.push(`<li>${esc(r.label)}</li>`); else if (r.kind === 'still' && r.label) pics.push(`<li>Portrait: ${esc(r.label)}</li>`); }
+    for (const r of ch.reveals) { if (r.kind === 'wipe') { pics.push(`<li>Archive view: ${esc(r.thenCap)}</li>`); } else if (r.kind === 'clip' || r.kind === 'trace') pics.push(`<li>${esc(r.label)}</li>`); else if (r.kind === 'still' && r.label) pics.push(`<li>Portrait: ${esc(r.label)}</li>`); }
     if (c.pano && c.pano.credit) pics.push(`<li>Stop photo: ${esc(c.pano.credit)}</li>`);
     try { const v = await getJSON('visuals/' + ch.meta.dir + '.json'); for (const x of (v.credits || [])) pics.push(`<li><b>${esc(x.what)}</b>: ${esc(x.author)}, ${x.licenseUrl ? `<a href="${esc(x.licenseUrl)}" target="_blank" rel="noopener">${esc(x.license)}</a>` : esc(x.license)}, <a href="${esc(x.source)}" target="_blank" rel="noopener">source</a></li>`); } catch (e) {}
   }
@@ -572,7 +579,7 @@ async function trailer() {
   show('trailer'); $('#trailer').classList.remove('done', 'go');
   try {
     trCh = await loadCh(1);
-    const ph = standPhoto(trCh); if (ph) $('#trBg').style.backgroundImage = `url("${url(trCh.meta.dir, ph)}")`;
+    const ph = standPhoto(trCh); if (ph) $('#trBg').style.backgroundImage = `url("${ph}")`;
     // cut after the first line that ends past ~50 s
     const L = trCh.lines; let end = L[L.length - 1].t1; for (const l of L) { if (l.t1 >= 50) { end = l.t1 + 0.8; break; } }
     trEnd = end; tr.src = url(trCh.meta.dir, trCh.c.mix || 'dialogue/mix.mp3'); tr.currentTime = 0; tr.volume = 1;
@@ -639,7 +646,7 @@ function standCard() {
   $('#standH').textContent = CUR.c.title;
   $('#standP').textContent = (CUR.c.onsite && CUR.c.onsite.stand) || m.stand || CUR.c.place || '';
   $('#standM').textContent = fmt(m.siteS || 0) + ' · headphones on, then lower your phone.';
-  $('#standPh').style.backgroundImage = ph ? `url("${url(m.dir, ph)}")` : 'none';
+  $('#standPh').style.backgroundImage = ph ? `url("${ph}")` : 'none';
   $('#standPh').style.display = ph ? '' : 'none';
   $('#standCard').classList.add('on');
 }
@@ -706,8 +713,9 @@ function showReveal(r) {
     rev.innerHTML = `<div class="cuebig">${esc(r.cue || '')}</div><div class="media"><video muted playsinline autoplay src="${url(d, r.src)}"></video></div><div class="lbl">${esc(r.label || '')}</div>`;
     buzz([60, 40, 60]);
   } else if (r.kind === 'wipe') {
-    rev.innerHTML = `<div class="cuebig">${esc(r.cue || '')}</div><div class="media"><div class="wipe"><img alt="Today" src="${src('now')}"><div class="then"><img alt="Then" src="${src('then')}"></div><div class="hand"></div><span class="tag" style="left:10px">${esc(r.thenCap || 'Then')}</span><span class="tag" style="right:10px">${esc(r.nowCap || 'Now')}</span></div></div><div class="lbl">Drag to compare</div>`;
-    wipeCtl(rev.querySelector('.wipe'), r.t1 - r.t0);
+    // no 'now' photo on stage: the visitor compares the archive view with the real building in front of them
+    rev.innerHTML = `<div class="cuebig">${esc((r.cue || '').replace(/[:,·-]?\s*then and now\.?\s*$/i, ''))}</div><div class="media then1"><img class="arch" alt="The same view, long ago" src="${src('then')}"><span class="tag" style="left:10px">${esc((r.thenCap || '').split('·')[0].trim())}</span></div><div class="lbl"><b>${esc(r.how || 'Stand where the photographer stood')}</b>${esc(r.howSub || 'Now look up and compare')}</div>`;
+    rev.classList.add('portrait');
     buzz([60, 40, 60]);
   }
   rev.classList.add('on');

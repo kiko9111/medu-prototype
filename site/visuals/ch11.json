@@ -60,11 +60,29 @@
    "license": "CC BY-SA 4.0 (lines added)",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
    "source": "https://commons.wikimedia.org/wiki/File:Sultan_Hasan_mausoleum_DSCF7808.jpg"
+  },
+  {
+   "what": "The tomb chamber, section drawing, 1839 (archive view)",
+   "author": "Pascal Coste, Architecture arabe (1839), The New York Public Library",
+   "license": "Public domain",
+   "source": "https://digitalcollections.nypl.org/collections/3cf9b310-c6cf-012f-771a-58d385a7bc34"
   }
  ],
  "portraits": {
   "0": "sultan/grief",
   "1": "maqrizi/warning",
   "2": "yalbugha/warning"
- }
+ },
+ "extra": [
+  {
+   "t0": 20.8,
+   "t1": 28.0,
+   "kind": "wipe",
+   "cue": "This room, drawn in 1839",
+   "then": "then-tomb.jpg",
+   "thenCap": "1839 · Pascal Coste, tomb chamber section",
+   "how": "Face the prayer niche",
+   "howSub": "This is that wall, as an architect drew it"
+  }
+ ]
 }
