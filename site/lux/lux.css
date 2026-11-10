@@ -1,0 +1,363 @@
+/* Medu · the luxury layer: "the folio and the thread".
+   Loaded after the app's own styles. Everything is scoped under .lux (set on <html> by lux.js),
+   so the app underneath keeps working if this file is missing.
+   House lights: .lx-paper = ink on paper (outdoor scenes while the sun is up), .lx-night = gold on night stone. */
+
+:root{
+  --lx-leaf:linear-gradient(104deg,#8f6e2c 0%,#c9a455 14%,#f3e2a9 31%,#d4b062 46%,#a17d36 63%,#dcbd72 80%,#f0dd9f 92%,#b8923f 100%);
+  --lx-grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .25 0 0 0 0 .12 0 0 0 .13 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --lx-ease:cubic-bezier(.22,.7,.2,1);
+}
+.lux{
+  --serif:"Cormorant Garamond","Amiri",Georgia,serif;
+  --lx-page:radial-gradient(90% 60% at 40% 30%,#1b1610 0%,#0d0b08 60%,#0B0A08 100%);
+  --lx-solid:#0B0A08; --lx-soft:rgba(239,231,216,.78); --lx-rule:rgba(212,176,98,.42); --lx-line2:rgba(239,231,216,.16);
+  --lx-wash:rgba(212,176,98,.06); --lx-dim:.62;
+}
+/* paper: the same names the app already uses, turned to ink on paper */
+.lux.lx-paper :is(#walk,#stage,#finale,#sheet,#toast,#veil){
+  --night:#ECDEC0; --night2:#E9DABA; --night3:#DFCFAA; --ivory:#2b1d12; --gold:#7a5c1e; --dust:#6d5840; --paper:#3A281A;
+  --line:rgba(58,40,26,.17);
+  --lx-page:radial-gradient(120% 70% at 16% 4%,rgba(255,250,236,.85),rgba(255,250,236,0) 62%),radial-gradient(130% 100% at 50% 46%,rgba(0,0,0,0) 58%,rgba(96,64,26,.2) 100%),#ECDEC0;
+  --lx-solid:#ECDEC0; --lx-soft:rgba(58,40,26,.86); --lx-rule:rgba(58,40,26,.4); --lx-line2:rgba(58,40,26,.2);
+  --lx-wash:rgba(58,40,26,.05); --lx-dim:.86;
+  color:var(--ivory); color-scheme:light;
+}
+.lux.lx-paper #w1way{ --night:#0B0A08; --night2:#15130F; --night3:#1F1C17; --ivory:#EFE7D8; --gold:#D4B062; --dust:#9A958B; --paper:#ECDEC0; --line:rgba(239,231,216,.12); color:var(--ivory); color-scheme:dark }
+
+/* ------------------------------------------------------------------ shared pieces */
+.lux .lx-eyebrow{font:600 10.5px/1.2 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin:0}
+.lux .lx-leaf{background:var(--lx-leaf);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lux .mark{font:600 12px/1 var(--serif);letter-spacing:.4em;color:var(--gold);display:inline-flex;align-items:center}
+.lux .mark svg{margin-right:10px;vertical-align:0}
+.lux.lx-night{color-scheme:dark}.lux.lx-paper{color-scheme:light}
+.lux :is(#walk,#stage,#finale){background:var(--lx-page)}
+.lux :is(#walk,#stage,#finale)::after{content:"";position:absolute;inset:0;z-index:12;pointer-events:none;background-image:var(--lx-grain);mix-blend-mode:screen;opacity:.3}
+.lux.lx-paper :is(#walk,#stage,#finale)::after{mix-blend-mode:multiply;opacity:.55}
+.lux .screen.on{animation:lx-screen .7s var(--lx-ease) both}
+@keyframes lx-screen{from{opacity:0}to{opacity:1}}
+
+/* buttons: squared, small capitals; one leaf button per screen */
+.lux .pill{border-radius:2px;min-height:56px;padding:10px 20px;font:600 11.5px/1.5 var(--sans);letter-spacing:.2em;text-transform:uppercase;text-align:center;text-decoration:none}
+.lux .pill.gold{background:var(--lx-leaf);color:#17120a;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -1px 0 rgba(80,50,10,.35),0 12px 26px rgba(0,0,0,.34)}
+.lux.lx-paper :is(#walk,#stage,#finale,#sheet) .pill.gold{box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 0 0 1px rgba(58,40,26,.55),0 10px 22px rgba(74,48,16,.26)}
+.lux .pill.ghost{border:1px solid var(--lx-rule);color:var(--gold);background:transparent}
+.lux .pill.quiet{min-height:44px;font-weight:600;font-size:10.5px;letter-spacing:.24em;color:var(--dust)}
+.lux .pill svg{flex:none}
+.lux .x{background:transparent;border:1px solid var(--line);color:var(--ivory);width:42px;height:42px}
+.lux .small{color:var(--dust)}
+.lux:not(.lx-review) .verify{display:none}
+.lux .verify{color:#b0711c;font-size:11.5px;letter-spacing:.02em}
+.lux.lx-night .verify{color:#E8B86A}
+
+/* ------------------------------------------------------------------ the cover: the door */
+.lux #home{background:#0B0A08;color:#EFE7D8}
+.lux #home .cv-bg{position:absolute;inset:0;background:#0B0A08 url(img/cover.jpg) 50% 34%/cover no-repeat;animation:lx-cover 2.6s var(--lx-ease) both}
+@keyframes lx-cover{from{opacity:0;transform:scale(1.05)}to{opacity:1;transform:none}}
+.lux #home .cv-glow{position:absolute;inset:0;background:radial-gradient(60% 30% at 62% 20%,rgba(255,226,160,.22),rgba(255,226,160,0) 100%);mix-blend-mode:screen;pointer-events:none}
+.lux #home .cv-scrim{position:absolute;inset:0;background:radial-gradient(90% 30% at 50% 0%,rgba(11,10,8,.66),rgba(11,10,8,0) 100%);pointer-events:none}
+.lux #home .scroll{position:relative;z-index:1}
+.lux #home .cv-in{min-height:100%;display:flex;flex-direction:column;justify-content:space-between;max-width:560px;margin:0 auto}
+.lux .cv-lock{display:flex;flex-direction:column;align-items:center;gap:9px;color:#D4B062;padding-top:calc(var(--top) + 30px)}
+.lux .cv-lock b{font:600 13px/1 var(--serif);letter-spacing:.44em;padding-left:.44em;color:rgba(239,231,216,.96)}
+.lux .cv-foot{position:relative;padding:30vh 30px calc(var(--bot) + 20px)}
+.lux .cv-foot::before{content:"";position:absolute;left:0;right:0;bottom:0;top:calc(30vh - 190px);z-index:-1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(11,10,8,0) 0,rgba(11,10,8,.6) 120px,rgba(11,10,8,.9) 230px,rgba(11,10,8,.985) 360px,#0B0A08 100%)}
+.lux .cv-foot .lx-eyebrow{color:#ecd391;text-shadow:0 0 14px rgba(11,10,8,.95),0 1px 3px rgba(11,10,8,.9)}
+.lux .cv-title{display:flex;align-items:flex-end;justify-content:space-between;margin-top:16px;font-size:clamp(60px,19.9vw,86px)}
+.lux #home .cv-title h1{font:600 1em/.86 var(--serif);letter-spacing:-.012em;margin:0;padding-bottom:6px;text-shadow:none}
+.lux .cv-title h1 span,.lux .cv-ar span{display:block}
+.lux #home .cv-ar{font:700 .427em/2.014 var(--ar);direction:rtl;text-align:right;margin:0;white-space:nowrap;opacity:.96;color:transparent;text-shadow:none}
+.lux .cv-rule{height:1px;margin:20px 0 16px;background:linear-gradient(90deg,rgba(212,176,98,.9),rgba(212,176,98,.25) 70%,rgba(212,176,98,0))}
+.lux #home .cv-lede{font:500 19px/1.32 var(--serif);color:rgba(239,231,216,.92);letter-spacing:.005em;margin:0;max-width:none;text-shadow:none}
+.lux .cv-lede i{font-style:italic;color:rgba(239,231,216,.7)}
+.lux .lx-btn{margin-top:22px;min-height:58px;width:100%;border-radius:2px;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:8px 22px 8px 24px;text-align:left;
+  background:var(--lx-leaf);color:#17120a;font:600 12.5px/1.4 var(--sans);letter-spacing:.2em;text-transform:uppercase;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -1px 0 rgba(80,50,10,.35),0 14px 30px rgba(0,0,0,.45);transition:transform .15s}
+.lux .lx-btn:active{transform:scale(.985)}
+.lux .lx-btn svg{width:26px;height:10px;flex:none}
+.lux .cv-dl{position:relative;overflow:hidden;margin-top:10px;width:100%;min-height:46px;border-radius:2px;border:1px solid rgba(212,176,98,.55);display:flex;align-items:center;justify-content:center;padding:6px 16px;
+  font:600 10.5px/1.5 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#e6cd8c;background:rgba(11,10,8,.35);text-align:center}
+.lux .cv-dl .bar{position:absolute;left:0;top:0;bottom:0;width:0;background:rgba(212,176,98,.22);transition:width .3s}
+.lux .cv-dl span{position:relative}
+.lux .cv-links{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-top:16px}
+.lux .cv-links button{min-height:34px;font:600 10.5px/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:rgba(239,231,216,.9);text-align:left}
+.lux .cv-links button span,.lux .cv-links button{text-decoration:underline;text-decoration-color:rgba(212,176,98,.7);text-underline-offset:6px;text-decoration-thickness:1px}
+.lux .cv-note{margin:16px 0 0;font:400 12px/1.5 var(--sans);color:rgba(239,231,216,.66)}
+.lux .cv-note b{font-weight:600;color:rgba(239,231,216,.9)}
+.lux .cv-note.rehearsal{color:#e6cd8c}
+.lux .cv-credit{margin:10px 0 0;font:400 10px/1.4 var(--sans);letter-spacing:.04em;color:rgba(239,231,216,.5)}
+
+/* ------------------------------------------------------------------ the trailer */
+.lux #trailer .cap{bottom:calc(var(--bot) + 96px);padding:0 28px;text-align:left}
+.lux #trailer .end h2{font:600 38px/1.02 var(--serif);letter-spacing:-.005em}
+.lux #trailer .end p{font:500 19px/1.36 var(--serif)}
+
+/* ------------------------------------------------------------------ the programme */
+.lux #walk header{padding:calc(var(--top) + 18px) 20px 10px 22px;border-bottom:0;background:transparent;position:relative;z-index:3}
+.lux .status{font:600 9.5px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--dust);margin-left:auto;margin-right:14px}
+.lux .dot{width:6px;height:6px;background:var(--lx-rule)}
+.lux .dot.ok{background:#3f9a72}
+.lux #walk .wrap{padding:0 22px;position:relative}
+.lux .w1strip{font:400 12.5px/1.45 var(--sans);color:var(--lx-soft);background:var(--lx-wash);border:1px solid var(--line);border-radius:2px;padding:10px 14px;margin:2px 0 4px}
+.lux .w1strip.hold{background:rgba(212,176,98,.16);border-color:var(--lx-rule);color:var(--ivory)}
+.lux .w1strip b{color:var(--ivory)}
+/* the whole sheet fits above the button on any phone: its width follows the height that is left */
+.lux .lx-sheet{position:relative;left:50%;transform:translateX(-50%);width:min(calc(100% + 44px),max(276px,calc((100vh - 268px) * .5069)));width:min(calc(100% + 44px),max(276px,calc((100dvh - 268px) * .5069)));container-type:inline-size}
+.lux .lx-sheet svg{display:block;width:100%;height:auto;overflow:visible}
+.lux .lx-sheet .tb{position:absolute;left:6.6%;top:70.4%;width:42%}
+.lux .lx-sheet .tb .lx-eyebrow{white-space:nowrap}
+.lux #walk .lx-sheet h2{font:600 33px/.98 var(--serif);font-size:max(22px,8cqw);letter-spacing:-.008em;margin:12px 0 0;color:var(--ivory);text-wrap:balance}
+.lux #walk .lx-subcap{font:500 15px/1.3 var(--serif);font-style:italic;color:var(--lx-soft);text-align:center;margin:12px 0 0;text-wrap:balance}
+.lux .lx-sheet .scale{position:absolute;left:6.6%;top:92.4%;width:20.15%}
+.lux .lx-sheet .scale div{display:flex;justify-content:space-between;font:500 8.5px/1 var(--sans);letter-spacing:.08em;margin-bottom:4px;color:var(--lx-soft)}
+.lux .lx-sheet .scale i{display:block;height:5px;border:1px solid var(--paper);border-top:0;background:linear-gradient(90deg,var(--paper) 0 20%,transparent 20% 40%,var(--paper) 40% 60%,transparent 60% 80%,var(--paper) 80% 100%);background-size:100% 2px;background-repeat:no-repeat;background-position:0 100%}
+.lux .lx-sheet .rose{position:absolute;left:77.5%;top:71.3%;width:17.2%;height:auto;color:var(--paper)}
+.lux .lx-sheet .cred{position:absolute;right:6.6%;top:82.8%;white-space:nowrap;text-align:right;font:400 9px/1.5 var(--sans);letter-spacing:.03em;color:var(--dust)}
+@container (max-width:300px){.lux .lx-sheet .cred{font-size:8.5px}}
+.lux .lx-plan text{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700}
+.lux .lx-plan .lbl{font-family:Inter,system-ui,sans-serif;font-weight:600;letter-spacing:.24em;text-transform:uppercase;fill:var(--lx-soft)}
+.lux .lx-plan .hit{fill:transparent;cursor:pointer}
+.lux .lx-plan .ink{opacity:.92}
+.lux .lx-plan .thread{stroke-dasharray:1;stroke-dashoffset:0}
+.lux .lx-plan.draw .thread{animation:lx-thread 2.6s .2s var(--lx-ease) both}
+@keyframes lx-thread{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.lux .lx-plan .pulse{transform-box:fill-box;transform-origin:center;animation:lx-pulse 2.4s ease-in-out infinite}
+@keyframes lx-pulse{0%,100%{opacity:.75;transform:scale(1)}50%{opacity:.15;transform:scale(1.35)}}
+.lux .progress{display:none}
+.lux .lx-listk{display:flex;align-items:center;gap:12px;margin:26px 0 4px}
+.lux .lx-listk::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--lx-rule),transparent)}
+.lux .zone{font:600 9.5px/1 var(--sans);letter-spacing:.28em;color:var(--dust);margin:20px 0 6px}
+.lux .stop{gap:14px;padding:15px 0;border-top:1px solid var(--line);align-items:center}
+.lux .stop .n{width:34px;height:34px;border:1px solid var(--lx-rule);font:600 13px/1 var(--serif);letter-spacing:.02em;color:var(--dust);background:transparent}
+.lux .stop.done .n{background:transparent;border-color:var(--gold);color:var(--gold)}
+.lux .stop.cur .n{background:var(--lx-leaf);border-color:transparent;color:#17120a;box-shadow:0 0 0 4px rgba(212,176,98,.18)}
+.lux .stop .t b{font:600 22px/1.12 var(--serif);letter-spacing:-.003em}
+.lux .stop .t span{font-size:12.5px;line-height:1.42;color:var(--dust)}
+.lux .stop .t span.st{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.lux .stop.cur .t span.st{color:var(--lx-soft);-webkit-line-clamp:4}
+.lux .stop .go{display:none}
+.lux .stop .th{flex:none;width:52px;height:52px;object-fit:cover;border-radius:1px;box-shadow:0 0 0 1px var(--lx-rule)}
+.lux.lx-night .stop .th{filter:brightness(.8) sepia(.2)}
+.lux .walkline{margin:-1px 0 0 16px;border-left:1px dotted var(--gold);padding:5px 0 5px 31px;font:600 9px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--dust)}
+.lux #walk .wrap>p.small{font-size:12px;line-height:1.5;margin:22px 0 40px!important}
+.lux #walk .scroll{-webkit-mask-image:linear-gradient(180deg,#000 0,#000 calc(100% - 22px),transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 calc(100% - 22px),transparent 100%)}
+.lux .lx-foot{flex:none;position:relative;z-index:3;width:100%;max-width:560px;margin:0 auto;padding:2px 22px calc(var(--bot) + 14px)}
+.lux #wkResume{margin:0!important;justify-content:space-between;text-align:left;padding:8px 22px 8px 24px}
+.lux #wkResume svg{display:none}
+.lux #wkResume{text-wrap:balance}
+.lux #wkResume::after{content:"";flex:none;width:26px;height:10px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 10'%3E%3Cpath d='M0 5h24M19.5 .8 24.4 5l-4.9 4.2' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 10'%3E%3Cpath d='M0 5h24M19.5 .8 24.4 5l-4.9 4.2' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") center/contain no-repeat}
+
+/* ------------------------------------------------------------------ the stage */
+.lux #stage{--lx-head:calc(var(--top) + 88px)}
+.lux #stage .top{z-index:9;padding:calc(var(--top) + 14px) 16px 0 20px;gap:10px;align-items:center}
+.lux #stage .top .ttl,.lux #stList{display:none}
+.lux .lx-loc{flex:1;min-width:0;display:flex;align-items:center;gap:13px;text-align:left;min-height:48px}
+.lux .lx-glyph{flex:none;position:relative;width:26px;height:51px;border:1px solid var(--lx-rule);border-radius:2px;background:var(--lx-wash)}
+.lux .lx-glyph .g{position:absolute;left:3px;right:3px;top:3px;height:calc((100% - 6px) * .702);background:var(--gold);opacity:.8;-webkit-mask:url(img/plan-glyph.png) 0 0/100% 100% no-repeat;mask:url(img/plan-glyph.png) 0 0/100% 100% no-repeat}
+.lux .lx-glyph .d{position:absolute;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;border-radius:50%;background:#fff3c8;box-shadow:0 0 0 2px var(--lx-solid),0 0 9px 3px rgba(240,216,144,.9);transition:left 1.2s var(--lx-ease),top 1.2s var(--lx-ease)}
+.lux.lx-paper .lx-glyph .d{background:#b28a3a;box-shadow:0 0 0 1.5px #2b1d12,0 0 0 4px rgba(236,222,192,.9)}
+.lux .lx-glyph .dd{position:absolute;left:3px;right:3px;top:3px;bottom:3px}
+.lux .lx-loc .t{flex:1;min-width:0}
+.lux .lx-loc .t b{display:block;font:600 9.5px/1.25 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+.lux .lx-loc .t span{display:block;margin-top:5px;font:600 21px/1.05 var(--serif);color:var(--ivory);letter-spacing:.003em;text-wrap:balance}
+.lux .lx-loc .t span.long{font-size:17.5px;line-height:1.1}
+.lux .lx-loc .t em{display:block;margin-top:3px;font:500 14px/1.15 var(--serif);font-style:italic;color:var(--lx-soft)}
+.lux .lx-loc .t em:empty{display:none}
+.lux .lx-ticks{position:relative;z-index:9;display:grid;grid-template-columns:repeat(12,1fr);gap:4px;padding:11px 20px 0}
+.lux .lx-ticks i{height:2px;background:var(--lx-line2)}
+.lux .lx-ticks i.done{background:var(--gold)}
+.lux .lx-ticks i.now{background:linear-gradient(90deg,var(--gold) calc(var(--p,0) * 100%),var(--lx-line2) calc(var(--p,0) * 100%));box-shadow:0 0 0 .5px var(--lx-rule)}
+
+/* the scene's picture: an engraved plate on the mark, stone and sun when the curtain rises */
+.lux .lx-art{position:absolute;left:0;right:0;top:calc(var(--top) + 96px);height:44%;z-index:2;pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;opacity:0;transition:opacity 1.2s ease}
+.lux .lx-art .fr{position:relative;flex:none;transition:transform 2.4s var(--lx-ease),box-shadow 1.6s ease}
+.lux .lx-art img{position:absolute;inset:0;width:100%;height:100%;display:block;transition:opacity 1.9s ease}
+/* the plate is a framed print; the stone has no frame and melts into the page at its edges */
+.lux .lx-art .st{opacity:0;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 84%,transparent 100%),linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 84%,transparent 100%),linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);mask-composite:intersect}
+.lux .lx-art.cut .st{-webkit-mask-image:linear-gradient(180deg,#000 0,#000 84%,transparent 100%),linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 84%,transparent 100%),linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%)}
+.lux .lx-art:not(.cut) .fr{box-shadow:0 0 0 1px var(--lx-rule),0 14px 34px rgba(0,0,0,.22)}
+.lux .lx-art .cap{flex:none;margin:9px 22px 0;font:400 9.5px/1.4 var(--sans);letter-spacing:.04em;color:var(--dust);text-align:center;transition:opacity .8s}
+.lux #stage.lx-atmark .lx-art,.lux #stage.lx-rising .lx-art{opacity:1}
+.lux #stage.lx-rising .lx-art .st,.lux #stage.lx-playing .lx-art .st{opacity:1}
+.lux #stage.lx-rising .lx-art .pl,.lux #stage.lx-playing .lx-art .pl{opacity:0}
+.lux #stage.lx-rising .lx-art .fr,.lux #stage.lx-playing .lx-art .fr{transform:scale(1.025);box-shadow:0 0 0 1px transparent,0 14px 34px transparent}
+.lux #stage.lx-playing .lx-art{opacity:var(--lx-dim)}
+.lux #stage.lx-playing .lx-art .cap,.lux #stage.lx-rising .lx-art .cap{opacity:0}
+.lux #stage.lx-interval .lx-art{opacity:0}
+.lux .lx-art.lx-noart{visibility:hidden}
+
+/* the words: one phrase at a time */
+.lux #stage .mid{justify-content:flex-end;padding:0 28px 5vh;transition:opacity .6s}
+.lux #stage.lx-atmark .mid,.lux #stage.lx-interval .mid{opacity:0}
+.lux .who{font:600 10px/1 var(--sans);letter-spacing:.3em;margin-bottom:14px;min-height:10px;display:flex;align-items:center;gap:12px}
+.lux .who:not(:empty)::after{content:"";flex:none;width:34px;height:1px;background:var(--lx-rule)}
+.lux .arline{font:700 23px/1.6 var(--ar);color:var(--lx-soft);margin-bottom:8px}
+.lux .capline{font:500 29px/1.24 var(--serif);letter-spacing:-.003em;min-height:3.72em;text-wrap:balance}
+.lux .capline.lx-in{animation:lx-phrase .36s ease both}
+@keyframes lx-phrase{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.lux .capline .w{opacity:.5;transition:opacity .22s}
+.lux.lx-paper .capline .w{opacity:.55}
+.lux .capline .w.on{opacity:1}
+.lux body.big .capline{font-size:33px}
+.lux .look .eye{width:58px;height:58px;margin:0 auto 16px}
+.lux #lookRing{stroke:var(--gold)}
+.lux .look .eye svg{color:var(--gold)}
+.lux .look .lab{font:600 10px/1 var(--sans);letter-spacing:.34em;margin-bottom:12px}
+.lux .look .cue{font:500 29px/1.2 var(--serif);text-wrap:balance}
+.lux .look .el{font:400 12px/1.4 var(--sans);letter-spacing:.04em}
+.lux #stage.looking .mid{justify-content:center;padding-bottom:0}
+.lux #stage.looking .lx-art{opacity:.12}
+.lux #stage.lx-playing.lx-ar .lx-art{opacity:.13}
+
+/* controls: only on touch */
+.lux #stage .ctl{padding:0 20px calc(var(--bot) + 16px);transition:opacity .5s ease}
+.lux #stage.lx-playing:not(.lx-ctl):not(.lx-paused) .ctl{opacity:0;pointer-events:none}
+.lux #stage.lx-playing:not(.lx-ctl):not(.lx-paused) .top .x{opacity:0;pointer-events:none}
+.lux #stage .top .x{transition:opacity .5s ease}
+.lux #stage.lx-atmark .ctl,.lux #stage.lx-interval .ctl{opacity:0;pointer-events:none}
+.lux #stage .bar{height:2px;background:var(--lx-line2);margin:0 2px 12px;border-radius:0}
+.lux #stage .bar::before{content:"";position:absolute;inset:-14px 0}
+.lux #stage .bar i{border-radius:0}
+.lux .cb{color:var(--ivory)}
+.lux .cb.main{width:64px;height:64px;background:transparent;border:1px solid var(--gold);color:var(--gold)}
+.lux .tm{font:600 10px/1 var(--sans);letter-spacing:.14em;color:var(--dust)}
+.lux .lx-hint{position:absolute;left:0;right:0;bottom:calc(var(--bot) + 18px);z-index:5;text-align:center;font:600 9px/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--dust);opacity:0;pointer-events:none;transition:opacity .8s}
+.lux #stage.lx-playing:not(.lx-ctl):not(.lx-paused) .lx-hint.show{opacity:.85}
+
+/* what the play shows: portraits, archive views, gold lines */
+.lux #rev{background:var(--lx-page);padding-top:calc(var(--lx-head) + 10px)}
+.lux #stage.dark #rev{background:#000}
+.lux #rev .lbl{padding:14px 26px calc(var(--bot) + 132px);font:400 12px/1.5 var(--sans);letter-spacing:.03em;color:var(--lx-soft)}
+.lux #rev .lbl b{font:600 23px/1.15 var(--serif);letter-spacing:0;color:var(--ivory)}
+.lux #rev .cuebig{font:500 23px/1.22 var(--serif);text-wrap:balance}
+.lux #rev.lx-tr .cuebig{min-height:calc(2.44em + 12px);display:flex;align-items:flex-end;justify-content:center}
+.lux #rev .tag{color:#ECDEC0;border-radius:1px;font:400 10px/1.3 var(--sans);letter-spacing:.03em}
+.lux.lx-paper #rev .media::after{background:var(--lx-grain);opacity:.5}
+.lux.lx-paper #rev .tbox{--gold:#D4B062;--night:#0B0A08}
+.lux #rev.portrait .media{box-shadow:0 0 0 1px var(--lx-rule)}
+.lux #rev .media{margin:0 22px}
+.lux #rev .media.trace{margin:0}
+/* the archive view on a reveal: the frame fits the picture (no black bars), and its date sits on the picture's corner */
+.lux #rev .media.then1{flex:0 1 auto;align-self:center;max-height:none;background:none;box-shadow:0 0 0 1px var(--lx-rule),0 14px 34px rgba(0,0,0,.22)}
+.lux #rev .media.then1 img{position:static;display:block;width:auto;height:auto;max-width:100%;max-height:min(56vh,var(--lx-room,calc(100vh - 350px)))}
+/* the finder on paper: a bronze line reads on cream, and the place stays faintly there */
+.lux.lx-paper #rev .tbox.finder img{opacity:.2}
+.lux.lx-paper #rev .tbox.finder .ln{stroke:#7a5c1e;filter:none}
+/* the blackout (the minaret falls, the passage goes dark): the whole house goes, header and all */
+.lux #stage .top,.lux #stage .lx-ticks{transition:opacity .5s ease}
+.lux #stage.dark .top,.lux #stage.dark .lx-ticks{opacity:0}
+
+/* the mark, and the walk between scenes */
+.lux .card{background:transparent;justify-content:flex-end}
+.lux #standCard{pointer-events:none}
+.lux #nextCard{overflow-y:auto}
+.lux .card .ph{display:none!important}
+.lux .card .body{pointer-events:auto;flex:none;max-height:66%;overflow-y:auto;padding:22px 26px calc(var(--bot) + 18px);transition:opacity .7s ease,transform .9s var(--lx-ease)}
+.lux #stage.lx-rising .card .body{opacity:0;transform:translateY(14px);pointer-events:none}
+.lux .card .k{font:600 10.5px/1.2 var(--sans);letter-spacing:.3em;display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.lux .card .k::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--lx-rule),transparent)}
+.lux #standH{display:none}
+.lux .card p{font:500 20px/1.3 var(--serif);color:var(--ivory);margin:0 0 10px;text-wrap:pretty}
+.lux .card .meta{font:400 12px/1.5 var(--sans);letter-spacing:.02em;color:var(--dust)}
+.lux .card .sp{min-height:16px;flex:none}
+.lux .card .btns{gap:4px}
+.lux #standGo,.lux #nextGo{justify-content:space-between;text-align:left;padding:8px 22px 8px 24px}
+.lux #standGo::after,.lux #nextGo::after{content:"";flex:none;width:26px;height:10px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 10'%3E%3Cpath d='M0 5h24M19.5 .8 24.4 5l-4.9 4.2' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 10'%3E%3Cpath d='M0 5h24M19.5 .8 24.4 5l-4.9 4.2' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") center/contain no-repeat}
+.lux #nextCard{justify-content:flex-start}
+.lux #nextCard .body{justify-content:flex-start!important;flex:none;max-height:none;overflow:visible;padding-top:14px}
+.lux .lx-leg{flex:1 1 0;min-height:clamp(64px,calc(100vh - 536px),150px);margin-top:calc(var(--lx-head) + 4px);position:relative;pointer-events:none}
+.lux .lx-leg svg{position:absolute;inset:0;width:100%;height:100%}
+.lux .lx-leg::after{content:"";position:absolute;inset:auto 0 0 0;height:56px;background:linear-gradient(180deg,transparent,var(--lx-solid))}
+.lux #nextCard .k{margin-bottom:10px}
+.lux #nextLine{font:500 19px/1.3 var(--serif)!important;font-style:italic!important;color:var(--lx-soft)!important;margin-bottom:14px!important}
+.lux #nextLine:empty{display:none}
+.lux #nextH{font:600 34px/1 var(--serif);letter-spacing:-.005em;margin:0 0 8px}
+.lux #nextH small{display:block;font:600 10.5px/1.2 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.lux #nextP{font-size:17px!important;line-height:1.32;color:var(--lx-soft);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.lux #nextCard .btns{display:flex;flex-wrap:wrap;justify-content:space-between;gap:0 14px}
+.lux #nextCard .btns .pill.gold{flex:1 0 100%;margin-bottom:6px}
+.lux #nextCard .btns .pill:not(.gold){width:auto;min-height:42px;padding:6px 0;border:0;font-size:9.5px;letter-spacing:.2em;color:var(--dust);text-decoration:underline;text-decoration-color:var(--lx-rule);text-underline-offset:6px}
+
+/* the way to the next mark (the 3D guide): the close button keeps clear of the guide's own title; the signal note bows out */
+.lux .w1waytop{flex-direction:row-reverse;align-items:flex-start;justify-content:space-between}
+.lux .w1waytop .x{flex:none;border-color:rgba(212,176,98,.5);color:#EFE7D8}
+.lux .w1wayhint{margin-top:76px;border-radius:2px;font:400 11px/1.4 var(--sans);letter-spacing:.02em;color:#EFE7D8;background:rgba(11,10,8,.72);padding:6px 10px;animation:lx-note 7s ease forwards}
+@keyframes lx-note{0%,78%{opacity:1}100%{opacity:0}}
+
+/* ------------------------------------------------------------------ the end */
+.lux #finale{justify-content:flex-start;overflow-y:auto;padding:calc(var(--top) + 18px) 30px calc(var(--bot) + 18px);background:var(--lx-page)}
+.lux #finale>*{flex:none}
+.lux #finale .lx-fin{width:clamp(96px,calc((100vh - 610px) * .5069),124px);margin:auto auto 26px}
+.lux #finale>:last-child{margin-bottom:auto}
+.lux #finale .lx-fin svg{display:block;width:100%;height:auto;overflow:visible}
+.lux #finale .mark{justify-content:center;font-size:13px}
+.lux #finale .mark svg{width:26px;height:30px}
+.lux #finale h2{font:600 46px/.98 var(--serif);letter-spacing:-.01em;margin:22px 0 14px;text-wrap:balance}
+.lux.lx-night #finale h2{background:var(--lx-leaf);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lux #finale p{font:500 19px/1.36 var(--serif);color:var(--lx-soft)}
+.lux #finale p.small{font:400 12px/1.5 var(--sans)!important;color:var(--dust)}
+.lux #finale .btns{gap:8px}
+.lux #finale .btns .pill.gold~.pill.gold{background:transparent;box-shadow:none;border:1px solid var(--lx-rule);color:var(--gold)}
+
+/* ------------------------------------------------------------------ sheets, toast, settings */
+.lux .veil{background:rgba(8,6,4,.62)}
+.lux .sheet{border-radius:3px 3px 0 0;background:var(--night2);color:var(--ivory);box-shadow:0 -1px 0 var(--lx-rule)}
+.lux .sheet .grab{background:var(--lx-rule);height:2px;width:34px;margin:12px auto 6px}
+.lux .sheet .in{padding:10px 26px 24px}
+.lux .sheet h2{font:600 30px/1.05 var(--serif);letter-spacing:-.005em;margin:8px 0 12px;text-wrap:balance}
+.lux .sheet h3{font:600 10px/1.3 var(--sans);letter-spacing:.3em;margin:24px 0 10px}
+.lux .sheet p,.lux .sheet ul{color:var(--lx-soft);font-size:15px;line-height:1.5}
+.lux .sheet .small{font-size:12.5px;color:var(--dust)}
+.lux .sheet .btns{gap:6px}
+.lux .row{border-top:1px solid var(--line);padding:14px 0}
+.lux .switch{background:var(--lx-line2);box-shadow:inset 0 0 0 1px var(--lx-rule)}
+.lux .switch::after{background:var(--ivory)}
+.lux .switch[aria-checked=true]{background:var(--gold);box-shadow:none}
+.lux .switch[aria-checked=true]::after{background:var(--night)}
+.lux .lx-seg{display:flex;flex:none;border:1px solid var(--lx-rule);border-radius:2px;overflow:hidden}
+.lux .lx-seg button{min-width:52px;min-height:38px;padding:0 10px;font:600 9.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--dust)}
+.lux .lx-seg button+button{border-left:1px solid var(--lx-rule)}
+.lux .lx-seg button[aria-pressed=true]{background:var(--gold);color:var(--night)}
+/* notices come down under the header like a surtitle: never on the words, the controls or the main button */
+.lux .toast{top:calc(var(--top) + 100px);bottom:auto;transform:translateX(-50%) translateY(-10px);width:max-content;max-width:calc(100% - 44px);background:var(--night3);color:var(--ivory);border-radius:2px;box-shadow:0 0 0 1px var(--lx-rule),0 14px 30px rgba(0,0,0,.3);font:400 13px/1.45 var(--sans)}
+.lux .toast.on{transform:translateX(-50%)}
+.lux .w1chip{border-radius:2px;border-color:var(--lx-rule);color:var(--lx-soft);font-size:12.5px}
+.lux .w1best,.lux .w1pt div,.lux .w1prev{border-radius:2px;background:var(--lx-wash);box-shadow:inset 0 0 0 1px var(--line)}
+.lux .w1best b{letter-spacing:-.005em}
+.lux .w1quiet{color:var(--lx-soft)}
+
+/* ------------------------------------------------------------------ house lights */
+.lux .lx-lights{position:fixed;inset:0;z-index:70;display:grid;place-items:center;pointer-events:none;opacity:0;transition:opacity .45s ease;background:#0B0A08;color:#D4B062;font:600 10.5px/1 var(--sans);letter-spacing:.42em;text-transform:uppercase;padding-left:.42em}
+.lux .lx-lights.up{background:#ECDEC0;color:#7a5c1e}
+.lux .lx-lights.on{opacity:1}
+
+/* ------------------------------------------------------------------ still and quiet */
+.lux body.nofx .screen.on,.lux body.nofx .lx-plan .thread,.lux body.nofx .lx-plan .pulse,.lux body.nofx #home .cv-bg,.lux body.nofx .capline.lx-in{animation:none!important}
+@media (prefers-reduced-motion:reduce){
+  .lux .screen.on,.lux .lx-plan .thread,.lux .lx-plan .pulse,.lux #home .cv-bg,.lux .capline.lx-in{animation:none!important}
+  .lux .lx-art,.lux .lx-art img,.lux .lx-art .fr,.lux .card .body,.lux .lx-lights{transition:none!important}
+}
+/* a laptop or a tablet: the play stays one phone-wide column on a dark desk, so every screen is the one that was rehearsed */
+@media (min-width:620px){
+  html.lux{background:#060504}
+  .lux body{width:min(100vw,max(430px,56.25vh));margin:0 auto;transform:translateZ(0);box-shadow:0 0 0 1px rgba(212,176,98,.16),0 0 120px rgba(0,0,0,.6)}
+}
+@media (max-width:350px){
+  .lux .lx-loc .t b{letter-spacing:.14em}
+  .lux .card .body{padding-left:20px;padding-right:20px}
+}
+@media (max-height:700px){
+  .lux .cv-foot{padding-top:16vh}
+  .lux .capline{font-size:25px}
+  .lux .card p{font-size:18px}
+  .lux #nextH{font-size:28px}
+  .lux #rev .lbl{padding-bottom:calc(var(--bot) + 104px)}
+  .lux #nextLine{font-size:17px!important;margin-bottom:10px!important}
+  .lux #nextP{font-size:16px!important;-webkit-line-clamp:2}
+  .lux .card .sp{min-height:8px}
+  .lux #nextCard .btns .pill.gold{min-height:50px}
+}
+@media (max-height:809px){
+  .lux #finale .lx-fin{height:0;margin-bottom:0;overflow:hidden;visibility:hidden}
+}

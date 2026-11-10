@@ -124,21 +124,21 @@ window.planSheet = function () {
   <div class="w1day">${esc(dayName(d))}${fri ? ' · Friday' : ''}</div>
   <div class="w1best">
     <div class="k">Best time to start</div>
-    ${best ? `<b>${hm(best.from)}${best.to - best.from >= 15 * 60000 ? ' to ' + hm(best.to) : ''}</b><p>The walk takes about ${totalWalkMin()} minutes. Starting then, the inside stops (5 to 11) miss every prayer and you finish before closing.</p>`
-           : `<b>No clean slot${today ? ' left today' : ''}</b><p>Prayer times break up the inside stops. Pick another day, or start anyway: the app pauses inside stops for prayer and sends you to an outside stop.</p>`}
+    ${best ? `<b>${hm(best.from)}${best.to - best.from >= 15 * 60000 ? ' to ' + hm(best.to) : ''}</b><p>The walk takes about ${totalWalkMin()} minutes. Starting then, the indoor scenes (V to XI) miss every prayer and you finish before closing.</p>`
+           : `<b>No clean slot${today ? ' left today' : ''}</b><p>Prayer times break up the indoor scenes. Pick another day, or start anyway: the play pauses indoors for prayer and sends you to a scene outside.</p>`}
     <div class="verify">Calculated from prayer times and estimated walking times. Hours and pause lengths not yet checked on site.</div>
   </div>
   <h3>Prayer times at the mosque</h3>
   <div class="w1pt">${pr}</div>
-  <p class="small">${fri ? `Friday: the mosque closes to visitors around the midday prayer, about ${hm(H[0].from)} to ${hm(H[0].to)}.` : `Inside stops pause for about ${PRAYER_HOLD.before + PRAYER_HOLD.after} minutes at each prayer while people pray. Outside stops carry on.`} <span class="verify">Not yet verified.</span> Calculated by the Egyptian General Authority of Survey method.</p>
+  <p class="small">${fri ? `Friday: the mosque closes to visitors around the midday prayer, about ${hm(H[0].from)} to ${hm(H[0].to)}.` : `Indoor scenes pause for about ${PRAYER_HOLD.before + PRAYER_HOLD.after} minutes at each prayer while people pray. Outdoor scenes carry on.`} <span class="verify">Not yet verified.</span> Calculated by the Egyptian General Authority of Survey method.</p>
   <h3>Hours and ticket</h3>
   <p>Commonly listed as open ${OPEN.from} to ${OPEN.to}, every day. One ticket covers Sultan Hassan and Al-Rifa'i across the lane. Buy it at the ticket window by the lane between the two. <span class="verify">Hours, last entry, price and where the window is: not yet verified.</span></p>
   <h3>What to wear</h3>
   <ul><li>Shoulders and knees covered. Women: bring a scarf for your hair.</li><li>Shoes come off where the floor is carpet or matting, so wear ones that slip off easily.</li><li>Speak softly inside. Don't photograph people who are praying.</li></ul>
   <h3>Best light</h3>
-  <p>Sunrise ${hm(P.sunrise)}, sunset ${hm(P.sunset)}. Morning sun lights the domed tomb end, which faces the Citadel and the square, so stops 1 and 2 look best before about 10:30. The courtyard is brightest late morning to early afternoon. <span class="verify">Directions of the light not yet checked on site.</span></p>
+  <p>Sunrise ${hm(P.sunrise)}, sunset ${hm(P.sunset)}. Morning sun lights the domed tomb end, which faces the Citadel and the square, so scenes I and II look best before about 10:30. The courtyard is brightest late morning to early afternoon. <span class="verify">Directions of the light not yet checked on site.</span></p>
   <h3>Bring</h3>
-  <ul><li>Headphones. The voices do the directing.</li><li>The play downloaded (about 40 MB). Signal is weak inside the walls.</li><li>Water and some change for the shoe keeper.</li></ul>
+  <ul><li>Headphones. The voices do the directing.</li><li>The play downloaded (about 52 MB). Signal is weak inside the walls.</li><li>Water and some change for the shoe keeper.</li></ul>
   <h3>Getting there</h3>
   <p>Salah al-Din Square (Midan al-Qal'a), below the Citadel. Taxis and ride apps know "Sultan Hassan Mosque".</p>
   <div class="btns">
@@ -154,8 +154,8 @@ function prayerStrip() {
   const el = document.getElementById('w1strip'); if (!el) return;
   const t = now(), h = holdAt(t), nx = nextHold(t);
   const open = cairoToDate(ymdOf(t), OPEN.from), close = cairoToDate(ymdOf(t), OPEN.to);
-  if (h) { el.innerHTML = `<b>${esc(h.name)}</b> · inside stops pause until about ${hm(h.to)}. Outside stops carry on. <span class="verify">[VERIFY]</span>`; el.className = 'w1strip hold'; }
-  else if (nx && nx.from < close && nx.from - t < 3 * 3600e3) { el.innerHTML = `Next: <b>${esc(nx.name)}</b> at ${hm(nx.adhan)} · inside stops pause ${hm(nx.from)} to ${hm(nx.to)}`; el.className = 'w1strip'; }
+  if (h) { el.innerHTML = `<b>${esc(h.name)}</b> · indoor scenes pause until about ${hm(h.to)}. Outdoor scenes carry on. <span class="verify">[VERIFY]</span>`; el.className = 'w1strip hold'; }
+  else if (nx && nx.from < close && nx.from - t < 3 * 3600e3) { el.innerHTML = `Next: <b>${esc(nx.name)}</b> at ${hm(nx.adhan)} · indoor scenes pause ${hm(nx.from)} to ${hm(nx.to)}`; el.className = 'w1strip'; }
   else if (t < open || t > close) { el.innerHTML = `The mosque is usually open ${OPEN.from} to ${OPEN.to}. <span class="verify">[VERIFY]</span>`; el.className = 'w1strip'; }
   else { el.innerHTML = 'No prayer pause before closing.'; el.className = 'w1strip'; }
 }
@@ -167,11 +167,11 @@ function holdCard(h, n, playing) {
   const out = outsideStopToDo();
   sheet(`<div class="w1call"><svg width="34" height="40" viewBox="0 0 24 28"><use href="#arch"/></svg></div>
     <h2>${h ? esc(h.name) : 'Prayer time'}</h2>
-    <p>${h && h.k === 'friday' ? 'On Friday the mosque is closed to visitors during the midday prayer.' : 'People are coming in to pray. The play is paused for the inside stops until about ' + hm(h.to) + '.'}</p>
+    <p>${h && h.k === 'friday' ? 'On Friday the mosque is closed to visitors during the midday prayer.' : 'People are coming in to pray. The play is paused indoors until about ' + hm(h.to) + '.'}</p>
     <p class="w1quiet">If you hear the call to prayer, take your headphones off and listen. It has carried across this square for more than six hundred years, and for once it is the building that speaks. <span class="verify">[VERIFY wording]</span></p>
     <div class="btns">
-      ${out ? `<button class="pill gold" data-w1go="${out.n}">Do an outside stop now: ${out.n} · ${esc(out.title)}</button>` : ''}
-      <button class="pill ghost" data-act="close">Wait here${n ? ', then play stop ' + n : ''}</button>
+      ${out ? `<button class="pill gold" data-w1go="${out.n}">Play a scene outside now: ${out.n} · ${esc(out.title)}</button>` : ''}
+      <button class="pill ghost" data-act="close">Wait here${n ? ', then play scene ' + n : ''}</button>
       <button class="pill quiet" data-w1override="${n || ''}">We're allowed in, play anyway</button>
     </div>`);
 }
@@ -190,8 +190,8 @@ window.openStop = async function (n, skipStand) {
     if (nx && addMin(t, (c.siteS || 120) / 60) > nx.from && !warned[nx.k + n]) {
       warned[nx.k + n] = 1;
       const out = outsideStopToDo();
-      sheet(`<h2>${esc(nx.name)} at ${hm(nx.adhan)}</h2><p>This stop runs ${fmt(c.siteS || 0)}, so the prayer pause (${hm(nx.from)} to ${hm(nx.to)}) would stop it halfway.</p>
-        <div class="btns">${out ? `<button class="pill gold" data-w1go="${out.n}">Do an outside stop first: ${out.n} · ${esc(out.title)}</button>` : ''}<button class="pill ghost" data-w1override="${n}">Play stop ${n} now anyway</button><button class="pill quiet" data-act="close">Back</button></div>`);
+      sheet(`<h2>${esc(nx.name)} at ${hm(nx.adhan)}</h2><p>This scene runs ${fmt(c.siteS || 0)}, so the prayer pause (${hm(nx.from)} to ${hm(nx.to)}) would stop it halfway.</p>
+        <div class="btns">${out ? `<button class="pill gold" data-w1go="${out.n}">Play a scene outside first: ${out.n} · ${esc(out.title)}</button>` : ''}<button class="pill ghost" data-w1override="${n}">Play scene ${n} now anyway</button><button class="pill quiet" data-act="close">Back</button></div>`);
       return;
     }
   }
@@ -307,7 +307,7 @@ async function shareCard() {
 // "Follow me" with GPS + compass, "I'm on the mark"). When the guide reports arrival (mode back to "stand", or its hash
 // turns to #chNN), the overlay closes and the next chapter's stand card opens. Routes are [VERIFY ON SITE].
 const wv = document.createElement('div'); wv.id = 'w1way';
-wv.innerHTML = '<iframe title="The way to the next stop" allow="geolocation; accelerometer; gyroscope; magnetometer"></iframe><div class="w1waytop"><button class="x" aria-label="Close the map"><svg width="20" height="20"><use href="#close"/></svg></button><span class="w1wayhint">Needs a signal the first time; then it is stored.</span></div>';
+wv.innerHTML = '<iframe title="The way to the next mark" allow="geolocation; accelerometer; gyroscope; magnetometer"></iframe><div class="w1waytop"><button class="x" aria-label="Close the map"><svg width="20" height="20"><use href="#close"/></svg></button><span class="w1wayhint">Needs a signal the first time; then it is stored.</span></div>';
 document.getElementById('stage').appendChild(wv);
 let wayTimer = 0, wayTarget = 0;
 function wayClose() { clearInterval(wayTimer); wv.classList.remove('on'); const f = wv.querySelector('iframe'); f.src = 'about:blank'; if (typeof wa !== 'undefined') { wa.classList.remove('on'); wb.style.display = 'none'; } }
@@ -326,7 +326,7 @@ function wayOpen(n) {
     if (walked && (mode === 'stand' || hash === '#' + id || (arrived && !holdsMark))) { clearInterval(wayTimer); wayArrived = true; arrivalCard(wayTarget); return; }
     if (holdsMark && hash.startsWith('#mark-')) {   // safety net: if the guide's own "Look from the mark" button is off-screen (seen at 412 px wide, 8 Nov), offer "Begin stop N" here
       let reach = true; try { const en = f.contentWindow.document.getElementById('enter'); const r = en && en.getBoundingClientRect(); reach = !!(r && r.width > 40 && r.left >= 0 && r.right <= f.contentWindow.innerWidth + 1 && r.bottom <= f.contentWindow.innerHeight + 1 && getComputedStyle(en).display !== 'none'); } catch (e) {}
-      wb.textContent = 'Begin stop ' + wayTarget; wb.style.display = reach ? 'none' : '';
+      wb.textContent = 'Begin scene ' + wayTarget; wb.style.display = reach ? 'none' : '';
     }
   }, 400);
 }
@@ -339,8 +339,8 @@ const wb = document.createElement('button'); wb.className = 'pill gold w1begin';
 function arrivalCard(n) {
   const m = PLAYJ.chapters.find((c) => c.n === n); if (!m) { wayClose(); openStop(n); return; }
   const st = (m.stand || '').replace(/^./, (x) => x.toUpperCase()).replace(/UNVERIFIED:.*$/s, '').trim();
-  wa.innerHTML = `<div class="w1arrow"><div class="w1arph"></div><div class="w1artxt"><div class="k">You are at the mark</div><h2>${n} · ${esc(m.title)}</h2><p>${esc(st)}</p><div class="meta">${fmt(m.siteS || 0)} of play · headphones on, then lower your phone.</div></div></div><div class="btns"><button class="pill gold" data-w1arr="begin">I'm standing here · begin</button><button class="pill quiet" data-w1arr="map">Let me look at the map first</button></div>`;
-  wb.textContent = 'Begin stop ' + n; wb.style.display = 'none'; wa.classList.add('on'); wa.scrollTop = 0;
+  wa.innerHTML = `<div class="w1arrow"><div class="w1arph"></div><div class="w1artxt"><div class="k">You are at the mark</div><h2>Scene ${n} · ${esc(m.title)}</h2><p>${esc(st)}</p><div class="meta">${fmt(m.siteS || 0)} of play · headphones on, then lower your phone.</div></div></div><div class="btns"><button class="pill gold" data-w1arr="begin">I am on the mark</button><button class="pill quiet" data-w1arr="map">Let me look at the map first</button></div>`;
+  wb.textContent = 'Begin scene ' + n; wb.style.display = 'none'; wa.classList.add('on'); wa.scrollTop = 0;
   buzz([40, 60, 40]);
   loadCh(n).then((ch) => { const p = standPhoto(ch), el = wa.querySelector('.w1arph'); if (p && el && wayTarget === n) el.style.backgroundImage = `url('${p}')`; }).catch(() => {});   // the stand photo joins when loaded
 }
@@ -428,7 +428,7 @@ window.settingsSheet = function () {
   row.innerHTML = `<div>"I stood here" card<div class="small">Your photo in the arch frame. It stays on this phone.</div></div><button class="pill ghost" style="width:auto;padding:0 18px;min-height:40px">Make</button>`;
   row.querySelector('button').onclick = standCardSheet;
   const p = document.createElement('p'); p.className = 'small';
-  p.textContent = `Anonymous visit counter${S.pilot ? ' · code ' + S.pilot : ''}: ${starts.size} stops started, ${ends.size} finished on this phone. No names, places or photos are counted.${PILOT_ENDPOINT ? '' : ' Not sent anywhere yet.'}`;
+  p.textContent = `Anonymous visit counter${S.pilot ? ' · code ' + S.pilot : ''}: ${starts.size} scenes started, ${ends.size} finished on this phone. No names, places or photos are counted.${PILOT_ENDPOINT ? '' : ' Not sent anywhere yet.'}`;
   const btns = document.querySelector('#sheetIn .btns'); if (btns) { btns.parentNode.insertBefore(row, btns.previousElementSibling); btns.parentNode.insertBefore(p, btns); }
 };
 // expose for tests and the pilot page

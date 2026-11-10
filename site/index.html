@@ -8,6 +8,7 @@
 <meta name="theme-color" content="#0B0A08">
 <meta name="medu-play" content="../play/">
 <meta name="medu-pilot" content="">
+<meta name="medu-preview" content="">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/favicon.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -15,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --night:#0B0A08; --night2:#15130F; --night3:#1F1C17; --ivory:#EFE7D8; --gold:#D4B062; --dust:#9A958B;
@@ -214,6 +215,8 @@ body.nofx #rev .tbox .gh{fill-opacity:1}body.nofx #rev .tbox .ln,body.nofx #rev 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (min-width:700px){#home .hero{min-height:56vh}#home h1{font-size:64px}}
 </style>
+<link rel="stylesheet" href="lux/lux.css">
+<script>document.documentElement.classList.add('lux','lx-night')</script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -232,30 +235,23 @@ body.nofx #rev .tbox .gh{fill-opacity:1}body.nofx #rev .tbox .ln,body.nofx #rev 
   <symbol id="list" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
 </svg>
 
-<!-- HOME (at home: trailer, plan, download) -->
+<!-- HOME: the cover (the door, as Bonfils saw it; at home: trailer, plan, download) -->
 <section id="home" class="screen on">
-  <div class="scroll">
-    <div class="hero">
-      <div class="bg" id="heroBg"></div>
-      <div class="mark"><svg width="18" height="21"><use href="#arch"/></svg>MEDU</div>
-      <div class="wrap">
-        <div class="ar" lang="ar">مدرسة السلطان حسن</div>
-        <h1>Sultan Hassan</h1>
-        <p class="lede">A play in twelve scenes, staged in the mosque itself. The people who built it, ruled it and wrote it down speak to you where it happened.</p>
-        <div class="facts"><div><b>12</b>stops</div><div><b id="factMin">30</b>min of play</div><div><b>~1 h</b>on foot</div></div>
-      </div>
+  <div class="cv-bg" id="heroBg"></div><div class="cv-glow"></div><div class="cv-scrim"></div>
+  <div class="scroll"><div class="cv-in">
+    <div class="cv-lock"><svg width="26" height="30"><use href="#arch"/></svg><b>MEDU</b></div>
+    <div class="cv-foot">
+      <p class="lx-eyebrow">A play in twelve scenes</p>
+      <div class="cv-title"><h1 class="lx-leaf"><span>Sultan</span><span>Hassan</span></h1><div class="cv-ar lx-leaf" lang="ar"><span>السلطان</span><span>حسن</span></div></div>
+      <div class="cv-rule"></div>
+      <p class="cv-lede">Staged where it happened.<br><i>Headphones on, phone down.</i></p>
+      <button class="lx-btn" id="btnBegin"><span id="beginLbl">Begin at the mosque</span><svg viewBox="0 0 26 10" aria-hidden="true"><path d="M0 5h24M19.5 .8 24.4 5l-4.9 4.2" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></button>
+      <button class="cv-dl" id="dl"><i class="bar"></i><span id="dlLbl">Download for the visit · about 52 MB</span></button>
+      <div class="cv-links"><button id="btnTrailer">Hear the trailer</button><button id="btnPlan">Plan your visit · hours, dress, Friday</button></div>
+      <p class="cv-note">The play opens only at the mosque: twelve scenes, <b id="factMin">30</b> minutes of voices, about an hour on foot. Download it before you come; the signal inside the walls is weak.</p>
+      <p class="cv-credit">Photograph by Bonfils, 1867–99 · Library of Congress</p>
     </div>
-    <div class="wrap">
-      <div class="actions">
-        <button class="pill gold" id="btnBegin"><svg width="18" height="18"><use href="#arch"/></svg><span id="beginLbl">Begin at the mosque</span></button>
-        <button class="pill ghost" id="btnTrailer"><svg width="16" height="16"><use href="#play"/></svg>Hear the trailer</button>
-        <button class="pill ghost" id="dl"><i class="bar"></i><span id="dlLbl">Download for the visit · about 40 MB</span></button>
-        <button class="pill quiet" id="btnPlan">Plan your visit · hours, dress, Friday</button>
-      </div>
-      <p class="small">The play only opens at the mosque. Bring headphones. Download it at home or at the hotel so it runs with no signal inside the walls.</p>
-      <div class="credit">Photo: ولاء, public domain, via Wikimedia Commons.</div>
-    </div>
-  </div>
+  </div></div>
 </section>
 
 <!-- TRAILER -->
@@ -275,23 +271,23 @@ body.nofx #rev .tbox .gh{fill-opacity:1}body.nofx #rev .tbox .ln,body.nofx #rev 
   </div>
 </section>
 
-<!-- WALK (on site: the route) -->
+<!-- WALK (on site: the programme) -->
 <section id="walk" class="screen">
   <header><div class="mark"><svg width="18" height="21"><use href="#arch"/></svg>MEDU</div><div class="status"><i class="dot" id="offDot"></i><span id="offLbl">Not downloaded</span></div><button class="x" id="wkInfo" aria-label="Settings and visit info"><svg width="20" height="20"><use href="#info"/></svg></button></header>
   <div class="scroll"><div class="wrap">
-    <h2>The walk</h2>
-    <div class="sub" id="wkSub">Twelve stops, outside to inside.</div>
+    <h2>Twelve scenes, one thread</h2>
+    <div class="sub" id="wkSub">From the square to the tomb, and out again.</div>
     <div class="progress"><i id="wkProg"></i></div>
     <button class="pill gold" id="wkResume" style="margin-bottom:18px"></button>
     <div id="stops"></div>
-    <p class="small" style="margin:22px 0 calc(var(--bot) + 28px)">Walking times are estimates. Stand where each stop tells you; the voices will point at what they mean. <span class="verify">Standing points not yet checked on site.</span></p>
+    <p class="small" style="margin:22px 0 calc(var(--bot) + 28px)">Walking times are estimates. Stand on each mark; the voices will point at what they mean. <span class="verify">The marks are not yet checked on site.</span></p>
   </div></div>
 </section>
 
-<!-- STAGE (one stop) -->
+<!-- STAGE (one scene) -->
 <section id="stage" class="screen">
   <div class="top">
-    <button class="x" id="stList" aria-label="Back to the walk"><svg width="20" height="20"><use href="#list"/></svg></button>
+    <button class="x" id="stList" aria-label="The programme"><svg width="20" height="20"><use href="#list"/></svg></button>
     <div class="ttl" id="stTtl"></div>
     <button class="x" id="stInfo" aria-label="Sources and credits"><svg width="20" height="20"><use href="#info"/></svg></button>
   </div>
@@ -310,16 +306,16 @@ body.nofx #rev .tbox .gh{fill-opacity:1}body.nofx #rev .tbox .ln,body.nofx #rev 
       <span class="tm" id="stLeft">0:00</span>
     </div>
   </div>
-  <!-- before the stop: where to stand -->
+  <!-- before the scene: the mark -->
   <div class="card" id="standCard"><div class="ph" id="standPh"></div><div class="body">
     <div class="k" id="standK"></div><h2 id="standH"></h2><p id="standP"></p><div class="meta" id="standM"></div>
-    <div class="sp"></div><div class="btns"><button class="pill gold" id="standGo">I'm standing here · begin</button><button class="pill quiet" id="standBack">Back to the walk</button></div>
+    <div class="sp"></div><div class="btns"><button class="pill gold" id="standGo">I am on the mark</button><button class="pill quiet" id="standBack">The programme</button></div>
   </div></div>
-  <!-- after the stop: the walk to the next one -->
+  <!-- after the scene: the walk to the next mark -->
   <div class="card" id="nextCard"><div class="body" style="justify-content:center">
     <div class="k" id="nextK"></div><p id="nextLine" style="font-size:26px;color:var(--ivory);margin-bottom:22px"></p>
     <h2 id="nextH"></h2><p id="nextP" style="font-size:18px"></p><div class="meta" id="nextM"></div>
-    <div class="sp"></div><div class="btns"><button class="pill gold" id="nextGo">I'm there · play</button><button class="pill quiet" id="nextAgain">Hear this stop again</button><button class="pill quiet" id="nextList">Back to the walk</button></div>
+    <div class="sp"></div><div class="btns"><button class="pill gold" id="nextGo">I have arrived</button><button class="pill quiet" id="nextAgain">Hear this scene again</button><button class="pill quiet" id="nextList">The programme</button></div>
   </div></div>
 </section>
 
@@ -327,11 +323,11 @@ body.nofx #rev .tbox .gh{fill-opacity:1}body.nofx #rev .tbox .ln,body.nofx #rev 
 <section id="finale" class="screen">
   <div class="mark"><svg width="18" height="21"><use href="#arch"/></svg>MEDU</div>
   <h2>You walked Sultan Hassan.</h2>
-  <p>Twelve stops, from the square to the tomb and out to the working town around it.</p>
+  <p>Twelve scenes, from the square to the tomb and out to the working town around it.</p>
   <p class="small" style="font-family:var(--sans)">Next story: Al-Rifa'i, across the lane. Coming soon.</p>
   <div class="btns">
     <button class="pill gold" id="fnShare">Tell someone to come and stand here</button>
-    <button class="pill ghost" id="fnWalk">Back to the walk</button>
+    <button class="pill ghost" id="fnWalk">The programme</button>
   </div>
 </section>
 
@@ -365,6 +361,7 @@ const fmt = (s) => { s = Math.max(0, Math.round(s)); return Math.floor(s / 60) +
 const esc = (t) => String(t == null ? '' : t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const url = (dir, f) => PLAY + dir + '/' + f;
 const hasAr = (t) => /[؀-ۿ]/.test(t || '');
+const roman = (n) => ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV'][n] || String(n);   // scenes are numbered as in a programme
 let toastT = 0;
 function toast(t, ms) { const el = $('#toast'); el.textContent = t; el.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('on'), ms || 2600); }
 function show(id) { document.querySelectorAll('.screen').forEach((s) => s.classList.toggle('on', s.id === id)); }
@@ -482,7 +479,7 @@ async function sig() { const r = await fetch(PLAY + 'play.json', { cache: 'no-st
 function offlineBadge() {
   const ok = !!S.dl;
   $('#offDot').classList.toggle('ok', ok); $('#offLbl').textContent = ok ? 'Ready offline' : 'Not downloaded';
-  if (ok && !dlBusy) $('#dlLbl').textContent = '✓ Ready offline · ' + (S.dlMB || 40) + ' MB · tap to refresh';
+  if (ok && !dlBusy) $('#dlLbl').textContent = '✓ Ready offline · ' + (S.dlMB || 52) + ' MB · tap to refresh';
 }
 async function checkUpdate() { if (!S.dl || !navigator.onLine) return; try { const s = await sig(); if (S.dlSig && s !== S.dlSig) { S.dl = 0; save(); offlineBadge(); $('#dlLbl').textContent = 'New version of the play · tap to download'; } } catch (e) {} }
 
@@ -530,10 +527,10 @@ $('#sheetIn').addEventListener('click', (e) => {
 });
 function planSheet() {
   sheet(`<h2>Plan your visit</h2>
-  <p>The play is about an hour on foot: twelve stops, outside to inside, with ${$('#factMin').textContent} minutes of listening. Start at Salah al-Din Square, below the Citadel.</p>
+  <p>The play is about an hour on foot: twelve scenes, outside to inside, with ${$('#factMin').textContent} minutes of listening. Start at Salah al-Din Square, below the Citadel.</p>
   <h3>Before you go</h3>
   <ul>
-    <li><b>Download the play</b> on Wi-Fi (about 40 MB). Signal inside the walls is weak.</li>
+    <li><b>Download the play</b> on Wi-Fi (about 52 MB). Signal inside the walls is weak.</li>
     <li><b>Headphones.</b> The voices do the directing; your phone stays mostly dark.</li>
     <li><b>Dress for a mosque.</b> Shoulders and knees covered; women bring a headscarf. Shoes come off where the floor is carpeted.</li>
     <li><b>Fridays:</b> start by 9:30 so you finish before the midday prayer. <span class="verify">Closing time not yet checked.</span></li>
@@ -552,10 +549,10 @@ function settingsSheet() {
   sheet(`<h2>Settings</h2>
   <div class="row"><div>Cinematic effects<div class="small">Slow photo moves, fades and buzzes. Off = still and quiet.</div></div><button class="switch" role="switch" aria-checked="${!!S.fx}" data-act="fx" aria-label="Cinematic effects"></button></div>
   <div class="row"><div>Larger captions</div><button class="switch" role="switch" aria-checked="${!!S.big}" data-act="big" aria-label="Larger captions"></button></div>
-  <div class="row"><div>Offline copy<div class="small">${S.dl ? 'Stored on this phone · ' + (S.dlMB || 40) + ' MB' : 'Not downloaded yet'}</div></div><button class="pill ghost" style="width:auto;padding:0 18px;min-height:40px" data-act="dl">${S.dl ? 'Refresh' : 'Download'}</button></div>
+  <div class="row"><div>Offline copy<div class="small">${S.dl ? 'Stored on this phone · ' + (S.dlMB || 52) + ' MB' : 'Not downloaded yet'}</div></div><button class="pill ghost" style="width:auto;padding:0 18px;min-height:40px" data-act="dl">${S.dl ? 'Refresh' : 'Download'}</button></div>
   <div class="row"><div>Plan your visit</div><button class="pill ghost" style="width:auto;padding:0 18px;min-height:40px" onclick="planSheet()">Open</button></div>
-  <div class="row"><div>Start the walk again</div><button class="pill ghost" style="width:auto;padding:0 18px;min-height:40px" data-act="reset">Reset</button></div>
-  <p class="small" style="margin-top:16px">Medu · Sultan Hassan · on-site edition. Facts carry their sources in each stop's credits; lines marked Dramatised are our words.</p>
+  <div class="row"><div>Start the play again</div><button class="pill ghost" style="width:auto;padding:0 18px;min-height:40px" data-act="reset">Reset</button></div>
+  <p class="small" style="margin-top:16px">Medu · Sultan Hassan · on-site edition. Facts carry their sources in each scene's credits; lines marked Dramatised are our words.</p>
   <div class="btns"><button class="pill quiet" data-act="close">Close</button></div>`);
 }
 async function creditsSheet(n) {
@@ -569,12 +566,12 @@ async function creditsSheet(n) {
   if (c.credits && typeof c.credits === 'object') for (const [p, v] of Object.entries(c.credits)) { if (v && typeof v === 'object') pics.push(`<li><b>${esc(v.what || v.note || p)}</b>: ${esc(v.author || '')}${v.license ? ', ' + (v.licenseUrl ? `<a href="${esc(v.licenseUrl)}" target="_blank" rel="noopener">${esc(v.license)}</a>` : esc(v.license)) : ''}${v.source ? `, <a href="${esc(v.source)}" target="_blank" rel="noopener">${esc(v.sourceName || 'source')}</a>` : ''}</li>`); }
   else {
     for (const r of ch.reveals) { if (r.kind === 'wipe') { pics.push(`<li>Archive view: ${esc(r.thenCap)}</li>`); } else if (r.kind === 'clip' || r.kind === 'trace') pics.push(`<li>${esc(r.label)}</li>`); else if (r.kind === 'still' && r.label) pics.push(`<li>Portrait: ${esc(r.label)}</li>`); }
-    if (c.pano && c.pano.credit) pics.push(`<li>Stop photo: ${esc(c.pano.credit)}</li>`);
+    if (c.pano && c.pano.credit) pics.push(`<li>Scene photo: ${esc(c.pano.credit)}</li>`);
     try { const v = await getJSON('visuals/' + ch.meta.dir + '.json'); for (const x of (v.credits || [])) pics.push(`<li><b>${esc(x.what)}</b>: ${esc(x.author)}, ${x.licenseUrl ? `<a href="${esc(x.licenseUrl)}" target="_blank" rel="noopener">${esc(x.license)}</a>` : esc(x.license)}, <a href="${esc(x.source)}" target="_blank" rel="noopener">source</a></li>`); } catch (e) {}
   }
-  sheet(`<h2>${n} · ${esc(c.title)}</h2>
+  sheet(`<h2>Scene ${roman(n)} · ${esc(c.title)}</h2>
     <p class="small">Where each fact comes from. “Dramatised” marks words we wrote for a real person; “Unverified” marks what we still have to check on site.</p>
-    <h3>Sources, line by line</h3><ul>${rows.join('') || '<li>No notes for this stop.</li>'}</ul>
+    <h3>Sources, line by line</h3><ul>${rows.join('') || '<li>No notes for this scene.</li>'}</ul>
     <h3>Pictures</h3><ul>${pics.join('') || '<li>None.</li>'}</ul>
     <div class="btns"><button class="pill quiet" data-act="close">Close</button></div>`);
 }
@@ -620,10 +617,10 @@ function renderWalk() {
   const next = ch.find((c) => !done.has(c.n)) || null;
   const cur = S.cur && !done.has(S.cur) ? S.cur : next && next.n;
   $('#wkProg').style.width = (done.size / ch.length * 100) + '%';
-  $('#wkSub').textContent = done.size ? done.size + ' of ' + ch.length + ' stops heard' : 'Twelve stops, outside to inside. About an hour.';
+  $('#wkSub').textContent = done.size ? done.size + ' of ' + ch.length + ' scenes heard' : 'From the square to the tomb, and out again. About an hour.';
   const rb = $('#wkResume');
-  if (cur) { const m = ch.find((c) => c.n === cur); rb.innerHTML = `<svg width="16" height="16"><use href="#play"/></svg>${S.pos[cur] ? 'Continue' : (done.size ? 'Next' : 'Start')}: ${cur} · ${esc(m.title)}`; rb.onclick = () => openStop(cur); rb.style.display = ''; }
-  else { rb.innerHTML = 'You heard every stop · see the ending'; rb.onclick = () => show('finale'); }
+  if (cur) { const m = ch.find((c) => c.n === cur); rb.innerHTML = `<svg width="16" height="16"><use href="#play"/></svg>${S.pos[cur] ? 'Continue' : (done.size ? 'Next' : 'Begin')}: scene ${roman(cur)} · ${esc(m.title)}`; rb.onclick = () => openStop(cur); rb.style.display = ''; }
+  else { rb.innerHTML = 'Every scene heard · the ending'; rb.onclick = () => show('finale'); }
   let h = '', lastZone = '';
   for (const c of ch) {
     const zone = c.n <= 4 ? 'Outside' : c.n <= 11 ? 'Inside' : 'Around the walls';
@@ -631,13 +628,13 @@ function renderWalk() {
     if (c.n > 1 && c.walk) h += `<div class="walkline">${c.walk} min walk</div>`;
     const st = (c.stand || '').replace(/^./, (x) => x.toUpperCase()).replace(/UNVERIFIED:.*$/s, '').trim();
     const cls = done.has(c.n) ? 'done' : c.n === cur ? 'cur' : '';
-    h += `<button class="stop ${cls}" data-n="${c.n}"><span class="n">${done.has(c.n) ? '✓' : c.n}</span><span class="t"><b>${esc(c.title)}</b><span class="st">${esc(st)}</span><span>${fmt(c.siteS || c.min * 60)}${(c.stand || '').includes('UNVERIFIED') ? ' · <span class="verify">to be checked on site</span>' : ''}</span></span>${c.n === cur ? '<span class="go">Play</span>' : ''}</button>`;
+    h += `<button class="stop ${cls}" data-n="${c.n}"><span class="n">${done.has(c.n) ? '✓' : roman(c.n)}</span><span class="t"><b>${esc(c.title)}</b><span class="st">${esc(st)}</span><span>${fmt(c.siteS || c.min * 60)}${(c.stand || '').includes('UNVERIFIED') ? '<span class="verify"> · to be checked on site</span>' : ''}</span></span>${c.n === cur ? '<span class="go">Play</span>' : ''}</button>`;
   }
   $('#stops').innerHTML = h;
 }
 $('#stops').addEventListener('click', (e) => { const b = e.target.closest('.stop'); if (b) openStop(+b.dataset.n); });
 
-// ---------------------------------------------------------------- stage (one stop)
+// ---------------------------------------------------------------- stage (one scene)
 let CUR = null, DOOR = null, raf = 0, revShown = -1, wakeLock = null, lastIns = null;
 // what an insert asks of the visitor (onsite.json act): label, icon, buzz. A hum, never claps (feature 22).
 const ACTS = { look: ['LOOK', 'eye', 40], touch: ['TOUCH', 'hand', [30, 40, 30]], count: ['COUNT', 'steps', 40], hum: ['HUM', 'wave', 20], still: ['STAND STILL', 'still', 60], listen: ['LISTEN', 'wave', 20] };
@@ -645,11 +642,11 @@ const emit = (name, detail) => { try { document.dispatchEvent(new CustomEvent(na
 async function openStop(n, skipStand) {
   stopAudio();
   if (n === 1 && PLAYJ.door && !S.door && !skipStand && !S.pos[1] && !S.done.length) return openDoor();   // first entry: the house rules first
-  try { CUR = await loadCh(n); } catch (e) { toast('This stop did not load. Check the download or the signal.'); return; }
+  try { CUR = await loadCh(n); } catch (e) { toast('This scene did not load. Check the download or the signal.'); return; }
   S.cur = n; save();
   show('stage'); $('#stage').classList.remove('looking', 'dark'); hideReveal(true);
   emit('medu:stopstart', { n, dir: CUR.meta.dir });
-  $('#stTtl').innerHTML = `<b>${n} · ${esc(CUR.c.title)}</b>`;
+  $('#stTtl').innerHTML = `<b>Scene ${roman(n)} · ${esc(CUR.c.title)}</b>`;
   au.src = url(CUR.meta.dir, CUR.site.mix || CUR.c.mix);
   au.load();
   const resume = S.pos[n] || 0;
@@ -662,22 +659,22 @@ async function openStop(n, skipStand) {
 }
 function standCard() {
   const m = CUR.meta, ph = standPhoto(CUR);
-  $('#standK').textContent = CUR.door ? 'Before stop 1' : 'Stop ' + m.n + ' of ' + PLAYJ.chapters.length;
+  $('#standK').textContent = CUR.door ? 'Before the first scene' : 'The mark';
   $('#standH').textContent = CUR.c.title;
   const sraw = (CUR.c.onsite && CUR.c.onsite.stand) || m.stand || CUR.c.place || '';   // the play's [VERIFY] notes stay out of the visitor's text
   $('#standP').textContent = sraw.replace(/^./, (x) => x.toUpperCase()).replace(/UNVERIFIED:.*$/s, '').trim() + (/UNVERIFIED/.test(sraw) ? ' The exact spot is still to be checked on site.' : '');
   $('#standM').textContent = fmt(m.siteS || 0) + (CUR.door ? ' · the historian on how the house receives us.' : ' · headphones on, then lower your phone.');
   $('#standPh').style.backgroundImage = ph ? `url("${ph}")` : 'none';
   $('#standPh').style.display = ph ? '' : 'none';
-  $('#standGo').textContent = CUR.door ? 'I\'m at the door · listen' : 'I\'m standing here · begin';
-  $('#standBack').textContent = CUR.door ? 'Skip, I know the house rules' : 'Back to the walk';
+  $('#standGo').textContent = CUR.door ? 'I am at the door' : 'I am on the mark';
+  $('#standBack').textContent = CUR.door ? 'Skip, I know the house rules' : 'The programme';
   $('#standCard').classList.add('on');
 }
 // The door scene: a short pre-roll before stop 1 (play.json "door", built only from the validated door/dialogue files).
 async function openDoor() {
   const d = PLAYJ.door;
   try {
-    if (!DOOR) { const lines = await getJSON(url(d.dir, d.lines)); DOOR = { meta: { n: 0, dir: d.dir, siteS: d.siteS, stand: 'Before the first stop, wherever you stand. Headphones on, one earbud out.' }, c: { title: d.title || 'At the door', speakers: d.speakers || {}, next: '' }, lines, ins: [], site: { mix: d.mix }, reveals: [], door: true }; }
+    if (!DOOR) { const lines = await getJSON(url(d.dir, d.lines)); DOOR = { meta: { n: 0, dir: d.dir, siteS: d.siteS, stand: 'Before the first scene, wherever you stand. Headphones on, one earbud out.' }, c: { title: d.title || 'At the door', speakers: d.speakers || {}, next: '' }, lines, ins: [], site: { mix: d.mix }, reveals: [], door: true }; }
   } catch (e) { S.door = Date.now(); save(); return openStop(1); }   // no door files: straight to stop 1
   CUR = DOOR; S.cur = 1; save();
   show('stage'); $('#stage').classList.remove('looking', 'dark'); hideReveal(true);
@@ -782,9 +779,9 @@ function finishStop() {
   const nx = PLAYJ.chapters.find((c) => c.n === n + 1);
   if (!nx) { show('finale'); return; }
   S.cur = nx.n; save();
-  $('#nextK').textContent = 'Stop ' + n + ' done';
+  $('#nextK').textContent = 'End of scene ' + roman(n);
   $('#nextLine').textContent = CUR.c.next || '';
-  $('#nextH').textContent = nx.n + ' · ' + nx.title;
+  $('#nextH').innerHTML = '<small>Next · scene ' + roman(nx.n) + '</small>' + esc(nx.title);
   $('#nextP').textContent = (nx.stand || '').replace(/^./, (x) => x.toUpperCase()).replace(/UNVERIFIED:.*$/s, '').trim();
   $('#nextM').textContent = (nx.walk ? 'About ' + nx.walk + ' min on foot · ' : '') + fmt(nx.siteS || 0) + ' of play';
   $('#nextCard').classList.add('on');
@@ -806,7 +803,7 @@ async function lock(on) {
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && !au.paused) lock(true); });
 function mediaSession() {
   if (!('mediaSession' in navigator) || !CUR) return;
-  navigator.mediaSession.metadata = new MediaMetadata({ title: (CUR.door ? '' : CUR.meta.n + ' · ') + CUR.c.title, artist: 'Medu · Sultan Hassan', album: 'On-site edition', artwork: [{ src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png' }] });
+  navigator.mediaSession.metadata = new MediaMetadata({ title: (CUR.door ? '' : 'Scene ' + roman(CUR.meta.n) + ' · ') + CUR.c.title, artist: 'Medu · Sultan Hassan', album: 'On-site edition', artwork: [{ src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png' }] });
   const h = { play: () => au.play(), pause: () => au.pause(), seekbackward: () => seek(au.currentTime - 10), nexttrack: () => nextLine() };
   for (const k in h) try { navigator.mediaSession.setActionHandler(k, h[k]); } catch (e) {}
 }
@@ -847,10 +844,8 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSheet
 // ---------------------------------------------------------------- start
 (async () => {
   try { await loadPlay(); } catch (e) { toast('Could not load the play. Check the connection.', 6000); }
-  const hero = new Image(); hero.onload = () => { $('#heroBg').style.backgroundImage = `url("${hero.src}")`; $('#heroBg').classList.add('ok'); };
-  hero.src = url('ch01', 'stage/now-ch01.jpg');
   offlineBadge(); checkUpdate();
-  if (onsite() && PLAYJ) { $('#beginLbl').textContent = S.done.length ? 'Continue the walk' : 'Begin the walk'; }
+  if (onsite() && PLAYJ) { $('#beginLbl').textContent = S.done.length ? 'Continue the play' : 'Begin the play'; }
   if (Q.has('rehearse') && PLAYJ) openWalk();
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
     try { navigator.serviceWorker.register('sw.js'); } catch (e) {}
@@ -858,5 +853,6 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSheet
 })();
 </script>
 <script src="wave1.js"></script>
+<script src="lux/lux.js"></script>
 </body>
 </html>

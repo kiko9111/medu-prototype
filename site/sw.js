@@ -2,9 +2,9 @@
 // The app shell is cached on install (network first, so updates show on the next open).
 // The play's files (../play/...) are stored by the page's "Download for the visit" button in MEDIA_CACHE and served
 // from there first. Audio is served with Range support (206), which Safari needs to play cached files.
-const SHELL_CACHE = 'medu-site-shell-v5';
+const SHELL_CACHE = 'medu-site-shell-v6';
 const MEDIA_CACHE = 'medu-site-media';
-const SHELL = ['./', 'index.html', 'wave1.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png', 'icons/favicon.png'];
+const SHELL = ['./', 'index.html', 'wave1.js', 'lux/lux.css', 'lux/lux.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png', 'icons/favicon.png'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(SHELL_CACHE).then((c) => c.addAll(SHELL.map((p) => new Request(p, { cache: 'reload' })))).then(() => self.skipWaiting()));
@@ -12,6 +12,10 @@ self.addEventListener('install', (e) => {
 self.addEventListener('activate', (e) => {
   e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k.startsWith('medu-site-shell') && k !== SHELL_CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim()));
 });
+
+// A weak signal inside the walls must not hang the page: when a stored copy exists, the network gets a few
+// seconds, then the stored copy answers (the late answer still refreshes the store).
+const timed = (p, ms) => new Promise((ok, no) => { const t = setTimeout(() => no(new Error('timeout')), ms); p.then((v) => { clearTimeout(t); ok(v); }, (e) => { clearTimeout(t); no(e); }); });
 
 async function ranged(req, res) {
   const range = req.headers.get('range');
@@ -45,12 +49,15 @@ self.addEventListener('fetch', (e) => {
       const media = await caches.open(MEDIA_CACHE);
       const hit = await media.match(key);
       if (hit && !/\.json$/i.test(u.pathname)) return ranged(req, hit);
-      try { const r = await fetch(req); if (r.ok && hit && /\.json$/i.test(u.pathname)) media.put(key, r.clone()); return r; }
-      catch (err) { if (hit) return hit; throw err; }
+      const net = fetch(req).then((r) => { if (r.ok && hit && /\.json$/i.test(u.pathname)) media.put(key, r.clone()); return r; });
+      try { return await (hit ? timed(net, 3000) : net); }
+      catch (err) { net.catch(() => {}); if (hit) return hit; throw err; }
     }
     // the app shell: network first, cache when offline
     const shell = await caches.open(SHELL_CACHE);
-    try { const r = await fetch(req, { cache: 'no-store' }); if (r.ok) shell.put(req.mode === 'navigate' ? 'index.html' : req, r.clone()); return r; }
-    catch (err) { return (await shell.match(req, { ignoreSearch: true })) || (req.mode === 'navigate' ? shell.match('index.html') : Response.error()); }
+    const stored = (await shell.match(req, { ignoreSearch: true })) || (req.mode === 'navigate' ? await shell.match('index.html') : undefined);
+    const net = fetch(req, { cache: 'no-store' }).then((r) => { if (r.ok) shell.put(req.mode === 'navigate' ? 'index.html' : req, r.clone()); return r; });
+    try { return await (stored ? timed(net, 3500) : net); }
+    catch (err) { net.catch(() => {}); return stored || Response.error(); }
   })());
 });
