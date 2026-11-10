@@ -1,0 +1,99 @@
+{
+ "about": "Gold line layer for ch07: real photos with the named element traced; paths are fractions of the photo. Traced by eye: validator to check each outline.",
+ "looks": [
+  {
+   "src": "hassan-r7-1.jpg",
+   "label": "One square of sky over the court",
+   "paths": [],
+   "tags": [],
+   "spot": [
+    0.28,
+    0.04,
+    0.78,
+    0.47
+   ],
+   "ar": 1.3158
+  },
+  {
+   "src": "hassan-1.jpg",
+   "label": "The great halls (iwans) around the court",
+   "paths": [
+    {
+     "d": "M .065 .82 L .07 .45 C .09 .30 .20 .24 .29 .27 C .34 .30 .37 .36 .38 .45"
+    },
+    {
+     "d": "M .73 .82 L .735 .40 C .76 .22 .90 .18 .955 .30 L .955 .82"
+    }
+   ],
+   "tags": [
+    {
+     "at": [
+      0.18,
+      0.83
+     ],
+     "t": "a hall",
+     "side": "b"
+    },
+    {
+     "at": [
+      0.84,
+      0.83
+     ],
+     "t": "a hall",
+     "side": "b"
+    }
+   ],
+   "ar": 1.3333
+  },
+  {
+   "src": "hassan-1.jpg",
+   "label": "The empty band along the top of the walls",
+   "paths": [
+    {
+     "d": "M .64 .233 L .97 .10"
+    }
+   ],
+   "tags": [
+    {
+     "at": [
+      0.8,
+      0.19
+     ],
+     "t": "the empty band",
+     "side": "b"
+    }
+   ],
+   "ar": 1.3333
+  }
+ ],
+ "credits": [
+  {
+   "what": "One square of sky over the court",
+   "author": "Sherif Alyamany",
+   "license": "Public domain, lines added",
+   "licenseUrl": null,
+   "source": "https://commons.wikimedia.org/wiki/File:%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A7%D9%86_%D8%AD%D8%B3%D9%86_-_%D9%85%D9%86_%D8%A7%D9%84%D8%AF%D8%A7%D8%AE%D9%84_07.jpg"
+  },
+  {
+   "what": "The great halls (iwans) around the court",
+   "author": "Samir I. Sharbaty",
+   "license": "CC BY-SA 3.0 (lines added)",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:Cairo2710.JPG"
+  }
+ ],
+ "replace": {
+  "2": {
+   "kind": "wipe",
+   "cue": "Hold it up to the courtyard: then and now",
+   "then": "wipe-then.jpg",
+   "thenCap": "1839 · Pascal Coste, NYPL",
+   "aligned": false
+  }
+ },
+ "portraits": {
+  "0": "sultan/speaking",
+  "3": "maqrizi/grief",
+  "4": "bashir/grief"
+ }
+}

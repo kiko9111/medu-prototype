@@ -1,0 +1,51 @@
+{
+ "about": "Gold line layer for ch09: real photos with the named element traced; paths are fractions of the photo. Traced by eye: validator to check each outline.",
+ "looks": [
+  {
+   "src": "hassan-r8-2.jpg",
+   "label": "The rows of students' cells",
+   "paths": [],
+   "tags": [],
+   "spot": [
+    0.22,
+    0.05,
+    0.62,
+    0.62
+   ],
+   "ar": 1.3333
+  },
+  null
+ ],
+ "credits": [
+  {
+   "what": "The rows of students' cells",
+   "author": "Ahmed Mohi El din",
+   "license": "CC BY-SA 3.0 (lines added)",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:View_from_inside_El_sultan_Hassan_mosque.jpg"
+  },
+  {
+   "what": "Student cells in the Hanafi college, 1916–21 (archive view)",
+   "author": "K.A.C. Creswell / © Victoria and Albert Museum, London",
+   "license": "V&A: free for non-commercial use (licence needed before a public release)",
+   "source": "https://collections.vam.ac.uk/item/O1278661/"
+  }
+ ],
+ "portraits": {
+  "0": "sultan/speaking",
+  "2": "subki/speaking",
+  "3": "kalai/pride",
+  "4": "maqrizi/speaking"
+ },
+ "extra": [
+  {
+   "t0": 1.0,
+   "t1": 9.7,
+   "kind": "wipe",
+   "cue": "A college courtyard, a century ago",
+   "then": "then-court.jpg",
+   "thenCap": "1916–21 · K.A.C. Creswell",
+   "howSub": "Four storeys of student rooms: count them"
+  }
+ ]
+}

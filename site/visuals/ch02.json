@@ -1,0 +1,105 @@
+{
+ "about": "Gold line layer for ch02: real photos with the named element traced; paths are fractions of the photo. Traced by eye: validator to check each outline.",
+ "looks": [
+  {
+   "src": "hassan-r1-1.jpg",
+   "label": "The two minarets of Sultan Hassan",
+   "paths": [
+    {
+     "d": "M 0.205 0.02 L 0.275 0.02 L 0.275 0.62 L 0.205 0.62 Z"
+    },
+    {
+     "d": "M 0.715 0.17 L 0.775 0.17 L 0.775 0.62 L 0.715 0.62 Z"
+    }
+   ],
+   "tags": [
+    {
+     "at": [
+      0.24,
+      0.63
+     ],
+     "t": "original",
+     "side": "b"
+    },
+    {
+     "at": [
+      0.745,
+      0.63
+     ],
+     "t": "rebuilt",
+     "side": "b"
+    }
+   ],
+   "ar": 1.3333
+  },
+  {
+   "src": "hassan-r1-2.jpg",
+   "label": "The original minaret, up to the tip",
+   "paths": [
+    {
+     "d": "M .35 .98 L .35 .06"
+    }
+   ],
+   "tags": [
+    {
+     "at": [
+      0.35,
+      0.3
+     ],
+     "t": "all the way up",
+     "side": "l"
+    }
+   ],
+   "ar": 0.75
+  },
+  {
+   "src": "hassan-r1-1.jpg",
+   "label": "The smaller, rebuilt minaret with one head",
+   "paths": [
+    {
+     "d": "M 0.715 0.17 L 0.775 0.17 L 0.775 0.62 L 0.715 0.62 Z"
+    }
+   ],
+   "tags": [
+    {
+     "at": [
+      0.745,
+      0.63
+     ],
+     "t": "rebuilt, one head",
+     "side": "b"
+    }
+   ],
+   "ar": 1.3333
+  }
+ ],
+ "credits": [
+  {
+   "what": "The two minarets of Sultan Hassan",
+   "author": "R Prazeres",
+   "license": "CC BY-SA 4.0 (lines added)",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:Sultan_Hasan_Madrasa-Mosque_DSCF7241.jpg"
+  },
+  {
+   "what": "The original minaret, up to the tip",
+   "author": "Richard Mortel",
+   "license": "CC BY 2.0 (lines added)",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:Madrasa_of_Sultan_Hasan,_1356-63,_Cairo_06.jpg"
+  }
+ ],
+ "replace": {
+  "4": {
+   "kind": "wipe",
+   "cue": "Hold it up to the minarets: then and now",
+   "then": "wipe-then.jpg",
+   "thenCap": "1867–99 · Bonfils, Library of Congress",
+   "aligned": false
+  }
+ },
+ "portraits": {
+  "1": "tumanbay/grief",
+  "5": "muqbil/speaking"
+ }
+}
