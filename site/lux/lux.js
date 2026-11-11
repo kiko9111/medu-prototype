@@ -24,6 +24,8 @@ const PREVIEW = ((q('meta[name="medu-preview"]') || {}).content || '') === '1'; 
 const RN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV'];
 const rn = (n) => RN[n] || String(n);
 const fixName = (t) => (typeof t === 'string' ? t.replace(/\bHasan\b/g, 'Hassan') : t);        // one spelling everywhere
+// one name for one thing: the app says "hall"; the play's notes gloss it as "(iwan)" or call it so
+const halls = (t) => (typeof t === 'string' ? t.replace(/\s*\((?:the )?(?:qibla )?iwans?\)/gi, '').replace(/\bIwan(s?)\b/g, 'Hall$1').replace(/\biwan(s?)\b/g, 'hall$1') : t);
 const still = () => S.fx === false || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
 const stage = q('#stage'), standEl = q('#standCard'), nextEl = q('#nextCard');
 const IMG = 'lux/img/';
@@ -179,21 +181,21 @@ const Notes = (() => {
 })();
 
 // ---------------------------------------------------------------- one spelling, theatre words
-function fixPlay() { for (const c of PLAYJ.chapters) { c.title = fixName(c.title); c.stand = fixName(c.stand); } if (PLAYJ.door) PLAYJ.door.title = fixName(PLAYJ.door.title); }
+function fixPlay() { for (const c of PLAYJ.chapters) { c.title = halls(fixName(c.title)); c.stand = halls(fixName(c.stand)); } if (PLAYJ.door) PLAYJ.door.title = fixName(PLAYJ.door.title); }
 const origLoadCh = window.loadCh;
 window.loadCh = async function () {
   const ch = await origLoadCh.apply(this, arguments);
   if (ch && !ch._lx) {
     ch._lx = 1; const c = ch.c;
-    for (const k of ['title', 'next', 'place']) c[k] = fixName(c[k]);
-    if (c.onsite) c.onsite.stand = fixName(c.onsite.stand);
+    for (const k of ['title', 'next', 'place']) c[k] = halls(fixName(c[k]));
+    if (c.onsite) c.onsite.stand = halls(fixName(c.onsite.stand));
     for (const k in (c.speakers || {})) c.speakers[k] = fixName(c.speakers[k]);
     for (const l of ch.lines) { l.cap = fixName(l.cap); l.say = fixName(l.say); if (l.w) for (const w of l.w) w[0] = fixName(w[0]); }
     let off = 0;   // each pause's own time on the on-site mix; and one name for one thing: the app says halls
-    for (const x of ch.ins) { x.cue = fixName(x.cue); x.element = fixName(x.element || '').replace(/\biwans\b/g, 'halls').replace(/\biwan\b/g, 'hall'); x._s0 = x.at + off; x._s1 = x._s0 + x.dur; off += x.dur; }
+    for (const x of ch.ins) { x.cue = halls(fixName(x.cue)); x.element = halls(fixName(x.element || '')); x._s0 = x.at + off; x._s1 = x._s0 + x.dur; off += x.dur; }
     const plain = (t) => (typeof t === 'string' ? t.replace(/\s*\[VERIFY[^\]]*\]/g, '').replace(/\s*UNVERIFIED:?[\s\S]*$/, '').trim() : t);   // the play's working notes stay off the screen
     c.place = plain(c.place); if (c.onsite) c.onsite.stand = plain(c.onsite.stand); for (const k in (c.lineTags || {})) c.lineTags[k] = plain(c.lineTags[k]);
-    for (const r of ch.reveals) for (const k of ['cue', 'label', 'thenCap', 'how', 'howSub']) if (r[k]) r[k] = fixName(r[k]);
+    for (const r of ch.reveals) for (const k of ['cue', 'label', 'thenCap', 'how', 'howSub']) if (r[k]) r[k] = halls(fixName(r[k]));
     for (const l of (ch.looks || [])) if (l) { l.label = fixName(l.label); for (const g of (l.tags || [])) g.t = fixName(g.t); }
   }
   return ch;
@@ -230,6 +232,7 @@ window.renderLine = function (elc, arEl, whoEl, ch, line, t) {
     elc.innerHTML = ph ? ph[k].map((w) => '<span class="w" data-t="' + w[1] + '">' + esc(w[0]) + '</span>').join(' ') : esc(line.cap || line.say);
     elc._spans = ph ? [...elc.querySelectorAll('.w')] : null;
     elc.classList.remove('lx-in'); if (!still()) { void elc.offsetWidth; elc.classList.add('lx-in'); }
+    if (onStage) fitWords();
   }
   if (elc._spans) for (const s of elc._spans) s.classList.toggle('on', +s.dataset.t <= t + 0.05);
 };
@@ -303,10 +306,17 @@ function layoutArt() {
   const words = (parseFloat(getComputedStyle(capEl).minHeight) || 108) + 26 + (parseFloat(getComputedStyle(mid).paddingBottom) || 40);
   let bottom = mr.bottom - sr.top - words - 10;
   if (standEl.classList.contains('on')) { const b = q('.body', standEl).getBoundingClientRect(); if (b.height) bottom = b.top - sr.top - 2; }
-  if (stage.classList.contains('lx-drawar')) { const w = q('#stWho').getBoundingClientRect(); if (w.height) bottom = Math.min(bottom, w.top - sr.top - 12); }   // a drawing while an Arabic line is spoken: both are seen, the drawing makes room
+  // the words come first: a phrase of four lines, or an Arabic line spoken over a drawing, takes its room from the picture area
+  // (an Arabic line over the old picture does not: there the picture steps back and the line stands on it)
+  if (!stage.classList.contains('lx-ar') || stage.classList.contains('lx-drawar')) { const w = q('#stWho').getBoundingClientRect(); if (w.height) bottom = Math.min(bottom, w.top - sr.top - 12); }
   art.style.top = topY + 'px'; art.style.height = Math.max(150, bottom - topY) + 'px';
   const t = thenOf(+art.dataset.n || 0), box = fr.getBoundingClientRect();
   if (t && box.height) { let h = box.height, w = h * t.w / t.h; if (w > box.width) { w = box.width; h = w * t.h / t.w; } pic.style.width = Math.round(w) + 'px'; pic.style.height = Math.round(h) + 'px'; }
+}
+let wordsTop = 0;
+function fitWords() {   // called when the phrase changes: has the block of words grown or shrunk?
+  const w = q('#stWho').getBoundingClientRect(), top = w.height ? Math.round(w.top) : 0;
+  if (top !== wordsTop) { wordsTop = top; if (top && stage.classList.contains('lx-playing')) { layoutArt(); drawFit(); } }
 }
 addEventListener('resize', () => { layoutArt(); drawFit(); });
 if (D.fonts && D.fonts.ready) D.fonts.ready.then(layoutArt);
@@ -322,7 +332,10 @@ function normDraw(d) {
   if (!d || typeof d !== 'object' || !d.carriers || !Array.isArray(d.moments)) return null;
   const ok = (m) => m && d.carriers[m.carrier] && d.carriers[m.carrier].file && +m.t1 > +m.t0 && (m.kind === 'look' || m.kind === 'line');
   const out = { carriers: d.carriers, moments: d.moments.filter(ok).sort((a, b) => a.t0 - b.t0) };
-  for (const k in out.carriers) { const c = out.carriers[k]; c.w = +c.w || 1000; c.h = +c.h || 1000; if (c.file) { const i = new Image(); i.src = carSrc(c); } }
+  for (const k in out.carriers) {   // a moment is shown only when its picture has come (a file that is not there leaves the old picture)
+    const c = out.carriers[k]; c.w = +c.w || 1000; c.h = +c.h || 1000; c._ok = false;
+    if (c.file) { const i = new Image(); i.onload = () => { c._ok = true; lpKey = ''; }; i.src = carSrc(c); }
+  }
   return out.moments.length ? out : null;
 }
 function loadDraw(n) {
@@ -388,7 +401,7 @@ function drawFit() { if (!dCur || !dCar) return; const svg = q('.ly:last-child s
 let lpKey = '';
 function luxPaint() {
   if (!CUR || CUR.door || !stage.classList.contains('on')) return;
-  const n = CUR.meta.n, d = DRAW[n] || null, ms = d ? d.moments : [], s = au.currentTime, b = siteToBase(CUR, s);
+  const n = CUR.meta.n, d = DRAW[n] || null, ms = d ? d.moments.filter((x) => d.carriers[x.carrier]._ok) : [], s = au.currentTime, b = siteToBase(CUR, s);
   let m = null; for (const x of ms) if (s >= x.t0 && s < x.t1) { m = x; break; }
   let show = null, cue = '', label = '';
   if (b.ins) {
@@ -574,11 +587,11 @@ window.allFiles = async function () {
   const out = await origAll.apply(this, arguments);
   // a picture this copy does not hold is left out, so the download can still finish; anything unclear stays on the list.
   // The living openings and the trailer are films: they stream and are never on this list.
-  const there = await Promise.all(LUX_FILES.map((u) => fetch(u, { method: 'HEAD', cache: 'no-store' }).then((r) => r.status !== 404 && r.status !== 410, () => true)));
   // each scene's drawings and the pictures they are drawn on, where the scene has them
-  const draws = [];
-  for (let n = 1; n <= 12; n++) { const d = await loadDraw(n); if (d) { draws.push(DRAWDIR + 'ch' + pad2(n) + '.json'); for (const k in d.carriers) if (d.carriers[k].file) draws.push(carSrc(d.carriers[k])); } }
-  return [...new Set([...out, ...LUX_FILES.filter((u, i) => there[i]), ...draws])];
+  const lux = LUX_FILES.slice();
+  for (let n = 1; n <= 12; n++) { const d = await loadDraw(n); if (d) { lux.push(DRAWDIR + 'ch' + pad2(n) + '.json'); for (const k in d.carriers) if (d.carriers[k].file) lux.push(carSrc(d.carriers[k])); } }
+  const there = await Promise.all(lux.map((u) => fetch(u, { method: 'HEAD', cache: 'no-store' }).then((r) => r.status !== 404 && r.status !== 410, () => true)));
+  return [...new Set([...out, ...lux.filter((u, i) => there[i])])];
 };
 
 // ---------------------------------------------------------------- the stop: one way into every scene
@@ -688,7 +701,7 @@ function guideLoaded() { if (!ST || ST.loaded) return; ST.loaded = true; if (ST.
 function stopSettled(then) {
   if (!ST || ST.settled || ST.done) return;
   ST.settled = true; ST.then = !!then; ST.answered = true;
-  stopEl.classList.remove('walking', 'pre'); stopEl.classList.add('settled');
+  stopEl.classList.remove('walking', 'pre', 'canbegin'); stopEl.classList.add('settled');   // a "Begin" that came up while the guide was slow steps back: the picture is there to be drawn
   q('.hint', stopEl).textContent = then ? HINT : '';
   clearTimeout(ST.t20);
   if (then) ST.t20 = setTimeout(showBegin, 20000); else showBegin();   // "Begin" only where there is no picture to draw, or after twenty seconds
@@ -715,7 +728,7 @@ bandEl.addEventListener('click', (e) => {
   if (b.dataset.a === 'begin') { Notes.unlock(); stopReady(true); return; }
   // "I am there": the guide flies to the stand and raises the old picture
   prime(); bridgeGo();
-  if (ST.loaded) sayGo(); else if (!ST.goQ) { const st = ST; st.goQ = true; st.tGo = setTimeout(() => { if (ST === st && st.goQ) { st.goQ = false; sayGo(); } }, 6000); }
+  if (ST.loaded) sayGo(); else if (!ST.goQ) { const st = ST; st.goQ = true; st.tGo = setTimeout(() => { if (ST === st && st.goQ) sayGo(); }, 6000); }   // at six seconds it is sent on trust, and once more when the guide does say it is loaded
   if (!ST.settled) { clearTimeout(ST.t20); ST.t20 = setTimeout(showBegin, 20000); }   // a guide that never answers still lets the play begin
 });
 q('.cl', stopEl).onclick = () => { stopClear(); liveEnd(true); stopAudio(); openWalk(); };
