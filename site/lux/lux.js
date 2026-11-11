@@ -607,6 +607,8 @@ window.allFiles = async function () {
 //   the same two events as hashes on the guide's own address: #settled-ch04, #ready-ch04.
 // A message counts only from the guide's own window and for the scene being opened; each event acts once per stop.
 const GUIDE = 'guide3d/index.html', HINT = 'Draw the old picture across to begin';
+let NOQ = false;   // this host did not serve the guide with a query string: open it plain, embed mode goes by message
+const guideSrc = (mode, ch) => GUIDE + (NOQ ? '' : '?embed=lux&bottom=' + bandPx()) + '#' + mode + '-' + ch;
 const stopEl = el('div', 'lx-stop', `<iframe class="g" title="The way to the mark" allow="geolocation; accelerometer; gyroscope; magnetometer"></iframe>
 <div class="own" hidden><div class="pl"></div><div class="op"><img alt="" draggable="false"></div><input type="range" min="0" max="100" step="2" value="8" aria-label="Draw the old picture across the plan"><div class="kn" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
 <button class="x cl" aria-label="Close and return to the programme"><svg width="20" height="20"><use href="#close"/></svg></button>
@@ -649,12 +651,19 @@ function stopOpen(n) {   // the scene's files are loaded and the stage is set un
   ST = { n, ch, mode, title: 'Scene ' + rn(n) + ' · ' + (m.title || ''), settled: false, done: false, own: false, answered: false, then: true, bn: 0, gone: 0, loaded: false, goQ: false, tGo: 0 };
   stopEl.className = 'lx-stop on walking'; preload(n);
   if (!hasGL()) { stopOwn(); return; }
-  frame.src = GUIDE + '?embed=lux&bottom=' + bandPx() + '#' + mode + '-' + ch;
+  frame.src = guideSrc(mode, ch);
   ST.poll = setInterval(stopPoll, 250);
-  ST.t6 = setTimeout(() => { if (ST && ST.n === n && !ST.own && !ST.answered && !guideCanvas()) stopOwn(); }, 6000);   // the guide has not come: our own stop
+  ST.t6 = setTimeout(noGuide, 6000, n);   // the guide has not come: our own stop
 }
 const guideCanvas = () => { try { return !!frame.contentWindow.document.querySelector('canvas'); } catch (e) { return false; } };
-frame.addEventListener('load', sayEmbed);
+const noGuide = (n) => { if (ST && ST.n === n && !ST.own && !ST.answered && !guideCanvas()) stopOwn(); };
+frame.addEventListener('load', () => {
+  const src = frame.getAttribute('src') || '';
+  if (ST && !ST.own && !NOQ && src.indexOf('?') > 0 && !guideCanvas()) {   // what came back is not the guide (the query was refused): ask once more, plain
+    NOQ = true; clearTimeout(ST.t6); ST.t6 = setTimeout(noGuide, 6000, ST.n); frame.src = guideSrc(ST.mode, ST.ch); return;
+  }
+  sayEmbed();
+});
 addEventListener('resize', () => { if (!ST) return; sayEmbed(); if (ST.own) ownLayout(); });
 addEventListener('message', (e) => {
   if (!ST || ST.own || e.source !== frame.contentWindow) return;
@@ -697,7 +706,7 @@ const showBegin = () => { if (ST && !ST.done) stopEl.classList.add('canbegin'); 
 // The guide installs its message listener only when its model is in, and says so with {type:'medu:loaded'}. A "go" sent
 // before that is lost, so "I am there" is held until then (or until its loading screen is gone, or six seconds at most).
 const sayGo = () => { if (ST) postGuide({ type: 'medu:go', ch: ST.ch, mode: 'stand' }); };
-function guideLoaded() { if (!ST || ST.loaded) return; ST.loaded = true; if (ST.goQ) { ST.goQ = false; clearTimeout(ST.tGo); sayGo(); } }
+function guideLoaded() { if (!ST || ST.loaded) return; ST.loaded = true; sayEmbed(); if (ST.goQ) { ST.goQ = false; clearTimeout(ST.tGo); sayGo(); } }   // it listens now: embed mode by message too (a query may have been dropped on the way)
 function stopSettled(then) {
   if (!ST || ST.settled || ST.done) return;
   ST.settled = true; ST.then = !!then; ST.answered = true;
