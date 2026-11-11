@@ -279,11 +279,13 @@ const preload = (n) => { if (THEN[n]) { const i = new Image(); i.src = thenSrc(n
 // carriers: the measured plates (gold line on clear ground) and old photographs the lines are drawn on;
 // moments: when (seconds on the on-site mix) and what to frame (box) and to lift (polys), as fractions of the carrier.
 const DRAWDIR = 'lux/draw/', DRAW = {}, DRAWP = {};
+const carSrc = (c) => { const o = []; for (const p of (DRAWDIR + c.file).split('/')) { if (p === '..') o.pop(); else if (p && p !== '.') o.push(p); } return o.join('/'); };   // a carrier may be the scene's own old picture ('../img/then/…'): one address for one file
+const carCredit = (c) => [[c.credit, c.plate].filter(Boolean).join(', '), c.note].filter(Boolean).join(' · ');
 function normDraw(d) {
   if (!d || typeof d !== 'object' || !d.carriers || !Array.isArray(d.moments)) return null;
   const ok = (m) => m && d.carriers[m.carrier] && d.carriers[m.carrier].file && +m.t1 > +m.t0 && (m.kind === 'look' || m.kind === 'line');
   const out = { carriers: d.carriers, moments: d.moments.filter(ok).sort((a, b) => a.t0 - b.t0) };
-  for (const k in out.carriers) { const c = out.carriers[k]; c.w = +c.w || 1000; c.h = +c.h || 1000; if (c.file) { const i = new Image(); i.src = DRAWDIR + c.file; } }
+  for (const k in out.carriers) { const c = out.carriers[k]; c.w = +c.w || 1000; c.h = +c.h || 1000; if (c.file) { const i = new Image(); i.src = carSrc(c); } }
   return out.moments.length ? out : null;
 }
 function loadDraw(n) {
@@ -306,7 +308,7 @@ function setVB(svg, vb) {
 }
 function drawSVG(m, c, vb) {
   const id = 'lxd' + (++dSeq), d = polyD(m, c), plate = c.kind !== 'photo';
-  const im = `<image href="${esc(DRAWDIR + c.file)}" x="0" y="0" width="${c.w}" height="${c.h}" preserveAspectRatio="none"`;
+  const im = `<image href="${esc(carSrc(c))}" x="0" y="0" width="${c.w}" height="${c.h}" preserveAspectRatio="none"`;
   let s = `<svg class="${plate ? 'plate' : 'photo'}" viewBox="0 0 ${c.w} ${c.h}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="${esc(m.label || 'Drawing')}"><defs><clipPath id="${id}c" clipPathUnits="userSpaceOnUse"><path d="${d || 'M0 0'}"/></clipPath><filter id="${id}g" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="4"/></filter></defs>`;
   if (plate) s += im + ' opacity=".4"/>' + (d ? im + ` clip-path="url(#${id}c)"/>` : '');   // the whole plate dim, the element at full strength
   else s += im + '/>' + (d ? `<path class="sh" fill-rule="evenodd" d="M0 0H${c.w}V${c.h}H0Z${d}"/>` : '');   // the photograph whole, darker outside the element
@@ -355,7 +357,7 @@ function luxPaint() {
   stage.classList.toggle('lx-over', !!(show || b.ins));   // a pause or a drawing comes before a portrait
   const cueCh = artCue.textContent !== cue; artCue.textContent = cue;
   if (cueCh) layoutArt();
-  if (show) { const c = d.carriers[show.carrier], same = dCur === show; drawShow(show, d); if (same && cueCh) drawFit(); art.classList.toggle('lx-plate', c.kind !== 'photo'); setCap(show.label || '', [c.credit, c.note].filter(Boolean).join(' · ')); }
+  if (show) { const c = d.carriers[show.carrier], same = dCur === show; drawShow(show, d); if (same && cueCh) drawFit(); art.classList.toggle('lx-plate', c.kind !== 'photo'); setCap(show.label || '', carCredit(c)); }
   else { drawHide(); setCap(label, thenCap(n)); }
 }
 
@@ -526,7 +528,7 @@ window.allFiles = async function () {
   const there = await Promise.all(LUX_FILES.map((u) => fetch(u, { method: 'HEAD', cache: 'no-store' }).then((r) => r.status !== 404 && r.status !== 410, () => true)));
   // each scene's drawings and the pictures they are drawn on, where the scene has them
   const draws = [];
-  for (let n = 1; n <= 12; n++) { const d = await loadDraw(n); if (d) { draws.push(DRAWDIR + 'ch' + pad2(n) + '.json'); for (const k in d.carriers) if (d.carriers[k].file) draws.push(DRAWDIR + d.carriers[k].file); } }
+  for (let n = 1; n <= 12; n++) { const d = await loadDraw(n); if (d) { draws.push(DRAWDIR + 'ch' + pad2(n) + '.json'); for (const k in d.carriers) if (d.carriers[k].file) draws.push(carSrc(d.carriers[k])); } }
   return [...new Set([...out, ...LUX_FILES.filter((u, i) => there[i]), ...draws])];
 };
 
