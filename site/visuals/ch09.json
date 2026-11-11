@@ -23,12 +23,6 @@
    "license": "CC BY-SA 3.0 (lines added)",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
    "source": "https://commons.wikimedia.org/wiki/File:View_from_inside_El_sultan_Hassan_mosque.jpg"
-  },
-  {
-   "what": "Student cells in the Hanafi college, 1916–21 (archive view)",
-   "author": "K.A.C. Creswell / © Victoria and Albert Museum, London",
-   "license": "V&A: free for non-commercial use (licence needed before a public release)",
-   "source": "https://collections.vam.ac.uk/item/O1278661/"
   }
  ],
  "portraits": {
@@ -36,16 +30,5 @@
   "2": "subki/speaking",
   "3": "kalai/pride",
   "4": "maqrizi/speaking"
- },
- "extra": [
-  {
-   "t0": 1.0,
-   "t1": 9.7,
-   "kind": "wipe",
-   "cue": "A college courtyard, a century ago",
-   "then": "then-court.jpg",
-   "thenCap": "1916–21 · K.A.C. Creswell",
-   "howSub": "Four storeys of student rooms: count them"
-  }
- ]
+ }
 }

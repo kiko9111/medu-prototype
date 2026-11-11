@@ -34,10 +34,11 @@
    "source": "https://commons.wikimedia.org/wiki/File:Sultan_Hassan_Mosque_3.JPG"
   },
   {
-   "what": "Dome and vaulting of the entrance hall, 1916–21 (archive view)",
-   "author": "K.A.C. Creswell / © Victoria and Albert Museum, London",
-   "license": "V&A: free for non-commercial use (licence needed before a public release)",
-   "source": "https://collections.vam.ac.uk/item/O1287591/"
+   "what": "Section through the entrance hall and its dome, 1899",
+   "author": "Max Herz, La mosquée du sultan Hassan au Caire, pl. XII",
+   "license": "Public domain",
+   "licenseUrl": null,
+   "source": "https://archive.org/details/mosqueedusultanHassanauCaire00leca"
   }
  ],
  "portraits": {
@@ -50,10 +51,10 @@
    "t1": 9.8,
    "kind": "wipe",
    "cue": "Before the dark: look up",
-   "then": "then-vestibule.jpg",
-   "thenCap": "1916–21 · K.A.C. Creswell",
+   "then": "then-vestibule-herz.jpg",
+   "thenCap": "1899 · Max Herz, measured section",
    "how": "Stand at the back of the hall and look up",
-   "howSub": "The dome you pass under, about a century ago"
+   "howSub": "The dome you pass under, as measured in 1899"
   }
  ]
 }
