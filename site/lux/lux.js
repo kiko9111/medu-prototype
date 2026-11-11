@@ -506,9 +506,11 @@ window.settingsSheet = function () {
   const a = el('div', 'row', `<div>House lights<div class="small">Paper outdoors while the sun is up, night indoors and after sunset.</div></div><div class="lx-seg" role="group" aria-label="House lights">${Object.keys(names).map((k) => `<button data-lx-lights="${k}" aria-pressed="${cur === k}">${names[k]}</button>`).join('')}</div>`);
   const b = el('div', 'row', `<div>Review notes<div class="small">Show what is still to be checked on site.</div></div><button class="switch" role="switch" aria-checked="${!!S.review}" data-lx-review aria-label="Review notes"></button>`);
   first.parentNode.insertBefore(a, first); first.parentNode.insertBefore(b, first.nextSibling ? first.nextSibling.nextSibling : null);
+  b.insertAdjacentElement('afterend', el('div', 'row', '<div>The trailer<div class="small">Thirty seconds of film, shown once before the play.</div></div><button class="pill ghost" style="width:auto;padding:0 18px;min-height:40px" data-lx-film>Watch</button>'));
 };
 q('#sheetIn').addEventListener('click', (e) => {
   const l = e.target.closest('[data-lx-lights]'), r = e.target.closest('[data-lx-review]');
+  if (e.target.closest('[data-lx-film]')) { closeSheet(); window.trailer(); return; }
   if (l) { S.lights = l.dataset.lxLights; save(); l.parentNode.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', x === l)); setTheme(themeFor(q('#stage').classList.contains('on') ? (scene || 1) : nextUnheard()), false); }
   if (r) { S.review = !S.review; save(); r.setAttribute('aria-checked', !!S.review); root.classList.toggle('lx-review', !!S.review); }
 });
@@ -580,7 +582,7 @@ function stopOpen(n) {   // the scene's files are loaded and the stage is set un
   const m = PLAYJ.chapters.find((c) => c.n === n) || {}, ch = 'ch' + pad2(n), mode = wayMode === 'walk' ? 'walk' : 'mark'; wayMode = '';
   if (ST) { clearInterval(ST.poll); clearTimeout(ST.t6); clearTimeout(ST.t20); }
   stopCurtain(n);
-  ST = { n, ch, mode, title: 'Scene ' + rn(n) + ' · ' + (m.title || ''), settled: false, done: false, own: false, answered: false, then: true, bn: 0 };
+  ST = { n, ch, mode, title: 'Scene ' + rn(n) + ' · ' + (m.title || ''), settled: false, done: false, own: false, answered: false, then: true, bn: 0, gone: 0 };
   stopEl.className = 'lx-stop on walking'; preload(n);
   if (!hasGL()) { stopOwn(); return; }
   frame.src = GUIDE + '?embed=lux&bottom=' + bandPx() + '#' + mode + '-' + ch;
@@ -601,25 +603,30 @@ function stopPoll() {
   if (!ST || ST.own || ST.done) return; let w, h = '';
   try { w = frame.contentWindow; h = String(w.location.hash || ''); } catch (e) { return; }
   if (h === '#settled-' + ST.ch) stopSettled(true); else if (h === '#ready-' + ST.ch) stopReady(false);
-  if (ST && !ST.done) bridge(w);
+  if (ST && !ST.done) watch(w);
 }
-// ---- bridge: remove when the guide sends medu:settled / medu:ready (its v13). Today's guide (v12) does not speak the
-// contract, so its "Then" window is watched from here (same origin): settled = the window is up in the stand view,
-// ready = its knob has travelled to within 6 % of the far side. Its own strip, chips and dock are hidden from here.
-function bridge(w) {
+// The guide's own "Then" window is also watched from here (same origin, read only): settled = the window is up in the
+// stand view, ready = its knob has travelled to within 6 % of the far side. Messages, hashes and this watch feed the same
+// two handlers; whichever comes first wins. (Guide v13.0 asks for the last 8 px, which its own knob cannot reach on a
+// screen wider than 400 px; this watch covers it.) If the visitor puts the old picture away, "Begin" comes at once.
+// The guide's own small close button for that window is hidden: there is one close control on screen, ours.
+// ---- bridge: the parts marked v12 can go when no v12 guide is left (v12 does not speak the contract at all).
+function watch(w) {
   try {
-    const R = w.__r, doc = w.document; if (!R || !R.state || parseFloat(R.version || '0') >= 13) return;
-    if (!doc.getElementById('lxEmbed')) { const s = doc.createElement('style'); s.id = 'lxEmbed'; s.textContent = '.band{visibility:hidden!important;pointer-events:none!important}.band *{pointer-events:none!important}#cue,#thenx,#thenhead{display:none!important}'; (doc.head || doc.documentElement).appendChild(s); }
+    const R = w.__r, doc = w.document; if (!R || !R.state || !doc) return;
+    const v12 = parseFloat(R.version || '0') < 13;
+    if (!doc.getElementById('lxEmbed')) { const s = doc.createElement('style'); s.id = 'lxEmbed'; s.textContent = '#thenx{display:none!important}' + (v12 ? '.band{visibility:hidden!important;pointer-events:none!important}.band *{pointer-events:none!important}#cue,#thenhead{display:none!important}' : ''); (doc.head || doc.documentElement).appendChild(s); }
     const st = R.state(); if (st.cur !== ST.ch || st.mode !== 'stand') { ST.bn = 0; return; }
-    const wrap = doc.getElementById('thenwrap'), up = !!wrap && wrap.style.display === 'block';
-    if (!ST.settled) { if (up) stopSettled(true); else if (++ST.bn > 14) stopSettled(false); return; }   // 3.5 s at the stand and no old picture: none here
-    if (!up) return;
+    const wrap = doc.getElementById('thenwrap'), up = !!wrap && w.getComputedStyle(wrap).display !== 'none';
+    if (!ST.settled) { if (up) stopSettled(true); else if (v12 && ++ST.bn > 14) stopSettled(false); return; }   // v12: 3.5 s at the stand and no old picture: none here
+    if (!up) { if (++ST.gone > 4) showBegin(); return; }
+    ST.gone = 0; if (!ST.then) { ST.then = true; q('.hint', stopEl).textContent = HINT; }
     const bar = doc.getElementById('thenbar').getBoundingClientRect(), im = doc.getElementById('thenimg').getBoundingClientRect();
     const x0 = Math.max(0, im.left), x1 = Math.min(w.innerWidth, im.right), x = bar.left + bar.width / 2;
     if (x1 > x0 && x >= x1 - 0.06 * (x1 - x0)) stopReady(false);
   } catch (e) {}
 }
-function bridgeGo() { try { const R = frame.contentWindow.__r; if (R && R.go && parseFloat(R.version || '0') < 13) R.go(ST.ch); } catch (e) {} }
+function bridgeGo() { try { const R = frame.contentWindow.__r; if (R && R.go && parseFloat(R.version || '0') < 13) R.go(ST.ch); } catch (e) {} }   // v12
 // ---- end of the bridge
 const showBegin = () => { if (ST && !ST.done) stopEl.classList.add('canbegin'); };
 function stopSettled(then) {
@@ -755,6 +762,80 @@ D.addEventListener('visibilitychange', () => {   // a film never plays to a hidd
   if (!LV || LV.state !== 'roll') return;
   if (D.visibilityState !== 'visible') { try { liveV.pause(); } catch (e) {} } else { const lv = LV; try { const p = liveV.play(); if (p && p.catch) p.catch(() => { if (LV === lv) liveEnd(); }); } catch (e) { liveEnd(); } }
 });
+
+// ---------------------------------------------------------------- the trailer, before the play
+// The first time the visitor begins the play (the cover's "Begin"), the thirty-second film plays full screen with its
+// own sound, then the programme opens with scene I ready. Once only; afterwards it is one tap away on the cover and in
+// the settings. Far from the mosque the same film is the trailer. The film streams: it is never downloaded or precached.
+const FILM = { src: 'lux/media/trailer-30s.mp4', poster: 'lux/media/trailer-30s.jpg' };
+const filmEl = el('div', 'lx-film', '<video playsinline preload="auto" disablepictureinpicture></video><div class="ps"><button class="pill gold" data-f="play">Play the trailer</button></div><button class="sk" data-f="skip">Skip</button>');
+filmEl.id = 'lxFilm'; filmEl.setAttribute('role', 'dialog'); filmEl.setAttribute('aria-label', 'The trailer'); D.body.appendChild(filmEl);
+const filmV = q('video', filmEl);
+let FM = null;   // { auto: before the play (once) | false: asked for, armed, shown, started, bad, quiet: poster and a button, done(), fail() }
+function filmDrop() {
+  if (FM) clearTimeout(FM.tw); FM = null;
+  filmV.onplaying = filmV.onended = filmV.onerror = null; try { filmV.pause(); } catch (e) {}
+  if (filmV.getAttribute('src')) { filmV.removeAttribute('src'); filmV.removeAttribute('poster'); try { filmV.load(); } catch (e) {} }
+  filmEl.className = 'lx-film';
+}
+function filmWire(fm) {
+  filmV.muted = false; filmV.loop = false; filmV.volume = 1;
+  filmV.onplaying = () => { if (FM !== fm) return; fm.started = true; clearTimeout(fm.tw); if (fm.auto && fm.shown && !S.film) { S.film = Date.now(); save(); } try { if (!tr.paused && !tr.getAttribute('src')) tr.pause(); } catch (e) {} };
+  filmV.onended = () => { if (FM === fm) filmDone(fm); };
+  filmV.onerror = () => { fm.bad = true; if (FM === fm && fm.shown) filmFail(fm); };
+  if (fm.quiet) { filmV.preload = 'metadata'; filmV.poster = FILM.poster; } else { filmV.preload = 'auto'; filmV.removeAttribute('poster'); }
+  filmV.src = FILM.src;
+}
+function filmPlay(fm) {
+  let p = null; try { p = filmV.play(); } catch (e) { fm.bad = true; if (fm.shown) filmFail(fm); return; }
+  if (p && p.then) p.then(() => { if (FM === fm && !fm.shown) { try { filmV.pause(); } catch (e) {} } }, (e) => { if (FM !== fm || (e && e.name === 'AbortError' && !fm.shown)) return; fm.bad = true; if (fm.shown) filmFail(fm); });
+}
+function filmArm() {   // inside the tap on "Begin": the film is allowed its sound; it is shown when the door check has passed
+  filmDrop(); const fm = FM = { auto: true, armed: true, shown: false, started: false, bad: false, quiet: still(), done: null, fail: null };
+  filmWire(fm); if (!fm.quiet) filmPlay(fm);
+}
+function filmShow(done) {
+  const fm = FM; fm.shown = true; fm.armed = false; fm.done = done || null;
+  if (fm.bad) { filmFail(fm); return; }   // the file is missing or cannot play: on with the play, silently
+  filmEl.className = 'lx-film on' + (fm.quiet ? ' poster' : ''); q('.sk', filmEl).textContent = fm.auto ? 'Skip' : 'Close';
+  if (!fm.quiet) { if (filmV.paused) { try { filmV.currentTime = 0; } catch (e) {} filmPlay(fm); } fm.tw = setTimeout(() => { if (FM === fm && !fm.started) filmFail(fm); }, 8000); }   // a film that never starts does not hold the play
+}
+function filmDone(fm) { const done = fm.done; if (fm.auto && !S.film) { S.film = Date.now(); save(); } filmDrop(); if (done) done(); }   // the end, or "Skip"
+function filmFail(fm) { const next = fm.auto ? fm.done : fm.fail; filmDrop(); if (next) next(); }
+function filmOpen(o) {   // asked for: "Watch the trailer"
+  filmDrop(); const fm = FM = { auto: false, armed: false, shown: false, started: false, bad: false, quiet: false, done: null, fail: (o && o.fail) || null };
+  filmWire(fm); filmPlay(fm); filmShow(null);
+}
+filmEl.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-f]'), fm = FM; if (!b || !fm) return;
+  if (b.dataset.f === 'skip') { filmDone(fm); return; }
+  fm.quiet = false; filmEl.classList.remove('poster'); if (fm.auto && !S.film) { S.film = Date.now(); save(); }
+  filmPlay(fm); fm.tw = setTimeout(() => { if (FM === fm && !fm.started) filmFail(fm); }, 8000);
+});
+D.addEventListener('keydown', (e) => { if (e.key === 'Escape' && FM && FM.shown) filmDone(FM); });
+D.addEventListener('visibilitychange', () => {   // never plays to a hidden page; when the page is back and the phone wants a touch, the button
+  const fm = FM; if (!fm || !fm.shown || fm.quiet) return;
+  if (D.visibilityState !== 'visible') { try { filmV.pause(); } catch (e) {} return; }
+  try { const p = filmV.play(); if (p && p.catch) p.catch(() => { if (FM === fm) { fm.quiet = true; filmEl.classList.add('poster'); } }); } catch (e) {}
+});
+// the cover's "Begin": the first time, the film comes before the programme
+const origBegin = window.begin;
+q('#btnBegin').onclick = () => { if (PLAYJ && !S.film) filmArm(); else if (FM && FM.armed) filmDrop(); origBegin(); };
+const walkLux = window.openWalk;
+window.openWalk = function () {
+  if (FM && FM.armed && !FM.shown) { filmShow(() => walkLux.call(window)); return; }
+  return walkLux.apply(this, arguments);
+};
+// "Watch the trailer": the cover, the settings, and the sheet shown far from the mosque. If the film cannot be had, the
+// play's own audio trailer takes its place.
+const origTrailer = window.trailer;
+window.trailer = function () {
+  try { if (tr.paused && !tr.getAttribute('src')) { const p = tr.play(); if (p && p.catch) p.catch(() => {}); } } catch (e) {}   // inside the tap, so the audio trailer may still start if the film cannot
+  filmOpen({ fail: () => origTrailer() });
+};
+const tb0 = q('#btnTrailer'); if (tb0) { tb0.textContent = 'Watch the trailer'; tb0.onclick = () => window.trailer(); }
+const origGate = window.gateSheet;
+window.gateSheet = function () { const r = origGate.apply(this, arguments); const b = q('#sheetIn [data-act="trailer"]'); if (b) b.textContent = 'Watch the trailer'; return r; };
 
 // ---------------------------------------------------------------- the review copy, and the first paint once the play has loaded
 if (PREVIEW) {
