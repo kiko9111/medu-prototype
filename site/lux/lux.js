@@ -654,7 +654,7 @@ bandEl.addEventListener('click', (e) => {
   prime(); postGuide({ type: 'medu:go', ch: ST.ch, mode: 'stand' }); bridgeGo();
   if (!ST.settled) { clearTimeout(ST.t20); ST.t20 = setTimeout(showBegin, 20000); }   // a guide that never answers still lets the play begin
 });
-q('.cl', stopEl).onclick = () => { stopClear(); stopAudio(); openWalk(); };
+q('.cl', stopEl).onclick = () => { stopClear(); liveEnd(true); stopAudio(); openWalk(); };
 
 // Without the guide (no WebGL, or it has not come within six seconds): our own stop, the same gesture.
 // Coste's plan, close on the mark; the old picture is drawn across it with the knob.
@@ -705,8 +705,56 @@ window.openStop = async function (n, skipStand) {
   finally { stopPending = false; if (!ST) { if (via) stopClear(); au.muted = false; } }
 };
 
-// (the living opening comes with the next step)
-const liveOn = () => false; function liveEnd() {} function livePrep() {} function liveStart() { return false; }
+// ---------------------------------------------------------------- the living opening (scenes I, IV, VII, X)
+// At "ready" the old picture grows from where it stands until its 9:16 part covers the screen; a five-second film, laid
+// exactly over it, plays once without sound behind the header and the spoken phrase, then gives way to the quiet stage.
+// The films stream (never downloaded, never precached). The curtain note and the voices never wait for them.
+const ANIM = {};
+for (const n of [1, 4, 7, 10]) ANIM[n] = { src: 'lux/media/anim/ch' + pad2(n) + '.mp4', poster: 'lux/media/anim/ch' + pad2(n) + '.jpg', rect: THEN[n].rect };
+const liveEl = el('div', 'lx-live', '<img class="p" alt=""><video muted playsinline preload="auto" disablepictureinpicture></video>'); liveEl.setAttribute('aria-hidden', 'true');
+stage.insertBefore(liveEl, q('.mid', stage));
+const liveV = q('video', liveEl), liveP = q('.p', liveEl);
+let LV = null;   // { n, ok: the film can play, bad: it cannot, state: '' | 'grow' | 'roll' | 'out' }
+const liveOn = () => !!(LV && (LV.state === 'grow' || LV.state === 'roll'));
+function liveDrop() { if (LV) { clearTimeout(LV.t1); clearTimeout(LV.t2); clearTimeout(LV.t3); } LV = null; liveV.oncanplay = liveV.onerror = liveV.onended = null; try { liveV.pause(); } catch (e) {} if (liveV.getAttribute('src')) { liveV.removeAttribute('src'); try { liveV.load(); } catch (e) {} } liveEl.className = 'lx-live'; stage.classList.remove('lx-liveon'); }
+function livePrep(n) {   // the stop has settled: start loading the film
+  const a = ANIM[n]; if (!a || still()) return; if (LV && LV.n === n) return;
+  liveDrop(); const lv = LV = { n, ok: false, bad: false, state: '' };
+  liveV.muted = true; liveV.defaultMuted = true; liveV.loop = false;
+  liveV.oncanplay = () => { lv.ok = true; }; liveV.onerror = () => { lv.bad = true; if (LV === lv && liveOn()) liveEnd(); };
+  liveV.src = a.src; try { liveV.load(); } catch (e) { lv.bad = true; }
+}
+const place = (e, x, y, w, h) => Object.assign(e.style, { left: x.toFixed(1) + 'px', top: y.toFixed(1) + 'px', width: w.toFixed(1) + 'px', height: h.toFixed(1) + 'px' });
+function liveStart(n) {   // at "ready". False: no film, the stage opens the plain way
+  const a = ANIM[n], t = THEN[n], lv = LV;
+  if (!a || !lv || lv.n !== n || lv.bad || !lv.ok || still() || D.visibilityState !== 'visible') { liveDrop(); return false; }   // not ready to play at "ready": no film
+  const sr = stage.getBoundingClientRect(), pr = pic.getBoundingClientRect(), W = sr.width, H = sr.height;
+  if (!pr.width || !W) { liveDrop(); return false; }
+  liveP.src = thenSrc(n); liveEl.className = 'lx-live on'; place(liveP, pr.left - sr.left, pr.top - sr.top, pr.width, pr.height);   // the old picture, exactly where it stands
+  lv.state = 'grow'; stage.classList.add('lx-liveon');
+  const rw = a.rect[2] - a.rect[0], rh = a.rect[3] - a.rect[1], k = Math.max(W / (rw * t.w), H / (rh * t.h));   // cover: on a tall phone the sides are cut evenly
+  void liveP.offsetWidth; liveEl.classList.add('grow');
+  place(liveP, W / 2 - (a.rect[0] + rw / 2) * t.w * k, H / 2 - (a.rect[1] + rh / 2) * t.h * k, t.w * k, t.h * k);
+  lv.t1 = setTimeout(() => {   // the film, laid over the picture: 300 ms in, once, no sound
+    if (LV !== lv || lv.state !== 'grow') return;
+    let p = null; try { liveV.currentTime = 0; p = liveV.play(); } catch (e) { liveEnd(); return; }
+    lv.state = 'roll'; liveV.onended = () => { if (LV === lv) liveEnd(); };
+    const on = () => { if (LV === lv && lv.state === 'roll') liveEl.classList.add('roll'); };
+    if (p && p.then) p.then(on, () => { if (LV === lv) liveEnd(); }); else on();
+    lv.t3 = setTimeout(() => { if (LV === lv) liveEnd(); }, 9000);   // a film that stalls does not hold the stage
+  }, 900);
+  return true;
+}
+function liveEnd(now) {   // the film ends, or a touch: 600 ms to the quiet stage, the old picture back in its place
+  const lv = LV; if (!lv) return; if (lv.state === 'out' && !now) return; if (!liveOn() || now) { liveDrop(); return; }
+  clearTimeout(lv.t1); clearTimeout(lv.t3); lv.state = 'out'; liveEl.classList.add('out');
+  setTimeout(() => stage.classList.remove('lx-liveon'), 300);
+  lv.t2 = setTimeout(() => { if (LV === lv) liveDrop(); }, 620);
+}
+D.addEventListener('visibilitychange', () => {   // a film never plays to a hidden page
+  if (!LV || LV.state !== 'roll') return;
+  if (D.visibilityState !== 'visible') { try { liveV.pause(); } catch (e) {} } else { const lv = LV; try { const p = liveV.play(); if (p && p.catch) p.catch(() => { if (LV === lv) liveEnd(); }); } catch (e) { liveEnd(); } }
+});
 
 // ---------------------------------------------------------------- the review copy, and the first paint once the play has loaded
 if (PREVIEW) {
