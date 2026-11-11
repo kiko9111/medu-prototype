@@ -54,6 +54,42 @@ const dPath = (pts) => pts.map(P2S).map((p, i) => (i ? 'L' : 'M') + p[0].toFixed
 const legsPts = (a, b) => { let out = []; for (let i = a; i < b; i++) { const seg = LEGS[i + '-' + (i + 1)]; out = out.concat(out.length ? seg.slice(1) : seg); } return out; };
 const INK = '#3A281A', NIGHT = '#0B0A08';
 
+// On a walk card the plan is cut close and its scale changes from leg to leg. A label is drawn there only where it reads
+// cleanly at that scale: whole inside the card, clear of every mark and of the thread (the tables are not touched).
+function labelFree(L, o) {
+  const [t, x, y, rot] = L, u = o.u, fs = 8.5 * u, w = t.length * fs * 0.95, pad = 5 * u, vb = o.vb;   // capitals, spaced .24em
+  let x0 = x - w / 2, x1 = x + w / 2, y0 = y - fs * 0.85, y1 = y + fs * 0.2;
+  if (rot) { x0 = x - fs * 0.85; x1 = x + fs * 0.2; y0 = y - w / 2; y1 = y + w / 2; }
+  x0 -= pad; x1 += pad; y0 -= pad; y1 += pad;
+  if (x0 < vb[0] || y0 < vb[1] || x1 > vb[0] + vb[2] || y1 > vb[1] + vb[3] - (o.foot || 0) * u) return false;   // foot: the card fades out there
+  for (let i = 0; i < MARKS.length; i++) {
+    const [mx, my] = P2S(MARKS[i]), r = (i + 1 === o.cur ? 19.5 : (o.r || 10.2)) * u;
+    const dx = Math.max(x0 - mx, 0, mx - x1), dy = Math.max(y0 - my, 0, my - y1); if (dx * dx + dy * dy < r * r) return false;
+  }
+  const g = 4 * u, X0 = x0 - g, X1 = x1 + g, Y0 = y0 - g, Y1 = y1 + g;   // the thread has a width
+  const cut = (a, b) => {   // does the stretch a-b enter the box? (Liang and Barsky)
+    let t0 = 0, t1 = 1; const dx = b[0] - a[0], dy = b[1] - a[1];
+    for (const [pp, qq] of [[-dx, a[0] - X0], [dx, X1 - a[0]], [-dy, a[1] - Y0], [dy, Y1 - a[1]]]) {
+      if (pp === 0) { if (qq < 0) return false; } else { const r = qq / pp; if (pp < 0) { if (r > t1) return false; if (r > t0) t0 = r; } else { if (r < t0) return false; if (r < t1) t1 = r; } }
+    }
+    return true;
+  };
+  for (const line of [legsPts(1, 11), LEGS['11-12']]) { const pts = line.map(P2S); for (let i = 1; i < pts.length; i++) if (cut(pts[i - 1], pts[i])) return false; }
+  return true;
+}
+function planLabels(o) {
+  if (!o.labels) return [];
+  if (!o.cull) {   // the programme: every label, kept whole inside the sheet on a narrow phone
+    return LABELS.map((L) => { if (L[3]) return L; const half = L[0].length * 8.5 * o.u * 0.95 / 2 + 2 * o.u; return [L[0], Math.max(o.vb[0] + half, Math.min(o.vb[0] + o.vb[2] - half, L[1])), L[2], L[3]]; });
+  }
+  const out = [];   // two lines of one name ("Great" over "hall") stay or go together
+  for (let i = 0; i < LABELS.length;) {
+    let j = i + 1; while (j < LABELS.length && LABELS[j][1] === LABELS[i][1] && LABELS[j][3] === LABELS[i][3] && Math.abs(LABELS[j][2] - LABELS[j - 1][2]) <= 120) j++;
+    const grp = LABELS.slice(i, j); if (grp.every((L) => labelFree(L, o))) out.push(...grp);
+    i = j;
+  }
+  return out;
+}
 // one drawing for the programme, the walk between scenes and the little plan. u = sheet units per screen pixel.
 function planSVG(o) {
   const u = o.u, n2 = (v) => (v * u).toFixed(1), night = !!o.night, id = o.id, done = o.done || new Set(), cur = o.cur || 0;
@@ -77,7 +113,7 @@ function planSVG(o) {
     if (night) s += line(d, 9, 'rgba(240,210,130,.5)', `filter="url(#${id}glow)"`) + line(d, 3, '#f3dfa0');
     else s += line(d, 8.4, INK) + line(d, 5.6, `url(#${id}leaf)`);
   }
-  for (const [t, x, y, rot] of (o.labels ? LABELS : [])) s += `<text class="lbl" x="${x}" y="${y}" text-anchor="middle" font-size="${n2(8.5)}"${rot ? ` transform="rotate(${rot} ${x} ${y})"` : ''}>${t}</text>`;
+  for (const [t, x, y, rot] of planLabels(o)) s += `<text class="lbl" x="${x}" y="${y}" text-anchor="middle" font-size="${n2(8.5)}"${rot ? ` transform="rotate(${rot} ${x} ${y})"` : ''}>${t}</text>`;
   MARKS.forEach((m, i) => {
     const n = i + 1, [x, y] = P2S(m), isDone = done.has(n), isCur = n === cur, from = o.leg && o.leg[0] === n;
     const r = isCur ? 13.5 : (o.r || 10.2);
@@ -267,6 +303,7 @@ function layoutArt() {
   const words = (parseFloat(getComputedStyle(capEl).minHeight) || 108) + 26 + (parseFloat(getComputedStyle(mid).paddingBottom) || 40);
   let bottom = mr.bottom - sr.top - words - 10;
   if (standEl.classList.contains('on')) { const b = q('.body', standEl).getBoundingClientRect(); if (b.height) bottom = b.top - sr.top - 2; }
+  if (stage.classList.contains('lx-drawar')) { const w = q('#stWho').getBoundingClientRect(); if (w.height) bottom = Math.min(bottom, w.top - sr.top - 12); }   // a drawing while an Arabic line is spoken: both are seen, the drawing makes room
   art.style.top = topY + 'px'; art.style.height = Math.max(150, bottom - topY) + 'px';
   const t = thenOf(+art.dataset.n || 0), box = fr.getBoundingClientRect();
   if (t && box.height) { let h = box.height, w = h * t.w / t.h; if (w > box.width) { w = box.width; h = w * t.h / t.w; } pic.style.width = Math.round(w) + 'px'; pic.style.height = Math.round(h) + 'px'; }
@@ -299,12 +336,22 @@ function vbFor(m, c) {   // the box, widened to the shape of the picture area: t
   if (!(w > 0 && h > 0)) { x = 0; y = 0; w = c.w; h = c.h; }
   const r = drEl.getBoundingClientRect(), ar = r.width > 0 && r.height > 0 ? r.width / r.height : w / h;
   if (w / h < ar) { const nw = h * ar; x -= (nw - w) / 2; w = nw; } else { const nh = w / ar; y -= (nh - h) / 2; h = nh; }
-  return [x, y, w, h];
+  const keep = (p, s, S) => (s >= S ? (S - s) / 2 : Math.max(0, Math.min(S - s, p)));   // the room that was added shows more of the picture, not an empty margin
+  return [keep(x, w, c.w), keep(y, h, c.h), w, h];
 }
 const polyD = (m, c) => (Array.isArray(m.polys) ? m.polys : []).filter((p) => Array.isArray(p) && p.length > 2).map((p) => 'M' + p.map((v) => (v[0] * c.w).toFixed(1) + ' ' + (v[1] * c.h).toFixed(1)).join('L') + 'Z').join('');
-function setVB(svg, vb) {
-  dVB = vb; svg.setAttribute('viewBox', vb.map((v) => v.toFixed(1)).join(' '));
-  const g = q('feGaussianBlur', svg); if (g) g.setAttribute('stdDeviation', (2.6 * vb[2] / (drEl.clientWidth || 360)).toFixed(2));   // a 2.6 px glow at any framing
+function setVB(svg, vb, c) {
+  dVB = vb; let v = vb, pxw = drEl.clientWidth || 360;
+  if (c && c.kind === 'photo') {   // a photograph is never set between black bars: its frame takes the shape of the part that is shown
+    const x0 = Math.max(vb[0], 0), y0 = Math.max(vb[1], 0), x1 = Math.min(vb[0] + vb[2], c.w), y1 = Math.min(vb[1] + vb[3], c.h), W = drEl.clientWidth, H = drEl.clientHeight;
+    if (x1 > x0 && y1 > y0 && W && H) {
+      v = [x0, y0, x1 - x0, y1 - y0];
+      let w = W, h = w * v[3] / v[2]; if (h > H) { h = H; w = h * v[2] / v[3]; }
+      place(svg.parentNode, (W - w) / 2, (H - h) / 2, w, h); pxw = w;
+    }
+  }
+  svg.setAttribute('viewBox', v.map((k) => k.toFixed(1)).join(' '));
+  const g = q('feGaussianBlur', svg); if (g) g.setAttribute('stdDeviation', (2.6 * v[2] / pxw).toFixed(2));   // a 2.6 px glow at any framing
 }
 function drawSVG(m, c, vb) {
   const id = 'lxd' + (++dSeq), d = polyD(m, c), plate = c.kind !== 'photo';
@@ -318,14 +365,14 @@ function drawSVG(m, c, vb) {
 function drawShow(m, d) {
   if (dCur === m) return; const c = d.carriers[m.carrier];
   const to = vbFor(m, c), glide = !!(dCur && dCar === c && dVB && !still()), from = glide ? dVB.slice() : to, old = [...drEl.children];
-  const ly = el('div', 'ly', drawSVG(m, c, from)), svg = ly.firstChild; drEl.appendChild(ly); setVB(svg, from);
+  const ly = el('div', 'ly', drawSVG(m, c, from)), svg = ly.firstChild; drEl.appendChild(ly); setVB(svg, from, c);
   dCur = m; dCar = c; art.classList.add('lx-draw');
   void ly.offsetWidth; ly.classList.add('in');
   setTimeout(() => old.forEach((o) => o.remove()), still() ? 0 : 440);
   cancelAnimationFrame(dRaf);
   if (glide) {   // the framing travels to the next element in about 900 ms
     const t0 = performance.now(), ease = (k) => 1 - Math.pow(1 - k, 3);
-    const step = (t) => { const k = Math.min(1, (t - t0) / 900), e = ease(k); if (!svg.isConnected) return; setVB(svg, from.map((v, i) => v + (to[i] - v) * e)); if (k < 1) dRaf = requestAnimationFrame(step); };
+    const step = (t) => { const k = Math.min(1, (t - t0) / 900), e = ease(k); if (!svg.isConnected) return; setVB(svg, from.map((v, i) => v + (to[i] - v) * e), c); if (k < 1) dRaf = requestAnimationFrame(step); };
     dRaf = requestAnimationFrame(step);
   }
 }
@@ -334,7 +381,7 @@ function drawHide(now) {
   dCur = null; dCar = null; dVB = null; cancelAnimationFrame(dRaf); art.classList.remove('lx-draw');
   if (now || still()) drEl.innerHTML = ''; else setTimeout(() => { if (!dCur) drEl.innerHTML = ''; }, 440);
 }
-function drawFit() { if (!dCur || !dCar) return; const svg = q('.ly:last-child svg', drEl); if (svg) { cancelAnimationFrame(dRaf); setVB(svg, vbFor(dCur, dCar)); } }
+function drawFit() { if (!dCur || !dCar) return; const svg = q('.ly:last-child svg', drEl); if (svg) { cancelAnimationFrame(dRaf); setVB(svg, vbFor(dCur, dCar), dCar); } }
 
 // What the picture area shows now. Priority: a Look pause (its drawing, else the old picture), a line drawing, a portrait
 // (the play's own card), the old picture. Called after every paint of the play.
@@ -352,10 +399,12 @@ function luxPaint() {
     show = m;
     if (m.kind === 'look') { const x = CUR.ins.find((y) => y._s0 < m.t1 && y._s1 > m.t0); if (x && s < x._s0) cue = 'Look for it'; }
   }
-  const key = n + '|' + (show ? ms.indexOf(show) : -1) + '|' + cue + '|' + label;
+  const ar = !!show && stage.classList.contains('lx-ar');   // an Arabic line takes the stage and the old picture steps back; a drawing does not
+  const key = n + '|' + (show ? ms.indexOf(show) : -1) + '|' + cue + '|' + label + '|' + ar;
   if (key === lpKey) return; lpKey = key;
   stage.classList.toggle('lx-over', !!(show || b.ins));   // a pause or a drawing comes before a portrait
-  const cueCh = artCue.textContent !== cue; artCue.textContent = cue;
+  const arCh = stage.classList.contains('lx-drawar') !== ar; stage.classList.toggle('lx-drawar', ar);
+  const cueCh = artCue.textContent !== cue || arCh; artCue.textContent = cue;
   if (cueCh) layoutArt();
   if (show) { const c = d.carriers[show.carrier], same = dCur === show; drawShow(show, d); if (same && cueCh) drawFit(); art.classList.toggle('lx-plate', c.kind !== 'photo'); setCap(show.label || '', carCredit(c)); }
   else { drawHide(); setCap(label, thenCap(n)); }
@@ -379,7 +428,7 @@ q('#stBar').addEventListener('pointerdown', () => showCtl(6000));
 let stopPending = false;   // a scene is being opened through the stop: the house lights change without their announcement
 D.addEventListener('medu:stopstart', (e) => {
   const d = e.detail || {}; scene = d.door ? 0 : d.n;
-  stage.classList.remove('lx-atmark', 'lx-rising', 'lx-interval', 'lx-ctl', 'lx-over'); stage.classList.add('lx-playing', 'lx-paused');
+  stage.classList.remove('lx-atmark', 'lx-rising', 'lx-interval', 'lx-ctl', 'lx-over', 'lx-drawar'); stage.classList.add('lx-playing', 'lx-paused');
   setTheme(themeFor(scene || 1), !stopPending);
   liveEnd(true); drawHide(true); lpKey = '';
   setLoc(scene || 1, d.door ? 'door' : 'scene'); setArt(scene); layoutArt(); preload(scene + 1);
@@ -425,7 +474,7 @@ function drawLeg(a, b) {
     const pad = Math.max(260, 0.3 * Math.max(x1 - x0, y1 - y0)); x0 -= pad; x1 += pad; y0 -= pad; y1 += pad * 1.15;
     let w = Math.max(x1 - x0, 1050), h = y1 - y0; const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2, ar = W / H;
     if (w / h < ar) w = h * ar; else h = w / ar;
-    box.innerHTML = planSVG({ id: 'lg', vb: [cx - w / 2, cy - h / 2, w, h], u: w / W, night: theme === 'night', done: new Set(S.done), cur: b, leg: [a, b], labels: true, r: 9, slice: true, label: 'The walk from scene ' + rn(a) + ' to scene ' + rn(b) });
+    box.innerHTML = planSVG({ id: 'lg', vb: [cx - w / 2, cy - h / 2, w, h], u: w / W, night: theme === 'night', done: new Set(S.done), cur: b, leg: [a, b], labels: true, cull: true, foot: 56, r: 9, slice: true, label: 'The walk from scene ' + rn(a) + ' to scene ' + rn(b) });
   };
   paint(); requestAnimationFrame(paint);
 }
@@ -433,7 +482,7 @@ const origFinish = window.finishStop;
 window.finishStop = function () {
   const was = CUR && !CUR.door ? CUR.meta.n : 0;
   const r = origFinish.apply(this, arguments);
-  stage.classList.remove('lx-playing', 'lx-ctl', 'lx-atmark', 'lx-rising', 'lx-over'); liveEnd(true); drawHide(true); lpKey = '';
+  stage.classList.remove('lx-playing', 'lx-ctl', 'lx-atmark', 'lx-rising', 'lx-over', 'lx-drawar'); liveEnd(true); drawHide(true); lpKey = '';
   if (was && nextEl.classList.contains('on') && S.cur) { stage.classList.add('lx-interval'); setLoc(S.cur, 'walk'); drawLeg(was, S.cur); preload(S.cur); }
   const wb = q('#w1wayBtn'); if (wb) wb.onclick = () => { wayMode = 'walk'; openStop(S.cur); };   // the guide's walk, then the same stop as every other way in
   return r;
@@ -576,15 +625,15 @@ function stopCurtain(n) {   // the ground and the band are up at once, before th
   stopEl.className = 'lx-stop on pre';
 }
 function stopClear() {
-  if (ST) { clearInterval(ST.poll); clearTimeout(ST.t6); clearTimeout(ST.t20); }
+  if (ST) { clearInterval(ST.poll); clearTimeout(ST.t6); clearTimeout(ST.t20); clearTimeout(ST.tGo); }
   ST = null; stopEl.className = 'lx-stop'; ownEl.hidden = true; q('.pl', stopEl).innerHTML = '';
   if (frame.getAttribute('src') && frame.getAttribute('src') !== 'about:blank') frame.src = 'about:blank';
 }
 function stopOpen(n) {   // the scene's files are loaded and the stage is set underneath; called in place of the play's mark card
   const m = PLAYJ.chapters.find((c) => c.n === n) || {}, ch = 'ch' + pad2(n), mode = wayMode === 'walk' ? 'walk' : 'mark'; wayMode = '';
-  if (ST) { clearInterval(ST.poll); clearTimeout(ST.t6); clearTimeout(ST.t20); }
+  if (ST) { clearInterval(ST.poll); clearTimeout(ST.t6); clearTimeout(ST.t20); clearTimeout(ST.tGo); }
   stopCurtain(n);
-  ST = { n, ch, mode, title: 'Scene ' + rn(n) + ' · ' + (m.title || ''), settled: false, done: false, own: false, answered: false, then: true, bn: 0, gone: 0 };
+  ST = { n, ch, mode, title: 'Scene ' + rn(n) + ' · ' + (m.title || ''), settled: false, done: false, own: false, answered: false, then: true, bn: 0, gone: 0, loaded: false, goQ: false, tGo: 0 };
   stopEl.className = 'lx-stop on walking'; preload(n);
   if (!hasGL()) { stopOwn(); return; }
   frame.src = GUIDE + '?embed=lux&bottom=' + bandPx() + '#' + mode + '-' + ch;
@@ -597,13 +646,14 @@ addEventListener('resize', () => { if (!ST) return; sayEmbed(); if (ST.own) ownL
 addEventListener('message', (e) => {
   if (!ST || ST.own || e.source !== frame.contentWindow) return;
   const d = e.data; if (!d || typeof d !== 'object' || typeof d.type !== 'string' || d.type.indexOf('medu:') !== 0) return;
-  ST.answered = true;
+  ST.answered = true; guideLoaded();   // the guide speaks: it can hear us too
   if (d.ch !== ST.ch) return;
   if (d.type === 'medu:settled') stopSettled(d.then !== false); else if (d.type === 'medu:ready') stopReady(false);
 });
 function stopPoll() {
   if (!ST || ST.own || ST.done) return; let w, h = '';
   try { w = frame.contentWindow; h = String(w.location.hash || ''); } catch (e) { return; }
+  if (!ST.loaded) { try { const doc = w.document; if (doc && doc.readyState === 'complete' && doc.querySelector('canvas') && !doc.getElementById('load')) guideLoaded(); } catch (e) {} }   // a guide that never says "loaded": its own loading screen is gone
   if (h === '#settled-' + ST.ch) stopSettled(true); else if (h === '#ready-' + ST.ch) stopReady(false);
   if (ST && !ST.done) watch(w);
 }
@@ -631,6 +681,10 @@ function watch(w) {
 function bridgeGo() { try { const R = frame.contentWindow.__r; if (R && R.go && parseFloat(R.version || '0') < 13) R.go(ST.ch); } catch (e) {} }   // v12
 // ---- end of the bridge
 const showBegin = () => { if (ST && !ST.done) stopEl.classList.add('canbegin'); };
+// The guide installs its message listener only when its model is in, and says so with {type:'medu:loaded'}. A "go" sent
+// before that is lost, so "I am there" is held until then (or until its loading screen is gone, or six seconds at most).
+const sayGo = () => { if (ST) postGuide({ type: 'medu:go', ch: ST.ch, mode: 'stand' }); };
+function guideLoaded() { if (!ST || ST.loaded) return; ST.loaded = true; if (ST.goQ) { ST.goQ = false; clearTimeout(ST.tGo); sayGo(); } }
 function stopSettled(then) {
   if (!ST || ST.settled || ST.done) return;
   ST.settled = true; ST.then = !!then; ST.answered = true;
@@ -642,7 +696,7 @@ function stopSettled(then) {
 }
 function stopReady(tap) {   // the picture has been drawn across (or "Begin"): the curtain note, the voices, the stage
   if (!ST || ST.done) return;
-  const st = ST, n = st.n; st.done = true; clearTimeout(st.t20); clearTimeout(st.t6); clearInterval(st.poll);
+  const st = ST, n = st.n; st.done = true; st.goQ = false; clearTimeout(st.t20); clearTimeout(st.t6); clearTimeout(st.tGo); clearInterval(st.poll);
   Notes.play('curtain', 0.75);
   let p = null, went = false;
   const go = () => { if (went || ST !== st) return; went = true; stopRise(n); };
@@ -660,7 +714,8 @@ bandEl.addEventListener('click', (e) => {
   const b = e.target.closest('[data-a]'); if (!b || !ST) return;
   if (b.dataset.a === 'begin') { Notes.unlock(); stopReady(true); return; }
   // "I am there": the guide flies to the stand and raises the old picture
-  prime(); postGuide({ type: 'medu:go', ch: ST.ch, mode: 'stand' }); bridgeGo();
+  prime(); bridgeGo();
+  if (ST.loaded) sayGo(); else if (!ST.goQ) { const st = ST; st.goQ = true; st.tGo = setTimeout(() => { if (ST === st && st.goQ) { st.goQ = false; sayGo(); } }, 6000); }
   if (!ST.settled) { clearTimeout(ST.t20); ST.t20 = setTimeout(showBegin, 20000); }   // a guide that never answers still lets the play begin
 });
 q('.cl', stopEl).onclick = () => { stopClear(); liveEnd(true); stopAudio(); openWalk(); };
@@ -683,12 +738,12 @@ function ownLayout() {
   Object.assign(ownPic.style, { width: Math.round(w) + 'px', height: Math.round(h) + 'px', left: Math.round((W - w) / 2) + 'px', top: Math.round(top + (mh - h) / 2) + 'px' });
   Object.assign(rng.style, { left: ownPic.style.left, width: ownPic.style.width, top: Math.round(top + mh / 2 - 23) + 'px' });
   const [x, y] = P2S(MARKS[ST.n - 1]), pw = 1500, ph = pw * H / Math.max(1, W);
-  q('.pl', stopEl).innerHTML = planSVG({ id: 'so', vb: [x - pw / 2, y - ph / 2, pw, ph], u: pw / Math.max(1, W), night: true, done: new Set(S.done), cur: ST.n, labels: true, r: 9, slice: true, label: 'The mark of scene ' + rn(ST.n) + ' on the plan' });
+  q('.pl', stopEl).innerHTML = planSVG({ id: 'so', vb: [x - pw / 2, y - ph / 2, pw, ph], u: pw / Math.max(1, W), night: true, done: new Set(S.done), cur: ST.n, labels: true, cull: true, r: 9, slice: true, label: 'The mark of scene ' + rn(ST.n) + ' on the plan' });
   knob.style.setProperty('--h', (ownPic.offsetHeight / 2) + 'px'); ownSet(ownV);
 }
 function stopOwn() {
   if (!ST || ST.own) return;
-  ST.own = true; clearInterval(ST.poll); clearTimeout(ST.t6);
+  ST.own = true; ST.goQ = false; clearInterval(ST.poll); clearTimeout(ST.t6); clearTimeout(ST.tGo);
   if (frame.getAttribute('src') && frame.getAttribute('src') !== 'about:blank') frame.src = 'about:blank';
   stopEl.classList.remove('pre'); stopEl.classList.add('ownon'); ownEl.hidden = false;
   const im = q('img', ownPic); im.src = thenSrc(ST.n); im.alt = THEN[ST.n].cap;
@@ -803,7 +858,8 @@ function filmShow(done) {
   if (!fm.quiet) { if (filmV.paused) { try { filmV.currentTime = 0; } catch (e) {} filmPlay(fm); } fm.tw = setTimeout(() => { if (FM === fm && !fm.started) filmFail(fm); }, 8000); }   // a film that never starts does not hold the play
 }
 function filmDone(fm) { const done = fm.done; if (fm.auto && !S.film) { S.film = Date.now(); save(); } filmDrop(); if (done) done(); }   // the end, or "Skip"
-function filmFail(fm) { const next = fm.auto ? fm.done : fm.fail; filmDrop(); if (next) next(); }
+let filmGone = false;   // the film could not be had on this visit: it is not asked for again before every scene
+function filmFail(fm) { const next = fm.auto ? fm.done : fm.fail; if (fm.auto) filmGone = true; filmDrop(); if (next) next(); }
 function filmOpen(o) {   // asked for: "Watch the trailer"
   filmDrop(); const fm = FM = { auto: false, armed: false, shown: false, started: false, bad: false, quiet: false, done: null, fail: (o && o.fail) || null };
   filmWire(fm); filmPlay(fm); filmShow(null);
@@ -822,11 +878,28 @@ D.addEventListener('visibilitychange', () => {   // never plays to a hidden page
 });
 // the cover's "Begin": the first time, the film comes before the programme
 const origBegin = window.begin;
-q('#btnBegin').onclick = () => { if (PLAYJ && !S.film) filmArm(); else if (FM && FM.armed) filmDrop(); origBegin(); };
+q('#btnBegin').onclick = () => { if (PLAYJ && !S.film && !filmGone) filmArm(); else if (FM && FM.armed) filmDrop(); origBegin(); };
 const walkLux = window.openWalk;
 window.openWalk = function () {
   if (FM && FM.armed && !FM.shown) { filmShow(() => walkLux.call(window)); return; }
   return walkLux.apply(this, arguments);
+};
+// A visitor can reach the programme without the cover's "Begin" (a saved visit, a rehearsal page). The film has still
+// not been seen: the first tap that starts the play from the programme ("Begin: scene I", a row, a mark on the plan) shows
+// it first, inside that tap (so it has its sound), and then goes where the tap was going. The screen stays dark between
+// the film and the scene.
+const stopLux = window.openStop;
+window.openStop = function (n, skipStand) {
+  if (!PLAYJ || S.film || filmGone || FM || !q('#walk').classList.contains('on')) return stopLux.apply(this, arguments);
+  return new Promise((res) => {
+    filmArm();
+    filmShow(() => {
+      filmEl.className = 'lx-film on hold';
+      const fin = () => { if (!FM) filmEl.className = 'lx-film'; res(); };
+      let p = null; try { p = stopLux.call(window, n, skipStand); } catch (e) {}
+      Promise.resolve(p).then(fin, fin);
+    });
+  });
 };
 // "Watch the trailer": the cover, the settings, and the sheet shown far from the mosque. If the film cannot be had, the
 // play's own audio trailer takes its place.

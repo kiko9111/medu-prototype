@@ -116,7 +116,7 @@
 .lux .lx-sheet .cred{position:absolute;right:6.6%;top:82.8%;white-space:nowrap;text-align:right;font:400 9px/1.5 var(--sans);letter-spacing:.03em;color:var(--dust)}
 @container (max-width:300px){.lux .lx-sheet .cred{font-size:8.5px}}
 .lux .lx-plan text{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700}
-.lux .lx-plan .lbl{font-family:Inter,system-ui,sans-serif;font-weight:600;letter-spacing:.24em;text-transform:uppercase;fill:var(--lx-soft)}
+.lux .lx-plan .lbl{font-family:var(--sans);font-weight:600;letter-spacing:.24em;text-transform:uppercase;fill:var(--lx-soft)}
 .lux .lx-plan .hit{fill:transparent;cursor:pointer}
 .lux .lx-plan .ink{opacity:.92}
 .lux .lx-plan .thread{stroke-dasharray:1;stroke-dashoffset:0}
@@ -178,10 +178,10 @@
 .lux .lx-art .pic{position:relative;flex:none;box-shadow:0 0 0 1px var(--lx-rule),0 14px 34px rgba(0,0,0,.22);transition:opacity .4s ease}
 .lux .lx-art .pic img{display:block;width:100%;height:100%}
 /* a drawing keeps its dark ground on paper too: a dark plate set into the page, one gold rule around it */
-.lux .lx-art .dr{position:absolute;inset:0;overflow:hidden;opacity:0;transition:opacity .4s ease;background:#0B0A08;box-shadow:0 0 0 1px rgba(212,176,98,.6)}
+.lux .lx-art .dr{position:absolute;inset:0;opacity:0;transition:opacity .4s ease}
 .lux .lx-art.lx-draw .dr{opacity:1}
 .lux .lx-art.lx-draw .pic{opacity:0}
-.lux .lx-art .ly{position:absolute;inset:0;opacity:0;transition:opacity .4s ease}
+.lux .lx-art .ly{position:absolute;inset:0;overflow:hidden;opacity:0;transition:opacity .4s ease;background:#0B0A08;box-shadow:0 0 0 1px rgba(212,176,98,.6)}
 .lux .lx-art .ly.in{opacity:1}
 .lux .lx-art .ly svg{display:block;width:100%;height:100%}
 .lux .lx-art .dr .sh{fill:rgba(11,10,8,.45)}
@@ -220,6 +220,7 @@
 .lux #stage.looking .look{display:flex;flex-direction:column;justify-content:center;min-height:calc(3.72 * 1.24 * 29px + 24px)}
 .lux .look .cue,.lux .look .el{display:none}
 .lux #stage.lx-playing.lx-ar .lx-art{opacity:.13}
+.lux #stage.lx-playing.lx-ar.lx-drawar .lx-art{opacity:1}
 
 /* controls: only on touch */
 .lux #stage .ctl{padding:0 20px calc(var(--bot) + 16px);transition:opacity .5s ease}
@@ -335,6 +336,7 @@
 /* the trailer film: full screen, cover on a tall phone, whole on a black ground otherwise; "Skip" from the first second */
 .lux .lx-film{position:fixed;inset:0;z-index:80;display:none;background:#000}
 .lux .lx-film.on{display:block}
+.lux .lx-film.hold video,.lux .lx-film.hold .sk,.lux .lx-film.hold .ps{display:none!important}
 .lux .lx-film video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
 @media (max-aspect-ratio:9/16){.lux .lx-film video{object-fit:cover}}
 .lux .lx-film .sk{position:absolute;top:calc(var(--top) + 8px);right:10px;z-index:2;min-width:72px;min-height:44px;padding:0 14px;border-radius:2px;border:1px solid rgba(212,176,98,.55);background:#0B0A08;color:#EFE7D8;font:600 10.5px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase}
