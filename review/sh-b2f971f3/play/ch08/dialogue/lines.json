@@ -922,79 +922,124 @@
  {
   "who": "sultan",
   "beat": 6,
-  "say": "Do you see a single student's window on this court? No. So where did they live?",
+  "say": "Look up at these walls. Only a few small windows, high in the corners. My students' rooms turn away from this court. So where did they live?",
   "after": 0.8,
-  "file": "08-sultan-8d04b601.mp3",
+  "file": "08-sultan-40b01498.mp3",
   "t0": 92.76,
-  "t1": 98.12,
+  "t1": 102.6,
   "w": [
    [
-    "Do",
-    92.92
+    "Look",
+    92.86
    ],
    [
-    "you",
+    "up",
     93.04
    ],
    [
-    "see",
-    93.2
+    "at",
+    93.14
+   ],
+   [
+    "these",
+    93.24
+   ],
+   [
+    "walls.",
+    93.5
+   ],
+   [
+    "Only",
+    94.52
    ],
    [
     "a",
-    93.34
+    94.72
    ],
    [
-    "single",
-    93.46
-   ],
-   [
-    "student's",
-    93.9
-   ],
-   [
-    "window",
-    94.3
-   ],
-   [
-    "on",
-    94.68
-   ],
-   [
-    "this",
+    "few",
     94.82
    ],
    [
-    "court?",
-    95.04
+    "small",
+    95.1
    ],
    [
-    "No.",
-    96.08
+    "windows,",
+    95.42
+   ],
+   [
+    "high",
+    96.18
+   ],
+   [
+    "in",
+    96.4
+   ],
+   [
+    "the",
+    96.5
+   ],
+   [
+    "corners.",
+    96.64
+   ],
+   [
+    "My",
+    97.82
+   ],
+   [
+    "students'",
+    98.02
+   ],
+   [
+    "rooms",
+    98.5
+   ],
+   [
+    "turn",
+    98.84
+   ],
+   [
+    "away",
+    99.06
+   ],
+   [
+    "from",
+    99.4
+   ],
+   [
+    "this",
+    99.56
+   ],
+   [
+    "court.",
+    99.8
    ],
    [
     "So",
-    97.16
+    100.98
    ],
    [
     "where",
-    97.32
+    101.12
    ],
    [
     "did",
-    97.46
+    101.28
    ],
    [
     "they",
-    97.62
+    101.44
    ],
    [
     "live?",
-    97.78
+    101.64
    ]
   ],
   "ar": "",
-  "cap": "Do you see a single student's window on this court? No. So where did they live?"
+  "cap": "Look up at these walls. Only a few small windows, high in the corners. My students' rooms turn away from this court. So where did they live?",
+  "tag": "The college rooms do not overlook the main court (Wikipedia, after Behrens-Abouseif); small windows in the court corners: Herz 1899 Pl. XIII–XIV"
  },
  {
   "who": "sultan",
@@ -1004,64 +1049,64 @@
   "after": 0.4,
   "tag": "",
   "file": "09-sultan-920b2d79.mp3",
-  "t0": 98.92,
-  "t1": 102.92,
+  "t0": 103.4,
+  "t1": 107.4,
   "w": [
    [
     "Go",
-    99.0
+    103.48
    ],
    [
     "to",
-    99.18
+    103.66
    ],
    [
     "a",
-    99.28
+    103.76
    ],
    [
     "corner",
-    99.4
+    103.88
    ],
    [
     "doorway,",
-    99.7
+    104.18
    ],
    [
     "and",
-    100.24
+    104.72
    ],
    [
     "look",
-    100.4
+    104.88
    ],
    [
     "through.",
-    100.62
+    105.1
    ],
    [
     "You",
-    101.74
+    106.22
    ],
    [
     "will",
-    101.82
+    106.3
    ],
    [
     "see",
-    102.04
+    106.52
    ],
    [
     "where",
-    102.26
+    106.74
    ],
    [
     "they",
-    102.42
+    106.9
    ],
    [
     "lived.",
-    102.58
+    107.06
    ]
   ],
   "ar": ""
