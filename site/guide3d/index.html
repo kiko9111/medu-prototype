@@ -50,7 +50,7 @@ canvas{display:block;touch-action:none}
 #err{color:var(--warn);max-width:46ch;text-align:center;padding-inline:20px}
 .embed #chapters,.embed #elems,.embed .band.bot,.embed #cue{display:none !important}
 .embed #thenknob{top:calc((100% - var(--embot, 0px))/2)}
-.embed #thenhead,.embed #thenx{top:58px}
+.embed #thenhead,.embed #thenx{top:58px}.embed #thenx{display:none}
 @media (max-width:460px){ #say{font-size:12px} #plan{width:112px;height:112px} .title b{font-size:18px} }
 @media (prefers-reduced-motion:reduce){ *{scroll-behavior:auto} }
 </style>
@@ -570,7 +570,7 @@ function layoutThen(){
   Object.assign(ti.style, {left: b.left + 'px', top: b.top + 'px', width: b.w + 'px', height: b.h + 'px'});
   const bx = thenX * b.W; document.getElementById('thenbar').style.left = bx + 'px';
   const r = Math.min(100, Math.max(0, (1 - (bx - b.left) / b.w) * 100)); ti.style.clipPath = `inset(0 ${r.toFixed(2)}% 0 0)`;
-  if (bx >= Math.min(b.left + b.w, b.W) - 8 && thenOn && cur && SIG.ready !== cur && SIG.settled === cur) { SIG.ready = cur; signal('ready', cur); }   // the whole picture open (a photo wider than the stage counts at the stage edge)
+  if (bx >= Math.min(b.left + b.w, b.W) - Math.max(8, 0.06 * b.W) && thenOn && cur && SIG.ready !== cur && SIG.settled === cur) { SIG.ready = cur; signal('ready', cur); }   // the whole picture open: within 6 % of the far edge (the knob stops at 0.98, so a fixed 8 px never passed on stages over 400 px)
   const topBand = document.querySelector('.band.top'), ty = (topBand ? topBand.getBoundingClientRect().bottom : 110) + 8;
   document.getElementById('thenhead').style.top = ty + 'px'; document.getElementById('thenx').style.top = ty + 'px';
   const bot = document.querySelector('.band.bot'), botTop = EMBED ? b.H - EMBED_BOTTOM : (bot ? bot.getBoundingClientRect().top : b.H - 190);
@@ -1129,7 +1129,7 @@ window.__r.routeCheck = (k, step = 0.5) => {   // every half metre of a leg: the
     out.push({s: +path.cum[i].toFixed(1), x: +p.x.toFixed(1), y: +(-p.z).toFixed(1), lvl: +(p.y - 0.12).toFixed(2), floor: f ? +f.point.y.toFixed(2) : null, on: f ? f.object.name : null, head: u ? u.object.name : null}); }
   return out; };
 window.__r.look = (h, p) => { head = h; pitch = p; };
-window.__r.beat = startBeat; window.__r.walk = toWalk; window.__r.arrive = arrive; window.__r.hi = HI; window.__r.cutU = CUT_U; window.__r.setPos = (x, y, z) => pos.set(x, y, z); window.__r.__beatDur = () => beat ? beat.dur : 5000; window.__r.version = '13.0'; window.__r.plate = PLATE; window.__r.plateU = PLATE_U; window.__r.inks = INKS; window.__r.beatReset = beatReset; window.__r.pose = () => ({x: +pos.x.toFixed(2), y: +(-pos.z).toFixed(2), z: +pos.y.toFixed(2), head: +head.toFixed(1), pitch: +pitch.toFixed(1), fov: +cam.fov.toFixed(1), mode, anim: !!anim}); window.__r.grade = setGrade; window.__r.groundY = (x, y) => groundY(x, -y); window.__r.mark = markView; window.__r.__el3 = () => EL3; window.__r.__walk = () => walk ? {k: walk.k, dur: walk.dur, len: walk.path.len, arrived: walk.arrived, fly: walk.fly} : null; window.__r.state = () => ({cur, mode, beat: beat && beat.b.type, glow: !!glow, clip: PL_BUILD.constant, head, pitch, say: document.getElementById('say').innerText.slice(0, 90)});
+window.__r.beat = startBeat; window.__r.walk = toWalk; window.__r.arrive = arrive; window.__r.hi = HI; window.__r.cutU = CUT_U; window.__r.setPos = (x, y, z) => pos.set(x, y, z); window.__r.__beatDur = () => beat ? beat.dur : 5000; window.__r.version = '13.2'; window.__r.plate = PLATE; window.__r.plateU = PLATE_U; window.__r.inks = INKS; window.__r.beatReset = beatReset; window.__r.pose = () => ({x: +pos.x.toFixed(2), y: +(-pos.z).toFixed(2), z: +pos.y.toFixed(2), head: +head.toFixed(1), pitch: +pitch.toFixed(1), fov: +cam.fov.toFixed(1), mode, anim: !!anim}); window.__r.grade = setGrade; window.__r.groundY = (x, y) => groundY(x, -y); window.__r.mark = markView; window.__r.__el3 = () => EL3; window.__r.__walk = () => walk ? {k: walk.k, dur: walk.dur, len: walk.path.len, arrived: walk.arrived, fly: walk.fly} : null; window.__r.state = () => ({cur, mode, beat: beat && beat.b.type, glow: !!glow, clip: PL_BUILD.constant, head, pitch, say: document.getElementById('say').innerText.slice(0, 90)});
 window.__then = {fire: armThen, open: openThen, drag: x => { thenX = x; layoutThen(); }, band: () => cur && thenBand(cur), state: () => [thenOn, thenX, cur, mode]};
 window.__r.cam = o => { const k = cur; if (!k) return null; const cs = Object.assign(camSpec(k), o || {}); applyCam(k, cs); pos.copy(camTarget(cs)); head = cs.facing; pitch = cs.pitch; anim = null; return {fov: +cam.fov.toFixed(2), band: thenBand(k)}; };
 window.__sized = () => { if (mode === 'stand' && cur && PTS[cur]) applyCam(cur, camSpec(cur)); if (thenOn) layoutThen(); };
