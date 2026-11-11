@@ -1,0 +1,135 @@
+{
+ "scenes": {
+  "1": {
+   "file": "ch01.webp",
+   "w": 1600,
+   "h": 1398,
+   "cap": "The square",
+   "credit": "Photograph, 19th century. New York Public Library",
+   "rect": [
+    0.1157,
+    0.0,
+    0.6069,
+    1.0
+   ]
+  },
+  "2": {
+   "file": "ch02.webp",
+   "w": 881,
+   "h": 1200,
+   "cap": "The dome and the two minarets",
+   "credit": "Bonfils, 1870s. Library of Congress"
+  },
+  "3": {
+   "file": "ch03.webp",
+   "w": 1600,
+   "h": 1194,
+   "cap": "The east corner and the long wall",
+   "credit": "Max Herz, 1899"
+  },
+  "4": {
+   "file": "ch04.webp",
+   "w": 1196,
+   "h": 1600,
+   "cap": "The portal",
+   "credit": "Photograph, 19th century. Wellcome Collection",
+   "rect": [
+    0.1321,
+    0.0,
+    0.8848,
+    1.0
+   ]
+  },
+  "5": {
+   "file": "ch05.webp",
+   "w": 1012,
+   "h": 1242,
+   "cap": "The back wall of the entrance hall",
+   "credit": "Max Herz, 1899"
+  },
+  "6": {
+   "file": "ch06.webp",
+   "w": 1551,
+   "h": 1540,
+   "cap": "The way in, on the plan",
+   "credit": "Pascal Coste, 1839. New York Public Library"
+  },
+  "7": {
+   "file": "ch07.webp",
+   "w": 1181,
+   "h": 1600,
+   "cap": "The court and the great hall",
+   "credit": "Max Herz, 1899",
+   "rect": [
+    0.1616,
+    0.0,
+    0.9235,
+    1.0
+   ]
+  },
+  "8": {
+   "file": "ch08.webp",
+   "w": 1226,
+   "h": 1600,
+   "cap": "The court: a side hall and a corner doorway",
+   "credit": "Photograph, 1870s–90s. New York Public Library"
+  },
+  "9": {
+   "file": "ch09.webp",
+   "w": 1335,
+   "h": 727,
+   "cap": "A college, on the plan",
+   "credit": "Pascal Coste, 1839. New York Public Library"
+  },
+  "10": {
+   "file": "ch10.webp",
+   "w": 1600,
+   "h": 1198,
+   "cap": "The great hall",
+   "credit": "Photochrom, about 1875. New York Public Library",
+   "rect": [
+    0.0465,
+    0.0,
+    0.4676,
+    1.0
+   ]
+  },
+  "11": {
+   "file": "ch11.webp",
+   "w": 1330,
+   "h": 1600,
+   "cap": "The prayer niche of the tomb chamber",
+   "credit": "Max Herz, 1899"
+  },
+  "12": {
+   "file": "ch12.webp",
+   "w": 1262,
+   "h": 1600,
+   "cap": "The portal and the north-west wall",
+   "credit": "Max Herz, 1899"
+  }
+ },
+ "extras": {
+  "ch05-door": {
+   "file": "ch05-door.webp",
+   "w": 369,
+   "h": 1400,
+   "cap": "The door of the mosque, now at the mosque of al-Mu'ayyad",
+   "credit": "Max Herz, 1899"
+  },
+  "ch11-corner": {
+   "file": "ch11-corner.webp",
+   "w": 1213,
+   "h": 1400,
+   "cap": "A corner of the tomb chamber, where the square becomes a circle",
+   "credit": "Max Herz, 1899"
+  },
+  "ch04-hood": {
+   "file": "ch04-hood.webp",
+   "w": 592,
+   "h": 740,
+   "cap": "The hood of the portal",
+   "credit": "Bonfils, 1870s. Library of Congress"
+  }
+ }
+}

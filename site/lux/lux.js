@@ -6,7 +6,10 @@
    - House lights: ink on paper outdoors while the sun is up (scenes I to IV and XII), gold on night indoors and after sunset.
    - Sense of place on every screen: scene and place in words, a dot on the little plan, twelve ticks for the play.
    - The programme: Coste's plan of 1839 with the twelve marks on one gold thread.
-   - The mark: the scene's view as an engraved plate; when the curtain rises it turns to stone and sun.
+   - The stop: one way into every scene. The 3D guide leads to the mark, the old picture rises, the visitor draws it
+     across and the scene begins on the same picture. Without the guide the layer has its own stop on the plan.
+   - The picture area: the scene's old picture; gold drawings on measured plates and old photographs when the voices
+     point at something. No present-day photograph is ever shown.
    - The quiet stage: one phrase at a time, controls only on touch.
    - Three notes: at the mark, at the curtain, at the end.
    Everything moving has a still path: "Cinematic effects" off, or the phone's reduced-motion setting. */
@@ -150,7 +153,10 @@ window.loadCh = async function () {
     if (c.onsite) c.onsite.stand = fixName(c.onsite.stand);
     for (const k in (c.speakers || {})) c.speakers[k] = fixName(c.speakers[k]);
     for (const l of ch.lines) { l.cap = fixName(l.cap); l.say = fixName(l.say); if (l.w) for (const w of l.w) w[0] = fixName(w[0]); }
-    for (const x of ch.ins) { x.cue = fixName(x.cue); x.element = fixName(x.element); }
+    let off = 0;   // each pause's own time on the on-site mix; and one name for one thing: the app says halls
+    for (const x of ch.ins) { x.cue = fixName(x.cue); x.element = fixName(x.element || '').replace(/\biwans\b/g, 'halls').replace(/\biwan\b/g, 'hall'); x._s0 = x.at + off; x._s1 = x._s0 + x.dur; off += x.dur; }
+    const plain = (t) => (typeof t === 'string' ? t.replace(/\s*\[VERIFY[^\]]*\]/g, '').replace(/\s*UNVERIFIED:?[\s\S]*$/, '').trim() : t);   // the play's working notes stay off the screen
+    c.place = plain(c.place); if (c.onsite) c.onsite.stand = plain(c.onsite.stand); for (const k in (c.lineTags || {})) c.lineTags[k] = plain(c.lineTags[k]);
     for (const r of ch.reveals) for (const k of ['cue', 'label', 'thenCap', 'how', 'howSub']) if (r[k]) r[k] = fixName(r[k]);
     for (const l of (ch.looks || [])) if (l) { l.label = fixName(l.label); for (const g of (l.tags || [])) g.t = fixName(g.t); }
   }
@@ -218,57 +224,149 @@ function measureHead() {
   if (b > 0) stage.style.setProperty('--lx-head', b + 'px');
 }
 
-// ---------------------------------------------------------------- the scene's picture: plate on the mark, stone when the curtain rises
-// Scene IV is the corrected 3D model of the portal; the others are the archive view matched to each mark.
-const AR = { 0: 860 / 1147, 1: 860 / 596, 2: 860 / 1171, 3: 860 / 642, 4: 792 / 1372, 5: 542 / 678, 6: 860 / 1257, 7: 860 / 704, 8: 860 / 906, 9: 860 / 1153, 10: 860 / 662, 11: 860 / 1259, 12: 860 / 1090 };
-const CAPS = {
-  0: 'The portal. Model after Herz, 1899, and Bonfils, 1867–99',
-  1: 'The square. Photogravure, 19th century. New York Public Library',
-  2: 'Dome and minarets. Bonfils, 1870s. Library of Congress',
-  3: 'The east corner and the long wall. Max Herz, 1899',
-  4: 'The portal. Model after Herz, 1899, and Bonfils, 1867–99',
-  5: 'The entrance niche. Photogravure. New York Public Library',
-  6: 'The vestibule dome. K. A. C. Creswell, 1916–21. Victoria and Albert Museum',
-  7: 'The courtyard. Pascal Coste, 1839. New York Public Library',
-  8: 'The ablution fountain, 1870s–90s. New York Public Library',
-  9: 'The Hanafi college court. K. A. C. Creswell, 1916–21. Victoria and Albert Museum',
-  10: 'The great hall. Photochrom, about 1875. New York Public Library',
-  11: 'The tomb chamber. Section by Pascal Coste, 1839. New York Public Library',
-  12: 'The portal and the north-west wall. Max Herz, 1899',
+// ---------------------------------------------------------------- the picture area: the scene's old picture, and the gold drawings
+// One old picture per scene (public-domain records only). The guide's "Then" window shows the same pictures, same crops,
+// so the hand-over from the guide to the stage is exact. rect = the 9:16 part a living opening starts on (x0, y0, x1, y1).
+const THEN = {
+  1: { f: 'ch01.webp', w: 1600, h: 1398, cap: 'The square', credit: 'Photograph, 19th century. New York Public Library', rect: [0.1157, 0, 0.6069, 1] },
+  2: { f: 'ch02.webp', w: 881, h: 1200, cap: 'The dome and the two minarets', credit: 'Bonfils, 1870s. Library of Congress' },
+  3: { f: 'ch03.webp', w: 1600, h: 1194, cap: 'The east corner and the long wall', credit: 'Max Herz, 1899' },
+  4: { f: 'ch04.webp', w: 1196, h: 1600, cap: 'The portal', credit: 'Photograph, 19th century. Wellcome Collection', rect: [0.1321, 0, 0.8848, 1] },
+  5: { f: 'ch05.webp', w: 1012, h: 1242, cap: 'The back wall of the entrance hall', credit: 'Max Herz, 1899' },
+  6: { f: 'ch06.webp', w: 1551, h: 1540, cap: 'The way in, on the plan', credit: 'Pascal Coste, 1839. New York Public Library' },
+  7: { f: 'ch07.webp', w: 1181, h: 1600, cap: 'The court and the great hall', credit: 'Max Herz, 1899', rect: [0.1616, 0, 0.9235, 1] },
+  8: { f: 'ch08.webp', w: 1226, h: 1600, cap: 'The court: a side hall and a corner doorway', credit: 'Photograph, 1870s–90s. New York Public Library' },
+  9: { f: 'ch09.webp', w: 1335, h: 727, cap: 'A college, on the plan', credit: 'Pascal Coste, 1839. New York Public Library' },
+  10: { f: 'ch10.webp', w: 1600, h: 1198, cap: 'The great hall', credit: 'Photochrom, about 1875. New York Public Library', rect: [0.0465, 0, 0.4676, 1] },
+  11: { f: 'ch11.webp', w: 1330, h: 1600, cap: 'The prayer niche of the tomb chamber', credit: 'Max Herz, 1899' },
+  12: { f: 'ch12.webp', w: 1262, h: 1600, cap: 'The portal and the north-west wall', credit: 'Max Herz, 1899' },
 };
-const NOTES = { 0: 'Model not yet checked by the validator.', 4: 'Model not yet checked by the validator.', 6: 'Prototype only: rights to clear before launch.', 9: 'Prototype only: rights to clear before launch.' };
-const artSrc = (n, look) => IMG + 'scene/' + (n ? 'ch' + String(n).padStart(2, '0') : 'ch04-whole') + '-' + look + '.webp';
-const art = el('div', 'lx-art', '<div class="fr"><img class="pl" alt=""><img class="st" alt=""></div><p class="cap"></p>');
+const pad2 = (n) => String(n).padStart(2, '0');
+const thenOf = (n) => THEN[n] || (n === 0 ? THEN[4] : null);   // the house rules are spoken at the door: the portal
+const thenSrc = (n) => { const t = thenOf(n); return t ? IMG + 'then/' + t.f : ''; };
+const thenThumb = (n) => IMG + 'then/ch' + pad2(n) + '-thumb.webp';
+const thenCap = (n) => { const t = thenOf(n); return t ? t.cap + '. ' + t.credit : ''; };
+
+// one thing in the picture area at a time: the cue (only in a Look pause), the picture or the drawing, its label and credit
+const art = el('div', 'lx-art', '<p class="cue" aria-live="polite"></p><div class="fr"><div class="pic"><img class="th" alt=""></div><div class="dr"></div></div><p class="cap"><b></b><span></span></p>');
 stage.insertBefore(art, q('.mid', stage));
-const fr = q('.fr', art), artPl = q('.pl', art), artSt = q('.st', art), artCap = q('.cap', art);
-// a copy may come without a scene's picture (two are held back until their rights are cleared): the scene then plays without one
-for (const im of [artPl, artSt]) im.addEventListener('error', () => art.classList.add('lx-noart'));
+const fr = q('.fr', art), pic = q('.pic', art), artTh = q('.th', art), drEl = q('.dr', art), artCue = q('.cue', art), capB = q('.cap b', art), capS = q('.cap span', art);
+artTh.addEventListener('error', () => art.classList.add('lx-noart'));   // a copy without the picture: the scene plays without one
+const setCap = (label, small) => { capB.textContent = label || ''; capS.textContent = small || ''; };
 function setArt(n) {
-  art.dataset.n = n; art.classList.remove('lx-noart'); art.classList.toggle('cut', n === 4 || n === 0);
-  artPl.src = artSrc(n, 'plate'); artSt.src = artSrc(n, 'stone');
-  artPl.alt = (CAPS[n] || '').split('.')[0];
-  artCap.innerHTML = esc(CAPS[n] || '') + (NOTES[n] ? ' <span class="verify">' + esc(NOTES[n]) + '</span>' : '');
+  const t = thenOf(n); art.dataset.n = n; art.classList.toggle('lx-noart', !t);
+  if (t) { if (artTh.getAttribute('src') !== thenSrc(n)) artTh.src = thenSrc(n); artTh.alt = t.cap; }
+  artCue.textContent = ''; setCap('', thenCap(n));
 }
 function layoutArt() {
   const sr = stage.getBoundingClientRect(); if (!sr.height) return;
   measureHead();
-  const tb = ticks.getBoundingClientRect(), topY = Math.max(64, tb.bottom - sr.top + 16);
-  let bottom = topY + Math.round(sr.height * 0.42);
+  const tb = ticks.getBoundingClientRect(), topY = Math.max(64, tb.bottom - sr.top + 12);
+  // the room between the header and the spoken phrase (the phrase keeps its three lines and the speaker's name)
+  const mid = q('.mid', stage), mr = mid.getBoundingClientRect(), capEl = q('#stCap');
+  const words = (parseFloat(getComputedStyle(capEl).minHeight) || 108) + 26 + (parseFloat(getComputedStyle(mid).paddingBottom) || 40);
+  let bottom = mr.bottom - sr.top - words - 10;
   if (standEl.classList.contains('on')) { const b = q('.body', standEl).getBoundingClientRect(); if (b.height) bottom = b.top - sr.top - 2; }
-  const H = Math.max(120, bottom - topY), W = sr.width - 44, capH = 30, ar = AR[+art.dataset.n || 0] || 1;
-  let h = H - capH, w = h * ar; if (w > W) { w = W; h = w / ar; }
-  art.style.top = topY + 'px'; art.style.height = H + 'px'; fr.style.width = Math.round(w) + 'px'; fr.style.height = Math.round(h) + 'px';
+  art.style.top = topY + 'px'; art.style.height = Math.max(150, bottom - topY) + 'px';
+  const t = thenOf(+art.dataset.n || 0), box = fr.getBoundingClientRect();
+  if (t && box.height) { let h = box.height, w = h * t.w / t.h; if (w > box.width) { w = box.width; h = w * t.h / t.w; } pic.style.width = Math.round(w) + 'px'; pic.style.height = Math.round(h) + 'px'; }
 }
-addEventListener('resize', layoutArt);
+addEventListener('resize', () => { layoutArt(); drawFit(); });
 if (D.fonts && D.fonts.ready) D.fonts.ready.then(layoutArt);
-const preload = (n) => { if (n >= 1 && n <= 12) for (const k of ['plate', 'stone']) { const i = new Image(); i.src = artSrc(n, k); } };
+const preload = (n) => { if (THEN[n]) { const i = new Image(); i.src = thenSrc(n); } };
+
+// The gold drawings: lux/draw/chNN.json, fetched once per scene (a scene without a file simply has none).
+// carriers: the measured plates (gold line on clear ground) and old photographs the lines are drawn on;
+// moments: when (seconds on the on-site mix) and what to frame (box) and to lift (polys), as fractions of the carrier.
+const DRAWDIR = 'lux/draw/', DRAW = {}, DRAWP = {};
+function normDraw(d) {
+  if (!d || typeof d !== 'object' || !d.carriers || !Array.isArray(d.moments)) return null;
+  const ok = (m) => m && d.carriers[m.carrier] && d.carriers[m.carrier].file && +m.t1 > +m.t0 && (m.kind === 'look' || m.kind === 'line');
+  const out = { carriers: d.carriers, moments: d.moments.filter(ok).sort((a, b) => a.t0 - b.t0) };
+  for (const k in out.carriers) { const c = out.carriers[k]; c.w = +c.w || 1000; c.h = +c.h || 1000; if (c.file) { const i = new Image(); i.src = DRAWDIR + c.file; } }
+  return out.moments.length ? out : null;
+}
+function loadDraw(n) {
+  if (!THEN[n]) return Promise.resolve(null);
+  return DRAWP[n] || (DRAWP[n] = fetch(DRAWDIR + 'ch' + pad2(n) + '.json').then((r) => (r.ok ? r.json() : null)).then(normDraw).catch(() => null).then((d) => { DRAW[n] = d; lpKey = ''; return d; }));
+}
+let dCur = null, dCar = null, dVB = null, dRaf = 0, dSeq = 0;
+function vbFor(m, c) {   // the box, widened to the shape of the picture area: the box is never cropped, the plate fills its ground
+  const b = Array.isArray(m.box) && m.box.length === 4 ? m.box : [0, 0, 1, 1];
+  let x = b[0] * c.w, y = b[1] * c.h, w = (b[2] - b[0]) * c.w, h = (b[3] - b[1]) * c.h;
+  if (!(w > 0 && h > 0)) { x = 0; y = 0; w = c.w; h = c.h; }
+  const r = drEl.getBoundingClientRect(), ar = r.width > 0 && r.height > 0 ? r.width / r.height : w / h;
+  if (w / h < ar) { const nw = h * ar; x -= (nw - w) / 2; w = nw; } else { const nh = w / ar; y -= (nh - h) / 2; h = nh; }
+  return [x, y, w, h];
+}
+const polyD = (m, c) => (Array.isArray(m.polys) ? m.polys : []).filter((p) => Array.isArray(p) && p.length > 2).map((p) => 'M' + p.map((v) => (v[0] * c.w).toFixed(1) + ' ' + (v[1] * c.h).toFixed(1)).join('L') + 'Z').join('');
+function setVB(svg, vb) {
+  dVB = vb; svg.setAttribute('viewBox', vb.map((v) => v.toFixed(1)).join(' '));
+  const g = q('feGaussianBlur', svg); if (g) g.setAttribute('stdDeviation', (2.6 * vb[2] / (drEl.clientWidth || 360)).toFixed(2));   // a 2.6 px glow at any framing
+}
+function drawSVG(m, c, vb) {
+  const id = 'lxd' + (++dSeq), d = polyD(m, c), plate = c.kind !== 'photo';
+  const im = `<image href="${esc(DRAWDIR + c.file)}" x="0" y="0" width="${c.w}" height="${c.h}" preserveAspectRatio="none"`;
+  let s = `<svg class="${plate ? 'plate' : 'photo'}" viewBox="0 0 ${c.w} ${c.h}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="${esc(m.label || 'Drawing')}"><defs><clipPath id="${id}c" clipPathUnits="userSpaceOnUse"><path d="${d || 'M0 0'}"/></clipPath><filter id="${id}g" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="4"/></filter></defs>`;
+  if (plate) s += im + ' opacity=".4"/>' + (d ? im + ` clip-path="url(#${id}c)"/>` : '');   // the whole plate dim, the element at full strength
+  else s += im + '/>' + (d ? `<path class="sh" fill-rule="evenodd" d="M0 0H${c.w}V${c.h}H0Z${d}"/>` : '');   // the photograph whole, darker outside the element
+  if (d) s += `<path class="gl" d="${d}" filter="url(#${id}g)"/><path class="ol" d="${d}"/>`;
+  return s + '</svg>';
+}
+function drawShow(m, d) {
+  if (dCur === m) return; const c = d.carriers[m.carrier];
+  const to = vbFor(m, c), glide = !!(dCur && dCar === c && dVB && !still()), from = glide ? dVB.slice() : to, old = [...drEl.children];
+  const ly = el('div', 'ly', drawSVG(m, c, from)), svg = ly.firstChild; drEl.appendChild(ly); setVB(svg, from);
+  dCur = m; dCar = c; art.classList.add('lx-draw');
+  void ly.offsetWidth; ly.classList.add('in');
+  setTimeout(() => old.forEach((o) => o.remove()), still() ? 0 : 440);
+  cancelAnimationFrame(dRaf);
+  if (glide) {   // the framing travels to the next element in about 900 ms
+    const t0 = performance.now(), ease = (k) => 1 - Math.pow(1 - k, 3);
+    const step = (t) => { const k = Math.min(1, (t - t0) / 900), e = ease(k); if (!svg.isConnected) return; setVB(svg, from.map((v, i) => v + (to[i] - v) * e)); if (k < 1) dRaf = requestAnimationFrame(step); };
+    dRaf = requestAnimationFrame(step);
+  }
+}
+function drawHide(now) {
+  if (!dCur && !drEl.firstChild) return;
+  dCur = null; dCar = null; dVB = null; cancelAnimationFrame(dRaf); art.classList.remove('lx-draw');
+  if (now || still()) drEl.innerHTML = ''; else setTimeout(() => { if (!dCur) drEl.innerHTML = ''; }, 440);
+}
+function drawFit() { if (!dCur || !dCar) return; const svg = q('.ly:last-child svg', drEl); if (svg) { cancelAnimationFrame(dRaf); setVB(svg, vbFor(dCur, dCar)); } }
+
+// What the picture area shows now. Priority: a Look pause (its drawing, else the old picture), a line drawing, a portrait
+// (the play's own card), the old picture. Called after every paint of the play.
+let lpKey = '';
+function luxPaint() {
+  if (!CUR || CUR.door || !stage.classList.contains('on')) return;
+  const n = CUR.meta.n, d = DRAW[n] || null, ms = d ? d.moments : [], s = au.currentTime, b = siteToBase(CUR, s);
+  let m = null; for (const x of ms) if (s >= x.t0 && s < x.t1) { m = x; break; }
+  let show = null, cue = '', label = '';
+  if (b.ins) {
+    const x = b.ins; cue = x.cue || 'Look.';
+    show = (m && m.kind === 'look' ? m : null) || ms.find((y) => y.kind === 'look' && y.t0 < x._s1 && y.t1 > x._s0) || null;
+    if (!show) label = x.element || '';
+  } else if (m) {
+    show = m;
+    if (m.kind === 'look') { const x = CUR.ins.find((y) => y._s0 < m.t1 && y._s1 > m.t0); if (x && s < x._s0) cue = 'Look for it'; }
+  }
+  const key = n + '|' + (show ? ms.indexOf(show) : -1) + '|' + cue + '|' + label;
+  if (key === lpKey) return; lpKey = key;
+  stage.classList.toggle('lx-over', !!(show || b.ins));   // a pause or a drawing comes before a portrait
+  const cueCh = artCue.textContent !== cue; artCue.textContent = cue;
+  if (cueCh) layoutArt();
+  if (show) { const c = d.carriers[show.carrier], same = dCur === show; drawShow(show, d); if (same && cueCh) drawFit(); art.classList.toggle('lx-plate', c.kind !== 'photo'); setCap(show.label || '', [c.credit, c.note].filter(Boolean).join(' · ')); }
+  else { drawHide(); setCap(label, thenCap(n)); }
+}
 
 // ---------------------------------------------------------------- the stage states
-// lx-atmark: the mark card with the plate. lx-rising: the curtain. lx-playing: the quiet stage. lx-interval: the walk to the next mark.
+// lx-playing: the quiet stage. lx-interval: the walk to the next mark. lx-atmark / lx-rising: the door scene's card and its curtain.
 let ctlT = 0;
 function showCtl(ms) { stage.classList.add('lx-ctl'); clearTimeout(ctlT); ctlT = setTimeout(() => stage.classList.remove('lx-ctl'), ms || 3400); }
 const hintEl = el('div', 'lx-hint', 'Touch the screen for the controls'); stage.appendChild(hintEl);
 stage.addEventListener('click', (e) => {
+  if (e.target.closest('#lxStop')) return;
+  if (liveOn()) { if (!e.target.closest('button,a')) liveEnd(); return; }   // a touch ends a living opening
   if (e.target.closest('.ctl')) { showCtl(); return; }
   if (e.target.closest('button,a,.card,#w1way')) return;
   if (stage.classList.contains('lx-ctl')) { stage.classList.remove('lx-ctl'); clearTimeout(ctlT); } else showCtl();
@@ -276,27 +374,30 @@ stage.addEventListener('click', (e) => {
 });
 q('#stBar').addEventListener('pointerdown', () => showCtl(6000));
 
+let stopPending = false;   // a scene is being opened through the stop: the house lights change without their announcement
 D.addEventListener('medu:stopstart', (e) => {
   const d = e.detail || {}; scene = d.door ? 0 : d.n;
-  stage.classList.remove('lx-atmark', 'lx-rising', 'lx-interval', 'lx-ctl'); stage.classList.add('lx-playing', 'lx-paused');
-  setTheme(themeFor(scene || 1), true);
+  stage.classList.remove('lx-atmark', 'lx-rising', 'lx-interval', 'lx-ctl', 'lx-over'); stage.classList.add('lx-playing', 'lx-paused');
+  setTheme(themeFor(scene || 1), !stopPending);
+  liveEnd(true); drawHide(true); lpKey = '';
   setLoc(scene || 1, d.door ? 'door' : 'scene'); setArt(scene); layoutArt(); preload(scene + 1);
+  if (scene) loadDraw(scene);
 });
+// With the layer on, the play's own mark card is only used by the door scene (the house rules). Every scene is entered
+// through the stop (below): the guide, the old picture, one gesture.
 const origStand = window.standCard;
 window.standCard = function () {
+  if (CUR && !CUR.door) { standEl.classList.remove('on'); stopOpen(CUR.meta.n); return; }
   const r = origStand.apply(this, arguments);
-  // what is still to be checked on site is a review note: it shows with "Review notes" on (Settings), not on the visitor's card
-  const sp = q('#standP'), VER = ' The exact spot is still to be checked on site.';
-  if (sp && sp.textContent.endsWith(VER)) sp.innerHTML = esc(sp.textContent.slice(0, -VER.length)) + ' <span class="verify">' + VER.trim() + '</span>';
   stage.classList.remove('lx-playing', 'lx-rising', 'lx-interval'); stage.classList.add('lx-atmark');
   layoutArt(); requestAnimationFrame(layoutArt);
   Notes.play('mark', 0.6);
   return r;
 };
-// the curtain: the note sounds, the plate turns to stone, then the voices begin
+// the door scene's curtain: the note sounds, then the voice begins
 q('#standGo').onclick = () => {
   Notes.unlock();
-  const begin = () => { fresh = true; standEl.classList.remove('on'); stage.classList.remove('lx-atmark', 'lx-rising'); stage.classList.add('lx-playing'); au.muted = false; au.play().catch(() => toast('Tap play to start the sound.')); };
+  const begin = () => { fresh = true; standEl.classList.remove('on'); stage.classList.remove('lx-atmark', 'lx-rising'); stage.classList.add('lx-playing'); layoutArt(); au.muted = false; au.play().catch(() => toast('Tap play to start the sound.')); };
   if (still()) { begin(); return; }
   let started = false;
   // start the play inside this tap so the phone allows it, hold it silent while the note sounds
@@ -330,8 +431,9 @@ const origFinish = window.finishStop;
 window.finishStop = function () {
   const was = CUR && !CUR.door ? CUR.meta.n : 0;
   const r = origFinish.apply(this, arguments);
-  stage.classList.remove('lx-playing', 'lx-ctl', 'lx-atmark', 'lx-rising');
+  stage.classList.remove('lx-playing', 'lx-ctl', 'lx-atmark', 'lx-rising', 'lx-over'); liveEnd(true); drawHide(true); lpKey = '';
   if (was && nextEl.classList.contains('on') && S.cur) { stage.classList.add('lx-interval'); setLoc(S.cur, 'walk'); drawLeg(was, S.cur); preload(S.cur); }
+  const wb = q('#w1wayBtn'); if (wb) wb.onclick = () => { wayMode = 'walk'; openStop(S.cur); };   // the guide's walk, then the same stop as every other way in
   return r;
 };
 const origShow = window.show;
@@ -347,32 +449,17 @@ window.show = function (id) {
   return r;
 };
 
-// what the play shows fits the room that is left under the header, and fits again when its words change
-// (a gold-line card opens as "Look for it" and then takes the cue, which may run to two lines)
+// What the play itself may put on the stage. With the layer on, no present-day photograph is ever shown: no "then and
+// now" compare, no traced photograph, no Look card. For their time the picture area keeps the old picture (or its drawing).
+// Portraits (drawn, not photographs) and the blackouts stay as the play has them.
 const revEl = q('#rev');
-const origFit = window.fitTrace;
-window.fitTrace = function () {
-  const tb = q('.tbox', revEl); if (!tb) return;
-  const m = tb.parentElement; revEl.classList.add('lx-tr'); m.style.flex = '';
-  origFit.apply(this, arguments);
-  m.style.flex = '0 0 ' + Math.ceil(tb.offsetHeight) + 'px';   // the box closes on the picture: cue, picture and label read as one card
-};
-function fitRev() {
-  const media = q('.media', revEl); if (!media) return;
-  if (media.classList.contains('trace')) { window.fitTrace(); return; }
-  if (media.classList.contains('then1')) {
-    const cue = q('.cuebig', revEl), lbl = q('.lbl', revEl);
-    const room = revEl.clientHeight - parseFloat(getComputedStyle(revEl).paddingTop) - (cue ? cue.offsetHeight : 0) - (lbl ? lbl.offsetHeight : 0);
-    revEl.style.setProperty('--lx-room', Math.max(110, Math.floor(room)) + 'px');
-  }
-}
-let revKey = '';
-new MutationObserver(() => {
-  const media = q('.media', revEl); if (!media) { revKey = ''; return; }
-  const k = media.className + '|' + ((q('.cuebig', revEl) || {}).textContent || '') + '|' + ((q('.lbl', revEl) || {}).textContent || '');
-  if (k !== revKey) { revKey = k; fitRev(); }
-}).observe(revEl, { childList: true, characterData: true, subtree: true });
-addEventListener('resize', () => { measureHead(); fitRev(); });
+const quietRev = () => { revEl.className = ''; revEl.innerHTML = ''; stage.classList.remove('dark'); };
+const origReveal = window.showReveal;
+window.showReveal = function (r) { if (!r || r.kind === 'wipe' || r.kind === 'trace') { quietRev(); return; } return origReveal.apply(this, arguments); };
+window.showLook = function () { quietRev(); };
+const origPaint = window.paint;
+window.paint = function () { const r = origPaint.apply(this, arguments); try { luxPaint(); } catch (e) {} return r; };
+addEventListener('resize', measureHead);
 
 // ---------------------------------------------------------------- the programme: the plan, the thread, the scenes
 const wrap = q('#walk .wrap'), h2 = q('#walk h2'), sub = q('#wkSub');
@@ -400,7 +487,7 @@ sheetEl.addEventListener('click', (e) => { const g = e.target.closest('g[data-n]
 function decorateRows() {
   D.querySelectorAll('#stops .stop').forEach((b) => {
     const n = +b.dataset.n; if (!n || q('.th', b)) return;
-    const i = new Image(); i.className = 'th'; i.alt = ''; i.loading = 'lazy'; i.onerror = () => i.remove(); i.src = artSrc(n, 'thumb'); b.appendChild(i);
+    const i = new Image(); i.className = 'th'; i.alt = ''; i.loading = 'lazy'; i.onerror = () => i.remove(); i.src = thenThumb(n); b.appendChild(i);
   });
 }
 const origRender = window.renderWalk;
@@ -427,15 +514,199 @@ q('#sheetIn').addEventListener('click', (e) => {
 });
 
 // ---------------------------------------------------------------- the download also carries this layer's pictures and notes
-const LUX_FILES = ['lux/img/cover.jpg', 'lux/img/plan-ink.webp', 'lux/img/plan-glyph.png', 'lux/audio/mark.mp3', 'lux/audio/curtain.mp3', 'lux/audio/finale.mp3', artSrc(0, 'plate'), artSrc(0, 'stone')];
-for (let n = 1; n <= 12; n++) for (const k of ['plate', 'stone', 'thumb']) LUX_FILES.push(artSrc(n, k));
+const LUX_FILES = ['lux/img/cover.jpg', 'lux/img/plan-ink.webp', 'lux/img/plan-glyph.png', 'lux/audio/mark.mp3', 'lux/audio/curtain.mp3', 'lux/audio/finale.mp3'];
+for (let n = 1; n <= 12; n++) LUX_FILES.push(thenSrc(n), thenThumb(n));
 const origAll = window.allFiles;
 window.allFiles = async function () {
   const out = await origAll.apply(this, arguments);
-  // a picture this copy does not hold is left out, so the download can still finish; anything unclear stays on the list
+  // a picture this copy does not hold is left out, so the download can still finish; anything unclear stays on the list.
+  // The living openings and the trailer are films: they stream and are never on this list.
   const there = await Promise.all(LUX_FILES.map((u) => fetch(u, { method: 'HEAD', cache: 'no-store' }).then((r) => r.status !== 404 && r.status !== 410, () => true)));
-  return [...new Set([...out, ...LUX_FILES.filter((u, i) => there[i])])];
+  // each scene's drawings and the pictures they are drawn on, where the scene has them
+  const draws = [];
+  for (let n = 1; n <= 12; n++) { const d = await loadDraw(n); if (d) { draws.push(DRAWDIR + 'ch' + pad2(n) + '.json'); for (const k in d.carriers) if (d.carriers[k].file) draws.push(DRAWDIR + d.carriers[k].file); } }
+  return [...new Set([...out, ...LUX_FILES.filter((u, i) => there[i]), ...draws])];
 };
+
+// ---------------------------------------------------------------- the stop: one way into every scene
+// The way in (the 3D guide: the walk, or straight to the mark) -> the camera comes to rest and the old picture rises ->
+// the visitor draws the old picture across -> the scene begins on the same picture. No card, no button in between.
+//
+// The contract with the guide (its v13):
+//   we open   guide3d/index.html?embed=lux&bottom=<px>#walk-chNN | #mark-chNN
+//   we post   {type:'medu:embed', mode:'lux', bottom:<px>, title:'Scene IV · The portal'}   on load and on resize
+//             {type:'medu:go', ch:'ch04', mode:'stand'}                                       on "I am there"
+//   it posts  {type:'medu:settled', ch:'ch04', then:true|false}    the stand camera is at rest, its old picture is up
+//             {type:'medu:ready', ch:'ch04'}                       the visitor has drawn the picture all the way across
+//   the same two events as hashes on the guide's own address: #settled-ch04, #ready-ch04.
+// A message counts only from the guide's own window and for the scene being opened; each event acts once per stop.
+const GUIDE = 'guide3d/index.html', HINT = 'Draw the old picture across to begin';
+const stopEl = el('div', 'lx-stop', `<iframe class="g" title="The way to the mark" allow="geolocation; accelerometer; gyroscope; magnetometer"></iframe>
+<div class="own" hidden><div class="pl"></div><div class="op"><img alt="" draggable="false"></div><input type="range" min="0" max="100" step="2" value="8" aria-label="Draw the old picture across the plan"><div class="kn" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+<button class="x cl" aria-label="Close and return to the programme"><svg width="20" height="20"><use href="#close"/></svg></button>
+<div class="band"><p class="ey"></p><p class="st"></p><div class="act"><span class="hint"></span><button class="tb" data-a="there">I am there</button><button class="tb" data-a="begin">Begin</button></div></div>`);
+stopEl.id = 'lxStop'; stage.appendChild(stopEl);
+const frame = q('iframe', stopEl), ownEl = q('.own', stopEl), ownPic = q('.op', stopEl), rng = q('input', stopEl), knob = q('.kn', stopEl), bandEl = q('.band', stopEl);
+let ST = null, wayMode = '';   // ST: the stop that is open. wayMode 'walk': the next card's "Show me the way"
+const standLine = (m) => {
+  let t = String((m && m.stand) || '').split(/UNVERIFIED|\[VERIFY|\(3D guide/)[0].trim().replace(/[\s:;,(]+$/, '');
+  if (t && !/[.!?]$/.test(t)) t += '.';
+  return t.replace(/^./, (x) => x.toUpperCase());
+};
+const hasGL = () => { try { const c = D.createElement('canvas'); return !!(c.getContext('webgl') || c.getContext('experimental-webgl')); } catch (e) { return false; } };
+const bandPx = () => Math.round(bandEl.getBoundingClientRect().height) || 132;
+const postGuide = (msg) => { try { frame.contentWindow.postMessage(msg, '*'); } catch (e) {} };
+const sayEmbed = () => { if (ST && !ST.own) postGuide({ type: 'medu:embed', mode: 'lux', bottom: bandPx(), title: ST.title }); };
+// The play's sound must be allowed to start when the guide says "ready" (a message, not a touch): the visitor's own
+// touch in this page (the one that opened the scene, or "I am there") starts the audio element silently and stops it.
+function prime() {
+  try {
+    if (!au.paused) return; au.muted = true; const p = au.play();
+    const back = () => { if (!au.muted) return; try { au.pause(); } catch (e) {} au.muted = false; if (au.currentTime < 2) { try { au.currentTime = 0; } catch (e) {} if (CUR && !CUR.door && S.pos[CUR.meta.n] < 2) { delete S.pos[CUR.meta.n]; save(); } } };
+    if (p && p.then) p.then(back, () => { au.muted = false; }); else back();
+  } catch (e) { au.muted = false; }
+}
+function stopCurtain(n) {   // the ground and the band are up at once, before the scene's files have answered
+  const m = (PLAYJ.chapters.find((c) => c.n === n) || {});
+  q('.ey', stopEl).textContent = 'Scene ' + rn(n) + ' · ' + (m.title || ''); q('.st', stopEl).textContent = standLine(m); q('.hint', stopEl).textContent = '';
+  stopEl.className = 'lx-stop on pre';
+}
+function stopClear() {
+  if (ST) { clearInterval(ST.poll); clearTimeout(ST.t6); clearTimeout(ST.t20); }
+  ST = null; stopEl.className = 'lx-stop'; ownEl.hidden = true; q('.pl', stopEl).innerHTML = '';
+  if (frame.getAttribute('src') && frame.getAttribute('src') !== 'about:blank') frame.src = 'about:blank';
+}
+function stopOpen(n) {   // the scene's files are loaded and the stage is set underneath; called in place of the play's mark card
+  const m = PLAYJ.chapters.find((c) => c.n === n) || {}, ch = 'ch' + pad2(n), mode = wayMode === 'walk' ? 'walk' : 'mark'; wayMode = '';
+  if (ST) { clearInterval(ST.poll); clearTimeout(ST.t6); clearTimeout(ST.t20); }
+  stopCurtain(n);
+  ST = { n, ch, mode, title: 'Scene ' + rn(n) + ' · ' + (m.title || ''), settled: false, done: false, own: false, answered: false, then: true, bn: 0 };
+  stopEl.className = 'lx-stop on walking'; preload(n);
+  if (!hasGL()) { stopOwn(); return; }
+  frame.src = GUIDE + '?embed=lux&bottom=' + bandPx() + '#' + mode + '-' + ch;
+  ST.poll = setInterval(stopPoll, 250);
+  ST.t6 = setTimeout(() => { if (ST && ST.n === n && !ST.own && !ST.answered && !guideCanvas()) stopOwn(); }, 6000);   // the guide has not come: our own stop
+}
+const guideCanvas = () => { try { return !!frame.contentWindow.document.querySelector('canvas'); } catch (e) { return false; } };
+frame.addEventListener('load', sayEmbed);
+addEventListener('resize', () => { if (!ST) return; sayEmbed(); if (ST.own) ownLayout(); });
+addEventListener('message', (e) => {
+  if (!ST || ST.own || e.source !== frame.contentWindow) return;
+  const d = e.data; if (!d || typeof d !== 'object' || typeof d.type !== 'string' || d.type.indexOf('medu:') !== 0) return;
+  ST.answered = true;
+  if (d.ch !== ST.ch) return;
+  if (d.type === 'medu:settled') stopSettled(d.then !== false); else if (d.type === 'medu:ready') stopReady(false);
+});
+function stopPoll() {
+  if (!ST || ST.own || ST.done) return; let w, h = '';
+  try { w = frame.contentWindow; h = String(w.location.hash || ''); } catch (e) { return; }
+  if (h === '#settled-' + ST.ch) stopSettled(true); else if (h === '#ready-' + ST.ch) stopReady(false);
+  if (ST && !ST.done) bridge(w);
+}
+// ---- bridge: remove when the guide sends medu:settled / medu:ready (its v13). Today's guide (v12) does not speak the
+// contract, so its "Then" window is watched from here (same origin): settled = the window is up in the stand view,
+// ready = its knob has travelled to within 6 % of the far side. Its own strip, chips and dock are hidden from here.
+function bridge(w) {
+  try {
+    const R = w.__r, doc = w.document; if (!R || !R.state || parseFloat(R.version || '0') >= 13) return;
+    if (!doc.getElementById('lxEmbed')) { const s = doc.createElement('style'); s.id = 'lxEmbed'; s.textContent = '.band{visibility:hidden!important;pointer-events:none!important}.band *{pointer-events:none!important}#cue,#thenx,#thenhead{display:none!important}'; (doc.head || doc.documentElement).appendChild(s); }
+    const st = R.state(); if (st.cur !== ST.ch || st.mode !== 'stand') { ST.bn = 0; return; }
+    const wrap = doc.getElementById('thenwrap'), up = !!wrap && wrap.style.display === 'block';
+    if (!ST.settled) { if (up) stopSettled(true); else if (++ST.bn > 14) stopSettled(false); return; }   // 3.5 s at the stand and no old picture: none here
+    if (!up) return;
+    const bar = doc.getElementById('thenbar').getBoundingClientRect(), im = doc.getElementById('thenimg').getBoundingClientRect();
+    const x0 = Math.max(0, im.left), x1 = Math.min(w.innerWidth, im.right), x = bar.left + bar.width / 2;
+    if (x1 > x0 && x >= x1 - 0.06 * (x1 - x0)) stopReady(false);
+  } catch (e) {}
+}
+function bridgeGo() { try { const R = frame.contentWindow.__r; if (R && R.go && parseFloat(R.version || '0') < 13) R.go(ST.ch); } catch (e) {} }
+// ---- end of the bridge
+const showBegin = () => { if (ST && !ST.done) stopEl.classList.add('canbegin'); };
+function stopSettled(then) {
+  if (!ST || ST.settled || ST.done) return;
+  ST.settled = true; ST.then = !!then; ST.answered = true;
+  stopEl.classList.remove('walking', 'pre'); stopEl.classList.add('settled');
+  q('.hint', stopEl).textContent = then ? HINT : '';
+  clearTimeout(ST.t20);
+  if (then) ST.t20 = setTimeout(showBegin, 20000); else showBegin();   // "Begin" only where there is no picture to draw, or after twenty seconds
+  Notes.play('mark', 0.6); livePrep(ST.n);
+}
+function stopReady(tap) {   // the picture has been drawn across (or "Begin"): the curtain note, the voices, the stage
+  if (!ST || ST.done) return;
+  const st = ST, n = st.n; st.done = true; clearTimeout(st.t20); clearTimeout(st.t6); clearInterval(st.poll);
+  Notes.play('curtain', 0.75);
+  let p = null, went = false;
+  const go = () => { if (went || ST !== st) return; went = true; stopRise(n); };
+  const refused = () => { if (went || ST !== st) return; if (tap) { go(); return; } st.done = false; st.poll = setInterval(stopPoll, 250); stopEl.classList.add('canbegin'); };   // the phone wants a touch: "Begin" at once
+  try { au.muted = false; if (au.currentTime < 2) au.currentTime = 0; fresh = true; p = au.play(); } catch (e) { refused(); return; }
+  if (p && p.then) { p.then(go, refused); setTimeout(go, 700); } else go();
+}
+function stopRise(n) {   // the guide fades, the stage is up on the same old picture
+  stage.classList.remove('lx-atmark', 'lx-rising'); stage.classList.add('lx-playing');
+  layoutArt(); liveStart(n);
+  stopEl.classList.add('out');
+  const st = ST; setTimeout(() => { if (ST === st) stopClear(); }, still() ? 0 : 520);
+}
+bandEl.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-a]'); if (!b || !ST) return;
+  if (b.dataset.a === 'begin') { Notes.unlock(); stopReady(true); return; }
+  // "I am there": the guide flies to the stand and raises the old picture
+  prime(); postGuide({ type: 'medu:go', ch: ST.ch, mode: 'stand' }); bridgeGo();
+  if (!ST.settled) { clearTimeout(ST.t20); ST.t20 = setTimeout(showBegin, 20000); }   // a guide that never answers still lets the play begin
+});
+q('.cl', stopEl).onclick = () => { stopClear(); stopAudio(); openWalk(); };
+
+// Without the guide (no WebGL, or it has not come within six seconds): our own stop, the same gesture.
+// Coste's plan, close on the mark; the old picture is drawn across it with the knob.
+let ownV = 8;
+function ownSet(v, fromInput) {
+  ownV = Math.max(0, Math.min(100, v));
+  q('img', ownPic).style.clipPath = 'inset(0 ' + (100 - ownV).toFixed(1) + '% 0 0)';
+  knob.style.left = (ownPic.offsetLeft + ownPic.offsetWidth * ownV / 100) + 'px'; knob.style.top = (ownPic.offsetTop + ownPic.offsetHeight / 2) + 'px';
+  if (!fromInput) rng.value = Math.round(ownV);
+  rng.setAttribute('aria-valuetext', Math.round(ownV) + ' percent across');
+}
+function ownLayout() {
+  if (!ST || !ST.own) return;
+  ownEl.style.bottom = bandPx() + 'px';
+  const t = THEN[ST.n], W = ownEl.clientWidth, H = ownEl.clientHeight, top = 66, mw = W - 32, mh = H - top - 18;
+  let h = mh, w = h * t.w / t.h; if (w > mw) { w = mw; h = w * t.h / t.w; }
+  Object.assign(ownPic.style, { width: Math.round(w) + 'px', height: Math.round(h) + 'px', left: Math.round((W - w) / 2) + 'px', top: Math.round(top + (mh - h) / 2) + 'px' });
+  Object.assign(rng.style, { left: ownPic.style.left, width: ownPic.style.width, top: Math.round(top + mh / 2 - 23) + 'px' });
+  const [x, y] = P2S(MARKS[ST.n - 1]), pw = 1500, ph = pw * H / Math.max(1, W);
+  q('.pl', stopEl).innerHTML = planSVG({ id: 'so', vb: [x - pw / 2, y - ph / 2, pw, ph], u: pw / Math.max(1, W), night: true, done: new Set(S.done), cur: ST.n, labels: true, r: 9, slice: true, label: 'The mark of scene ' + rn(ST.n) + ' on the plan' });
+  knob.style.setProperty('--h', (ownPic.offsetHeight / 2) + 'px'); ownSet(ownV);
+}
+function stopOwn() {
+  if (!ST || ST.own) return;
+  ST.own = true; clearInterval(ST.poll); clearTimeout(ST.t6);
+  if (frame.getAttribute('src') && frame.getAttribute('src') !== 'about:blank') frame.src = 'about:blank';
+  stopEl.classList.remove('pre'); stopEl.classList.add('ownon'); ownEl.hidden = false;
+  const im = q('img', ownPic); im.src = thenSrc(ST.n); im.alt = THEN[ST.n].cap;
+  ownV = 8; ownLayout(); stopSettled(true);
+}
+(() => {   // the knob: a drag anywhere on the picture area moves it by the distance travelled; the slider is for keys and screen readers
+  let d = null;
+  ownEl.addEventListener('pointerdown', (e) => { if (!ST || !ST.own || ST.done) return; d = { x: e.clientX, v: ownV }; try { ownEl.setPointerCapture(e.pointerId); } catch (err) {} ownEl.classList.add('drag'); });
+  ownEl.addEventListener('pointermove', (e) => { if (!d) return; ownSet(d.v + (e.clientX - d.x) / Math.max(1, ownPic.offsetWidth) * 100); });
+  const up = () => { if (!d) return; d = null; ownEl.classList.remove('drag'); if (ownV >= 94) { ownSet(100); stopReady(true); } };
+  ownEl.addEventListener('pointerup', up); ownEl.addEventListener('pointercancel', () => { d = null; ownEl.classList.remove('drag'); });
+  ownEl.addEventListener('dragstart', (e) => e.preventDefault());   // a mouse must not pick the picture up
+  rng.addEventListener('input', () => { ownSet(+rng.value, true); if (ownV >= 94) { ownSet(100); stopReady(true); } });
+})();
+
+// every way into a scene goes through the stop; a scene that is picked up where it was left, or heard again, does not
+const prevOpen = window.openStop;
+window.openStop = async function (n, skipStand) {
+  const door = n === 1 && PLAYJ && PLAYJ.door && !S.door && !skipStand && !S.pos[1] && !S.done.length;
+  const via = !!PLAYJ && THEN[n] && !skipStand && !S.pos[n] && !door;
+  if (via) { prime(); stopPending = true; stopCurtain(n); } else { wayMode = ''; if (ST) stopClear(); }
+  try { return await prevOpen.call(this, n, skipStand); }
+  finally { stopPending = false; if (!ST) { if (via) stopClear(); au.muted = false; } }
+};
+
+// (the living opening comes with the next step)
+const liveOn = () => false; function liveEnd() {} function livePrep() {} function liveStart() { return false; }
 
 // ---------------------------------------------------------------- the review copy, and the first paint once the play has loaded
 if (PREVIEW) {
@@ -459,5 +730,5 @@ const ready = setInterval(() => {
   const bl = q('#beginLbl'); if (bl && onsite()) bl.textContent = S.done.length ? 'Continue the play' : 'Begin the play';
   if (q('#walk').classList.contains('on')) { setTheme(themeFor(nextUnheard()), false); renderWalk(); }
 }, 120);
-window.MEDU_LUX = { planSVG, themeFor, setTheme, phrases, PREVIEW };
+window.MEDU_LUX = { planSVG, themeFor, setTheme, phrases, PREVIEW, THEN, stop: () => ST && { n: ST.n, ch: ST.ch, mode: ST.mode, settled: ST.settled, own: ST.own, done: ST.done }, draw: (n) => DRAW[n] };
 })();

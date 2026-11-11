@@ -23,7 +23,7 @@
   --lx-wash:rgba(58,40,26,.05); --lx-dim:.86;
   color:var(--ivory); color-scheme:light;
 }
-.lux.lx-paper #w1way{ --night:#0B0A08; --night2:#15130F; --night3:#1F1C17; --ivory:#EFE7D8; --gold:#D4B062; --dust:#9A958B; --paper:#ECDEC0; --line:rgba(239,231,216,.12); color:var(--ivory); color-scheme:dark }
+.lux.lx-paper :is(#w1way,#lxStop){ --night:#0B0A08; --night2:#15130F; --night3:#1F1C17; --ivory:#EFE7D8; --gold:#D4B062; --dust:#9A958B; --paper:#ECDEC0; --line:rgba(239,231,216,.12); color:var(--ivory); color-scheme:dark }
 
 /* ------------------------------------------------------------------ shared pieces */
 .lux .lx-eyebrow{font:600 10.5px/1.2 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin:0}
@@ -169,23 +169,33 @@
 .lux .lx-ticks i.done{background:var(--gold)}
 .lux .lx-ticks i.now{background:linear-gradient(90deg,var(--gold) calc(var(--p,0) * 100%),var(--lx-line2) calc(var(--p,0) * 100%));box-shadow:0 0 0 .5px var(--lx-rule)}
 
-/* the scene's picture: an engraved plate on the mark, stone and sun when the curtain rises */
-.lux .lx-art{position:absolute;left:0;right:0;top:calc(var(--top) + 96px);height:44%;z-index:2;pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;opacity:0;transition:opacity 1.2s ease}
-.lux .lx-art .fr{position:relative;flex:none;transition:transform 2.4s var(--lx-ease),box-shadow 1.6s ease}
-.lux .lx-art img{position:absolute;inset:0;width:100%;height:100%;display:block;transition:opacity 1.9s ease}
-/* the plate is a framed print; the stone has no frame and melts into the page at its edges */
-.lux .lx-art .st{opacity:0;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 84%,transparent 100%),linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 84%,transparent 100%),linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);mask-composite:intersect}
-.lux .lx-art.cut .st{-webkit-mask-image:linear-gradient(180deg,#000 0,#000 84%,transparent 100%),linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 84%,transparent 100%),linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%)}
-.lux .lx-art:not(.cut) .fr{box-shadow:0 0 0 1px var(--lx-rule),0 14px 34px rgba(0,0,0,.22)}
-.lux .lx-art .cap{flex:none;margin:9px 22px 0;font:400 9.5px/1.4 var(--sans);letter-spacing:.04em;color:var(--dust);text-align:center;transition:opacity .8s}
-.lux #stage.lx-atmark .lx-art,.lux #stage.lx-rising .lx-art{opacity:1}
-.lux #stage.lx-rising .lx-art .st,.lux #stage.lx-playing .lx-art .st{opacity:1}
-.lux #stage.lx-rising .lx-art .pl,.lux #stage.lx-playing .lx-art .pl{opacity:0}
-.lux #stage.lx-rising .lx-art .fr,.lux #stage.lx-playing .lx-art .fr{transform:scale(1.025);box-shadow:0 0 0 1px transparent,0 14px 34px transparent}
-.lux #stage.lx-playing .lx-art{opacity:var(--lx-dim)}
-.lux #stage.lx-playing .lx-art .cap,.lux #stage.lx-rising .lx-art .cap{opacity:0}
+/* the picture area: the scene's old picture, or a gold drawing on a measured plate or an old photograph.
+   In a Look pause the cue stands above it; its label and credit stand under it. One thing at a time. */
+.lux .lx-art{position:absolute;left:0;right:0;top:calc(var(--top) + 96px);height:44%;z-index:2;pointer-events:none;display:flex;flex-direction:column;align-items:stretch;padding:0 22px;opacity:0;transition:opacity .6s ease}
+.lux .lx-art .cue{flex:none;margin:0 0 10px;font:500 20px/1.2 var(--serif);color:var(--ivory);text-align:center;text-wrap:balance}
+.lux .lx-art .cue:empty{display:none}
+.lux .lx-art .fr{position:relative;flex:1 1 0;min-height:0;display:flex;align-items:center;justify-content:center}
+.lux .lx-art .pic{position:relative;flex:none;box-shadow:0 0 0 1px var(--lx-rule),0 14px 34px rgba(0,0,0,.22);transition:opacity .4s ease}
+.lux .lx-art .pic img{display:block;width:100%;height:100%}
+/* a drawing keeps its dark ground on paper too: a dark plate set into the page, one gold rule around it */
+.lux .lx-art .dr{position:absolute;inset:0;overflow:hidden;opacity:0;transition:opacity .4s ease;background:#0B0A08;box-shadow:0 0 0 1px rgba(212,176,98,.6)}
+.lux .lx-art.lx-draw .dr{opacity:1}
+.lux .lx-art.lx-draw .pic{opacity:0}
+.lux .lx-art .ly{position:absolute;inset:0;opacity:0;transition:opacity .4s ease}
+.lux .lx-art .ly.in{opacity:1}
+.lux .lx-art .ly svg{display:block;width:100%;height:100%}
+.lux .lx-art .dr .sh{fill:rgba(11,10,8,.45)}
+.lux .lx-art .dr .ol{fill:none;stroke:#F3DFA0;stroke-width:1.5;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.lux .lx-art .dr .gl{fill:none;stroke:#F3DFA0;stroke-width:4;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.8}
+.lux .lx-art .cap{flex:none;margin:8px 0 0;min-height:36px;text-align:center}
+.lux .lx-art .cap b{display:block;font:600 17px/1.25 var(--serif);color:var(--gold);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lux .lx-art .cap b:empty{display:none}
+.lux .lx-art .cap span{display:block;font:400 9.5px/1.45 var(--sans);letter-spacing:.04em;color:var(--dust)}
+.lux #stage.lx-atmark .lx-art,.lux #stage.lx-rising .lx-art,.lux #stage.lx-playing .lx-art{opacity:1}
 .lux #stage.lx-interval .lx-art{opacity:0}
 .lux .lx-art.lx-noart{visibility:hidden}
+/* a Look pause or a drawing comes before a portrait */
+.lux #stage.lx-over:not(.dark) #rev{opacity:0!important;pointer-events:none!important}
 
 /* the words: one phrase at a time */
 .lux #stage .mid{justify-content:flex-end;padding:0 28px 5vh;transition:opacity .6s}
@@ -203,11 +213,12 @@
 .lux .look .eye{width:58px;height:58px;margin:0 auto 16px}
 .lux #lookRing{stroke:var(--gold)}
 .lux .look .eye svg{color:var(--gold)}
-.lux .look .lab{font:600 10px/1 var(--sans);letter-spacing:.34em;margin-bottom:12px}
+.lux .look .lab{font:600 10px/1 var(--sans);letter-spacing:.34em;margin-bottom:0;padding-left:.34em}
 .lux .look .cue{font:500 29px/1.2 var(--serif);text-wrap:balance}
 .lux .look .el{font:400 12px/1.4 var(--sans);letter-spacing:.04em}
-.lux #stage.looking .mid{justify-content:center;padding-bottom:0}
-.lux #stage.looking .lx-art{opacity:.12}
+/* in a Look pause the cue stands over the picture; here only what to do (look, touch, count) and its ring */
+.lux #stage.looking .look{display:flex;flex-direction:column;justify-content:center;min-height:calc(3.72 * 1.24 * 29px + 24px)}
+.lux .look .cue,.lux .look .el{display:none}
 .lux #stage.lx-playing.lx-ar .lx-art{opacity:.13}
 
 /* controls: only on touch */
@@ -225,25 +236,13 @@
 .lux .lx-hint{position:absolute;left:0;right:0;bottom:calc(var(--bot) + 18px);z-index:5;text-align:center;font:600 9px/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--dust);opacity:0;pointer-events:none;transition:opacity .8s}
 .lux #stage.lx-playing:not(.lx-ctl):not(.lx-paused) .lx-hint.show{opacity:.85}
 
-/* what the play shows: portraits, archive views, gold lines */
+/* what the play itself shows: portraits and blackouts */
 .lux #rev{background:var(--lx-page);padding-top:calc(var(--lx-head) + 10px)}
 .lux #stage.dark #rev{background:#000}
 .lux #rev .lbl{padding:14px 26px calc(var(--bot) + 132px);font:400 12px/1.5 var(--sans);letter-spacing:.03em;color:var(--lx-soft)}
 .lux #rev .lbl b{font:600 23px/1.15 var(--serif);letter-spacing:0;color:var(--ivory)}
-.lux #rev .cuebig{font:500 23px/1.22 var(--serif);text-wrap:balance}
-.lux #rev.lx-tr .cuebig{min-height:calc(2.44em + 12px);display:flex;align-items:flex-end;justify-content:center}
-.lux #rev .tag{color:#ECDEC0;border-radius:1px;font:400 10px/1.3 var(--sans);letter-spacing:.03em}
-.lux.lx-paper #rev .media::after{background:var(--lx-grain);opacity:.5}
-.lux.lx-paper #rev .tbox{--gold:#D4B062;--night:#0B0A08}
 .lux #rev.portrait .media{box-shadow:0 0 0 1px var(--lx-rule)}
 .lux #rev .media{margin:0 22px}
-.lux #rev .media.trace{margin:0}
-/* the archive view on a reveal: the frame fits the picture (no black bars), and its date sits on the picture's corner */
-.lux #rev .media.then1{flex:0 1 auto;align-self:center;max-height:none;background:none;box-shadow:0 0 0 1px var(--lx-rule),0 14px 34px rgba(0,0,0,.22)}
-.lux #rev .media.then1 img{position:static;display:block;width:auto;height:auto;max-width:100%;max-height:min(56vh,var(--lx-room,calc(100vh - 350px)))}
-/* the finder on paper: a bronze line reads on cream, and the place stays faintly there */
-.lux.lx-paper #rev .tbox.finder img{opacity:.2}
-.lux.lx-paper #rev .tbox.finder .ln{stroke:#7a5c1e;filter:none}
 /* the blackout (the minaret falls, the passage goes dark): the whole house goes, header and all */
 .lux #stage .top,.lux #stage .lx-ticks{transition:opacity .5s ease}
 .lux #stage.dark .top,.lux #stage.dark .lx-ticks{opacity:0}
@@ -284,6 +283,35 @@
 .lux .w1waytop .x{flex:none;border-color:rgba(212,176,98,.5);color:#EFE7D8}
 .lux .w1wayhint{margin-top:76px;border-radius:2px;font:400 11px/1.4 var(--sans);letter-spacing:.02em;color:#EFE7D8;background:rgba(11,10,8,.72);padding:6px 10px;animation:lx-note 7s ease forwards}
 @keyframes lx-note{0%,78%{opacity:1}100%{opacity:0}}
+
+/* the stop: the guide (or our own plan) under a slim band, one close control. Always night, whatever the house lights. */
+.lux .lx-stop{position:absolute;inset:0;z-index:20;display:none;background:#0B0A08;opacity:1;transition:opacity .5s ease}
+.lux .lx-stop.on{display:block}
+.lux .lx-stop.out{opacity:0;pointer-events:none}
+.lux .lx-stop iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#0B0A08}
+.lux .lx-stop.pre iframe,.lux .lx-stop.ownon iframe{visibility:hidden}
+.lux .lx-stop .cl{position:absolute;top:calc(var(--top) + 10px);right:12px;z-index:3;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#0B0A08;border:1px solid rgba(212,176,98,.55);color:#EFE7D8}
+.lux .lx-stop .band{position:absolute;left:0;right:0;bottom:0;z-index:2;box-sizing:border-box;max-height:calc(132px + var(--bot));padding:9px 20px calc(var(--bot) + 6px);overflow:hidden;background:#0B0A08;box-shadow:0 -1px 0 rgba(212,176,98,.42)}
+.lux .lx-stop .ey{margin:0;font:600 10.5px/1.3 var(--sans);letter-spacing:.05em;color:#D4B062}
+.lux .lx-stop .st{margin:4px 0 0;font:500 14.5px/1.2 var(--serif);color:rgba(239,231,216,.92);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.lux .lx-stop .act{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:44px}
+.lux .lx-stop.pre .act{visibility:hidden}
+.lux .lx-stop .hint{font:600 9.5px/1.35 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#D4B062}
+.lux .lx-stop .hint:empty{display:none}
+.lux .lx-stop .tb{flex:none;display:none;min-height:44px;min-width:44px;padding:0 2px;font:600 10.5px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:#EFE7D8;text-decoration:underline;text-decoration-color:rgba(212,176,98,.7);text-underline-offset:6px;text-decoration-thickness:1px}
+.lux .lx-stop.walking:not(.canbegin) .tb[data-a=there]{display:block}
+.lux .lx-stop.canbegin .tb[data-a=begin]{display:block;margin-left:auto;animation:lx-screen .9s ease both}
+/* our own stop: Coste's plan close on the mark, the old picture drawn across it */
+.lux .lx-stop .own{position:absolute;left:0;right:0;top:0;bottom:132px;overflow:hidden;touch-action:none;cursor:ew-resize}
+.lux .lx-stop .own[hidden]{display:none}
+.lux .lx-stop .pl{position:absolute;inset:0}
+.lux .lx-stop .pl svg{position:absolute;inset:0;width:100%;height:100%}
+.lux .lx-stop .op{position:absolute;outline:1px solid rgba(212,176,98,.3)}
+.lux .lx-stop .op img{display:block;width:100%;height:100%;-webkit-user-drag:none;user-select:none;-webkit-user-select:none}
+.lux .lx-stop .kn{position:absolute;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;display:grid;place-items:center;background:#0B0A08;border:1px solid #D4B062;color:#D4B062;pointer-events:none;box-shadow:0 4px 14px rgba(0,0,0,.5)}
+.lux .lx-stop .kn::before{content:"";position:absolute;left:50%;top:calc(23px - var(--h,200px));height:calc(var(--h,200px) * 2);width:1px;margin-left:-.5px;background:rgba(243,223,160,.8);z-index:-1}
+.lux .lx-stop input[type=range]{position:absolute;height:46px;margin:0;opacity:0;pointer-events:none}
+.lux .lx-stop input[type=range]:focus-visible + .kn{outline:2px solid #F3DFA0;outline-offset:3px}
 
 /* ------------------------------------------------------------------ the end */
 .lux #finale{justify-content:flex-start;overflow-y:auto;padding:calc(var(--top) + 18px) 30px calc(var(--bot) + 18px);background:var(--lx-page)}
@@ -336,7 +364,8 @@
 .lux body.nofx .screen.on,.lux body.nofx .lx-plan .thread,.lux body.nofx .lx-plan .pulse,.lux body.nofx #home .cv-bg,.lux body.nofx .capline.lx-in{animation:none!important}
 @media (prefers-reduced-motion:reduce){
   .lux .screen.on,.lux .lx-plan .thread,.lux .lx-plan .pulse,.lux #home .cv-bg,.lux .capline.lx-in{animation:none!important}
-  .lux .lx-art,.lux .lx-art img,.lux .lx-art .fr,.lux .card .body,.lux .lx-lights{transition:none!important}
+  .lux .lx-art,.lux .lx-art .pic,.lux .lx-art .dr,.lux .lx-art .ly,.lux .lx-stop,.lux .card .body,.lux .lx-lights{transition:none!important}
+  .lux .lx-stop.canbegin .tb[data-a=begin]{animation:none!important}
 }
 /* a laptop or a tablet: the play stays one phone-wide column on a dark desk, so every screen is the one that was rehearsed */
 @media (min-width:620px){
@@ -353,6 +382,7 @@
   .lux .card p{font-size:18px}
   .lux #nextH{font-size:28px}
   .lux #rev .lbl{padding-bottom:calc(var(--bot) + 104px)}
+  .lux .lx-art .cue{font-size:18px}
   .lux #nextLine{font-size:17px!important;margin-bottom:10px!important}
   .lux #nextP{font-size:16px!important;-webkit-line-clamp:2}
   .lux .card .sp{min-height:8px}
