@@ -582,9 +582,24 @@ q('#sheetIn').addEventListener('click', (e) => {
 // ---------------------------------------------------------------- the download also carries this layer's pictures and notes
 const LUX_FILES = ['lux/img/cover.jpg', 'lux/img/plan-ink.webp', 'lux/img/plan-glyph.png', 'lux/audio/mark.mp3', 'lux/audio/curtain.mp3', 'lux/audio/finale.mp3'];
 for (let n = 1; n <= 12; n++) LUX_FILES.push(thenSrc(n), thenThumb(n));
+// What the play lists for a stop but this layer never shows: its "then and now" pair (the stand photograph is the old
+// half of it), the photograph it traced and the photographs of its Look cards. None of it goes into the offline copy.
+async function unshown() {
+  const no = new Set();
+  for (const m of PLAYJ.chapters) {
+    const ch = await loadCh(m.n), at = (r, k) => (r.vdir ? r.vdir + r[k] : url(ch.meta.dir, r[k]));
+    for (const r of ch.reveals) if (r && (r.kind === 'wipe' || r.kind === 'trace')) for (const k of ['src', 'then']) if (r[k]) no.add(at(r, k));
+    for (const r of (ch.looks || [])) if (r) for (const k of ['src', 'then']) if (r[k]) no.add(at(r, k));
+  }
+  // one of them stays: scene I's old photograph of the square stands behind the play's own audio trailer, which takes
+  // the film's place wherever the film cannot be had (the film streams, so that is the case with no signal)
+  try { no.delete(standPhoto(await loadCh(1))); } catch (e) {}
+  return no;
+}
 const origAll = window.allFiles;
 window.allFiles = async function () {
-  const out = await origAll.apply(this, arguments);
+  let out = await origAll.apply(this, arguments);
+  try { const no = await unshown(); out = out.filter((u) => !no.has(u)); } catch (e) {}
   // a picture this copy does not hold is left out, so the download can still finish; anything unclear stays on the list.
   // The living openings and the trailer are films: they stream and are never on this list.
   // each scene's drawings and the pictures they are drawn on, where the scene has them
@@ -933,6 +948,37 @@ window.trailer = function () {
 const tb0 = q('#btnTrailer'); if (tb0) { tb0.textContent = 'Watch the trailer'; tb0.onclick = () => window.trailer(); }
 const origGate = window.gateSheet;
 window.gateSheet = function () { const r = origGate.apply(this, arguments); const b = q('#sheetIn [data-act="trailer"]'); if (b) b.textContent = 'Watch the trailer'; return r; };
+
+// ---------------------------------------------------------------- the sources sheet names the pictures that are on screen
+// The play's own list credits its "then and now" pair, which is not shown here. A scene shows one old picture, gold
+// drawings on measured plates and old photographs, and the 3D building at the stop; four scenes open on a film made of
+// their own picture. Portraits and sound stay as the play credits them.
+const GUIDE_CREDIT = 'MEDU 3D model, a reconstruction, not a record. Three of its wall surfaces are cut from a photograph by Mohamed abdelzaher, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>, changed by us, <a href="https://commons.wikimedia.org/wiki/File:Mosque-Madrassa_of_Sultan_Hassan_(1).jpg" target="_blank" rel="noopener">source</a>';
+const OPENING = {};   // scene -> this copy holds its opening film (asked once)
+const origCredits = window.creditsSheet;
+window.creditsSheet = async function (n) {
+  const t = THEN[n]; let film = false;
+  if (t) try {   // what the list needs is fetched before the sheet opens, so the play's own list is never seen
+    const prep = (async () => { await loadDraw(n); await loadCh(n); if (ANIM[n] && !still()) film = await (OPENING[n] || (OPENING[n] = fetch(ANIM[n].poster, { method: 'HEAD', cache: 'no-store' }).then((r) => r.status !== 404 && r.status !== 410, () => true))); })();
+    prep.catch(() => {});
+    await Promise.race([prep, new Promise((ok) => setTimeout(ok, 1500))]);   // a slow network does not hold the sheet: it opens with what is in hand
+  } catch (e) {}
+  const r = await origCredits.apply(this, arguments);
+  try {
+    const h = t && [...q('#sheetIn').querySelectorAll('h3')].find((x) => x.textContent.trim() === 'Pictures'), ul = h && h.nextElementSibling;
+    if (ul && ul.tagName === 'UL') {
+      const d = DRAW[n], own = CH[n] && CH[n].c.credits;
+      const li = ['<li><b>' + esc(t.cap) + '</b>: ' + esc(t.credit) + '</li>'];
+      if (film) li.push('<li><b>The opening</b>: the same picture, set moving by us. The movement is not a record.</li>');
+      const on = d ? [...new Set([...new Set(d.moments.map((m) => m.carrier))].map((k) => carCredit(d.carriers[k])).filter(Boolean))] : [];
+      if (on.length) li.push('<li><b>The gold drawings</b>: drawn by us on ' + on.map(esc).join('; ') + '</li>');
+      li.push('<li><b>The building at the stop</b>: ' + GUIDE_CREDIT + '</li>');
+      for (const v of (Array.isArray(own) ? own : [])) if (v && typeof v.src === 'string' && v.src[0] === '_') li.push('<li><b>' + esc(v.what || '') + '</b>: ' + esc(v.author || '') + (v.license ? ', ' + esc(v.license) : '') + '</li>');
+      ul.innerHTML = li.join('');
+    }
+  } catch (e) {}
+  return r;
+};
 
 // ---------------------------------------------------------------- the review copy, and the first paint once the play has loaded
 if (PREVIEW) {
